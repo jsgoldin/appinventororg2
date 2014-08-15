@@ -1,0 +1,470 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>PaintPot</h1>
+<div class="row-fluid">
+	<div class="span6">
+		<p>
+		<em>This tutorial introduces the Canvas component for creating simple, two-dimensional (2D) graphics. You&apos;ll build PaintPot, an app that lets the user draw on the screen in different colors, and then update it to allow him to take his own picture and draw on that instead. On a historical note, PaintPot was one of the first programs developed to demonstrate the potential of personal computers, as far back as the 1970s. Back then, making something like this simple drawing app was a very complex undertaking, and the results were pretty unpolished. But now with App Inventor, anyone can quickly put together a fairly cool drawing app, which is a great starting point for building 2D games.</em>
+		</p>
+</div>
+<div class="span6">
+<img src="{{apps2Dir}}/PaintPot/pp.png" alt="">
+</div>
+</div>
+<div class="span4">
+<img src="{{apps2Dir}}/PaintPot/pp2-1.png" alt="">
+<p><em>Figure 2-1. The PaintPot app</em></p>
+</div>
+<div class="row-fluid">
+<div class="span4">
+		<p>
+		With the PaintPot app shown in Figure 2-1, you can:
+		<ul>
+			<li>Dip your finger into a virtual paint pot to draw in that color.</li>
+			<li>Drag your finger along the screen to draw a line.</li>
+			<li>Poke the screen to make dots.</li>
+			<li>Use the button at the bottom to wipe the screen clean.</li>
+			<li>Change the dot size to large or small with the buttons at the bottom.</li>
+			<li>Take a picture with the camera and then draw on that picture.</li>
+		</ul>
+		</p>
+	</div>
+</div>
+<h2>What You&apos;ll Learn</h2>
+<p>
+	This tutorial introduces the following concepts:
+	<ul>
+		<li>Using the <b>Canvas</b> component for drawing.</li>
+		<li>Handling touch and drag events on the device surface.</li>
+		<li>Controlling screen layout with arrangement components.</li>
+		<li>Using event handlers that take arguments.</li>
+		<li>Defining variables to remember things like the dot size the user has chosen for drawing.</li>
+	</ul>
+</p>
+	<h2>Getting Started</h2>
+	<p>
+	Make sure your computer and your device are set up to use App Inventor, and navigate to the App Inventor website at <a href="http://ai2.appinventor.mit.edu/">ai2.appinventor.mit.edu</a>. Start a new project and name it &quot;PaintPot&quot;. Open the Blocks Editor, click &quot;Connect&quot;, and select AI Companion, then follow the instructions within the information box to connect your app to your device (be sure you have the MIT App Companion installed on your Android device).
+	</p>
+	<p>
+	To get started, go to the Properties panel on the right of the Designer and change the screen title to &quot;PaintPot&quot;. You should see this change on the device, with the new title displayed in the title bar of your app.
+	</p>
+	<p>
+	If you&apos;re concerned about confusing your project name and the screen name, don&apos;t worry! There are three key names in App Inventor:
+	</p>
+	<p>
+	<ul>
+		<li>The name you choose for your project as you work on it. This will also be the name of the application when you package it for the device. Note that you can click File and select Save As in the Component Designer to start a new version or rename a project.</li>
+		<li>The component name, Screen1, which you&apos;ll see in the panel that lists the application&apos;s components. You can&apos;t change this name in the current version of App Inventor.</li>
+		<li>The title of the screen, which is what you&apos;ll see in the device&apos;s title bar. This starts out being Screen1, which is what you used in HelloPurr. But you can change it, as we just did for PaintPot.</li>
+	</ul>
+	</p>
+	<h2>Designing the Components</h2>
+	<p>
+	You&apos;ll use these components to make the app:
+	</p>
+	<ul>
+		<li>Three <b>Button</b> components for selecting red, blue, or green paint, and a <b>HorizontalArrangement</b> component for organizing them. 
+		<li>One <b>Button</b> component for wiping the drawing clean, and two for changing the size of the dots that are drawn.</li>
+		<li>A <b>Canvas</b> component, which is the drawing surface. <b>Canvas</b> has a <b>BackgroundImage</b> property, which we&apos;ll set to the <em>kitty.png</em> file from the HelloPurr tutorial in Chapter 1. Later in this chapter, you&apos;ll modify the app so the background can be set to a picture the user takes.</li>
+	</ul>
+	<h2>Creating the Color Buttons</h2>
+	<p>
+	First, create the three color buttons using the following instructions:
+	</p>
+	<ol>
+		<li>Drag a <b>Button </b>component onto the viewer and change its <b>Text </b>attribute to &quot;Red&quot; and make its <b>BackgroundColor</b> red.</li>
+		<li>Click <b>Button1</b> in the components list in the Viewer to highlight it (it might already be highlighted) and click Rename to change its name from <b>Button1</b> to <b>RedButton</b>. Note that spaces aren&apos;t allowed in component names, so it&apos;s common to capitalize the first letter of each word in the name.</li>
+		<li>Similarly, make two more buttons for blue and green, named <b>BlueButton</b> and <b>GreenButton</b>, placing them under the red button vertically. Check your work up to this point against Figure 2-2.</li>
+	</ol>
+<img src="{{apps2Dir}}/PaintPot/pp2-2.PNG" alt="">
+<p>
+<em>Figure 2-2. The Viewer showing the three buttons created</em>
+</p>
+	<p>
+	Note that in this project, you&apos;re changing the names of the components rather than leaving them as the default names as you did with HelloPurr. Using more meaningful names makes your projects more readable, and it will really help when you move to the Blocks Editor and must refer to the components by name. In this book, we&apos;ll use the convention of having the component name end with its type (for example, <b>RedButton</b>).
+	</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong> <em>If you haven&apos;t clicked &quot;Connect&quot; and connected your device, do so now and check how your app looks on either your device (if it&apos;s connected) or in the emulator.</em>
+	</p>
+</div>
+</div>
+	<h2>Using Arrangements for Better Layouts</h2>
+	<p>
+	You should now have three buttons stacked on top of one another. But for this app, you want them all lined up next to one another at the top of the screen, as shown in Figure 2-3. You do this using a <b>HorizontalArrangement</b> component:
+	</p>
+	<ol>
+		<li>From the Palette&apos;s Layout category, drag out a <b>HorizontalArrangement</b> component and place it under the buttons.</li>
+		<li>In the Properties panel, change the <b>Width</b> of the <b>HorizontalArrangement</b> to &quot;Fill parent&quot; so that it fills the entire width of the screen.</li>
+		<li>Move the three buttons one by one into the <b>HorizontalArrangement</b> component. <em>Hint</em>: You&apos;ll see a blue vertical line that shows where the piece you&apos;re dragging will go.</li>
+	</ol>
+<img src="{{apps2Dir}}/PaintPot/pp2-3.PNG" alt="">
+<p>
+<em>Figure 2-3. The three buttons within a horizontal arrangement</em>
+</p>
+	<p>
+	If you look in the list of project components, you&apos;ll see the three buttons indented under the <b>HorizontalArrangement</b> component to show that they are now its subcomponents. Notice that all the components are indented under <b>Screen1</b>.
+	</p>
+	<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+<p>	
+<strong>Test your app.</strong> <em>You should also see your three buttons lined up in a row on the device screen, although things might not look exactly as they do on the Designer. For example, the outline around</em> <b>HorizontalArrangement</b><em> appears in the Viewer but not on the device.</em>
+	</p>
+</div>
+</div>
+	<p>
+	In general, you use screen arrangements to create simple vertical, horizontal, or tabular layouts. You can also create more complex layouts by inserting (or nesting) screen arrangement components within each other.
+	</p>
+	<h2>Adding the Canvas</h2>
+	<p>
+	The canvas is where the user will draw circles and lines. Add it, and add the <em>kitty.png</em> file from HelloPurr as the <b>BackgroundImage</b>:
+	</p>
+	<ol>
+		<li>From the Palette&apos;s Drawing and Animation category, drag a <b>Canvas</b> component onto the Viewer. Change its name to <b>DrawingCanvas</b>. Set its <b>Width</b> to &quot;Fill parent.&quot; Set its <b>Height</b> to 300 pixels</li>
+		<li>If you&apos;ve completed the HelloPurr tutorial (Chapter 1), you have already downloaded the <em>kitty.png</em> file. If you haven&apos;t, you can download it here <a href="{{apps2Dir}}/PaintPot/Media/kitty.png"><em>kitty.png</em></a>.</li>
+		<li>Set the <b>BackgroundImage</b> of the <b>DrawingCanvas</b> to the <em>kitty.png</em> file. In the Properties section of the Components Designer, the <b>BackgroundImage</b> will be set to None. Click the field and choose Upload New to add the <em>kitty.png</em> file.</li>
+		<li>Set the <b>PaintColor</b> of the DrawingCanvas to red so that when the user starts the app but hasn&apos;t clicked on a button yet, his drawings will be red. Check to see that what you&apos;ve built looks like Figure 2-4.</li>
+	</ol>
+<img src="{{apps2Dir}}/PaintPot/pp2-4.PNG" alt="">
+<p>
+<em>Figure 2-4. The DrawingCanvas component has a BackgroundImage of the kitty picture</em>
+</p>
+	<h2>Arranging the Bottom Buttons and the Camera Component</h2>
+	<ol>
+		<li>From the Palette, drag out a second <b>HorizontalArrangement</b> and place it under the canvas. Then drag two more <b>Button</b> components onto the screen and place them in this bottom <b>HorizontalArrangement</b>. Change the name of the first button to <b>TakePictureButton</b> and its <b>Text</b> property to &quot;Take Picture&quot;. Change the name of the second button to <b>WipeButton</b> and its <b>Text</b> property to &quot;Wipe&quot;.</li>
+		<li>Drag two more <b>Button</b> components from the Palette into the <b>HorizontalArrangement</b>, placing them next to <b>WipeButton</b>.</li>
+		<li>Name the buttons <b>BigButton</b> and <b>SmallButton</b>, and set their <b>Text</b> to &quot;Big Dots&quot; and &quot;Small Dots&quot;, respectively.</li>
+		<li>From the Media Palette, drag a <b>Camera</b> component into the Viewer. It will appear in the non-visible component area.</li>
+	</ol>
+	<p>
+	You&apos;ve now completed the steps to set the appearance of your app as shown in Figure 2-5.
+	</p>
+<img src="{{apps2Dir}}/PaintPot/pp2-5.PNG" alt="">
+<p>
+<em>Figure 2-5. The complete user interface for PaintPot</em>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong><em> Check the app on the device. Does the kitty picture now appear under the top row of buttons? Does the bottom row of buttons appear?
+</em>
+	</p>
+</div>
+</div>
+	<h2>Adding Behaviors to the Components</h2>
+	<p>
+	The next step is to define how the components behave. Creating a painting program might seem overwhelming, but rest assured that App Inventor has done a lot of the heavy lifting for you: there are easy-to-use blocks for handling the user&apos;s touches and drags, and for drawing and taking pictures.
+	</p>
+	<p>
+	In the Designer, you added a <b>Canvas</b> component named <b>DrawingCanvas</b>. Like all canvas components, <b>DrawingCanvas</b> has a <b>Touched</b> event and a <b>Dragged</b> event. You&apos;ll program the <strong>DrawingCanvas.Touched</strong> event so that it calls <strong>DrawingCanvas.DrawCircle</strong>. You&apos;ll program the <strong>DrawingCanvas.Dragged</strong> event to call <strong>DrawingCanvas.DrawLine</strong>. You&apos;ll then program the buttons to set the <b>DrawingCanvas.PaintColor</b> property, clear the <b>DrawingCanvas</b>, and change the <b>BackgroundImage</b> to a picture taken with the camera.
+	</p>
+	<h2>Adding the Touch Event to Draw a Dot</h2>
+	<p>
+	First, you&apos;ll arrange things so that when you touch the <em>DrawingCanvas</em>, you draw a dot at the spot you touch: 
+	</p>
+	<ol>
+		<li>In the Blocks Editor, select the drawer for the <b>DrawingCanvas</b>, and drag the <strong>DrawingCanvas.Touched</strong> block to the workspace. The block has parameters for <b>x</b>, <b>y</b>, and <b>touchedSprite</b>, as shown in Figure 2-6.</li>. These parameters provide information about the location of the touch.
+		<img src="{{apps2Dir}}/PaintPot/pp2-6.PNG" alt="">
+		<p>
+			<em>Figure 2-6. The event comes with information about where the screen is touched</em>
+		</p>
+<div class="span2">
+<img src="{{apps2Dir}}/block.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Note.</strong> <em>If you&apos;ve completed the HelloPurr app in Chapter 1, you&apos;re familiar with</em> <strong>Button.Click</strong> <em>events, but not with Canvas events.</em> <strong>Button.Click</strong> <em>events are fairly simple because there&apos;s nothing to know about the event other than that it happened. Some event handlers, however, come with information about the event called arguments. The </em><strong>DrawingCanvas.Touched</strong> <em>event tells you the x and y coordinates of the touch within the DrawingCanvas. It also tells you if an object within the <b>DrawingCanvas</b> (in App Inventor, this is called a sprite) was touched, but we won&apos;t need that until Chapter 3. The x and y coordinates are the arguments we&apos;ll use to note where the user touched the screen, so we can then draw the dot at that position.</em>
+	</p>
+</div>
+</div>
+		<li>Drag out a <strong>DrawingCanvas.DrawCircle</strong> command from the DrawingCanvas drawer and place it within the <strong>DrawingCanvas.Touched</strong> event handler, as shown in Figure 2-7.</li>
+		<img src="{{apps2Dir}}/PaintPot/pp2-7.PNG" alt="">
+		<p>
+			<em>Figure 2-7. When the user touches the canvas, the app draws a circle</em>
+		</p>
+	On the right side of the <strong>DrawingCanvas.DrawCircle</strong> block, you&apos;ll see three slots for the arguments we need to fill in: x, y, and r. The x and y arguments specify the location where the circle should be drawn, and r determines the radius (or size) of the circle. The yellow warning box with the exclamation point at the bottom left of the screen will show a 1 this denotes that these slots haven&apos;t yet been filled. We&apos;ll build the blocks to do that next.
+	This event handler can be a bit confusing because the <strong>DrawingCanvas.Touched</strong> event also has an x and y ; just keep in mind that the x and y for the <strong>DrawingCanvas.Touched</strong> event tell you where the user touched, while the x and y for the <strong>DrawingCanvas.DrawCircle</strong> event are open slots for you to specify where the circle should be drawn. 
+	Because you want to draw the circle where the user touched, you'll plug in the x and y values from <strong>DrawingCanvas.Touched</strong> as the values of the x and y parameters in <strong>DrawingCanvas.DrawCircle</strong>.</li>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/block.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Note.</strong> <em>You can access the event parameter values by mousing over them in the "when" block. "get" and "set" blocks will appear.  Drag the "get x" and plug it in as the "x" value of DrawCircle, as shown in Figure 2-8.</em>
+	</p>
+</div>
+</div>
+<div class="row-fluid">
+<div class="span5">
+<img src="{{apps2Dir}}/PaintPot/pp2-8.PNG" alt="">
+<p>
+	<em>Figure 2-8. To access an event parameter, drag out a "get" block reference from the <strong>DrawingCanvas.Touched</strong> component.</em>
+</p>
+</div>
+</div>
+<p>
+		<li>Drag "get" blocks out for the <strong>x</strong> and <strong>y</strong> values and plug them into the sockets in the <strong>DrawingCanvas.DrawCircle</strong> block as shown in Figure 2-9.</li>
+</p>
+		<img src="{{apps2Dir}}/PaintPot/pp2-9.PNG" alt="">
+		<p>
+			<em>Figure 2-9. The app knows where to draw (x,y), but we still need to specify how big the circle should be</em>
+		</p>
+		<li>You&apos;ll also need to specify the radius, r, of the circle to draw. The radius is measured in pixels, which is the tiniest dot that can be drawn on the screen. For now, set it to 5: click in a blank area of the screen and type 5 then return (this will create a number block automatically) and plug that in for the <b>r</b> slot. When you do, the yellow box in the bottom left corner will return to 0 as all the slots are filled. Figure 2-10 illustrates how the final <strong>DrawingCanvas.Touched</strong> event handler should look.</li>
+	</ol>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/block.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Note.</strong> <em>By typing a 5 in the Blocks Editor, followed by Return you have used what is known as typeblocking: if you start typing, the Blocks Editor shows a list of blocks whose names match what you are typing; if you type a number, it creates a number block.</em>
+	</p>
+</div>
+</div>
+<img src="{{apps2Dir}}/PaintPot/pp2-10.PNG" alt="">
+<p>
+	<em>Figure 2-10. When the user touches the DrawingCanvas, a circle of radius 5 will be drawn at (x,y)</em>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong> <em>Try out what you have so far on the device. Touch the DrawingCanvas&ndash;your finger should leave a dot at each place you touch. The dots will be red if you set the </em><b>DrawingCanvas.PaintColor</b> <em>property to red in the Component Designer (otherwise, it&apos;s black, as that&apos;s the default).</em>
+	</p>
+</div>
+</div>
+	<h2>Adding the Drag Event That Draws a Line</h2>
+	<p>
+	Next, you&apos;ll add the drag event handler. Here&apos;s the difference between a touch and a drag:
+	</p>
+	<ul>
+		<li>A <em>touch</em> is when you place your finger on the DrawingCanvas and lift it without moving it.</li>
+		<li>A <em>drag</em> is when you place your finger on the DrawingCanvas and move it while keeping it in contact with the screen.</li>
+	</ul>
+	<p>
+	In a paint program, dragging your finger across the screen appears to draw a giant, curved line along your finger&apos;s path. What you&apos;re actually doing is drawing hundreds of tiny, straight lines; each time you move your finger, even a little bit, you extend the line from your finger&apos;s last position to its new position.
+	</p>
+<p>
+	<ol>
+		<li>From the DrawingCanvas drawer, drag the <strong>DrawingCanvas.Dragged</strong> block to the workspace. You should see the event handler as it is shown in Figure 2-11.
+</p>
+<p>
+		The <strong>DrawingCanvas.Dragged</strong> event comes with the following arguments:
+</p>
+<ul>
+<li>
+		<b>startX, startY</b>: the position of your finger back where the drag started.
+</li>
+<li>
+		<b>currentX, currentY</b>: the current position of your finger
+</li>
+<li>
+		<b>prevX, prevY</b>: the immediately previous position of your finger.
+</li>
+<li>
+		<b>draggedSprite</b>: a boolean, it will be true if the user drags directly on an image sprite. We won&apos;t use this argument in this tutorial.</li>
+</ul>
+			<img src="{{apps2Dir}}/PaintPot/pp2-11.PNG" alt="">
+			<p>
+				<em>Figure 2-11. A Dragged event has even more arguments than Touched</em>
+			</p>
+		<li>From the DrawingCanvas drawer, drag the <strong>DrawingCanvas.DrawLine</strong> block into the <strong>DrawingCanvas.Dragged</strong> block, as shown in Figure 2-12.
+</p>
+			<img src="{{apps2Dir}}/PaintPot/pp2-12.PNG" alt="">
+			<p>
+				<em>Figure 2-12. Adding the capability to draw lines</em>
+			</p>
+<p>
+		The <strong>DrawingCanvas.DrawLine</strong> block has four arguments, two for each point that determines the line: (<b>x1,y1</b>) is one point, while (<b>x2,y2</b>) is the other. Can you figure out what values need to be plugged into each argument? Remember, the <strong>Dragged</strong> event will be called many times as you drag your finger across the DrawingCanvas: the app draws a tiny line each time your finger moves, from (<b>prevx,prevy</b>) to (<b>currentX,currentY</b>). Let&apos;s add those to our <strong>DrawingCanvas.DrawLine</strong> block:</li>
+</p>
+		<li>Drag out "get" blocks for the arguments you need. A <strong>get prevX</strong> and <strong>get prevY</strong> should be plugged into the x1 and y1 slots, respectively. A <strong>get currentX</strong> and <strong>get currentY</strong> should be plugged into the x2 and y2 slots, respectively, as shown in Figure 2-13.</li>
+
+	</ol>
+	<img src="{{apps2Dir}}/PaintPot/pp2-13.PNG" alt="">
+	<p>
+		<em>Figure 2-13. As the user drags, the app will draw a line from the previous spot to the current one</em>
+	</p>
+	<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong> <em>Try this behavior on the device: drag your finger around on the screen to draw lines and curves. Touch the screen to make spots.</em> 
+	</p>
+</div>
+</div>
+	<h2>Adding Button Event Handlers</h2>
+	<p>
+	The app you&apos;ve built lets the user draw, but it always draws in red. Next, add event handlers for the color buttons so users can change the paint color, and another for WipeButton so they can clear the screen and start over.
+	</p>
+	<p>
+	In the Blocks Editor:
+	</p>
+	<ol>
+		<li>Go to the Blocks column.</li>
+		<li>Open the drawer for <b>RedButton</b> and drag out the <strong>RedButton.Click</strong> block.</li>
+		<li>Open the DrawingCanvas drawer. Drag out the <strong>set DrawingCanvas.PaintColor to</strong> block (you may have to scroll through the list of blocks in the drawer to find it) and place it in the &quot;do&quot; section of <strong>RedButton.Click</strong>.</li>
+		<li>Open the Colors drawer and drag out the block for the color red and plug it into the <strong>set DrawingCanvas.PaintColor to</strong> block.</li>
+		<li>Repeat steps 2&ndash;4 for the blue and green buttons.</li>
+		<li>The final button to set up is <b>WipeButton</b>. Drag out a <strong>WipeButton.Click</strong> from the WipeButton drawer. From the DrawingCanvas drawer, drag out <strong>DrawingCanvas.Clear</strong> and place it in the <strong>WipeButton.Click</strong> block. Confirm that your blocks show up as they do in Figure 2&ndash;14.</li>
+	</ol>
+	<img src="{{apps2Dir}}/PaintPot/pp2-14.PNG" alt="">
+	<p>
+		<em>Figure 2-14. Clicking the color buttons changes the DrawingCanvas’s PaintColor; clicking Wipe clears the screen</em>
+	</p>
+	<h2>Letting the User Take a Picture</h2>
+	<p>
+	App Inventor apps can interact with the powerful features of an Android device, including the camera. To spice up the app, we&apos;ll let the user set the background of the drawing to a picture they take with the camera.
+	</p>
+	<ol>
+		<li>The <b>Camera</b> component has two key blocks. The <strong>Camera.TakePicture</strong> block launches the camera application on the device. The event <strong>Camera.AfterPicture</strong> is triggered when the user has finished taking the picture. You&apos;ll add blocks in the <strong>Camera.AfterPicture</strong> event handler to set the <b>DrawingCanvas.BackgroundImage</b> to the image that was just taken. Open the TakePictureButton drawer and drag the <strong>TakePictureButton.Click</strong> event handler into the workspace.</li>
+		<li>From <b>Camera1</b>, drag out <strong>Camera1.TakePicture</strong> and place it in the <strong>TakePictureButton.Click</strong> event handler.</li>
+		<li>From <b>Camera1</b>, drag the Camera1.AfterPicture event handler into the workspace.</li>
+		<li>From <b>DrawingCanvas</b>, drag the <strong>set DrawingCanvas.BackgroundImage to</strong> block and place it in the <strong>Camera1.AfterPicture</strong> event handler.</li>
+		<li><strong>Camera1.AfterPicture</strong> has an argument named <b>image</b>, which is the picture that was just taken. You can get a reference to it, with a <strong>get</strong> block from the <strong>Camera1.AfterPicture</strong> block, plug it into <strong>DrawingCanvas.BackgroundImage</strong>.</li>
+	</ol>
+	<p>
+	The blocks should look like Figure 2-15.
+	</p>
+	<img src="{{apps2Dir}}/PaintPot/pp2-15.PNG" alt="">
+	<p>
+		<em>Figure 2-15. When the picture is taken, it’s set as the DrawingCanvas’s background image</em>
+	</p>
+	<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong> <em>Try out this behavior by clicking Take Picture on your device and taking a picture. The cat should change to the picture you take, and then you can draw on that picture. (Drawing on Professor Wolber is a favorite pastime of his students, as exemplified in Figure 2-16.)</em>
+	</p>
+</div>
+</div>
+	<h2>Changing the Dot Size</h2>
+<div class="row-fluid">
+	<div class="span6">
+	<p>
+	The size of the dots drawn on the DrawingCanvas is determined in the call to <strong>DrawingCanvas.DrawCircle</strong> when the radius argument r is set to 5. To change the thickness, you can put in a different value for r. To test this, try changing the 5 to a 10 and testing it out on the device to see how it looks.
+	</p>
+	<p>
+	The catch here is that whatever size you set in the radius argument is the only size the user can use. What if he wants to change the size of the dots? Let&apos;s modify the program so that the user, not just the programmer, can change the dot size. We&apos;ll change it so that when the user clicks a button labeled &quot;Big Dots,&quot; the dot size is 8, and when he clicks a button labeled &quot;Small Dots,&quot; it is 2.
+	</p>
+	<p>
+	To use different values for the radius argument, the app needs to know which one we want to apply. We have to tell it to use a specific value, and it has to store (or remember) that value somehow so it can keep using it. When your app needs to remember something that&apos;s not a property, you can define a <em>variable</em>. A variable is a <em>memory cell</em>; you can think of it like a bucket in which you can store data that can vary, such as the current dot size (for more information about variables, see <a href="/assets/pdf/ch16Variables.pdf">Chapter 16</a> in the App Inventor book).
+</p>
+</div>
+<div class="span4">
+<img src="{{apps2Dir}}/PaintPot/pp2-16.PNG" alt="">
+<p>
+	<em>Figure 2-16. The PaintPot app with an &quot;annotated&quot; picture of Professor Wolber</em>
+</p>
+</div>
+</div>
+	</p>
+	<p>
+	Let&apos;s start by defining a variable <b>dotSize</b>:
+	</p>
+	<ol>
+		<li>In the Blocks Editor, drag out an <strong>initialize global name to</strong> block from the variables drawer. Change the text &quot;name&quot; to &quot;dotSize&quot;.</li>
+		<li>Notice that the <strong>initialize global dotSize to</strong> block has an open slot. This is where you can specify the initial value for the variable, or the value that it defaults to when the app begins. (This is often referred to as &quot;initializing a variable&quot; in programming terms.) For this app, initialize the <b>dotSize</b> to 2 by creating a number <strong>2</strong> block (by either starting to type the number 2 or dragging a <strong>0</strong> block out of the Math drawer) and plugging it into <strong>initialize global dotSize to</strong>, as shown in Figure 2-17.</li>
+		
+	</ol>
+	<img src="{{apps2Dir}}/PaintPot/pp2-17.PNG" alt="">
+	<p>
+		<em>Figure 2-17. Initializing the variable dotSize with a value of 2</em>
+	</p>
+	<h2>Using variables</h2>
+	<p>
+	Next, we want to change the argument of <strong>DrawingCanvas.DrawCircle</strong> in the <strong>DrawingCanvas.Touched</strong> event handler so that it uses the value of <strong>dotSize</strong> rather than always using a fixed number. (It may seem like we&apos;ve &quot;fixed&quot; <b>dotSize</b> to the value 2 because we initialized it that way, but you&apos;ll see in a minute how we can change the value of <b>dotSize</b> and therefore change the size of the dot that gets drawn.)
+	</p>
+	<ol>
+		<li>Drag out a "get" block from <strong>DrawingCanvas.DrawCircle</strong>. You should see a <strong>get global dotSize</strong> block that provides the value of the variable.</li>
+		<li>Go to the <strong>DrawingCanvas.Touched</strong> event handler and drag the number <strong>5</strong> block out of the r slot and place it into the trash. Then replace it with the <strong>get global dotSize</strong> block (see Figure 2-18). When the user touches the DrawingCanvas, the app will now determine the radius from the variable <b>dotSize</b>.</li>
+	</ol>
+	<img src="{{apps2Dir}}/PaintPot/pp2-18.PNG" alt="">
+	<p>
+		<em>Figure 2-18. Now the size of each circle is dependent on what is stored in the variable dotSize</em>
+	</p>
+	<h2>Changing the values of variables</h2>
+	<p>
+	Here&apos;s where the magic of variables really comes into play&ndash;the variable <b>dotSize</b> allows the user to choose the size of the circle, and your event handler will draw the circle accordingly. We&apos;ll implement this behavior by programming the <strong>SmallButton.Click</strong> and <strong>BigButton.Click</strong> event handlers:
+	</p>
+	<ol>
+		<li>Drag out a <strong>SmallButton.Click</strong> event handler from the SmallButton drawer. Then drag out a <strong>set</strong> block from Variables, select "dotsize" for its reference, and plug it into <strong>SmallButton.Click</strong>. Finally, create a <strong>number 2</strong> block and plug it into the <strong>set global dotSize to</strong> block.</li>
+		<li>Make a similar event handler for <strong>BigButton.Click</strong>, but set <b>dotSize</b> to 8. Both event handlers should now show up in the Blocks Editor, as shown in Figure 2-19.</li>
+	</ol>
+	<div class="span2">
+<img src="{{apps2Dir}}/block.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Note.</strong> <em>The &quot;global&quot; in</em> <strong>get </strong> <em>and</em> <strong>set global dotSize</strong> <em>to refers to the fact that the variable can be used in all the event handlers of the program (globally). Some programming languages allow you to define variables that are &quot;local&quot; to a particular part of the program; App Inventor currently does not.</em>
+	</p>
+	</div>
+</div>
+<img src="{{apps2Dir}}/PaintPot/pp2-19.PNG" alt="">
+<p>
+	<em>Figure 2-19. Clicking the buttons changes the dotSize; successive touches will draw at that size</em>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong> <em>Try clicking the size buttons and then touching the DrawingCanvas. Are the circles drawn with different sizes? Are the lines? The line size shouldn&apos;t change because you programmed dotSize to only be used in the</em> <strong>DrawingCanvas.DrawCircle</strong> <em>block. Based on that, can you think of how you&apos;d change your blocks so users could change the line size as well? (Note that DrawingCanvas has a property named LineWidth.)</em>
+	</p>
+</div>
+</div>
+	<h2>The Complete App: PaintPot</h2>
+	<p>
+	Figure 2-20 illustrates our completed PaintPot app.
+	</p>
+	<img src="{{apps2Dir}}/PaintPot/pp2-20.PNG" alt="">
+	<p>
+		<em>Figure 2-20. The final set of blocks for PaintPot</em>
+	</p>
+	<h2>Variations</h2>
+	<p>
+	Here are some variations you can explore:
+	</p>
+	<ul>
+		<li>The app&apos;s user interface doesn&apos;t provide much information about the current settings (for example, the only way to know the current dot size or color is to draw something). Modify the app so that these settings are displayed to the user.</li>
+		<li>Let the user enter the dot size within a <b>TextBox</b> component. This way, she can change it to other values besides 2 and 8. For more information on input forms and the <b>TextBox</b> component, see Chapter 4.</li>
+	</ul>
+	<h2>Summary</h2>
+	<p>
+	Here are some of the ideas we&apos;ve covered in this chapter:
+	</p>
+	<ul>
+		<li>The <b>DrawingCanvas</b> component lets you draw on it. It can also sense touches and drags, and you can map these events to drawing functions.</li>
+		<li>You can use screen arrangement components to organize the layout of components instead of just placing them one under the other.</li>
+		<li>Some event handlers come with information about the event, such as the coordinates of where the screen was touched. This information is represented by arguments. When you drag out an event handler that has arguments, App Inventor creates "get" and "set" items within the block to use to reference these arguments.</li>
+		<li>You create variables by using <strong>initialize global name to</strong> blocks from the Variables drawer. Variables let the app remember information, like dot size, that isn&apos;t stored in a component property.</li>
+		<li>For each variable you define, App Inventor automatically supplies a <strong>get global</strong> reference that gives the value of the variable, and a <strong>set global variable </strong> reference for changing the value of the variable. To access these, drag out a "get" or a "set" from the block itself.</li>
+	</ul>
+	<p>
+	This chapter showed how the DrawingCanvas component can be used for a painting program. You can also use it to program animations such as those you&apos;d find in 2D games. To learn more, check out the Ladybug Chase game in Chapter 5 and the discussion of animation in Chapter 17.
+	</p>
+
+	{% endblock %}

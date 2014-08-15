@@ -1,0 +1,227 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+
+
+<h1>Understanding an App's Architecture</h1>
+<p>
+	<em>This chapter examines the structure of an app from a programmer's perspective. It begins with the traditional analogy that an app is like a recipe and then proceeds to reconceptualize an app as a set of components that respond to events.The chapter also examines how apps can ask questions, repeat, remember, and talk to the Web, all of which will be described in more detail in later chapters.</em>
+</p>
+
+<img src="{{apps2Dir}}/Architecture14/a14.png" alt="" align = "middle" >
+
+<p>
+	Many people can tell you what an app is from a user's perspective, but understanding what it is from a programmer's perspective is more complicated. Apps have an internal structure that we must fully understand in order to create them effectively.
+</p>
+<p>
+	One way to describe an app's internals is to break it into two parts, its <em>components</em> and its <em>behaviors</em>. Roughly, these correspond to the two main windows you use in App Inventor: you use the Component Designer to specify the objects (components) of the app, and you use the Blocks Editor to program how the app responds to user and external events (the app's behavior).
+</p>
+<p>
+	Figure 14-1 provides an overview of this app architecture. In this chapter, we'll explore this architecture in detail.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-1.png">
+<p>
+	<em>Figure 14-1. The internal architecture of an App Inventor app</em>
+</p>
+<h2>Components</h2>
+<p>
+	There are two main types of components in an app: visible and non-visible. The app's visible components are the ones you can see when the app is launched-things like buttons, text boxes, and labels. These are often referred to as the app's <em>user interface</em>.
+</p>
+<p>
+	Non-visible components are those you can't see, so they're not part of the user interface. Instead, they provide access to the built-in functionality of the device; for example, the <B>Texting</B> component sends and processes SMS texts, the <B>LocationSensor</B> component determines the device's location, and the <b>TextToSpeech</b> component talks. The non-visible components are the technology within the device-little people that do jobs for your app.
+</p>
+<p>
+	Both visible and non-visible components are defined by a set of <em>properties</em>. Properties are memory slots for storing information about the component. Visible components, for instance, have properties like <b>Width</b>, <b>Height</b>, and <b>Alignment</b>, which together define how the component looks. So a button that looks like the Submit button in Figure 14-2 to the end user is defined in the Component Designer with a set of properties, including those shown in Table 14-1.
+</p>
+<p>
+	<em>Table 14-1. Button properties</em>
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-1T.png">
+
+<img src="{{apps2Dir}}/Architecture14/a14-2.png">
+<p>
+	<em>Figure 14-2. Submit button</em>
+</p>
+<p>
+	You can think of properties as something like the cells you see in a spreadsheet You modify them in the Component Designer to define the <em>initial</em> appearance of a component. If you change the number in the <b>Width</b> slot from 50 to 70, the button will appear wider, both in the Designer and in the app. Note that the end user of the app doesn't see the 70; he just sees the button's width change.
+</p>
+<h2>Behavior</h2>
+<p>
+	An app's components are generally straightforward to understand: a text box is for entering information, a button is for clicking, and so on. An app's behavior, on the other hand, is conceptually difficult and often complex. The behavior defines how the app should respond to events, both user initiated (e.g., a button click) and external (e.g., an SMS text arriving to the phone). The difficulty of specifying such interactive behavior is why programming is so challenging.
+</p>
+<p>
+	Fortunately, App Inventor provides a visual "blocks" language perfectly suited for specifying behaviors. This section provides a model for understanding it.
+</p>
+<h2>An App As a Recipe</h2>
+<div class="row-fluid">
+	<div class="span9">
+<p>
+	Traditionally, software has often been compared to a recipe. Like a recipe, a traditional app follows a linear sequence of instructions, such as those shown in Figure 14-3, that the computer (chef ) should perform.
+</p>
+<p>
+	A typical app might start a bank transaction (A), perform some computations and modify a customer's account (B), and then print out the new balance on the screen (C).
+</p>
+</div>
+<div class="span2">
+<img src="{{apps2Dir}}/Architecture14/a14-3.png">
+<p>
+	<em>Figure 14-3. Traditional software follows a linear sequence of instructions</em>\
+</p>
+</div>
+</div>
+<h2>An App As a Set of Event Handlers</h2>
+<p>
+	However, most apps today, whether they're for mobile phones, the Web, or desktop computers, don't fit the <em>recipe</em> paradigm anymore. They don't perform a bunch of instructions in a predetermined order; instead, they <em>react</em> to <em>events</em>-most commonly, events initiated by the app's end user. For example, if the user clicks a button, the app responds by performing some operation (e.g., sending a text message). For touchscreen phones and devices, the act of dragging your finger across the screen is another event. The app might respond to that event by drawing a line from the point of your original touch to the point where you lifted your finger.
+</p>
+<p>
+	These types of apps are better conceptualized as a set of components that respond to events. The apps do include "recipes"-sequences of instructions-but each recipe is only performed in response to some event, as shown in Figure 14-4.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-4.png">
+<p>
+	<em>Figure 14-4. An app as multiple recipes hooked to events</em>
+</p>
+<p>
+	So, as events occur, the app reacts by calling a sequence of <em>functions</em>. Functions are things you can do to or with a component-operations like sending an SMS text, or property-changing operations such as changing the text in a label of the user interface. To <em>call</em> a function means to <em>invoke</em> it, to make it happen. We call an event and the set of functions performed in response to it an <em>event handler</em>.
+</p>
+<p>
+	Many events are initiated by the end user, but some are not. An app can react to events that happen within the phone, such as changes to its orientation sensor and the clock (i.e., the passing of time), and events created by things outside the phone, such as other phones or data arriving from the Web, as shown in Figure 14-5.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-5.png">
+<p>
+	<em>Figure 14-5. An app can respond to both internal and external events</em>
+</p>
+<p>
+	One reason App Inventor programming is intuitive is that it's based directly on this event-response paradigm; event handlers are primary "words" in the language (in many languages, this is not the case). You begin defining a behavior by dragging out an <em>event block</em>, which has the form, "When &lt;event&gt; do". For example, consider an app, SpeakIt, that responds to button clicks by speaking the text the user has entered aloud. This application could be programmed with a single event handler, shown in Figure 14-6.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-6.png">
+<p>
+	<em>Figure 14-6. An event handler for a SpeakIt app</em>
+</p>
+<p>
+	These blocks specify that when the user clicks the button named <b>SpeakItButton</b>, the <b>TextToSpeech</b> component should speak the words the user has entered in the text box named <b>TextBox1</b>. The response is the call to the function <strong>TextToSpeech1.Speak</strong>. The event is <strong>SpeakItButton.Click</strong>. The event handler includes all the blocks in Figure 14-6.
+</p>
+<p>
+	With App Inventor, all activity occurs in response to an event. Your app shouldn't contain blocks outside of an event's "when-do" block. For instance, the blocks in Figure 14-7 don't make sense floating alone.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-7.png">
+<p>
+	<em>Figure 14-7. Floating blocks won't do anything outside an event handler</em>
+</p>
+<h2>Event Types</h2>
+<p>
+	The events that can trigger activity fall into the categories listed in Table 14-2.
+</p>
+<p>
+	<em>Table 14-2. Events that can trigger activity</em>
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-2T.png">
+<h2>User-initiated events</h2>
+<p>
+	User-initiated events are the most common type of event. With input forms, it is typically the button click event that triggers a response from the app. More graphical apps respond to touches and drags.
+</p>
+<h2>Initialization events</h2>
+<p>
+	Sometimes your app needs to perform certain functions right when the app begins, not in response to any end-user activity or other event. How does this fit into the event-handling paradigm?
+</p>
+<p>
+	Event-handling languages like App Inventor consider the app's launch as an event.If you want specific functions to be performed immediately when the app opens, you drag out a <strong>Screen1.Initialize</strong> event block and place some function call blocks within it.
+</p>
+<p>
+	For instance, in the game MoleMash (Chapter 3), the <b>MoveMole</b> procedure is called at the start of the app to randomly place the mole, as shown in Figure 14-8.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-8.png">
+<p>
+	<em>Figure 14-8. Using a Screen1.Initialize event block to move the mole when the app begins</em>
+</p>
+<h2>Timer events</h2>
+<p>
+	Some activity in an app is triggered by the passing of time. You can think of an animation as an object that moves when triggered by a <em>timer event</em>. App Inventor has a <b>Clock</b> component that can be used to trigger timer events. For instance, if you wanted a ball on the screen to move 10 pixels horizontally at a set time interval, your blocks would look like Figure 14-9.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-9.png">
+<p>
+	<em>Figure 14-9. Using a timer event block to move a ball whenever Clock1.Timer fires</em>
+</p>
+<h2>Animation events</h2>
+<p>
+	Activity involving graphical objects (sprites) within canvases will trigger events. So you can program games and other interactive animations by specifying what should occur when two objects collide or when an object reaches the edge of the canvas. For more information, see Chapter 17.
+</p>
+<h2>External events</h2>
+<p>
+	When your phone receives location information from GPS satellites, an event is triggered. Likewise, when your phone receives a text, an event is triggered (Figure 14-10).
+</p>
+<p>
+	Such external inputs to the device are considered events, just like the user clicking a button.
+</p>
+<p>
+	So every app you create will be a set of event handlers: one to initialize things, some to respond to the end user's input, some triggered by time, and some triggered by external events. Your job is to conceptualize your app in this way and then design the response to each event handler.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-10.png">
+<p>
+	<em>Figure 14-10. The Texting1.MessageReceived event is triggered whenever a text is received</em>
+</p>
+<h2>Event Handlers Can Ask Questions</h2>
+<div class="row-fluid">
+	<div class="span9">
+<p>
+	The responses to events are not always linear recipes; they can ask questions and repeat operations. "Asking questions" means to query the data the app has stored and determine its course (branch) based on the answers. We say that such apps have <em>conditional branches</em>, as illustrated in Figure 14-11.
+</p>
+<p>
+	In the diagram, when the event occurs, the app performs operation A and then checks a condition. Function B1 is performed if the condition is true. If the condition is false, the app instead performs B2. In either case, the app continues on to perform function C.
+</p>
+</div>
+<div class="span2">
+<img src="{{apps2Dir}}/Architecture14/a14-11.png">
+<p>
+	<em>Figure 14-11. An event handler can branch based on the answer to a conditional question</em>
+</p>
+</div>
+</div>
+<p>
+	Conditional tests are questions such as "Has the score reached 100?"" or "Did the text I just received come from Joe?"" Tests can also be more complex formulas including multiple relational operators (less than, greater than, equal to) and logical operators (and, or, not).
+</p>
+<p>
+	You specify conditional behaviors in App Inventor with the <strong>if</strong> and <strong>ifelse</strong> blocks. For instance, the block in Figure 14-12 would report "You Win!"" if the player scored 100 points.
+</p>
+<p>
+	Conditional blocks are discussed in detail in Chapter 18.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-11.png">
+<p>
+	<em>Figure 14-12. Using an if block to report a win once the player reaches 100 points</em>
+</p>
+<h2>Event Handlers Can Repeat Blocks</h2>
+<p>
+	In addition to asking questions and branching based on the answer, your app can also repeat operations multiple times. App Inventor provides two blocks for repeating, the <strong>foreach</strong> and the <strong>while do</strong>. Both enclose other blocks. All the blocks within <strong>foreach</strong> are performed once for each item in a list. For instance, if you wanted to text the same message to a list of phone numbers, you could use the blocks in Figure 14-13.
+</p>
+<img src="{{apps2Dir}}/Architecture14/a14-12.png">
+<p>
+	<em>Figure 14-13. The blocks within the foreach block are repeated for each item in the list</em>
+</p>
+<p>
+	The blocks within the <strong>foreach</strong> block are repeated-in this case, three times, because the list <strong>PhoneNumbers</strong> has three items. So the message "thinking of you…" is sent to all three numbers. Repeating blocks are discussed in detail in Chapter 20.
+</p>
+<h2>Event Handlers Can Remember Things</h2>
+<p>
+	Because an event handler executes blocks, it often needs to keep track of information. Information can be stored in memory slots called variables, which you define in the Blocks Editor. Variables are like component properties, but they're not associated with any particular component. In a game app, for example, you can define a variable called "score" and your event handlers would modify its value when the user does something accordingly. Variables store data temporarily while an app is running; when you close the app, the data is no longer available.
+</p>
+<p>
+	Sometimes your app needs to remember things not just while it runs, but even when it is closed and then reopened. If you tracked a high score for the history of a game, for example, you'd need to store this data long-term so it is available the next time someone plays the game. Data that is retained even after an app is closed is called <em>persistent data</em>, and it's stored in some type of a database.
+</p>
+<p>
+	We'll explore the use of both short-term memory (variables) and long-term memory (database data) in Chapters 16 and 22, respectively.
+</p>
+<h2>Event Handlers Can Talk to the Web</h2>
+<p>
+	Some apps use only the information within the phone or device. But many apps communicate with the Web by sending requests to <em>web service APIs (application programming interfaces)</em>. Such apps are said to be "web-enabled."
+</p>
+<p>
+	Twitter is an example of a web service to which an App Inventor app can talk. You can write apps that request and display your friend's previous tweets and also update your Twitter status. Apps that talk to more than one web service are called <em>mashups</em>. We'll explore web-enabled apps in Chapter 24.
+</p>
+<h2>Summary</h2>
+<p>
+	An app creator must view his app both from an end-user perspective and from the inside-out perspective of a programmer. With App Inventor, you design how an app looks and then you design its behavior-the set of event handlers that make an app behave as you want. You build these event handlers by assembling and configuring blocks representing events, functions, conditional branches, repeat loops, web calls, database operations, and more, and then test your work by actually running the app on your phone. After you write a few programs, the mapping between the internal structure of an app and its physical appearance becomes clear. When that happens, you're a programmer!
+</p>
+
+
+	{% endblock %}
+

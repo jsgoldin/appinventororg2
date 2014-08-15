@@ -1,0 +1,216 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>Paris Map Tour</h1>
+<p>
+<em>In this chapter, you'll build an app that lets you create your own custom guide for a dream trip to Paris. And since a few of your friends can't join you, we'll create a companion app that lets them take a virtual tour of Paris as well. Creating a fully functioning map app might seem really complicated, but App Inventor lets you use the <b>ActivityStarter</b> component to launch Google Maps for each virtual location. First, you'll build an app that launches maps for the Eiffel Tower, the Louvre, and Notre Dame Cathedral with a single click. Then you'll modify the app to create a virtual tour of satellite maps that are also available from Google Maps.</em>
+</p>
+
+<img src="{{apps2Dir}}/MapTour/mt.png" alt="" align = "middle" >
+
+
+<h2>What You'll Learn</h2>
+<p>
+This chapter introduces the following App Inventor components and concepts:
+<ul>
+	<li>The <b>Activity Starter</b> component for launching other Android apps from your app. You'll use this component here to launch Google Maps with various parameters.</li>
+	<li>The <b>ListPicker</b> component for allowing the user to choose from a list of locations.</li>
+</ul>
+</p>
+<div class="row-fluid">
+	<div class="span6">
+		<p>
+<h2>Designing the Components</h2>
+<p>
+Create a new project in App Inventor and call it "ParisMapTour". The user interface for the app has an <b>Image</b> component with a picture of Paris, a <b>Label</b> component with some text, a <b>ListPicker</b> component that comes with an associated button, and an <b>ActivityStarter</b> (non-visible) component. You can design the components using the snapshot in Figure 6-1.
+</p>
+<p>
+The components listed in Table 6-1 were used to create this Designer window. Drag each component from the Palette into the Viewer and name it as specified.
+</p>
+</div>
+<div class="span6">
+	<img src="{{apps2Dir}}/MapTour/mt6-1.png" alt="">
+	<p><em>Figure 6-1. The Paris Map Tour app running in the emulator</em></p>
+</div>
+</div>
+
+	<p><em>Table 6-1. Components for the Paris Map Tour</em></p>
+	<img src="{{apps2Dir}}/MapTour/mt6-1T.png" alt="">
+
+<h2>Setting the Properties of ActivityStarter</h2>
+<p>
+<b>ActivityStarter</b> is a component that lets you launch any Android app-a browser, Google Maps, or even another one of your own apps. When a user launches another app from your app, he can click the back button to return to your app. You'll build ParisMapTour so that the Maps application is launched to show particular maps based on the user’s choice. The user can then hit the back button to return to your app and choose a different destination.
+</p>
+<p>
+<b>ActivityStarter</b> is a relatively low-level component in that you'll need to set some properties with information familiar to a Java Android SDK programmer, but foreign to the other 99.999% of the world. For this app, enter the properties as specified in Table 6-2, and <em>be careful</em>—even the upper-/lowercase letters are important.
+</p>
+	<p><em>Table 6-2. ActivityStarter properties for launching Google Maps</em></p>
+	<img src="{{apps2Dir}}/MapTour/mt6-2T.png" alt="">
+<p>
+In the Blocks Editor, you'll set one more property, <b>DataUri</b>, which lets you launch a specific map in Google Maps. This property must be set in the Blocks Editor instead of the Component Designer because it needs to be dynamic; it will change based on whether the user chooses to visit the Eiffel Tower, the Louvre, or the Notre Dame Cathedral.
+</p>
+<p>
+We'll get to the Blocks Editor in just a moment, but there are a couple more details to take care of before you can move on to programming the behavior for your components:
+<ol>
+	<li>Download the file here <a href="{{apps2Dir}}/MapTour/Media/metro.jpg"><em>metro.jpg </em></a><em>metro.jpg</em> to load into your project. You’ll then need to set it as the <b>Picture</b> property of <b>Image1</b>.</li>
+	<li>The <b>ListPicker</b> component comes with a button; when the user clicks it, the choices are listed. Set the text of that button by changing the <b>Text</b> property of <b>ListPicker1</b> to "Choose Paris Destination".</li>
+</ol>
+</p>
+<h2>Adding Behaviors to the Components</h2>
+<p>
+In the Blocks Editor, you'll need to define a list of destinations, and two behaviors:
+<ul>
+	<li>When the app begins, the app loads the destinations into the <b>ListPicker</b> component so the user can choose one.</li>
+	<li>When the user chooses a destination from the ListPicker, the Maps application is launched and shows a map of that destination. In this first version of the app, you'll just open Maps and tell it to run a search for the chosen destination.</li>
+</ul>
+</p>
+<h2>Creating a List of Destinations</h2>
+<p>
+Open the Blocks Editor and create a variable with the list of Paris destinations using the blocks listed in Table 6-3.
+	<p><em>Table 6-3. Blocks for creating a destinations variable</em></p>
+	<img src="{{apps2Dir}}/MapTour/mt6-3T.png" alt="">
+The <b>destinations</b> variable will call the <b>make a list</b> function, into which you can plug the text values for the three destinations in your tour, as shown in Figure 6-2.
+	<img src="{{apps2Dir}}/MapTour/mt6-2.png" alt="">
+	<p><em>Figure 6-2. Creating a list is easy in App Inventor</em></p>
+</p>
+<h2>Letting the User Choose a Destination</h2>
+<p>
+The purpose of the <b>ListPicker</b> component is to display a list of items for the user to choose from. You preload the choices into the <b>ListPicker</b> by setting the property <b>Elements</b> to a list. For this app, you want to set the <b>ListPicker's Elements</b> property to the <b>destinations</b> list you just created. Because you want to display the list when the app launches, you’ll define this behavior in the <strong>Screen1.Initialize</strong> event. You'll need the blocks listed in Table 6-4.
+</p>
+	<img src="{{apps2Dir}}/MapTour/mt6-4T.png" alt="">
+	<p><em>Table 6-4. Blocks for launching the ListPicker when the app starts</em></p>
+<h2>How the blocks work</h2>
+<p>
+<strong>Screen1.Initialize</strong> is triggered when the app begins. As shown in Figure 6-3, the event handler sets the <b>Elements</b> property of <b>ListPicker</b> so that the three destinations will appear.
+</p>
+	<img src="{{apps2Dir}}/MapTour/mt6-3.png" alt="">
+	<p><em>Figure 6-3. Put anything you want to happen when the app starts in a Screen1.Initialize event handler</em>
+	</p>
+<div class="row-fluid">
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+
+	<div class="span9">
+<p><strong>Test your apps.</strong><em>First, you'll need to restart the app by clicking "Connect to Device. . ." in the Blocks Editor. Then, on the phone, click the button labeled "Choose Paris Destination." The list picker should appear with the three items.
+</em></p>
+</div></div>
+<h2>Opening Maps with a Search</h2>
+<p>
+Next, you'll program the app so that when the user chooses one of the destinations, the <b>ActivityStarter</b> launches Google Maps and searches for the selected location.
+</p>
+<p>
+When the user chooses an item from the <b>ListPicker</b> component, the <strong>ListPicker.AfterPicking</strong> event is triggered. In the event handler for <b>AfterPicking</b>, you need to set the <b>DataUri</b> of the <b>ActivityStarter</b> component so it knows which map to open, and then you need to launch Google Maps using <strong>ActivityStarter.StartActivity</strong>. The blocks for this functionality are listed in Table 6-5.
+	<p><em>Table 6-5. Blocks to launch Google Maps with the Activity Starter</em>
+	</p>
+	<img src="{{apps2Dir}}/MapTour/mt6-5T.png" alt="">
+<h2>How the blocks work</h2>
+When the user chooses from the <b>ListPicker</b>, the chosen item is stored in <strong>ListPicker.Selection</strong> and the <b>AfterPicking</b> event is triggered. As shown in Figure 6-4, the <b>DataUri</b> property is set to a text object that combines “http://maps.google.com/?q=” with the chosen item. So, if the user chose the first item, "Tour Eiffel," the <b>DataUri</b> would be set to "http://maps.google.com/?q=Tour Eiffel."
+</p>
+	<img src="{{apps2Dir}}/MapTour/mt6-4.png" alt="">
+<p><em>Figure 6-4. Setting the DataURI to launch the selected map</em></p>
+<p>
+	Since you already set the other properties of the <b>ActivityStarter</b> so that it knows to open Maps, the <strong>ActivityStarter1.StartActivity</strong> block launches the Maps app and invokes the search proscribed by the <b>DataUri</b>.
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+<p><strong>Test your app.</strong><em> Restart the app and click the "Choose Paris Destination" button again. When you choose one of the destinations, does a map of that destination appear? Google Maps should also provide a back button to return you to your app to choose again-does that work? (You may have to click the back button a couple of times.)</em>
+</p>
+</div>
+</div>
+<h2>Setting Up a Virtual Tour</h2>
+<p>
+Now let's spice up the app and have it open some great zoomed-in and street views of the Paris monuments so your friends at home can follow along while you’re away. To do this, you'll first explore Google Maps to obtain the URLs of some specific maps. You'll still use the same Parisian landmarks for the destinations, but when the user chooses one, you'll use the <em>index</em> (the position in the list) of her choice to select and open a specific zoomed-in or streetview map.
+</p>
+<p>
+Before going on, you may want to save your project (using Save As) so you have a copy of the simple map tour you’ve created so far. That way, if you do anything that causes issues in your app, you can always go back to this working version and try again.
+</p>
+<h2>Finding the DataUri for Specific Maps</h2>
+<p>
+The first step is to open Google Maps on your computer to find the specific maps you want to launch for each destination:
+<ol>
+	<li>On your computer, browse to <em>http://maps.google.com</em>.</li>
+	<li>Search for a landmark (e.g., the Eiffel Tower).</li>
+	<li>Zoom in to the level you desire.</li>
+	<li>Choose the type of view you want (e.g., Address, Satellite, or Street View).</li>
+	<li>Click the Link button near the top right of the Maps window and copy the URL for the map. You'll use this URL (or parts of it) to launch the map from your app.</li>
+</ol>
+</p>
+<p>
+Using this scheme' Table 6-6 shows the URLs you'll use.
+	<em>Table 6-6. Virtual Tour URL's for Google Maps</em>
+	<img src="{{apps2Dir}}/MapTour/mt6-6T.png" alt="">
+<p>
+To view any of these maps, paste the URLs from Table 6-6 into a browser. The first two are zoomed-in satellite views, while the third is a street view.
+</p>
+<p>
+You can use these URLs directly to launch the maps you want, or you can define cleaner URLs using the Google Maps protocols outlined at <em>http://mapki.com</em>. For example, you can show the Eiffel Tower map using only the GPS coordinates found in the long URL in Table 6-6 and the Maps geo: protocol: 
+</p>
+<p>&ensp;&ensp;geo:48.857942,2.294748?t=h&z=19</p>
+<p>
+Using such a <b>DataUri</b>, you'll get essentially the same map as the map based on the
+full URL from which the GPS coordinates were extracted. The t=h specifies that Maps should show a hybrid map with both satellite and address views, and the z=19 specifies the zoom level. If you're interested in the details of setting parameters for various types of maps, check out the documentation at <em>http://mapki.com</em>.
+</p>
+<p>
+To get comfortable using both types of URLs, we'll use the geo: format for the first two <b>DataUri</b> settings in our list, and the full URL for the third.
+</p>
+<h2>Defining the dataURIs List</h2>
+<p>
+You'll need a list named <b>dataURIs</b>, containing one <b>DataURI</b> for each map you want to show. Create this list as shown in Figure 6-5 so that the items correspond to the items in the destinations list (i.e., the first ,<b>dataURI</b> should correspond to the first destination, the Eiffel Tower).
+</p>
+	<img src="{{apps2Dir}}/MapTour/mt6-5.png" alt="">
+	<em>Figure 6-5. The list of maps for your virtual tour</em>
+<p>
+The first two items shown are <b>DataURIs</b> for the Eiffel Tower and the Louvre. They both use the <b>geo</b>: protocol. The third <b>DataURI</b> is not shown completely because the block is too long for this page; you should copy this URL from the entry for "Notre Dame, Street View" in Table 6-6 and place it in a <strong>text</strong> block.
+</p>
+<h2>Modifying the ListPicker.AfterPicking Behavior</h2>
+<p>
+In the first version of this app, the <strong>ListPicker.AfterPicking</strong> behavior set the <b>DataUri</b> to the concatenation (or combination) of "http://maps.google.com/?q=” and the destination the user chose from the list (e.g., Tour Eiffel). In this second version, the <b>AfterPicking</b> behavior must be more sophisticated, because the user is choosing from one list (<b>destinations</b>), but the <b>DataUri</b> must be selected from another list (<b>dataURIs</b>). Specifically, when the user chooses an item from the <b>ListPicker</b>, you need to know the index of his choice so you can use it to select the correct <b>DataUri</b> from the <b>dataURIs</b> list. We'll explain more about what an index is in a moment, but it helps to set up the blocks first to better illustrate the concept. There are quite a few blocks required for this functionality, all of which are listed in Table 6-7.
+</p>
+	<em>Table 6-7. Blocks for choosing a list item based on the user's selection</em>
+	<img src="{{apps2Dir}}/MapTour/mt6-7Ta.png" alt="">
+	<img src="{{apps2Dir}}/MapTour/mt6-6Tb.png" alt="">
+<h2>How the blocks work</h2>
+<p>
+When the user chooses an item from the <b>ListPicker</b>, the <b>AfterPicking</b> event is triggered, as shown in Figure 6-6. The chosen item-e.g., "Tour Eiffel"-is in <strong>ListPicker.Selection</strong>. The event handler uses this to find the position of the selected item, or the <em>index</em> value, in the <b>destinations</b> list. The index corresponds to the position of the chosen destination in the list. So if "Tour Eiffel" is chosen, the index will be 1; if "Musée du Louvre" is chosen, it will be 2; and if "Cathédrale Notre Dame de Paris" is chosen, the index will be 3.
+</p>
+	<img src="{{apps2Dir}}/MapTour/mt6-6.png" alt="">
+	<em>Figure 6-6. Choosing a list item based on the user's selection</em>
+<p>
+The index can then be used to select an item from another list-in this case, <b>dataURIs</b>-and to set that entry as the <b>ActivityStarter</b>'s <b>DataUri</b>. Once this is set, the map can be launched with <strong>ActivityStarter.StartActivity</strong>.
+</p>
+<div class="row-fluid">
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+
+<div class="span9">
+<p><strong>Test your app.</strong><em> On the phone, click the button labeled "Choose Paris Destination." The list should appear with the three items. Choose one of the items and see which map appears.</em>
+</p>
+</div></div>
+<h2>Variations</h2>
+<p>
+Here are some suggested variations to try:
+<ul>
+	<li>Create a virtual tour of some other exotic destination, or of your workplace or school.</li>
+	<li>Create a customizable Virtual Tour app that lets a user create a guide for a location of her choice by entering the name of each destination along with the URL of a corresponding map. You'll need to store the data in a <b>TinyWebDB</b> database and create a Virtual Tour app that works with the entered data. For an example of how to create a <b>TinyWebDB</b> database, see the MakeQuiz/TakeQuiz app.</li>
+</ul>
+</p>
+<h2>Summary</h2>
+<p>
+Here are some of the ideas we've covered in this chapter:
+<ul>
+	<li>List variables can be used to hold data like map destinations and URLs.</li>
+	<li>The <b>ListPicker</b> component lets the user choose from a list of items. The <b>ListPicker’s Elements</b> property holds the list, the <b>Selection</b> property holds the selected item, and the <b>AfterPicking</b> event is triggered when the user chooses an item from the list.</li>
+	<li>The <b>ActivityStarter</b> component allows your app to launch other apps. This chapter demonstrated its use with the Maps application, but you can launch a browser or any other Android app as well, even another one you created yourself. See <em>http://appinventor.googlelabs.com/learn/reference/other/activitystarter.html</em> for more information.</li>
+	<li>You can launch a particular map in Google Maps by setting the <b>DataUri</b> property. You can find URIs by configuring a particular map in the browser and then choosing the Link button to find the URI. You can either place such a URI directly into the <b>DataUri</b> of your <b>ActivityStarter</b>, or build your own URI using the protocols defined at <em>http://mapki.com</em>.</li>
+	<li>You can identify the <em>index</em> of a list item using the <strong>position in list</strong> block. With <b>ListPicker</b>, you can use list position to find the index of the item the user chooses. This is important when, as in this chapter, you need the index to choose an item from a second, related list. For more information on <b>List</b> variables and the <b>ListPicker</b> component, see Chapter 19.</li>
+</ul>
+</p>
+
+{% endblock %}
+

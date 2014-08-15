@@ -1,0 +1,51 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Timer Events and Animation</H1>
+
+<p>An app is a set of event handlers. When something occurs, perform some instructions (blocks).</p>
+<h3>Event Types</h3>
+<h4>UI events</H4>
+<ul>
+<li>
+when Button.Click
+</li>
+<li>
+when Canvas.Touched, when Canvas.Dragged 
+</li>
+</ul>
+<H4>External Events</h4>
+<ul>
+<li>
+when Texting.MessageReceived
+</li>
+<li>
+info from web, GPS sensors
+</li>
+</ul>
+<p>
+Now we'll consider timer events, i.e., when you want something to happen as time passes. A Clock component is used.</p>
+
+<h4>Clock properties</h4>
+<ul>
+<li>
+    timerInterval -- default is 1000 (ms)
+</li>
+<li>    
+    timerEnabled -- default is true, meaning Timer event will trigger every timerInterval
+</li>
+</ul>
+<h4>Image sprites</h4>
+<p>
+Within a canvas, you can place an ImageSprite or Ball. They only "live" within a Canvas. Ball and ImageSprite have the same behavior. ImageSprite is different in that you can specify an image file for it.</p>
+
+<h4>Instructor demo: A sprite that moves back and forth across the screen</h4>
+<ol>
+<li>
+Move sprite  one second after a button is clicked
+</li>
+<li>
+Move sprite back and forth continuously after button is clicked (alternatively when app begins)
+</li>
+</ol>
+{% endblock %}

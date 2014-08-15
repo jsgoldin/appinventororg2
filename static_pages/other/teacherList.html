@@ -1,0 +1,13 @@
+{% extends "site_base.html" %}
+{% block body %}
+<title>TeacherList</title>
+<H2>Teachers</H2>
+
+    {% for teacher in teacherList %}
+       {{teacher.firstName}}, {{teacher.lastName}},{{teacher.educationLevel}},
+    {{teacher.organization}},{{teacher.user}}<br/>
+    {% endfor %}
+
+       
+
+{% endblock %}

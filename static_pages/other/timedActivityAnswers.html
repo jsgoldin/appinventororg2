@@ -1,0 +1,96 @@
+{% extends "site_base.html" %}
+{% block body %}
+<title>Timed Activity</title>
+    <div class="row-fluid">
+
+        <div class="span6">
+          <h2>Timed Activity: How do you repeat an action, pausing between each iteration?</h2>
+          <p>
+			How do you program time? How do you program animation? With many programming 
+			languages, concepts like animation are pushed back in the curriculum-- you might
+			 not get there until a year or two of coursework. With App Inventor’s event-based approach,
+			you can explore timed activity and animation as a beginner. The high-level Clock component 
+			serves as an alarm clock, and you use its Timer event to trigger timed activity.
+			 Check out the following examples:
+		  </p>
+			 
+			 <a name="timedSound"></a> 
+		  <h3>Example 1. How do you play a sound every second?</h3>
+		    <img class="thumbnail" src="../../assets/img/TimedActivity/timedSound.png" border="0"/>
+		   <p>
+			The when Clock.Timer event is triggered repeatedly. Think of it like an alarm clock. 
+			The Clock.TimerInterval property, determines how often the sound will play. 
+			By default it is 1000 milliseconds (1 second), so if you don’t change it the 
+			sound above will play every second. You can set this property in the designer or 
+			with blocks.
+			</p>
+			
+			<strong>Question: How can you play a sound every five seconds instead of every 
+			second? </strong>
+			<hr/>
+			<a name="moveSpaceship"></a>
+			<h3>Example 2. How do you move a spaceship smoothly across the screen?</h3>
+			<img class="thumbnail" src="../../assets/img/TimedActivity/spaceshipmove.png" border="0"/>
+			<p>
+			The spaceship’s X coordinate defines its horizontal location. On each timer 
+			event, the X coordinate is increased and the spaceship appears further to the right. 
+			If the Clock.TimerInterval property is set to the default of 1000 ms, then the ship 
+			will move every one second, a very choppy motion. Typically, for this type of 
+			animation, you’ll set the timer interval to something like 40 ms.
+			</p>
+
+			<strong>Question: A "moving picture" is really a sequence of
+			 pictures displayed very fast. The frame rate of a moving picture is the number 
+			 of pictures (frames) shown every second. If you set the timer interval for the 
+			 spaceship to 40 ms, what will be the frame rate for your “movie”? What is the typical 
+			 frame rate for a movie you see at the theater?</strong>
+			<hr/>
+			<p>Note: for sprite movement, you can use the sprite’s internal clock instead
+			 of a separate clock component (see details)</p>
+		<hr/>	 
+		<h2>How do you start and stop an animation?</h2>
+		<p>Just as you can turn an alarm clock on and off, you can turn the 
+		Clock component’s timer on and off. Check out the following examples:</p>
+		
+		<h3>Example 1. When the user clicks a start button, start playing a sound every 
+		second. When they click a stop button, stop playing the sound.</h3>
+		<img class="thumbnail" src="../../assets/img/TimedActivity/startStopButton.png" border="0"/>
+		<p>The clock has a Clock.TimerEnabled property. When it is true, the alarm clock 
+		is on so the timer will trigger. When Clock.TimerEnabled is set to false the timer 
+		is dormant. </p>
+
+		<p>When the user clicks the start button, TimerEnabled is set to true to get things
+		 moving. A second later, and each second thereafter, the when Clock.Timer event 
+		 will trigger and the sound will play. When the user clicks “Stop”, the timer is 
+		 disabled and the sound stops playing.</p>
+		 
+		 <hr/>
+		 <h3>Example 2. When the user speaks, start the spaceship moving. When the 
+		 user shakes the phone, stop the spaceship from moving.</h3>
+		 <img class="thumbnail" src="../../assets/img/TimedActivity/shakeSpeak.png" border="0"/>
+		<p> 
+		You need two additional components, a SpeechRecognizer that can recognize when the 
+		user is speaking, and an AccelerometerSensor that senses when the device is being shook.
+        </p>
+        <p>
+		The Screen.Initialize event handler is triggered when the app begins. The 
+		SpeechRecognizer.GetText block opens the speech recognizer so that it 
+		is waiting for the user to say something. When the user speaks, the 
+		SpeechRecognizer.AfterGettingText event handler is triggered. Here, you set 
+		Clock.TimerEnabled to true so the clock timer will start triggering and the sprite 
+		will begin moving. When the user shakes the phone, AccelerometerSensor.Shaking is 
+		triggered, the timer is disabled so the sprite stops, and the SpeechRecognizer.GetText 
+		is called to await the next time the user speaks.
+         </p> 
+        </div>
+        <div class="span4">
+          <iframe  width="560" height="315" src="//www.youtube.com/embed/yp_CUcOPUyw" 
+          frameborder="0" allowfullscreen></iframe>
+        </div>
+
+       
+
+    </div>     
+
+
+{% endblock %}

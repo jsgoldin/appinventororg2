@@ -1,0 +1,254 @@
+
+
+{% extends "site_base.html" %}
+{% block body %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>atlas book skeleton</title>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+    <link rel="stylesheet" type="text/css" href="theme/html/html.css"/>
+  </head>
+  <body data-type="book">
+    <section data-type="chapter" data-pdf-bookmark="Chapter 23. Reading and Responding to Sensors" id="reading_and_responding_to_sensors">
+<h1>Reading and Responding to Sensors</h1>
+
+<p><em>Point your phone at the sky, and Google Sky Map tells you which stars you’re looking at. Tilt your phone, and you can control the game you’re playing. Take your phone on your daily run, and an app records your route. All of these apps are possible because the mobile devices we carry have high-tech sensors for detecting our location, orientation, and acceleration.</em></p>
+
+<p><em>In this chapter, you’ll explore the App Inventor components LocationSensor, OrientationSensor, and AccelerometerSensor. Along the way, you’ll learn about the global positioning system (GPS); orientation measures like pitch, roll, and yaw; and some math for processing accelerometer readings.</em></p>
+
+<div class="informalfigure"><img alt="Reading and Responding to Sensors" src="images/s23.png"/></div>
+
+<section data-type="sect1" data-pdf-bookmark="Creating Location-Aware Apps" id="creating_location-aware_apps">
+<h1>Creating Location-Aware Apps</h1>
+
+<p>Until the popularization of the smartphone, computing was on desktop lockdown. Yes, laptops are mobile, but not in the same sense as the tiny devices we now carry around in our pockets. Computing has left the lab and the office, and is now taking place out in the world.</p>
+
+<p>One significant effect of carrying our computing with us is a new, very interesting piece of data for every app: a current location. Knowing where people are as they move about the world has far-reaching implications and the potential to help us greatly in our lives. It also has the potential to invade our privacy and be a detriment to humanity.</p>
+
+<p>The “Android, Where’s My Car?” app (<a data-type="xref" href="ch07.html#androidcomma_whereapostrophes_my_carques">Chapter 7</a>) is an example of a <em>location-aware</em> app that provides a personal benefit. It lets you remember a previous location so you can get back to it at a later time. That app is private--your location information is stored only in your device’s database.</p>
+
+<p>Location sensing can also be used by groups. For instance, a group of hikers might want to keep track of one another’s whereabouts in the wilderness, or a group of business associates might want to find one another at a large conference (or a bar). Some people use such “check-in” apps everyday.</p>
+
+<p><span style="line-height: 1.5em;">Another type of location-aware app uses </span><em style="line-height: 1.5em;">augmented-reality</em><span style="line-height: 1.5em;"> tools. These apps use your location and the phone’s orientation to provide overlay information that augments the natural setting. So you might point a phone at a building and see its price on the real-estate market, or you might walk near an exotic plant in a botanical garden and have an app tell you its species. </span></p>
+
+<section data-type="sect2" data-pdf-bookmark="GPS" id="gps">
+<h2>GPS</h2>
+
+<p>To create a location-aware app, you first need to understand how the <em>global positioning system</em> (GPS) works. GPS data comes from a satellite system maintained by the US government. As long as you have an unobstructed sight line to at least three satellites in the system, your phone can get a reading. A GPS reading consists of your latitude, longitude, and altitude. Latitude is how far north or south you are of the equator, with values for north being positive and south being negative. The range is –90 to 90. <a data-type="xref" href="#quitocomma_ecuadorcomma_is_on_the_equato">Figure 23-1</a> shows a Google map of a spot near Quito, Ecuador. The latitude shown on the map is –0.01, just barely south of the equator!</p>
+
+<figure id="quitocomma_ecuadorcomma_is_on_the_equato"><img alt="Quito, Ecuador, is on the equator" src="images/s23-1.png"/>
+<figcaption>Quito, Ecuador, is on the equator</figcaption>
+</figure>
+
+<p>Longitude is how far east or west you are of the Prime Meridian; east coordinates have positive values and west coordinates are negative. The most well-known place it runs through is Greenwich, a town near London that is the home of the Royal Observatory. The map in <a data-type="xref" href="#royal_observatory_in_greenwich_shoots_a">Figure 23-2</a> shows Greenwich and its longitude of 0.0.</p>
+
+<figure id="royal_observatory_in_greenwich_shoots_a"><img alt="The Royal Observatory in Greenwich shoots a beam of light along the Prime Meridian" src="images/s23-2a.png"/> <img alt="The Royal Observatory in Greenwich shoots a beam of light along the Prime Meridian" src="images/s23-2b.png"/>
+<figcaption>The Royal Observatory in Greenwich shoots a beam of light along the Prime Meridian</figcaption>
+</figure>
+
+<p>Longitude values range from –180 to 180. <a data-type="xref" href="#point_near_the_russianen_dashalaskan_bor">Figure 23-3</a> shows a spot in Russia, very close to Alaska, that has a 180.0 longitude. You might say that a location like this is halfway around the world from Greenwich (0.0 longitude).</p>
+
+<figure id="point_near_the_russianen_dashalaskan_bor"><img alt="A point near the Russian–Alaskan border has longitude 180" src="images/s23-3.png"/>
+<figcaption>A point near the Russian–Alaskan border has longitude 180</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Sensing Location with App Inventor" id="sensing_location_with_app_inventor">
+<h2>Sensing Location with App Inventor</h2>
+
+<p>App Inventor provides the <strong>LocationSensor</strong> component for accessing GPS information. The component has properties for <strong>Latitude</strong>, <strong>Longitude</strong>, and <strong>Altitude</strong>. It also communicates with Google Maps, so you can get a reading for your current street address.</p>
+
+<p><strong>LocationSensor.LocationChanged</strong>, pictured in <a data-type="xref" href="#locationsensor1dotlocationchanged_event">Figure 23-4</a>, is the key event handler for the <strong>LocationSensor</strong>.</p>
+
+<figure id="locationsensor1dotlocationchanged_event"><img alt="The LocationSensor1.LocationChanged event handler" src="images/s23-4.png"/>
+<figcaption>The LocationSensor1.LocationChanged event handler</figcaption>
+</figure>
+
+<p>This event is triggered the first time the sensor gets a reading and each subsequent time the phone is moved enough so that new data is read. There’s often a delay of quite a few seconds before an app’s first reading, and sometimes the device can’t get a reading at all. For instance, if you’re indoors and not connected to WiFi, the device might not get a reading. Your phone also has settings that allow you to turn GPS reading off to save battery life; this is another potential reason the component can’t get a reading. For these reasons, you shouldn’t assume that the <strong>LocationSensor</strong> properties have a valid setting until the <strong>LocationSensor.LocationChanged</strong> event occurs.</p>
+
+<p>One way to deal with the unknowns in location sensing is to create a variable <strong>lastKnownLocation</strong>, initialize it to “unknown,” and then have the <strong>LocationSensor.LocationChanged</strong> event handler change the value of that variable, as shown in <a data-type="xref" href="#value_of_the_lastknownlocation_variable">Figure 23-5</a>.</p>
+
+<figure id="value_of_the_lastknownlocation_variable"><img alt="The value of the lastKnownLocation variable changes whenever the location changes" src="images/s23-5.png"/>
+<figcaption>The value of the lastKnownLocation variable changes whenever the location changes</figcaption>
+</figure>
+
+<p>By programming the <strong>LocationSensor.LocationChanged</strong> event handler in this way, you can always display the current location or record it in a database, with “unknown” appearing until the first reading. This strategy is used in No Texting While Driving (<a data-type="xref" href="ch04.html#no_texting_while_driving">Chapter 4</a>); that app autoresponds to SMS texts and includes either “unknown” or the last reading taken in the response.</p>
+
+<p>You can also ask explicitly whether the sensor has a reading using the <strong>LocationSensor.HasLongitudeLatitude</strong> block pictured in <a data-type="xref" href="#testing_whether_the_sensor_has_a_reading">Figure 23-6</a>.</p>
+
+<figure id="testing_whether_the_sensor_has_a_reading"><img alt="Testing whether the sensor has a reading with the HasLongitudeLatitude block" src="images/s23-6.png"/>
+<figcaption>Testing whether the sensor has a reading with the HasLongitudeLatitude block</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Checking Boundaries" id="checking_boundaries">
+<h2>Checking Boundaries</h2>
+
+<p>One common use of the <strong>LocationChanged</strong> event is to check whether the device is within a <em>boundary</em>, or a set area. For example, consider the code in <a data-type="xref" href="#if_a_reading_isnapostrophet_close_to_the">Figure 23-7</a>, which vibrates the phone each time a new reading shows that a person has moved farther than 0.1 longitude from the Prime Meridian.</p>
+
+<figure id="if_a_reading_isnapostrophet_close_to_the"><img alt="If a reading isn’t close to the Prime Meridian, the phone vibrates" src="images/s23-7.png"/>
+<figcaption>If a reading isn’t close to the Prime Meridian, the phone vibrates</figcaption>
+</figure>
+
+<p>Such boundary checking has numerous applications; for example, warning parolees if they’re nearing a legally specified distance from their home, or alerting parents or teachers if a child leaves the playground area. If you’d like to see a slightly more complex example, see <a data-type="xref" href="ch18.html#programming_your_app_to_make_decisions_c">Chapter 18</a>’s discussion of conditional blocks.</p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Location Information Providers: GPS, WiFi, and Cell ID" id="location_information_providers_gpscomma">
+<h2>Location Information Providers: GPS, WiFi, and Cell ID</h2>
+
+<p>An Android device can determine its own location in a number of ways. The most accurate method--within a few meters--is through the satellites that make up the GPS maintained by the US government. You won’t get a reading, however, if you’re inside and there are skyscrapers or other objects in the way; you need a clear path to at least three satellites in the system.</p>
+
+<p>If GPS isn’t available or the user has disabled it, the device can obtain its position through a wireless network. You have to be near a WiFi router, of course, and the position reading you’ll get is the latitude/longitude of that WiFi station</p>
+
+<p>A third way a device can determine positioning is through Cell ID. Cell ID provides a location for the phone based on the strength of signals from nearby cell phone towers. It is generally not very accurate unless you have numerous cell towers near you. However, it does use the least amount of battery power compared to GPS or WiFi connectivity.</p>
+</section>
+</section>
+<section data-type="sect1" data-pdf-bookmark="Using the Orientation Sensor" id="using_the_orientation_sensor">
+<h1>Using the Orientation Sensor</h1>
+
+<p>The <strong>OrientationSensor</strong> is used for game-like apps in which the user controls the action by tilting the device. It can also be used as a compass to find out which direction (north/south, east/west) the phone is pointing.</p>
+
+<p>The OrientationSensor has five properties, all of which are unfamiliar to most people other than aeronautical engineers:</p>
+
+<p><em>Roll (Left–Right)</em></p>
+
+<p>Roll is 0 degrees when the device is level, increases to 90 degrees as the device is tilted up onto its left side, and decreases to –90 degrees when the device is tilted up onto its right side.</p>
+
+<p><em>Pitch (Up–Back)</em></p>
+
+<p>Pitch is 0 degrees when the device is level, increases to 90 degrees as the device is tilted so its top is pointing down, and increases further to 180 degrees as it is turned over. Similarly, as the device is tilted so its bottom points down, <strong>Pitch</strong> decreases to –90 degrees and then down to –180 degrees as it is turned all the way over.</p>
+
+<p><em>Azimuth(Compass)</em></p>
+
+<p>Azimuth is 0 degrees when the top of the device is pointing north, 90 degrees when it is pointing east, 180 degrees when it is pointing south, and 270 degrees when it is pointing west.</p>
+
+<p><em>Magnitude (Speed of a rolling ball)</em></p>
+
+<p>Magnitude returns a number between 0 and 1 that indicates how much the device is tilted. Its value indicates the force exerted by a ball rolling on the surface of the device.</p>
+
+<p><em>Angle (Angle of a rolling ball)</em></p>
+
+<p>Angle returns the direction in which the device is tiled. That is, it tells the direction of the force that would be exerted by a ball rolling on the surface of the device.</p>
+
+<p>The <strong>OrientationSensor</strong> provides the <strong>OrientationChanged</strong> event, which is triggered every time the orientation changes. To explore these properties further, write an app that illustrates how the properties change as the user tilts the device. Just add five heading labels, and five other labels to show the current values of the properties in the preceding list. Then add the blocks shown in <a data-type="xref" href="#blocks_to_display_the_orientationsensor">Figure 23-8</a>.</p>
+
+<figure id="blocks_to_display_the_orientationsensor"><img alt="Blocks to display the OrientationSensor data" src="images/s23-8.png"/>
+<figcaption>Blocks to display the OrientationSensor data</figcaption>
+</figure>
+
+<figure id="user_interface_for_exploring_how_quotati"><img alt="A user interface for exploring how “roll” can be used to move an image" src="images/s23-9.png"/>
+<figcaption>A user interface for exploring how “roll” can be used to move an image</figcaption>
+</figure>
+
+<section data-type="sect2" data-pdf-bookmark="Using the Roll Parameter to Move an Object" id="using_the_roll_parameter">
+<h2>Using the Roll Parameter to Move an Object</h2>
+
+<p>Now let’s try to move an image left or right on the screen based on the user tilting the device, like you might do in a shooting or driving game. Drag out a <strong>Canvas</strong> and set the <strong>Width</strong> to “Fill parent” and the <strong>Height</strong> to 200 pixels. Then add an <strong>ImageSprite</strong> or <strong>Ball</strong> within the <strong>Canvas</strong>, and add a <strong>Label</strong> named <strong>RollLabel</strong> under it to display a property value, as shown in <a data-type="xref" href="#user_interface_for_exploring_how_quotati">Figure 23-9</a>.</p>
+
+<p>The <strong>OrientationSensor’s Roll</strong> property will tell you if the phone is tilted left or right (i.e., if you hold the phone upright and tilt it slightly to the left, you’ll get a positive reading for the roll; if you tilt it slightly right, you’ll get a negative reading). Therefore, you can let the user move an object with an event handler like the one shown in <a data-type="xref" href="#responding_to_changes_in_the_roll_proper">Figure 23-10</a>.</p>
+
+<figure id="responding_to_changes_in_the_roll_proper"><img alt="Responding to changes in the Roll property with the OrientationChanged event" src="images/s23-10.png"/>
+<figcaption>Responding to changes in the Roll property with the OrientationChanged event</figcaption>
+</figure>
+
+<p>The blocks multiply the roll by –1, as tilting left gives a positive roll and should move the object left (thereby making the x coordinate smaller). For a review of how the coordinate system works in animated apps, see <a data-type="xref" href="ch17.html#creating_animated_apps">Chapter 17</a>.</p>
+
+<p>Note that this app works only when the device is in Portrait mode (upright), not in Landscape mode. As is, if you tilt the phone too far, the screen will change into Landscape mode and the image will stay marooned on the left side of the screen. The reason is that if the device is on its side, it is tilted left and thus will always get a positive reading for the roll. A positive roll reading, as shown in the blocks in <a data-type="xref" href="#responding_to_changes_in_the_roll_proper">Figure 23-10</a>, will always make the x coordinate smaller.</p>
+
+<p>Note that App Inventor does provide the Screen.ScreenOrientation property that can be used to lock the orientation if you don’t want it to switch between modes.</p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Moving Any Direction with Heading and Magnitude" id="moving_any_direction_with_heading_and_ma">
+<h2>Moving Any Direction with Heading and Magnitude</h2>
+
+<p>The example in the previous section moves the image left or right. If you want to allow for movement in any direction, you can use the <strong>Angle</strong> and <strong>Magnitude</strong> properties of the <strong>OrientationSensor</strong>. These are the properties used to move the ladybug in the game described in <a data-type="xref" href="ch05.html#ladybug_chase">Chapter 5</a>.</p>
+
+<p>In <a data-type="xref" href="#moving_a_character_using_angle_and_magni">Figure 23-11</a>, you can see the blocks for a test app that lets the user tilt the device to move a character in any direction (you need two labels and an image sprite for this example).</p>
+
+<figure id="moving_a_character_using_angle_and_magni"><img alt="Moving a character using angle and magnitude" src="images/s23-11.png"/>
+<figcaption>Moving a character using angle and magnitude</figcaption>
+</figure>
+
+<p>Try this one out. The <strong>Magnitude</strong> property, a value between 0 and 1, denotes how much the device is tilted. In this test app, the image moves faster as the magnitude gets bigger.</p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Using the Phone As a Compass" id="using_the_phone_as_a_compass">
+<h2>Using the Phone As a Compass</h2>
+
+<p>Compass apps and apps like Google Sky Map need to know the phone’s orientation in the world, east/west and north/south. Sky Map uses the information to overlay information about the constellations at which the phone is pointing.</p>
+
+<p>The <strong>Yaw</strong> reading is useful for this type of orientation. <strong>Yaw</strong> is always between 0 and 360 degrees, with 0 being north; 90, east; 180, south; and 270, west. So a reading of 45 means the phone is pointing northeast, 135 means southeast, 225 means southwest, and 315 means northwest.</p>
+
+<p>The blocks in <a data-type="xref" href="#programming_a_simple_compass">Figure 23-12</a> are for a simple compass that displays in text which direction the phone is pointing (e.g., Northwest).</p>
+
+<p>As you may have noticed, the blocks show only one of four possibilities: Northwest, Northeast, Southwest, and Southeast. As a challenge, see if you can modify it to show just a single direction (North, South, East, or West) if the reading specifies that you are pointing within a few degrees of it.</p>
+
+<figure id="programming_a_simple_compass"><img alt="Programming a simple compass" src="images/s23-12.png"/>
+<figcaption>Programming a simple compass</figcaption>
+</figure>
+</section>
+</section>
+<section data-type="sect1" data-pdf-bookmark="Using the Accelerometer" id="using_the_accelerometer">
+<h1>Using the Accelerometer</h1>
+
+<p><em>Acceleration</em> is the rate of change of velocity over time. If you press your foot to the gas pedal of your car, the car accelerates-its velocity increases at a particular rate.</p>
+
+<p>An accelerometer like the one in your Android device measures acceleration, but its frame of reference is not the device at rest, but rather the device in free fall: if you drop the phone, it will register an acceleration reading of 0. Simply put, the readings take gravity into account.</p>
+
+<p>If you want to know more about the physics of the matter, you’ll have to consult your Einstein-related books. But in this section, we’ll explore the accelerometer enough to get you started. We’ll even examine an app that could help save lives!</p>
+
+
+<section data-type="sect2" data-pdf-bookmark="Responding to the Device Shaking" id="responding_to_the_device_shaking">
+<h2>Responding to the Device Shaking</h2>
+
+<p>If you’ve been going through the chapters and completed the app in <a data-type="xref" href="ch01.html#hello_purr">Chapter 1</a>, you’ve already used the <strong>AccelerometerSensor</strong>. In that app, you used the <strong>Accelerometer.Shaking</strong> event to make the kitty meow when the phone was shaken, as shown in <a data-type="xref" href="#playing_a_sound_when_the_phone_is_shaken">Figure 23-13</a>.</p>
+
+<figure id="playing_a_sound_when_the_phone_is_shaken"><img alt="Playing a sound when the phone is shaken" src="images/s23-13.png"/>
+<figcaption>Playing a sound when the phone is shaken</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Using the AccelerometerSensor’s Readings" id="using_the_accelerometersensorapostrophes">
+<h2>Using the AccelerometerSensor’s Readings</h2>
+
+<p>Like the other sensors, the accelerometer has an event for when the readings change, <strong>AccelerometerSensor.AccelerationChanged</strong>. That event has three arguments corresponding to the acceleration in three dimensions:</p>
+
+<p><strong>xAccel</strong></p>
+
+<p>Positive when the device is tilted to the right (that is, its left side is raised), and negative when the device is tilted to the left (its right side is raised).</p>
+
+<p><strong>yAccel</strong></p>
+
+<p>Positive when the device’s bottom is raised, and negative when its top is raised.</p>
+
+<p><strong>zAccel</strong></p>
+
+<p>Positive when the device display is facing up, and negative when the display is facing down.</p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Detecting Free Fall" id="detecting_free_fall">
+<h2>Detecting Free Fall</h2>
+
+<p>We know that if all the acceleration readings are near 0, the device is free-falling to the ground. With this in mind, we can mimic a free-fall event by checking the readings in the <strong>AccelerometerSensor.AccelerationChanged</strong> event. Such blocks, with lots of testing, could be used to detect when an elderly person has fallen and automatically send an SMS message out in response.</p>
+
+<p><a data-type="xref" href="#reporting_when_a_free_fall_has_occurred">Figure 23-14</a> shows the blocks for an app that simply reports that a free fall has occurred (and lets the user click a Reset button to check again).</p>
+
+<figure id="reporting_when_a_free_fall_has_occurred"><img alt="Reporting when a free fall has occurred" src="images/s23-freefall.png"/>
+<figcaption>Reporting when a free fall has occurred</figcaption>
+</figure>
+
+<p>Each time the sensor gets a reading, the blocks check the x, y, and z dimensions to see if they’re near 0 (if their absolute value is less than 1). If all three are near 0, the app changes a status label to denote that the phone is in free fall. When the user clicks the ResetButton, the status label is reset to its original state (“Device has NOT been in free fall”).</p>
+</section>
+</section>
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00142">
+<h1>Summary</h1>
+
+<p>Sensors are of great interest in mobile apps because they allow your users to truly interact with their environments. By taking computing mobile, you are opening up a whole world of opportunities in user experiences and app development. However, you’ll need to think carefully about how, where, and when you use sensors in your apps. Many people have privacy concerns, and they might not use your app if they’re worried about what you’re doing with their sensor data. But with all the options in games, social networking, travel, and more, the possibilities for positive implementations are nearly endless.</p>
+</section>
+</section>
+  </body>
+</html>
+{% endblock %}

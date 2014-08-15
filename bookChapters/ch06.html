@@ -1,0 +1,628 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>atlas book skeleton</title>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+    <link rel="stylesheet" type="text/css" href="theme/html/html.css"/>
+  </head>
+  <body data-type="book">
+    <section data-type="chapter" data-pdf-bookmark="Chapter 6. Paris Map Tour" id="paris_map_tour">
+<h1>Paris Map Tour</h1>
+
+<p><em>In this chapter, you’ll build an app that lets you create your own custom guide for a trip to Paris. Creating a fully functioning map app might seem really complicated, but App Inventor provides two high-level components to help: the <strong>ActivityStarter,</strong> which allows you to launch another app from your app, including Google Maps, and the <strong>WebViewer</strong>, which shows any web page you want within a sub-panel of your app. You’ll explore both of these components and build two different versions of a tour guide.</em></p>
+
+<div class="informalfigure"><img alt="Paris Map Tour" src="images/mt.png"/></div>
+
+<section data-type="sect1" data-pdf-bookmark="What You’ll Learn" id="what_youapostrophell_learn-id00040">
+<h1>What You’ll Learn</h1>
+
+<p>This chapter introduces the following App Inventor components and concepts:</p>
+
+<ul>
+	<li>The <strong>Activity Starter</strong> component for launching other Android apps from your app. </li>
+	<li>The <strong>WebViewer</strong> component for showing web pages within your app.</li>
+	<li>Using <strong>list variables</strong> to store information for your app.</li>
+	<li>The <strong>ListPicker</strong> component for allowing the user to choose from a list of locations.</li>
+	<li>Building a <strong>URL</strong> dynamically to show different maps.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Designing the Components" id="designing_the_components-id00041">
+<h1>Designing the Components</h1>
+
+<p>Create a new project in App Inventor and call it “ParisMapTour”. The user interface for the app has an <strong>Image</strong> component with a picture of Paris, a <strong>Label</strong> component with some text, a <strong>ListPicker</strong> component that comes with an associated button, and in this first version, an <strong>ActivityStarter</strong> (non-visible) component. You can design the components using the snapshot in <a class="xref " data-type="xref" href="#paris_map_tour_app_running_in_the_emulat">Figure 6-1</a>.</p>
+
+<p>The components listed in <a data-type="xref" href="#components_for_the_paris_map_tour">Table 6-1</a> were used to create this Designer window. Drag each component from the Palette into the Viewer and name it as specified.</p>
+
+<figure id="paris_map_tour_app_running_in_the_emulat"><img alt="The Paris Map Tour app running in the emulator" src="images/mt6-1.png"/>
+<figcaption>The Paris Map Tour app running in the emulator</figcaption>
+</figure>
+
+<table id="components_for_the_paris_map_tour">
+	<caption>Components for the Paris Map Tour</caption>
+	<thead>
+		<tr>
+			<th>Component type</th>
+			<th>Palette group</th>
+			<th>What you’ll name it</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><code>Image</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Image1</code></p>
+			</td>
+			<td>
+			<p>Show a static image of a Paris map on screen.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Label1</code></p>
+			</td>
+			<td>
+			<p>Display the text “Discover Paris with your Android!”</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>ListPicker</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>ListPicker1</code></p>
+			</td>
+			<td>
+			<p>Display the list of destination choices.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>ActivityStarter</code></p>
+			</td>
+			<td>
+			<p>Connectivity</p>
+			</td>
+			<td>
+			<p><code>ActivityStarter1</code></p>
+			</td>
+			<td>
+			<p>Launch the Maps app when a destination is chosen.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Setting the Properties of ActivityStarter" id="setting_the_properties_of_activitystarte">
+<h1>Setting the Properties of ActivityStarter</h1>
+
+<p><strong>ActivityStarter</strong> is a component that lets you launch any Android app including Google Maps or another one of your own apps.  You’ll first build ParisMapTour so that the Maps application is launched to show particular maps based on the user’s choice. The user can then hit the back button to return to your app and choose a different destination.</p>
+
+<p><strong>ActivityStarter</strong> is a relatively low-level component in that you’ll need to set some properties with information familiar to a Java Android SDK programmer, but completely foreign to the other 99.99% of the world. For this app, enter the properties as specified in <a data-type="xref" href="#activitystarter_properties_for_launching">Table 6-2</a>, and <em>be careful</em>—even the case of the letters are important.</p>
+
+<table id="activitystarter_properties_for_launching">
+	<caption>ActivityStarter properties for launching Google Maps</caption>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><code>Action</code></p>
+			</td>
+			<td>
+			<p>android.intent.action.VIEW</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>ActivityClass</code></p>
+			</td>
+			<td>
+			<p>com.google.android.maps.MapsActivity</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>ActivityPackage</code></p>
+			</td>
+			<td>
+			<p>com.google.android.apps.maps</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>In the Blocks Editor, you’ll set one more property, <strong>DataUri</strong>, which lets you provide a URL to launch a specific map in Google Maps. This property must be set in the Blocks Editor instead of the Component Designer because it needs to be dynamic; it will change based on whether the user chooses to visit the Eiffel Tower, the Louvre, or the Notre Dame Cathedral.</p>
+
+<p>We’ll get to the Blocks Editor in just a moment, but there are a couple more details to take care of before you can move on to programming the behavior for your components:</p>
+
+<ol>
+	<li>Download the file <em> metro.jpg</em> to load into your project. Then set it as the <strong>Picture</strong> property of <strong>Image1</strong>.</li>
+	<li>The <strong>ListPicker</strong> component comes with a button; when the user clicks it, the choices are listed. Set the text of that button by changing the <strong>Text</strong> property of <strong>ListPicker1</strong> to “Choose Paris Destination”.</li>
+</ol>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Adding Behaviors to the Components" id="adding_behaviors_to_the_componen-id00042">
+<h1>Adding Behaviors to the Components</h1>
+
+<p>In the Blocks Editor, you’ll need to define a list of destinations, and two behaviors:</p>
+
+<ul>
+	<li>When the app begins, the app loads the destinations into the <strong>ListPicker</strong> component so the user can choose one.</li>
+	<li>When the user chooses a destination from the ListPicker, the Maps application is launched and shows a map of that destination. In this first version of the app, you’ll just open Maps and tell it to run a search for the chosen destination.</li>
+</ul>
+
+<section data-type="sect2" data-pdf-bookmark="Creating a List of Destinations" id="creating_a_list_of_destinations">
+<h2>Creating a List of Destinations</h2>
+
+<p>Open the Blocks Editor and create a variable with the list of Paris destinations using the blocks listed in <a class="xref " data-type="xref" href="#blocks_for_creating_a_destinations_varia">Table 6-3</a>.</p>
+
+<table id="blocks_for_creating_a_destinations_varia">
+	<caption>Blocks for creating a destinations variable</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>initialize global variable</em></strong> (“Destinations”)</p>
+			</td>
+			<td>
+			<p>Variables</p>
+			</td>
+			<td>
+			<p>Create a list of the destinations.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>make a list</em> </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Add the items to the list.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“Tour Eiffel”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The first destination.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“Musée du Louvre”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The second destination.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“Cathédrale Notre Dame”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The third destination.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>When you drag the <strong>make a list </strong>block into your app, it will only have two slots. You can add another slot by clicking the dark blue icon it and adding a third item. </p>
+
+<p>Once you’ve done that, just create the text blocks for each destination and place them in the three slots of <strong>make a list</strong> as shown in <a data-type="xref" href="#creating_a_list_is_easy_in_app_inventor">Figure 6-2</a>.</p>
+
+<figure id="creating_a_list_is_easy_in_app_inventor"><img alt="Creating a list is easy in App Inventor" src="images/mt6-2.png"/>
+<figcaption>A list of three items.</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Letting the User Choose a Destination" id="letting_the_user_choose_a_destination">
+<h2>Letting the User Choose a Destination</h2>
+
+<p>The list you just defined does not appear in the user interface-- no variables do. You’ll use a <strong>ListPicker</strong> component is to display the list of items for the user to choose from. You preload the choices into the <strong>ListPicker</strong> by setting the property <strong>Elements</strong> to a list. For this app, you want to set the <strong>ListPicker’s Elements</strong> property to the <strong>destinations</strong> list you just created. Because this only needs to be set once, you’ll define this behavior in the <strong>Screen1.Initialize</strong> event. You’ll need the blocks listed in <a data-type="xref" href="#blocks_for_launching_the_listpicker_when">Table 6-4</a>.</p>
+
+<table id="blocks_for_launching_the_listpicker_when">
+	<caption>Blocks for launching the ListPicker when the app starts</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>Screen1.Initialize</em> </strong></p>
+			</td>
+			<td>
+			<p>Screen1</p>
+			</td>
+			<td>
+			<p>This event is triggered when the app starts.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set ListPicker1.Elements to</em> </strong></p>
+			</td>
+			<td>
+			<p>ListPicker1</p>
+			</td>
+			<td>
+			<p>Set this property to the list you want to appear.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get global destinations</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from variable initialization block</p>
+			</td>
+			<td>
+			<p>The list of destinations.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p><strong>Screen1.Initialize</strong> is triggered when the app begins. As shown in <a data-type="xref" href="#put_anything_you_want_to_happen_when_the">Figure 6-3</a>, the event handler sets the <strong>Elements</strong> property of <strong>ListPicker</strong> so that the three destinations will appear. </p>
+
+<figure id="put_anything_you_want_to_happen_when_the"><img alt="Put anything you want to happen when the app starts in a Screen1.Initialize event handler" src="images/mt6-3.png"/>
+<figcaption>Initialize the ListPicker with the three choices when app launches.</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your apps</h5>
+
+<p><em>Click “Connect” and setup live testing with your device or emulator. Then, click the button labeled “Choose Paris Destination.” The list picker should appear with the three items. At this point, nothing should happen when you choose an item.</em></p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Opening Maps with a Search URL" id="opening_maps_with_a_search">
+<h2>Opening Maps with a Search URL</h2>
+
+<p>Next, you’ll program the app so that when the user chooses one of the destinations, the <strong>ActivityStarter</strong> launches Google Maps and searches for the selected location.</p>
+
+<p>First, consider the URL</p>
+
+<p><a href="http://maps.google.com?q=Paris">http://maps.google.com?q=Paris</a>. When you type this URL into the address bar of a browser, it shows a map of Paris. The “?” is common to many URLS-- it signifies that a parameter is coming. A parameter is the information the web site needs to process the request. In this case, the parameter name is “q”, short for “query”, and its value is “Paris”. It tells Google Maps what map to display.</p>
+
+<p>In this app, you’ll build a URL dynamically, adding the parameter value based on which location the user chooses. This way you can show different maps based on the user’s choices.</p>
+
+<p>When the user chooses an item from the <strong>ListPicker</strong> component, the <strong>ListPicker.AfterPicking</strong> event is triggered. In the event handler for <strong>AfterPicking</strong>, you need to set the <strong>DataUri</strong> of the <strong>ActivityStarter</strong> component so it knows which map to open, and then you need to launch Google Maps using <strong>ActivityStarter.StartActivity</strong>. The blocks for this functionality are listed in <a data-type="xref" href="#blocks_to_launch_google_maps_with_the_ac">Table 6-5</a>.</p>
+
+<table id="blocks_to_launch_google_maps_with_the_ac">
+	<caption>Blocks to launch Google Maps with the Activity Starter</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>ListPicker1.AfterPicking</em> </strong></p>
+			</td>
+			<td>
+			<p>ListPicker1</p>
+			</td>
+			<td>
+			<p>This event is triggered when the user chooses from <code>ListPicker</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set ActivityStarter1.DataUri to</em> </strong></p>
+			</td>
+			<td>
+			<p>ActivityStarter1</p>
+			</td>
+			<td>
+			<p>The <code>DataUri</code> tells Maps which map to open on launch.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>join</em></strong></p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Build the <code>DataUri</code> from two pieces of text.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“http://maps.google.com?q=”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The first part of the <code>DataUri</code> expected by Maps.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>ListPicker1.Selection</em> </strong></p>
+			</td>
+			<td>
+			<p>ListPicker1</p>
+			</td>
+			<td>
+			<p>The item the user chose.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>ActivityStarter1.StartActivity</em> </strong></p>
+			</td>
+			<td>
+			<p>ActivityStarter1</p>
+			</td>
+			<td>
+			<p>Launch Maps.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>When the user chooses from the <strong>ListPicker</strong>, the chosen item is stored in <strong>ListPicker.Selection</strong> and the <strong>AfterPicking</strong> event is triggered. As shown in <a data-type="xref" href="#setting_the_datauri_to_launch_the_select">Figure 6-4</a>, the <strong>DataUri</strong> property is set to a text object that combines “<a href="http://maps.google.com/?q=">http://maps.google.com/?q=</a>” with the chosen item. So, if the user chose the first item, “Tour Eiffel,” the <strong>DataUri</strong> would be set to “<a href="http://maps.google.com/?q=">http://maps.google.com/?q=</a> Tour Eiffel.”</p>
+
+<figure id="setting_the_datauri_to_launch_the_select"><img alt="Setting the DataURI to launch the selected map" src="images/mt6-4.png"/>
+<figcaption>Setting the DataURI to launch the selected map</figcaption>
+</figure>
+
+<p>Since you already set the other properties of the <strong>ActivityStarter</strong> so that it knows to open Maps, the <strong>ActivityStarter1.StartActivity</strong> block launches the Maps app and invokes the search prescribed by the <strong>DataUri</strong>.</p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>Restart the app and click the “Choose Paris Destination” button again. When you choose one of the destinations, does a map of that destination appear? Can you get back to your app with the device’s back button?</em></p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="A Virtual Tour with the Web Viewer" id="setting_up_a_virtual_tour">
+<h2>A Virtual Tour with the Web Viewer</h2>
+
+<p>The <strong>ActivityStarter</strong> is an important component because it provides access to any other app on the device. But there is another way to build a tour guide that uses a different component instead, the <strong>WebViewer</strong>. <strong>WebViewer </strong>is a panel you place directly within your app that behaves like a browser. You can open any web page, including a Google Map, in the viewer, and you can programmatically change the page that appears. Unlike with an ActivityStarter, your user doesn’t ever leave your app, so you don’t have to count on them hitting the back-button to get back. </p>
+
+<p>In this second version of the app, you’ll use the <strong>WebViewer</strong> and you’ll also spice up the app so that it opens some  zoomed-in and street views of the Paris monuments. You’ll define a second list and use a more complicated scheme in deciding which map to show.  To begin, you’ll first explore Google Maps to obtain the URLs of some specific maps. You’ll still use the same Parisian landmarks for the destinations, but when the user chooses one, you’ll use the <em>index</em> (the position in the list) of her choice to select and open a specific zoomed-in or street view map.</p>
+
+<p>Before going on, you may want to save your project (using Save As) so you have a copy of the <strong>ActivityStarter</strong> map tour you’ve created so far. That way, if you do anything that causes issues in your app, you can always go back to this working version and try again.</p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Finding the DataUri for Specific Maps" id="finding_the_datauri_for_specific_maps">
+<h2>Finding the DataUri for Specific Maps</h2>
+
+<p>The first step is to open Google Maps on your computer to find the specific maps you want to launch for each destination:</p>
+
+<ol>
+	<li>On your computer, browse to <em><a href="http://maps.google.com">http://maps.google.com</a></em>.</li>
+	<li>Search for a landmark (e.g., the Eiffel Tower).</li>
+	<li>Zoom in to the level you desire.</li>
+	<li>Choose the type of view you want (e.g., Street View).</li>
+	<li>Grab the URL. In the classic version of Maps, you click the Link button near the top right of the Maps window and copy the URL for the map. In the newer version of Google Maps you can just grab the URL from the address bar. </li>
+</ol>
+
+<p>Use this scheme to create some cool maps of the Paris monuments and extract the URLs. <a class="xref " data-type="xref" href="#virtual_tour_urlapostrophes_for_google_m">Table 6-6</a> provides some samples if you’d rather use them.</p>
+
+<table id="virtual_tour_urlapostrophes_for_google_m">
+	<caption>Virtual tour URLs for Google Maps</caption>
+	<thead>
+		<tr>
+			<th>Landmark</th>
+			<th>Maps URL</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p>Tour Eiffel</p>
+			</td>
+			<td>
+			<p>https://www.google.com/maps/place/Eiffel+Tower/@48.857862,2.295277,3a,75y,314.11h,90t/data=!3m4!1e1!3m2!1sBvmsCsff7BWYdNsVGmFEGg!2e0!4m2!3m1!1s0x47e66e2964e34e2d:0x8ddca9ee380ef7e0!6m1!1e1</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Musée du Louvre</p>
+			</td>
+			<td>
+			<p>https://www.google.com/maps/@48.859711,2.33539,3a,75y,75.2h,90t/data=!3m4!1e1!3m2!1sAulHB2Z_YXA19btJayjvrA!2e0!5m1!1e1</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Cathédrale Notre Dame (Street View)</p>
+			</td>
+			<td>
+			<p>https://www.google.com/maps/place/Notre+Dame+Cathedral/@48.853687,2.348209,3a,60y,124.85h,101.72t/data=!3m5!1e1!3m3!1spzptvObWPMo2g978eCOF0A!2e0!3e5!4m2!3m1!1s0x47e671e19ff53a01:0x36401da7abfa068d</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>To view any of these maps in a browser, paste the URLs from <a class="xref " data-type="xref" href="#virtual_tour_urlapostrophes_for_google_m">Table 6-6</a> into the address bar. </p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Defining the dataURIs List" id="defining_the_datauris_list">
+<h2>Defining the dataURIs List</h2>
+
+<p>You’ll need a list named <strong>dataURIs</strong>, containing a <strong>DataURI</strong> for each map URL for each of the destinations.. Create this list as shown in <a class="xref " data-type="xref" href="#list_of_maps_for_your_virtual_tour">Figure 6-5</a> so that the items correspond to the items in the destinations list (i.e., the first, <strong>dataURI</strong> should correspond to the first destination, the Eiffel Tower).</p>
+
+<figure id="list_of_maps_for_your_virtual_tour"><img alt="Alt Text" class="iimagesmt6-52png" src="images/mt6-5.2.png"/>
+<figcaption>Copy and paste the URLs into the text blocks of the DataURIs list.</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Modifying the ListPicker.AfterPicking Behavior" id="modifying_the_listpickerdotafterpicking">
+<h2>Modifying the ListPicker.AfterPicking Behavior</h2>
+
+<p>In the first version of this app, the <strong>ListPicker.AfterPicking</strong> behavior set the <strong>DataUri</strong> to a combination of “<a class="link " href="http://maps.google.com/?q=">http://maps.google.com/?q=</a>” and the destination the user chose from the list (e.g., “Tour Eiffel”). In this second version, the <strong>AfterPicking</strong> behavior must be more sophisticated, because the user is choosing from one list (<strong>destinations</strong>), but the app is choosing from the <strong>DataURIs list</strong> for the URL. Specifically, when the user chooses an item from the <strong>ListPicker</strong>, you need to know the index of the choice so you can use it to select the correct <strong>DataUri</strong> from the <strong>dataURIs</strong> list. We’ll explain more about what an index is in a moment, but it helps to set up the blocks first to better illustrate the concept. There are quite a few blocks required for this functionality, all of which are listed in <a data-type="xref" href="#blocks_for_choosing_a_list_item_based_on">Table 6-7</a>.</p>
+
+<table id="blocks_for_choosing_a_list_item_based_on">
+	<caption>Blocks for choosing a list item based on the user’s selection</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>ListPicker1.AfterPicking</em> </strong></p>
+			</td>
+			<td>
+			<p>ListPicker1</p>
+			</td>
+			<td>
+			<p>This event is triggered when the user chooses an item.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>ListPicker1.SelectionIndex</em> </strong></p>
+			</td>
+			<td>
+			<p>ListPicker1</p>
+			</td>
+			<td>
+			<p>The index (position) of the chosen item.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>select list item</em> </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Select an item from the <strong><em>dataURIs</em></strong> list.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get global DataURIs</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag it from the variable initialization</p>
+			</td>
+			<td>
+			<p>The list of <code>DataURIs</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>WebViewer.GoToURL</em> </strong></p>
+			</td>
+			<td>
+			<p>WebViewer</p>
+			</td>
+			<td>
+			<p>Load the URL in the viewer to show the map.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>When the user chooses an item from the <strong>ListPicker</strong>, the <strong>AfterPicking</strong> event is triggered, as shown in <a class="xref " data-type="xref" href="#choosing_a_list_item_based_on_the_userap">Figure 6-6</a>. The chosen item-e.g., “Tour Eiffel”, is in <strong>ListPicker.Selection</strong>. You used this property in the first version of this app. However, ListPicker also has a property <strong>SelectionIndex</strong>, which corresponds to the position of the chosen destination in the list. So if “Tour Eiffel” is chosen, the <strong>SelectionIndex</strong> will be 1; if “Musée du Louvre” is chosen, it will be 2; and if “Cathédrale Notre Dame de Paris” is chosen, it will be 3.</p>
+
+<figure id="choosing_a_list_item_based_on_the_userap"><img alt="Alt Text" class="iimagesmt6-62png" src="images/mt6-6.2.png"/>
+<figcaption>Open the selected URL in the WebViewer.</figcaption>
+</figure>
+
+<p>You use <strong>ListPicker.SelectionIndex</strong> to select an item from the <strong>DataURIs</strong> list. This works because the items of the two lists, <strong>destinations</strong> and <strong>DataURIs</strong>, are in sync: the first destination corresponds to the first URI, the second to the second, and the third to the third. So even though the user chooses an item from one list, you can use their choice (well, the index of their choice) to select the right URL to show.</p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>On the device, click the button labeled “Choose Paris Destination.” The list should appear with the three items. Choose one of the items and see which map appears.</em></p>
+</div>
+</section>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Variations" id="variations-id00046">
+<h1>Variations</h1>
+
+<p>Here are some suggested variations to try:</p>
+
+<ul>
+	<li>Create a virtual tour your workplace or school, or for your next vacation destination.</li>
+	<li>Explore ActivityStarter and use it to send an email or launch an app like YouTube (see http://appinventor.mit.edu/explore/ai2/activity-starter.html for help).</li>
+	<li>Difficult: Create a customizable Virtual Tour app that lets a user create a guide for a location of her choice by entering the name of each destination along with the URL of a corresponding map. You’ll need to store the data in a <strong>TinyWebDB</strong> database and create a Virtual Tour app that works with the entered data. For an example of how to create a <strong>TinyWebDB</strong> database, see the MakeQuiz/TakeQuiz app.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00047">
+<h1>Summary</h1>
+
+<p>Here are some of the ideas we’ve covered in this chapter:</p>
+
+<ul>
+	<li>List variables can be used to hold data like map destinations and URLs.</li>
+	<li>The <strong>ListPicker</strong> component lets the user choose from a list of items. The <strong>ListPicker’s Elements</strong> property holds the list, the <strong>Selection</strong> property holds the selected item, the <strong>SelectionIndex</strong> holds the position of the selected item, and the <strong>AfterPicking</strong> event is triggered when the user chooses an item from the list.</li>
+	<li>The <strong>ActivityStarter</strong> component allows your app to launch other apps. This chapter demonstrated its use with the Maps application, but you can launch a browser or any other Android app as well, even another one you created yourself. </li>
+	<li>You can use ListPicker.SelectionIndex to get the position of an item that a user chooses from a list. You can then use that index to select information from a different list (whose items are synchronized with the first list). For more information on <strong>List</strong> variables and the <strong>ListPicker</strong> component, see <a class="xref " data-type="xref" href="ch19.html#programming_lists_of_data">Chapter 19</a>.</li>
+</ul>
+</section>
+</section>
+  </body>
+</html>
+{% endblock %}

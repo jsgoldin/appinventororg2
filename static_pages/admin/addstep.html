@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+
+<h1> Add a Step </h1>
+
+<form action="/PostStep" method="post">
+    App ID:
+    <br/>
+    <small> (Corresponds to the App.appId field of the app to which
+        this step belongs.)
+    </small>
+    <br/>
+    <input type="text" name="appId">
+    <br/>
+    Step Number:
+    <br/>
+    <input type="text" name="number">
+    <br/>
+    Header:
+    <br/>
+    <small> A quick summary of the step. Appears in bold at the top of the step.
+    </small>
+    <br/>
+    <input type="text" name="header">
+    <br/>
+    Copy:
+    <br/>
+    <small> The instructions for the user.
+    </small>
+    <br/>
+    <textarea name="copy" rows="4" cols="60">Type main step copy here.</textarea>
+    <br/>
+    Video Path:
+    <br/>
+    <small> The video tutorial for this step.
+    </small>
+    <br/>
+    <input type="text" name="videoPath">
+    <br/>
+    Fullscreen Video Path:
+    <br/>
+    <small> Getting a direct fullscreen link to the video tutorial requires a hack:
+        you must manually edit the link. Best explained by example: if you have
+        http://www.youtube.com/watch?v=OIkVJ2jq4bA, you must change it to
+        http://www.youtube.com/v/OIkVJ2jq4bA (i.e., replace "watch?v=" with "v/")
+
+    </small>
+    <br/>
+    <input type="text" name="fullscreenPath">
+    <br/>
+    <br/>
+    <input type="submit" value="Add Step">
+</form>
+
+</body>
+
+</html>

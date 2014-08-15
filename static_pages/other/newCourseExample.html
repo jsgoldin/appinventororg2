@@ -1,0 +1,136 @@
+{% extends "course_base.html" %}
+{% block body %}
+<div class="container" style="padding-top: 30px;">
+   <div class="row-fluid">
+      <div class="span4">
+         <h2>{{app.heroHeader}}</h2>
+         <p>{{app.heroCopy}}</p>
+      </div>
+      <div class="offset1 span3">
+         <img class="" src="apps/{{ app.appId }}/hero.png" alt="screenshot" style="height:200px;
+            width:200px;">
+         </img>
+      </div>
+      <div class="offset1 span3">
+         <table class="spaceUnder">
+            <tr class="spaceUnder">
+               <td>
+                  <a class="btn btn-success btn-mini"
+                     href="apps/{{ app.appId }}/{{ app.appId }}.pdf">
+                  Download the chapter&nbsp;
+                  <i class="icon-download-alt icon-white"></i></a>
+               </td>
+            </tr>
+            <tr class="spaceUnder">
+               <td>
+                  <a class="btn btn-success btn-mini"
+                     href="apps/{{ app.appId }}/{{ app.appId }}.zip">
+                  Download the source&nbsp;
+                  <i class="icon-download-alt icon-white"></i>
+                  </a>
+               </td>
+            </tr>
+            <tr class="spaceUnder">
+               <td>
+                  <a class="btn btn-success btn-mini"
+                     href="apps/{{ app.appId }}/{{ app.appId }}.apk">
+                  Download the APK&nbsp&nbsp&nbsp&nbsp&nbsp;
+                  <i class="icon-download-alt icon-white"></i>
+                  </a>
+               </td>
+            </tr>
+
+		 <tr>
+			<td>
+				<img class="qr" src="apps/{{ app.appId }}/qr.png" alt="" style="width:150px;height:150px">
+			</td>
+		 </tr>
+
+         </table>
+      </div>
+   </div>
+   <div class="row">
+      <div class="span12">
+         <div id="myCarousel" class="carousel slide thumbnail">
+            <!-- Carousel Nav -->
+            <div id="carousel-nav">
+               {% for step in steps|slice:":1" %}
+               <a href="#myCarousel" data-to="{{forloop.counter}}" class="active" onclick="stopVideo();">{{forloop.counter}}</a>
+               {%  endfor %}
+               {% for step in steps|slice:"1:" %}
+               <a href="#myCarousel" data-to="{{forloop.counter|add:1}}" onclick="stopVideo();">{{forloop.counter|add:1}}</a>
+               {%  endfor %}
+            </div>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+		    
+               {% for step in steps|slice:":1" %}
+               <div class="active item">
+			  <div class="row">
+				<div class="offset1 span5">
+			  	<h4>Step{{ step.number }}: {{step.header}}</h4>
+			  	<h4>customization link at here</h4>
+				<h4>customization link at here</h4>
+
+			  </div>
+			  <div class="span6">
+				<img class="thumbnail" src="apps/{{ app.appId }}/blocks{{ step.number }}.png" alt="" style="width:200px; height:100px;"/>
+			  </div>
+			  </div>
+			  
+		
+                  <div id="youtube_player{{step.number}}"></div>
+                  <script>
+                     addVideo('{{step.videoPath}}', 'youtube_player{{step.number}}');
+                      
+                  </script>
+                  <div class="carousel-caption">
+                     <h4>&nbsp&nbsp&nbsp&nbsp&nbsp {{ step.number }}: {{step.header}}</h4>
+                  </div>
+               </div>
+               {%  endfor %}
+               {% for step in steps|slice:"1:" %}
+               <div class="item">
+			  <div class="row">
+				<div class="offset1 span5">
+			  	<h4>Step{{ step.number }}: {{step.header}}</h4>
+			  	<h4>customization link at here</h4>
+				<h4>customization link at here</h4>
+
+			  </div>
+			  <div class="span6">
+				<img class="thumbnail" src="apps/{{ app.appId }}/blocks{{ step.number }}.png" alt="" style="width:200px; height:100px;"/>
+			  </div>
+			  </div>
+
+
+
+                  <div id="youtube_player{{step.number}}"></div>
+                  <script>
+                     addVideo('{{step.videoPath}}', 'youtube_player{{step.number}}');
+                      
+                  </script>
+                  <div class="carousel-caption">
+                     <h4>&nbsp&nbsp&nbsp&nbsp&nbsp {{ step.number }}: {{step.header}}</h4>
+                  </div>
+               </div>
+               {%  endfor %}
+            </div>
+            <!-- Carousel nav -->
+            
+
+		
+
+
+	       <a class="carousel-control left" href="#myCarousel" onclick="if(currentPage>0){currentPage=((currentPage-(2))%pagesCount);$('#myCarousel').carousel(currentPage+1);stopVideo();}">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" onclick="if(currentPage<pagesCount){$('#myCarousel').carousel(currentPage+1);stopVideo();}">&rsaquo;</a>
+
+
+		
+         </div>
+      </div>
+   </div>
+   <!-- End of Row-->
+</div>
+<!-- End of Container-->{% endblock %}
+{#end of body block#}

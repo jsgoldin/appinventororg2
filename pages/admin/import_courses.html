@@ -1,0 +1,20 @@
+{% extends "templates/site_base.html" %} {% block blockstart %}
+<div class="jumbotron jumbotron-wherami ">
+    <div class='jumbotron-wherami-text'>Import Courses</div>
+</div>
+<a href='/admin/dashboard' class='back-to-courses-link'><span class="glyphicon glyphicon-chevron-left"></span> Dashboard</a>
+
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-md-12 export-container'>
+            <h2>Import courses and content</h2>
+            <p>This will completly replace the current courses with the contents of this file!</p>
+            <p>Make sure to only use valid export .dat files for the import.</p>
+            <button id='import_upload_button' type="button" class="btn btn-default">Import</button>
+            <input type="file" class='hidden_input' id="import_file_input">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

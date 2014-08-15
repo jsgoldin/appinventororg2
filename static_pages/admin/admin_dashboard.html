@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../../assets/JordansStuff/css/bootstrap.css" type=”text/css”>
+<link rel="stylesheet" href="../../assets/JordansStuff/css/JordansAwesomeStyleSheet.css" type=”text/css”>
+
+<title>Admin Page</title>
+</head>
+
+<body>
+    <div class="j-header">
+        <div class="container">
+            <h1>Administration</h1>
+        </div>
+    </div>
+
+    <div class="nav-bar-mod">
+        <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/admin/dashboard">Dashboard</a></li>
+                    <li><a href="/admin/users">Users</a></li>
+                    <li><a href="/admin/modules">Modules</a></li>
+                    <li><a href="/admin/stats">Stats</a></li>
+                </ul>
+            </div>
+        </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+
+                <div class='j-box-title'>
+                    <h4>Admin Log</h4>
+                </div>
+                <div class='j-box'>
+                    <div class='admin-chat-box'>
+
+                        {% for m in messageList %} <strong>{{m.author}} </strong> @ {{m.date}}<br> <br> {{m.content}}
+
+                        <hr>
+                        {% endfor %}
+                    </div>
+                    <div class='j-center'>
+                        <form action="/admin/dashboard" method="post">
+                            <div class="form-group">
+                                <label for="inputMessage">Message</label> <input type="text" class="form-control" name="inputMessage" placeholder="New Message">
+                            </div>
+                            <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+
+                <div class='j-box-title'>
+                    <h4>Dashboard</h4>
+                </div>
+
+                <div class='dashboard-box'>
+                    <a href="/admin/users" class="btn btn-default dashboard-item"> <img src="../../assets/JordansStuff/icons/users.png">
+                        <p>User Management</p>
+                    </a> <a href="/admin/modules" class="btn btn-default dashboard-item"> <img src="../../assets/JordansStuff/icons/tutorialmanagement.png">
+                        <p>Module Management</p>
+                    </a> <a href="/admin/stats" class="btn btn-default dashboard-item"> <img src="../../assets/JordansStuff/icons/statistics.png">
+                        <p>Lesson Management</p>
+                    </a>       
+                    
+            </div>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../../assets/JordansStuff/js/bootstrap.js"></script>
+</body>

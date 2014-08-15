@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://twitter.github.com/bootstrap/examples/fluid.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>AppInventor.org: Democratizing App Building</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+    </style>
+    <link href="../../assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+<!-- Google Analytics Starts -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-684961-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- Google Analytics Ends -->
+</head>
+
+<body id="course-in-a-box">
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">AppInventor.org</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <!-- <li class="active"><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li> -->
+                    <li><a href="/hellopurr">Learn</a></li>
+                    <li><a href="/teaching-android">Teach</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+
+
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+
+                    <li>
+                        <a href="/book">
+                            <div id="book_image">
+
+                                <img src="assets/img/pics/book.png" alt="Textbook"/>
+                                <figcaption>
+                                    <div>Check out the book</div>
+                                    <div>by David Wolber</div>
+                                </figcaption>
+
+                            </div>
+                        </a>
+
+                    </li>
+
+                    <br/>
+
+
+                    <li class="nav-header">Introducing App Inventor</li>
+                    <li><a href="/teaching-android">Teaching App Inventor</a></li>
+                    
+                    <li><a href="/media_teaching">Media</a></li>
+		   <li><a href="/course-in-a-box_teaching">Course-In-A-Box Intro</a></li>
+
+                    <li class="nav-header">Course-in-a-box Modules</li>
+                    <li><a href="/module1">1.Introduction</a></li>
+                    <li><a href="/module2">2.Games</a></li>
+                    <li><a href="/module3">3.Texting/Location</a></li>
+                    <li><a href="/module4">4.Data</a></li>
+                    <li><a href="/module5">5.Shared Data</a></li>
+                    <li><a href="/module6">6.Software Engineering</a></li>
+                    <li><a href="/module7">7.Web APIs</a></li>
+
+                    <li class="nav-header">Apps</li>
+                    {% for app in allAppsList %}
+
+
+
+                        <li><a href="/{{ app.appId }}-box">{{ app.title }}</a></li>
+
+                    {% endfor %}
+
+                    <li class="nav-header">Links</li>
+                    <li><a href="http://appinventor.mit.edu/">App Inventor @ M.I.T.</a></li>
+                    <li><a href="http://appinventorblog.com/">App Inventor Blog</a></li>
+                    <li><a href="http://twitter.com/wolberd">Tweet @Dave Wolber</a></li>
+
+
+
+
+                </ul>
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->
+
+
+        <div class="span9">
+            {% block body %}
+
+            {% endblock %}
+
+
+        </div>
+        <!--/.fluid-container-->
+
+
+
+
+
+        <!-- SCRIPTS
+       ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+
+        <script src="/assets/js/jquery.js"></script>
+        <script src="/assets/js/bootstrap-transition.js"></script>
+        <script src="/assets/js/bootstrap-alert.js"></script>
+        <script src="/assets/js/bootstrap-modal.js"></script>
+        <script src="/assets/js/bootstrap-dropdown.js"></script>
+        <script src="/assets/js/bootstrap-scrollspy.js"></script>
+        <script src="/assets/js/bootstrap-tab.js"></script>
+        <script src="/assets/js/bootstrap-tooltip.js"></script>
+        <script src="/assets/js/bootstrap-popover.js"></script>
+        <script src="/assets/js/bootstrap-button.js"></script>
+        <script src="/assets/js/bootstrap-collapse.js"></script>
+        <script src="/assets/js/bootstrap-carousel.js"></script>
+        <script src="/assets/js/bootstrap-typeahead.js"></script>
+
+    </div>
+</div>
+
+</body>
+<!-- /BODY -->
+
+<footer>
+    <hr/>
+
+    <div class="row-fluid">
+
+        <div class="span2">
+            &nbsp;
+        </div>
+
+        <div class="span8">
+
+            <div class="tiny-text">
+
+                AppInventor.org by David Wolber is licensed under an
+                <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+
+                <br/>
+
+
+                Designed and coded by <a href="http://www.jdmanuel.com">J.D. Manuel.</a>
+
+            </div>
+        </div>
+
+        <div class="span2">
+            &nbsp;
+        </div>
+
+    </div>
+</footer>
+
+</html>

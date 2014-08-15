@@ -1,0 +1,101 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Recording Tweets and Music: an Introduction to User Generated Data</H1>
+
+<p>In this lesson, you'll see a simple <i>twitter</i> app that lets the user enter "tweets" that can be viewed later. You'll then use what you learn to build a music app that records musical notes played by the user, then plays them back. You'll choose your own musical notes (any sounds you like!).
+
+The lesson introduces <i>user-generated data</i>. If you built the <a href="/quiz-steps">President's Quiz App</a>, you know that that app has fixed data--the questions of the quiz are pre-defined and never change. Apps with user-generated data keep track of lists of data, but those lists are empty to begin and are only populated as the user enters information (in this case, plays musical notes). Such apps are more complicated because the code is less concrete and you must envision the data that will eventually be generated. </p>
+<p>
+To begin, your instructor will demo a simple, Twitter-like app that lets the user enter tweets and then displays the list of all tweets. The Twitter-like app will then be used as a model for you to build a musical record/playback system. The music playback app provides experience with building a list and then iterating through it with the clock timer.</p>
+
+
+<h4>Instructor Demo, Part 1: Simple Twitter</h4>
+<p>Demonstrate the development of a simple notetaker with a UI something like Twitter. You will not add any persistence yet, just demonstrate how to add items to a list and a simple method for displaying the list. You can check out such a demo in the first couple of steps of the <a href="notetaker-steps">Notetaker App</a>.
+<ul>
+<li>
+    Add a label, textbook and button for the input form. Name them.
+</li>
+<li>
+    Arrange the components in a HorizontalArrangement
+</li>
+<li>
+   Add a hint to Textbox saying "please enter a tweet".
+</li>
+<li>
+
+Add a label "NoteListLabel" that shows all previously entered notes, and a header label for it. 
+</li>
+<li>
+In the blocks editor, add a list "NotesList" with a <strong>make a list</strong> but no items. Emphasize the form of this initially empty list and compare it to the pre-populated QuestionList in the President Quiz App.
+</li>
+<li>
+In the <strong> when SubmitButton.Click</strong> event handler, add the contents of the textbook (the user's entry) into the list using <strong>add items to list</strong>
+</li>
+<li>
+At the bottom of <strong> when SubmitButton.Click</strong> display the list in "NoteListLabel" by simply setting NoteListLabel to the list. It will display in a default manner, e.g., (note1 note2 note2).
+</li>
+</ul>
+<h4>Try It, Part 1: Record some Music!</h4>
+<p>Students: Using the simple Twitter app as a sample, build the first part of a music player. Instead of a textbook for entering notes, the app will have three buttons. When each button is clicked, a musical note will play, and the note will be recorded in a "MusicalNotes" list. Here are the steps:
+<ul>
+<li>
+Add three buttons, a Sound component, and a label "RecordedNotesLabel" to display the recorded notes.  
+</li>
+<li>
+Find three short sound clips from the web for your three musical notes. Clicking each button will play one of the three notes. Add the files in the Media section of the Designer.
+</li>
+<li>
+In blocks editor, Create a list MusicalNoteList
+</li>
+<li>
+When each button is clicked, play the corresponding note and add the fileName of the note to the list. Display the list in the RecordedNotesLabel. Don't worry about playing back the recorded music yet, just record it and display it.
+</li>
+<li>
+Test the app. As each button is clicked, a particular musical note should be played and recorded. The RecordedNotesLabel should show a list of musical notes (the file names). For instance, if the three musical notes are in the files "do.mp3", "re.mp3", and "mi.mp3", and the user clicks the second button, then the first button twice, then the third button, the RecordedNotesLabel should show: (re.mp3 do.mp3 do.mp3 mi.mp3)  
+</li>
+</ul>
+<h4>Playing back the Notes: Iterating over Time</h4>
+<p>
+In the <a href="/quiz-steps">President's Quiz App</a>, there was a Next button. When the user clicks that button, an index is incremented and the next question displayed. Here are the blocks:
+
+<br/><img src="/assets/img/quizNextButton.png" /></br>
+
+</p>
+<p>For your music recording app, there is no Next button, but you do want to iterate through a list in a similar manner. You really want to play back each note over time. Since you're not recording the pauses between notes, you can just play the notes every couple of seconds. For this, you'll need a <strong>when Clock.Timer</strong> event handler instead of a <strong>NextButton.Click</strong> event handler, but the code inside will be similar.
+
+
+<h4>Try It, Part 2: Play back the Notes!</h4>
+<p>
+Students: Add a Clock component, a Play button, and a Stop button. The Play Button can enable the Clock timer. The Clock.Timer event can play a single note and increment the index. Make sure and deal with the case when the end of the list is reached! Your goal is for the recorded notes to play back continuously.     
+</p>  
+<h4>Instructor Demo: Add Persistence to the Notetaker</h4>
+<p>The Notetaker app and the Music app have a problem: if you close the app and reopen it, the data is gone. Generally, you want to store user-generated data persistently, so that it remains over successive runs of the app. Here are the following steps for adding persistence:
+<ul>
+<li>
+Add a TinyDB component to the app.  
+</li>
+<li>
+In the Blocks Editor, add a call to TinyDB.StoreValue to the <strong>SubmitButton.Click</strong> event handler. Store the TweetList with a tag of "tweets"
+</li>
+<li>
+Add a <strong>Screen.Initialize</strong> event handler, and retrieve the list from the database with a call to <strong>TinyDB.GetValue</strong>. Be careful to check that the incoming data is not empty. 
+</li>
+</ul>
+<p>Check out the <a href="notetaker-steps">Notetaker App</a>, step 5 for an example demonstration of persistence.
+</p> 
+<h4>Try It, Part 3: Add Persistence to the Music App</h4>
+<p>Modify your music app so that if you close the app and reopen it, the recorded music is still there.
+</p>
+<h4>Customizations</h4>
+<ul>
+<li>
+Modify the music app so that the notes are displayed in a more elegant manner, instead of in the form (2.mp3 1.mp3 1.mp3 3.mp3). To do this, add another list called "NoteNames". Record NoteNames in the list instead of the file names.
+</li>
+<li>
+Modify the app so that it is multi-user and users can playback each other's music. You can use TinyWebDB instead of TinyDB
+</li>
+</ul>
+
+
+{% endblock %}

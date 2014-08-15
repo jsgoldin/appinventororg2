@@ -1,0 +1,50 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Android, Where is my Car?: Build, Conceptualize, Customize</H1>
+<br/>
+
+<h2> Build It</h2>
+<ol>
+<li>
+Open a browser and navigate to <a href="http://beta.appinventor.mit.edu">http://beta.appinventor.mit.edu</a>. Login with your Google account.
+</li>
+<li>
+Now build the Android, Where? app. Follow the instructions in App Inventor chapter 6 using either the paperback version, the <a href="apps/android-where-s-my-car/android-where-s-my-car.pdf">pdf version</a>, or the <a href="/android-where-s-my-car-steps">step-by-step video lesson</a>.
+</li>
+</ol>
+<h2>Conceptualize It</h2>
+<p>After completing the Android Where is My Car tutorial, discuss these questions with a partner or small group, jotting down notes while you discuss. Later, create a portfolio page with answers to the questions in your own words.
+
+
+
+
+
+<ol>
+<li>
+In a URL, what does ? signify? What does & signify?
+</li>
+<li>
+Suppose you wanted to build a URL from your the current location to a specific nearby hospital. Show what the maketext block would look like.
+</li>
+
+<li>
+When does the event handler LocationSensor.LocationChanged get triggered? Why should you not check for current latitude or longitude in Screen.Initialize?</li>
+
+</ol>
+
+
+	
+<h2>Customize It</h2>	
+<ol>
+<li>
+Create Android, Where Is Everyone?, an app that lets a group of people track their whereabouts. Whether you are hiking or at the park, this app could help save time and possibly even lives. The data for this app is shared, so you will need to use a web database and the TinyWebDB component instead of TinyDB. See Chapter 22 for more information.
+</li>
+<li>
+Create a Breadcrumb app that tracks your whereabouts by recording each location change in a list. You should only record a new breadcrumb if the location has changed by a certain amount, or a certain amount of time has elapsed, because even slight movement can generate a new location reading. You will need to store the recorded locations in a list. See Chapter 19 for help.
+</li>
+
+
+
+</ol>
+{% endblock %}

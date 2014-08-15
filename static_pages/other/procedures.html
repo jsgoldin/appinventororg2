@@ -1,0 +1,31 @@
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Procedures: Eliminating Redundancy</H1>
+<p>
+Software, especially  software actually used by people, gets really big really fast. As software gets larger, bugs are introduced and maintaining and extending the software gets more difficult. This is why great software engineers and software architects are paid the big money.</p>
+<p>A key strategy in software engineering is to avoid introducing <i>redundant code</i>, or eliminate it if it is there. If you find yourself copying and pasting code (blocks), you are probably not engineering the app correctly. The reason is that, if a bug is found, or if a feature needs to be modified, you don't want to have to track down and change all of the copies. This might not be a bid deal in the early stages of the software, but as things get more complex, tracking down such copy-paste dependencies becomes unmaintainable. </p>
+<p>
+The antidote to copy-paste in programming is the procedure. A procedure is a named sequence of blocks. If you have some blocks that need to happen in two places in your program, the idea is to create a procedure with the blocks, then call that procedure from the two places it is needed.
+</p>
+<p>
+For example, consider the MathBlaster app. In that app, a random addition problem is generated in two places: when the app begins for the first question, and when the user clicks the "Next" button. In that tutorial, procedure are not used and instead the code to generate addition problems (the list of numbers) is duplicated in two event handlers:
+
+
+</p>
+<h2>Refactoring Code</h2>
+<p>
+Code like that above is not horrible. In fact, even great programmers will often create early versions of software with redundancy. But those programmers stop, at some point, and perform a process called "re-factoring", which means to redesign the code not to eliminate bugs, but to make the software more elegant and maintainable.
+</p>
+<p>
+For the example, the solution is to create a procedure and move the redundant code into it. The procedure could be named, "generateAdditionProblem". Here is a first version of it, along with modified event handlers that call it:
+</p>
+parameters-- having the procedure return a list, that way can be used not just in apps with a global named x.
+decomposition for better reuse (generateList, getEquationFromList)
+
+discuss how an experienced programmer would create this "procedure" version from the get-go, always looking for nuggets that can be reused in an app (or other apps).
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Meet My Classmates</H1>
+<p>
+You know how its so hard to learn the names of a new group of people? In this tutorial, you'll build a slideshow app for learning the names of the folks in your class (or your team, club, etc.). If you completed the <a href="/slideshowQuiz">Slideshow Quiz app</a>, you're half-way there. You're task is to remix that app so there aren't any set pictures. Instead, all the data will be user-generated: the user of your app will use the camera to take pictures.
+</p>
+<h2>What You'll Learn</h2>
+<ul>
+<li>
+User-generated data and working with abstract data references.
+</li>
+<li>
+Persistent data (TinyDB)
+</li>
+<li>
+Camera component
+</li>
+</ul>
+<h2>Start with a Slideshow with Fixed Pictures</h2>
+<p>
+You'll start with the <a href="/slideshowQuiz">Slideshow Quiz app</a>, a slideshow that lets the user iterate through a list of pre-defined pictures. If you haven't completed that tutorial, you should  do so now before proceeding. 
+<p>
+If you have built the Slideshow Quiz app in App Inventor, open that project from your My Projects page. If you haven't built it, download this source code (.aia file), then in App Inventor go to My Projects, More Actions | Upload Source to open the project. Once you have the project opened, perform a <strong>SaveAs</strong>  and name the copy "MeetMyClassmates".
+</p>
+<p>
+This app is different from the "Slideshow Quiz" in that there is no data (pictures) to start. Instead, the picture and names are completely user-generated. Apps with user-generated data still define list variables, but the <strong>make a list</strong> blocks in the list definitions are empty:
+<br/><img src="{{apps2Dir}}/meetMyClassmates/emptyLists.png"/><br/>
+Such an empty <strong>make a list</strong> call is very common. You are just specifying that you'll be storing a list of items but those items will only be added when the app is launched and the user enters data (in this case, by taking pictures and typing in names).</p>
+<h2>Setup the User Interface</h2>
+<p>
+Your "Meet My Classmates" app will not be a quiz: you'll just show the names of each person as the user iterates through the pictures. You'll also want to provide a method for the user to modify the name given to each picture, so you'll need an "Edit" button and an input form that appears when that button is clicked. Do the following:
+</p>
+<ol>
+<li>Add a label for showing the name. Since you won't be using the AnswerCheckLabel that was in the Slideshow quiz, you can just rename that label to "NameLabel".
+</li>
+<li>
+Add a button named EditButton (or rename the AnswerButton). Set the Text of this button to the empty text ("") but set its <strong>Image</strong> property to this standard <a href="{{apps2Dir}}/meetMyClassmates/media/ic_menu_edit.png">Android edit icon</a> (download this image then upload it for the EditButton.Image property).
+</li>
+<li>
+Add a Horizontal arrangement. Keep the NextButton that was in the Slideshow Quiz and move it into the arrangement.
+</li>
+<li>
+<Add a button that will be clicked to launch the camera. Name it "CameraButton" and place it next to the EditButton in its arrangement. Set its Image Property to this standard <a href="{{apps2Dir}}/meetMyClassmates/media/ic_menu_camera.png">Android camera icon</a>
+</li>
+<li>
+For the input form for editing the name, add a HorizontalArrangement, then add a TextBox named "NameTextBox" and a button named "SubmitButton" within the arrangement.
+</li>
+<li>
+You only want the form to appear when the EditButton is clicked and not when the app starts. So set the HorizontalArrangement.visible property to false. You can also check the "show invisible components" check box so you can see the form during development.
+</li>
+<li>
+Finally, add a <strong>Camera</strong> component (you'll find it in the <strong>Media</strong> folder). <strong>Camera</strong> is a non-visible component as it doesn't appear in the user interface (though the Camera is launched because of it).
+</ol>
+<p>
+Here's the user interface with annotations showing the names of the components:
+<br/><img src="{{apps2Dir}}/meetMyClassmates/screenAnnotated.png"/><br/> 
+</p>
+<h2>Taking a Picture</h2>
+<p>
+Now open the Blocks editor and remove the blocks you don't need from the SlideShow quiz, specifically the <strong>when AnswerButton.Click</strong> event handler for processing the user's answers to the quiz.
+</p>
+<p>
+The next step is to add blocks for processing the pictures the user takes. First, you need to launch the camera when the user clicks the CameraButton:
+<br/><img src="{{apps2Dir}}/meetMyClassmates/cameraButtonClick.png"/><br/>
+</p>
+<p>
+When the user finishes taking a picture, the <strong>Camera1.AfterPicture</strong> event handler is triggered. So in that event handler, you'll add the picture that was taken to the "Pictures" list and a default name, "unknown" to the "Names" list (you'll add code for allowing the user to change the name later). Here are the blocks:
+<br/><img src="{{apps2Dir}}/meetMyClassmates/afterPicture.png"/><br/>
+Note that the newly taken picture will be put in the list, but it won't yet appear as the shown image (in Image1) because you didn't specify to do that yet.
+</p>
+<h2>Displaying the "current" name when NextButton clicked</h2>
+<p>
+With the Slideshow quiz, each time the NextButton was clicked, the next picture in the list appeared. This behavior was realized by modifying the "index" variable and then calling <strong>Select List Item</strong> to grab the next picture.</p>
+<p>
+For this app, you also want to select and display the corresponding name from the Names list. Because you are adding both the pictures and names to the respective lists within the <strong>Camera1.AfterTaken</strong> event handler, the data will be in synch-- the first picture corresponds to the first name, the second picture to the second name, and so on. So on the <strong>NextButton.Click</strong> event handler, you can use the index to get the current item from both lists. Here are the updated blocks:
+</p>
+<br/><img src="{{apps2Dir}}/meetMyClassmates/nextButton.png"/><br/> 
+<h2>Test the NextButton behavior</h2>
+<p>
+Run the app and, after taking a few pictures, click Next and see if you can iterate through all the pictures you have taken
+</p>
+<h2>Allow names to be edited</h2>
+<p>Of course you don't want all the pictures to remain named "unknown", so the next step is to code the blocks so that the user can edit the name after taking a picture. Do the following:
+<ol>
+<li>
+Code the <strong>EditButton.Click</strong> event handler so that the EditFormArrangement appears when it is clicked. You just need to set the visible property of the arrangement to "true".
+</li> 
+<li>
+Code the <strong>SubmitButton.Click</strong> event handler to change current item of the NameList to the newly entered name. You'll use the <strong>modify list item</strong> block.
+</li>
+<li>
+You also need to update the NameLabel when the new name is submitted, and hide the form (make the arrangement invisible again).
+</li>
+</ol>
+Here is how the blocks should appear:
+<br/><img src="{{apps2Dir}}/meetMyClassmates/emptyList.png"/><br/>
+TEST
+<h2>Persistence</h2>
+At this point, you have a nice app for taking pictures of a group of people associating names with them, and then iterating through them to learn. But there is one problem: if the user closes the app, and later relaunches, all the pictures taken and names entered will be gone! This is because the list variables you defined, and in fact all variables, are <i>transient</i> data-- they live only as long as the current run of an app.
+</p>
+<p>
+When you deal with user-generated data, you must take pains to persist your data. <i>Persistent data</i> is information which lives on even after an app is closed and reopened. Databases are used to store persistent data-- your app must move the information in its transient data (the variables) into a database to persist it. When an app launches, your app must load the data in from the database into variables.
+</p>
+<p>
+The <strong>TinyDB</strong> component is used to persist data, at least if the database is to live on the user's device. There is also a TinyWebDB component which allows data to be shared. But you'll code this app as a single-user stand-alone app, e.g. anyone using the app will take and explore their own private list of pictures.
+</p>
+
+<h2>Delete items</h2>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

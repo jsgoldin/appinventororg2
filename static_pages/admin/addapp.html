@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+
+<body>
+<H1> Add an App </H1>
+
+<p> The template system is dependent upon a specific naming convention -- and the value of the "App ID" field
+    is crucial. It must be used as the filename for the PDF, the ZIP, and the APK files for a given app.
+    For example, the source code for an app with App ID == "notetaker" must be within
+    a file named "notetaker.zip" All of these files must also be placed within a subdirectory
+    of the "apps" directory that is also identical to the App ID field. So, for example, notetaker.zip
+    would need to be placed within appinventor/apps/notetaker.
+
+    The app screenshot that will appear within the hero unit (the grey box at the top of the
+    page) must also be placed within the subdirectory for that particular app, and should be
+    named "hero.png"; similarly, the QR image must be name "qr.png".
+
+</p>
+
+
+<form action="/PostApp" method="post">
+    Number:
+    <br/>
+    <small> This determines the order in which this app will appear in the side navigation menu.
+        Number 1 will appear top-most.
+
+    </small>
+    <br/>
+    <label>
+        <input type="text" name="number">
+    </label>
+    <br/>
+
+    App ID:
+    <br/>
+    <small> (If any websites link to this tutorial, ensure that this field corresponds to the link
+        on those sites. For example, if a site has a link to "appinventor.org/hellopurr" and you
+        are entering fields for the Hello Purr app, make sure this field == "hellopurr".)
+    </small>
+    <br/>
+    <label>
+        <input type="text" name="appId">
+    </label>
+    <br/>
+    <br/>
+    Hero Header:
+    <br/>
+    <small> (Should either be or include the name of the app. For example, "Build the Paint Pot App".)
+    </small>
+    <br/>
+    <label>
+        <input type="text" name="heroHeader">
+    </label>
+    <br/>
+    <br/>
+    Hero Copy:
+    <br/>
+    <small>(Describes the app -- what it does and what you can learn from building it.)
+    </small>
+    <br/>
+    <label>
+        <textarea name="heroCopy" rows="4" cols="60">Type hero copy here.</textarea>
+    </label>
+    <br/>
+    <br/>
+    <input type="submit" value="Add App">
+</form>
+</body>
+</html>

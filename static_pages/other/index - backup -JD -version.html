@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AppInventor.org: Democratizing App Building</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+
+    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../assets/css/ai_styles.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <link href="../../assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <script type="text/javascript" src="../../assets/appCarousel/TSWImageCarousel.js"></script>
+    <script type="text/javascript" src="../../assets/appCarousel/TSWDomUtils.js"></script>
+    <script type="text/javascript" src="../../assets/appCarousel/TSWUtils.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/appCarousel/TSWImageCarousel.css"/>
+
+<!-- Google Analytics Starts -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-684961-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- Google Analytics Ends -->
+
+
+<!-- Youtube Videos, need to be load first-->
+	 <script src="/assets/js/carousel-video-players.js"></script>
+
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">AppInventor.org</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <!-- <li class="active"><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li> -->
+                    <li><a href="/about">About</a></li>
+                </ul> 
+			
+			<!--Google Custom Search starts-->
+		     <ul class="nav">
+			     <li class="span3"></li>
+				<li></li>
+                     <li>
+                        <div style="width:0px;overflow:hidden;height:0px;">
+                           <!-- if you use display:none here it doesn't work-->
+                           <gcse:search></gcse:search>
+                        </div>
+                        <form class="form-search" id="searchbox_002873954108960030835:l3_jvzrakeu" action="/siteSearch">
+                           
+                           <input class="input-xlarge" id="q" name="q" type="text" value='{{q}}'/>
+                           <button class="btn">Search</button>
+                        </form>
+                     </li>
+                  </ul>
+                  <!--Google Custom Search ends-->
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 40px">
+    <!-- Main half unit for a primary marketing message or call to action -->
+
+
+    <div class="row">
+
+
+        <!-- <iframe class="span5 thumbnail" width="550" height="324" src="http://www.youtube.com/embed/E9Zm56Od1pw"
+      frameborder="0" allowfullscreen></iframe> -->
+        <div class="span5">
+		    
+               <div id="myCarousel" class="carousel slide thumbnail">
+                  <!-- Carousel items -->
+                  <div class="carousel-inner">
+                     <div class="active item">
+                        <div id="youtube_player1"></div>
+                        <div class="carousel-caption">
+                           <h4>The App Inventor Course at USF</h4>
+                        </div>
+                     </div>
+                     <div class="item">
+                        <div id="youtube_player2"></div>
+                        <div class="carousel-caption">
+                           <h4>What is App Inventor?</h4>
+                        </div>
+                     </div>
+                     <div class="item">
+                        <div id="youtube_player3"></div>
+                        <div class="carousel-caption">
+                           <h4>"No Texting While Driving" #1 (Sample Tutorial Video)</h4>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Carousel nav -->
+                  <a class="carousel-control left" href="#myCarousel" data-slide="prev" onclick="stopVideo()">&lsaquo;</a>
+                  <a class="carousel-control right" href="#myCarousel" data-slide="next" onclick="stopVideo()">&rsaquo;</a>
+               </div>
+            </div>
+
+
+        <div class="span6"> <!-- start of lesson box -->
+
+            <div class="span6">
+
+                <!-- <a href="/notetaker">notetaker</a> -->
+
+                <h2>Watch. Build. Practice. </h2>
+
+                <p class="lead"> Learn to build Android apps in hours.<br/>Learn App Inventor. Learn to program.</p>
+
+                <p id="right-panel-copy">App Inventor provides the fastest way to build apps for Android phones and tablets. Even with no prior experience, you can learn to build apps within hours. Here, you'll learn from USF Professor David Wolber, who has been teaching beginners programming with App Inventor since its inception in 2009. With step-by-step video screencasts, Wolber starts with the basics then leads you through the development of successively more complex apps, teaching you programming concepts as you go. </p>
+
+                <p style="margin-top:20px">
+
+
+                    <a class="btn btn-success btn-large" href="/hellopurr">Get Started&nbsp; <i
+                            class="icon-arrow-right icon-white"></i></a>
+
+                    <a class="btn btn-success btn-large" href="/projects" style="margin-left: 20px">Check out the Apps&nbsp;
+                        <i class="icon-arrow-right icon-white"></i></a>
+
+                </p>
+
+            </div>
+
+
+            <div class="span5 well" style="margin-top: 20px">
+                <p class="lead" align="center"><strong> Teaching App Inventor?</strong>
+                               <a class="btn btn-success btn-large" href="/course-in-a-box_teaching"> Go to the Course-in-a-Box <i class="icon-arrow-right icon-white"></i></a></p>
+
+               
+
+            </div>
+
+        </div>
+    </div>
+    <!-- end of lesson box -->
+
+</div>
+<!-- end of row -->
+
+<br/>
+
+
+<div class="row-fluid">
+
+    <div class="span5">
+        &nbsp;
+    </div>
+
+    <div id="carousel-unit" class="centered-text">
+
+
+        <div class="span4 lead"><strong>Check Out the Tutorials:</strong></div>
+
+    </div>
+
+
+    <div class="span3">
+        &nbsp;
+    </div>
+
+
+</div>
+
+
+<div class="row-fluid">
+
+    <div class="span2">
+        &nbsp;
+    </div>
+
+
+    <!-- BEGIN COMPONENT Image Carousel - Taco HTML Edit -->
+
+
+    <div id="appCarousel" class="tswImageCarousel span10">
+        <div class="tswImageCarouselContent">
+
+            <div class="tswImageCarouselPage">
+
+		<div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/hellopurr">
+                                <img src="../../apps/hellopurr/half.png" border="0"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Hello Purr</div>
+                </div>
+                <div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/paintpot">
+                                <img src="../../apps/paintpot/half.png" border="0"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Paint Pot</div>
+                </div>
+                <div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/molemash">
+                                <img src="../../apps/molemash/half.png" border="0"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Mole Mash</div>
+                </div>
+                <div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/shootergame"><img src="../../apps/shootergame/half.png" border="0"/></a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Shooter Game</div>
+                </div>
+                <div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/stockmarket"><img src="../../apps/stockmarket/half.png" border="0"/></a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Stock Market</div>
+                </div>
+            </div>
+		<div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="\amazon">
+                                <img src="../../apps/amazon/half.png" border="0"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Amazon</div>
+                </div>
+
+            <div class="tswImageCarouselPage">
+
+                <div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/android-where-s-my-car"><img src="../../apps/android-where-s-my-car/half.png"
+                                                                   border="0"/></a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Android, Where's My Car?'</div>
+                </div>
+                <div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/makequiz-and-takequiz-1"><img
+                                    src="../../apps/makequiz-and-takequiz-1/half.png" border="0"/></a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Make/Take Quiz</div>
+                </div>
+                <div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/broadcaster-hub-1"><img src="../../apps/broadcaster-hub-1/half.png"
+                                                              border="0"/></a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Broadcaster Hub</div>
+                </div>
+                <div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/robot-remote"><img src="../../apps/robot-remote/half.png" border="0"/></a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Robot Remote</div>
+                </div>
+                <div class="tswImageCarouselItem">
+                    <div class="tswImageCarouselItemImage">
+                        <div>
+                            <a href="/map-tour"><img src="../../apps/map-tour/half.png" border="0"/></a>
+                        </div>
+                    </div>
+                    <div class="tswImageCarouselItemTitle">Map Tour</div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="tswImageCarouselPageMarkers">
+            <div class="tswImageCarouselPageMarkersContainer">
+                <div class="tswImageCarouselPageMarkerSelected"
+                     onclick="tswImageCarouselSelectPage('appCarousel',0)"></div>
+                <div class="tswImageCarouselPageMarkerUnselected"
+                     onclick="tswImageCarouselSelectPage('appCarousel',1)"></div>
+                <div class="tswImageCarouselPageMarkerUnselected"
+                     onclick="tswImageCarouselSelectPage('appCarousel',2)"></div>
+                <div class="tswImageCarouselPageMarkerUnselected"
+                     onclick="tswImageCarouselSelectPage('appCarousel',3)"></div>
+            </div>
+        </div>
+        <div class="tswImageCarouselLeftSide">
+            <div class="tswImageCarouselTopLeft"></div>
+            <div class="tswImageCarouselFarLeft"></div>
+            <div class="tswImageCarouselLeft"></div>
+            <div class="tswImageCarouselBottomLeft"></div>
+            <img class="tswImageCarouselArrow" src="../../assets/appCarousel/Images/TSWArrowLeft_999999_FFFFFF.png"
+                 onclick="tswImageCarouselLeft('appCarousel')"/>
+        </div>
+        <div class="tswImageCarouselRightSide">
+            <div class="tswImageCarouselTopRight"></div>
+            <div class="tswImageCarouselFarRight"></div>
+            <div class="tswImageCarouselRight"></div>
+            <div class="tswImageCarouselBottomRight"></div>
+            <img class="tswImageCarouselArrow" src="../../assets/appCarousel/Images/TSWArrowRight_999999_FFFFFF.png"
+                 onclick="tswImageCarouselRight('appCarousel')"/>
+        </div>
+        <div class="tswImageCarouselBottomSide">
+        </div>
+        <div class="tswImageCarouselTopSide">
+        </div>
+    </div>
+
+    <!-- END COMPONENT Image Carousel - Taco HTML Edit -->
+
+    <div class="span2">
+        &nbsp;
+    </div>
+</div>
+<!-- end row -->
+
+
+
+<footer>
+
+    <hr/>
+
+
+    <div class="row-fluid">
+
+        <div class="span2">
+            &nbsp;
+        </div>
+
+        <div class="span8">
+
+
+            <div class="tiny-text">
+
+                AppInventor.org by David Wolber is licensed under an
+                <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+
+                <br/>
+
+
+                Designed and coded by <a href="http://www.jdmanuel.com">J.D. Manuel.</a>
+
+            </div>
+        </div>
+
+        <div class="span2">
+            &nbsp;
+        </div>
+
+    </div>
+</footer>
+
+</div> <!-- /container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/assets/js/jquery-1.7.2.min.js"></script>
+<script src="/assets/js/bootstrap-index-fixed.js"></script>
+<script src="/assets/js/index-onload.js"></script>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/bootstrap-transition.js"></script>
+<script src="/assets/js/bootstrap-alert.js"></script>
+<script src="/assets/js/bootstrap-modal.js"></script>
+<script src="/assets/js/bootstrap-dropdown.js"></script>
+<script src="/assets/js/bootstrap-scrollspy.js"></script>
+<script src="/assets/js/bootstrap-tab.js"></script>
+<script src="/assets/js/bootstrap-tooltip.js"></script>
+<script src="/assets/js/bootstrap-popover.js"></script>
+<script src="/assets/js/bootstrap-button.js"></script>
+<script src="/assets/js/bootstrap-collapse.js"></script>
+<script src="/assets/js/bootstrap-carousel.js"></script>
+<script src="/assets/js/bootstrap-typeahead.js"></script>
+<script src="/assets/js/cse-searchbox.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+java code gen
+
+App Inventor-- visual, avoid syntax problems of java, build cool stuff right away
+
+Java Bridge Library -- link?
+   class for every component
+   In and of itself has great potential for cs1/cs2 ai followup
+   do I have a link to Haley stuff?
+
+Java code generation
+   from app inventor, click a button to generate a complete java program
+      eclipse or java source
+
+   java.appinventor.org
+
+
+Quizl

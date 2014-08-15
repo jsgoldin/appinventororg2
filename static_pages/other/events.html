@@ -1,0 +1,56 @@
+
+<title>Events</title>
+  
+<h2>How do you program an app’s event-response behavior?</h2>
+          <p>
+			Think of an app like an event-response machine. The user clicks a button, 
+			the app responds. A text comes in, the app sends an auto-reply. 
+			A flying saucer hits an asteroid, it blows up. Your job as a programmer 
+			is to program such event-responses. In App Inventor, you do this directly-- 
+			your code is essentially a set of event-responses, of when-do blocks. Check out the following samples:
+		  </p> 
+       <div class="row-fluid">
+       	<div class="span6">
+       	<a name="redbutton"></a> 
+		  <h3>Example 1. How do you turn a button red when the user clicks it?</h3>
+		    <img class="thumbnail" src="/assets/img/Events/buttonRed.png" border="0"/>
+		   <p>
+			OK, this is a really silly app but it will get us started. The app appears 
+			and there is a gray button. When the user touches (clicks) the button, the
+			 button's color changes to red.
+			The click of the button, <span class="empfont">Button1.Click</span>, is an event, 
+			something that can happen to the app. The gold when 
+			<span class="empfont">Button1.Click</span> block is called an event-handler. 
+			The blocks inside it are the response to the event. set means to change something, 
+			in this case, change the button’s <span class="empfont">BackgroundColor</span> to red. The blocks, as a whole, 
+			specify that when the user clicks the button it should turn red.
+			</p>
+			<hr/>
+		</div>
+          <div class="span4">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/8BkmkQBODzc" 
+             frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="row-fluid">   
+        <div class="span6">
+        <a name="shaking"></a> 
+		<h3>Example 2. How do you say "I’m shaking” when the user shakes the phone?</h3>
+		<img class="thumbnail" src="/assets/img/Events/shakeSpeak.png" border="0"/>
+		<p>
+			This app has two components, an <span class="empfont">AccelerometerSensor</span> 
+			and a <span class="empfont">TextToSpeech</span>. When the user shakes the phone 
+			or tablet, the <span class="empfont">AccelerometerSensor</span> senses the event and 
+			the <span class="empfront">when AccelerometerSensor1.Shaking</span> event handler is triggered. 
+			The <span class="empfront">TextToSpeech</span> component is called to carry out the response of 
+			speaking the words “I’m shaking”.
+		</p>
+		<hr/>
+		</div>
+		<div class="span4">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/BQYNFuQBNwM" 
+             frameborder="0" allowfullscreen></iframe>
+        </div>
+
+    </div>     
+

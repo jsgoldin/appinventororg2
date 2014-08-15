@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/jbase.css">
+{% for stylesheet in stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{stylesheet}}">
+{% endfor %}
+
+<title>{{title}}</title>
+
+
+</head>
+<body>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+    <div class='banner-wrapper'>
+
+        <div class='top-banner'>
+            <div class='banner-logo'>
+                <a href='/'> <img class='banner-logo-icon' src='/assets/img/testbanner.png' width='400px' height='100px'>
+                </a>
+            </div>
+
+            <input type="text" class="form-control search-box" placeholder="Search">
+        </div>
+
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-default global-navbar" role="navigation">
+            <div class="container-fluid navbar-color">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-spacer">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                {% for course in courses %}
+                                    <li><a href="/courses/{{course.c_identifier}}">{{course.c_title}}</a></li> 
+                                {% endfor %}
+                            </ul></li>
+                        <li><a href="#">Build</a></li>
+                        <li><a href="#">Teach</a></li>
+                        <li><a href="#">About</a></li>
+                        
+                        
+                        {% if userStatus.ifUser%}                     
+                        <li class='hidden-on-big-screen'><a href="/profile">Profile</a></li> 
+                        {% if usserStatus.admin %}
+                            <p>sup admin</p>
+                        {% endif %}
+                               
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li>
+                        {% else %}
+                            <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
+                            <li class='hidden-on-big-screen'><a href="#">Sign Up</a></li>
+                        {% endif %} 
+                        
+                        
+                        {% if userStatus.admin %}
+                            <li><a class='menu-active' href="/admin/dashboard">Administration</a></li>
+                        {% endif %}        
+                        
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if userStatus.ifUser%}                     
+                            <li class='hidden-on-small-screen'>
+                                <a id='profilenavbarbutton' href="/profile">
+                                    <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+                                    {{userStatus.account.displayName}}
+                                </a>
+                            </li>
+                            <li class='hidden-on-small-screen'><a href="{{userStatus.logouturl}}">Logout</a></li>
+                        {% else %}
+                            <li class='hidden-on-small-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
+                            <li class='hidden-on-small-screen'><a href="#">Sign Up</a></li>
+                        {% endif %}                        
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+
+    {% block blockstart %} {% endblock %} 
+    
+    {% for script in scripts %}
+    <script type="text/javascript" src="{{script}}"></script>
+    {% endfor %}
+
+
+    <script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
+</body>
+</html>

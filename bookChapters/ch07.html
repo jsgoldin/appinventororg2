@@ -1,0 +1,1007 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>atlas book skeleton</title>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+    <link rel="stylesheet" type="text/css" href="theme/html/html.css"/>
+  </head>
+  <body data-type="book">
+    <section data-type="chapter" data-pdf-bookmark="Chapter 7. Android, Where’s My Car?" id="androidcomma_whereapostrophes_my_carques">
+<h1>Android, Where’s My Car?</h1>
+
+<p><em>You parked as close to the stadium as you possibly could, but when the concert ends, you don’t have a clue where your car is. Your friends are equally clueless. Fortunately, you haven’t lost your Android phone, which never forgets anything, and you remember you have the hot new app, “Android, Where’s My Car?” With this app, you click a button when you park your car, and the Android uses its location sensor to record the car’s GPS coordinates and address. Later, when you reopen the app, it gives you directions from where you currently are to the remembered location--problem solved!</em></p>
+
+<div class="informalfigure"><img alt="Android, Where’s My Car" src="images/ac.png"/></div>
+
+<section data-type="sect1" data-pdf-bookmark="What You’ll Learn" id="what_youapostrophell_learn-id00048">
+<h1>What You’ll Learn</h1>
+
+<p>This app covers the following concepts:</p>
+
+<ul>
+	<li>Determining the location of the Android device using the <strong>LocationSensor</strong> component.</li>
+	<li>Persistently recording data in a database directly on the device using <strong>TinyDB</strong>.</li>
+	<li>Using the <strong>WebViewer</strong> component to open Google Maps from your app and show directions from one location to another.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Getting Started" id="getting_started-id00049">
+<h1>Getting Started</h1>
+
+<p>Connect to the App Inventor website and start a new project. Name it “AndroidWhere” (project names can’t have spaces) and also set the screen’s title to “Android, Where’s My Car?” Connect your device or emulator for live testing.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Designing the Components" id="designing_the_components-id00050">
+<h1>Designing the Components</h1>
+
+<p>The user interface for “Android, Where’s My Car?” consists of labels to show your current and remembered locations, and buttons to record a location and show directions to it. You’ll need some labels that just show static text; for example, <strong>GPSLabel</strong> will provide the text “GPS:” that appears in the user interface. Other labels, such as <strong>CurrentLatLabel</strong>, will display data from the location sensor. For these labels, you’ll provide a default value,(0,0), which will change as the GPS acquires location information.</p>
+
+<p>You’ll also need three non-visible components: a <strong>LocationSensor</strong> for obtaining the current location, a <strong>TinyDB</strong> for storing locations persistently, and a <strong>WebViewer</strong> for displaying Google Maps directions between the current and stored locations.</p>
+
+<p>You can build the components from the snapshot of the Component Designer in <a data-type="xref" href="#quotation_markandroidcomma_whereapostrop">Figure 7-1</a>.</p>
+
+<figure id="quotation_markandroidcomma_whereapostrop"><img alt="The “Android, Where’s My Car?” app in the Component Designer" src="images/ac7-designer.png"/>
+<figcaption>The “Android, Where’s My Car?” app in the Component Designer</figcaption>
+</figure>
+
+<p>You can build the user interface shown in <a data-type="xref" href="#quotation_markandroidcomma_whereapostrop">Figure 7-1</a> by dragging out the components in <a data-type="xref" href="#all_of_the_components_for_the_app">Table 7-1</a>.</p>
+
+<table id="all_of_the_components_for_the_app">
+	<caption>All of the components for the app</caption>
+	<thead>
+		<tr>
+			<th>Component type</th>
+			<th>Palette group</th>
+			<th>What you’ll name it</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>CurrentHeaderLabel</code></p>
+			</td>
+			<td>
+			<p>Display the header “Your current location”.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>HorizontalArrangement</code></p>
+			</td>
+			<td>
+			<p>Layout</p>
+			</td>
+			<td>
+			<p><code>HorizontalArrangement1</code></p>
+			</td>
+			<td>
+			<p>Arrange the address info.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>CurrentAddressLabel</code></p>
+			</td>
+			<td>
+			<p>Display the text “Address:”.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>CurrentAddressDataLabel</code></p>
+			</td>
+			<td>
+			<p>Display dynamic data: the current address.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>HorizontalArrangement</code></p>
+			</td>
+			<td>
+			<p>Layout</p>
+			</td>
+			<td>
+			<p><code>HorizontalArrangement2</code></p>
+			</td>
+			<td>
+			<p>Arrange the GPS info.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>GPSLabel</code></p>
+			</td>
+			<td>
+			<p>Display the text “GPS:”.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>CurrentLatLabel</code></p>
+			</td>
+			<td>
+			<p>Display dynamic data: the current latitude.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>CommaLabel</code></p>
+			</td>
+			<td>
+			<p>Display “,”.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>CurrentLongLabel</code></p>
+			</td>
+			<td>
+			<p>Display dynamic data: the current longitude.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>RememberButton</code></p>
+			</td>
+			<td>
+			<p>Click to record the current location.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>HorizontalArrangement2</code></p>
+			</td>
+			<td>
+			<p>Arrange remembered address info.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>RememberedAddressLabel</code></p>
+			</td>
+			<td>
+			<p>Display the text “Remembered Place”.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>RememberedAddressDataLabel</code></p>
+			</td>
+			<td>
+			<p>Display dynamic data: the remembered address.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>RememberedGPSLabel</code></p>
+			</td>
+			<td>
+			<p>Display the text “GPS”.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>RememberedLatLabel</code></p>
+			</td>
+			<td>
+			<p>Display dynamic data: the remembered latitude.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Comma2Label</code></p>
+			</td>
+			<td>
+			<p>Display “,”.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>RememberedLongLabel</code></p>
+			</td>
+			<td>
+			<p>Display dynamic data: the remembered longitude.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>DirectionsButton</code></p>
+			</td>
+			<td>
+			<p>Click to show the map.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>LocationSensor</code></p>
+			</td>
+			<td>
+			<p>Sensors</p>
+			</td>
+			<td>
+			<p><code>LocationSensor1</code></p>
+			</td>
+			<td>
+			<p>Sense GPS info.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>TinyDB</code></p>
+			</td>
+			<td>
+			<p>Storage</p>
+			</td>
+			<td>
+			<p><code>TinyDB1</code></p>
+			</td>
+			<td>
+			<p>Store the remembered location persistently.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>WebViewer</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>WebViewer1</code></p>
+			</td>
+			<td>
+			<p>Show directions.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Set the properties of the components in the following way:</p>
+
+<ul>
+	<li>Set the <strong>Text</strong> property for the labels with fixed text as specified in <a class="xref " data-type="xref" href="#all_of_the_components_for_the_app">Table 7-1</a>.</li>
+	<li>Set the <strong>Text</strong> property of the labels for dynamic GPS data to “0.0”.</li>
+	<li>Set the Text property of the labels for dynamic addresses to “unknown”.</li>
+	<li>Uncheck the <strong>Enabled</strong> property of the <strong>RememberButton</strong> and <strong>DirectionsButton</strong>.</li>
+	<li>Uncheck the <b>Screen.Scrollable</b> property so that the WebViewer will fit on the screen.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Adding Behaviors to the Components" id="adding_behaviors_to_the_componen-id00052">
+<h1>Adding Behaviors to the Components</h1>
+
+<p>You’ll need the following behaviors for this app:</p>
+
+<ul>
+	<li>When the <strong>LocationSensor</strong> gets a reading, place the current location data into the appropriate labels of the user interface. This will let the user know the sensor has read a location and is ready to remember it.</li>
+	<li>When the user clicks the <strong>RememberButton</strong>, copy the current location data into the labels for the remembered location. You’ll also need to store the remembered location data so it will be there if the user closes and relaunches the app.</li>
+	<li>When the user clicks the <strong>DirectionsButton</strong>, launch Google Maps so it shows directions to the remembered location.</li>
+	<li>When the app is relaunched, load the remembered location from the database into the app.</li>
+</ul>
+
+<section data-type="sect2" data-pdf-bookmark="Displaying the Current Location" id="displaying_the_current_location">
+<h2>Displaying the Current Location</h2>
+
+<p>The <strong>LocationSensor.LocationChanged</strong> event occurs not just when the device’s location changes, but also when the sensor first gets a reading. Sometimes that first reading will take a few seconds, and sometimes you won’t get a reading at all if the sight lines to GPS satellites are blocked (and depending on the device settings). For more information about GPS and <strong>LocationSensor</strong>, see <a data-type="xref" href="ch23.html#reading_and_responding_to_sensors">Chapter 23</a>.</p>
+
+<p>When you do get a location reading, the app should place the data into the appropriate labels. <a data-type="xref" href="#blocks_for_getting_a_location_reading_an">Table 7-2</a> lists all the blocks you’ll need to do this.</p>
+
+<table id="blocks_for_getting_a_location_reading_an">
+	<caption>Blocks for getting a location reading and displaying it in the app’s UI</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>LocationSensor1.LocationChanged</em> </strong></p>
+			</td>
+			<td>
+			<p>LocationSensor1</p>
+			</td>
+			<td>
+			<p>This is the event handler that is triggered when the phone receives a new GPS reading.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set CurrentAddressDataLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>CurrentAddressDataLabel</p>
+			</td>
+			<td>
+			<p>Place the new data into the label for the current address.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>LocationSensor1.CurrentAddress</em> </strong></p>
+			</td>
+			<td>
+			<p>LocationSensor1</p>
+			</td>
+			<td>
+			<p>This property gives you a street address.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set CurrentLatLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>CurrentLatLabel</p>
+			</td>
+			<td>
+			<p>Place the latitude into the appropriate label.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get latitude</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from LocationChanged event </p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>set CurrentLatLabel.Text to</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set CurrentLongLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>CurrentLongLabel</p>
+			</td>
+			<td>
+			<p>Place the longitude into the appropriate label.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>value longitude</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from LocationChanged event </p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>set CurrentLongLabel.Text to</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set RememberButton.Enabled to</em> </strong></p>
+			</td>
+			<td>
+			<p>RememberButton</p>
+			</td>
+			<td>
+			<p>Remember the reading for current location.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>true</em> </strong></p>
+			</td>
+			<td>
+			<p>Logic</p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>set RememberButton.Enabled to</em></strong>.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>As you can see in <a data-type="xref" href="#using_the_locationsensor_to_read_the_cur">Figure 7-2</a>, <strong>latitude</strong> and <strong>longitude</strong> are parameters of the <strong>LocationChanged</strong> event. You can grab <strong>get</strong> references to event parameters by mousing over them. <strong>CurrentAddress</strong> is not an argument, but rather a property of the <strong>LocationSensor</strong>, so you grab it from <strong>LocationSensor</strong>’s drawer. The <strong>LocationSensor</strong> does some additional work for you by calling Google Maps to get a street address corresponding to the GPS location.</p>
+
+<p>This event handler also enables the <strong>RememberButton</strong>. We initialized it as disabled (unchecked) in the Component Designer because there is nothing for the user to remember until the sensor gets a reading, so now we’ll program that behavior.</p>
+
+<figure id="using_the_locationsensor_to_read_the_cur"><img alt="Using the LocationSensor to read the current location" src="images/ac7-2.png"/>
+<figcaption>Using the LocationSensor to read the current location</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>You probably want to walk around to test this app. So you’ll You need to build the the app and install it to your phone by selecting “Build | App (provide QR code for .apk). When you run the app, you should see some GPS data  appear and the <strong>RememberButton</strong>  enabled.</em></p>
+
+<p>If you don’t get a reading, check your Android settings for Location &amp; Security and try going outside. For more information, see <a class="xref " data-type="xref" href="ch23.html#reading_and_responding_to_sensors">Chapter 23</a>.</p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Recording the Current Location" id="recording_the_current_location">
+<h2>Recording the Current Location</h2>
+
+<p>When the user clicks the <strong>RememberButton</strong>, the most current location data should be placed into the labels for displaying the remembered data. <a data-type="xref" href="#blocks_for_recording_and_displaying_the">Table 7-3</a> shows you which blocks you’ll need for this functionality.</p>
+
+<table id="blocks_for_recording_and_displaying_the">
+	<caption>Blocks for recording and displaying the current location</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>RememberButton.Click</em> </strong></p>
+			</td>
+			<td>
+			<p>RememberButton</p>
+			</td>
+			<td>
+			<p>Triggered when the user clicks “Remember.”</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set RememberedAddressDataLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>RememberedAddressDataLabel</p>
+			</td>
+			<td>
+			<p>Place the sensor’s address data into the label for the remembered address.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>LocationSensor1.CurrentAddress</em> </strong></p>
+			</td>
+			<td>
+			<p>LocationSensor1</p>
+			</td>
+			<td>
+			<p>This property gives you a street address.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set RememberedLatLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>RememberedLatLabel</p>
+			</td>
+			<td>
+			<p>Place the latitude sensed into the “remembered” label.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>LocationSensor.Latitude</em> </strong></p>
+			</td>
+			<td>
+			<p>LocationSensor1</p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>set RememberedLatLabel.Text to</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set RememberedLongLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>RememberedLongLabel</p>
+			</td>
+			<td>
+			<p>Place the longitude sensed into the “remembered” label.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>LocationSensor.Longitude</em> </strong></p>
+			</td>
+			<td>
+			<p>LocationSensor1</p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>set RememberedLongLabel.Text to</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set DirectionsButton.Enabled to</em> </strong></p>
+			</td>
+			<td>
+			<p>DirectionsButton</p>
+			</td>
+			<td>
+			<p>Map the remembered place.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>true</em> </strong></p>
+			</td>
+			<td>
+			<p>Logic</p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>set DirectionsButton.Enabled to</em></strong>.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>When the user clicks the <strong>RememberButton</strong>, the location sensor’s current readings are put into the “remembered” labels, as shown in <a data-type="xref" href="#placing_the_current_location_information">Figure 7-3</a>.</p>
+
+<figure id="placing_the_current_location_information"><img alt="Placing the current location information in the “remembered” labels" src="images/ac7-3.png"/>
+<figcaption>Placing the current location information in the “remembered” labels</figcaption>
+</figure>
+
+<p>You’ll notice also that the <strong>DirectionsButton</strong> is enabled. This could get tricky, because if the user clicks the <strong>DirectionsButton</strong> immediately, the remembered location will be the same as the current location, so the map that appears won’t provide much in terms of directions. But that’s not something anyone is likely to do; after the user moves (e.g., walks to the concert), the current location and remembered location will diverge.</p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>Download the new version of the app to your phone and test again. When you click the <strong>RememberButton</strong>, is the data from the current settings copied into the remembered settings?</em></p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Displaying Directions to the Remembered Location" id="displaying_directions_to_the_remembered">
+<h2>Displaying Directions to the Remembered Location</h2>
+
+<p>When the user clicks the <strong>DirectionsButton</strong>, you want the app to open Google Maps with the directions from the user’s current location to the remembered location (e.g.,  where the car is parked).</p>
+
+<p>The <strong>WebViewer</strong> component can display any web page, including Google Maps. You’ll call <strong>WebViewer.GoToURL</strong><span style="line-height: 1.5em;"> to open the map, but you want to open a URL that will show directions from the current location to the remembered location. </span></p>
+
+<p><span style="line-height: 1.5em;">One way to show directions in Maps is with a URL </span><span style="line-height: 1.5em;">of the following form:</span></p>
+
+<p><a class="link " href="http://maps.google.com/maps?saddr=37.82557,-122.47898&amp;daddr=37.81079,-122.47710">http://maps.google.com/maps?saddr=37.82557,-122.47898&amp;daddr=37.81079,-122.47710</a></p>
+
+<p>Type that URL into a browser--can you tell which famous landmark it directs you across?</p>
+
+<p>For this app, you need to build the URL and set its source address (<strong>saddr</strong>) and destination address (<strong>daddr</strong>) parameters dynamically (in blocks). You’ve put text together before in earlier chapters using <strong>join</strong>; we’ll do that here as well, plugging in the GPS data for the remembered and current locations. You’ll put the URL you build into the parameter slot of WebViewer.GotToURL  <a class="xref " data-type="xref" href="#blocks_for_recording_and_display-id00056">Table 7-4</a> lists all the blocks you’ll need for this.</p>
+
+<h3>How the blocks work</h3>
+
+<p>When the user clicks the <strong>DirectionsButton</strong>, the event handler builds a URL for a map and calls <b>WebViewer.GoToURL </b>to open the map, as shown in <a class="xref " data-type="xref" href="#building_the_url_to_use_for_launching_th">Figure 7-4</a>. <strong>join</strong> is used to build the URL for the map.</p>
+
+<p>The resulting URL consists of the Maps domain (<em><a href="http://maps.google.com/maps">http://maps.google.com/maps</a></em>) along with two URL parameters, <strong>saddr</strong> and <strong>daddr</strong>, which specify the source and destination locations for the directions. For this app, the <strong>saddr</strong> is set to the latitude and longitude of the current location, and the <strong>daddr</strong> is set to the latitude and longitude of the location stored for the car.</p>
+
+<table id="blocks_for_recording_and_display-id00056">
+	<caption>Blocks for recording and displaying the current location</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>DirectionsButton.Click</em> </strong></p>
+			</td>
+			<td>
+			<p>DirectionsButton</p>
+			</td>
+			<td>
+			<p>Triggered when the user clicks “Directions.”</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>WebViewer1.GoToURL</em></strong></p>
+			</td>
+			<td>
+			<p>WebViewer1</p>
+			</td>
+			<td>
+			<p>Set the URL for the map you want to bring up.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>join</em></strong></p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Build a URL from multiple parts.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (”<a href="http://maps.google.com/maps?saddr="><em class="hyperlink">http://maps.google.com/maps?saddr=</em></a>“)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The fixed part of the URL, the source address.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>CurrentLatLabel.Text</em> </strong></p>
+			</td>
+			<td>
+			<p>CurrentLatLabel</p>
+			</td>
+			<td>
+			<p>The current latitude.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“,”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Put a comma between the latitude and longitude values.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>CurrentLongLabel.Text</em> </strong></p>
+			</td>
+			<td>
+			<p>CurrentLongLabel</p>
+			</td>
+			<td>
+			<p>The current longitude.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“&amp;daddr=”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The second parameter of the URL, the destination address.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>RememberedLatLabel.Text</em> </strong></p>
+			</td>
+			<td>
+			<p>RememberedLatLabel</p>
+			</td>
+			<td>
+			<p>The remembered latitude.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“,”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Put a comma between the values for latitude and longitude.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>RememberedLongLabel.Text</em> </strong></p>
+			</td>
+			<td>
+			<p>RememberedLongLabel</p>
+			</td>
+			<td>
+			<p>The remembered longitude.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<figure id="building_the_url_to_use_for_launching_th"><img alt="Building the URL to use for launching the Maps application" src="images/ac7-remember.png"/>
+<figcaption>Building the URL to use for opening the map in the WebViewer.</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>Download the new version of the app to your phone and test again. When a reading comes in, click the <strong>RememberButton</strong> and then take a walk. When you click the <strong>DirectionsButton</strong>, does the map show you how to retrace your steps? After looking at the map, click the back button a few times. Do you get back to your app?</em></p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Storing the Remembered Location Persistently" id="storing_the_remembered_location_persiste">
+<h2>Storing the Remembered Location Persistently</h2>
+
+<p>So now you’ve got a fully functioning app that remembers a start location and draws a map back to that location from wherever the user is. But if the user “remembers” a location and then closes the app, the remembered data will not be available when he reopens it. Really, you want the user to be able to record the location of his car, close the app and go to some event, and then relaunch the app to get directions to the recorded location.</p>
+
+<p>If you’re already thinking back to the No Texting While Driving app (<a data-type="xref" href="ch04.html#no_texting_while_driving">Chapter 4</a>), you’re on the right track. We need to store the data <em>persistently</em> in a database using <strong>TinyDB</strong>. You’ll use a scheme similar to the one we used in that app:</p>
+
+<ol>
+	<li>When the user clicks the <strong>RememberButton</strong>, store the location data to the database.</li>
+	<li>When the app launches, load the location data from the database into a variable or property.</li>
+</ol>
+
+<p>You’ll start by modifying the <strong>RememberButton.Click</strong> event handler so that it stores the remembered data. To store the latitude, longitude, and address, you’ll need three calls to <strong>TinyDB.StoreValue</strong>. <a data-type="xref" href="#blocks_for_recording_and_display-id00057">Table 7-5</a> lists the additional blocks you’ll need.</p>
+
+<table id="blocks_for_recording_and_display-id00057">
+	<caption>Blocks for recording and displaying the current location</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>TinyDB1.StoreValue</em></strong> (3)</p>
+			</td>
+			<td>
+			<p>TinyDB</p>
+			</td>
+			<td>
+			<p>Store the data in the device database.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“address”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Plug this into the “tag” slot of <strong><em>TinyDB1.StoreValue</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>LocationSensor1.CurrentAddress</em> </strong></p>
+			</td>
+			<td>
+			<p>LocationSensor1</p>
+			</td>
+			<td>
+			<p>The address to store persistently; plug this into the “value” slot of <strong><em>TinyDB1.StoreValue</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“lat”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Plug this into the “tag” slot of the second <strong><em>TinyDB1.StoreValue</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>LocationSensor1.CurrentLatitude</em> </strong></p>
+			</td>
+			<td>
+			<p>LocationSensor1</p>
+			</td>
+			<td>
+			<p>The latitude to store persistently; plug this into the “value” slot of the second <strong><em>TinyDB1.StoreValue</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“long”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Plug this into the “tag” slot of the third <strong><em>TinyDB1.StoreValue</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>LocationSensor1.CurrentLongitude</em> </strong></p>
+			</td>
+			<td>
+			<p>LocationSensor1</p>
+			</td>
+			<td>
+			<p>The longitude to store persistently; plug this into the “value” slot of the third <strong><em>TinyDB1.StoreValue</em></strong>.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>As shown in <a data-type="xref" href="#storing_the_remembered_location_data_in">Figure 7-5</a>, <strong>TinyDB1.StoreValue</strong> copies the location data from the <strong>LocationSensor</strong> properties into the database. As you may recall from No Texting While Driving, the <strong>StoreValue</strong> function has two arguments, the tag and the value. The <em>tag</em> identifies the data you want to store, and the value is the actual data you want saved, in this case, the <strong>LocationSensor</strong> data.</p>
+
+<figure id="storing_the_remembered_location_data_in"><img alt="Storing the remembered location data in a database" src="images/ac7-5.png"/>
+<figcaption>Storing the remembered location data in a database</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Retrieving the Remembered Location When the App Launches" id="retrieving_the_remembered_location_when">
+<h2>Retrieving the Remembered Location When the App Launches</h2>
+
+<p>You store data in a database so you can recall it later. In this app, if a user stores a location and then closes the app, you want to recall that information from the database and show it when the user relaunches the app.</p>
+
+<p>As discussed in previous chapters, the <strong>Screen.Initialize</strong> event is triggered when your app launches. Retrieving data from a database is a very common thing to do on startup, and it’s exactly what we want to do for this app.</p>
+
+<p>You’ll use the <strong>TinyDB.GetValue</strong> function to retrieve the stored GPS data. Because you need to retrieve the stored address, latitude, and longitude, you’ll need three calls to <strong>GetValue</strong>. As with No Texting While Driving, you’ll need to check if there is indeed data there (if it’s the first time your app is being launched, <strong>TinyDB.GetValue</strong> will return an empty text).</p>
+
+<p>As a challenge, see if you can create these blocks and then compare your creation to the blocks shown in <a data-type="xref" href="#adding_the_remembered_location_to_a_data">Figure 7-6</a>.</p>
+
+<figure id="adding_the_remembered_location_to_a_data"><img alt="Adding the remembered location to a database so it’s available when the app is closed and reopened" src="images/ac7-init.png"/>
+<figcaption>When the app launches, load in the remembered location from the database.</figcaption>
+</figure>
+
+<h3>How the blocks work</h3>
+
+<p>To understand these blocks, envision two use cases: a user opening the app the first time, and the user opening it later after previously recording location data. The first time the user opens the app, there won’t be any location data in the database to load.  On successive launches, if there is data stored, you want to load the previously stored location data from the database.</p>
+
+<p>The blocks call TinyDB1.GetValue three times, once for each of the data fields you stored previously: “address”, “lat”, and “long”. The <strong>valueIfTagNotThere </strong>parameter is set to a default value for each so that, if there isn’t data yet in the database, the labels will be set to the default values (the same as they were set in the designer).</p>
+
+<p>The <strong>if</strong> block is used to determine if the <strong>DirectionsButton</strong> should be enabled. It should be if there data was indeed retrieved from the database. The test used is to compare the <strong>RememberedAddressDataLabel </strong>to its default value, “unknown”. If it is not “unknown”, it must have been replaced with some remembered address.</p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>Download the new version of the app to your phone and test again. Click the <strong>RememberButton</strong> and make sure the readings are recorded. Then close the app and reopen it. Does the remembered data appear?</em></p>
+</div>
+</section>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="The Complete App: Android, Where’s My Car?" id="complete_app_androidcomma_whereapostroph">
+<h1>The Complete App: Android, Where’s My Car?</h1>
+
+<p><a data-type="xref" href="#blocks_for_quotation_markandroidcomma_wh">Figure 7-7</a> shows the final blocks for the complete “Android, Where’s My Car?” app.</p>
+
+<figure id="blocks_for_quotation_markandroidcomma_wh"><img alt="The blocks for “Android, Where’s My Car?”" src="images/ac7-7a.png"/> <img alt="The blocks for “Android, Where’s My Car?”" src="images/ac7-7b.png"/>
+<figcaption>The blocks for “Android, Where’s My Car?”</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Variations" id="variations-id00060">
+<h1>Variations</h1>
+
+<p>Here are some variations you can experiment with:</p>
+
+<ul>
+	<li>Create “Android, Where Is Everyone?”, an app that lets a group of people track one another’s whereabouts. Whether you’re hiking in the woods or get separated at the park, this app could help save time and possibly even lives. The data for this app is shared, so you’ll need to use a web database and the <strong>TinyWebDB</strong> component instead of <strong>TinyDB</strong>. See <a data-type="xref" href="ch22.html#working_with_databases">Chapter 22</a> for more information.</li>
+	<li>Create a Breadcrumb app that tracks your whereabouts by recording each location change in a list. You should only record a new breadcrumb if the location has changed by a certain amount, or a certain amount of time has elapsed, because even slight movement can generate a new location reading. You’ll need to store the recorded locations in a list--see <a data-type="xref" href="ch19.html#programming_lists_of_data">Chapter 19</a> for help.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00061">
+<h1>Summary</h1>
+
+<p>Here are some of the ideas we’ve covered in this tutorial:</p>
+
+<ul>
+	<li>The <strong>LocationSensor</strong> component can report the user’s latitude, longitude, and current street address. Its <strong>LocationChanged</strong> event is triggered when the sensor gets its first reading and when the reading changes (the device has moved). For more information on the <strong>LocationSensor</strong>, see <a data-type="xref" href="ch23.html#reading_and_responding_to_sensors">Chapter 23</a>.</li>
+	<li>The <strong>WebViewer</strong> component can display any web page, including Google Maps. If you want to show directions between GPS coordinates, the URL will be in the following format, but you’d replace the sample data shown here with actual GPS coordinates:</li>
+</ul>
+
+<p><a class="link " href="http://maps.google.com/maps/?saddr=0.1,0.1&amp;daddr=0.2,0.2">http://maps.google.com/maps/?saddr=0.1,0.1&amp;daddr=0.2,0.2</a></p>
+
+<ul>
+	<li><strong>join</strong> is used to piece together (concatenate) separate text items into a single text object. It allows you to concatenate dynamic data with static text. With the Maps URL, the GPS coordinates are the dynamic data.</li>
+	<li><strong>TinyDB</strong> allows you to store data persistently in the phone’s database. Whereas the data in a variable or property is lost when an app closes, data stored in the database can be loaded each time the app is opened. For more information on <strong>TinyDB</strong> and databases, see <a data-type="xref" href="ch22.html#working_with_databases">Chapter 22</a>.</li>
+</ul>
+</section>
+</section>
+  </body>
+</html>
+{% endblock %}

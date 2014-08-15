@@ -1,0 +1,151 @@
+.course-box {
+    cursor: pointer;
+    padding: 20px;
+    border: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
+    margin-bottom: 25px;
+    min-height: 150px;
+}
+
+.course-box:hover {
+    background-color: #efefef
+}
+
+.vertical-content-nav-bar {
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    height: 100%;
+}
+
+.vertical-content-nav-bar-scrollable-list {
+    height: 200px;
+    overflow: auto;
+}
+
+.vertical-content-nav-bar-scrollable-list::-webkit-scrollbar {
+    width: 12px;
+}
+
+.vertical-content-nav-bar-scrollable-list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+ 
+.vertical-content-nav-bar-scrollable-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+
+
+.vertical-content-nav-bar-title {
+    width: 100%;
+    padding-left: 20px;
+    margin-top: 20px;
+    height: 90px;
+    border-bottom: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+}
+
+.vertical-content-nav-bar-course-title-text {
+    cursor: pointer;
+    color: gray;
+}
+
+.vertical-content-nav-bar-course-title-text:hover {
+    color: #978FBA;
+    text-decoration: none;
+}
+
+.vertical-content-nav-bar-item {
+    width: 100%;
+    position: relative;
+    transition: background-color 0.1s linear;
+    cursor: pointer;
+    padding-left: 20px;
+    border-bottom: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+}
+
+.vertical-content-nav-bar-title-text {
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 3px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.vertical-content-nav-bar-item-text {
+    font-size: 15px;
+    margin-left: 60px;
+    line-height: 40px;
+    font-weight: 200;
+    color: #929292;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.vertical-content-nav-bar-item-icon {
+    position: absolute;
+    top: 7px;
+    left: 30px;
+    border-radius: 100%;
+}
+
+.vertical-content-nav-bar-next-section-box {
+    width: 100%;
+    transition: background-color 0.1s linear;
+    cursor: pointer;
+    border-top: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    position: relative;
+}
+
+.vertical-content-nav-bar-next-section-box-label {
+    width: 100%;
+    position: relative;
+    padding-left: 20px;
+}
+
+.vertical-content-nav-bar-next-section-box-label-text {
+    font-weight: 900;
+    font-size: 16px;
+    margin-top: 20px;
+    line-height: 60px;
+    letter-spacing: 2px;
+    color: #444444;
+}
+
+.vertical-content-nav-bar-next-section-box-icon {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+}
+
+.vertical-content-nav-bar-next-section-box-text {
+    margin-left: 80px;
+    line-height: 80px;
+    color: #929292;
+}
+
+#contentarea {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 25%;
+}

@@ -1,0 +1,66 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>No Texting While Driving: Build, Conceptualize, Customize</H1>
+<br/>
+
+<h2> Build It</h2>
+<ol>
+<li>
+Open a browser and navigate to <a href="http://beta.appinventor.mit.edu">http://beta.appinventor.mit.edu</a>. Login with your Google account.
+</li>
+<li>
+Now build the No Texting app. Follow the instructions in App Inventor chapter 4 using either the paperback version, the <a href="apps/no-text-while-driving/no-text-while-driving.pdf">pdf version</a>, or the <a href="/no-text-while-driving">step-by-step video lesson</a>.
+</li>
+</ol>
+<h2>Conceptualize It</h2>
+ <div class="row-fluid">
+<div class="span6">
+<p>After completing the No Text While Driving tutorial, discuss these questions with a partner or small group, jotting down notes while you discuss. Later, create a portfolio page with answers to the questions in your own words.
+
+
+
+
+
+<ol>
+<li>
+Define persistent data.
+</li>
+<li>
+ In an App inventor app, how do you store data in short term memory? Long-term memory?
+</li>
+
+<li>
+In the No Texting While Driving app, what data needs to be stored persistently and why?</li>
+
+<li>In the Love You app, what data needs to be stored persistently and why?
+</li>
+<li>
+Consider the Screen.Initialize event handler blocks to the right. If there were no if-block in that event handler, what would happen the first time the app was run?
+
+</li>
+
+
+</div>
+<div class="span6">
+<img src="/apps/no-text-while-driving/blocks4.png"/><br/>
+
+</div>
+</div>
+
+<h2>Customize It</h2>	
+<ol>
+<li>
+Write a version that lets the user define custom responses for particular incoming phone numbers. You will need to add conditional (if) blocks that check for those numbers. For more information on conditional blocks, see Chapter 18.
+</li>
+<li>
+Write a version that sends custom responses based on whether the user is within certain latitude/longitude boundaries. So, if the app determines that you are within the boundaries of your workplace/school, it will send back: Bob is at work and cannot text right now. For more information on the LocationSensor and determining boundaries, see Chapter 23.
+</li>
+<li>
+Write a version that sounds an alarm when a text is received from a number in a notify list. For help working with lists, see Chapter 19.
+</li>
+
+</ol>
+
+<a href="/apps/no-text-while-driving/no-text-while-driving_custom.zip">Solution for Customization Exercises</a>. Download this zip file, then open App Inventor and choose More Actions | Upload Source.
+{% endblock %}

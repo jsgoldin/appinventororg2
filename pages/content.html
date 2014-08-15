@@ -1,0 +1,67 @@
+{% extends "templates/site_base.html" %} {% block blockstart %}
+
+<div class='container-fluid'>
+    <div class='row'>
+
+        <!-- Vertical Side Bar  -->
+        <div class='col-md-3 no-padding'>
+            <div class='vertical-content-nav-bar'>
+                <!-- vertical side nav bar-->
+
+                <div class='vertical-content-nav-bar-title' current_content_ID='{{content.c_identifier}}'>
+                    <a class='vertical-content-nav-bar-course-title-text'><span class="glyphicon glyphicon-chevron-left"></span> {{course.c_title}} </a>
+                    <div class='vertical-content-nav-bar-title-text'>{{module.m_title}}</div>
+                </div>
+
+
+                <div class='vertical-content-nav-bar-scrollable-list'>
+
+                    {% for c in contents %}
+                    <div content_ID='{{c.c_identifier}}' class='vertical-content-nav-bar-item'>
+                        {% if c.c_type == "App" %}
+                        <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/video.png' height='28px' width='28px'> 
+                        {% endif %}
+                        {% if c.c_type == "Quiz" %} 
+                        <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/question.png' height='28px' width='28px'>
+                        {% endif %} 
+                        {% if c.c_type == "Nugget" %} 
+                        <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/light.png' height='28px' width='28px'> 
+                        {% endif %}
+
+                        <div class='vertical-content-nav-bar-item-text'>{{c.c_title}}</div>
+                    </div>
+                    {% endfor %}
+
+
+                    <div class='vertical-content-nav-bar-next-section-box-label'>
+                        <div class='vertical-content-nav-bar-next-section-box-label-text'>Next Module:</div>
+                    </div>
+
+                    <div module_id='{{next_module.m_identifier}}' class='vertical-content-nav-bar-next-section-box'>
+                        <img class='vertical-content-nav-bar-next-section-box-icon' src='{{next_module.m_icon}}' height='40px' width='40px'>
+                        <div class='vertical-content-nav-bar-next-section-box-text'>{{next_module.m_title}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- CONTENT AREA  -->
+        <div id='contentarea' class='col-md-9'>
+            <!-- Actual content rendered here -->
+
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#contentarea').load('{{content.c_url}}');
+});
+</script>
+
+{% endblock %}

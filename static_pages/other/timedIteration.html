@@ -1,0 +1,29 @@
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Iteration Over Time</H1>
+
+<p>
+Iteration means to repeat some actions, e.g., send SMS texts to every phone number in a list. If you want those actions to occur in an instant, you can put them into a <strong>foreach</strong> block:
+
+The blocks you put within the <strong>foreach</strong> will occur for every item in a list. They'll be executed in order, as fast as the device can process them (in fact, all blocks in any event handler are executed in this fashion).
+</p>
+<p>
+There are times when <i>foreach</i> iteration and its rapid-fire execution isn't what you need: sometimes you want to repeat blocks <i>over time</i>. For instance, you might want to play a list of musical notes and be sure that each finished before the next begins. Or you might want to move an object over time to animate it at a particular speed. For such situations, you can't use a foreach or other type of loop construct. Instead, you use a <strong>when Clock.Timer</strong> event handler:
+image (maybe show a pic of foreach music play and explain that overlap or nothing)
+</p>
+Think of the<strong>when Clock.Timer</strong> event handler like an alarm clock going off. The blocks inside the <strong>when Clock.Timer</strong> are repeated, but not in rapid-fire fashion. Instead, the Clock component has a TmerInterval property which specifies how often the Timer is triggered. If it is set to 50 , the "alarm" goes off every 50 milliseconds, or 20 times a second. By default its set to 1000 milliseconds (1 second).
+</p>
+<p>If you want to process a list, you need to keep an index variable and increment the index each time the <strong>when Clock.Timer</strong> event handler is triggered. For example, to continuously play the notes in this songList:
+
+you'd use the following blocks:
+
+
+This blocks are very similar to those used in a SlideShow in which clicking a NextButton moves to the next slide:
+
+The only difference is the event that triggers the action: in the former time triggers the activity; in the latter, the users action of clicking.
+</p>
+<h2>Exercise</h2>
+Download this source file then upload it as project in App Inventor. Launch the app and see what happens. Then modify the "Clock.TimerInterval" property in the designer. Can you control the speed with which the notes play and with which the ball moves? How would you modify the program so that you could control the ball speed independently from the song speed?
+
+idea: show a manymo app and let the user modify the clock.timerInterval
+{% endblock %}

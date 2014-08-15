@@ -1,0 +1,61 @@
+
+
+{% extends "site_base.html" %}
+{% block body %}
+<style type="text/css">
+         .personal_info {
+         		
+			margin-top:10px;
+			outline:1px solid grey;
+			background-color:#40664D;
+         }
+         .personal_avatar{
+			float:left;
+         }
+	    .personal_info > .personal_avatar > img{
+         		width:100px;
+			height:auto;
+         }
+	    
+	    .personal_content{
+			margin-left:10px;
+			float:right;
+         }
+	   .personal_info > .personal_content> p{
+         		color:white;
+         }
+	   .personal_info > .personal_content> p > a{
+         		color:#CAE1FF;
+         }
+
+	    #map_canvas img {
+  			max-width: none;
+		}
+
+
+</style>
+
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
+</script>
+
+      <script>
+function initialize()
+{
+var mapProp = {
+  center:new google.maps.LatLng(51.508742,-0.120850),
+  zoom:5,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+var map=new google.maps.Map(document.getElementById("googleMap")
+  ,mapProp);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+
+
+
+{% endblock %}
+

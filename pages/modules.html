@@ -1,0 +1,47 @@
+{% extends "templates/site_base.html" %} {% block blockstart %}
+
+<div class="jumbotron jumbotron-wherami ">
+    <div class='jumbotron-wherami-text'>{{course.c_title}}</div>
+</div>
+<a href='/courses' class='back-to-courses-link'><span class="glyphicon glyphicon-chevron-left"></span> Courses</a>
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-md-12 course-view-settings'>
+        {% for key, values in moduleContentMapping.items %}
+        <div class='row course-view-box-settings'>
+            <div class='col-md-6 course-view-box-setting-left'>
+                <img class='course-view-box-icon' src='{{values.0}}' height='100px' width='100px'>
+                <div class='course-view-box-info-box'>
+                    <div class='course-view-box-title'>{{key}}</div>
+                    <div class='course-view-box-description'>{{values.1}}</div>
+                </div>
+            </div>
+            
+            <div class='col-md-6 course-view-box-setting-right'>
+                {% for v in values %}
+                    {% if forloop.counter0 > 2 %}
+                    <div id='modules_page' module_id='{{values.2}}' content_id='{{v.c_identifier}}' module_title='{{key}}' content_title='{{v.c_title}}' class='vertical-content-nav-bar-item'>
+                        {% if v.c_type == "App" %} <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/video.png' height='28px' width='28px'>
+                        {% endif %} 
+                        {% if v.c_type == "Quiz" %} 
+                        <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/question.png' height='28px' width='28px'>
+                        {% endif %} 
+                        {% if v.c_type == "Nugget" %}
+                        <img  class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/light.png' height='28px' width='28px'>
+                        {% endif %}
+                        <div class='vertical-content-nav-bar-item-text'>{{v.c_title}}</div>
+                    </div>  
+                    {% endif %}
+                 
+                                      
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

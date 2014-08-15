@@ -1,0 +1,63 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>PaintPot: Build, Conceptualize, Customize</H1>
+<br/>
+
+<h2> Build It</h2>
+<ol>
+<li>
+Open a browser and navigate to <a href="http://beta.appinventor.mit.edu">http://beta.appinventor.mit.edu</a>. Login with your Google account.
+</li>
+<li>
+Now build the PaintPot painting app. Follow the instructions in App Inventor chapter 2 using either the paperback version, the <a href="/apps/paintpot/paintpot.pdf">pdf version</a>, or the <a href="/paintpot">step-by-step video lesson</a>.
+</li>
+</ol>
+<h2>Conceptualize It</h2>
+ <div class="row-fluid">
+<div class="span6">
+<p>After completing the PaintPot tutorial, discuss these questions with a partner or small group, jotting down notes while you discuss. Later, create a portfolio page with answers to the questions in your own words.
+Topics: Canvases and drawing, event parameters
+
+<ol>
+
+<li>
+The Canvas.Touched and Canvas.Dragged events have <em>event parameters</em>. For the Dragged event, what does each parameter represent (e.g., what is startx?)
+</li>
+<li>You can unplug and rename event parameters, but you don't need to and should not. In which drawer can you grab a reference to an event parameter, e.g, a 'value startx' block?
+</li>
+<li>
+Event parameters are different than function call parameters such as the x,y, and r of DrawCircle. Who specifies function parameters? Who specifies event parameters?
+</li>
+<li>
+What variable is defined in the PaintPot version on the right?</li>
+<li>
+Why do you need to define a variable for 'dotsize' but not for 'PaintColor' (the color that circles and lines are drawn)?
+</li>
+<li>
+Define the term variable. How is a variable similar to a property? How is a variable different than a property?
+</li>
+<li>
+One customization of PaintPot involves using a Textbox for the dotsize.  How is a textbox different from a variable? How is a textbox different from a label?
+</li>
+</ol>
+</div>
+<div class="span6">
+<img src="/apps/paintpot/blocks1.png"/><br/>
+<img src="/apps/paintpot/blocks2.png"/><br/>
+<img src="/apps/paintpot/blocks3.png"/><br/>
+</div>
+</div>
+
+<h2>Customize It</h2>
+<p>Note: these variations are slightly modified from the book version.
+<ol>
+<li>
+The user interface does not display the current chosen color-- the user can only tell what color is chosen by drawing. Add immediate feedback for the user so that when he clicks to change color, the UI changes to make it clear which color is chosen(e.g., change the text of the button to bold, and unbold others)</li>
+<li>
+The dot size used for circle drawing can only be 2 or 8 in the version to the right. Change this so that the user can enter the dot size within a TextBox component and thus change it to other values besides 2 and 8. For more information on input forms and the TextBox component, see the No Texting While Driving app of <a href="no-text-while-driving">Chapter 4</a>
+</li>
+</ol>
+<a href="/apps/paintpot/paintpot_custom.zip">Solution for Customization Exercises</a>. Download this zip file, then open App Inventor and choose More Actions | Upload Source.
+
+{% endblock %}

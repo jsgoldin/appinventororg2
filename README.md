@@ -1,4 +1,2 @@
-appinventor2
-============
-
-redesign of appinventor.org
+appinventororg2
+==============

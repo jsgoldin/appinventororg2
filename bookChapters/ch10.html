@@ -1,0 +1,452 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>atlas book skeleton</title>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+    <link rel="stylesheet" type="text/css" href="theme/html/html.css"/>
+  </head>
+  <body data-type="book">
+    <section data-type="chapter" data-pdf-bookmark="Chapter 10. MakeQuiz and TakeQuiz" id="makequiz_and_takequiz">
+<h1>MakeQuiz and TakeQuiz</h1>
+
+<p><em>The Presidents Quiz app in <a data-type="xref" href="ch08.html#presidents_quiz">Chapter 8</a> can be customized to build any quiz, but it is only the programmer who can modify the questions and answers. There is no way for parents, teachers, or other app users to create their own quizzes or change the quiz questions (unless they too want to learn how to use App Inventor!).</em></p>
+
+<div class="informalfigure"><img alt="MakeQuiz and TakeQuiz" src="images/m10.png"/></div>
+
+<p>In this chapter, you’ll build a MakeQuiz app that lets a “teacher” create quizzes using an input form. The quiz questions and answers will be stored in a web database so that “students” can access a separate TakeQuiz app and take the test. While building these two apps, you’ll make yet another significant conceptual leap and learn how to create apps with <em>user-generated</em> data that is shared across apps and users.</p>
+
+<figure id="quiz_questions_and_answers"><img alt="Quiz Questions and Answers" src="images/m10-app1.png"/>
+<figcaption>The MakeQuiz app in action.</figcaption>
+</figure>
+
+<p>MakeQuiz and TakeQuiz are two apps that work in tandem and allow a “teacher” to create quizzes for a “student.” Parents can create fun trivia apps for their children during a long road trip, grade-school teachers can build “Math Blaster” quizzes, and college students can build quizzes to help their study groups prepare for a final. This chapter builds on the Presidents Quiz in <a data-type="xref" href="ch08.html#presidents_quiz">Chapter 8</a>, so if you haven’t completed that app, you should do so before continuing here.</p>
+
+<p>You’ll design two apps, MakeQuiz for the “teacher” (see <a data-type="xref" href="#quiz_questions_and_answers">Figure 10-1</a>) and TakeQuiz for the “student.” With MakeQuiz:</p>
+
+<ul>
+	<li>The user enters questions and answers in an input form.</li>
+	<li>The entered question-answer pairs are displayed.</li>
+	<li>The quiz questions and answers are stored in a web database.</li>
+</ul>
+
+<p>The second app you’ll create, TakeQuiz. will work similarly to the Presidents Quiz app you’ve already built. In fact, you’ll create it using that app as a starting point. TakeQuiz will differ in that the questions asked will be those that were entered into the database using MakeQuiz.</p>
+
+<section data-type="sect1" data-pdf-bookmark="What You’ll Learn" id="what_youapostrophell_learn-id00084">
+<h1>What You’ll Learn</h1>
+
+<p>The Presidents Quiz was an example of an app with static data: no matter how many times you take the quiz, the questions are always the same because they are <em>hardcode</em>d into the app, i.e., the questions and answers are part of the blocks. News apps, blogs, and social networking apps like Facebook and Twitter work with <em>dynamic</em> data, meaning it can change over time. Often, this dynamic information is user-generated--the app allows users to enter, modify, and share information. With MakeQuiz and TakeQuiz, you’ll learn how to build an app that handles shared user-generated data.</p>
+
+<p>If you completed the Xylophone app (<a data-type="xref" href="ch09.html#xylophone">Chapter 9</a>), you’ve already been introduced to dynamic lists; in that app, the musical notes the user plays are recorded in lists. Apps with such user-generated data are more complex, and the blocks are more abstract because they don’t rely on predefined, static data. You define list variables, but you define them without specific items. As you program your app, you need to envision the lists being populated with data entered by the end user.</p>
+
+<p>This tutorial covers the following App Inventor concepts:</p>
+
+<ul>
+	<li>Input forms for allowing the user to enter information.</li>
+	<li>Using an indexed list along with <strong>for each</strong> to display items from multiple lists.</li>
+	<li>Persistent list data—MakeQuiz will save the quiz questions and answers in a web database, and TakeQuiz will load them in from the same database.</li>
+	<li>Data sharing—you’ll store the data in a web database using the <strong>TinyWebDB</strong> component (instead of the <strong>TinyDB</strong> component used in previous chapters).</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Getting Started" id="getting_started-id00085">
+<h1>Getting Started</h1>
+
+<p>Connect to the App Inventor website and start a new project. Name it “MakeQuiz” and set the screen’s title to “Make Quiz”. Connect your app to your device or emulator for live testing.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Designing the Components" id="designing_the_components-id00086">
+<h1>Designing the Components</h1>
+
+<p>Use the Component Designer to create the interface for MakeQuiz. When you finish, it should look something like <a data-type="xref" href="#makequiz_in_the_component_designer">Figure 10-2</a> (there are also more detailed instructions after the snapshot). You can build the user interface shown in <a data-type="xref" href="#makequiz_in_the_component_designer">Figure 10-2</a> by dragging out the components listed in <a data-type="xref" href="#all_the_components_for_the_makequiz_app">Table 10-1</a>. Drag each component from the Palette into the Viewer and name it as specified in the table. Note that you can leave the header label names (Label1 – Label4) as their defaults (you won’t use them in the Blocks Editor anyway).</p>
+
+<table id="all_the_components_for_the_makequiz_app">
+	<caption>All the components for the MakeQuiz app</caption>
+	<thead>
+		<tr>
+			<th>Component type</th>
+			<th>Palette group</th>
+			<th>What you’ll name it</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><code>TableArrangement</code></p>
+			</td>
+			<td>
+			<p>Layout</p>
+			</td>
+			<td>
+			<p><code>TableArrangement1</code></p>
+			</td>
+			<td>
+			<p>Format the form, including the question and answer.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Label1</code></p>
+			</td>
+			<td>
+			<p>The “Question:” prompt.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>TextBox</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>QuestionText</code></p>
+			</td>
+			<td>
+			<p>The user enters questions here.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Label2</code></p>
+			</td>
+			<td>
+			<p>The “Answer:” prompt.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>TextBox</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>AnswerText</code></p>
+			</td>
+			<td>
+			<p>The user enters answers here.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>SubmitButton</code></p>
+			</td>
+			<td>
+			<p>The user clicks this to submit a QA pair.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Label3</code></p>
+			</td>
+			<td>
+			<p>Display “Quiz Questions and Answers.”</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>QuestionsAnswersLabel</code></p>
+			</td>
+			<td>
+			<p>Display previously entered QA pairs.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>TinyWebDB</code></p>
+			</td>
+			<td>
+			<p>Storage</p>
+			</td>
+			<td>
+			<p><code>TinyWebDB1</code></p>
+			</td>
+			<td>
+			<p>web storage for QA pairs</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<figure id="makequiz_in_the_component_designer"><img alt="MakeQuiz in the Component Designer" src="images/m10-2.png"/>
+<figcaption>MakeQuiz in the Component Designer</figcaption>
+</figure>
+
+<p>Set the properties of the components in the following way:</p>
+
+<ol>
+	<li>Set the Text of <strong>Label1</strong> to “Question”, the Text of <strong>Label2</strong> to “Answer”, and the text of <strong>Label3</strong> to “Quiz Questions and Answers”.</li>
+	<li>Set the FontSize of <strong>Label3</strong> to 18 and check the FontBold box.</li>
+	<li>Set the Hint of <strong>QuestionText</strong> to “Enter a question” and the Hint of AnswerText to “Enter an answer”.</li>
+	<li>Set the Text of <strong>SubmitButton</strong> to “Submit”.</li>
+	<li>Set the Text of <strong>QuestionsAnswersLabel</strong> to “Questions and Answers”.</li>
+	<li>Move the <strong>QuestionText</strong>, <strong>AnswerText</strong>, and their associated labels into <strong>TableArrangement1.</strong></li>
+</ol>
+
+<p>If you look at the properties for TinyWebDB, you’ll notice it has a property <strong>ServiceURL</strong>, as shown in <a data-type="xref" href="#tinywebdb-prop">Figure 10-3</a>.  This property specifies a web database service, specially configured to work with the <strong>TinyWebDB</strong> component, where your shared data will be stored. By default, the web service it refers to is one setup by the MIT App Inventor team at <a href="http://appinvtinywebdb.appspot.com">http://appinvtinywebdb.appspot.com</a>. You’ll use this default service in this tutorial as you work. But it is important to know that anyone using App Inventor will be storing information to this same web service, and that the data your app puts there will be seen by all, and might even be overwritten by someone.</p>
+
+<p>So the default service is for testing only. It is fairly easy (and free!) to setup your own such service, which you’ll want to do if you build an app that will be deployed with real users. For now, continue on and complete this tutorial, but when you’re ready the instructions for setting up your own web service are at <a data-type="xref" href="ch24.html#creating_your_own_app_inventoren_dashcom">“TinyWebDB and TinyWebDB-Compliant APIs”</a></p>
+
+<figure id="tinywebdb-prop"><img alt="TinyWebDB and its ServiceURL Property" src="images/mNew.png"/>
+<figcaption>TinyWebDB.ServiceURL allows you to specify the URL of a web database you setup.</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Adding Behaviors to the Components" id="adding_behaviors_to_the_componen-id00087">
+<h1>Adding Behaviors to the Components</h1>
+
+<p>As with the Presidents Quiz app, you’ll first define some global variables for the QuestionList and AnswerList, but this time you won’t provide fixed questions and answers.</p>
+
+<section data-type="sect2" data-pdf-bookmark="Creating Empty Question and Answer Lists" id="empty_lists">
+<h2>Creating Empty Question and Answer Lists</h2>
+
+<p>The blocks for the lists should look as shown in <a data-type="xref" href="#lists_for_makequiz">Figure 10-4</a>.</p>
+
+<figure id="lists_for_makequiz"><img alt="The lists for MakeQuiz" src="images/m10-3.png"/>
+<figcaption>The lists for MakeQuiz</figcaption>
+</figure>
+
+<p>The lists are defined with the <strong>create empty list</strong> block, instead of the <strong>make a list</strong> block. This is because with the MakeQuiz and TakeQuiz apps, all data will be created by the app user (it is dynamic, user-generated data).</p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Recording the User’s Entries" id="recording_the_userapostrophes_entries">
+<h2>Recording the User’s Entries</h2>
+
+<p>The first behavior you’ll build is for handling the user’s input. Specifically, when the user enters a question and answer and clicks Submit, you’ll use add item to list blocks to update the <strong>QuestionList</strong> and <strong>AnswerList</strong>. The blocks should appear as:</p>
+
+<figure id="adding_the_new_entries_to_the_lists"><img alt="Adding the new entries to the lists." src="images/m10-4.png"/>
+<figcaption>Adding the new entries to the lists.</figcaption>
+</figure>
+
+<h3>How the Blocks Work</h3>
+
+<p>The <strong>add items to list</strong> block appends each item to the end of a list. As shown in <a data-type="xref" href="#adding_the_new_entries_to_the_lists">Figure 10-5</a>, the app takes the text the user has entered in the <strong>QuestionText</strong> and <strong>AnswerText</strong> text boxes and appends each to the corresponding list.</p>
+
+<p>The <strong>add items to list</strong> blocks update the QuestionList and AnswerList variables, but these changes are not yet shown to the user. The third row of blocks displays these lists by concatenating them (join) with a colon in between. By default, App Inventor displays lists with surrounding parentheses and spaces between items, e.g., “(item1 item2 item3)”. Of course, this is not the ideal way to display the lists, but it will allow you to test the app’s behavior for now. Later, you’ll create a more sophisticated method of displaying the lists that shows each question-answer pair on a separate line.</p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p>Test the behavior by entering a couple of question-answer pairs. As you add them, do they appear below the form in the <strong>QuestionsAnswersLabel</strong>?</p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Blanking Out the Question and Answer" id="blanking_out_the_question_and_answer">
+<h2>Blanking Out the Question and Answer</h2>
+
+<p>As you may recall from the Presidents Quiz app, when you moved on to the next question in the list, you needed to blank out the user’s answer from the previous question. In this app, when a user submits a question-answer pair, you’ll want to clear the <strong>QuestionText</strong> and <strong>AnswerText</strong> text boxes so they’re ready for a new entry instead of showing the previous one. The blocks should appear as:</p>
+
+<figure id="blanking_out_the_question_and_answer_tex"><img alt="Blanking out the question and answer text boxes after submission." src="images/m10-5.png"/>
+<figcaption>Blanking out the question and answer text boxes after submission.</figcaption>
+</figure>
+
+<h3>How the Blocks Work</h3>
+
+<p>When the user submits a new question and answer, they are added to their respective lists and displayed. At that point, the text in the <strong>QuestionText</strong> and <strong>AnswerText</strong> is blanked out with empty text blocks, as shown in <a class="xref " data-type="xref" href="#blanking_out_the_question_and_answer_tex">Figure 10-6</a><a class="xref " data-type="xref" href="#blanking_out_the_question_and_answer_tex">Figure 10-6</a>. </p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Displaying Question-Answer Pairs on Multiple Lines" id="displaying_question-answer_pairs_on_mult">
+<h2>Displaying Question-Answer Pairs on Multiple Lines</h2>
+
+<p>In the app you’ve built so far, the question and answer lists are displayed separately and with the default list display format for App Inventor. So, if you were making a quiz on state capitals and had entered two pairs of questions and answers, it might appear like so:</p>
+
+<blockquote>(What is the capital of California? What is the capital of New York?: Sacramento Albany)</blockquote>
+
+<p>This is obviously not an ideal user interface for the quiz designer. A better display would show each question along with its corresponding answer, with one question-answer pair per line like this:</p>
+
+<blockquote>What is the capital of California?: Sacramento<br/>
+What is the capital of New York?: Albany</blockquote>
+
+<p>The technique for displaying a single list with each item on a separate line is described in <a data-type="xref" href="ch20.html#iteration_blocks_iteration">Chapter 20</a>—you may want to read that chapter before going on.</p>
+
+<p>The task here is a bit more complicated, as you’re dealing with two lists. Because of its complexity, you’ll put the blocks for displaying the data in a procedure named <strong>displayQAs</strong>, and call that procedure from the <strong>SubmitButton.Click</strong> event handler.</p>
+
+<p>To display question-answer pairs on separate lines, you’ll need to do the following:</p>
+
+<ul>
+	<li>Use a <strong>foreach</strong> block to iterate through each question in the <strong>QuestionList.</strong></li>
+	<li>Use a variable <strong>answerIndex</strong> so that you can grab each answer as you iterate through the questions.</li>
+	<li>Use <strong>join</strong> to build a text object with each question and answer pair, and a newline character (\n) separating each pair.</li>
+</ul>
+
+<p>The blocks should appear as:</p>
+
+<figure id="displayqas_procedure"><img alt="The displayQAs procedure" src="images/m10-6.png"/>
+<figcaption>The displayQAs procedure</figcaption>
+</figure>
+
+<h3>How the blocks work</h3>
+
+<p>The <strong>displayQAs</strong> procedure encapsulates all of the blocks for displaying the data, as shown in <a data-type="xref" href="#displayqas_procedure">Figure 10-7</a>.</p>
+
+<p>By using a procedure, you won’t have to copy the blocks needed to display the list more than once in the app--you can just call <strong>displayQAs</strong> when you need to display the lists.</p>
+
+<p>The <strong>for each</strong> only allows you to iterate through a single list. In this case, there are two lists, <strong>QuestionList</strong> and <strong>AnswerList. </strong>The for each is used to iterate through the <strong>QuestionList, </strong>but you need to select an answer as well as you proceed through the questions. To accomplish this, you use an index variable, as was done with the <strong>currentQuestionIndex</strong> in the Presidents Quiz tutorial in <a data-type="xref" href="ch08.html#presidents_quiz">Chapter 8</a>. In this case, the index variable, <strong>answerIndex</strong>, is used to track the position in the <strong>AnswerList</strong> as the foreach goes through the <strong>QuestionList.</strong></p>
+
+<p><strong>answerIndex</strong> is set to 1 before the <strong>for each</strong> begins. Within the <strong>foreach</strong>, <strong>answerIndex</strong> is used to select the current answer from the <strong>AnswerList</strong>, and then it is incremented. On each iteration of the foreach, the current question and answer are concatenated to the end of the <strong>QuestionsAnswersLabel.Text</strong> property, with a colon between them.</p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p>Test the behavior by entering a couple of question-answer pairs. As you add them, do they appear below the form in the <strong>QuestionsAnswersLabel</strong>?</p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Calling the displayQAs Procedure" id="calling_the_new_procedure">
+<h2>Calling the displayQAs Procedure</h2>
+
+<p>You now have a procedure for displaying the question-answer pairs, but it won’t help unless you call it when you need it. Modify the <strong>SubmitButton.Click</strong> event handler by calling <strong>displayQAs</strong> instead of displaying the lists as was done previously. The updated blocks should appear as shown in <a data-type="xref" href="#calling_the_displayqas_procedure_from_su">Figure 10-8</a>.</p>
+
+<figure id="calling_the_displayqas_procedure_from_su"><img alt="Calling the displayQAs procedure from SubmitButton.Click" src="images/m10-7.png"/>
+<figcaption>Calling the displayQAs procedure from SubmitButton.Click</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Saving the QAs Persistently on the Web" id="save_persistence">
+<h2>Saving the QAs Persistently on the Web</h2>
+
+<p>So far, you’ve created an app that puts the entered questions and answers into a list. But what happens if the quiz maker closes the app? If you’ve completed the “No Texting While Driving” app (<a data-type="xref" href="ch04.html#no_texting_while_driving">Chapter 4</a>) or the “Android, Where’s My Car?” app (<a data-type="xref" href="ch07.html#androidcomma_whereapostrophes_my_carques">Chapter 7</a>), you know that if you don’t store the data in a database, it won’t be there when the user closes and reopens the app. Storing the data persistently will allow the quiz maker to view or edit the latest update of the quiz each time the app is opened. Persistent storage is also necessary because the TakeQuiz app needs access to the data as well.</p>
+
+<p>You’re already familiar with using the <strong>TinyDB</strong> component to store and retrieve data in a database. But in this case, you’ll use the <strong>TinyWebDB</strong> component instead. Whereas TinyDB stores information directly on a phone, <strong>TinyWebDB</strong> stores data in databases that live on the Web.</p>
+
+<p>What about your app design would merit using an online database instead of one stored on a person’s phone? The key issue here is that you’re building two apps that both need access to the same data—if the quiz maker stores the questions and answers on her phone, the quiz takers won’t have any way of getting to the data for their quiz! Because <strong>TinyWebDB</strong> stores data on the Web, the quiz taker can access the quiz questions and answers on a different device than the quiz maker’s. (Online data storage is often referred to as the cloud.)</p>
+
+<p>Here’s the general scheme for making list data, like the questions and answers, persistent:</p>
+
+<ul>
+	<li>Store a list to the database each time a new item is added to it.</li>
+	<li>When the app launches, load the list from the database into a variable.</li>
+</ul>
+
+<p>Start by storing the <strong>QuestionList</strong> and <strong>AnswerList</strong> in the database each time the user enters a new pair.</p>
+
+<h3>How the blocks work</h3>
+
+<p>The <strong>TinyWebDB1.StoreValue</strong> blocks store data in a web database. <strong>StoreValue</strong> has two arguments: the tag that identifies the data and the value that is the actual data you want to store. As shown in <a data-type="xref" href="#storing_the_questions_and_answers_in_the">Figure 10-9</a>, the <strong>QuestionList</strong> is stored with a tag of “questions” while the <strong>AnswerList</strong> is stored with a tag of “answers.”</p>
+
+<figure id="storing_the_questions_and_answers_in_the"><img alt="Storing the questions and answers in the database" src="images/m10-8.png"/>
+<figcaption>Storing the questions and answers in the database</figcaption>
+</figure>
+
+<p>For your app, you should use tags that are more distinctive than “questions” and “answers” (e.g., “DavesQuestions” and “DavesAnswers”). This is important because, at least initially, you’re using the default web database service for App Inventor, so your questions and answers can be overwritten by others, including other people following this tutorial.</p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p>Testing this part of the app is different from that you’ve performed previously because your app is now affecting another entity, the default TinyDBWeb service. Run the app, enter a question and answer, then open a browser window to the default web service at http://appinvtinywebdb.appspot.com. Then click on “get_value” and enter one of your tags (in this sample, “questions” or “answers”). If things are working correctly, your question and answer lists should appear.</p>
+</div>
+
+<p>As mentioned earlier, the default web service is shared among programmers and apps, so it is intended only for testing. When you’re ready to deploy your app with real users, you’ll want to set up your own private database service. Fortunately, doing so is straightforward and requires no programming (see <a data-type="xref" href="ch24.html#creating_your_own_app_inventoren_dashcom">“TinyWebDB and TinyWebDB-Compliant APIs”</a>).</p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Loading Data from the Database" id="loading_data_from_the_database">
+<h2>Loading Data from the Database</h2>
+
+<p>One reason we need to store the questions and answers in a database is so the person creating the quiz can close the app and relaunch it at a later time without losing the questions and answers previously entered. (We also do it so the quiz taker can access the questions, but we’ll cover that later.) Let’s program the blocks for loading the lists back into the app from the web database each time the app is restarted.</p>
+
+<p>As we’ve covered in earlier chapters, to specify what should happen when an app launches, you program the <strong>Screen.Initialize</strong> event handler. In this case, the app needs to request two lists from the <strong>TinyWebDB</strong> web database—the questions and the answers—so the Screen1.Initialize will make two calls to <strong>TinyWebDB.GetValue.</strong> The blocks should appear as:</p>
+
+<figure id="requesting_the_lists_from_the_database_w"><img alt="Requesting the lists from the database when the app opens" src="images/m10-9and10.png"/>
+<figcaption>Requesting the lists from the database when the app opens and processing when lists arrive</figcaption>
+</figure>
+
+<h3>How the blocks work</h3>
+
+<p>The <strong>TinyWebDB.GetValue</strong> blocks, shown in <a data-type="xref" href="#requesting_the_lists_from_the_database_w">Figure 10-10</a>, work differently than <strong>TinyDB.GetValue</strong>, which returns a value immediately. <strong>TinyWebDB.GetValue</strong> only requests the data from the web database; it doesn’t immediately receive a value. Instead, when the data arrives from the web database, a <strong>TinyWebDB.GotValue</strong> event is triggered. You must also program that event handler to process the data that is returned.</p>
+
+<p>When the <strong>TinyWebDB.GotValue</strong> event occurs, the data requested is contained in an argument named <strong>valueFromWebDB</strong>. The tag you requested is contained in the argument <strong>tagFromWebDB</strong>.</p>
+
+<p>In this app, since two different requests are made for the questions and answers, <strong>GotValue</strong> will be triggered twice. To avoid putting questions in your <strong>AnswerList</strong> or vice versa, your app needs to check the tag to see which request has arrived, and then put the value returned from the database into the corresponding list (<strong>QuestionList</strong> or <strong>AnswerList</strong>). </p>
+
+<p>In <strong>Screen.Initialize</strong>, the app calls <strong>TinyWebDB1.GetValue</strong> twice: once to request the stored <strong>QuestionList</strong> and once to request the stored <strong>AnswerList</strong>. When the data arrives from the web database from either request, the <strong>TinyWebDB1.GotValue</strong> event is triggered.</p>
+
+<p>The <strong>valueFromWebDB</strong> argument of <strong>GotValue</strong> holds the data returned from the database request. You need the outer <strong>if</strong> block in the event handler because the database will return an empty text (“”) in <strong>valueFromWebDB</strong> if it’s the first time the app has been used and there aren’t yet questions and answers. By asking if the <strong>valueFromWebDB</strong> is a list?, you’re making sure there is some data actually returned. If there isn’t any data, you’ll bypass the blocks for processing it.</p>
+
+<p>If data is returned (is a list? is true), the blocks go on to check which request has arrived. The tag identifying the data is in <strong>tagFromWebDB</strong>: it will be either “questions” or “answers.” If the tag is “questions,” the <strong>valueFromWebDB</strong> is put into the variable <strong>QuestionList</strong>. Otherwise (else), it is placed in the <strong>AnswerList</strong>. (If you used tags other than “questions” and “answers,” check for those instead.)</p>
+
+<p>You only want to display the lists after both have arrived (GotValue has been triggered twice). Can you think of how you’d know for sure that you have both lists loaded in from the database? The blocks shown use an if test to check if the lengths of the lists are the same, as this can only be true if both have lists have been returned. If they are, the handy displayQAs procedure you wrote earlier is called to display the loaded data.</p>
+
+<p>Here are the blocks for the entire MakeQuiz app:</p>
+
+<figure id="blocks_for_makequiz"><img alt="The blocks for MakeQuiz" src="images/m10-11.png"/>
+<figcaption>The blocks for MakeQuiz</figcaption>
+</figure>
+</section>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="TakeQuiz: An App for Taking the Quiz in the Database" id="takequiz_an_app_for_taking_the_quiz_in_t">
+<h1>TakeQuiz: An App for Taking the Quiz in the Database</h1>
+
+<p>You now have a MakeQuiz app that will store a quiz in a web database. Building TakeQuiz, the app that dynamically loads the quiz, is simpler. It can be built with a few modifications to the Presidents Quiz you completed in <a data-type="xref" href="ch08.html#presidents_quiz">Chapter 8</a> (if you have not completed that tutorial, do so now before continuing).</p>
+
+<p>Begin by opening your Presidents Quiz app in App Inventor, choosing Save As, and naming the new project “TakeQuiz”. This will leave your Presidents Quiz app unmodified but allow you to use its blocks as the basis for TakeQuiz.</p>
+
+<p>Then make the following changes in the Designer:</p>
+
+<ol>
+	<li>This version of MakeQuiz/TakeQuiz does not display images with each question, so first remove the references to images from the TakeQuiz app. In the Component Designer, choose each image from the Media palette and delete it. Then delete the Image1 component, which will remove all references to it from the Blocks Editor.</li>
+	<li>Since TakeQuiz will work with database data, drag a <strong>TinyWebDB</strong> component into the app.</li>
+	<li>Because you don’t want the user to answer or click the <strong>NextButton</strong> until the questions are loaded, uncheck the Enabled property of the <strong>AnswerButton</strong> and <strong>NextButton.</strong></li>
+</ol>
+
+<p>Now modify the blocks so that the quiz given to the user is loaded from the database. First, since there are no fixed questions and answers, remove all the actual question and answer text blocks from the make a list blocks within the <strong>QuestionList</strong> and <strong>AnswerList</strong>. The resulting blocks should appear as shown in <a data-type="xref" href="#question_and_answer_lists_now_start_empt">Figure 10-12</a>.</p>
+
+<figure id="question_and_answer_lists_now_start_empt"><img alt="The question and answer lists now start empty" src="images/m10-12.png"/>
+<figcaption>The question and answer lists now start empty</figcaption>
+</figure>
+
+<p>You can also completely delete the <strong>PictureList</strong>; this app won’t deal with images. Now modify your Screen1.Initialize so that it calls <strong>TinyWebDB.GetValue</strong> twice to load the lists, just as you did in MakeQuiz. The blocks should look as they do in <a data-type="xref" href="#requesting_the_questions_and_answers_fro">Figure 10-13</a>.</p>
+
+<figure id="requesting_the_questions_and_answers_fro"><img alt="Requesting the questions and answers from the web database" src="images/m10-13.png"/>
+<figcaption>Requesting the questions and answers from the web database</figcaption>
+</figure>
+
+<p>Finally, drag out a <strong>TinyWebDB.GotValue</strong> event handler. This event handler should look similar to the one used in MakeQuiz, but here you want to show only the first question and none of the answers. Try making these changes yourself first, and then take a look at the blocks in <a data-type="xref" href="#gotvalue_handles_the_data_that_arrives_f">Figure 10-14</a> to see if they match your solution.</p>
+
+<figure id="gotvalue_handles_the_data_that_arrives_f"><img alt="GotValue handles the data that arrives from the Web" src="images/m10-14.png"/>
+<figcaption>GotValue handles the data that arrives from the Web</figcaption>
+</figure>
+
+<h3>How the blocks work</h3>
+
+<p>When the app begins,<strong> Screen1.Initialize</strong> is triggered and the app requests the questions and answers from the web database. When each request arrives, the <strong>TinyWebDB.GotValue</strong> event handler is triggered. The app first checks if there is indeed data in <strong>valueFromWebDB</strong> using is a list?. If it finds data, the app asks which request has come in, using <strong>tagFromWebDB</strong>, and places the <strong>valueFromWebDB</strong> into the appropriate list. If the <strong>QuestionList</strong> is being loaded, the first question is selected from <strong>QuestionList</strong> and displayed. If the AnswerList is being loaded, the <strong>AnswerButton</strong> and <strong>NextButton</strong> are enabled so the user can begin taking the test.</p>
+These are all the changes you need for TakeQuiz. If you’ve added some questions and answers with MakeQuiz, and you run TakeQuiz, the questions that appear should be the ones you input.</section>
+</section>
+  </body>
+</html>
+{% endblock %}

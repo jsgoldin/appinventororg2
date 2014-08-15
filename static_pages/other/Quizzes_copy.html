@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        {% extends "site_base.html" %} {% block body %}
+        <link rel="stylesheet" type="text/css" href="../../assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+        <title>
+            Quizes
+        </title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class='span12'>
+                
+                    <div class='j-title'>
+                            <h1>Quizzes</h1>
+                            <p>
+                                Test your knowledge and understanding of app creation
+                            </p>
+                        </div>
+                        
+
+                    <div class='topic-list'>
+                        <a href="/Quiz1" class="topic-list-item">   
+                            <div class="topic-info">
+                                <h4 >
+                                    Quiz 1. Event Handlers &amp; Conditionals
+                                </h4>
+                                <p>
+                                    The fundamental building blocks of App Inventor
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="topic-list-separator"></div>
+
+                        <a href="/Quiz2" class="topic-list-item">
+                            <div class="topic-info">
+                                <h4 >
+                                    Quiz 2. Variables, Properties, &amp; Event parameters
+                                </h4>
+                                <p>
+                                    What they are and how to use them
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="topic-list-separator"></div>
+
+
+                        <a href="/Quiz3" class="topic-list-item">
+                            <div class="topic-info">
+                                <h4 >
+                                    Quiz 3. ImageSprites &amp; Timed Activity
+                                </h4>
+                                <p>
+                                    Bring your app to life with sprites
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="topic-list-separator"></div>
+
+                        <a href="/Quiz4" class="topic-list-item">
+                            <div class="topic-info">
+                                <h4 >
+                                    Quiz 4. Animated Movement
+                                </h4>
+                                <p>
+                                    Simple movement using a ball
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="topic-list-separator"></div>
+
+                        <a href="/Quiz5" class="topic-list-item">
+                            <div class="topic-info">
+                                <h4 >
+                                    Quiz 5. Location, Maps, and URLs                             
+                                </h4>
+                                <p>
+                                    GPS, texting, and more
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="topic-list-separator"></div>
+
+                        <a href="/Quiz6" class="topic-list-item">
+                            <div class="topic-info">
+                                <h4 >
+                                    Quiz 6. Indexing through a List                              
+                                </h4>
+                                <p>
+                                    Use lists to make a quiz
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="topic-list-separator"></div>
+
+                        <a href="/Quiz7" class="topic-list-item">
+                            <div class="topic-info">
+                                <h4 >
+                                    Quiz 7. Timed Indexing through a List                          
+                                </h4>
+                                <p>
+                                    Make a basic audio sequencer using mp3 files
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="topic-list-separator"></div>
+
+                        <a href="/Quiz8" class="topic-list-item">
+                            <div class="topic-info">
+                                <h4 >
+                                    Quiz 8. Iteration: Foreach and While                            
+                                </h4>
+                                <p>
+                                    Learn how to loop
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="topic-list-separator"></div>
+
+                        <a href="/Quiz9" class="topic-list-item">
+                            <div class="topic-info">
+                                <h4 >
+                                    Quiz 9. Persistent Data                         
+                                </h4>
+                                <p>
+                                    Use TinyDB and TinywebDB to save data
+                                </p>
+                            </div>
+                        </a>
+
+
+
+                    </div> 
+                </div>
+
+
+            </div>
+            
+
+            <script>
+                $(document).ready(function(){
+                  $(".topic-list-item").hover(function(){
+                    $(this).css("background", "#d0e1f0");
+                    }, 
+                    function () {
+                    $(this).css("background","");
+                    });
+                });
+            </script>
+        </div>
+
+{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,82 @@
+{% extends "site_base.html" %}
+{% block body %}
+<hr>
+<h1>
+    <center>Quiz 2</center>
+</h1>
+<hr>
+<!-- Example row of columns -->
+<div class="row-fluid row-fluid-temp">
+    <div class="span9">
+        <h2>1.</h2>
+        <p>(10) What is a variable?</p>
+        <div id="myCollapsibleExample"><a href="#demo1" data-toggle="collapse">Answer</a></div>
+        <div id="demo1" class="collapse">  
+            A variable is a named memory cell where information can be stored. 
+        </div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span9">
+        <h2>2.</h2>
+        <p>(10) In the PaintPot app we needed a variable to keep track of the circle size, however, we did not use one for keeping track of the line size. Why? </p>
+        <div id="myCollapsibleExample"><a href="#demo2" data-toggle="collapse">Answer</a></div>
+        <div id="demo2" class="collapse">  
+            We did not make a variable to represent the line size because Canvas has a property called LineWidth. We used this property to keep track of the size of the line. We had to make a seperate variable for circle size because Canvase does not contain a property for representing the circle Size.
+        </div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span9">
+        <h2>3.</h2>
+        <p>(10) In App Inventor, how are a variable and a property similar? How are they different?
+        <div id="myCollapsibleExample"><a href="#demo3" data-toggle="collapse">Answer</a></div>
+        <div id="demo3" class="collapse">  
+            Component properties and variables are both "named memory cells". They are different in that a property is part of a component, whereas a variable is a "free-agent" memory cell not associated with a particular component. So properties are named in the form < componentName >.< propertyName >, e.g., Canvas.Width, while variables are just a single name, e.g., dotsize. 
+        </div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span9">
+        <h2>4.</h2>
+        <p>(10) Circle and label the event parameters and function parameters in the following blocks:</p>
+        <img src="../../assets/img/Quiz2/Quiz2-4-1.png" height="600" width="600">
+        <br><br>
+        <div id="myCollapsibleExample"><a href="#demo4" data-toggle="collapse">Answer</a></div>
+        <div id="demo4" class="collapse">  
+            <img src="../../assets/img/Quiz2/Quiz2-4-2.png" height="600" width="600">
+        </div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span9">
+        <h2>5.</h2>
+        <p>(10) Assume we make a small modification to Canvas1's drawLine function. We decide to change x1 to be set to startX and y1 to be set to starty. How would this change the behavior of the app?
+        <div id="myCollapsibleExample"><a href="#demo5" data-toggle="collapse">Answer</a></div>
+        <div id="demo5" class="collapse">  
+            All of the lines drawn during a dragged event will now start at the same initial clicked location and end wherever the user is currently clicking. In other words, you will have a bunch of lines coming from one point and ending in different places.
+        </div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span9">
+        <!-- <div class="span4"> -->
+        <h2>6.</h2>
+        <p>(50) Consider a drawing app like PaintPot which allows the user to draw circles and lines. In this app, there are two textboxes, dotSizeText and lineWidthText, and two buttons, dotSizeButton and lineWidthButton. The user can control the size of the drawn circles and lines by modifying the textboxes and clicking on the submit buttons. Note that the sizes of the circles and lines drawn should not change until the user clicks on the respective submit buttons.
+        </p>
+    </div>
+    <img src="../../assets/img/Quiz2/Quiz2-6-1.png" height="250" width="250"></br>
+    <br>
+    Define the behavior for this app by drawing the completed Canvas1.Touched, DotSizeButton.Click, and LineWidthButton.Click event handlers. The needed blocks are shown below. </br>
+    <br>          
+    <img src="../../assets/img/Quiz2/Quiz2-6-2.png" height="600" width="600"></br>
+    <br>
+    <div id="myCollapsibleExample"><a href="#demo6" data-toggle="collapse">Answer</a></div>
+    <div id="demo6" class="collapse">
+        <p><img src="../../assets/img/Quiz2/Quiz2-6-3.png" height="600" width="600"></p>
+    </div>
+</div>
+</div>
+<hr>
+</div> 
+{% endblock %}

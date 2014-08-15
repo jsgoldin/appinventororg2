@@ -1,0 +1,38 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Decision-Making and the If-Else</H1>
+
+<p>An app is a set of event handlers. When an event occurs, perform some instructions (blocks). However, within those event-handlers, the app can ask <em>if</em> questions and perform different instructions based on the answers. Such <em>conditional blocks</em> form the basis for the intelligence of an app.</p>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/Tu6Ej71HXR4" frameborder="0" allowfullscreen></iframe>
+<h4>Sample: Toggling between presidential candidates</h3>
+<p>President Obama appears when the apps begins, but each time you click the picture it switches back and forth between Obama and Mitt Romney</p>
+<ul>
+<li>
+The picture appears on a Button component. The Button.Image property specifies the image file that appears on the button.
+</li>
+<li>
+The event is the button click.
+</li>
+<li>
+When the button is clicked, ask which picture appears. If it is Obama, show Romney, else if it was Romney, show Obama.
+</li>
+</ul>
+<img class="thumbnail" src="../../assets/img/blocks/obamaIfBlocks.png" border="0"/>
+
+<p>A reference block (the light blue 'Button1.Image') is used to see what the existing image is, while a set block (the darker blue 'set Button1.Image' block) is used to change the image the appears. In general, if tests will use reference blocks to check the current state of the app.</p>
+<h4>Sample: Randomly choosing a picture</h3>
+<p>As a second if-example, let's change the app so that it randomly chooses one of the two pictures (each time the user clicks, it might show Obama, might show Romney). Such random behavior is the part of many games.</P>
+<ul>
+<li>
+In the Math folder, there is a <em>random integer</em> block. You can set a range for the value that it generates.
+</li>
+<li>
+We'll grab a random number with a range from 1 to 2. If 1 is generated (50% chance), we'll show Obama, else we'll show Romney.
+</li>
+
+</ul>
+<img class="thumbnail" src="../../assets/img/blocks/obamaIfRandomBlocks.png" border="0"/>
+
+
+{% endblock %}

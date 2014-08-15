@@ -1,0 +1,254 @@
+
+    <section data-type="chapter" data-pdf-bookmark="Chapter 14. Understanding an App’s Architecture" id="understanding_an_appapostrophes_architec">
+<h1>Understanding an App’s Architecture</h1>
+
+<p><em>This chapter examines the structure of an app from a programmer’s perspective. It begins with the traditional analogy that an app is like a recipe and then proceeds to reconceptualize an app as a set of components that respond to events. The chapter also examines how apps can ask questions, repeat, remember, and talk to the Web, all of which will be described in more detail in later chapters.</em></p>
+
+<div class="informalfigure"><img alt="Understanding an App" src="/assets/img/bookChapters/a14.png"/></div>
+
+<p>Many people can tell you what an app is from a user’s perspective, but understanding what it is from a programmer’s perspective is more complicated. Apps have an internal structure that you must understand in order to create them effectively.</p>
+
+<p>One way to describe an app’s internals is to break it into two parts, its <em>components</em> and its <em>behaviors</em>. Roughly, these correspond to the two main windows you use in App Inventor: you use the Component Designer to specify the objects (components) of the app, and you use the Blocks Editor to program how the app responds to user and external events (the app’s behavior).</p>
+
+<p><a data-type="xref" href="#internal_architecture_of_an_app_inventor">Figure 14-1</a> provides an overview of this app architecture. In this chapter, we’ll explore this architecture in detail.</p>
+
+<figure id="internal_architecture_of_an_app_inventor"><img alt="Alt Text" class="iimagesa14-1newpng" src="/assets/img/bookChapters/a14-1new.png"/>
+<figcaption>The internal architecture of an App Inventor app</figcaption>
+</figure>
+
+<section data-type="sect1" data-pdf-bookmark="Components" id="components">
+<h1>Components</h1>
+
+<p>There are two main types of components in an app: visible and non-visible. The app’s visible components are the ones you can see when the app is launched-things like buttons, text boxes, and labels. These are often referred to as the app’s <em>user interface</em>.</p>
+
+<p>Non-visible components are those you can’t see, so they’re not part of the user interface. Instead, they provide access to the built-in functionality of the device; for example, the <strong>Texting</strong> component sends and processes SMS texts, the <strong>LocationSensor</strong> component determines the device’s location, and the <strong>TextToSpeech</strong> component talks. The non-visible components are the technology within the device--little worker-bees that do jobs for your app.</p>
+
+<p>Both visible and non-visible components are defined by a set of <em>properties</em>. Properties are memory slots for storing information about the component. Visible components like buttons and labels have properties such as <strong>Width</strong>, <strong>Height</strong>, and <strong>Alignment</strong>, which together define how the component looks.</p>
+
+<p>Component properties are like spreadsheet cells. You modify them in the Component Designer to define the <em>initial</em> appearance of a component. You can also change the values with blocks.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Behavior" id="behavior">
+<h1>Behavior</h1>
+
+<p>App components are generally straightforward to understand: a text box is for entering information, a button is for clicking, and so on. An app’s behavior, on the other hand, is conceptually difficult and often complex. The behavior defines how the app should respond to events, both user initiated (e.g., a button click) and external (e.g., an SMS text arriving to the phone). The difficulty of specifying such interactive behavior is why programming is so challenging.</p>
+
+<p>Fortunately, App Inventor provides a high-level “blocks” language for specifying behaviors. The blocks make programming behaviors more like plugging puzzle pieces together, as opposed to remembering and typing code as with traditional languages. And App Inventor is designed to make specifying event-response behaviors especially easy. The following sections provide a model for understanding app behavior, and how to specify it in App Inventor.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="An App As a Recipe" id="app_as_a_recipe">
+<h1>An App As a Recipe</h1>
+
+<p>Traditionally, software has often been compared to a recipe. Like a recipe, a traditional app follows a linear sequence of instructions, such as those shown in <a class="xref " data-type="xref" href="#traditional_software_follows_a_linear_se">Figure 14-2</a>, that the computer should perform.</p>
+
+<p>A typical app might start a bank transaction (A), perform some computations and modify a customer’s account (B), and then print out the new balance on the screen (C).</p>
+
+<figure id="traditional_software_follows_a_linear_se"><img alt="Traditional software follows a linear sequence of instructions\" src="/assets/img/bookChapters/a14-3.png"/>
+<figcaption>Traditional software follows a linear sequence of instructions\</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="An App As a Set of Event Handlers" id="app_as_a_set_of_event_handlers">
+<h1>An App As a Set of Event Handlers</h1>
+
+<p>The <em>app as a recipe</em> paradigm fit the early number-crunching computer well, but its not a great fit for mobile phones, the Web, and in general most of the “computing” done today. Most modern software doesn’t perform a bunch of instructions in a predetermined order; instead, it <em>reacts</em> to <em>events</em>--most commonly, events initiated by the app’s end user. For example, if the user clicks a button, the app responds by performing some operation (e.g., sending a text message). For touchscreen phones and devices, the act of dragging your finger across the screen is another event. The app might respond to that event by drawing a line from the point of your original touch to the point where you lifted your finger.</p>
+
+<p>Modern apps are better conceptualized as event-response machines. The apps do include “recipes”--sequences of instructions--but each recipe is only performed in response to some event, as shown in <a data-type="xref" href="#app_as_multiple_recipes_hooked_to_events">Figure 14-3</a>.</p>
+
+<figure id="app_as_multiple_recipes_hooked_to_events"><img alt="An app as multiple recipes hooked to events" src="/assets/img/bookChapters/a14-4.png"/>
+<figcaption>An app as multiple recipes hooked to events</figcaption>
+</figure>
+
+<p>As events occur, the app reacts by calling a sequence of <em>functions</em>. Functions are things you can do to or with a component, operations like sending an SMS text, or property-changing operations such as changing the text in a label of the user interface. To <em>call</em> a function means to <em>invoke</em> it, to make it happen. We call an event and the set of functions performed in response to it an <em>event handler</em>.</p>
+
+<p>Many events are initiated by the end user, but some are not. An app can react to events that happen within the phone, such as changes to its orientation sensor and the clock (i.e., the passing of time), and events created by things outside the phone, such as a text or call from another phone, or data arriving from the Web, as shown in <a data-type="xref" href="#app_can_respond_to_both_internal_and_ext">Figure 14-4</a>.</p>
+
+<figure id="app_can_respond_to_both_internal_and_ext"><img alt="An app can respond to both internal and external events" src="/assets/img/bookChapters/a14-5.png"/>
+<figcaption>An app can respond to both internal and external events</figcaption>
+</figure>
+
+<p>One reason App Inventor programming is intuitive is that it’s based directly on this event-response paradigm; event handlers are primitives in the language (in many languages, this is not the case). You begin defining a behavior by dragging out an <em>event block</em>, which has the form, “When &lt;event&gt; do”. For example, consider an app, SpeakIt, that responds to button clicks by speaking the text the user has entered in a textbox aloud. This application could be programmed with a single event handler, shown in <a data-type="xref" href="#event_handler_for_a_speakit_app">Figure 14-5</a>.</p>
+
+<figure id="event_handler_for_a_speakit_app"><img alt="An event handler for a SpeakIt app" src="/assets/img/bookChapters/a14-6.png"/>
+<figcaption>An event handler for a SpeakIt app</figcaption>
+</figure>
+
+<p>These blocks specify that when the user clicks the button named <strong>SpeakItButton</strong>, the <strong>TextToSpeech</strong> component should speak the words the user has entered in the text box named <strong>TextBox1</strong>. The response is the call to the function <strong>TextToSpeech1.Speak</strong>. The event is <strong>SpeakItButton.Click</strong>. The event handler includes all the blocks in <a data-type="xref" href="#event_handler_for_a_speakit_app">Figure 14-5</a>.</p>
+
+<p>With App Inventor, all activity occurs in response to an event. Your app shouldn’t contain blocks outside of an event’s “when-do” block. For instance, the blocks in <a data-type="xref" href="#floating_blocks_wonapostrophet_do_anythi">Figure 14-6</a> don’t make sense floating alone.</p>
+
+<figure id="floating_blocks_wonapostrophet_do_anythi"><img alt="Floating blocks won’t do anything outside an event handler" src="/assets/img/bookChapters/a14-7.png"/>
+<figcaption>Floating blocks won’t do anything outside an event handler</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Event Types" id="event_types">
+<h1>Event Types</h1>
+
+<p>The events that can trigger activity fall into the categories listed in <a data-type="xref" href="#events_that_can_trigger_activity">Table 14-1</a>.</p>
+
+<table id="events_that_can_trigger_activity">
+	<caption>Events that can trigger activity</caption>
+	<thead>
+		<tr>
+			<th>Event type</th>
+			<th>Example</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p>User-initiated event</p>
+			</td>
+			<td>
+			<p><em>When</em> the user clicks <code>button1</code>, <em>do</em>...</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Initialization event</p>
+			</td>
+			<td>
+			<p><em>When</em> the app launches, <em>do</em>...</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Timer event</p>
+			</td>
+			<td>
+			<p><em>When</em> 20 milliseconds passes, <em>do</em>...</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Animation event</p>
+			</td>
+			<td>
+			<p>When two objects collide, <em>do</em>...</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>External event</p>
+			</td>
+			<td>
+			<p><em>When</em> the phone receives a text, <em>do</em>...</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<section data-type="sect2" data-pdf-bookmark="User-initiated events" id="user-initiated_events">
+<h2>User-initiated events</h2>
+
+<p>User-initiated events are the most common type of event. With input forms, it is typically the button click event that triggers a response from the app. More graphical apps respond to touches and drags.</p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Initialization events" id="initialization_events">
+<h2>Initialization events</h2>
+
+<p>Sometimes your app needs to perform certain functions right when the app begins, not in response to any end-user activity or other event. How does this fit into the event-handling paradigm?</p>
+
+<p>Event-handling languages like App Inventor consider the app’s launch as an event. If you want specific functions to be performed immediately when the app opens, you drag out a <strong>Screen1.Initialize</strong> event block and place some function call blocks within it.</p>
+
+<p>For instance, in the game MoleMash (<a data-type="xref" href="ch03.html#molemash">Chapter 3</a>), the <strong>MoveMole</strong> procedure is called at the start of the app to randomly place the mole, as shown in <a data-type="xref" href="#using_a_screen1dotinitialize_event_block">Figure 14-7</a>.</p>
+
+<figure id="using_a_screen1dotinitialize_event_block"><img alt="Using a Screen1.Initialize event block to move the mole when the app begins" src="/assets/img/bookChapters/a14-8.png"/>
+<figcaption>Using a Screen1.Initialize event block to move the mole when the app begins</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Timer events" id="timer_events">
+<h2>Timer events</h2>
+
+<p>Some activity in an app is triggered by the passing of time. You can think of an animation as an object that moves when triggered by a <em>timer event</em>. App Inventor has a <strong>Clock</strong> component that can be used to trigger timer events. For instance, if you wanted a ball on the screen to move 10 pixels horizontally at a set time interval, your blocks would look like <a data-type="xref" href="#using_a_timer_event_block_to_move_a_ball">Figure 14-8</a>.</p>
+
+<figure id="using_a_timer_event_block_to_move_a_ball"><img alt="Using a timer event block to move a ball whenever Clock1.Timer fires" src="/assets/img/bookChapters/a14-9.png"/>
+<figcaption>Using a timer event block to move a ball whenever Clock1.Timer fires</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Animation events" id="animation_events">
+<h2>Animation events</h2>
+
+<p>Activity involving graphical objects (sprites) within canvases will trigger events. So you can program games and other interactive animations by specifying what should occur on events such as an object reaching the edge of the canvas, or two objects colliding, as in <a data-type="xref" href="#collided_with">Figure 14-9</a>. For more information, see <a data-type="xref" href="ch17.html#creating_animated_apps">Chapter 17</a>.</p>
+
+<figure id="collided_with"><img alt="CollidedWith event" src="/assets/img/bookChapters/a14-collide.png"/>
+<figcaption>When the FlyingSaucer sprite hits another object, play a sound.</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="External events" id="external_events">
+<h2>External events</h2>
+
+<p>When your phone receives location information from GPS satellites, an event is triggered. Likewise, when your phone receives a text, an event is triggered (<a class="xref " data-type="xref" href="#texting1dotmessagereceived_event_is_trig">Figure 14-10</a>).</p>
+
+<figure id="texting1dotmessagereceived_event_is_trig"><img alt="The Texting1.MessageReceived event is triggered whenever a text is received" src="/assets/img/bookChapters/a14-10.png"/>
+<figcaption>The Texting1.MessageReceived event is triggered whenever a text is received</figcaption>
+</figure>
+
+<p>Such external inputs to the device are considered events, just like the user clicking a button.</p>
+
+<p>So every app you create will be a set of event handlers: one to initialize things, some to respond to the end user’s input, some triggered by time, and some triggered by external events. Your job is to conceptualize your app in this way and then design the response to each event handler.</p>
+</section>
+</section>
+<section data-type="sect1" data-pdf-bookmark="Event Handlers Can Ask Questions" id="event_handlers_can_ask_questions">
+<h1>Event Handlers Can Ask Questions</h1>
+
+<p>The responses to events are not always linear recipes; they can ask questions and repeat operations. “Asking questions” means to query the data the app has stored and determine its course (branch) based on the answers. We say that such apps have <em>conditional branches</em>, as illustrated in <a data-type="xref" href="#event_handler_can_branch_based_on_the_an">Figure 14-11</a>.</p>
+
+<p>In the diagram, when the event occurs, the app performs operation A and then checks a condition. Function B1 is performed if the condition is true. If the condition is false, the app instead performs B2. In either case, the app continues on to perform function C.</p>
+
+<figure id="event_handler_can_branch_based_on_the_an"><img alt="An event handler can branch based on the answer to a conditional question" src="/assets/img/bookChapters/a14-11.png"/>
+<figcaption>An event handler can branch based on the answer to a conditional question</figcaption>
+</figure>
+
+<p>Conditional tests are questions such as “Has the score reached 100?” or “Did the text I just received come from Joe?” Tests can also be more complex formulas including multiple relational operators (less than, greater than, equal to) and logical operators (and, or, not).</p>
+
+<p>You specify conditional behaviors in App Inventor with the <strong>if</strong> and <strong>ifelse</strong> blocks. For instance, the block in <a data-type="xref" href="#using_an_if_block_to_report_a_win_once_t">Figure 14-12</a> would report “You Win!”” if the player scored 100 points.</p>
+
+<p>Conditional blocks are discussed in detail in <a data-type="xref" href="ch18.html#programming_your_app_to_make_decisions_c">Chapter 18</a>.</p>
+
+<figure id="using_an_if_block_to_report_a_win_once_t"><img alt="Using an if block to report a win once the player reaches 100 points" src="/assets/img/bookChapters/a14-12.png"/>
+<figcaption>Using an if block to report a win once the player reaches 100 points</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Event Handlers Can Repeat Blocks" id="event_handlers_can_repeat_blocks">
+<h1>Event Handlers Can Repeat Blocks</h1>
+
+<p>In addition to asking questions and branching based on the answer, a response to an event can also repeat operations multiple times. App Inventor provides a number of blocks for repeating, including the <strong>foreach</strong> and the <strong>while do</strong>. Both enclose other blocks. All the blocks within <strong>foreach</strong> are performed once for each item in a list. For instance, if you wanted to text the same message to a list of phone numbers, you could use the blocks in <a data-type="xref" href="#blocks_within_the_foreach_block_are_repe">Figure 14-13</a>.</p>
+
+<figure id="blocks_within_the_foreach_block_are_repe"><img alt="The blocks within the foreach block are repeated for each item in the list" src="/assets/img/bookChapters/a14-repeat.png"/>
+<figcaption>The blocks within the foreach block are repeated for each item in the list PhoneNumbers.</figcaption>
+</figure>
+
+<p>The blocks within the <strong>foreach</strong> block are repeated--in this case, three times, because the list <strong>PhoneNumbers</strong> has three items. So the message “Thinking of you...” is sent to all three numbers. Repeating blocks are discussed in detail in <a data-type="xref" href="ch20.html#iteration_blocks_iteration">Chapter 20</a>.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Event Handlers Can Remember Things" id="event_handlers_can_remember_things">
+<h1>Event Handlers Can Remember Things</h1>
+
+<p>Because an event handler executes blocks, it often needs to keep track of information. Information can be stored in memory slots called variables, which you define in the Blocks Editor. Variables are like component properties, but they’re not associated with any particular component. In a game app, for example, you can define a variable called “score” and your event handlers would modify its value when the user does something accordingly. Variables store data temporarily while an app is running; when you close the app, the data is no longer available.</p>
+
+<p>Sometimes your app needs to remember things not just while it runs, but even when it is closed and then reopened. If you tracked a high score for the history of a game, for example, you’d need to store this data long-term so it is available the next time someone plays the game. Data that is retained even after an app is closed is called <em>persistent data</em>, and it’s stored in some type of a database.</p>
+
+<p>We’ll explore the use of both short-term memory (variables) and long-term memory (database data) in <a data-type="xref" href="ch16.html#programming_your_appapostrophes_memory">Chapter 16</a> and <a data-type="xref" href="ch22.html#working_with_databases">Chapter 22</a>, respectively.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Event Handlers Can Talk to the Web" id="event_handlers_can_talk_to_the_web">
+<h1>Event Handlers Can Talk to the Web</h1>
+
+<p>Some apps use only the information within the phone or device. But many apps communicate with the Web, either by displaying a web page within the app, or by sending requests to <em>web service APIs (application programming interfaces)</em>. Such apps are said to be “web-enabled.”</p>
+
+<p>Twitter is an example of a web service to which an App Inventor app can talk. You can write apps that request and display your friend’s previous tweets and also update your Twitter status. Apps that talk to more than one web service are called <em>mashups</em>. We’ll explore web-enabled apps in <a data-type="xref" href="#communicating_with_web_apis">???</a>.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00130">
+<h1>Summary</h1>
+
+<p>An app creator must view his app both from an end-user perspective and from the inside-out perspective of a programmer. With App Inventor, you design how an app looks and then you design its behavior--the set of event handlers that make an app behave as you want. You build these event handlers by assembling and configuring blocks representing events, functions, conditional branches, repeat loops, web calls, database operations, and more, and then test your work by actually running the app on your phone. After you write a few programs, the mapping between the internal structure of an app and its physical manifestation becomes clear. When that happens, you’re a programmer!</p>
+</section>
+</section>

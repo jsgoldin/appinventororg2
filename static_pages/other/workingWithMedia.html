@@ -1,0 +1,26 @@
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Working with Media</H1>
+<p>
+In some of the appinventor.org tutorials, the media is provided for you. In general, you'll need to create your own or find and customize the images, audio, and video for your apps. This creative task is as important as any in the app building process and you will need to become adept at discovery, resizing and transforming mediawith Photoshop-like tools, and dealing with permissions and copyright issues.
+<h2>App Inventor Limitation:File Sizes</h2>
+<p>
+App Inventor places some limitations on the media you can use in an app. Specifically, the total file size for all your media is 5 Megabytes. Note that the limitation is on the file size and not the image size or length of an audio clip.
+</p>
+<p>
+You can bypass the size limitation by storing some of your media on the web and referring to the URL. For example, the following blocks set the audio source of a Player component to a file at the video/audio archive archive.org:
+<br/><img src="{{apps2Dir}}/workingwithmedia/urlMediaRef.png"/>
+<br/>
+</p>
+<h2>App Inventor Limitation: Styling Media</h2>
+It is not easy to 
+<h2>Creativity and Copyright</h2>
+In choosing media, you want to be careful not to infringe on copyright. Doing so is not a straight-forward task so most creative endeavors, including software projects, require significant time and money in terms of tracking down copyright owners and obtaining permissions.
+</p>
+There are resources to make the job easier. Creative Commons is an organization that facilitates, "the sharing and use of creativity and knowledge through free legal tools." They provide ways for creators to label their creations asfree-to-use or with various levels of restriction. They also provide search tools to help you find media that you can use without worry. The search engine at <a href= 
+"http://search.creativecommons.org/">search.creativecommons.org</a> is like Google image search, but it only finds media that have the Creative Commons label, and you can specify if you are working on a commercial or non-commercial product:
+<br/><img src="{{apps2Dir}}/workingwithmedia/creativeCommonsSearch.png"/>
+<br/>
+
+If you would like to learn more, check out CreativeCommons.org and their <a href="https://p2pu.org/en/groups/open-detective/">free on-line course</a>
+{% endblock %}

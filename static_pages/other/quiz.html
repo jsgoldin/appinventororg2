@@ -1,0 +1,58 @@
+{% extends "site_base.html" %}
+{% block body %}
+<H1>President Quiz: Build, Conceptualize, Customize</H1>
+<br/>
+<h2> Build It</h2>
+<ol>
+    <li>
+        Open a browser and navigate to <a href="http://beta.appinventor.mit.edu">http://beta.appinventor.mit.edu</a>. Login with your Google account.
+    </li>
+    <li>
+        Now build the President Quiz app. Follow the instructions in App Inventor chapter 6 using either the paperback version, the <a href="apps/quiz/quiz.pdf">pdf version</a>, or the <a href="/quiz-steps">step-by-step video lesson</a>.
+    </li>
+</ol>
+<h2>Conceptualize It</h2>
+<div class="row-fluid">
+    <div class="span6">
+        <p>After completing the Quiz tutorial, discuss these questions with a partner or small group, jotting down notes while you discuss. Later, create a portfolio page with answers to the questions in your own words.
+        <ol>
+            <li>
+                What variables are defined for the quiz app? What is the purpose of each?
+            </li>
+            <li>
+                The app has a Next button but not a Previous button so the user cannot navigate backward in the test. Suppose you wanted to allow two-way navigation. Sketch the blocks for the PreviousButton.Click event-handler 
+            </li>
+            <li>
+                Does the quiz have fixed data or user generated data? How useful is the app for general use? 
+            </li>
+            <li>
+                Describe how you would convert the app so that a user could change the questions 
+            </li>
+            <li>
+                In the quiz app how exact must the answer be to get it correct? How could you modify the app so that it grades more flexibly? To answer this question, explore the operations in the Text palette within the App Inventor blocks editor.
+            </li>
+            <li>How would you change the quiz so that the answers are multiple choice?</li>
+        </ol>
+    </div>
+    <div class="span6">
+        <img src="/apps/quiz/blocks6.png"/><br/>
+    </div>
+</div>
+<h2>Customize It</h2>
+<ol>
+    <li>
+        Change the "grading" of the user's answers so that a provided answer is correct even if it not the same case (upper/lower) as the given answer. So 'NEWSOM' or 'newsom' or 'nEwSoM' would be correct for the answer 'Newsom'
+    </li>
+    <li>
+        When the user gets to the last question and clicks next, the first question appears. Change this so that 1) there is also a previous button to go back in the test, and 2) the next and previous buttons are grayed out (disabled) at appropriate times.
+    </li>
+    <li>
+        Play question-specific music or video along with each question 
+    </li>
+    </li>
+    <li>
+        Create a multiple choice quiz 
+    </li>
+</ol>
+Solution for Customization Exercises<<a href="/apps/quiz/quiz_customd1.zip">part 1/a>,<a href="/apps/quiz/quiz_customd2.zip">part 2/a>. Download these zip files, then open App Inventor and choose More Actions | Upload Source.
+{% endblock %}

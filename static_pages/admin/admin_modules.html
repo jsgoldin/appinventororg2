@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../../assets/JordansStuff/css/bootstrap.css" type=”text/css”>
+<link rel="stylesheet" href="../../assets/JordansStuff/css/JordansAwesomeStyleSheet.css" type=”text/css”>
+
+<title>Admin Modules</title>
+</head>
+
+<body>
+    <div class="j-top-fixed">
+        <div class="j-header">
+            <div class="container">
+                <h1>Administration</h1>
+            </div>
+        </div>
+
+        <div class="nav-bar-mod ">
+            <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/admin/dashboard">Dashboard</a></li>
+                        <li><a href="/admin/users">Users</a></li>
+                        <li class="active"><a href="/admin/modules">Modules</a></li>
+                        <li><a href="/admin/stats">Stats</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <button id='savebtn' type="button" class="btn btn-primary" style='margin-top: 7px;'>Save Changes</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </nav>
+        </div>
+    </div>
+
+
+    <div class="container j-topper">
+        <div class="row">
+            <div class="col-md-8">
+                <div class='j-box-title'>
+                    <h4>Modules</h4>
+                </div>
+                <div class='j-box'>
+                    <div class='module-list'>
+
+                        <ul id="sortable">
+
+                            {% for m in moduleList %}
+                            <li delflag="false" keyid="{{m.key.id}}"><div class="module-info">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="{{m.m_icon}}" height="100" width="100">
+                                        </div>
+                                        <div class="col-md-7">
+                                            <h1 id="noDrag" contenteditable="true">{{m.m_title}}</h1>
+                                            <p id="noDrag" contenteditable="true">{{m.m_description}}</p>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-1">
+                                            <button type="button" id="noDrag" class="btn btn-default delete-module-button">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                            <button type="button" id="noDrag" class="btn btn-default open-module-button">
+                                                <span class="glyphicon glyphicon-folder-open"></span>
+                                            </button>
+                                            
+                                        </div>
+                                    </div>
+                                </div></li> {% endfor %}
+
+                        </ul>
+
+                        <ul id="cloned_items">
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class='j-fixed'>
+                    <div class='j-box-title'>
+                        <h4>Create New Module</h4>
+                    </div>
+                    <div class='j-box'>
+
+                        <form role="form" id="NewModuleForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="InputTitle">Title</label> <input type="text" class="form-control" id="InputTitle" placeholder="New Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputDescription">Description</label> <input type="text" class="form-control" id="InputDescription" placeholder="New Description">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputFile">Icon</label> <input type="file" id="InputFile">
+                            </div>
+                            <button type="submit" class="btn btn-default">Create It!</button>
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../../assets/JordansStuff/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../assets/JordansStuff/js/JordansAwesomeJS.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+</body>

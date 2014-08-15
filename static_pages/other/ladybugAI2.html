@@ -1,0 +1,448 @@
+﻿
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>Ladybug Chase</h1>
+<div class="row-fluid">
+		<div class="span6">
+			<p>
+			<em>Games are among the most exciting mobile device apps, both to play and to create. The recent smash hit Angry Birds was downloaded 50 million times in its first year and is played more than a million hours every day, according to Rovio, its developer. (There is even talk of making it into a feature film!) While we can't guarantee that kind of success, we can help you create your own games with App Inventor, including this one involving a ladybug eating aphids while avoiding a frog.</em>
+		</p>
+		</div>
+<div class="span6">
+<img src="{{apps2Dir}}/LadybugChase/lb.png" alt="">
+</div>
+</div>
+<div class="row-fluid">
+	<div class="span5">
+		<h2>What You'll Build</h2>
+		<p>
+			With the Ladybug Chase app shown in Figure 5-1, the user can:
+			<ul>
+				<li>Control a ladybug by tilting the device.</li>
+				<li>View an energy-level bar on the screen, which decreases over time, leading to the ladybug's starvation.</li>
+				<li>Make the ladybug chase and eat aphids to gain energy and prevent starvation.</li>
+				<li>Help the ladybug avoid a frog that wants to eat it.</li>
+			</ul>
+		</p>
+	</div>
+
+
+
+<div class="span5">
+<img src="{{apps2Dir}}/LadybugChase/lb5-1.png" alt="">
+<p>
+	<em>Figure 5-1. The Ladybug Chase game in the Designer</em>
+</p>
+</div>
+
+</div>
+<h2>What You'll Learn</H2>
+	<p>
+		You should work through the MoleMash app in Chapter 3 before delving into this chapter, as it assumes you know about procedure creation, random-number generation, the <strong>ifelse</strong> block, and the <b>ImageSprite</b>, <b>Canvas</b>, <b>Sound</b>, and <b>Clock</b> components.
+	</p>
+	<p>
+		In addition to reviewing material from MoleMash and other previous chapters, this chapter introduces:
+		<ul>
+			<li>Using multiple <b>ImageSprite</b> components and detecting collisions between them.</li>
+			<li>Detecting device tilts with an <b>OrientationSensor</b> component and using it to control an <b>ImageSprite</b>.</li>
+			<li>Changing the picture displayed for an <b>ImageSprite</b>.</li>
+			<li>Drawing lines on a <b>Canvas</b> component.</li>
+			<li>Controlling multiple events with a <b>Clock</b> component.</li>
+			<li>Using variables to keep track of numbers (the ladybug's energy level).</li>
+			<li>Creating and using procedures with parameters.</li>
+			<li>Using the <srtong>and</strong> block.</li>
+		</ul>
+	</p>
+	<h2>Designing the Components</h2>
+	<p>
+		This application will have a <b>Canvas</b> that provides a playing field for three <b>ImageSprite</b> components: one for the ladybug, one for the aphid, and one for the frog, which will also require a <b>Sound</b> component for its "ribbit." The <b>OrientationSensor</b> will be used to measure the device's tilt to move the ladybug, and a <b>Clock</b> will be used to change the aphid's direction. There will be a second <b>Canvas</b> that displays the ladybug's energy level. A Reset button will restart the game if the ladybug starves or is eaten. Table 5-1 provides a complete list of the components in this app.
+	</p>
+<p>
+	<em>Table 5-1. All of the components for the Ladybug Chase game</em>
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-1T.png" alt="">
+<h2>Getting Started</h2>
+<p>
+	Download the images of the <a href="{{apps2Dir}}/LadybugChase/Media/ladybug.png"><em>ladybug</em></a>, <a href="{{apps2Dir}}/LadybugChase/Media/aphid.png"><em>aphid</em></a>, <a href="{{apps2Dir}}/LadybugChase/Media/deadladybug.png"><em>dead ladybug</em></a>, and <a href="{{apps2Dir}}/LadybugChase/Media/frog.png"><em>frog</em></a>. You'll also need to download the sound file for the frog's <a href="{{apps2Dir}}/LadybugChase/Media/frog.wav"><em>ribbit</em></a>.
+	<p>
+		Connect to the App Inventor website and start a new project. Name it "LadybugChase" and also set the screen's title to "Ladybug Chase". Open the Blocks Editor and connect to the device. Add the images you found or created, as well as the sound file, to the Media panel.
+	</p>
+	<p>
+		If you will be using a device, other than the emulator, you'll need to disable autorotation of the screen, which changes the display direction when you turn the device. On most devices, you do this by going to the home screen, pressing the menu button, selecting Settings, selecting Display, and unchecking the box labeled "Auto-rotate screen."
+	</p>
+	<h2>Animating the Ladybug</h2>
+	<p>
+		In this "first-person chewer" game, the user will be represented by a ladybug, whose movement will be controlled by the device's tilt. This brings the user into the game in a different way from MoleMash, in which the user was outside the device, reaching in.
+	</p>
+	<h2>Adding the Components</h2>
+	<p>
+		While previous chapters have had you create all the components at once, that's not how developers typically work. Instead, it's more common to create one part of a program at a time, test it, and then move on to the next part of the program. In this section, we will create the ladybug and control its movement.
+		<ul>
+			<li>Create a <b>Canvas</b> in the Component Designer, name it <b>FieldCanvas</b>, and set its Width to "Fill parent" and its <b>Height</b> to 300 pixels.</li>
+			<li>Place an <b>ImageSprite</b> on the <b>Canvas</b>, renaming it <b>Ladybug</b> and setting its <b>Picture</b> property to the (live) ladybug image. Don't worry about the values of the X and Y properties, as those will depend on where on the canvas you placed the <b>ImageSprite</b>.
+			</li>
+		</ul>
+	</p>
+	<p>As you may have noticed, <b>ImageSprites</b> also have <b>Interval</b>, <b>Heading</b>, and <b>Speed</b> properties, which we will use in this program:
+		<ul>
+			<li>The <b>Interval</b> property, which you can set to 10 (milliseconds) for this game, specifies how often the <b>ImageSprite</b> should move itself (as opposed to being moved by the <b>MoveTo</b> procedure, which you used for MoleMash).</li>
+			<li>The <b>Heading</b> property indicates the direction in which the <b>ImageSprite</b> should move, in degrees. For example, 0 means due right, 90 means straight up, 180 means due left, and so on. Leave the <b>Heading</b> as-is right now; we will change it in the Blocks Editor.</li>
+			<li>The <b>Speed</b> property specifies how many pixels the <b>ImageSprite</b> should move whenever its <b>Interval</b> (10 milliseconds) passes. We will also set the <b>Speed</b> property in the Blocks Editor.</li>
+		</ul>
+	</p>
+	<p>
+		The ladybug's movement will be controlled by an <b>OrientationSensor</b>, which detects how the device is tilted. We want use the <b>Clock</b> component to check the device's orientation every 10 milliseconds (100 times per second) and change the ladybug's <b>Heading</b> (direction) accordingly. We will set this up in the Blocks Editor as follows:
+		<ol>
+			<li>Add an <b>OrientationSensor</b>, which will appear in the "Non-visible components" section.</li>
+			<li>Add a <b>Clock</b>, which will also appear in the "Non-visible components" section, and set its <b>TimerInterval</b> to 10 milliseconds. Check what you've added against Figure 5-2.</li>
+		</ol>
+	</p>
+	<h2>Adding the Behavior</h2>
+	<p>
+		Moving to the Blocks Editor, create the procedure <b>UpdateLadybug</b> and a <strong>Clock1.Timer</strong> block, as shown in Figure 5-3. Try typing the names of some of the blocks (such as "Clock1.Timer") instead of dragging them out of the drawers. (Note that the operation applied to the number 100 is multiplication, indicated by an asterisk, which may be hard to see in the figure.) You do not need to create the yellow comment callouts, although you can by right-clicking a block and selecting Add Comment.
+	</p>
+	<p>
+		The UpdateLadybug procedure makes use of two of the OrientationSensor's most useful properties:
+		<ul>
+			<li><b>Angle</b>, which indicates the direction in which the device is tilted (in degrees).</li>
+			<li><b>Magnitude</b>, which indicates the amount of tilt, ranging from 0 (no tilt) to 1 (maximum tilt).</li>
+		</ul>
+	</p>
+	<p>
+		Multiplying the <b>Magnitude</b> by 100 tells the ladybug that it should move between 0 and 100 pixels in the specified <b>Heading</b> (direction) whenever its <b>TimerInterval</b>, which you previously set to 10 milliseconds in the Component Designer, passes.
+	</p>
+	<p>
+		Although you can try this out on the connected device, the ladybug's movement might be both slower and jerkier than if you package and download the app to the device. If, after doing that, you find the ladybug's movement too sluggish, increase the speed multiplier. If the ladybug seems too jerky, decrease it.
+	</p>
+	<img src="{{apps2Dir}}/LadybugChase/lb5-2.png" alt="">
+	<p>
+		<em>Figure 5-2. Setting up the user interface in the Component Designer for animating the ladybug</em>
+	</p>
+	<img src="{{apps2Dir}}/LadybugChase/lb5-3.png" alt="">
+	<p>
+		<em>Figure 5-3. Changing the ladybug's heading and speed every 10 milliseconds</em>
+	</p>
+	<h2>Displaying the Energy Level</h2>
+	<p>
+		We will display the ladybug's energy level with a red bar in a second canvas. The line will be 1 pixel high, and its width will be the same number of pixels as the ladybug's energy, which ranges from 200 (well fed) to 0 (dead).
+	</p>
+	<h2>Adding a Component</h2>
+	<p>
+		In the Designer, create a new <b>Canvas</b>, placing it beneath <b>FieldCanvas</b> and naming it <b>EnergyCanvas</b>. Set its <b>Width</b> property to "Fill parent" and its <b>Height</b> to 1 pixel.
+	</p>
+	<h2>Creating a Variable: Energy</h2>
+	<p>
+		In the Blocks Editor, you will need to create a variable <b>energy</b> with an initial value of 200 to keep track of the ladybug's energy level. (As you may recall, we first used a variable, <b>dotSize</b>, in Chapter 2's PaintPot app.) Here's how to do it:
+		<ol>
+			<li>In the Blocks Editor, drag out an <strong>initialize global name to</strong> block. Change the text "name" to "energy".</li>
+			<li>If there is a block in the socket on the right side of <strong>global energy</strong>, delete it by selecting it and either pressing the Delete key or dragging it to the trash can.</li>
+			<li>Create a <strong>number 200</strong> block (by either starting to type the number 200 or dragging a <strong>number</strong> block out of the Math drawer) and plug it into <strong>global energy</strong>, as shown in Figure 5-4.</li>
+		</ol>
+	</p>
+		<img src="{{apps2Dir}}/LadybugChase/lb5-4.png" alt="">
+		<p>
+			<em>Figure 5-4. Initializing the variable energy to 200</em>
+		</p>
+		<p>
+			Figure 5-5 shows how creating the variable also added blocks to the My Definitions drawer to set or get the value of <strong>energy</strong>.
+		</p>
+			<img src="{{apps2Dir}}/LadybugChase/lb5-5.png" alt="">
+			<p>
+				<em>Figure 5-5. View of the My Definitions drawer showing new global energy and set global energy blocks</em>
+			</p>
+			<h2>Drawing the Energy Bar</h2>
+			<p>
+				We want to communicate the energy level with a red bar whose length in pixels is the energy value. To do so, we could create two similar sets of blocks as follows:
+				<ol>
+					<li>Draw a red line from (0, 0) to (<b>energy</b>, 0) in <b>FieldCanvas</b> to show the current energy level.</li>
+					<li>Draw a white line from (0, 0) to (<b>EnergyCanvas.Width</b>, 0) in <b>FieldCanvas</b> to erase the current energy level before drawing the new level.</li>
+				</ol>
+			</p>
+			<p>
+				However, a better alternative is to create a procedure that can draw a line of any length and of any color in <b>FieldCanvas</b>. To do this, we must specify two arguments, <b>length</b> and <b>color</b>, when our procedure is called, just as we needed to specify parameter values in MoleMash when we called the built-in <b>random integer</b> procedure. Here are the steps for creating a <b>DrawEnergyLine</b> procedure, which is shown in Figure 5-6.
+			</p>
+			<p>
+				<ol>
+					<li>Go to the Procedures drawer and drag out a <strong>to procedure</strong> block.</li>
+					<li>Click its name (probably "procedure") and change it to "DrawEnergyLine".</li>
+					<li>Go back to the Definition drawer and drag out a name block, snapping it into the arg (short for argument) socket. Click its name and change it to "color".</li>
+					<li>Repeat step 3 to add a second argument and name it "length".</li>
+					<li>Fill in the rest of the procedure as shown in Figure 5-6. You can find the new <b>color</b> and <b>length</b> blocks in the My Definitions drawer.</li>
+				</ol>
+			</p>
+				<img src="{{apps2Dir}}/LadybugChase/lb5-6.png" alt="">
+				<p>
+					<em>Figure 5-6. Defining the procedure DrawEnergyLine</em>
+				</p>
+				<p>
+					Now that you're getting the hang of creating your own procedures, let's also write a <b>DisplayEnergyLevel</b> procedure that calls <b>DrawEnergyLine</b> twice, once to erase the old line (by drawing a white line all the way across the canvas) and once to display the new line, as shown in Figure 5-7.
+				</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-7.png" alt="">
+<p>
+	<em>Figure 5-7. Defining the procedure DisplayEnergyLevel</em>
+</p>
+<p>
+	The <b>DisplayEnergyLeve</b> procedure consists of four lines that do the following:
+	<ol>
+		<li>Set the paint color to white.</li>
+		<li>Draw a line all the way across <b>EnergyCanvas</b> (which is only 1 pixel high).</li>
+		<li>Set the paint color to red.</li>
+		<li>Draw a line whose length in pixels is the same as the energy value.</li>
+	</ol>
+</p>
+	<div class="span2">
+<img src="{{apps2Dir}}/block.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Note.</strong> <em>The process of replacing common code with calls to a new procedure is called refactoring, a set of powerful techniques for making programs more maintainable and reliable. In this case, if we ever wanted to change the height or location of the energy line, we would just have to make a single change to</em> <b>DrawEnergyLine</b><em>, rather than making changes to every call to it.</em>
+</p>
+</div>
+</div>
+
+<h2>Starvation</h2>
+<p>
+	Unlike the apps in previous chapters, this game has a way to end: it's over if the ladybug fails to eat enough aphids or is eaten by the frog. In either of these cases, we want the ladybug to stop moving (which we can do by setting <b>Ladybug.Enabled</b> to false) and for the picture to change from a live ladybug to a dead one (which we can do by changing <b>Ladybug.Picture</b> to the name of the appropriate uploaded image). Create the <b>GameOver</b> procedure as shown in Figure 5-8.
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-8.png" alt="">
+<p>
+	<em>Figure 5-8. Defining the procedure GameOver</em>
+</p>
+<p>
+	Next, add the code outlined in red in Figure 5-9 to <b>UpdateLadybug</b> (which, as you may recall, is called by <b>Clock.Timer</b> every 10 milliseconds) to:
+	<ul>
+		<li>Decrement its energy level.</li>
+		<li>Display the new level.</li>
+		<li>End the game if energy is 0.</li>
+	</ul>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<p> 
+	</div>
+</div>
+<strong>Test your app.</strong> <em>You should be able to test this code on your device and verify that the energy level decreases over time, eventually causing the ladybug's demise. If you want to restart the application, press the "Connect to Device..." button in the Blocks Editor.</em>
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-9.png" alt="">
+<p>
+	<em>Figure 5-9. Second version of the procedure UpdateLadybug</em>
+</p>
+<h2>Adding an Aphid</h2>
+<p>
+	The next step is to add an aphid. Specifically, an aphid should flit around <b>FieldCanvas</b>. If the ladybug runs into the aphid (thereby "eating" it), the ladybug's energy level should increase and the aphid should disappear, to be replaced by another one a little later. (From the user's point of view, it will be a different aphid, but it will really be the same <b>ImageSprite</b> component.)
+</p>
+<h2>Adding an ImageSprite</h2>
+<p>
+	The first step to add an aphid is to go back to the Designer and create another <b>ImageSprite</b>, being sure not to place it on top of the ladybug. It should be renamed <b>Aphid</b> and its properties set as follows:
+	<ol>
+		<li>Set its <b>Picture</b> property to the aphid image file you uploaded.</li>
+		<li>Set its <b>Interval</b> property to 10, so, like the ladybug, it moves every 10 milliseconds.</li>
+		<li>Set its Speed to 2, so it doesn't move too fast for the ladybug to catch it.</li>
+	</ol>
+</p>
+<p>
+	Don't worry about its <b>X</b> and <b>Y</b> properties (as long as it's not on top of the ladybug) or its <b>Heading</b> property, which will be set in the Blocks Editor.
+</p>
+<h2>Controlling the Aphid</h2>
+<p>
+	By experimenting, we found it worked best for the aphid to change directions approximately once every 50 milliseconds (5 "ticks" of <b>Clock1</b>). One approach to enabling this behavior would be to create a second clock with a <b>TimerInterval</b> of 50 milliseconds. However, we'd like you to try a different technique so you can learn about the <strong>random fraction</strong> block, which returns a random number greater than or equal to 0 and less than 1 each time it is called. Create the <b>UpdateAphid</b> procedure shown in Figure 5-10 and add a call to it in <strong>Clock1.Timer</strong>.
+</p>
+<h2>How the blocks work</h2>
+<p>
+	Whenever the timer goes off (100 times per second), both <strong>UpdateLadybug</strong> (like before) and <strong>UpdateAphid</strong> are called. The first thing that happens in <strong>UpdateAphid</strong> is that a random fraction between 0 and 1 is generated—for example, 0.15. If this number is less than 0.20 (which will happen 20% of the time), the aphid will change its direction to a random number of degrees between 0 and 360. If the number is not less than 0.20 (which will be the case the remaining 80% of the time), the aphid will stay the course.
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-10.png" alt="">
+<p>
+	<em>Figure 5-10. Adding the procedure UpdateAphid</em>
+</p>
+<h2>Having the Ladybug Eat the Aphid</h2>
+<p>
+	The next step is having the ladybug "eat" the aphid when they collide. Fortunately, App Inventor provides blocks for detecting collisions between <b>ImageSprite</b> components, which raises the question: what should happen when the ladybug and the aphid collide? You might want to stop and think about this before reading on.
+</p>
+<p>
+	To handle what happens when the ladybug and aphid collide, let's create a procedure, <b>EatAphid</b>, that does the following:
+	<ul>
+		<li>Increases the energy level by 50 to simulate eating the tasty treat.</li>
+		<li>Causes the aphid to disappear (by setting its <b>Visible</b> property to false).</li>
+		<li>Causes the aphid to stop moving (by setting its <b>Enabled</b> property to false).</li>
+		<li>Causes the aphid to move to a random location on the screen. (This follows the same pattern as the code to move the mole in MoleMash).</li>
+	</ul>
+</p>
+<p>
+	Check that your blocks match Figure 5-11. If you had other ideas of what should happen, such as sound effects, you can add those too.
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-11.png" alt="">
+<p>
+	<em>Figure 5-11. Adding the procedure EatAphid</em>
+</p>
+<h2>How the blocks work</h2>
+<p>
+	Whenever <strong>EatAphid</strong> is called, it adds 50 to the variable <b>energy</b>, staving off starvation for the ladybug. Next, the aphid's <b>Visible</b> and <b>Enabled</b> properties are set to false so it seems to disappear and stops moving. Finally, random x and y coordinates are generated for a call to <strong>Aphid.MoveTo</strong> so that, when the aphid reappears, it's in a new location (otherwise, it will be eaten as soon as it reemerges).
+</p>
+<h2>Detecting a Ladybug–Aphid Collision</h2>
+<p>
+	Figure 5-12 shows the code to detect collisions between the ladybug and the aphid. Note that when you add a condition to the "and" block, a new test socket appears.
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-12.png" alt="">
+<p>
+	<em>Figure 5-12. Detecting and acting on collisions between the ladybug and aphid</em>
+</p>
+<h2>How the blocks work</h2>
+<p>
+	When the ladybug collides with another <b>ImageSprite</b>, <strong>Ladybug.CollidedWith</strong> gets called, with the parameter "other" bound to whatever the ladybug collided with.Right now, the only thing it can collide with is the aphid, but we'll be adding a frog later. We'll use <em>defensive programming</em> and explicitly check that the collision was with the aphid before calling <strong>EatAphid</strong>. There's also a check to confirm that the aphid is visible. Otherwise, after an aphid is eaten but before it reappears, it could collide with the ladybug again. Without the check, the invisible aphid would be eaten again, causing another jump in energy without the user understanding why.
+</p>
+	<div class="span2">
+<img src="{{apps2Dir}}/block.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Note.</strong> <em>Defensive programming is the practice of writing code in such a way that it is still likely to work even if the program gets modi</em>is not strictly necessary because the only thing the ladybug can currently collide with is the aphid, but having the check will prevent our program from malfunctioning if we add another</em> <b>ImageSprite</b> <em>and forget to change</em> <strong>Ladybug.CollidedWith</strong><em>. Programmers generally spend more time fixing bugs than writing new code, so it is well worth taking a little time to write code in a way that prevents bugs.</em>
+</p>
+</div>
+</div>
+<h2>The Return of the Aphid</h2>
+<p>
+	To make the aphid eventually reappear, you should modify <b>UpdateAphid</b> as shown in Figure 5-13 so it changes the aphid's direction only if it is visible. (Changing it if it's invisible is a waste of time.) If the aphid is not visible (as in, it has been eaten recently), there is a 1 in 20 (5%) chance that it will be reenabled—in other words, made eligible to be eaten again.
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-13.png" alt="">
+<p>
+	<em>Figure 5-13. Modifying UpdateAphid to make invisible aphids come back to life</em>
+</p>
+<h2>How the blocks work</h2>
+<p>
+	<b>UpdateAphid</b> is getting pretty complex, so let's carefully step through its behavior:
+	<ul>
+		<li>If the aphid is visible (which will be the case unless it was just eaten), <b>UpdateAphid</b> behaves as we first wrote it. Specifically, there is a 20% chance of its changing direction.</li>
+		<li>If the aphid is not visible (was recently eaten), then the "else-do" part of the ifelse block will run. A random number is then generated. If it is less than .05 (which it will be 5% of the time), the aphid becomes visible again and is enabled, making it eligible to be eaten again.</li>
+	</ul>
+</p>
+<p>
+	Because <b>UpdateAphid</b> is called by <b>Clock1.Timer</b>, which occurs every 10 milliseconds, and there is a 1 in 20 (5%) chance of the aphid becoming visible again, the aphid will take on average 200 milliseconds (1/5 of a second) to reappear.
+</p>
+<h2>Adding a Restart Button</h2>
+<p>
+	As you may have noticed from testing the app with your new aphid-eating functionality, the game really needs a Restart button. (This is another reason why it's helpful to design and build your app in small chunks and then test it—you often discover things that you may have overlooked, and it's easier to add them as you progress than to go back in and change them once the app is "complete.") In the Component Designer, add a <b>Button</b> component underneath <b>EnergyCanvas</b>, rename it "RestartButton", and set its <b>Text</b> property to "Restart".
+</p>
+<p>
+	In the Blocks Editor, create the code shown in Figure 5-14 to do the following when the <b>RestartButton</b> is clicked:
+	<ol>
+		<li>Set the energy level back to 200.</li>
+		<li>Reenable the aphid and make it visible.</li>
+		<li>Reenable the ladybug and change its picture back to the live ladybug (unless you want zombie ladybugs!).</li>
+	</ol>
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-1.png" alt="">
+<p>
+	<em>Figure 5-14. Restarting the game when RestartButton is pressed</em>
+</p>
+<h2>Adding the Frog</h2>
+<p>
+	Right now, keeping the ladybug alive isn't too hard. We need a predator. Specifically, we'll add a frog that moves directly toward the ladybug. If they collide, the ladybug gets eaten, and the game ends.
+</p>
+<h2>Having the Frog Chase the Ladybug</h2>
+<p>
+	The first step to having the frog chase the ladybug is returning to the Component Designer and adding a third <b>ImageSprite</b>—<b>Frog</b>—to <b>FieldCanvas</b>. Set its <b>Picture</b> property to the appropriate picture, its <b>Interval</b> to 10, and its <b>Speed</b> to 1, since it should be slower-moving than the other creatures.
+</p>
+<p>
+	Figure 5-15 shows <b>UpdateFrog</b>, a new procedure you should create and call from <b>Clock1.Timer</b>.
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-15.png" alt="">
+<p>
+	<em>Figure 5-15. Making the frog move toward the ladybug</em>
+</p>
+<h2>How the blocks work</h2>
+<p>
+	By now, you should be familiar with the use of the <strong>random fraction</strong> block to make an event occur with a certain probability. In this case, there is a 10% chance that the frog's direction will be changed to head straight toward the ladybug. This requires trigonometry, but don't panic—you don't have to figure it out yourself! App Inventor handles a ton of math functions for you, even stuff like trig. In this case, you want to use the <strong>atan2</strong> (arctangent) block, which returns the angle corresponding to a given set of x and y values. (For those of you familiar with trigonometry, the reason the y argument to <strong>atan2</strong> has the opposite sign of what you'd expect—the opposite order of arguments to subtract— is that the y coordinate increases in the downward direction on an Android Canvas, the opposite of what would occur in a standard x–y coordinate system.) 
+</p>
+<h2>Having the Frog Eat the Ladybug</h2>
+<p>
+	We now need to modify the collision code so that if the ladybug collides with the frog, the energy level and bar goes to 0 and the game ends, as shown in Figure 5-16.
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-16.png" alt="">
+<p>
+	<em>Figure 5-16. Making the frog eat the ladybug</em>
+</p>
+<h2>How the blocks work</h2>
+<p>
+	In addition to the first <strong>if</strong>, which checks if the ladybug collided with the aphid, there is now a second <strong>if</strong>, which checks if the ladybug has collided with the frog. If the ladybug and the frog collide, three things happen:
+	<ol>
+		<li>The variable energy goes down to 0, since the ladybug has lost its life force.</li>
+		<li><strong>DisplayEnergy</strong> is called, to erase the previous energy line (and draw the new—empty—one).</li>
+		<li>The procedure we wrote earlier, <strong>GameOver</strong>, is called to stop the ladybug from moving and changes its picture to that of a dead ladybug.</li>
+	</ol>
+</p>
+<h2>The Return of the Ladybug</h2>
+<p>
+	<strong>RestartButton.Click</strong> already has code to replace the picture of the dead ladybug with the one of the live ladybug. Now you need to add code to move the live ladybug to a random location. (Think about what would happen if you didn't move the ladybug at the beginning of a new game. Where would it be in relation to the frog?) Figure 5-17 shows the blocks to move the ladybug when the game restarts.
+</p>
+<img src="{{apps2Dir}}/LadybugChase/lb5-17.png" alt="">
+<p>
+	<em>Figure 5-17. The final version of RestartButton.Click</em>
+</p>
+<h2>How the blocks work</h2>
+<p>
+	The only difference between this version of <strong>RestartButton.Click</strong> and the previous version is the <strong>Ladybug.MoveTo</strong> block and its arguments. The built-in function <strong>random integer</strong> is called twice, once to generate a legal x coordinate and once to generate a legal y coordinate. While there is nothing to prevent the ladybug from being placed on top of the aphid or the frog, the odds are against it.
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<p> 
+<strong>Test your app.</strong> <em>Restart the game and make sure the ladybug shows up in a new random location.</em>
+</p>
+</div>
+</div>
+<h2>Adding Sound Effects</h2>
+<p>
+	When you tested the game, you may have noticed there isn't very good feedback when an animal gets eaten. To add sound effects and tactile feedback, do the following:
+	<ol>
+		<li>In the Component Designer, add a <b>Sound</b> component. Set its <b>Source</b> to the sound file you uploaded.</li>
+		<li>Go to the Blocks Editor, where you will:
+			<ul>
+				<li>Make the device vibrate when an aphid is eaten by adding a <strong>Sound1.Vibrate</strong> block with an argument of 100 (milliseconds) in <strong>EatAphid</strong>.</li>
+				<li>Make the frog ribbit when it eats the ladybug by adding a call to <strong>Sound1.Play</strong> in <strong>Ladybug.CollidedWith</strong> just before the call to <strong>GameOver</strong>.</li>
+			</ul>
+		</ol>
+	</p>
+<h2>Variations</h2>
+<p>
+	Here are some ideas of how to improve or customize this game:
+	<ul>
+		<li>Currently, the frog and aphid keep moving after the game has ended. Prevent this by setting their <b>Enabled</b> properties to false in <strong>GameOver</strong> and back to true in <strong>RestartButton.Click</strong>.</li>
+		<li>Display a score indicating how long the ladybug has remained alive. You can do this by creating a label that you increment in <strong>Clock1.Timer</strong>.</li>
+		<li>Make the energy bar more visible by increasing the <b>Height</b> of <b>EnergyCanvas</b> to 2 and drawing two lines, one above the other, in <b>DrawEnergyLine</b>. (This is another benefit of having a procedure rather than duplicated code to erase and redraw the energy line: you just need to make a change in one place to change the size—or color, or location—of the line.)</li>
+		<li>Add ambiance with a background image and more sound effects, such as nature sounds or a warning when the ladybug's energy level gets low.</li>
+		<li>Have the game get harder over time, such as by increasing the frog's <b>Speed</b> property or decreasing its <b>Interval property</b>.</li>
+		<li>Technically, the ladybug should disappear when it is eaten by the frog. Change the game so that the ladybug becomes invisible if eaten by the frog but not if it starves to death.</li>
+		<li>Replace the ladybug, aphid, and frog pictures with ones more to your taste, such as a hobbit, orc, and evil wizard or a rebel starfighter, energy pod, and Imperial starfighter.</li>
+	</ul>
+</p>
+<h2>Summary</h2>
+<p>
+	With two games now under your belt (if you completed the MoleMash tutorial), you now know how to create your own games, which is the goal of many new programmers or wannabes! Specifically, you learned:
+	<ul>
+		<li>You can have multiple <b>ImageSprite</b> components (the ladybug, the aphid, and the frog) and can detect collisions between them.</li>
+		<li>The tilt of the device can be detected by the <b>OrientationSensor</b>, and the value can be used to control the movement of a sprite (or anything else you can imagine).</li>
+		<li>A single <b>Clock</b> component can control multiple events that occur at the same frequency (changes in the ladybug's and frog's directions), or at different frequencies, by using the <strong>random fraction</strong> block. For example, if you want an event to occur approximately one-fourth (25 percent) of the time, put it in the body of an <strong>if</strong> block that is only executed when the result of <strong>random fraction</strong> is less than .25.</li>
+		<li>You can have multiple <b>Canvas</b> components in a single app, which we did to have both a playing field and to display a variable graphically (instead of through a <b>Label</b>).</li>
+		<li>User-defined procedures can be defined with parameters (such as "color" and "length" in <b>DrawEnergyLine</b>) that control the behavior, greatly expanding the power of procedural abstraction.</li>
+	</ul>
+</p>
+<p>
+	Another component useful for games is <b>Ball</b>, which only differs from <b>ImageSprite</b> in having the appearance of a filled circle rather than an arbitrary image.
+</p>
+
+
+
+
+
+{% endblock %}
+
+

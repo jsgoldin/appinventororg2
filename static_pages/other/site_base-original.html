@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://twitter.github.com/bootstrap/examples/fluid.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>AppInventor.org</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <div id="background">
+    <container style="background-color:blue;" width="100%" height="100"></container>
+    </div>
+
+    <!-- Le styles -->
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/ai_styles.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <script src="/assets/js/jquery-1.7.2.min.js"></script>
+
+    <!-- Avatar-->
+    <link rel="stylesheet" href="demos/demo_files/main.css" type="text/css" />
+<link rel="stylesheet" href="demos/demo_files/demos.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/jcrop-thumbnail.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/jcrop-preview.css" type="text/css" />
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+
+<!-- Youtube Videos, need to be load first-->
+      <script src="/assets/js/carousel-video-players-dynamic.js"></script>
+
+<!-- Google Analytics Starts -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-684961-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- Google Analytics Ends -->
+</head>
+
+
+
+<div class="navbar navbar-absolute-top" style="top:0;" >
+    <div class="navbar-inner"  >
+        <div class="container" style="background-color:#282828">
+            
+            <a class="brand" href="/">
+                <div style="font-family:mused">
+                <span style="color: #A4CA39"><strong>appinventor</strong></span>
+                <span style="color: #FFAE00">.org</span>
+            </div></a>
+            
+
+            
+                <ul class="nav">
+                    <!-- <li class="active"><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li> -->
+                    <li><a href="/" style="color:white; font-family:arial rounded">Home</a></li>
+                   
+                    
+            {% if userStatus.ifUser%}
+                     <li>
+                        <a href="/profile" style="color:white;font-family:arial rounded"> Profile </a> 
+                     </li>        
+                     <li>
+                        <a href="{{userStatus.logouturl}}" style="color:white;font-family:arial rounded"> Logout </a>
+                     </li>
+                     {% else %}
+                     <li>
+                        <a href="{{userStatus.loginurl}}" style="color:white;font-family:arial rounded"> Login </a>
+                     </li>
+                     {% endif %}
+
+
+
+                </ul>
+		     
+		     <!--Google Custom Search starts-->
+		     <ul class="nav" style="float:right">
+                     <li>
+                        <div style="width:0px;overflow:hidden;height:0px;">
+                           <!-- if you use display:none here it doesn't work-->
+                           <gcse:search></gcse:search>
+                        </div>
+                        <form class="form-search" id="searchbox_002873954108960030835:l3_jvzrakeu" action="/siteSearch">
+                           
+                           <input class="input-xlarge" id="q" name="q" type="text" value='{{q}}'/>
+                           <button class="btn">Search</button>
+                        </form>
+                     </li>
+                  </ul>
+                  <!--Google Custom Search ends-->
+
+
+
+            
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="well sidebar-nav" style="background:#FFAE00">
+                <ul class="nav nav-list">
+                    <li>
+                     <img src="../../assets/img/Sidebar-Logo-v2.png" alt="SideBar Image"/>
+                    </li>
+
+                    <br/>
+
+                   
+                     <li class="nav-header" style="color:white; font-size:15px">AI Classic</li>
+		    <li><a href="/setup" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Setup</a></li>
+                    <li><a href="/hellopurr-steps" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Tutorials</a></li>
+
+<!--
+
+                     <li class="nav-header" style="color:white; font-size:15px">AI 2 (NEW!)</li>
+		    <li><a href="/setupAI2" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Setup</a></li>
+                    <li><a href="/appInventor2" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Tutorials</a></li>
+--!>                  
+
+                    <li class="nav-header" style="color:white; font-size:15px">Learn</li>
+                    <li><a href="/projects" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Online Book</a></li>
+                    <li><a href="/course-in-a-box" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Course-in-a-Box</a></li>
+                    <li><a href="/concepts" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Roadmap</a></li>
+
+                    <li class="nav-header" style="color:white; font-size:15px">About</li>
+                    <li><a href="/about" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;AppInventor.org</a></li>
+                    <li><a href="/teaching-android" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Why AppInventor?</a></li>
+                    <li><a href="/media" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Media</a></li>
+                    
+                    <li class="nav-header" style="color:white; font-size:15px">Links</li>
+<li><a href="http://gallery.appinventor.mit.edu/" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;AI Gallery</a></li>
+<li><a href="http://appinventorblog.com/" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;AI Blog</a></li>
+
+                    <li><a href="http://beta.appinventor.mit.edu/" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;MIT App Inventor</a></li>
+                    <li><a href="http://ai2.appinventor.mit.edu" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;ai2 @MIT</a></li>
+                    
+
+                    <li class="nav-header" style="color:white; font-size:15px">Apps</li>
+                    {% for app in allAppsList %}
+                    <li><a href="/{{ app.appId }}-steps" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;{{ app.title }}</a></li>
+                    {% endfor %}
+
+			    <li class="nav-header" style="color:white; font-size:15px">App Inventor 2</li>
+                    {% for app in allAppsList2 %}
+                    <li><a href="/{{ app.appId }}-steps" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;{{ app.title }}</a></li>
+                    {% endfor %}
+
+
+                </ul>
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->
+        <!-- /SIDE MENU -->
+
+
+        <div class="span9">
+            {% block body %}
+
+            {% endblock %}
+
+
+        </div>
+        <!--/.fluid-container-->
+
+
+        <!-- SCRIPTS
+       ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+	
+        <script src="/assets/js/jquery.js"></script>
+	   <script src="/assets/js/bootstrap.js"></script>
+
+	   <script src="/assets/js/cse-searchbox.js"></script>
+	   <script src="/assets/js/index-onload.js"></script>
+	   <script src="/assets/js/carousel-datato-index.js"></script>
+
+	   <!-- Avatar Preview-->
+	   <script src="/assets/js/jquery.Jcrop.js"></script>
+        <script src="/assets/js/jcrop-xy.js"></script>
+	   <script src="/assets/js/jcrop-preview.js"></script>
+
+
+
+    </div>
+</div>
+
+</body>
+<!-- /BODY -->
+
+<footer>
+     <div class="hr"> </div> 
+
+    <div class="row-fluid">
+
+        <div class="span2">
+            &nbsp;
+        </div>
+
+        <div class="span8">
+
+            <div class="tiny-text" style="color:black">
+                  AppInventor.org by David Wolber is licensed under an
+                  <b><a style="color:#0072e4" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></b>.
+                  <br/>
+                  Designed by: Colin Russel,&nbsp; Cayla Shaver</br>
+                  Coded by: <b><a style="color:#0072e4" href="http://adamtothfejel.appspot.com">Adam Toth-Fejel</a></b> <b><a style="color:#0072e4" href="http://www.jdmanuel.com">,&nbsp; J.D. Manuel.</a></b> <b><a style="color:#0072e4" href="https://www.cs.usfca.edu/~blu2/introduction/">,&nbsp; Bin Lu</a></b>
+
+            </div>
+        </div>
+
+        <div class="span2">
+            &nbsp;
+        </div>
+
+    </div>
+</footer>
+
+</html>
+
+
+
+

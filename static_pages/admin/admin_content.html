@@ -1,0 +1,52 @@
+
+<html>
+<head>
+<link rel="stylesheet" href="../../assets/JordansStuff/css/bootstrap.css" type=”text/css”>
+<link rel="stylesheet" href="../../assets/JordansStuff/css/JordansAwesomeStyleSheet.css" type=”text/css”>
+<link rel="stylesheet" href="../../assets/JordansStuff/css/AdminContentStyles.css" type=”text/css”>
+
+</head>
+<body>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-md-6 subject-outer-box'>
+                <div class='subject-inner-box'>
+                    <h1>{{ current_module.m_title }}</h1>
+                    <h4>{{ current_module.m_description }}</h4>
+                    <p hidden id='keyid'>{{ current_module.key.id }}</p>
+                </div>
+            </div>
+            <div class='col-md-6'></div>
+        </div>
+        <div class='row'>
+            <div class='col-md-6 edit-outer-box'>
+                <form role="form" id="ContentForm">
+                    <div class="form-group">
+                        <label for="ContentTitle">Title</label> <input type="text" class="form-control" id="ContentTitle" placeholder="New Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="ContentDescription">Description</label> <input type="text" class="form-control" id="ContentDescription" placeholder="New Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="ContentURL">URL</label> <input type="text" class="form-control" id="ContentURL" placeholder="New URL">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" value="Quiz">Quiz
+                        </label> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" value="App">App
+                        </label> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" value="Nugget">Nugget
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-default">Create it!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../../assets/JordansStuff/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../assets/JordansStuff/js/AdminContent.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+</body>
+</html>

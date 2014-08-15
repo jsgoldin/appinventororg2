@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://twitter.github.com/bootstrap/examples/fluid.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>AppInventor.org</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <div id="background">
+    <container style="background-color:blue;" width="100%" height="100"></container>
+    </div>
+
+    <!-- Le styles -->
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/ai_styles.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <script src="/assets/js/jquery-1.7.2.min.js"></script>
+
+    <!-- Avatar-->
+    <link rel="stylesheet" href="demos/demo_files/main.css" type="text/css" />
+<link rel="stylesheet" href="demos/demo_files/demos.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/jquery.Jcrop.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/jcrop-thumbnail.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/jcrop-preview.css" type="text/css" />
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"
+          href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+
+<!-- Youtube Videos, need to be load first-->
+      <script src="/assets/js/carousel-video-players-dynamic.js"></script>
+
+<!-- Google Analytics Starts -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-684961-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- Google Analytics Ends -->
+
+
+
+    <style type="text/css">
+        
+        body {
+
+         padding-bottom: 40px;
+         }
+         .dropdown-toggle: active, .open .dropdown-toggle {background:#FFF !important; 
+           color:#000 !important;}
+         /*override*/
+       }
+        .carousel-caption {
+         position: relative;
+     padding: 5px 15px 5px;
+         }
+     .carousel .carousel-control { 
+    visibility: hidden; 
+    top: 2.5%;
+    font-size: 60px;
+    width: 30px;
+      height: 30px;
+    line-height: 20px;
+      }
+      .carousel:hover .carousel-control { visibility: visible; 
+      }
+      .navbar-inner {
+      background-color: #282828; /* background color will be black for all browsers */
+      background-image: none;
+      background-repeat: no-repeat;
+      filter: none;
+      }
+
+      .navbar .brand {
+      margin-left: -15px;
+      text-indent: -15px; /* This value could be different for another layout */
+      }
+
+      .carousel-caption p a {display:none;}
+      #carousel-nav {
+      //text-align: center;
+      padding-left:55px;
+      border-bottom: 1px dotted #CCC;
+      }
+      #carousel-nav a {
+      margin: 5px 0px;
+      padding-top:2px;
+      padding-left:20px;
+      padding-right:20px;
+      padding-bottom:2px;
+      background: #eee;
+      color: #000;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      opacity: 0.5;
+      filter: alpha(opacity=50);
+      font-size: 18px;
+      }
+         
+      #carousel-nav a.active {
+      background: red;
+      color: #fff;
+      }
+         
+     tr.spaceUnder > td
+   {
+   padding-bottom: 2px;
+   }
+       tr.spaceUnder > td > a
+   {
+       //font-size: 15px;
+
+   }
+  #colorstrip{
+    width: 1px; height: 15px;
+    border-style: solid;
+    background-color: orange;
+    border-color: orange;
+}
+
+  .dropdown-menu:before, 
+  .dropdown-menu:after {
+     border: none !important;
+     content: none !important;
+  }
+  body { 
+    padding-top: 65px; 
+  }
+
+
+   .leadfont {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 50;
+    line-height: 18px;
+  color:grey;
+  }
+
+  .mediumleadfont {
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: 30;
+    line-height: 12px;
+  color:grey;
+  }
+
+
+   .smallleadfont {
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 30;
+    line-height: 12px;
+  color:grey; 
+  }
+  .navbar .nav li.dropdown > .dropdown-toggle .caret {
+    border-bottom-color: #ffffff;
+    border-top-color: #ffffff;
+    margin-left: -5px
+}
+
+  .navbar{
+margin-left:-20px;
+margin-right:-20px;
+}
+
+  .nav > li > a {
+
+	padding-left:6px;
+}
+
+
+      </style>
+
+</head>
+
+
+
+<body style="background-color: #abe9ff;">
+<div class="navbar navbar-fixed-top">  
+  <div class="navbar-inner" style="height:34px; >  
+    <div class="container" >  
+    <ul class="nav" style="position:absolute;min-width:1300px;">
+    <a class="brand" style=";height:20px; border-style: solid;
+    border-color: orange; border-bottom-style:none; border-top-style:none;margin-left:40px;" href="/">
+                <div style="font-family:mused">
+                <span style="color: #FFF; font-size: 25px"><strong>&nbsp;&nbsp;appinventor</strong></span>
+                <span style="color: #FFAE00; font-size: 25px">.org</span>
+              
+            </div></a>  
+
+  
+  <ul class="nav" style="width:70px">  
+  <li class="dropdown">  
+    <a href="#"  
+          class="dropdown-toggle"  
+          data-toggle="dropdown" style="color: white; font-size:16px;height:20px; width:50px">  
+          Build
+          <b class="caret" style="color:white"></b>  
+    </a>  
+    <ul class="dropdown-menu">  
+     <li><a href="http://ai2.appinventor.mit.edu">MIT App Inventor</a></li>  
+  <li><a href="http://beta.appinventor.mit.edu">MIT App Inventor (Classic)</a></li>    
+    </ul>  
+    
+</ul>   
+  <ul class="nav" style="width:70px">  
+  <li class="dropdown">  
+    <a href="#"  
+          class="dropdown-toggle"  
+          data-toggle="dropdown" style="color: white;height:20px; width:50px; border-style: solid; font-size: 16px; border-color: orange; border-bottom-style:none; border-top-style:none; border-right-style:none;">  
+          Learn
+          <b class="caret"></b>  
+    </a>  
+    <ul class="dropdown-menu">  
+      <li><a href="/knowledgeMap">How Do I?</a></li>  
+      <li><a href="/course-in-a-box2">Course-in-a-box</a></li>
+      <li><a href="/Quizzes">Quizzes</a></li> 
+    </ul>  
+  </li>  
+</ul>     
+<ul class="nav" style="width:70px">  
+  <li class="dropdown">  
+    <a href="#"  
+          class="dropdown-toggle"  
+          data-toggle="dropdown" style="color: white;height:20px; width:50px; border-style: solid; font-size: 16px; border-color: orange; border-bottom-style:none; border-top-style:none; border-right-style:none;">  
+          Teach
+          <b class="caret" style="color:white"></b>  
+    </a>  
+    <ul class="dropdown-menu">  
+     <li><a href="/course-in-a-box2">Course-in-a-box</a></li>  
+     <li><a href="/TeachingAI">Teaching Ideas</a></li> 
+  <li><a href="http://www.appinventor.org/teacherMap">Who's Teaching AI?</a></li>  
+  <li><a href="https://groups.google.com/forum/#!forum/app-inventor-instructors">Teacher Forum</a></li>  
+  <li><a href="/resources">Resources</a></li> 
+    </ul>  
+  </li>  
+</ul>     
+<ul class="nav" style="width:70px">  
+  <li class="dropdown">  
+    <a href="#"  
+          class="dropdown-toggle"  
+          data-toggle="dropdown" style="color: white;height:20px; width:50px; border-style: solid; font-size: 16px; border-color: orange; border-bottom-style:none; border-right-style:none; border-top-style:none;"> 
+          Share
+          <b class="caret"></b>  
+    </a>   
+    <ul class="dropdown-menu">  
+     <li><a href="http://gallery.appinventor.mit.edu/#">Gallery</a></li>  
+  <li><a href="http://appinventor.mit.edu/explore/forums.html">Forum</a></li>    
+    </ul>  
+  </li>  
+</ul>
+<ul class="nav" style="width:70px">  
+  <li class="dropdown">  
+    <a href="#"  
+          class="dropdown-toggle"  
+          data-toggle="dropdown" style="color: white;height:20px; width:50px; border-style: solid; font-size: 16px; border-color: orange; border-bottom-style:none; border-top-style:none;"> 
+          About
+          <b class="caret"></b>  
+    </a>   
+    <ul class="dropdown-menu">  
+    <li><a href="/about">About</a></li> 
+    <li><a href="http://democratizecomputing.org">Democratize Computing Lab</a></li> 
+     <li><a href="http://appinventorblog.com/">Blog</a></li>  
+  <li><a href="/media">Media</a></li>
+  <li><a href="/teaching-android">Why App Inventor?</a></li>
+    
+    </ul>  
+  </li>  
+</ul>
+
+   {% if userStatus.ifUser%}
+                     <li>
+                        <a href="/profile" class="brand" style="color: white;height:20px; width:60px; border-style: solid; font-size: 16px; border-color: orange; border-bottom-style:none; border-left-style:none; border-top-style:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profile</a> 
+                     </li>        
+                     <li>
+                        <a href="{{userStatus.logouturl}}" class="brand" style="color: white;height:20px; width:60px; border-style: solid; font-size: 16px; border-color: orange; border-bottom-style:none; border-left-style:none; border-top-style:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout </a>
+                     </li>
+   {% else %}
+		     <li>
+		     	<a href="{{userStatus.loginurl}}" class="brand" style="color: white;height:20px; width:60px; border-style: solid; font-size: 16px; border-color: orange; border-bottom-style:none; border-left-style:none; border-top-style:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login</a> 
+                     </li>
+   {% endif %}
+   
+
+                     
+<!--Google Custom Search starts-->
+         <ul class="nav" style="margin-left: 20px;">
+                     <li>
+                        <div style="width:0px;overflow:hidden;height:0px;">
+                           <!-- if you use display:none here it doesn't work-->
+                           <gcse:search></gcse:search>
+                        </div>
+                        <form class="form-search" id="searchbox_002873954108960030835:l3_jvzrakeu" action="/siteSearch">
+                           
+                           <input class="input-xlarge" id="q" name="q" type="text" value=''/>
+                           <button class="btn">Search</button>
+                        </form>
+                     </li>
+                  </ul>
+<!--Google Custom Search ends-->
+
+
+
+
+    </div>  
+  </div>  
+</div>  
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2" style="min-width:200px;">
+            <div class="well sidebar-nav" style="background:#FFAE00">
+                <ul class="nav nav-list">
+
+                    <li>
+                     <img src="../../assets/img/Sidebar-Logo-v2.png" alt="SideBar Image" style="min-width:100px;"/>
+                    </li>
+                    <br/>
+
+<!-- temporarily hidden, save for future use
+         
+                    <div id="myCollapsibleExample"><a href="#title5" data-toggle='collapse' class="nav-header" style="color:white; font-size:15px">Modules</a></div>
+                    <div id="title5" class="collapse">
+                    <li><a href="/module1" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Introduction</a></li>
+                    <li><a href="/module2" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Games</a></li>
+                    <li><a href="/module3" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Texting/Location</a></li>
+                     <li><a href="/module4" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Data</a></li>
+                    <li><a href="/module5" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Web APIs</a></li>
+                    <li><a href="/moduleX" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;SE/Procedures</a></li>
+                    <li><a href="/quizquestions" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Quizzes&nbsp;</a></li></div>
+
+end of temporarily hidden -->
+ <li class="nav-header" style="color:white; font-size:15px">Learn</li>
+ 			   <li><a href="/course-in-a-box2" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;Course-in-a-Box</a></li>
+			  <li><a href="/FAQ" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;How do you? FAQ</a></li>
+  			  <li><a href="/book2" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;AI2 Book preview</a></li>
+			  <li><a href="/book" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;AI Classic Book</a></li>
+			  
+  <li class="nav-header" style="color:white; font-size:15px">Apps (AI2)</li>
+                    {% for app in allAppsList2 %}
+                  <li><a href="/{{ app.appId }}-steps" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;{{ app.title }}</a></li>
+                    {% endfor %}
+
+                  <li class="nav-header" style="color:white; font-size:15px">Apps (Classic)</li>
+                    {% for app in allAppsList %}
+                    <li><a href="/{{ app.appId }}-steps" style="color:#0072e4; font-weight:bold;">&nbsp;&nbsp;{{ app.title }}</a></li>
+                    {% endfor %}
+                
+            </ul>
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->
+        <!-- /SIDE MENU -->
+
+
+        <div class="span9">
+            {% block body %}
+
+            {% endblock %}
+
+
+        </div>
+        <!--/.fluid-container-->
+
+
+        <!-- SCRIPTS
+       ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+	
+        <script src="/assets/js/jquery.js"></script>
+	   <script src="/assets/js/bootstrap.js"></script>
+
+	   <script src="/assets/js/cse-searchbox.js"></script>
+	   <script src="/assets/js/index-onload.js"></script>
+	   <script src="/assets/js/carousel-datato-index.js"></script>
+
+	   <!-- Avatar Preview-->
+	   <script src="/assets/js/jquery.Jcrop.js"></script>
+        <script src="/assets/js/jcrop-xy.js"></script>
+	   <script src="/assets/js/jcrop-preview.js"></script>
+
+
+
+    </div>
+</div>
+
+</body>
+<!-- /BODY -->
+
+<footer>
+     <div class="hr"> </div> 
+
+    <div class="row-fluid">
+
+        <div class="span2">
+            &nbsp;
+        </div>
+
+        <div class="span8">
+
+            <div class="tiny-text" style="color:black">
+                  AppInventor.org by David Wolber is licensed under an
+                  <b><a style="color:#0072e4" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike 3.0 Unported License</a></b>.
+                  <br/>
+                  Designed by: Colin Russel,&nbsp; Cayla Shaver</br>
+                  Coded by: <b><a style="color:#0072e4" href="http://adamtothfejel.appspot.com">Adam Toth-Fejel</a></b> <b><a style="color:#0072e4" href="http://www.jdmanuel.com">,&nbsp; J.D. Manuel.</a></b> <b><a style="color:#0072e4" href="https://www.cs.usfca.edu/~blu2/introduction/">,&nbsp; Bin Lu</a></b>
+
+            </div>
+        </div>
+
+        <div class="span2">
+            &nbsp;
+        </div>
+
+    </div>
+</footer>
+
+</html>
+
+
+

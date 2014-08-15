@@ -1,0 +1,64 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>NoteTaker: Build, Conceptualize, Customize</H1>
+<br/>
+
+<h2> Build It</h2>
+<ol>
+<li>
+Open a browser and navigate to <a href="http://beta.appinventor.mit.edu">http://beta.appinventor.mit.edu</a>. Login with your Google account.
+</li>
+<li>
+Now build the NoteTaker app. Follow the instructions in the <a href="/notetaker-steps">step-by-step video lesson</a>. There is no book chapter for this app.
+</li>
+</ol>
+<h2>Conceptualize It</h2>
+ <div class="row-fluid">
+<div class="span6">
+<p>After completing the NoteTaker tutorial, discuss these questions with a partner or small group, jotting down notes while you discuss. Later, create a portfolio page with answers to the questions in your own words.
+
+
+
+
+
+<ol>
+<li>
+User generated data is information that is not fixed, but input by users of the app. So the questions in the President Quiz app are fixed or concrete data, while the notes in NoteTaker are user generated data. Show how you define a list when the data is user-generated.
+</li>
+<li>
+Show the blocks you would use to add the number 7 to a list.
+</li>
+
+<li>
+Suppose you want to display the contents of a list, but you do not care how it is formatted. Sketch the blocks for this.</li>
+
+<li>Consider the displayList procedure in the blocks to the right. If there were two notes submitted, 1)just chilling and 2)sleeping, how would they appear when displayed. In what order would they be displayed? How would you change the order?</li>
+<li>
+The NoteTaker stores the list of notes persistently. What does this mean? What blocks in the app are associated with persistence? Why is there an if block in Screen.Initialize?
+</li>
+<li>
+How are items removed in the NoteTaker app (blocks are not shown to the right).
+</li>
+</ol>
+
+</div>
+<div class="span6">
+<img src="/apps/notetaker/blocks6.png"/><br/>
+
+</div>
+</div>
+
+<h2>Customize It</h2>	
+<ol>
+<li>
+Modify the app so that the first note submitted (the oldest) appears at the top (chronological order).</li>
+<li>
+Convert the app into a workout record app. So instead of submitting a note, the user submits a two-part record, the name of the exercise (e.g., pushups) and the number completed (e.g. 50).
+</li>
+</ol>
+<h2>Applying Persistence to the Music App</h2>
+Modify your Music Recording app so that it records the last song recorded persistently (when you open the app and press play, it will play the song recorded during the last session.</li>
+
+
+{% endblock %}

@@ -1,0 +1,100 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>MoleMash: Build, Conceptualize, Customize</H1>
+<br/>
+
+<h2> Build It</h2>
+<ol>
+<li>
+Open a browser and navigate to <a href="http://beta.appinventor.mit.edu">http://beta.appinventor.mit.edu</a>. Login with your Google account.
+</li>
+<li>
+Now build the MoleMash app. Follow the instructions in App Inventor chapter 3 using either the paperback version, the <a href="apps/molemash/molemash.pdf">pdf version</a>, or the <a href="/molemash">step-by-step video lesson</a>.
+</li>
+</ol>
+<h2>Conceptualize It</h2>
+ <div class="row-fluid">
+<div class="span6">
+<p>After completing the MoleMash tutorial, discuss these questions with a partner or small group, jotting down notes while you discuss. Later, create a portfolio page with answers to the questions in your own words.
+Topics: Canvases and drawing, event parameters
+
+<ol>
+<li>
+MoleMash has an event that doesn't really fit into the category of user-initiated event or external event. Name it.
+</li>
+<li>
+What function blocks can you use to move an image sprite within the canvas? What are the function's parameters?
+</li>
+
+<li>
+If you didn't have a MoveTo block, what blocks could you use to move the mole?</li>
+
+<li>
+What is the unit of measurement for location on the canvas?</li>
+<li>
+The version of MoleMash to the right defines a procedure. What is the procedure? Could you write the MoleMash app without defining the procedure?
+Why do you think the procedure was defined?
+</li>
+<li>
+Describe the effect of the blocks within the MoveMole procedure. Why is the subtraction performed?
+  </li>
+ <li> b. The X and Y property of an image sprite specify the location of the sprite. But a sprite is not a single point, so what does X and Y really denote?
+  </li>
+</li>
+
+<li>
+Sketch the blocks to increment (add a point to) the score in MoleMash. How would you subtract?
+</li>
+<li>
+When a row of blocks is performed, in what order are they performed?
+</li>
+</ul>
+
+</div>
+<div class="span6">
+<img src="/apps/molemash/moleMashBook.png"/><br/>
+
+</div>
+</div>
+
+<h2>Customize It</h2>
+<p>Note: these variations are slightly modified from the book version.
+<h3>From the book</h3>
+<ol>
+<li>
+Add buttons to let the user make the mole move faster or slower.
+</li>
+<li>
+Add a label to keep track of and display the number of times the mole has appeared (moved).
+</li>
+<li>
+Add a second ImageSprite with a picture of something that the user should not hit, such as a flower. If the user touches it, penalize him by reducing his score or ending the game.
+</li>
+<li>
+Instead of using a picture of a mole, let the user select a picture with the ContactPicker component.
+</li>
+</ol>
+<h3> More Variations</h3>
+<ol>
+<li>
+Customize the app with a different image (not a mole), a canvas background image, and custom sound effects. 
+</li>
+<li>
+Allow the user to specify how fast the mole should move by entering a number in a textbox. The number should be in "jumps per second" and this should be clear to user.
+</li>
+<li>
+Constrain the app so that the user can only enter a number that is reasonable for the speed of the mole. If the user enters an invalid number, display an error message using the Notifier component and keep the speed as it was.
+</li>
+<li>
+Show the user's score using a colored bar instead of a label.
+</li>
+<li>
+add "levels": when the user hits the "mole" x number of times, make the mole go faster automatically.
+</li>
+<li>
+Keep a high-score for the user and display it in the app. Note that even if the app is closed and re-opened, the high score isn't forgotten. You'll need to use the TinyDB component.
+</li>
+</ol>
+<a href="/apps/molemash/molemash_custom.zip">Solution for Customization Exercises</a>. Download this zip file, then open App Inventor and choose More Actions | Upload Source.
+{% endblock %}

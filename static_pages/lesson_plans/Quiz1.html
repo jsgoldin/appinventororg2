@@ -1,0 +1,102 @@
+{% extends "teaching_base.html" %}
+{% block body %}
+    <style>
+      
+
+      /* Custom container */
+      .container {
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+      .container > hr {
+        margin: 60px 0;
+      }
+      ul#list { 
+        list-style-type: none; 
+      }
+
+     
+
+      
+
+    </style>
+
+    
+
+  <body>
+
+    <div class="container">
+
+     
+
+       <hr>
+        <h1><center>Quiz 1</center></h1>
+        
+        
+    
+
+      <hr>
+
+      <!-- Example row of columns -->
+      <div class="row-fluid row-fluid-temp">
+        <div class="span9">
+          
+          <h2>1.</h2>
+          <p>Name and define three ways in which the Android platform is more open than iOS (iPhone). Which of these is key to why App Inventor was developed for Android?</p>
+         <div id="myCollapsibleExample"><a href="#demo1" data-toggle="collapse">Answer</a></div>  
+        <div id="demo1" class="collapse">  
+          <p>Programmers can access the source (program) code and change it making a new app. (it is Android itself which is open source)</p>
+          &nbsp;&nbsp;&nbsp;Any companies can make mobile devices for Android.
+          &nbsp;&nbsp;&nbsp;Android is an open distribution meaning it is easy to publish on the market
+          (no curation) and can upload anywhere such as the web.  The third way is key as to why App Inventor was developed for Android.
+          </div>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span9">
+          <h2>2.</h2>
+         Sketch the blocks for an app that:
+          <p style="margin: 20px;">a.  Has one button, Button1 </br>
+             b.  The image on the button toggles between three images each time you click. First it show Obama, then Romney, then Clinton, then Obama again, and so on. Assume the images are named obama.jpg, romney.jpg, and clinton.jpg.
+            </p>
+              <img src="quiz1blocks.png" height="500" width="500"  >
+          <div id="myCollapsibleExample"><a href="#demo2" data-toggle="collapse">Answer</a></div>  
+        <div id="demo2" class="collapse">  
+          <img src="q1n2.png" height="500" width="500">
+        </div>
+       </div>
+     </div>
+     <div class="row-fluid">
+        <div class="span9">
+          <h2>3.</h2>
+          <ul><li>a. In the following blocks, circle and label the i)event, ii)
+            event-handler, iii) function calls, iv)parameter</li>
+            <img src="quiz1labelblocks.png" height="300" width="300"   >
+            <li>b. Define the term parameter in the context of an App Inventor app
+          </li></ul>
+        <div id="myCollapsibleExample"><a href="#demo3" data-toggle="collapse">Answer</a></div>  
+        <div id="demo3" class="collapse">  
+        <p>a. i)event=button click</br>  &nbsp;&nbsp;&nbsp;&nbsp;ii)event-handler=the whole thing</br>
+         &nbsp;&nbsp;&nbsp;&nbsp;iii)function calls=sound.play and sound.vibrate</br>
+         &nbsp;&nbsp;&nbsp;&nbsp;iv)paramter=number 500(milliseconds)</p>
+        <img src="q1n3.png" height="300" width="300"></br></br>
+
+        b.  A Parameter is the info a function needs to 
+        do its job</br>
+        &nbsp;&nbsp;&nbsp;&nbsp;500 milliseconds=1/2 sec</br>
+        &nbsp;&nbsp;&nbsp;&nbsp;1 millisecond=1/1000 sec 
+          </div>
+        </div>
+      </div>
+     
+        
+      
+
+      <hr>
+
+      
+
+    </div> 
+
+   {% endblock %}

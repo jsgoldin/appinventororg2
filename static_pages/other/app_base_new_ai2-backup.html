@@ -1,0 +1,496 @@
+{% extends "course_base.html" %}
+{% block body %}
+
+<style>
+
+*{
+
+//border:1px solid red;
+}
+
+textarea{
+        resize:none;
+}
+
+.container-fluid{
+	   min-width:800px;
+}
+
+.row-fluid{
+	 
+}
+
+.reply_href{
+color:grey;
+
+}
+.reply_href:hover{
+color:#3366CC;
+text-decoration:underline;
+}
+
+</style>
+
+<script>
+
+function insert_reply(comment_index, key, b){
+     var comment_box;
+
+	if(document.getElementById('comment_'+comment_index).innerHTML == '' | document.getElementById('comment_'+comment_index).style.display == 'none'){
+	comment_box = '<form action="/postComment" method="post"><div class="span1"><img src="/imageHandler?key={{userStatus.account.key}}" style="width:100%;height=100%;" /></div><div class="span11"><textarea type="text" name="comment_content" placeholder="Enter comment/question" maxlength="800" autofocus style="width:98%;"></textarea><input type="hidden" value= "{{ app.appId }}" name="comment_appId" /><input type="hidden" value= "{{ app.appId }}-steps" name="redirect_link" /><input type="hidden" value= ' + key +' name="comment_replyTo" id="comment_replyTo_id"/></div><div class="row-fluid"><div class="span9"></div><div class="span2 pull-right"><input style="width:98%;" type="submit" class="btn" value="Post"/></div></div></form>';
+
+		document.getElementById('comment_'+comment_index).innerHTML = comment_box;
+		document.getElementById('comment_'+comment_index).style.display = '';
+
+	}else{
+		document.getElementById('comment_'+comment_index).innerHTML = '';
+	}
+
+if(b == 'True'){
+	//hide
+	document.getElementById('comment_to_'+comment_index).style.display = 'none';
+	document.getElementById('comment_to_link_' + comment_index).innerHTML= '(show the comment)';
+}
+
+
+
+	
+}
+
+
+function showComment(comment_index){
+
+	var id = 'comment_to_' + comment_index;
+	var id2 = 'comment_to_link_'+ comment_index;
+ 
+	if(document.getElementById(id).style.display == 'none'){
+		document.getElementById(id).style.display = '';
+		document.getElementById(id2).innerHTML= '(hide the comment)';
+		document.getElementById('comment_'+comment_index).innerHTML = '';
+
+	}else{
+		document.getElementById(id).style.display = 'none';
+		document.getElementById(id2).innerHTML= '(show the comment)';
+
+	}
+
+}
+
+
+
+</script>
+
+
+<div class="container-fluid" style="padding-top: 0px;">
+   <div class="row-fluid">
+      <div class="span4">
+         <h2>{{app.heroHeader}}</h2>
+         <p>{{app.heroCopy}}</p>
+      </div>
+      <div class="offset1 span2">
+         <img class="" src="apps2/{{ app.appId }}/hero.png" alt="screenshot" style="height:200px;
+            width:200px;">
+         </img>
+      </div>
+      <div class="offset2 span2">
+         <table class="pull-right">
+            {% if app.pdfChapter %}
+            <tr class="spaceUnder">
+               <td>
+                  <a class="btn btn-success btn-block btn-mini" style="background:#FFAE00"
+                     href="apps2/{{ app.appId }}/{{ app.appId }}.pdf">
+                  Download the Chapter&nbsp;&nbsp;
+                  <i class="icon-download-alt icon-white"></i></a>
+               </td>
+            </tr>
+            {% else %}
+            <!--Hide PDF, nothing here-->
+            {% endif %}
+            <tr class="spaceUnder">
+               <td>
+                  <a class="btn btn-success btn-block btn-mini" style="background:#FFAE00"
+                     href="apps2/{{ app.appId }}/{{ app.appId }}.zip" title="Download this zip file for the App Inventor source blocks. Then, in App Inventor, go to More Actions | Upload Source, to upload and customize the app">
+                  Download the Source&nbsp;&nbsp;
+                  <i class="icon-download-alt icon-white"></i>
+                  </a>
+               </td>
+            </tr>
+            <tr class="spaceUnder">
+               <td>
+                  <a class="btn btn-success btn-block btn-mini" style="background:#FFAE00"
+                     href="apps2/{{ app.appId }}/{{ app.appId }}.apk">
+                  Download the APK&nbsp&nbsp&nbsp&nbsp&nbsp;&nbsp;
+                  <i class="icon-download-alt icon-white"></i>
+                  </a>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <img class="qr" src="apps2/{{ app.appId }}/qr.png" alt="" style="width:150px;height:150px" title="Scan barcode to install this app on your phone.">
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+   <div class="row-fluid">
+      {% if steps %}
+    <div class="span11" id="course-steps">
+         <div id="myCarousel" class="carousel slide thumbnail">
+            <!-- Carousel Nav -->
+            <div id="carousel-nav">
+               {% for step in steps|slice:":1" %}
+               <a href="#myCarousel" data-to="{{forloop.counter}}" class="active" onclick="stopVideo();">{{forloop.counter}}</a>
+               {%  endfor %}
+               {% for step in steps|slice:"1:" %}
+               <a href="#myCarousel" data-to="{{forloop.counter|add:1}}" onclick="stopVideo();">{{forloop.counter|add:1}}</a>
+               {%  endfor %}
+            </div>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+               {% for step in steps|slice:":1" %}
+               <div class="active item">
+                  <div class="row-fluid">
+                     <div class="span9">
+                        <p class="leadfont">
+                           <a href="" onclick="return false;">
+                           <strong>Step{{ step.number }}:</strong> {{step.header}}
+                           </a>
+                           <br>
+                           <small>{{step.copy}}</small>
+                        </p>
+           <p></p>
+                        <p class="smal6Cleadfont">
+                           <a id="step{{ step.number }}blocklink" data-toggle="collapse" data-target="#step{{ step.number }}block">View Blocks For This Step<small>&nbsp;&nbsp;(click for details)</small></a>
+                        <div id="step{{ step.number }}block" class="collapse"> <img src="apps2/{{ app.appId }}/blocks{{ step.number }}.png" ></img></div>
+                        </p>
+                        <script>
+                           $(document).ready(function(){
+                             $('#step{{ step.number }}block').on('shown', function () {
+                                 document.getElementById("step{{ step.number }}blocklink").innerHTML="Hide Blocks For This Step<small>&nbsp;&nbsp;(click to hide)</small>"
+                             })
+                             
+                             $('#step{{ step.number }}block').on('hidden', function () {
+                                 document.getElementById("step{{ step.number }}blocklink").innerHTML="View Blocks For This Step<small>&nbsp;&nbsp;(click for details)</small>"
+                             })
+                           
+                             
+                           });
+                        </script>
+                     </div>
+        <div class="span2 pull-right">
+        {% if steps %}
+              <p></p>
+        <p class="mediumleadfont pull-right">
+        <a href="{{ app.appId }}">View All Steps</a>
+        </p>
+
+
+              {% else %}
+              <!--Hide See All Steps Link, nothing here-->
+              {% endif %}
+        </div>
+                  </div>
+                  <div id="youtube_player{{step.number}}"></div>
+                  <script>
+                     addVideo('{{step.videoPath}}', 'youtube_player{{step.number}}');
+         $(document).ready(function () {
+
+              $(window).resize(function () {
+
+                  $("#youtube_player{{step.number}}").css({
+                      width: $("#course-steps").width(),
+                      height: ($(this).width()) * .37
+                  });
+
+              });
+
+            $(window).resize();
+
+        });
+                      
+                  </script>
+                  <div class="carousel-caption">
+                     <h4>&nbsp&nbsp&nbsp&nbsp&nbsp {{ step.number }}: {{step.header}}</h4>
+                  </div>
+               </div>
+               {%  endfor %}
+               {% for step in steps|slice:"1:" %}
+               <div class="item">
+                  <div class="row-fluid">
+                     <div class="span9">
+                        <p class="leadfont">
+                           <a href="" onclick="return false;">
+                           <strong>Step{{ step.number }}:</strong> {{step.header}}
+                           </a>
+                           <br>
+                           <small>{{step.copy}}</small>
+                        </p>
+                        <p class="smallleadfont">
+                           <a id="step{{ step.number }}blocklink" data-toggle="collapse" data-target="#step{{ step.number }}block">View Blocks For This Step<small>&nbsp;&nbsp;(click for details)</small></a>
+                        <div id="step{{ step.number }}block" class="collapse"> <img src="apps2/{{ app.appId }}/blocks{{ step.number }}.png" ></img></div>
+                        </p>
+                        <script>
+                           $(document).ready(function(){
+                             $('#step{{ step.number }}block').on('shown', function () {
+                                 document.getElementById("step{{ step.number }}blocklink").innerHTML="Hide Blocks For This Step<small>&nbsp;&nbsp;(click to hide)</small>"
+                             })
+                             
+                             $('#step{{ step.number }}block').on('hidden', function () {
+                                 document.getElementById("step{{ step.number }}blocklink").innerHTML="View Blocks For This Step<small>&nbsp;&nbsp;(click for details)</small>"
+                             })
+                           
+                             
+                           });
+                        </script>
+                     </div>
+        <div class="span2">
+        {% if steps %}
+              <p></p>
+        <p class="smallleadfont">
+        <a href="{{ app.appId }}">View All Steps</a>
+        </p>
+
+
+              {% else %}
+              <!--Hide See All Steps Link, nothing here-->
+              {% endif %}
+        </div>
+
+                  </div>
+                  <div id="youtube_player{{step.number}}"></div>
+                  <script>
+                     addVideo('{{step.videoPath}}', 'youtube_player{{step.number}}');
+        $(document).ready(function () {
+
+              $(window).resize(function () {
+
+                  $("#youtube_player{{step.number}}").css({
+                      width: $("#course-steps").width(),
+                      height: ($(this).width()) * .37
+                  });
+
+              });
+
+            $(window).resize();
+
+        });
+                      
+                  </script>
+                  <div class="carousel-caption">
+                     <h4>&nbsp&nbsp&nbsp&nbsp&nbsp {{ step.number }}: {{step.header}}</h4>
+                  </div>
+               </div>
+               {%  endfor %}
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#myCarousel" onclick="if(currentPage>0){currentPage=((currentPage-(2))%pagesCount);$('#myCarousel').carousel(currentPage+1);stopVideo();}">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" onclick="if(currentPage<pagesCount){$('#myCarousel').carousel(currentPage+1);stopVideo();}">&rsaquo;</a>
+         </div>
+      </div>
+   {% else %}
+    <div class="span6">
+    <p class="leadfont">
+    Video coming soon, for now    
+    <a href="apps2/{{ app.appId }}/{{ app.appId }}.pdf">
+                  download the chapter
+                  <i class="icon-download-alt icon-white"></i></a>
+
+
+    </p>  
+    </div>
+   {% endif %}
+
+
+      
+   </div>
+   <!-- End of row-fluid-->
+
+   <div class="row-fluid">
+  <div class="span4">
+         {% if app.conceptualLink %}
+         <a class="btn btn-success" style="background:#FFAE00"
+            href="http://appinventor.mit.edu/explore/content/setup-mit-app-inventor.html" title="Getting set up">
+         &nbspSetup AppInventor&nbsp;&nbsp;
+         </a>
+         {% else %}
+         <!--Hide Conceptual Link, nothing here-->
+         {% endif %}
+      </div>
+
+  <div class="span4"> 
+  </div>
+
+      <div class="offset1 span2">
+         {% if nextApp %}
+         <a class="btn btn-block btn-success" style="background:#FFAE00" href="/{{ nextApp.appId }}-steps" title="{{nextApp.title}}">&nbsp;&nbsp;Next App&nbsp;&nbsp;<i class="icon-arrow-right icon-white"></i>&nbsp;&nbsp;</a>
+         {% else %}
+         <!--Hide nextApp Link, nothing here-->
+         {% endif %}
+      </div>
+      </br>
+
+    </br>
+         {% if app.conceptualLink %}
+         <a class="btn btn-success" style="background:#FFAE00"
+            href="{{ app.appId }}Lesson" title="Study questions and customization challenges">
+         &nbspConceptualize/Customize&nbsp;&nbsp;
+         </a>
+         {% else %}
+         <!--Hide Conceptual Link, nothing here-->
+         {% endif %}
+    
+   </div>
+
+
+   <div class="row-fluid" style="margin-top:50px;" >
+    <div class="span7">
+      {% if userStatus.ifUser%}
+	 <form action="/postComment" method="post">
+	 <div class="row-fluid" style="width:98%;">
+		<div class="span1">
+	 <img src="/imageHandler?key={{userStatus.account.key}}" style="width:100%;height=100%;" />
+	 </div>
+	 <div class="span11">
+	 		<textarea type="text" name="comment_content" placeholder="Enter comment/question" maxlength="800" style="width:99%;"></textarea>
+    
+      		<input type="hidden" value= "{{ app.appId }}" name="comment_appId" />
+      	<input type="hidden" value= "{{ app.appId }}-steps" name="redirect_link" />
+	 </div>
+	 </div>
+	  <div class="row-fluid" style="width:98%;"> 
+	 <div class="span10">
+	  
+	 </div>
+	 <div class="span2">
+	 <input type="submit" class="btn" value="Post" style="width:100%;"/>
+	 </div>
+	 </div>
+	 </form>
+
+    
+     
+      {% else %}
+      <div class="span12" style="background: #eee;
+border: 1px solid #ccc;height:50px;width:100%;">
+      <p><a href="{{userStatus.loginurl}}"> Login </a>
+ now to post a comment!</p>
+      </div>
+      {% endif %}
+
+
+        
+    
+
+     <table class="table table-hover">
+  
+  
+
+
+     {% for comment in comments %}
+  <tr>
+    <td width="100%">
+    
+    <div class="span1">
+		<img src="/imageHandler?key={{comment.submitter.key}}" style="width:50px;height=50px;" />
+    </div>
+    <div class="span11">
+		<div class="row-fluid">
+		
+        <b>{{comment.submitter.displayName}}</b>
+     
+		</div>
+		<div class="row-fluid">
+
+	{{comment.content}}
+     			<font size="1" color="grey">{{comment.timestamp}}</font>
+		</div>
+
+		<div class="row-fluid">
+			<div class="span4">
+			{% if comment.replyTo %}
+			<a href="" class = "reply_href" onclick="insert_reply({{forloop.counter}}, '{{comment.key}}', 'True');return false;">reply</a>
+			{% else %}
+			<a href="" class = "reply_href" onclick="insert_reply({{forloop.counter}}, '{{comment.key}}', 'False');return false;">reply</a>
+			{% endif %}
+	      </div>
+		 <div class="span7">
+			{% if comment.replyTo %}
+			<font size="1" color="grey">in reply to</font>
+			{{comment.replyTo.submitter.displayName}}
+			<a id="comment_to_link_{{forloop.counter}}" onclick="showComment('{{forloop.counter}}');">(show the comment)</a>
+
+			
+
+			{% endif %}
+	      	</div>
+		</div>
+
+		<div class="row-fluid" id="comment_to_{{forloop.counter}}" style="display:none;margin-top:5px;margin-bottom:10px;">
+		<!-- start of cited-comment-->
+		{% if comment.replyTo %}
+			
+		
+		
+		<div class="span1">
+		<img src="/imageHandler?key={{comment.replyTo.submitter.key}}" style="width:50px;height=50px;" />
+    		</div>
+    		<div class="span11">
+		<div class="row-fluid">
+        		<b>{{comment.replyTo.submitter.displayName}}
+			</b>
+     		 </div>  
+		 <div class="row-fluid">
+        		{{comment.replyTo.content}}
+        		<font size="1" color="grey">{{comment.replyTo.timestamp}}</font>
+      	</div>
+		</div>
+
+		
+	
+		
+
+		{% endif %}
+		<!-- end of cited-comment-->
+		</div>
+
+
+
+		<div class="row-fluid" id="comment_{{forloop.counter}}" style="display:none;margin-left:-2px;width:100%;">
+		</div>
+
+
+		 
+		
+
+
+
+		 
+          {% if userStatus.admin %}
+        <div class="span2">
+        <a href="/deleteComment?commentKey={{comment.key}}&redirect_link=%2F{{ app.appId }}-steps">delete</a>
+        </div>
+
+	  
+	   
+          {% endif %}	
+		
+
+  
+    </div>
+    
+    </td> 
+  </tr>
+     {% endfor %}
+  
+  
+  </table>
+
+   </div>
+   </div>
+
+
+
+
+</div>
+<!-- End of Container-->{% endblock %}
+{#end of body block#}

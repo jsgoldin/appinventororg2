@@ -1,0 +1,356 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>Working with Databases</h1>
+	<div class="row-fluid">
+	
+	<div class="span6">
+<p>
+	<em>Facebook has a database of every member's account information, friends list, and posts. Amazon has a database of just about everything you can buy. Google has a database of information about every page in the World Wide Web. Though not to this scale, almost every nontrivial app you can create will have a database component. 
+</p>
+<p>
+	In most programming environments, building an app that communicates with a database is an advanced programming technique: you have to set up a server with database software like Oracle or MySQL and then write code that interfaces with that database. In universities, such programming is generally not taught until an upper-level software engineering or database course. 
+</p>
+
+<p>
+	App Inventor does the heavy lifting for you when it comes to databases (and lots of other useful things!). The language provides components that reduce database communication to simple store and get operations. You can create apps that store data directly on the Android device, and with some setup, you can create apps that share data with other devices and people by storing it in a centralized web database.</em>
+</p>
+</div> 
+	<div class="span4">
+		<img src="{{apps2Dir}}/Databases22/d22.png" alt="">
+	</div>
+
+</div>
+<p>
+	The data in variables and component properties is short-term: if the user enters some information in a form and then closes the app, that information will be gone when the app is reopened. To store information persistently, you must store it in a database. The information in databases is said to be <em>persistent</em> because even when you close the app and reopen it, the data is still available. 
+</p>
+<p>
+	As an example, consider Chapter 4's No Texting While Driving app, which sends an autoresponse to texts that come in when the user is busy. This app lets the user enter a custom message to be sent in response to incoming texts. If the user changes the custom message to "I'm sleeping; stop bugging me" and then closes the app, the message should still be "I'm sleeping; stop bugging me" when the app is reopened. Thus, the custom message must be stored in a database, and every time the app is opened, that message must be retrieved from the database back into the app.
+</p>
+<h2>Storing Persistent Data in TinyDB </h2>
+<p>
+	App Inventor provides two components to facilitate database activity: <b>TinyDB</b> and <b>TinyWebDB</b>. <b>TinyDB</b> is used to store persistent data directly on the Android device; this is useful for highly personalized apps where the user won't need to share her data with another device or person, as in No Texting While Driving. <b>TinyWebDB</b>, on the other hand, is used to store data in a web database that can be shared among devices. Being able to access data from a <em>web</em> database is essential for multiuser games and apps where users can enter and share information (like the MakeQuiz app in Chapter 10). 
+</p>
+<p>
+	The database components are similar, but <b>TinyDB</b> is a bit simpler, so we'll explore it first. With <b>TinyDB</b>, you don't need to set up a database at all; the data is stored in a database directly on the device and associated with your app. 
+</p>
+<p>
+	You transfer data to long-term memory with the <strong>TinyDB.StoreValue</strong> block, as shown in Figure 22-1, which comes from the No Texting While Driving app.
+</p>
+
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-1.png" alt="">
+</p>
+<p>
+	<em>Figure 22-1.  The TinyDB.StoreValue block stores data to the device's long-term memory</em>
+</p>
+<p>
+	A tag-value scheme is used for database storage. In Figure 22-1, the data is tagged with the text "responseMessage." The value is some text the user has entered for the new custom response-say, "I'm sleeping; stop bugging me." 
+</p>
+<p>
+	The tag gives the data you're storing in the database a name-a way to reference the information-while the value is the data itself. You can think of the tag as a key that you'll use later when you want to retrieve the data from the database. 
+</p>
+<p>
+	Likewise, you can think of an App Inventor TinyDB database as a table of tag-value pairs. After the TinyDB1.StoreValue in Figure 22-1 is executed, the device's database will have the value listed in Table 22-1.
+</p>
+<p>
+	<em>Table 22-1. The value stored in the databases Tag Value responseMessage I'm sleeping; stop bugging me</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-1T.png" alt="">
+</p>
+<p>
+	An app might store many tag-value pairs for the various data items you wish to be persistent. The tag is always text, while the value can be either a single piece of information (a text or number) or a list. Each tag has only one value; every time you store to a tag, it overwrites the existing value.
+</p>
+<h2>Retrieving Data from TinyDB </h2>
+<p>
+	You retrieve data from the database with the <strong>TinyDB.GetValue</strong> block. When you call <strong>GetValue</strong>, 
+	you request particular data by providing a tag. For the No Texting While Driving app, you can request the custom 
+	response using the same tag as we used in the <strong>StoreValue</strong>, "responseMessage." The call to 
+	<strong>GetValue</strong> returns the data, so you must plug it into a variable. 
+</p>
+<p>
+	Often, you'll retrieve data from the database when the app opens. App Inventor provides a special event handler,
+	 <strong>Screen.Initialize</strong>, which is triggered when the app starts up. You need to be careful to consider the case
+	 when there is no data yet in the database (e.g., the first time app is launched). 
+	 When you call <strong>GetValue</strong>, you specify a "valueIfTagNotThere" parameter. If there is no data, that value
+	 will be returned from the call. 
+</p>
+<p>
+	The blocks in Figure 22-2, for the <strong>Screen.Initialize</strong> of No Texting While Driving, are indicative of how 
+	many apps will load data on initialization. 
+</p>
+<p>
+	The blocks put the data returned from <strong>GetValue</strong> into the label <b>ResponseLabel.</b> if there is
+	data already in the database, it is placed in <b>ResponseLabel</b>. If
+	there is no data for the given tag, the "valueIfTagNotThere" value-- "I'm driving right now..." is placed in it. 
+	
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-2.png" alt="">
+</p>
+<p>
+	<em>Figure 22-2. A template for loading database data when the app launches</em>
+</p>
+<h2>Storing and Sharing Data with TinyWebDB </h2>
+<p>
+	The <b>TinyDB</b> component stores data in a database located directly on the Android device. This is appropriate for personal-use apps that don't need to share data among users. For instance, many people might download the No Texting While Driving app, but there's no need for the various people using the app to share their custom responses with others. 
+</p>
+<p>
+	Of course, many apps do share data: think of Facebook, Twitter, and popular multiuser games such as Words with Friends. For such data-sharing apps, the database must live on the Web, not the device. The MakeQuiz/TakeQuiz apps from Chapter 10 provide another example: a person on one phone creates a quiz and stores it in a web database so that a person on another phone can load the quiz and take it. 
+</p>
+<p>
+	<b>TinyWebDB</b> is the web counterpart to <b>TinyDB</b>. It allows you to write apps that store data on the Web, using a StoreValue/GetValue protocol similar to that of <b>TinyDB</b>.
+</p>
+<p>
+	By default, the <b>TinyWebDB</b> component stores data using a web database set up by the App Inventor team and accessible at http://appinvtinywebdb.appspot.com. That website contains a database and "serves" (responds to) web requests for storing and retrieving data. The site also provides a human-readable web interface that a database administrator (you) can use to examine the data stored there.
+</p>
+<p>
+	To explore the web database, open a browser to http://appinvtinywebdb.appspot.com and check out some of the tag-value data stored there. 
+</p>
+<p>
+	This default database is for development only; it is limited in size and accessible to all App Inventor programmers. Because any App Inventor app can store data there, you have no assurance that another app won't overwrite your data! 
+</p>
+<p>
+	If you're just exploring App Inventor or in early the stages of a project, the default web database is fine. But if you're creating an app for real deployment, at some point you'll need to set up your own web database. Since we're just exploring right now, we'll use the default web database. Later in the chapter, you'll learn how to create your own web database and configure <b>TinyWebDB</b> to use it instead. 
+</p>
+	<div class="row-fluid">
+		<div class="span6">
+<p>
+	In this section, we'll build a voting app (depicted in Figure 22-3) to illustrate how TinyWebDB works. The app will have the following features: 
+	<ul>
+		<li>Users are prompted to enter their email address each time the app loads. That account name will be used to tag the user's vote in the database.</li>
+		<li>Users can submit a new vote at any time. In this case, their old vote will be overwritten.</li>
+		<li>Users can view the votes from everyone in the group.</li>
+		<li>For the sake of simplicity, the issue being voted on is determined outside the app, such as in a classroom setting in which the teacher announces the issue and asks everyone to vote electronically. (Note that this example could be extended to allow users to prompt votes by posting issues to vote on from within the app.)</li>
+	</ul>
+</p>
+	</div>
+<div align="left"><p>
+		<div class="span6">
+			<p>
+			<img src="{{apps2Dir}}/Databases22/d22-3.png" alt="">
+			</p>
+			<p>
+				<em>Figure 22-3. A Voting app that stores votes to TinyWebDB</em>
+			</p>
+
+</div> </div>
+<div align="left"><h2>Storing Data with TinyWebDB </h2>
+<p>
+	The <strong>TinyWebDB.StoreValue</strong> block works the same as <strong>TinyDB.StoreValue</strong>, only the data is stored on the Web. For our voting sample, assume the user can enter a vote in a text box named <b>VoteTextBox</b> and click a button named <b>VoteButton</b> to submit the vote. To store the vote to the web database so others can see it, we'll code the <strong>VoteButton.Click</strong> event handler like the example in Figure 22-4.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-4.png" alt="">
+</p>
+<p>
+	<em>Figure 22-4. Using the VoteButton.Click event handler to store a vote to the database</em>
+</p>
+<p>
+	The tag used to identify the data is the user's email, which has previously been stored in the variable <b>myEmail</b> (we'll see this later). The value is whatever the user entered in VoteTextBox. So, if the user email was <em>wolber@gmail.com</em> and his vote was "Obama," the entry would be stored in the database as shown in Table 22-2. 
+</p>
+<p>
+	<em>Table 22-2. The tag and value for the vote are recorded in the database</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-2T.png" alt="">
+</p>
+<p>
+	The <strong>TinyWebDB.StoreValue</strong> block sends the tag-value pair over the Web to the database server at http://appinvtinywebdb.appspot.com. Because it's the default service, it shows lots of data from various apps, so you may or may not see your app's data in the initial window that appears. If you don't see your data, there is a /<b>getValue</b> link that allows you to search for data with a particular tag. 
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<p> 
+<strong>Test your app.</strong> <em>As you program with TinyWebDB, use the web interface of the database server to test that data is being stored as you expect. </em>
+</p>
+</div>
+</div>
+<h2>Requesting and Processing Data with TinyWebDB </h2>
+<p>
+	Retrieving data with <b>TinyWebDB</b> is more complicated than with <b>TinyDB</b>. With <b>TinyDB</b>, the <strong>GetValue</strong> operation immediately returns a value because your app is communicating with a database directly on the Android device. With <b>TinyWebDB</b>, the app is requesting data over the Web, so Android requires a two-step scheme for handling it. 
+</p>
+<p>
+	With <b>TinyWebDB</b>, you request the data with <strong>GetValue</strong> and then process it later in a <strong>TinyWebDB.GotValue</strong> event handler. <strong>TinyWebDB.GetValue</strong> should really be called "RequestValue" because it just makes the request to the web database and doesn't actually "get" a value from it right away. To see this more clearly, check out the difference between the <strong>TinyDB.GetValue</strong> block (Figure 22-5) and the <strong>TinyWebDB.GetValue</strong> block (Figure 22-6).
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-5.png" alt="">
+</p>
+<p>
+	<em>Figure 22-5. The TinyDB.GetValue block</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-6.png" alt="">
+</p>
+<p>
+	<em>Figure 22-6. The TinyWebDB.GetValue block</em>
+</p>
+<p>
+	The <strong>TinyDB.GetValue</strong> block returns a value right away, and thus a plug appears on its left side so that the returned value can be placed into a variable or property. The <strong>TinyWebDB.GetValue</strong> block does not return a value immediately, so there is no plug on its left side. 
+</p>
+<p>
+	Instead, when the web database fulfills the request and the data arrives back at the device, a <strong>TinyWebDB.GotValue</strong> event is triggered. So you'll call <strong>TinyWebDB.GetValue</strong> in one place of your app, and then you'll program the <strong>TinyWebDB.GotValue</strong> event handler to specify how to handle the data when it actually arrives. An event handler like <strong>TinyWebDB.GotValue</strong> is sometimes called a <em>callback procedure</em>, because some external entity (the web database) is in effect calling your app back after processing your request. It's like ordering at a busy coffee shop: you place your order and then wait for the barista to call your name to actually go pick up your drink. In the meantime, she's been taking orders from everyone else in line too (and those people are all waiting for their names to be called as well).
+</p>
+<h2>GetValue-GotValue in Action </h2>
+<p>
+	For our sample app, we need to store and retrieve a list of the voters who have the app, as the ultimate goal is to show the votes of all users. 
+</p>
+<p>
+	The simplest scheme for retrieving list data is to request the data when the app launches, in the <strong>Screen.Initialize</strong> event, as shown in Figure 22-7. (In this example, we'll just call the database with the tag for "voterlist.")
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-7.png" alt="">
+</p>
+<p>
+	<em>Figure 22-7. Requesting data in the Screen1.Initialize event</em>
+</p>
+<p>
+	When the list of voters arrives from the web database, the <strong>TinyWebDB1.GotValue</strong> event handler will be triggered. Figure 22-8 shows some blocks for processing the returned list.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-8.png" alt="">
+</p>
+<p>
+	<em>Figure 22-8. Using the GotValue event handler to process the returned list</em>
+</p>
+<p>
+	The <b>valueFromWebDB</b> <em>argument</em> of <strong>GotValue</strong> holds the data returned from the database request. Event arguments like <b>valueFromWebDB</b> have meaning only within the event handler that invokes them (they are considered <em>local</em> to the event handler), so you can't reference them in other event handlers. 
+</p>
+<p>
+	It may seem a bit counterintuitive, but once you get used to the idea of arguments holding local data, you're probably already thinking about something that can handle data more <em>globally</em> (anywhere in an app): variables. Given that, it makes sense that <strong>GotValue</strong>'s key job is to transfer the data returned in <b>valueFromWebDB</b> into a variable. In this case, the data is transferred into the variable <b>voterList</b>, which you'll use in another event handler.
+</p>
+<p>
+	The <strong>if</strong> block in the event handler is also often used in conjunction with <strong>GotValue</strong>, the reason being that the database returns an empty text ("") in <b>valueFromWebDB</b> if there is no data for the requested tag-most commonly, when it's the first time the app has been used. By asking if the <b>valueFromWebDB</b> is a list, you're making sure there is some data actually returned. If the <b>valueFromWebDB</b> is the empty text (the <strong>if</strong> test is false), you don't put it into <b>voterList</b>. 
+</p>
+<p>
+	Note that <em>get data, check data, set data</em> (into a variable) is the same pattern you used in the preceding <b>TinyDB</b> example, but here you are expecting a list, so you use a slightly different test.
+</p>
+<h2>A More Complex GetValue/GotValue Example </h2>
+<p>
+	The blocks in Figure 22-8 are a good model for retrieving data in a fairly simplistic app. In our voting example, however, we need more complicated logic. Specifically: 
+	<ul>
+		<li>The app should prompt the user to enter his email address when the program starts. We can use a <b>Notifier</b> component for this, which pops up a window. (You can find the <b>Notifier</b> in the "Other stuff" palette in the Designer.) When the user enters his email, we'll store it in a variable.
+		</li>
+		<li>Only after determining the user's email should we call <strong>GetValue</strong> to retrieve the voter list. Can you figure out why? </li>
+	</ul>
+</p>
+<p>
+	Figure 22-9 shows the blocks for this more complicated scheme for requesting the database data.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-9.png" alt="">
+</p>
+<p>
+	<em>Figure 22-9. In this more complex scheme, GetValue is called after getting the user's email</em>
+</p>
+<p>
+	On startup (<strong>Screen1.Initialize</strong>), a <b>Notifier</b> component prompts the user to enter his email. When the user enters it (<strong>Notifier.AfterTextInput</strong>), his entry is put into a variable and label, and then <strong>GetValue</strong> is called to get the list of voters. Note that <strong>GetValue</strong> isn't called directly in <strong>Screen.Initialize</strong> because we need the user's email to be set first. 
+</p>
+<p>
+	So, with these blocks, when the app initializes, it prompts the user for his email and then calls <strong>GetValue</strong> with a tag of "voterlist." When the list arrives from the Web, <strong>GotValue</strong> will be triggered. Here's what we want to happen:
+	<ul>
+		<li><strong>GotValue</strong> should check if the data that arrives is nonempty (someone has used the app and initiated the voter list). If there is data (a voter list), we should check if our particular user's email is already in the voter list. If it's not, it should be added to the list, and the updated list should be stored back to the database.</li>
+		<li>If there isn't yet a voter list in the database, we should create one with the user's email as the only item. </li>
+	</ul>
+</p>
+<p>
+	Figure 22-10 shows the blocks for this behavior. 
+</p>
+<p>
+	The blocks first ask if a nonempty voter list came back from the database by calling <strong>is a list?</strong>. If so, the data is put into the variable <b>voterList</b>. Remember, <b>voterList</b> will have emails for everyone who has used this app. But we don't know if this particular user is in the list yet, so we have to check. If the user is not yet in the list, he is added with <strong>add item to list</strong>, and the updated list is stored to the web database. 
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-10.png" alt="">
+</p>
+<p>
+	<em>Figure 22-10. Using the GotValue blocks to process the data returned from the database and perform different actions based on what is returned</em>
+</p>
+<p>
+	The "else-do" part of the <strong>ifelse</strong> block is invoked if a list wasn't returned from the web database; this happens if nobody has used the app yet. In this case, a new <b>voterList</b> is created with the current user's email as the first item. This one-item voter list is then stored to the web database (with the hope that others will join as well!).
+</p>
+<h2>Requesting Data with Various Tags </h2>
+<p>
+	The voting app thus far manages a list of an app's users. Each person can see the emails of all the other users, but we haven't yet created blocks for retrieving and displaying each user's vote. 
+</p>
+<p>
+	Recall that the <b>VoteButton</b> allowed the user to submit a vote with a tag-value pair of the form "email: vote." If two people had used the app and voted, the pertinent database entries would look something like Table 22-3. 
+</p>
+<p>
+	<em>Table 22-3. The tag-value pairs stored in the database </em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-3T.png" alt="">
+</p>
+<p>
+	When the user clicks on the <b>ViewVotes</b> button, the app should retrieve all votes from the database and display them. Supposing the voter list has already been retrieved into the variable <b>voterList</b>, we can use a <strong>foreach</strong> to request the vote of each person in the list, as shown in Figure 22-11.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-11.png" alt="">
+</p>
+<p>
+	<em>Figure 22-11. Using a foreach block to request the vote of each person in the list</em>
+</p>
+<p>
+	Here we initialize a variable, <b>currentVotesList</b>, to an empty list, as our goal is to add the up-to-date votes from the database into this list. We then use <strong>foreach</strong> to call <strong>TinyWebDB1.GetValue</strong> for every email in the list, sending the email (<b>voterEmail</b>) as the tag in the request. Note that the votes won't actually be added to <b>currentVotesList</b> until they arrive via a series of <strong>GotValue</strong> events.
+</p>
+<h2>Processing Multiple Tags in TinyWebDB.GotValue </h2>
+<p>
+	Now that we want to display the votes in our app, things get a bit more complicated yet again. With the requests from <b>ViewVotesButton</b>, <strong>TinyWebDB.GotValue</strong> will now be returning data related to all the email tags, as well as the "voterlist" tag used to retrieve the list of user emails. When your app requests more than one item from the database with different tags, you need to code <strong>TinyWebDB.GotValue</strong> to handle all possible requests. (You might think that you could try to code multiple <strong>GotValue</strong> event handlers, one for each database request-can you figure out why this won't work?) 
+</p>
+<p>
+	To handle this complexity, the <strong>GotValue</strong> event handler has a <b>tagFromWebDB</b> argument that tells you which request has just arrived. In this case, if the tag is "voterlist," we should continue to process the request as we did previously. If the tag is something else, we can assume it's the email of someone in the user list, stemming from the requests triggered in the <strong>ViewVotesButton.Click</strong> event handler. When those requests come in, we want to add the data-the voter and vote-to the <b>currentVotesList</b> so we can display it to the user. 
+</p>	
+<p>
+	Figure 22-12 shows the entire TinyWebDB.GotValue event handler.
+</p>
+<h2>Setting Up a Web Database </h2>
+<p>
+	As we mentioned earlier in the chapter, the default web database at http://appinvtiny webdb.appspot.com is intended for prototyping and testing purposes only. Before you deploy an app with real users, you need to create a database specifically for your app. 
+</p>
+<p>
+	You can create a web database using the instructions at http://appinventorapi.com/ program-an-api-python/. This site was set up by one of the authors (Wolber) and contains sample code and instructions for setting up App Inventor web databases and APIs. The instructions point you to some code that you can download and use with only a minor modification to a configuration file. The code you'll download is the same as that used for the default web database set up by App Inventor. It runs on Google's App Engine, a cloud computing service that will host your web database on Google's servers for free. By following the instructions, you can have your own private web database (that is compliant with App Inventor's protocols) up and running within minutes and begin creating web-enabled mobile apps that use it. 
+</p>
+<p>
+	<img src="{{apps2Dir}}/Databases22/d22-12.png" alt="">
+</p>
+<p>
+	<em>Figure 22-12. The TinyWebDB.GotValue event handler</em>
+</p>
+<p>
+	Once you create and deploy your own custom web database (at which point, you'll know the URL for it), you can create apps that use it. For an app to use your custom database, you'll need to change a property in the <b>TinyWebDB</b> component, <b>ServiceURL</b>, so the component knows to store and retrieve data from your new custom database. Figure 22-13 illustrates how to do this.
+</p>
+	<div class="row-fluid">
+		<div class="span6">
+			<p>
+	<img src="{{apps2Dir}}/Databases22/d22-11.png" alt="">
+<p>
+	<em>Figure 22-13. Changing the ServiceURL property to the URL of your custom database</em>
+</p>
+</p>
+</div>
+<div class="span6">
+	<p>In this example, the <b>ServiceURL</b> is set to http://usfweb service.appspot.com, a web database that one of the authors set up for his students' apps (the end of "appspot.com" is cut off in the text box in Figure 22-13). Once the <b>ServiceURL</b> is set, all <strong>TinyWebDB.StoreValue</strong> and <strong>TinyWebDB.GetValue</strong> calls will be sent to the specified URL.
+</p>
+</div>
+</div>
+<h2>Summary </h2>
+<p>
+	App Inventor makes it easy to store data persistently through its <b>TinyDB</b> and <b>TinyWebDB</b> components. Data is always stored as a tag-value pair, with the tag identifying the data for later retrieval. Use <b>TinyDB</b> when it is appropriate to store data directly on the device. When data needs to be shared across phones (e.g., for a multiplayer game or a voting app), you'll need to use <b>TinyWebDB</b> instead. <b>TinyWebDB</b> is more complicated because you need to set up a callback procedure (the <strong>GotValue</strong> event handler), as well as a web database service. 
+</p>
+<p>
+	Once you get the hang of working with databases-especially the key <em>get data, check data, set data</em> pattern-you'll be building more complex apps in no time!
+</p>
+</div>
+</p>
+</div>
+
+
+
+
+
+
+	{% endblock %}
+
