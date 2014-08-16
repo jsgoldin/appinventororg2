@@ -101,14 +101,11 @@ $(document).ready(function() {
 	// set height of vertical nav bar list thing
 	$('.vertical-content-nav-bar').height($(window).height());
 	
-	// set height of scroll part of vertical nav bar
-	$('.vertical-content-nav-bar-scrollable-list').height($(window).height() - $('.vertical-content-nav-bar-title').height() - 20);
 
 	
 	$( window ).resize(function() {
 		$('.vertical-content-nav-bar').height($(window).height());
 		// set height of scroll part of vertical nav bar
-		$('.vertical-content-nav-bar-scrollable-list').height($(window).height() - $('.vertical-content-nav-bar-title').height() - 20);
 	});
 	
 

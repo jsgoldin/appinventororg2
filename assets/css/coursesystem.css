@@ -7,6 +7,7 @@
     box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
     margin-bottom: 25px;
     min-height: 150px;
+    background-color: white;
 }
 
 .course-box:hover {
@@ -22,8 +23,8 @@
 }
 
 .vertical-content-nav-bar-scrollable-list {
-    height: 200px;
     overflow: auto;
+    height: 70%;
 }
 
 .vertical-content-nav-bar-scrollable-list::-webkit-scrollbar {
@@ -46,10 +47,8 @@
 .vertical-content-nav-bar-title {
     width: 100%;
     padding-left: 20px;
-    margin-top: 20px;
-    height: 90px;
-    border-bottom: 1px #2d2d2d solid;
-    border-color: rgba(1, 1, 1, 0.1);
+    height: 15%;
+    border-bottom: 2px #000000 solid;
 }
 
 .vertical-content-nav-bar-course-title-text {
@@ -76,8 +75,6 @@
     font-weight: 900;
     font-size: 20px;
     letter-spacing: 3px;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .vertical-content-nav-bar-item-text {
@@ -104,12 +101,15 @@
     border-top: 1px #2d2d2d solid;
     border-color: rgba(1, 1, 1, 0.1);
     position: relative;
+    height: 15%;
 }
 
 .vertical-content-nav-bar-next-section-box-label {
     width: 100%;
     position: relative;
     padding-left: 20px;
+    height: 15%;
+    border-top: 2px #000000 solid;
 }
 
 .vertical-content-nav-bar-next-section-box-label-text {
@@ -134,18 +134,22 @@
 }
 
 #contentarea {
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-left: 283px;
 }
 
-.no-padding {
+.vertical-side-bar-container {
     padding-left: 0;
     padding-right: 0;
+    width: 283px;
+    float: left;
+    position: absolute;
 }
 
 .fixed {
     position: fixed;
     top: 0;
     z-index: 1;
-    width: 25%;
+    width: 283px;
 }

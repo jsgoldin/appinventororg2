@@ -1,5 +1,5 @@
 body {
-    background-color: white;
+    background-color: #F6F6F6;
 }
 
 .navbar-spacer {
@@ -218,6 +218,7 @@ body {
     border-color: rgba(1, 1, 1, 0.1);
     border-radius: 5px;
     box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
+    background-color: white;
 }
 
 .course-view-box-setting-left {
@@ -400,3 +401,8 @@ body {
     color: #978FBA;
     text-decoration: none;
 }
+
+
+
+
+
