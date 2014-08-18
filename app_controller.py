@@ -5160,13 +5160,13 @@ application = webapp.WSGIApplication(
         ('/tutorials', TutorialsHandler),
         
         # modules page
-        webapp.Route(r'/courses/<course_ID>', ModulesHandler),
+        webapp.Route(r'/tutorials/<course_ID>', ModulesHandler),
         
         # contents page
-        webapp.Route(r'/courses/<course_Title>/<module_Title>', ContentsHandler),
+        webapp.Route(r'/tutorials/<course_Title>/<module_Title>', ContentsHandler),
         
         # content display page
-        webapp.Route(r'/courses/<course_ID>/<module_ID>/<content_ID>', ContentHandler),
+        webapp.Route(r'/tutorials/<course_ID>/<module_ID>/<content_ID>', ContentHandler),
           
         # Editor Display Handlers
         ('/admin/courses', AdminCourseDisplayHandler),  # courses menu

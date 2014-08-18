@@ -109,7 +109,27 @@ $(document).ready(function() {
 	});
 	
 
-
+	
+	/* Tabbed module content browser functionality */
+	
+	// figure out the currently selected course and show it
+	module_id = $('.module-content-browser-box-tab-inner[clicked="true"]').attr('module_id');
+	$('.course-modules-wrapper[module_id="' + module_id + '"]').show();
+	
+	// detect click on other tabs and switch to them
+	$('.module-content-browser-box-tab-inner').click(function() {
+		
+		// hide the old one
+		selected_tab = $('.module-content-browser-box-tab-inner[clicked="true"]');
+		$('.course-modules-wrapper[module_id="' + selected_tab.attr('module_id') + '"]').hide();
+		selected_tab.attr('clicked', 'false');
+		
+		// show the new one
+		$(this).attr('clicked', 'true');
+		$('.course-modules-wrapper[module_id="' + $(this).attr('module_id') + '"]').show();		
+		
+	})
+	
 
 
 });

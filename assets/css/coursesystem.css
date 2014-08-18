@@ -209,7 +209,62 @@
     margin-left: -1%;
 }
 
+.module-content-browser-box {
+    border: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
+    background-color: white;
+    min-height: 600px;
+    margin-bottom: 20px;
+    margin-left: 226px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
 
+.module-content-browser-box-tabs {
+    background-color: gray;
+    width: 226px;
+    float: left;
+    border-radius: 30px 0px 0px 30px;
+}
+
+.module-content-browser-box-tab-inner {
+    border-bottom: 1px solid black;
+    padding: 20px;
+    height: 80px;
+}
+
+.module-content-browser-box {
+    padding-top: 20px;    
+}
+
+.module-content-browser-box-tab-inner:first-child:hover {
+    background-color: blue;        
+    border-radius: 30px 0px 0px 0px;
+}
+
+.module-content-browser-box-tab-inner:hover {
+    background-color: blue;        
+}
+
+.module-content-browser-box-tab-inner:last-child:hover {
+    background-color: blue;        
+    border-radius: 0px 0px 0px 30px;
+}
+
+.module-content-browser-box-tab-inner:last-child {
+    border-bottom: none;
+}
+
+.module-content-browser-box-wrapper {
+    margin-top: 40px;
+}
+
+
+.course-modules-wrapper {
+    display: none;'
+}
 
 /* tiny screens ----------- */
 @media ( min-width : 624px) and (max-width : 1301px) {
@@ -242,11 +297,10 @@
     .tutorials-jumbotron-settings img {
         display: none;
     }
-    
     .tutorials-below-jumbotron-text {
         display: none;
     }
-    
     .tutorials-jumbotron-settings {
         height: auto;
     }
+}
