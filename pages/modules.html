@@ -1,28 +1,28 @@
 {% extends "templates/site_base.html" %} {% block blockstart %}
 
+<div class="jumbotron jumbotron-wherami">
+    <div class='jumbotron-wherami-text'>Course In A Box</div>
+</div>
+
 <div class='container-fluid container-sidepadder'>
     <div class='row'>
         <div class='col-md-12'>
-
-
             <a href='/tutorials' class='back-to-courses-link'><span class="glyphicon glyphicon-chevron-left"></span> Courses</a>
+
+
 
             <div class='module-content-browser-box-wrapper'>
                 <div class='module-content-browser-box-tabs '>
 
-                    {% for key, values in moduleContentMapping.items %}
-                        {% if forloop.counter0 == 0 %}
-                        <div clicked='true' module_id='{{values.2}}' class='module-content-browser-box-tab-inner'>
-                            <p>{{key}}</p>
-                         </div>  
-                        {% endif %}
-                        {% if forloop.counter0 > 0 %}                      
-                        <div clicked='false' module_id='{{values.2}}' class='module-content-browser-box-tab-inner'>
-                            <p>{{key}}</p>
-                        </div>
-                        {% endif %}                    
-
-                    {% endfor %}
+                    {% for key, values in moduleContentMapping.items %} {% if forloop.counter0 == 0 %}
+                    <div clicked='true' module_id='{{values.2}}' class='module-content-browser-box-tab-inner'>
+                        <p>{{key}}</p>
+                    </div>
+                    {% endif %} {% if forloop.counter0 > 0 %}
+                    <div clicked='false' module_id='{{values.2}}' class='module-content-browser-box-tab-inner'>
+                        <p>{{key}}</p>
+                    </div>
+                    {% endif %} {% endfor %}
                 </div>
                 <div class='module-content-browser-box'>
 

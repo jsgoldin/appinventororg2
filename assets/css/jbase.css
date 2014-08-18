@@ -41,9 +41,8 @@ body {
     margin-top: 10px;
 }
 
-
 .login-stuff-wrapper a {
-    margin-right: 20px;    
+    margin-right: 20px;
 }
 
 .login-stuff-wrapper a:hover {
@@ -199,6 +198,24 @@ body {
 .course-jumbotron-settings {
     text-align: center;
     height: 300px;
+}
+
+.course-jumbotron {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.course-jumbotron h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    line-height: 200%;
+    background-color: yellow;
+}
+
+.course-jumbotron a {
+    float: left;
+    top: 6px;
 }
 
 .courses-jumbotron-settings {
@@ -360,8 +377,6 @@ body {
         background-color: white;
         border: 0;
     }
-    
-    
     .search-box-wrapper {
         display: none;
     }
@@ -401,7 +416,7 @@ body {
     line-height: 40px;
     font-weight: 500;
     font-size: 20px;
-    padding-left: 55px;
+    padding-left: 6%;
 }
 
 .courses-holder {
