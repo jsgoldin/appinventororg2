@@ -3,7 +3,12 @@ body {
 }
 
 .navbar-spacer {
-    margin-left: 12px;
+    margin-left: 6%;
+}
+
+.no-margin {
+    margin-left: -15px !important;
+    max-height: none;
 }
 
 .navbar-color {
@@ -21,26 +26,34 @@ body {
     color: white;
 }
 
-.banner-wrapper {
-    
+.no-padding {
+    padding-left: 0px;
+}
+
+.search-box-wrapper {
+    float: right;
+    width: 30%;
+    font-size: 15px;
+    height: 30px;
+}
+
+.login-stuff-wrapper {
+    margin-top: 10px;
+}
+
+
+.login-stuff-wrapper a {
+    margin-right: 20px;    
+}
+
+.login-stuff-wrapper a:hover {
+    text-decoration: none;
 }
 
 .top-banner {
     background-color: white;
-}
-
-.banner-logo {
-    margin-left: 3%;
-    padding: 1%;
-}
-
-.search-box {
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    width: 25%;
-    font-size: 15px;
-    height: 30px;
+    padding: 1% 6% 1% 6%;
+    position: relative;
 }
 
 .navbar-nav>li>a {
@@ -267,7 +280,7 @@ body {
 }
 
 .home-jumbotron {
-    background-image: url('/assets/img/stockbanner.jpg');
+    background-image: url('/assets/img/3d-android-colorful-wallpaper.jpg');
     background-size: 100%;
     min-height: 400px;
     position: relative;
@@ -347,6 +360,11 @@ body {
         background-color: white;
         border: 0;
     }
+    
+    
+    .search-box-wrapper {
+        display: none;
+    }
 }
 
 /* big screens ----------- */
@@ -401,8 +419,3 @@ body {
     color: #978FBA;
     text-decoration: none;
 }
-
-
-
-
-

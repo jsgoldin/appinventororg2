@@ -4335,7 +4335,7 @@ class Homehandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'pages/home.html')
         self.response.out.write(template.render(path, template_values))  
 
-class CoursesHandler(webapp.RequestHandler):
+class TutorialsHandler(webapp.RequestHandler):
     def get(self):
         # retreive all of the courses
         courses = Course.query(ancestor = ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
@@ -4351,7 +4351,7 @@ class CoursesHandler(webapp.RequestHandler):
                            'title' : 'Courses'
                            }
         
-        path = os.path.join(os.path.dirname(__file__), 'pages/courses.html')
+        path = os.path.join(os.path.dirname(__file__), 'pages/tutorials.html')
         self.response.out.write(template.render(path, template_values))
 
 class ModulesHandler(webapp.RequestHandler):
@@ -5157,7 +5157,7 @@ application = webapp.WSGIApplication(
         ('/', Homehandler),
         
         # courses page 
-        ('/courses', CoursesHandler),
+        ('/tutorials', TutorialsHandler),
         
         # modules page
         webapp.Route(r'/courses/<course_ID>', ModulesHandler),

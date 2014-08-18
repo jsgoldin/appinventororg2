@@ -1,13 +1,23 @@
 .course-box {
     cursor: pointer;
-    padding: 20px;
     border: 1px #2d2d2d solid;
     border-color: rgba(1, 1, 1, 0.1);
     border-radius: 5px;
     box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
-    margin-bottom: 25px;
-    min-height: 150px;
     background-color: white;
+    height: 400px;
+    width: 23%;
+    float: left;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 1% 1% 1% 1%;
+    position: relative;
+}
+
+.course-box h2 {
+    text-align: center;
 }
 
 .course-box:hover {
@@ -32,17 +42,14 @@
 }
 
 .vertical-content-nav-bar-scrollable-list::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
 }
- 
- 
+
 .vertical-content-nav-bar-scrollable-list::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
-
-
 
 .vertical-content-nav-bar-title {
     width: 100%;
@@ -153,3 +160,93 @@
     z-index: 1;
     width: 283px;
 }
+
+.container-sidepadder {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.tutorials-jumbotron-settings {
+    height: 400px;
+    margin-bottom: 0px;
+    background-color: #2E91BC;
+    background-position: 50% 20%;
+    background-size: 100%;
+    position: relative;
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.tutorials-jumbotron-settings img {
+    border-radius: 100%;
+    border: 10px solid white;
+}
+
+.tutorials-jumbotron-settings h2 {
+    font-size: 30px;
+    margin-top: 0px;
+}
+
+.tutorials-jumbotron-settings p {
+    margin: 0 0 26px;
+    font-size: 16px;
+    line-height: 140%;
+}
+
+.tutorials-below-jumbotron-text {
+    background-color: #6CB7C7;
+    text-align: center;
+    font-size: 25px;
+    line-height: 300%;
+    color: #333333;
+}
+
+.course-box-container {
+    margin-top: 20px;
+    margin-left: -1%;
+    margin-right: -1%;
+    margin-left: -1%;
+}
+
+
+
+/* tiny screens ----------- */
+@media ( min-width : 624px) and (max-width : 1301px) {
+    .course-box {
+        cursor: pointer;
+        border: 1px #2d2d2d solid;
+        border-color: rgba(1, 1, 1, 0.1);
+        border-radius: 5px;
+        box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
+        background-color: white;
+        height: 200px;
+        width: 48%;
+        margin-bottom: 30px;
+    }
+}
+
+/* really tiny screens ----------- */
+@media ( min-width : 0px) and (max-width : 624px) {
+    .course-box {
+        cursor: pointer;
+        border: 1px #2d2d2d solid;
+        border-color: rgba(1, 1, 1, 0.1);
+        border-radius: 5px;
+        box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
+        background-color: white;
+        height: 200px;
+        width: 98%;
+        margin-bottom: 20px;
+    }
+    .tutorials-jumbotron-settings img {
+        display: none;
+    }
+    
+    .tutorials-below-jumbotron-text {
+        display: none;
+    }
+    
+    .tutorials-jumbotron-settings {
+        height: auto;
+    }
