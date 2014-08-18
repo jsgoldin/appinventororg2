@@ -112,6 +112,8 @@ $(document).ready(function() {
 	
 	/* Tabbed module content browser functionality */
 	
+	
+	// 
 
 	// detect click on other tabs and switch to them
 	$('.module-content-browser-box-tab-inner').click(function() {

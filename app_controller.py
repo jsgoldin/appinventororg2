@@ -4405,19 +4405,11 @@ class ModulesHandler(webapp.RequestHandler):
             self.response.out.write(template.render(path, template_values))
 
 class ContentsHandler(webapp.RequestHandler):
-    def get(self, module_Title="", course_Title=""):
+    def get(self, module_ID="", course_ID=""):
         # retrieve corresponding contents entities
-        # (if they exist (course_Title and or module_Title might not correspond to an existing entity))
-        # and render the contents editor page
-        # if no entities are found, a page telling the user the bad news :( is displayed
-        
-        
-        # translate url pretty title to real title
-        course_Title = course_Title.replace('.', ' ')
-        module_Title = module_Title.replace('.', ' ')
         
         # retrieve the key of the course entity with the course_title
-        x = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).filter(Course.c_title == course_Title).fetch()
+        x = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).filter(Course.c_identifier == course_ID).fetch()
         
         if len(x) == 0:
             template_values = {}
@@ -4426,7 +4418,7 @@ class ContentsHandler(webapp.RequestHandler):
         else:
             course_entity = x[0]
             # course exists, attempt to look up module title entity
-            x = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course_entity.key.id()))).filter(Module.m_title == module_Title).fetch()
+            x = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course_entity.key.id()))).filter(Module.m_identifier == module_ID).fetch()
             if len(x) == 0:
                 template_values = {}
                 path = os.path.join(os.path.dirname(__file__), 'pages/pagenotfound.html')
@@ -4439,17 +4431,40 @@ class ContentsHandler(webapp.RequestHandler):
                 # retrieve all of the courses for the navbar
                 courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
                 
-                template_values = {"contents" : contents,
-                                   "course" : course_entity,
-                                   "module" : module_entity,
-                                   'title' : module_entity.m_title,
-                                   "courses" : courses,
-                                   'stylesheets' : ['/assets/css/coursesystem.css'],
-                                   'scripts' : ['/assets/js/coursesystem.js']
-                                   }
+                # construct dictionary of courses to modules mapping
+                    
+                moduleContentMapping = collections.OrderedDict()
+                # iterate over all the modules in the current course
                 
-                path = os.path.join(os.path.dirname(__file__), 'pages/contents.html')
+                modules = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course_entity.key.id()))).order(Module.m_index).fetch()    
+                for module in modules:
+                    # initialize key in mapping
+                    moduleContentMapping[str(module.m_title)] = [module.m_icon]
+                    moduleContentMapping[str(module.m_title)].append(module.m_description)
+                    moduleContentMapping[str(module.m_title)].append(module.m_identifier)
+                    # now look up the content associated with this module
+                    contents = Content.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course_entity.key.id()), Module, long(module.key.id()))).order(Content.c_index).fetch()
+                    for mod_content in contents:                     
+                        moduleContentMapping[str(module.m_title)].append(mod_content)
+             
+
+
+                userStatus = UserStatus().getStatus(self.request.uri)
+                       
+                template_values = {"title" : course_entity.c_title ,
+                               "modules" : modules,
+                               "course" : course_entity,
+                               "courses" : courses,
+                               'moduleContentMapping' : moduleContentMapping,
+                               'stylesheets' : ['/assets/css/coursesystem.css'],
+                               'scripts' : ['/assets/js/coursesystem.js'],
+                               'userStatus': userStatus
+                                }
+                  
+                path = os.path.join(os.path.dirname(__file__), 'pages/modules.html')
                 self.response.out.write(template.render(path, template_values))
+                
+                
                
 class ContentHandler(webapp.RequestHandler):
     def get(self, course_ID="", module_ID="", content_ID=""):
@@ -5163,7 +5178,7 @@ application = webapp.WSGIApplication(
         webapp.Route(r'/tutorials/<course_ID>', ModulesHandler),
         
         # contents page
-        webapp.Route(r'/tutorials/<course_Title>/<module_Title>', ContentsHandler),
+        webapp.Route(r'/tutorials/<course_ID>/<module_ID>', ContentsHandler),
         
         # content display page
         webapp.Route(r'/tutorials/<course_ID>/<module_ID>/<content_ID>', ContentHandler),

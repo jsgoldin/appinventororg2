@@ -16,17 +16,20 @@ function endsWith(str, suffix) {
 
 
 $("#createContentbtn").click(function(event) {
-	alert("create new content!")
-
 	title = $("#new_content_title").val();
 	description = $("#new_content_description").val();
-	content_type = $('input:radio[name=inlineRadioOptions]:checked').val();
 	file_path = $("#new_content_file_path").val();
 	identifier = $('#new_content_identifier').val();
+	
+	
+	content_type = $('#new_content_type').val();
 	
 	// need better way to get course and module id
 	course_id = $('.subject-box-top-half-inner').attr('course_id')
 	module_id = $('.subject-box-top-half-inner').attr('module_id')
+	
+	
+	errorString="";
 	
 	if(file_path == "") {
 		// TODO: ADD BETTER FILEPATH VALIDATION
@@ -49,8 +52,14 @@ $("#createContentbtn").click(function(event) {
 		validated = false;
 	}
 
-	if (content_type == undefined) {
+	if (content_type == "Choose a type:") {
 		errorString += "\tYou must choose a type!\n";
+		validated = false;
+	}
+	
+	if (identifier == "") {
+		// TODO: add better identifier validation
+		errorString += "\tYou must enter an identifier!\n";
 		validated = false;
 	}
 	
@@ -191,7 +200,9 @@ $(document).ready(function() {
 		$('#edit_content_description').val(description.text());
 		$('#edit_content_url').val(editableURL);
 		$('#edit_content_identifier').val(identifier);
-		$('#radioForm' + content_type).attr('checked', true);
+		
+		content_type
+		$('#edit_content_type').val(content_type);
 		
 		// set some sneaky modal attributes for later XP
 		$('#editModal').attr('content_id', content_root.attr('keyid'));
@@ -209,18 +220,36 @@ $(document).ready(function() {
 		description = $('#edit_content_description').val();
 		url = $('#edit_content_url').val();
 		identifier = $('#edit_content_identifier').val();
-		
-		content_type = $('input:radio[name=editinlineRadioOptions]:checked').val();
-
-		if (title == "") {
-			alert("title cannot be empty!")
-		} else {
 			
+		content_type = $('#edit_content_type').val();
+		
+		
+		validated = true;
+		errorString = "Missing required fields\n\n";
+		
+		if (title == "") {
+			errorString += "\tYou must enter a title!\n";
+			validated = false;
+		} else {
 			// make sure filepath ends with no redirect flag
 			if(!endsWith(url, "?flag=true")) {
 				url += "?flag=true"
 			}
-			
+		}
+
+		if (content_type == "Choose a type:") {
+			errorString += "\tYou must choose a type!\n";
+			validated = false;
+		}
+		
+		if (identifier == "") {
+			// TODO: add better identifier validation
+			errorString += "\tYou must enter an identifier!\n";
+			validated = false;
+		}
+		
+
+		if (validated) {
 			$.post("/admin/course_system/update/Content", {
 				s_content_id : content_id,
 				s_module_id : module_id,
@@ -233,6 +262,10 @@ $(document).ready(function() {
 			}, function(data, status) {
 				location.reload(true);
 			});
-		}
+		} else {
+			alert(errorString)
+		}	
 	});
+	
+	
 });

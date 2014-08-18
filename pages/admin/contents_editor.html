@@ -80,13 +80,19 @@
                     </div>
 
                     <label>Type</label>
-                    <div name='radio_type' class='form-group'>
-                        <label class="radio-inline"> <input type="radio" name="editinlineRadioOptions" id="radioFormApp" value="App"> App
-                        </label> <label class="radio-inline"> <input type="radio" name="editinlineRadioOptions" id="radioFormQuiz" value="Quiz"> Quiz
-                        </label> <label class="radio-inline"> <input type="radio" name="editinlineRadioOptions" id="radioFormNugget" value="Nugget"> Nugget
-                        </label>
-                    </div>
+                    
+                    <select id='edit_content_type' class="form-control">
+                        <option>Choose a type: </option>
+                        <option>App</option>
+                        <option>Quiz</option>
+                        <option>Nugget</option>
+                        <option>Book Chapter</option>
+                        <option>Lesson Plan</option>
+                    </select>
+                    
+                    
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button id='updateContent' type="button" class="btn btn-primary">Save changes</button>
@@ -124,12 +130,14 @@
                             <label for="new_content_identifier">URL Identifier</label> <input type="text" class="form-control" id="new_content_identifier" placeholder="New Identifier">
                         </div>
                         <label>Type</label>
-                        <div class='form-group'>
-                            <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="App"> App
-                            </label> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Quiz"> Quiz
-                            </label> <label class="radio-inline"> <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Nugget"> Nugget
-                            </label>
-                        </div>
+                        <select id='new_content_type' class="form-control">
+                            <option>Choose a type: </option>
+                            <option>App</option>
+                            <option>Quiz</option>
+                            <option>Nugget</option>
+                            <option>Book Chapter</option>
+                            <option>Lesson Plan</option>
+                        </select>
                     </form>
                 </div>
                 <div class="modal-footer">
