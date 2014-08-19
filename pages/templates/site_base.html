@@ -110,7 +110,9 @@
     </div>
 
 
-    {% block blockstart %} {% endblock %} {% for script in scripts %}
+    {% block body %} {% endblock %} 
+    
+    {% for script in scripts %}
     <script type="text/javascript" src="{{script}}"></script>
     {% endfor %}
 

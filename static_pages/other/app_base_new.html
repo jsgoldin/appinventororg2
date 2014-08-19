@@ -1,6 +1,3 @@
-{% extends "site_base.html" %}
-{% block blockstart %}
-
 <style>
 
 *{
@@ -414,7 +411,8 @@ function showComment(comment_index){
    </div>
 
 
-   <div class="row-fluid" style="margin-top:50px;" >
+// commented out the comments
+<!--    <div class="row-fluid" style="margin-top:50px;" >
     <div class="span7">
       {% if userStatus.ifUser%}
 	 <form action="/postComment" method="post">
@@ -500,7 +498,7 @@ border: 1px solid #ccc;height:50px;width:100%;margin-bottom:15px;">
 		</div>
 
 		<div class="row-fluid" id="comment_to_{{forloop.counter}}" style="display:none;margin-top:5px;margin-bottom:10px;">
-		<!-- start of cited-comment-->
+		start of cited-comment
 		{% if comment.replyTo %}
 			
 		
@@ -526,7 +524,7 @@ border: 1px solid #ccc;height:50px;width:100%;margin-bottom:15px;">
 		
 
 		{% endif %}
-		<!-- end of cited-comment-->
+		end of cited-comment
 		</div>
 
 
@@ -563,10 +561,10 @@ border: 1px solid #ccc;height:50px;width:100%;margin-bottom:15px;">
 
    </div>
    </div>
-
+ -->
 
 
 
 </div>
-<!-- End of Container-->{% endblock %}
+<!-- End of Container-->
 {#end of body block#}

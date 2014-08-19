@@ -1,12 +1,20 @@
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 <link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/jbase.css">
+
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/v2/default.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="/assets/css/JordansAwesomeStyleSheet.css">
+
+
 {% for stylesheet in stylesheets %}
-<link rel="stylesheet" type="text/css" href="{{stylesheet}}">
+<link rel='stylesheet' type='text/css' href='{{stylesheet}}'>
 {% endfor %}
 
 <title>{{title}}</title>
@@ -19,67 +27,81 @@
     <div class='banner-wrapper'>
 
         <div class='top-banner'>
-            <div class='banner-logo'>
-                <a href='/'> <img class='banner-logo-icon' src='/assets/img/testbanner.png' width='400px' height='100px'>
-                </a>
+
+            <a href='/'> <img class='banner-logo-icon' src='/assets/img/testbanner.png' width='400px' height='100px'>
+            </a>
+
+            <div class='search-box-wrapper'>
+                <input type="text" class="form-control search-box" placeholder="Search">
+
+
+
+                <div class="login-stuff-wrapper">
+                    {% if userStatus.ifUser%} <a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+                        {{userStatus.account.displayName}}
+                    </a> <a href="{{userStatus.logouturl}}">Logout</a> {% else %} <a href="{{userStatus.loginurl}}">Login</a> <a href="#">Sign Up</a> {% endif %}
+                </div>
+
             </div>
 
-            <input type="text" class="form-control search-box" placeholder="Search">
+
         </div>
 
         <!-- Fixed navbar -->
         <div class="navbar navbar-default global-navbar" role="navigation">
-            <div class="container-fluid navbar-color">
+            <div class="container-fluid navbar-color no-padding">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse no-margin">
                     <ul class="nav navbar-nav navbar-spacer">
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 {% for course in courses %}
-                                    <li><a href="/courses/{{course.c_identifier}}">{{course.c_title}}</a></li> 
-                                {% endfor %}
+                                <li><a href="/courses/{{course.c_identifier}}">{{course.c_title}}</a></li> {% endfor %}
                             </ul></li>
-                        <li><a href="#">Build</a></li>
-                        <li><a href="#">Teach</a></li>
-                        <li><a href="#">About</a></li>
-                        
-                        
-                        {% if userStatus.ifUser%}                     
-                        <li class='hidden-on-big-screen'><a href="/profile">Profile</a></li> 
-                        {% if usserStatus.admin %}
-                            <p>sup admin</p>
-                        {% endif %}
-                               
-                        <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li>
-                        {% else %}
-                            <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
-                            <li class='hidden-on-big-screen'><a href="#">Sign Up</a></li>
-                        {% endif %} 
-                        
-                        
-                        {% if userStatus.admin %}
-                            <li><a class='menu-active' href="/admin/dashboard">Administration</a></li>
-                        {% endif %}        
-                        
-                    </ul>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Teach <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/TeachingAI">Teaching Ideas</a></li>
+                                <li><a href="/teacherMap">Who's Teaching AI?</a></li>
+                                <li><a href="https://groups.google.com/forum/#!forum/app-inventor-instructors" TARGET="_blank">Teacher Forum</a></li>
+                                <li><a href="/resources">Teaching Resources</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Book <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/book2">App Inventor 2 Book</a></li>
+                                <li><a href="/book">App Inventor Classic Book</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Build<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="http://ai2.appinventor.mit.edu" TARGET="_blank">MIT App Inventor (AI2)</a></li>
+                                <li><a href="http://beta.appinventor.mit.edu" TARGET="_blank">App Inventor Classic</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Share<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="http://gallery.appinventor.mit.edu" TARGET="_blank">App Inventor Gallery</a></li>
+                                <li><a href="/appPage">Publishing Your App</a></li>
+                                <li><a href="https://groups.google.com/forum/#!forum/mitappinventortest">App Inventor Forum</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/about" TARGET="_blank">About</a></li>
+                                <li><a href="http://appinventorblog.com" TARGET="_blank">App Inventor Blog</a></li>
+                                <li><a href="/media">Media</a></li>
+                                <li><a href="http://democratizecomputing.org TARGET="_blank"">Democratize Computing Lab</a></li>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if userStatus.ifUser%}                     
-                            <li class='hidden-on-small-screen'>
-                                <a id='profilenavbarbutton' href="/profile">
-                                    <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-                                    {{userStatus.account.displayName}}
-                                </a>
-                            </li>
-                            <li class='hidden-on-small-screen'><a href="{{userStatus.logouturl}}">Logout</a></li>
-                        {% else %}
-                            <li class='hidden-on-small-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
-                            <li class='hidden-on-small-screen'><a href="#">Sign Up</a></li>
-                        {% endif %}                        
+                            </ul></li> {% if userStatus.ifUser%}
+                        <li class='hidden-on-big-screen'><a href="/profile">Profile</a></li> {% if usserStatus.admin %}
+                        <p>sup admin</p>
+                        {% endif %}
+
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> {% else %}
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
+                        <li class='hidden-on-big-screen'><a href="#">Sign Up</a></li> {% endif %} {% if userStatus.admin %}
+                        <li><a href="/admin/dashboard">Administration</a></li> {% endif %}
+
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -88,7 +110,7 @@
     </div>
 
 
-    {% block blockstart %} {% endblock %} 
+    {% block body %} {% endblock %} 
     
     {% for script in scripts %}
     <script type="text/javascript" src="{{script}}"></script>
