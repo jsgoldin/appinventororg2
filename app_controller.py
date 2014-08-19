@@ -3179,7 +3179,7 @@ class NewAppRenderer(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__),'static_pages/other/app_base_new.html')
         self.response.out.write(template.render(path, template_values))
 
-class NewAppRenderer_AI2(webapp.RequestHandler):
+class /NewAppRenderer_AI2(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
             return None
