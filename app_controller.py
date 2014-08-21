@@ -3179,7 +3179,7 @@ class NewAppRenderer(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__),'static_pages/other/app_base_new.html')
         self.response.out.write(template.render(path, template_values))
 
-class /NewAppRenderer_AI2(webapp.RequestHandler):
+class NewAppRenderer_AI2(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
             return None
@@ -4898,6 +4898,7 @@ class AdminDashboardHandler(webapp.RequestHandler):
 
 class AdminExportCoursesHandler(webapp.RequestHandler):
     def get(self):
+
         userStatus = UserStatus().getStatus(self.request.uri)
         
         # look up all the courses for the global navbar
@@ -4920,7 +4921,9 @@ class AdminImportCoursesHandler(webapp.RequestHandler):
         
         # look up all the courses for the global navbar
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
-                
+            
+        
+
         template_values = {
                            'stylesheets' : ['/assets/admin/css/admin.css'],
                            'userStatus' : userStatus,
@@ -4930,6 +4933,7 @@ class AdminImportCoursesHandler(webapp.RequestHandler):
                            }       
         
         path = os.path.join(os.path.dirname(__file__), 'pages/admin/import_courses.html')
+        
         self.response.out.write(template.render(path, template_values))      
         
     def post(self):
