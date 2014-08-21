@@ -101,6 +101,10 @@ $(document).ready(function() {
 	// set height of vertical nav bar list thing
 	$('.vertical-content-nav-bar').height($(window).height());
 	
+	// set min-height of content-area with weird padding to prevent scroll to and fix
+	// jump glitch
+	// kluge city
+	$('#contentarea').css('min-height', $('.vertical-side-bar-container').height() + 10);
 
 	
 	$( window ).resize(function() {

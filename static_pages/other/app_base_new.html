@@ -9,25 +9,68 @@
 
 
 <div id="owl-example" class="owl-carousel">
-    <div>Your Content</div>
-    <div>Your Content</div>
-    <div>Your Content</div>
-    <div>Your Content</div>
-    <div>Your Content</div>
-    <div>Your Content</div>
-    <div>Your Content</div>
-    ...
+    {% for step in steps %}
+    <div utube_url='{{step.fullscreenPath}}'></div>
+    {% endfor %}
 </div>
 
 
 
 
+
+
 <script>
-$(document).ready(function() {
- 
-  $("#owl-example").owlCarousel({
-      items : 1,
-  });
- 
-});
+
+
+      // load the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      
+      
+      
+      
+
+      
+      
+      function getUTUBEID(url) {
+          id_start = url.indexOf('/v/') + 3;
+          url = url.slice(id_start);
+          id_end = url.indexOf('&');
+          if(id_end == -1) {
+              // no query paramters
+          } else {
+              url = url.slice(0, id_end);
+          }
+          return url;
+      }
+      
+      // load the videos
+      function onYouTubeIframeAPIReady() {
+      
+          // iterate through all the things django put in
+          $('.owl-carousel').children().each(function() {    
+            video_id = getUTUBEID($(this).attr('utube_url'));    
+            
+            target_div = $(this)[0];
+            player = new YT.Player(target_div, {
+            height: '360px',
+            width: '640px',
+            videoId: video_id
+            });
+          }); 
+   
+
+        $("#owl-example").owlCarousel({
+            navigation : true, // Show next and prev buttons
+            singleItem:true,
+            paginationNumbers : true
+        });
+  
+        return player;
+      }
+
+      
 </script>
