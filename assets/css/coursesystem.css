@@ -489,17 +489,7 @@
 
 
 
-.app-btn {
-    width: 24%;
-    height: 300px;
-    float: left;
-    background-color: orange;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
-    cursor: pointer;
-    text-align: center;
-    padding-top: 10px;
-}
+
 
 .app-base-stuff-wrapper {
     max-width: 900px;
@@ -547,14 +537,6 @@
     
 }
 
-.app-btn-icon {
-    background-color: blue;
-    height: 200px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-}
 
 .or-text {
     position: relative;
@@ -630,24 +612,69 @@
 
 
 
-/* A general container for placing content in the course system */
-.content-section {
+
+
+
+
+
+
+
+
+/* A responsive general container for placing content inside of on the app page */
+.app-content-section {
     position: relative;
     margin: 0 auto 0 auto;
-    min-height: 300px;
+    min-height: 200px;
     width: 900px;
-    
-    background-color: yellow;
+}
+
+
+/* A responsive container for buttons on the app page*/
+.app-btn-section {
+	width: 100%;
+	position: relative;
+    margin: 0 auto 0 auto;
+    min-height: 200px;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+}
+
+
+/* A title for the app */
+.app-description {
+	text-align: center;
+	width: 65%;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 20px;
+	padding-top: 20px;
+}
+
+/* A responsive button for getting content on the app page, 
+ * The styling assumes, their are 4 buttons!
+ */
+.app-btn {
+    width: 24%;
+    height: auto;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 10px;
+	border: 1px #2d2d2d solid;
+	border-color: rgba(1, 1, 1, 0.1);
+	background-color: white;
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+	padding-top: 15px;
 }
 
 
 /* app-base responsive stuff */
 @media ( min-width : 0px) and (max-width : 1160px) {
-    .content-section {
+    .app-content-section {
         width: 97%;
     }
-
-
+    
 }
 
 
@@ -692,6 +719,8 @@
     }
 }
 
+
+
 /* smaller than iPads (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width : 1024px) {
     .vertical-side-bar-container {
@@ -705,5 +734,13 @@
     .no-padding-wrapper {
         margin-left: -40px;
         margin-right: -40px;
+    }
+    
+    
+    /* Resize app buttons*/
+    .app-btn {
+    	width: 49%;
+    	height: auto;
+    	margin-bottom: 1%;
     }
 }
