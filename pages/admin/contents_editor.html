@@ -26,6 +26,22 @@
                             {% if content.c_type == "Nugget" %}
                             <img  class='vertical-content-nav-bar-item-icon' src='/assets/img/kitty.png' height='100px' width='100px'>
                             {% endif %}       
+                            {% if v.c_type == "Book Chapter" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}    
+                            {% if v.c_type == "Lesson Plan" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}                               
+                            {% if v.c_type == "Project" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}     
+                            {% if v.c_type == "Worksheet" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}                                 
+                            {% if v.c_type == "Miscellaneous" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}        
+                                                                                  
                         </div>
                         
                         
@@ -88,6 +104,9 @@
                         <option>Nugget</option>
                         <option>Book Chapter</option>
                         <option>Lesson Plan</option>
+                        <option>Project</option>
+                        <option>Worksheet</option>
+                        <option>Miscellaneous</option>
                     </select>
                     
                     
@@ -137,6 +156,9 @@
                             <option>Nugget</option>
                             <option>Book Chapter</option>
                             <option>Lesson Plan</option>
+                            <option>Project</option>
+                            <option>Worksheet</option>
+                            <option>Miscellaneous</option>
                         </select>
                     </form>
                 </div>

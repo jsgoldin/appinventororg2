@@ -60,7 +60,7 @@
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 {% for course in courses %}
-                                <li><a href="/courses/{{course.c_identifier}}">{{course.c_title}}</a></li> {% endfor %}
+                                <li><a href="/tutorials/{{course.c_identifier}}">{{course.c_title}}</a></li> {% endfor %}
                             </ul></li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Teach <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
@@ -94,7 +94,6 @@
 
                             </ul></li> {% if userStatus.ifUser%}
                         <li class='hidden-on-big-screen'><a href="/profile">Profile</a></li> {% if usserStatus.admin %}
-                        <p>sup admin</p>
                         {% endif %}
 
                         <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> {% else %}

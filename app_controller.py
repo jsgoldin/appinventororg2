@@ -3125,6 +3125,7 @@ class AppRenderer(webapp.RequestHandler):
 
 class NewAppRenderer(webapp.RequestHandler):
     def get(self):
+
         path = self.request.path
         #t_path = path[1:]
         t_path = path[1:(len(path)-6)] #take out -steps in path
@@ -4308,6 +4309,149 @@ class Chapter24Handler(webapp.RequestHandler):
 
         path = os.path.join(os.path.dirname(__file__),'bookChapters/ch24.html')
         self.response.out.write(template.render(path, template_values))
+
+
+class ConceptualizeIHaveADreamHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeIHaveADream.html')
+        self.response.out.write(template.render(path, template_values))      
+
+class AppInventorSetUpHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/aiSetUp.html')
+        self.response.out.write(template.render(path, template_values))  
+
+class NewIHaveADreamHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/NewIHaveADream.html')
+        self.response.out.write(template.render(path, template_values))
+
+class PrefaceHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/preface.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizePaintPotHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizePaintPot.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizeMoleMashHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeMoleMash.html')
+        self.response.out.write(template.render(path, template_values))
+
+class AnimationChallengeHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/animationChallenge.html')
+        self.response.out.write(template.render(path, template_values))
+
+class CreativeProject2GameHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/creativeProject2Game.html')
+        self.response.out.write(template.render(path, template_values))
+
+class GoogleVoiceHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/googleVoice.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizeNoTextingHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeNoTexting.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizeLocationHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeLocation.html')
+        self.response.out.write(template.render(path, template_values))
+
+
+class PretestHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/pretest.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ListIterationHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/listiteration.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizeSlideshowHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeSlideshow.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizeProceduresHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeProcedures.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizeIterationHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeIteration.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizeNoteTakerHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeNoteTaker.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizeCommunicationHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeCommunication.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConceptualizeStockMarketHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/conceptualizeStockMarket.html')
+        self.response.out.write(template.render(path, template_values))
+
+class PizzaPartyHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__),'static_pages/other/pizzaParty.html')
+        self.response.out.write(template.render(path, template_values))
+
         
         
         
@@ -4530,8 +4674,8 @@ class ContentHandler(webapp.RequestHandler):
                         contents = Content.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course_entity.key.id()), Module, long(module.key.id()))).order(Content.c_index).fetch()
                         for mod_content in contents:                     
                             moduleContentMapping[str(module.m_title)].append(mod_content)
-                       
-                    logging.info(moduleContentMapping)
+
+                    userStatus = UserStatus().getStatus(self.request.uri)
                                      
                     template_values = {"current_content" : content,
                            "next_module" : next_module_entity,
@@ -4543,7 +4687,8 @@ class ContentHandler(webapp.RequestHandler):
                            "content" : content,
                            "moduleContentMapping" : moduleContentMapping,
                            'stylesheets' : ['/assets/css/coursesystem.css'],
-                           'scripts' : ['/assets/js/coursesystem.js']
+                           'scripts' : ['/assets/js/coursesystem.js'],
+                           'userStatus': userStatus
                            }
                     
                     path = os.path.join(os.path.dirname(__file__), 'pages/content.html')
@@ -5071,6 +5216,10 @@ class testView(webapp.RequestHandler):
 ####################################
 
 
+
+
+
+
 # create this global variable that represents the application and specifies which class
 # should handle each page in the site
 application = webapp.WSGIApplication(
@@ -5166,7 +5315,8 @@ application = webapp.WSGIApplication(
         ('/Django', TestTemplateHandler),('/Django1', TestTemplateHandler),
 
         # Cayla's Pages
-        ('/screens', ScreenHandler), ('/HelloPurrMini', HelloPurrMiniHandler),
+        ('/screens', ScreenHandler), ('/HelloPurrMini', HelloPurrMiniHandler), ('/conceptualizeIHaveADream', ConceptualizeIHaveADreamHandler), ('/aiSetUp', AppInventorSetUpHandler), ('/NewIHaveADream', NewIHaveADreamHandler), ('/preface', PrefaceHandler), ('/conceptualizePaintPot', ConceptualizePaintPotHandler), ('/conceptualizeMoleMash', ConceptualizeMoleMashHandler), ('/animationChallenge', AnimationChallengeHandler), ('/creativeProject2Game', CreativeProject2GameHandler), ('/googleVoice', GoogleVoiceHandler),  ('/conceptualizeNoTexting', ConceptualizeNoTextingHandler),  ('/conceptualizeLocation', ConceptualizeLocationHandler), ('/conceptualizeStockMarket', ConceptualizeStockMarketHandler), ('/pretest', PretestHandler), ('/listiteration', ListIterationHandler), ('/conceptualizeSlideshow', ConceptualizeSlideshowHandler), ('/conceptualizeProcedures', ConceptualizeProceduresHandler), ('/conceptualizeIteration', ConceptualizeIterationHandler), ('/conceptualizeNoteTaker', ConceptualizeNoteTakerHandler), ('/conceptualizeCommunication', ConceptualizeCommunicationHandler), ('/pizzaParty', PizzaPartyHandler),
+
     
         ##################
         # Jordan's Pages #

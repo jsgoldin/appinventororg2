@@ -4,73 +4,50 @@
 <!-- Default Theme -->
 <link rel="stylesheet" href="/assets/css/owl.theme.css">
 
-<!-- Include js plugin -->
-<script src="/assets/js/owl.carousel.js"></script>
+
+<div class='no-padding-wrapper'>
+
+    <div class='app-title'>{{app.heroHeader}}</div>
+
+    <div id="carousel-wrapper">
+
+        {% for step in steps %}
+        <div class='carousel-step' data-utubeurl='{{step.fullscreenPath}}'></div>
+        {% endfor %}
+
+        <div class='carousel-step' data-utubeurl='{{step.fullscreenPath}}'></div>
+
+        <div class='carousel-step' data-utubeurl='{{step.fullscreenPath}}'></div>
+    </div>
 
 
-<div id="owl-example" class="owl-carousel">
-    {% for step in steps %}
-    <div utube_url='{{step.fullscreenPath}}'></div>
-    {% endfor %}
+
+    <div class='content-section '></div>
+
+    <div class='content-section '>
+        <div class='app-btns-container'>
+            <a href='lol' class='app-btn'>
+                <p>Book Chapter</p>
+            </a> <a class='app-btn'>
+                <p>QR Code</p>
+            </a> <a class='app-btn'>
+                <p>APK download</p>
+            </a> <a class='app-btn'>
+                <p>Source Download</p>
+            </a>
+        </div>
+    </div>
+
+
+
+
 </div>
 
 
 
 
 
+<script src="/assets/js/owl.carousel.js"></script>
 
-<script>
 
-
-      // load the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      
-      
-      
-      
-
-      
-      
-      function getUTUBEID(url) {
-          id_start = url.indexOf('/v/') + 3;
-          url = url.slice(id_start);
-          id_end = url.indexOf('&');
-          if(id_end == -1) {
-              // no query paramters
-          } else {
-              url = url.slice(0, id_end);
-          }
-          return url;
-      }
-      
-      // load the videos
-      function onYouTubeIframeAPIReady() {
-      
-          // iterate through all the things django put in
-          $('.owl-carousel').children().each(function() {    
-            video_id = getUTUBEID($(this).attr('utube_url'));    
-            
-            target_div = $(this)[0];
-            player = new YT.Player(target_div, {
-            height: '360px',
-            width: '640px',
-            videoId: video_id
-            });
-          }); 
-   
-
-        $("#owl-example").owlCarousel({
-            navigation : true, // Show next and prev buttons
-            singleItem:true,
-            paginationNumbers : true
-        });
-  
-        return player;
-      }
-
-      
-</script>
+<script src="/assets/js/app_base.js"></script>

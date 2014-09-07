@@ -39,8 +39,6 @@
 	
 .owl-carousel .owl-item{
 	float: left;
-	background-color: green;
-	text-align: center;
 }
 .owl-controls .owl-page,
 .owl-controls .owl-buttons div{

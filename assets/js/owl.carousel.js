@@ -406,6 +406,7 @@ if (typeof Object.create !== "function") {
             var base = this,
                 buttonsWrapper = $("<div class=\"owl-buttons\"/>");
             base.owlControls.append(buttonsWrapper);
+            
 
             base.buttonPrev = $("<div/>", {
                 "class" : "owl-prev",
@@ -1510,3 +1511,5 @@ if (typeof Object.create !== "function") {
         afterLazyLoad: false
     };
 }(jQuery, window, document));
+
+

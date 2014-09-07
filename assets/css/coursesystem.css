@@ -68,14 +68,39 @@
     text-decoration: none;
 }
 
+.vertical-side-bar-item-center-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+
+.vertical-side-bar-item-text {
+    padding-left: 40px;
+}
+
+.vertical-side-bar-item:hover {
+    background-color: rgba(149, 206, 100, .9);
+}
+
+.vertical-side-bar-item {
+    width: 100%;
+    transition: background-color 0.1s linear;
+    cursor: pointer;
+    border-bottom: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    min-height: 80px;
+    display: table;
+}
+
 .vertical-content-nav-bar-item {
     width: 100%;
     position: relative;
     transition: background-color 0.1s linear;
     cursor: pointer;
-    padding-left: 20px;
     border-bottom: 1px #2d2d2d solid;
     border-color: rgba(1, 1, 1, 0.1);
+    min-height: 80px;
 }
 
 .vertical-content-nav-bar-title-text {
@@ -90,15 +115,19 @@
     line-height: 40px;
     font-weight: 200;
     color: #929292;
-    white-space: nowrap;
-    overflow: hidden;
 }
 
-.vertical-content-nav-bar-item-icon {
-    position: absolute;
-    top: 7px;
-    left: 30px;
-    border-radius: 100%;
+.vertical-side-bar-item-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
+}
+
+.vertical-side-bar-item-icon-text {
+    display: inline-block;
+    vertical-align: middle;
+    width: 70%;
+    padding-left: 10px;
 }
 
 .vertical-content-nav-bar-next-section-box {
@@ -140,25 +169,119 @@
     color: #929292;
 }
 
+.no-padding-wrapper {
+    margin-left: -80px;
+    margin-right: -80px;
+}
+
 #contentarea {
-    padding-left: 100px;
-    padding-right: 100px;
-    margin-left: 283px;
+    width: auto;
+    overflow: hidden;
+    margin-left: 260px;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-bottom: 20px;
 }
 
 .vertical-side-bar-container {
     padding-left: 0;
     padding-right: 0;
-    width: 283px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    width: 260px;
+    height: 100vh;
     float: left;
+    background-color: green;
+    position: relative;
+}
+
+.vertical-side-bar-top-box {
+    background-color: #F9F9F9;
+    border-right: 1px #2d2d2d solid;
+    border-bottom: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    width: 100%;
+    height: 100px;
     position: absolute;
+    top: 0;
+    padding: 10px 20px 10px 20px;
+    border-color: rgba(1, 1, 1, 0.1);
+}
+
+.vertical-side-bar-top-box-title {
+    font-size: 20px;
+}
+
+.carousel-step {
+    width: 100%;
+}
+
+.vertical-side-bar-middle-box {
+    border-right: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    background-color: #F9F9F9;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.vertical-side-bar-middle-box::-webkit-scrollbar {
+    width: 12px;
+}
+
+.vertical-side-bar-middle-box::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.vertical-side-bar-middle-box::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.vertical-side-bar-bottom-box {
+    border-right: 1px #2d2d2d solid;
+    border-top: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    background-color: #F9F9F9;
+    width: 100%;
+    height: 100px;
+    padding: 5px 20px 10px 20px;
+}
+
+.vertical-side-bar-bottom-box-next {
+    margin-bottom: 10px;
+}
+
+.vertical-side-bar-bottom-box-next-module-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.vertical-side-bar-bottom-box-next-module-text {
+    margin-bottom: 0px;
+    color: #555;
+}
+
+.vertical-side-bar-bottom-box-next-module-title {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 60%;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.vertical-side-bar-top-bottom-next {
+    color: #31B4E7;
+    cursor: pointer;
+    margin-top: 15px;
 }
 
 .fixed {
     position: fixed;
     top: 0;
     z-index: 1;
-    width: 283px;
+    width: 260px;
 }
 
 .container-sidepadder {
@@ -285,6 +408,210 @@
     '
 }
 
+.nextStepButton:hover {
+    background-color: gray;
+}
+
+.prevStepButton:hover {
+    background-color: gray;
+}
+
+.nextStepButton {
+    position: absolute;
+    top: 40%;
+    right: -40px;
+    z-index: 1;
+    border-radius: 100%;
+    background-color: #C7E0D7;
+    height: 35px;
+    width: 35px;
+    color: white;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.vertical-side-bar-top-box-back {
+    color: #31B4E7;
+    cursor: pointer;
+    height: 30px;
+    width: 50%;
+}
+
+.app-get-qr-code {
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    display: inline-block;
+    float: right;
+}
+
+.app-get-app-inner-container {
+    text-align: center;
+    width: 100%;
+    margin-top: -28px;
+}
+
+.inner-app-description-container {
+    max-width: 80%;
+}
+
+.app-get-apk-btn {
+    width: 200px;
+    height: 200px;
+    background-color: yellow;
+    display: inline-block;
+    float: left;
+}
+
+.app-title {
+    background-color: #2A71A9;
+    line-height: 80px;
+    padding-left: 20px;
+    font-size: 22px;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-description-container {
+    width: 100%;
+    height: 300px;
+    font-size: 18px;
+    background-color: green;
+}
+
+.app-btns-container {
+    width: 100%;
+    height: auto;
+    padding: 1.0% 0.5% 1.0% 0.5%;
+}
+
+
+
+
+
+.app-btn {
+    width: 24%;
+    height: 300px;
+    float: left;
+    background-color: orange;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.app-base-stuff-wrapper {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.app-download-src-container {
+    width: 100%;
+    background-color: green;
+    min-height: 280px;
+    font-size: 18px;
+    background-color: rgba(57, 177, 164, .9);
+    max-width: 2000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.app-download-src-title {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.app-download-src-btn {
+    width: 200px;
+    height: 200px;
+    background-color: yellow;
+    float: left;
+    margin-right: 90px;
+    border-radius: 1000%;
+    text-align: center;
+    font-size: 104px;
+    color: black;
+    padding-top: 32px;
+    padding-left: 8px;
+}
+
+.app-base-padding {
+    background-color: yellow;
+}
+
+.app-download-src-text {
+    
+}
+
+.app-btn-icon {
+    background-color: blue;
+    height: 200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.or-text {
+    position: relative;
+    top: 100px;
+}
+
+.app-download-btn {
+    width: 164px;
+    margin: 10px;
+}
+
+.relative {
+    position: relative;
+}
+
+.app-download-btns-container {
+    text-align: center;
+    width: 100%;
+}
+
+.app-get-app-container {
+    padding: 0px 80px 25px 80px;
+    text-align: center;
+    position: relative;
+}
+
+.center {
+    text-align: center;
+}
+
+.prevStepButton {
+    position: absolute;
+    top: 40%;
+    left: -40px;
+    z-index: 1;
+    border-radius: 100%;
+    background-color: #C7E0D7;
+    height: 35px;
+    width: 35px;
+    color: white;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.carousel-step-container-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.carousel-step-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
 .selected-tab {
     background-color: white;
     background-image: none;
@@ -299,8 +626,35 @@
     border-radius: 0px 0px 0px 30px;
 }
 
+
+
+
+
+/* A general container for placing content in the course system */
+.content-section {
+    position: relative;
+    margin: 0 auto 0 auto;
+    min-height: 300px;
+    width: 900px;
+    
+    background-color: yellow;
+}
+
+
+/* app-base responsive stuff */
+@media ( min-width : 0px) and (max-width : 1160px) {
+    .content-section {
+        width: 97%;
+    }
+
+
+}
+
+
+
+
 /* tiny screens ----------- */
-@media ( min-width : 624px) and (max-width : 1301px) {
+@media ( min-width : 624px) and (max-width : 1300px) {
     .course-box {
         cursor: pointer;
         border: 1px #2d2d2d solid;
@@ -335,5 +689,21 @@
     }
     .tutorials-jumbotron-settings {
         height: auto;
+    }
+}
+
+/* smaller than iPads (portrait and landscape) ----------- */
+@media ( min-width : 0px) and (max-width : 1024px) {
+    .vertical-side-bar-container {
+        display: none;
+    }
+    #contentarea {
+        margin-left: 0px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .no-padding-wrapper {
+        margin-left: -40px;
+        margin-right: -40px;
     }
 }
