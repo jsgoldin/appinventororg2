@@ -6,6 +6,7 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+
 function getUTUBEID(url) {
 	id_start = url.indexOf('/v/') + 3;
 	url = url.slice(id_start);
@@ -44,7 +45,7 @@ function onYouTubeIframeAPIReady() {
 	      paginationSpeed : 400,
 	      singleItem:true,
 	      paginationNumbers: true,
-	      lazyLoad : true,
+	      lazyLoad : true
 	  });
 	
 	// add custom navigation buttons
@@ -54,6 +55,27 @@ function onYouTubeIframeAPIReady() {
 	return player;
 }
 
+
+
+
+
+
+var i = 1;
+$(window).resize(function() {
+	if(i % 2==0) {
+		setTimeout(function() {
+		
+			if($('#carousel-nav-btn-left').length == 0) {
+				$('.owl-pagination').prepend("<div id='carousel-nav-btn-left' class='carousel-nav-btn'><span class='glyphicon glyphicon-chevron-left'></span></div>");
+			}
+
+			if($('#carousel-nav-btn-right').length == 0) {
+				$('.owl-pagination').append("<div id='carousel-nav-btn-right' class='carousel-nav-btn'><span class='glyphicon glyphicon-chevron-right'></span></div>");
+     		}
+     }, 700);
+	}
+	i++;
+});
 
 
 
