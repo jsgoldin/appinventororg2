@@ -615,12 +615,56 @@
 
 
 
-/* A responsive general container for placing content inside of on the app page */
+/* A magic responsive general container for placing content inside of on the app page.
+ * 
+ * -Will always center itself in the parent.
+ * -Will maintain a width of 900px until screen is to small, then width becomes 97% of parent.
+ * 
+ *  NOTE: This class is designed for the app page only because of the width settings,
+ *  	  it won't make sense on other pages!
+ */
 .app-content-section {
     position: relative;
     margin: 0 auto 0 auto;
-    padding: 40px;
     width: 900px;
+    height: auto;
+}
+
+
+
+.app-header-left {
+	width: 55%;
+	font-size: 20px;
+	margin-top: 40px;
+	height: 600px;
+	float: left;
+	padding-left: 4%;
+	padding-top: 50px;
+}
+
+
+.app-header-right {
+	width: 45%;
+	height: auto;
+	float: left;
+	font-size: 18px;
+	margin-top: 40px;
+}
+
+
+.app-phone {
+	background-image: url('/assets/img/Generic-Android.png');
+	height: 400px;
+	width: 232px;
+	text-align: center;
+	margin-left: 10%;
+	margin-right: auto;
+}
+
+.app-screenshot {
+	margin-top: 42px;
+	height: 291px;
+	width: 176px;
 }
 
 
@@ -635,14 +679,6 @@
 }
 
 
-/* A title for the app */
-.app-description {
-	text-align: center;
-	width: 65%;
-	margin-left: auto;
-	margin-right: auto;
-	font-size: 20px;
-}
 
 /* A responsive button for getting content on the app page, 
  * The styling assumes, their are 4 buttons!
@@ -659,6 +695,12 @@
 	border-left: 1px #2d2d2d solid;
 	border-bottom: 1px #2d2d2d solid;
 	border-color: rgba(1, 1, 1, 0.1);
+}
+
+.app-btn p, .app-btn h4 {
+	width: 85%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 

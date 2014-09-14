@@ -7,48 +7,55 @@
 
 <div class='no-padding-wrapper'>
 
-    <div class='app-title'>{{app.heroHeader}}</div>
+   
+	<div class='app-content-section'>
+		<div class='app-header-left'>
+			<h1>{{app.heroHeader}}</h1>
+			<p>{{app.heroCopy}}</p>	
+		</div>
+		<div class='app-header-right'>
+			
+			<div class='app-phone'>
+				<img class="app-screenshot" src="{{currentAppsDir}}/{{ app.appId }}/hero.png" alt="screenshot">
+			</div>
+		</div>
+	</div>
+	
 
-    <div id="carousel-wrapper">
+ <!--   <div id="carousel-wrapper">
 
         {% for step in steps %}
         <div class='carousel-step' data-utubeurl='{{step.fullscreenPath}}'></div>
-        {% endfor %}
+        {% endfor %}        
+        
+        <div class='carousel-step' data-utubeurl='{{step.fullscreenPath}}'></div>
+        <div class='carousel-step' data-utubeurl='{{step.fullscreenPath}}'></div>
         
     </div>
-
-
-
-    <div class='app-content-section'>
-    	<div class='app-description'>
-    		{{app.heroCopy}}
-    	</div>
     
-    </div>
-    
-    
+    -->
 
 
     <div class='app-btn-section'>
-            <a href='lol' class='app-btn'>
+            <a href='{{app.}}' class='app-btn'>
             	<img src="smiley.gif" height="170" width="170">
                 <h4>Book Chapter</h4>
-                <p>View this tutorial in book form</p>
+                <p>View this tutorial in text form</p>
             </a> 
             <a class='app-btn'>
             	<img src="smiley.gif" height="170" width="170">
                 <h4>QR Code</h4>
-                <p>Scan this to get {{app.heroHeader}} on your phone</p>
+                <p>Scan this to get {{app.heroHeader}} on your device</p>
             </a> 
             <a class='app-btn'>
             	<img src="smiley.gif" height="170" width="170">
                 <h4>APK download</h4>
-                <p>Some text explaining what happens if you click this</p>
+                <p>Download the .apk file to your computer</p>
             </a> 
             <a class='app-btn'>
             	<img src="smiley.gif" height="170" width="170">
                 <h4>Source Download</h4>
-                <p>Some text explaining what happens if you click this</p>
+                <p>Download the .aia file, then import it into App Inventor for remixing.</p>
             </a>
     </div>
 
