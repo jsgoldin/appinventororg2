@@ -23,8 +23,10 @@ function getUTUBEID(url) {
 function onYouTubeIframeAPIReady() {
 	// iterate through all the things django put in
 	$('#carousel-wrapper').children().each(function() {
-
-		videotarget = $(this);
+	
+	
+	
+		videotarget = $(this).find('.carousel-step-video');
 
 		desiredHeight = videotarget.width() * 0.56;
 
@@ -36,7 +38,10 @@ function onYouTubeIframeAPIReady() {
 		player = new YT.Player(target_div, {
 			height : '400px',
 			width : 'auto',
-			videoId : video_id
+			videoId : video_id,
+			playerVars: {
+            	'showinfo': 0
+        	}
 		});
 	});
 
@@ -87,4 +92,3 @@ $(document).on("click","#carousel-nav-btn-left",function() {
 $(document).on("click","#carousel-nav-btn-right",function() {
 	$(".owl-carousel").data('owlCarousel').next();
 });
-

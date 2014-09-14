@@ -22,18 +22,41 @@
 	</div>
 	
 
- <!--   <div id="carousel-wrapper">
 
-        {% for step in steps %}
-        <div class='carousel-step' data-utubeurl='{{step.fullscreenPath}}'></div>
-        {% endfor %}        
-        
-        <div class='carousel-step' data-utubeurl='{{step.fullscreenPath}}'></div>
-        <div class='carousel-step' data-utubeurl='{{step.fullscreenPath}}'></div>
-        
+	<div class='app-content-section'>
+   		<div id="carousel-wrapper">
+   
+        	{% for step in steps %}
+
+        	<div class='carousel-step'>
+        		<div class='carousel-step-info'>
+        			<h2><strong>Step{{ step.number }}:</strong> {{step.header}}</h2>
+        			<p>{{step.copy}}</p>
+        		</div>
+        		<div class='carousel-step-video' data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>        	
+        	</div>
+
+        	{% endfor %}      
+
+
+        	<div class='carousel-step'>
+        		<div class='carousel-step-info'>
+        			<h2><strong>Step{{ step.number }}:</strong> {{step.header}} <small>{{step.copy}}</small></h2>
+        		</div>
+        		<div class='carousel-step-video' data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>        	
+        	</div>
+        	
+        	<div class='carousel-step'>
+        		<div class='carousel-step-info'>
+        			<h2><strong>Step{{ step.number }}:</strong> {{step.header}} <small>{{step.copy}}</small></h2>
+        		</div>
+        		<div class='carousel-step-video' data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>        	
+        	</div>
+        	        	
+        	  
+		</div>        
     </div>
     
-    -->
 
 
     <div class='app-btn-section'>
