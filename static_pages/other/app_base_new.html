@@ -8,6 +8,8 @@
 <div class='no-padding-wrapper'>
 
    
+   
+   <div class='app-header-section-full-width-wrapper'>
 	<div class='app-content-section'>
 		<div class='app-header-left'>
 			<h1>{{app.heroHeader}}</h1>
@@ -20,7 +22,7 @@
 			</div>
 		</div>
 	</div>
-	
+</div>
 
 
 	<div class='app-content-section'>
@@ -29,32 +31,20 @@
         	{% for step in steps %}
 
         	<div class='carousel-step'>
+
+        		<div class='carousel-step-video' data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>        	
+        		
         		<div class='carousel-step-info'>
-        			<h2><strong>Step{{ step.number }}:</strong> {{step.header}}</h2>
+        			<h2><strong>Step {{step.number }}:</strong> {{step.header}}</h2>
         			<p>{{step.copy}}</p>
         		</div>
-        		<div class='carousel-step-video' data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>        	
-        	</div>
-
-        	{% endfor %}      
-
-
-        	<div class='carousel-step'>
-        		<div class='carousel-step-info'>
-        			<h2><strong>Step{{ step.number }}:</strong> {{step.header}} <small>{{step.copy}}</small></h2>
-        		</div>
-        		<div class='carousel-step-video' data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>        	
-        	</div>
         	
-        	<div class='carousel-step'>
-        		<div class='carousel-step-info'>
-        			<h2><strong>Step{{ step.number }}:</strong> {{step.header}} <small>{{step.copy}}</small></h2>
-        		</div>
-        		<div class='carousel-step-video' data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>        	
         	</div>
-        	        	
-        	  
+
+        	{% endfor %}              	
+        	
 		</div>        
+    
     </div>
     
 

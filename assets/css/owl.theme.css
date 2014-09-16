@@ -4,9 +4,13 @@
 */
 .owl-theme .owl-controls {
     text-align: center;
-    background-color: #2A71A9;
     margin-top: -5px;
-    padding: 10px;
+    padding: 0px;
+    border-left: 1px #2d2d2d solid;
+    border-right: 1px #2d2d2d solid;
+    border-bottom: 1px #2d2d2d solid;
+	border-color: rgba(1, 1, 1, 0.1);
+	background-color: white;
 }
 
 /* Styling Next and Prev buttons */
@@ -62,27 +66,26 @@
 .owl-theme .owl-controls .owl-page span.owl-numbers {
     height: 36px;
     width: 36px;
-    color: #FFF;
+    color: #3B3B3B;
     padding: 1px;
     font-size: 20px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
-    border: 3px solid white;
-    background-color: orange;
+    border: 2px solid #3B3B3B;
 }
 
 /* Jordan added this! */
 .carousel-nav-btn {
     display: inline-block;
-    color: #FFF;
-    margin: 5px;
+    color: #3B3B3B;
+    margin: 10px;
     padding: 5px 9px;
     font-size: 20px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
-    border: 3px solid white;
+    border: 2px solid #3B3B3B;
     filter: Alpha(Opacity =       50); /*IE7 fix*/
     opacity: 0.5;
 }
