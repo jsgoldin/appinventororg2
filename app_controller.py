@@ -4473,9 +4473,10 @@ class Homehandler(webapp.RequestHandler):
         
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
-                           'title' : 'App Inventor'
+                           'title' : 'App Inventor',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            }
-        
         path = os.path.join(os.path.dirname(__file__), 'pages/home.html')
         self.response.out.write(template.render(path, template_values))  
 

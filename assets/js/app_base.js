@@ -19,6 +19,8 @@ function getUTUBEID(url) {
 	return url;
 }
 
+
+
 // load the videos
 function onYouTubeIframeAPIReady() {
 	// iterate through all the things django put in

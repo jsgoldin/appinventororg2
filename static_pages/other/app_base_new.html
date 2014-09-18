@@ -7,76 +7,73 @@
 
 <div class='no-padding-wrapper'>
 
-   
-   
-   <div class='app-header-section-full-width-wrapper'>
-	<div class='app-content-section'>
-		<div class='app-header-left'>
-			<h1>{{app.heroHeader}}</h1>
-			<p>{{app.heroCopy}}</p>	
-		</div>
-		<div class='app-header-right'>
-			
-			<div class='app-phone'>
-				<img class="app-screenshot" src="{{currentAppsDir}}/{{ app.appId }}/hero.png" alt="screenshot">
+	<div class='full-width-background-gray-gradient-container'>
+		<div class='gen-app-container'>
+			<div class='app-header-left'>
+				<h1>{{app.heroHeader}}</h1>
+				<p>{{app.heroCopy}}</p>
+			</div>
+			<div class='app-header-right'>
+				<div class='app-phone'>
+					<img class="app-screenshot"
+						src="{{currentAppsDir}}/{{ app.appId }}/hero.png" alt="screenshot">
+				</div>
 			</div>
 		</div>
 	</div>
+
+
+	<div class='gen-app-container'>
+		<div id="carousel-wrapper">
+
+			{% for step in steps %}
+
+			<div class='carousel-step'>
+
+				<div class='carousel-step-video'
+					data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>
+
+				<div class='carousel-step-info'>
+					<h3>
+						<strong>Step {{step.number }}:</strong> {{step.header}}
+					</h3>
+					<p>{{step.copy}}</p>
+				</div>
+
+			</div>
+
+			{% endfor %}
+
+		</div>
+
+	</div>
+
+	<div class='app-btn-section'>
+
+		<a href='{{app.}}' class='app-btn'> <img src="smiley.gif"
+			height="170" width="170">
+			<h4>Book Chapter</h4>
+			<p>View this tutorial in text form</p>
+		</a> <a class='app-btn'> <img src="smiley.gif" height="170"
+			width="170">
+			<h4>QR Code</h4>
+			<p>Scan this to get {{app.heroHeader}} on your device</p>
+		</a> <a class='app-btn'> <img src="smiley.gif" height="170"
+			width="170">
+			<h4>APK download</h4>
+			<p>Download the .apk file to your computer</p>
+		</a> <a class='app-btn'> <img src="smiley.gif" height="170"
+			width="170">
+			<h4>Source Download</h4>
+			<p>Download the .aia file, then import it into App Inventor for
+				remixing.</p>
+		</a>
+	</div>
+
+
+
+
 </div>
-
-
-	<div class='app-content-section'>
-   		<div id="carousel-wrapper">
-   
-        	{% for step in steps %}
-
-        	<div class='carousel-step'>
-
-        		<div class='carousel-step-video' data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>        	
-        		
-        		<div class='carousel-step-info'>
-        			<h2><strong>Step {{step.number }}:</strong> {{step.header}}</h2>
-        			<p>{{step.copy}}</p>
-        		</div>
-        	
-        	</div>
-
-        	{% endfor %}              	
-        	
-		</div>        
-    
-    </div>
-    
-
-
-    <div class='app-btn-section'>
-            <a href='{{app.}}' class='app-btn'>
-            	<img src="smiley.gif" height="170" width="170">
-                <h4>Book Chapter</h4>
-                <p>View this tutorial in text form</p>
-            </a> 
-            <a class='app-btn'>
-            	<img src="smiley.gif" height="170" width="170">
-                <h4>QR Code</h4>
-                <p>Scan this to get {{app.heroHeader}} on your device</p>
-            </a> 
-            <a class='app-btn'>
-            	<img src="smiley.gif" height="170" width="170">
-                <h4>APK download</h4>
-                <p>Download the .apk file to your computer</p>
-            </a> 
-            <a class='app-btn'>
-            	<img src="smiley.gif" height="170" width="170">
-                <h4>Source Download</h4>
-                <p>Download the .aia file, then import it into App Inventor for remixing.</p>
-            </a>
-    </div>
-
-
-
-
-</div>
-
 
 
 
