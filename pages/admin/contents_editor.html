@@ -3,6 +3,7 @@
 <div class="jumbotron jumbotron-wherami ">
     <div class='jumbotron-wherami-text'>{{course.c_title}} > {{module.m_title}}</div>
 </div>
+
 <a href='/admin/courses/{{course.c_identifier}}' class='back-to-courses-link'><span class="glyphicon glyphicon-chevron-left"></span> All Modules</a>
 <div class='container-fluid'>
     <div class='row'>
@@ -37,11 +38,13 @@
                             {% endif %}     
                             {% if v.c_type == "Worksheet" %}
                             <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
-                            {% endif %}                                 
+                            {% endif %}
+                            {% if v.c_type == "Text Tutorial" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}                                                  
                             {% if v.c_type == "Miscellaneous" %}
                             <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
-                            {% endif %}        
-                                                                                  
+                            {% endif %}                                           
                         </div>
                         
                         
@@ -106,6 +109,7 @@
                         <option>Lesson Plan</option>
                         <option>Project</option>
                         <option>Worksheet</option>
+						<option>Text Tutorial</option>
                         <option>Miscellaneous</option>
                     </select>
                     
@@ -158,6 +162,7 @@
                             <option>Lesson Plan</option>
                             <option>Project</option>
                             <option>Worksheet</option>
+							<option>Text Tutorial</option>
                             <option>Miscellaneous</option>
                         </select>
                     </form>

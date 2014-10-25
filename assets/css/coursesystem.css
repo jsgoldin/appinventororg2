@@ -178,8 +178,6 @@
     width: auto;
     overflow: hidden;
     margin-left: 260px;
-    padding-left: 80px;
-    padding-right: 80px;
 }
 
 .vertical-side-bar-container {
@@ -633,6 +631,20 @@
 
 
 
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 
 
 
@@ -641,38 +653,78 @@
  * -Will always center itself in the parent.
  * -Will maintain a fixed width of 965px until screen is to small, then width becomes 97% of parent.
  * 
- *  (Use gen-app-container if you need one on an app page)
+ *  (Use course-page-container if you need one on an app page)
  */
 .gen-container {
     position: relative;
     margin: 0 auto 0 auto;
     width: 95%;
     height: auto;
-    overflow: hidden;
+    overflow: visible;
     max-width: 1180px;
 }
 
-/* A magic responsive general container for placing content inside of on the app page.
+/* A magic responsive general container for placing content inside of on  app page.
  * 
  * -Will always center itself in the parent.
  * -Will maintain a width of 900px until screen is to small, then width becomes 97% of parent.
  * 
- *  NOTE: This class is designed for the app pages only because of the width settings which take
+ *  NOTE: This class is designed for course pages only because of the width settings which take
  *  into account the sidebar.
  *
- *  	  it won't make sense on non app pages!
+ *  	  it won't make sense on non course pages! For non course pages use gen-container
  */
-.gen-app-container {
+.course-page-container {
     position: relative;
     margin: 0 auto 0 auto;
-    width: 900px;
+    width: 950px;
     height: auto;
     overflow: hidden;
+    clear: both;
+}
+
+
+
+
+
+h1, h2,  h3, h4  {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+
+
+.padded-ud-30 {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+
+.standard-video-description {
+	width: 560px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/* Provides top padding */
+.padding-bottom-40 {
+	padding-bottom: 40px;
+}
+
+.center-children {
+	text-align: center;
+}
+
+.center-element {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 
 @media ( min-width : 0px) and (max-width : 1160px) {
-    .gen-app-container {
+    .course-page-container {
         width: 97%;
     }
 }
@@ -698,6 +750,7 @@
 }
 
 .landing-big-button {
+	display: inline-block;
 	background-color: hsl(8, 70%, 44%);
 	color: #f8f8f8;
 	padding: 16px 32px;
@@ -705,9 +758,7 @@
 	font-weight: 500;
 	line-height: 24px;
 	cursor: pointer;
-	margin-top: 45px;
-	position: relative;
-	top: 50px;
+	margin: 25px 0px 25px 0px;
 	-webkit-transition: .1s background-color ease-in-out;
 }
 
@@ -716,6 +767,9 @@
 	text-decoration: none;
 	color: white;
 }
+
+
+
 
 /* A responsive single tile 
  *
@@ -784,10 +838,19 @@
 	border-color: rgba(1, 1, 1, 0.1);
 }
 
+.full-width-background-gray-1-container {
+	width: 100%;
+	background-color: #F1F1F1;
+}
+
+.full-width-background-blue-1-container {
+	width: 100%;
+	background-color: #46A8BF;
+}
+
 .app-header-left {
 	width: 55%;
 	font-size: 20px;
-	margin-top: 40px;
 	float: left;
 	padding-left: 4%;
 	padding-top: 50px;
@@ -862,15 +925,156 @@
 
 
 
+/* A general class for images on the site.
+ *
+ * the img will automaticly fill the width of the parent
+ * and its height will be autocalculated to maintain the resolution.
+ * Also adds in a nice rounded border
+ *
+ * NOTE: No need to set the height and width attributes of the img
+ */
+.responsive-fullwidth-img {
+	display: block;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	max-width: 100%;
+	height: auto;
+}
+
+
+body {
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 
+ * Put chunks of related info in here
+ * 
+ * A standard section is padded above and below with 30px.
+ * It also feels the width of the parent
+ *
+ * The parent should most likely be a course-page-container or 
+ * gen-container
+ */
+.standard-section {
+	padding-top: 25px;
+	overflow: hidden;
+	width: 100%;
+	
+}
+
+/* standard sections have super readable paragraphs! also lists! */
+.standard-section p, .standard-section ul li {
+	margin-top: 0px;
+	margin-bottom: 15px;
+	font-size: 18px;
+	line-height: 1.8;
+	color: #444;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 600px;
+}
+
+.standard-section h2 {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 600px;
+}
+
+
+
+.center-img-wrapper
+{
+	text-align: center;
+	padding: 10px 0px 25px 0px;
+}
+
+.center-img-wrapper img {
+	margin: 0 auto 0 auto;
+}
+
+.course-page-container .standard-section .paragraph-wrapper {
+	background-color: green;
+	width: 600px;
+}
+
+
+.course-page-container .standard-section .image-wrapper {
+	background-color: yellow;
+	width: 320px;
+	padding: 30px;
+}
 
 
 
 
 
+.nugget-section-left {
+	width: 370px;
+	float: left;
+	padding-right: 40px;
+}
+
+.nugget-section-right {
+	width: 580px;
+	float: left;
+}
+
+
+/* Cooler than you think! */
+.left-side {
+	float: left;
+}
+
+
+.left-side img {
+	margin-right: 40px;
+}
+
+.nudge-right-60 {
+	margin-left: 60px;
+}
+
+
+.right-side {
+	float: right;
+}
+
+.right-side img {
+	margin-left: 40px;
+}
+
+
+.notouch-r {
+	margin-right: 40px;
+}
 
 
 
+/* A place to put the title of an article.
+ *
+ */
+.course-page-title-section {
+	padding-top: 25px;
+	padding-bottom: 25px;
+	overflow: hidden;
+	width: 100%;
+}
 
+.course-page-title-section h2, .course-page-title-section h3 {
+	line-height: 1.2;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+}
+
+
+.col-50 {
+	width: 50%;
+	float: left;
+}
 
 
 /* tiny screens ----------- */
@@ -901,6 +1105,7 @@
         width: 98%;
         margin-bottom: 20px;
     }
+    
     .tutorials-jumbotron-settings img {
         display: none;
     }
@@ -916,13 +1121,34 @@
 
 /* smaller than iPads (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width : 1024px) {
+    
+    .left-side {
+    	float: none;
+    	margin-bottom: 25px;
+    }
+    
+    .left-side img {
+    	margin-left: auto;
+    	margin-right: auto;
+
+    }
+    
+    .right-side {
+    	float: none;
+    	margin-bottom: 25px;
+    }
+    
+   	.right-side img {
+    	margin-left: auto;
+    	margin-right: auto;
+    }
+    
     .vertical-side-bar-container {
         display: none;
     }
+    
     #contentarea {
         margin-left: 0px;
-        padding-left: 40px;
-        padding-right: 40px;
     }
     .no-padding-wrapper {
         margin-left: -40px;
@@ -935,11 +1161,26 @@
     	width: 50%;
     }
     
-    
     .app-btn:nth-child(1) {
     	border-bottom: none;
     }
     .app-btn:nth-child(2) {
     	border-bottom: none;
     }
+    
+    
+    
+    
+    
+    .col-50 {
+		width: 100%;
+	}
+	
+	
+	/* only turns on small screens */
+	.small-screen-center-children {
+		text-align: center;
+	}
+	
+	
 }
