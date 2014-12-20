@@ -1151,16 +1151,17 @@ class SpritesHandler(webapp.RequestHandler):
        
 class ResourcesHandler(webapp.RequestHandler):
     def get(self):
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+                    
+        userStatus = UserStatus().getStatus(self.request.uri)
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           }
         
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/resources.html')
         self.response.out.write(template.render(path, template_values)) 
 
@@ -1611,15 +1612,18 @@ class TeacherListHandler(webapp.RequestHandler):
 class TeachingAIHandler(webapp.RequestHandler):
     def get(self):
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+                    
+        userStatus = UserStatus().getStatus(self.request.uri)
         
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           }
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus, 'apps2Dir':APPS2DIR}
+        
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/teachingAI.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -2602,35 +2606,36 @@ class ContactHandler(webapp.RequestHandler):
 
 class BookHandler(webapp.RequestHandler):
     def get(self):
-        
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
+
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { }
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           }
+        
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/book.html')
         self.response.out.write(template.render(path, template_values))
         
 class Book2Handler(webapp.RequestHandler):
     def get(self):
-        
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { }
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/book2.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -3580,7 +3585,11 @@ class TeacherMapHandler(webapp.RequestHandler):
         # allAccountsQuery = db.GqlQuery("SELECT * FROM Account")
         allAccountsQuery = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1", True)
                                                                                     # now only show teachers
-                                                                                    # TO-DO:Not sure if need to be memcached
+                                                                      
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+                    
+        userStatus = UserStatus().getStatus(self.request.uri)
+        
 
         accountCount = allAccountsQuery.count()
         accounts = allAccountsQuery.fetch(accountCount)
@@ -3599,7 +3608,11 @@ class TeacherMapHandler(webapp.RequestHandler):
                
 
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'accounts': accounts, 'account_k_8':account_k_8, 'account_high_school':account_high_school, 'account_college_university':account_college_university, 'userStatus': userStatus}
+        template_values = { 'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'], 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'accounts': accounts, 'account_k_8':account_k_8, 'account_high_school':account_high_school, 'account_college_university':account_college_university, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/maps.html')
         self.response.out.write(template.render(path, template_values))               
                
@@ -4520,11 +4533,7 @@ class TutorialsHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
 class ModulesHandler(webapp.RequestHandler):
-    def get(self, course_ID=''):
-        
-        # retrieve all of the courses for the top horizontal navbar
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
-        
+    def get(self, course_ID=''):    
         # retrieve the course entity with the course_ID
         x = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).filter(Course.c_identifier == course_ID).fetch()
         
@@ -4533,41 +4542,16 @@ class ModulesHandler(webapp.RequestHandler):
             path = os.path.join(os.path.dirname(__file__), 'pages/pagenotfound.html')
             self.response.out.write(template.render(path, template_values))  
         else:
-            # course exists display the page!
+            # course exists find the first module            
+            # and redirect to that
+            
             courseId = x[0].key.id()
             modules = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, courseId)).order(Module.m_index).fetch()
             
-            # construct dictionary of courses to modules mapping
-                    
-            moduleContentMapping = collections.OrderedDict()
-            # iterate over all the modules in the current course
-                    
-            for module in modules:
-                # initialize key in mapping
-                moduleContentMapping[str(module.m_title)] = [module.m_icon]
-                moduleContentMapping[str(module.m_title)].append(module.m_description)
-                moduleContentMapping[str(module.m_title)].append(module.m_identifier)
-                # now look up the content associated with this module
-                contents = Content.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(courseId), Module, long(module.key.id()))).order(Content.c_index).fetch()
-                for mod_content in contents:                     
-                    moduleContentMapping[str(module.m_title)].append(mod_content)
+            course = x[0]
+            first_module = modules[0]
              
-
-
-            userStatus = UserStatus().getStatus(self.request.uri)
-                       
-            template_values = {"title" : x[0].c_title ,
-                               "modules" : modules,
-                               "course" : x[0],
-                               "courses" : courses,
-                               'moduleContentMapping' : moduleContentMapping,
-                               'stylesheets' : ['/assets/css/coursesystem.css'],
-                               'scripts' : ['/assets/js/coursesystem.js'],
-                               'userStatus': userStatus
-                                }
-                  
-            path = os.path.join(os.path.dirname(__file__), 'pages/modules.html')
-            self.response.out.write(template.render(path, template_values))
+            self.redirect(course.c_identifier + "/" + first_module.m_identifier)     
 
 class ContentsHandler(webapp.RequestHandler):
     def get(self, module_ID="", course_ID=""):
@@ -4597,35 +4581,23 @@ class ContentsHandler(webapp.RequestHandler):
                 courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
                 
                 # construct dictionary of courses to modules mapping
-                    
-                moduleContentMapping = collections.OrderedDict()
-                # iterate over all the modules in the current course
-                
+
                 modules = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course_entity.key.id()))).order(Module.m_index).fetch()    
-                for module in modules:
-                    # initialize key in mapping
-                    moduleContentMapping[str(module.m_title)] = [module.m_icon]
-                    moduleContentMapping[str(module.m_title)].append(module.m_description)
-                    moduleContentMapping[str(module.m_title)].append(module.m_identifier)
-                    # now look up the content associated with this module
-                    contents = Content.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course_entity.key.id()), Module, long(module.key.id()))).order(Content.c_index).fetch()
-                    for mod_content in contents:                     
-                        moduleContentMapping[str(module.m_title)].append(mod_content)
+                
              
-
-
                 userStatus = UserStatus().getStatus(self.request.uri)
                        
                 template_values = {"title" : course_entity.c_title ,
+                               "module" : module_entity,    
                                "modules" : modules,
-                               "course" : course_entity,
-                               "courses" : courses,
-                               'moduleContentMapping' : moduleContentMapping,
                                'stylesheets' : ['/assets/css/coursesystem.css'],
                                'scripts' : ['/assets/js/coursesystem.js'],
-                               'userStatus': userStatus
+                               'userStatus': userStatus,
+                               'contents' : contents,
+                               'courses' : courses,
                                 }
-                  
+
+
                 path = os.path.join(os.path.dirname(__file__), 'pages/modules.html')
                 self.response.out.write(template.render(path, template_values))
                 
@@ -4731,7 +4703,7 @@ class AdminCourseDisplayHandler(webapp.RequestHandler):
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
         
         template_values = {"courses" : courses,
-                           'stylesheets' : ['/assets/admin/css/editor.css', '/assets/admin/css/admin.css'],
+                           'stylesheets' : ['/assets/admin/css/editor.css', '/assets/admin/css/admin.css', '/assets/css/coursesystem.css'],
                            'scripts' : ['/assets/admin/js/courses_editor.js'],
                            'title' : 'Courses Admin',
                            'userStatus' : userStatus
@@ -4785,7 +4757,7 @@ class AdminModuleDisplayHandler(webapp.RequestHandler):
                                'userStatus' : userStatus,
                                "courses" : courses,
                                'moduleContentMapping' : moduleContentMapping,
-                               'stylesheets' : ['/assets/admin/css/editor.css'],
+                               'stylesheets' : ['/assets/admin/css/editor.css', '/assets/css/coursesystem.css'],
                                'scripts' : ['/assets/admin/js/modules_editor.js'],
                               }
             
@@ -4828,7 +4800,7 @@ class AdminContentsDisplayHandler(webapp.RequestHandler):
                                    'title' : 'Content Administration',
                                    'userStatus' : userStatus,
                                    "courses" : courses,
-                                   'stylesheets' : ['/assets/admin/css/editor.css'],
+                                   'stylesheets' : ['/assets/admin/css/editor.css', '/assets/css/coursesystem.css'],
                                    'scripts' : ['/assets/admin/js/contents_editor.js'],
                                     }
                 
@@ -4903,7 +4875,7 @@ class AdminContentDisplayHandler(webapp.RequestHandler):
                            'userStatus' : userStatus,
                            'courses' : courses,
                            'next_module' : next_module_entity,
-                           'stylesheets' : ['/assets/css/coursesystem.css'],
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/coursesystem.css'],
                            'scripts' : ['/assets/js/coursesystem.js']
                            }
                             
@@ -5053,7 +5025,7 @@ class AdminDashboardHandler(webapp.RequestHandler):
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
                     
         template_values = {
-                           'stylesheets' : ['/assets/admin/css/admin.css'],
+                           'stylesheets' : ['/assets/admin/css/admin.css', '/assets/css/coursesystem.css'],
                            'userStatus' : userStatus,
                            'courses' : courses,
                            'title' : 'Admin Dashboard'

@@ -11,16 +11,7 @@ body {
     max-height: none;
 }
 
-.navbar-color {
-    background-color: white;
-    background: -moz-linear-gradient(top, #41AEA2 0%, #2a8a8f 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #36b0b6),
-        color-stop(100%, #2a8a8f) );
-    background: -webkit-linear-gradient(top, #41AEA2 0%, #2a8a8f 100%);
-    background: -o-linear-gradient(top, #41AEA2 0%, #2a8a8f 100%);
-    background: -ms-linear-gradient(top, #41AEA2 0%, #2a8a8f 100%);
-    background: linear-gradient(top, #41AEA2 0%, #2a8a8f 100%);
-}
+
 
 .navbar-default .navbar-nav>li>a {
     color: white;
@@ -28,13 +19,6 @@ body {
 
 .no-padding {
     padding-left: 0px;
-}
-
-.search-box-wrapper {
-    float: right;
-    width: 30%;
-    font-size: 15px;
-    height: 30px;
 }
 
 .login-stuff-wrapper {
@@ -49,22 +33,13 @@ body {
     text-decoration: none;
 }
 
-.top-banner {
-    background-color: white;
-    padding: 1% 6% 1% 6%;
-    position: relative;
-}
-
 .navbar-nav>li>a {
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 100%;
 }
 
-.global-navbar {
-    min-height: 0px;
-    box-shadow: 0px 10px 30px rgba(1, 1, 1, 0.4);
-}
+
 
 .content-area .jumbotron {
     height: 50%;
@@ -275,11 +250,7 @@ body {
     letter-spacing: 3px;
 }
 
-.course-view-box-icon {
-    float: left;
-    position: relative;
-    bottom: 15px;
-}
+
 
 .margin-right-90 {
     margin-right: 90px;
@@ -376,14 +347,6 @@ body {
     .navbar-nav .open,.navbar-nav .open:hover {
         background-color: transparent;
     }
-    .global-navbar {
-        margin-bottom: 0px;
-        background-color: white;
-        border: 0;
-    }
-    .search-box-wrapper {
-        display: none;
-    }
 }
 
 /* big screens ----------- */
@@ -391,15 +354,7 @@ body {
     .nav>.hidden-on-big-screen {
         display: none;
     }
-    .global-navbar {
-        margin-bottom: 0px;
-        background-color: white;
-        border: 0;
-        height: 40px;
-    }
-    .navbar-color {
-        height: 40px;
-    }
+    
     #profilenavbarbutton {
         height: 40px;
     }
@@ -428,13 +383,3 @@ body {
     padding-right: 20%;
 }
 
-.back-to-courses-link {
-    cursor: pointer;
-    color: gray;
-    position: relative;
-}
-
-.back-to-courses-link:hover {
-    color: #978FBA;
-    text-decoration: none;
-}

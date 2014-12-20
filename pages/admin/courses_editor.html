@@ -18,11 +18,10 @@
                 <ul id="sortable">
                     {% for course in courses %}
                     <li id='noDrag' keyid='{{ course.key.id }}' identifier='{{course.c_identifier}}' class='course-box' index='{{course.c_index}}'>
-                        <div class='col-md-3 course-view-box-setting-left'>
-                            <img class='course-view-box-icon margin-right-90' src='{{course.c_icon}}' height='100px' width='100px'>
-                        </div>
-                        <div class='col-md-9 course-view-box-setting-right'>
-                            <h1>{{course.c_title}}</h1>
+                        <img src='{{course.c_icon}}' height='100px' width='100px'>
+         
+                        <div class='course-view-box-info'>
+                            <h2>{{course.c_title}}</h2>
                             <p>{{course.c_description}}</p>
                         </div>
 

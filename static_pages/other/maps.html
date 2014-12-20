@@ -1,7 +1,5 @@
+{% extends "site_base.html" %} {% block body %}
 
-
-{% extends "site_base.html" %}
-{% block body %}
 <style type="text/css">
          .personal_info {
          		
@@ -337,52 +335,43 @@ if (cb.value == "K-8") {
 		//updatePeopleList();
 	 }
       
-	
 
       </script>
-<div class="row-fluid" style="min-width: 1200px">
+      
+<article>
 
-   <div class="span2">
-      <input type="checkbox" id="All" value="All" onchange='handleChangeAll(this);'>&nbsp;All
-   </div>
-   <div class="span2">
-      <input type="checkbox" id="K_8_selected" value="K-8" onchange='handleChange(this);'>&nbsp;K-8
-	<img src="/assets/img/maps/green-dot.png"></img>	 
-   </div>
-   <div class="span2">
-      <input type="checkbox" id="high_school_chool_selected" value="High School" onchange='handleChange(this);'>&nbsp;High School
+	<div class='full-width-background-blue-1-container'>
+		<div class='course-page-container'>
+			<div class='course-page-title-section '>
+				<h2>Whose Teaching App Inventor</h2>
+			</div>
+		</div>
+	</div>
+	<div class='gen-container'>
+		<div class='standard-section center-children'>
+		      <input type="checkbox" id="All" value="All" onchange='handleChangeAll(this);'>&nbsp;All
+		      <input type="checkbox" id="K_8_selected" value="K-8" onchange='handleChange(this);'>&nbsp;K-8
+			<img src="/assets/img/maps/green-dot.png"></img>	
+			      <input type="checkbox" id="high_school_chool_selected" value="High School" onchange='handleChange(this);'>&nbsp;High School
 	 <img src="/assets/img/maps/blue-dot.png"></img>
-
-   </div>
-   <div class="span2">
-      <input type="checkbox" id="College/University_selected" value="College/University" onchange='handleChange(this);'>&nbsp;College/University 
+	       <input type="checkbox" id="College/University_selected" value="College/University" onchange='handleChange(this);'>&nbsp;College/University 
 	 <img src="/assets/img/maps/red-dot.png"></img>
-
-   </div>
-
-   <div class="span2">
-   {% if userStatus.ifUser%}
+	    {% if userStatus.ifUser%}
    {% else %}
-    Are you an educator? <a href="{{userStatus.loginurl}}">login</a> and tell us about yourself
+    <p>Are you an educator? <a href="{{userStatus.loginurl}}">login</a> and tell us about yourself</p>
    {% endif %}
-   </div>
-    <div class="span2">
-	<a class="btn btn-success btn-mini" style="background:#FFAE00;"
+   
+   
+   <div style='padding: 25px;'>
+   <a class="btn btn-success btn-mini" style="background:#FFAE00"
                    href="https://groups.google.com/forum/#!forum/app-inventor-instructors" target="_blank">
 		App Inventor Educators Google Forum
 	</a>
+	</div>
+	
    </div>
-
-   
-   
-
-</div>
-
-
-
-<div class="row-fluid" >
-   <div class="span12">
-	 <div class="offset4 span4 offset4" id="spinner-div">
+		<div class='standard-section'>   
+	 <div class="center-children" id="spinner-div">
 	 	<img id="earth-spinner" src="/assets/img/earth.png"></img>
 	 <p><b>Loading data now, please wait...</b></p>
 	 </div>
@@ -390,14 +379,16 @@ if (cb.value == "K-8") {
 		<div id="googleMap" style="width:100%;height:514px;"></div>
 	 </div>
 
-   </div>
 </div>
-
-
-<p></p>
-<p></p>
+		</div>
+		
+		
 
 <!-------------------account_college_university--------------->
+				<div class='standard-section'>   
+				
+				
+				
 
 <div id="account_college_university_well">
 	<p>College/University:</p>
@@ -553,6 +544,14 @@ if (cb.value == "K-8") {
 </div>
 
 </div>
+				
+				
+				</div>
+		
+		
+		
+</article>
+
 
 
 

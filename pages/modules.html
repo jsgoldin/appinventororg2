@@ -1,98 +1,95 @@
 {% extends "templates/site_base.html" %} {% block body %}
 
-<div class="jumbotron jumbotron-wherami">
-    <div class='jumbotron-wherami-text'>Course In A Box</div>
+<div class='col-25'>
+	<div style='width: 75%;' class='vertical-side-bar-top-box-back back-to-courses-link'>
+	    <a href='/'><span></span></a>
+		<span class="glyphicon glyphicon-chevron-left relative"></span> BACK
+	</div>
+
+	<h2 class='modules-left-box'>{{title}}</h2>
+
+	{% for m in modules %}
+
+	
+	{% if m.m_title == module.m_title %}
+	
+	<div class='module-content-browser-box-tab-inner selected-tab'>
+		<a href='{{m.m_identifier}}'><span></span></a>
+		<p>{{m.m_title}}</p>
+
+	</div>
+	
+	{% else %}
+	
+	<div class='module-content-browser-box-tab-inner'>
+		<a href='{{m.m_identifier}}'><span></span></a>
+		<p>{{m.m_title}}</p>
+	</div>
+
+	{% endif %}
+	
+	{% endfor %}
 </div>
 
-<div class='container-fluid container-sidepadder'>
-    <div class='row'>
-        <div class='col-md-12'>
-            <a href='/content' class='back-to-courses-link'><span class="glyphicon glyphicon-chevron-left"></span> Courses</a>
-
-            <div class='module-content-browser-box-wrapper'>
-                <div class='module-content-browser-box-tabs '>
-                    {% for key, values in moduleContentMapping.items %} {% if forloop.counter0 == 0 %}
-                    <div clicked='true' module_id='{{values.2}}' class='module-content-browser-box-tab-inner'>
-                        <p>{{key}}</p>
-                    </div>
-                    {% endif %} {% if forloop.counter0 > 0 %}
-                    <div clicked='false' module_id='{{values.2}}' class='module-content-browser-box-tab-inner'>
-                        <p>{{key}}</p>
-                    </div>
-                    {% endif %} {% endfor %}
-                </div>
-                
-                
-                <div class='module-content-browser-box'>
-
-                    {% for key, values in moduleContentMapping.items %}
-
-                    <div module_id='{{values.2}}' class='course-modules-wrapper'>
-
-                        <img class='course-view-box-icon' src='{{values.0}}' height='100px' width='100px'>
+<div class='col-75'>
+	<div class='course-modules-wrapper'>
+		<div class='standard-section'>
+			<h1 class='small-screen-center-children'>{{module.m_title}}</h1>
+			<hr>
+			<p style='color: color: #757575;'>{{module.m_description}}</p>
+		</div>
 
 
-                        <div class='course-view-box-info-box'>
-                            <h1>{{key}}</h1>
-                            <p>{{values.1}}</p>
-                        </div>
+		{% for content in contents %}
+		<div id='module-page-content-item' class='vertical-content-nav-bar-item'>
+			<a href='{{module.m_identifier}}/{{content.c_identifier}}'><span></span></a>
+
+			{% if content.c_type == "App" %}
+			<img class='vertical-side-bar-item-icon'
+				src='/assets/img/ModuleIcons/flat-color/play.png' height='30px'>
+			{% endif %} 
+			{% if content.c_type == "Quiz" %} 
+			<img class='vertical-side-bar-item-icon'
+				src='/assets/img/ModuleIcons/flat-color/check-list.png'
+				height='30px'> 
+			{% endif %}
+			{% if content.c_type == "Nugget" %}
+			<img class='vertical-side-bar-item-icon'
+				src='/assets/img/ModuleIcons/flat-color/light-bulb.png'
+				height='30px'> 
+			{% endif %}
+			{% if content.c_type == "Book Chapter" %}
+			<img class='vertical-side-bar-item-icon'
+				src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'>
+			{% endif %} 
+			{% if content.c_type == "Lesson Plan" %}
+			<img class='vertical-side-bar-item-icon'
+				src='/assets/img/ModuleIcons/flat-color/book.png' height='30px'>
+			{% endif %} 
+			{% if content.c_type == "Project" %}
+			<img class='vertical-side-bar-item-icon'
+				src='/assets/img/ModuleIcons/flat-color/pencil.png' height='30px'>
+			{% endif %}
+			{% if content.c_type == "Worksheet" %}
+			<img class='vertical-side-bar-item-icon'
+				src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'>
+			{% endif %}
+			{% if content.c_type == "Text Tutorial" %}
+			<img class='vertical-side-bar-item-icon'
+				src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'>
+			{% endif %}
+			{% if content.c_type == "Miscellaneous" %}
+			<img class='vertical-side-bar-item-icon'
+				src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'>
+			{% endif %} 
+			
+			<span class='vertical-content-nav-bar-item-text '>{{content.c_title}}</span>
+		</div>
+		{% endfor %}
+
+	</div>
 
 
-                        {% for v in values %} {% if forloop.counter0 > 2 %}
-                        <div id='module-page-content-item' module_id='{{values.2}}' content_id='{{v.c_identifier}}' module_title='{{key}}' content_title='{{v.c_title}}' class='vertical-content-nav-bar-item'>
-                            
-                            {% if v.c_type == "App" %}
-                            <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/video.png' height='28px' width='28px'> 
-                            {% endif %}
-                            
-                            {% if v.c_type == "Quiz" %}
-                            <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/question.png' height='28px' width='28px'>
-                            {% endif %}
-                            
-                            {% if v.c_type == "Nugget" %}
-                            <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/light.png' height='28px' width='28px'>
-                            {% endif %}
-    
-                            {% if v.c_type == "Book Chapter" %}
-                            <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/light.png' height='28px' width='28px'>
-                            {% endif %}
-                            
-                            {% if v.c_type == "Lesson Plan" %}
-                            <img class='vertical-content-nav-bar-item-icon' src='/assets/img/ModuleIcons/light.png' height='28px' width='28px'>
-                            {% endif %}
-                            
-                            {% if v.c_type == "Project" %}
-                            <img class='vertical-content-nav-bar-item-icon' src='' height='28px' width='28px'>
-                            {% endif %}
-                            
-                            {% if v.c_type == "Worksheet" %}
-                            <img class='vertical-content-nav-bar-item-icon' src='' height='28px' width='28px'>
-                            {% endif %}                          
-                            
-                            {% if v.c_type == "Miscellaneous" %}
-                            <img class='vertical-content-nav-bar-item-icon' src='' height='28px' width='28px'>
-                            {% endif %}      
-                            
-                                                        
-                            <div class='vertical-content-nav-bar-item-text'>{{v.c_title}}</div>
-                        </div>
-                        {% endif %} {% endfor %}
-
-                    </div>
-
-                    {% endfor %}
-
-
-
-
-                </div>
-            </div>
-
-
-
-        </div>
-    </div>
 </div>
-
 
 {% endblock %}

@@ -5,6 +5,7 @@
     <div class='vertical-side-bar-top-box'>
         
         <div class='vertical-side-bar-top-box-back'>
+            <a href='../{{module.m_identifier}}'><span></span></a>
             <span class="glyphicon glyphicon-chevron-left relative"></span>
             BACK
         </div>
@@ -14,19 +15,34 @@
         {% for c in contents %}
         <div content_ID='{{c.c_identifier}}' class='vertical-side-bar-item'>
             <div class='vertical-side-bar-item-center-wrapper'>
-            
-                      
                 {% if c.c_type == "App" %}
-                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/video.png' height='28px' width='28px'> 
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/play.png' height='30px'> 
                 {% endif %} 
                 {% if c.c_type == "Quiz" %}
-                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/question.png' height='28px' width='28px'>
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/check-list.png' height='30px'>
                 {% endif %} 
                 {% if c.c_type == "Nugget" %} 
-                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/light.png' height='28px' width='28px'> 
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/light-bulb.png' height='30px'> 
                 {% endif %}       
-                
-                
+                {% if c.c_type == "Book Chapter" %} 
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'> 
+                {% endif %}     
+                {% if c.c_type == "Lesson Plan" %} 
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/book.png' height='30px'> 
+                {% endif %}                    
+                {% if c.c_type == "Project" %} 
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/pencil.png' height='30px'> 
+                {% endif %}                    
+                {% if c.c_type == "Worksheet" %} 
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'> 
+                {% endif %}                     
+                {% if c.c_type == "Text Tutorial" %} 
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'> 
+                {% endif %}       
+                {% if c.c_type == "Miscellaneous" %} 
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'> 
+                {% endif %}                       
+                                               
                 <div class='vertical-side-bar-item-icon-text'>
                    {{c.c_title}}
                 </div>        
@@ -40,10 +56,8 @@
         </div>
          
         <div class='vertical-side-bar-top-bottom-next' module_id='{{next_module.m_identifier}}'>
-            
-            <img class='vertical-side-bar-bottom-box-next-module-icon' src='{{next_module.m_icon}}' height='40px' width='40px'>
             <div class='vertical-side-bar-bottom-box-next-module-title'>
-                {{next_module.m_title}} Drawing and fun
+                {{next_module.m_title}}
             </div>
             <span class="glyphicon glyphicon-chevron-right relative"></span>
         </div> 
