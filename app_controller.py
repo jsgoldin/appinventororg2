@@ -928,20 +928,18 @@ class IHaveADreamTutHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/IHaveADreamTut.html')
         self.response.out.write(template.render(path, template_values))
+
+
 class BiblioHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
             return None
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        template_values = {'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/biblio.html')
         self.response.out.write(template.render(path, template_values))
 

@@ -11,8 +11,7 @@
 	border-radius: 0px;
 }
 
-
-.navbar-nav > li > a{
+.navbar-nav>li>a {
 	color: white;
 }
 
@@ -652,6 +651,21 @@
 	background-color: #A5D173;
 }
 
+.video-section {
+	margin-top: 0px;
+	margin-bottom: 80px;
+}
+
+.video-section p {
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 20px;
+	text-align: center;
+}
+
 .videoWrapper {
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 */
@@ -713,7 +727,7 @@ h1, h2, h3, h4 {
 }
 
 .standard-video-description {
-	width: 560px;
+	max-width: 560px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -997,6 +1011,7 @@ body {
 	max-width: 600px;
 }
 
+
 .standard-section h1, .standard-section h2, .standard-section h3,
 	.standard-section a {
 	margin-left: auto;
@@ -1105,6 +1120,16 @@ footer a {
 	font-size: 20px;
 	font-weight: 700;
 	margin-bottom: 10px;
+}
+
+.course-page-header h1, .course-page-header h2, .course-page-header h3,
+	.course-page-header h4 {
+	max-width: 600px;
+}
+
+.course-page-header p {
+	color: #444;
+	max-width: 800px;
 }
 
 /* A place to put the title of an article.
