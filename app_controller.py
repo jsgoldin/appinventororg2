@@ -2604,7 +2604,6 @@ class ContactHandler(webapp.RequestHandler):
 
 class BookHandler(webapp.RequestHandler):
     def get(self):
-
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
@@ -2613,7 +2612,7 @@ class BookHandler(webapp.RequestHandler):
 
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
-                           'title' : 'App Inventor',
+                           'title' : 'App Inventor 1 Book: Create Your Own Android Apps',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            }
@@ -2630,7 +2629,7 @@ class Book2Handler(webapp.RequestHandler):
 
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
-                           'title' : 'App Inventor',
+                           'title' : 'App Inventor 2 Book: Create Your Own Android Apps',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            }
@@ -3348,7 +3347,7 @@ class AboutHandler(webapp.RequestHandler):
         
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
-                           'title' : 'App Inventor',
+                           'title' : 'About Us',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            }
@@ -3617,20 +3616,21 @@ class TeacherMapHandler(webapp.RequestHandler):
 # Google Custom Search
 class SearchHandler (webapp.RequestHandler):
     def get(self):
-               
-        query = self.request.get('query')
         
-
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-
-
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
+        query = self.request.get("q")
+        logging.info(query)
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+                    
+        userStatus = UserStatus().getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'Search Results: ' + query,
+                           'stylesheets' : ['/assets/css/coursesystem.css'],
+                           'scripts' : [],
+                           'query' : query,
+                           }
+           
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/searchResult.html')
         self.response.out.write(template.render(path, template_values))
 

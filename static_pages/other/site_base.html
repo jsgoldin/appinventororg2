@@ -32,9 +32,14 @@
          		</div>
          		<div class='col-50'>
             		<div class='search-box-wrapper'>
-            
-            			<form>
-                			<input type="text" class="form-control " placeholder="Search">
+						<form action="/siteSearch">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						
+            				{% if query %}
+            					<input class="form-control search-form" name="q" type="text" value={{query}} type="search">
+            				{% else %}
+            					<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org" type="search">            				
+            				{% endif %}
 						</form>
 
                 		<div class="login-stuff-wrapper small-screen-hide">
@@ -124,5 +129,20 @@
 
 
     <script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
+    
+        <!-- Google custom search  -->
+    <script>
+	  	(function() {
+	    var cx = '008494446149806911917:sgk1dgv7xgw';
+	    var gcse = document.createElement('script');
+	    gcse.type = 'text/javascript';
+	    gcse.async = true;
+	    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	        '//www.google.com/cse/cse.js?cx=' + cx;
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(gcse, s);
+	  	})();
+	</script>
+    
 </body>
 </html>
