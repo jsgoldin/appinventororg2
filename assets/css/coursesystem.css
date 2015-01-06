@@ -1127,17 +1127,13 @@ footer a {
 	display: none;
 }
 
-/* Move custom search branding to bottom of page */
-.gcsc-branding {
-	position: absolute;
-	bottom: 0px;
-}
-
 /* Format the search results to fit website style */
 .gsc-webResult.gsc-result, .gsc-results .gsc-imageResult {
 	border-color: #F6F6F6 !important;
 	background-color: #F6F6F6 !important;
 }
+
+
 
 .course-page-header h1, .course-page-header h2, .course-page-header h3,
 	.course-page-header h4 {

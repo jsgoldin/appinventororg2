@@ -127,6 +127,64 @@
     <script type="text/javascript" src="{{script}}"></script>
     {% endfor %}
 
+    <footer>
+    	<div class='gen-container'>		
+    		<div class='col-50'>
+ 				<img class='responsive-fullwidth-img footer-icon' src='/assets/img/testbanner.png'>
+     			<a>Contact Us | </a>
+     			<a>About | </a>
+     			<a>News</a>
+    		</div>
+    		
+    		<div class='col-50'>
+    		
+    		<ul class='nested-list'>
+    			<li class='list-parent'>
+    				<div class='list-section-title'>About</div>
+    				<ul>
+    					<li>
+    						<a>Our Mission</a>
+    					</li>
+    					<li>
+    						<a>Our Team</a>
+    					</li>    					
+    					<li>
+    						<a>News</a>
+    					</li>
+    					<li>
+    						<a>Blog</a>
+    					</li>    					    					
+    				</ul>
+    			</li>	
+     			<li class='list-parent'>
+    				<div class='list-section-title'>Resources</div>
+    				<ul>
+    					<li>
+    						<a>Book</a>
+    					</li>
+    					<li>
+    						<a>MIT</a>
+    					</li> 					    					
+    				</ul>
+    			</li> 
+     			<li class='list-parent'>
+    				<div class='list-section-title'>Learn</div>
+    				<ul>
+						{% for course in courses %}
+                    	<li>
+                    		<a href="/content/{{course.c_identifier}}">{{course.c_title}}</a>
+                    	</li> 
+                    	{% endfor %}			   					
+    				</ul>
+    			</li>          			
+    		</ul> 		
+ 			</div>
+ 			
+    		<p class='footer-copyright'>AppInventor.org by David Wolber is licensed under an Attribution-NonCommercial-ShareAlike 3.0 Unported License. </p>
+    	
+    	</div>
+    </footer>
+    
 
     <script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
     
