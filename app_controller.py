@@ -5203,11 +5203,12 @@ class testView(webapp.RequestHandler):
         self.response.out.write(output)        
         
         
-class dreamWorksheetHandler(webapp.RequestHandler):
+class gDocHandler(webapp.RequestHandler):
     def get(self):
         
         userStatus = UserStatus().getStatus(self.request.uri)
-        
+        #docId="1f4lPDnfaxxKhzkWvoEuCrHNHpJBRWixIsxr8u0zJR9U"
+        docId = self.request.get("docId")
         # look up all the courses for the global navbar
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
             
@@ -5218,9 +5219,9 @@ class dreamWorksheetHandler(webapp.RequestHandler):
                            'courses' : courses,
                            'title' : 'Admin Dashboard',
                            'scripts' : ['/assets/admin/js/import.js'],
-                           }       
+                           'docId' : docId                           }       
         
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/dreamCC.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/gdoc.html')
         self.response.out.write(template.render(path, template_values))      
                 
 
@@ -5382,7 +5383,7 @@ application = webapp.WSGIApplication(
         ###############################
         #  Iframe google docs hotfix  #
         ###############################
-        ('/dreamWorksheet', dreamWorksheetHandler),        
+        ('/gDoc', gDocHandler),        
         ###################################
         #  End Iframe google docs hotfix  #
         ###################################
