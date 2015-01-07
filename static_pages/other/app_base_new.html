@@ -49,20 +49,23 @@
 </div>
 
 <div class='app-btn-section'>
-
-	<a href='{{app.}}' class='app-btn'> <img src="smiley.gif"
+{% if app.pdfChapter %}
+	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf" class='app-btn'> <img src="/assets/img/ModuleIcons/flat-color/check-list.png"
 		height="170" width="170">
 		<h4>Book Chapter</h4>
 		<p>View this tutorial in text form</p>
-	</a> <a class='app-btn'> <img src="smiley.gif" height="170" width="170">
+ {% endif %}
+	<div class='app-btn'>
+	<img src="{{currentAppsDir}}/{{ app.appId }}/qr.png" height="170" width="170">
 		<h4>QR Code</h4>
-		<p>Scan this to get {{app.heroHeader}} on your device</p>
-	</a> <a class='app-btn'> <img src="smiley.gif" height="170" width="170">
+		<p>Scan to install this app.</p>
+	</div>
+	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk" class='app-btn'> <img src="/assets/img/androidApk.jpeg" height="170" width="170">
 		<h4>APK download</h4>
 		<p>Download the .apk file to your computer</p>
-	</a> <a class='app-btn'> <img src="smiley.gif" height="170" width="170">
+	</a> <a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia"class='app-btn'> <img src="/assets/img/androidAia.jpeg" height="170" width="170">
 		<h4>Source Download</h4>
-		<p>Download the .aia file, then import it into App Inventor for
+		<p>Download the source (.aia file), then import it into App Inventor for
 			remixing.</p>
 	</a>
 </div>
