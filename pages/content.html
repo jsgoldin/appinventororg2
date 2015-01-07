@@ -3,7 +3,6 @@
 
 <div class='vertical-side-bar-container'>
     <div class='vertical-side-bar-top-box'>
-        
         <div class='vertical-side-bar-top-box-back'>
             <a href='../{{module.m_identifier}}'><span></span></a>
             <span class="glyphicon glyphicon-chevron-left relative"></span>
@@ -11,7 +10,7 @@
         </div>
         <div class='vertical-side-bar-top-box-title'>{{module.m_title}}</div>
     </div>
-    <div class='vertical-side-bar-middle-box'>
+    <div id="sidebaritems" class='vertical-side-bar-middle-box'>
         {% for c in contents %}
         <div content_ID='{{c.c_identifier}}' class='vertical-side-bar-item'>
             <div class='vertical-side-bar-item-center-wrapper'>
@@ -41,8 +40,7 @@
                 {% endif %}       
                 {% if c.c_type == "Miscellaneous" %} 
                     <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'> 
-                {% endif %}                       
-                                               
+                {% endif %}                                                                     
                 <div class='vertical-side-bar-item-icon-text'>
                    {{c.c_title}}
                 </div>        
