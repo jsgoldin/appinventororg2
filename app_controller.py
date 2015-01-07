@@ -1015,6 +1015,40 @@ class ConditionalsHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Conditionals2.html')
         self.response.out.write(template.render(path, template_values))
 
+class ConditionalsStartHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Conditionals-startStop.html')
+        self.response.out.write(template.render(path, template_values))
+
+class ConditionalsWhereHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Conditionals-where.html')
+        self.response.out.write(template.render(path, template_values))
+
 class RecordingItemHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -1185,6 +1219,40 @@ class TimedListsHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedLists.html')
         self.response.out.write(template.render(path, template_values))
 
+class IncrementingCountHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/incrementing-count.html')
+        self.response.out.write(template.render(path, template_values))
+class IncrementingCountDownHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/incrementing-countDown.html')
+        self.response.out.write(template.render(path, template_values))
+    
+    
 class IncrementingVariablesHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -5283,11 +5351,10 @@ application = webapp.WSGIApplication(
         # AI2
 
         ('/IHaveADream-steps', NewAppRenderer_AI2), ('/paintpot2-steps', NewAppRenderer_AI2), ('/presidentsQuiz2-steps', NewAppRenderer_AI2), ('/notext-steps', NewAppRenderer_AI2), ('/mathblaster-steps', NewAppRenderer_AI2), ('/AndroidMash-steps', NewAppRenderer_AI2), ('/PresidentsQuiz-steps', NewAppRenderer_AI2), ('/pong-steps', NewAppRenderer_AI2), ('/stockMarket-steps', NewAppRenderer_AI2), ('/logo-steps', NewAppRenderer_AI2),
-    ('/book2', Book2Handler), ('/starterApps', StarterAppsHandler), ('/appInventor2Changes', AppInventor2ChangesHandler), ('/presidentsQuizTut', PresidentsQuizTutHandler), ('/IHaveADreamTut', IHaveADreamTutHandler), ('/TimedActivity', TimedActivityHandler), ('/TimedLists', TimedListsHandler), ('/Conditionals', ConditionalsHandler), ('/Variables', VariablesHandler), ('/recordItems', RecordingItemHandler), ('/incrementing', IncrementingVariablesHandler), ('/Walkingalist', WalkingalistHandler), ('/Events-redbtn', EventsRedBtnHandler), ('/Events-shaking', EventsShakingHandler), ('/Lists', ListsHandler), ('/UserListNav', UserListNavHandler), ('/Persistence', PersistenceHandler), ('/FAQ', FAQHandler), ('/knowledgeMap', KnowledgeMapHandler), ('/lists', ListsHandler),
+    ('/book2', Book2Handler), ('/starterApps', StarterAppsHandler), ('/appInventor2Changes', AppInventor2ChangesHandler), ('/presidentsQuizTut', PresidentsQuizTutHandler), ('/IHaveADreamTut', IHaveADreamTutHandler), ('/TimedActivity', TimedActivityHandler), ('/TimedLists', TimedListsHandler), ('/Conditionals', ConditionalsHandler), ('/Variables', VariablesHandler), ('/recordItems', RecordingItemHandler), ('/incrementing', IncrementingVariablesHandler), ('/incrementingCount', IncrementingCountHandler),('/incrementingCountDown', IncrementingCountDownHandler), ('/Walkingalist', WalkingalistHandler), ('/Events-redbtn', EventsRedBtnHandler), ('/Events-shaking', EventsShakingHandler), ('/Lists', ListsHandler), ('/UserListNav', UserListNavHandler), ('/Persistence', PersistenceHandler), ('/FAQ', FAQHandler), ('/knowledgeMap', KnowledgeMapHandler), ('/lists', ListsHandler),
     ('/proc', ProcHandler), ('/location', LocationHandler), ('/resources', ResourcesHandler), ('/Drawing', DrawingHandler), ('/sprites', SpritesHandler),
      ('/MakeQuiz10', MakeQuiz10Handler), ('/teacherList', TeacherListHandler),
      ('/TeachingAI', TeachingAIHandler),
-
         # AI2 view all steps, error on 'IHaveADream'
         # ('/IHaveADream', AppRenderer),
         ('/IHaveADream', AppRenderer), ('/paintpot2', AppRenderer), ('/AndroidMash', AppRenderer), ('/presidentsQuiz2', AppRenderer), ('/notext', AppRenderer), ('/pong', AppRenderer), ('/stockMarket', AppRenderer), ('/logo', AppRenderer),
@@ -5298,8 +5365,8 @@ application = webapp.WSGIApplication(
         # Memcache Flush
         ('/memcache_flush_all', MemcacheFlushHandler),
 
-        ('/introIf', ConditionsHandler),
-      
+        ('/conditionalsStart', ConditionalsStartHandler),('/introIf', ConditionsHandler),
+        ('/conditionalsWhere', ConditionalsWhereHandler),
 
         ('/IHaveADream2', IHaveADreamHandler), ('/properties', PropertiesHandler), ('/eventHandlers', EventHandlersHandler), ('/quizly', QuizlyHandler), ('/conditionalsInfo', ConditionalsInfoHandler), ('/workingWithMedia', WorkingWithMediaHandler), ('/mathBlaster', MathBlasterHandler), ('/appInventor2', AppInventor2Handler) , ('/slideshowQuiz', SlideShowQuizHandler), ('/javaBridge', JavaBridgeHandler), ('/meetMyClassmates', MeetMyClassmatesHandler), ('/webDatabase', WebDatabaseHandler), ('/concepts', ConceptsHandler), ('/abstraction', AbstractionHandler), ('/galleryHowTo', GalleryHowToHandler),
         ('/sentEmail', EmailHandler),
