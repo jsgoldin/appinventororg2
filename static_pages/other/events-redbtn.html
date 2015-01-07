@@ -1,40 +1,15 @@
-<article>
+{% extends "howdoyouTemplate.html" %}
 
-
-	<div class='full-width-background-gray-gradient-container'>
-		<div class='course-page-container'>
-			<h2>How do you program an app’s event-response behavior?</h2>
-			<p>Think of an app like an event-response machine. The user
+			{% block title %} How do you program an app’s event-response behavior?{% endblock %}
+			{% block description %}Think of an app like an event-response machine. The user
 				clicks a button, the app responds. A text comes in, the app sends an
 				auto-reply. A flying saucer hits an asteroid, it blows up. Your job
 				as a programmer is to program such event-responses. In App Inventor,
 				you do this directly-- your code is essentially a set of
-				event-responses, of when-do blocks. Check out the following samples:</p>
-		</div>
-	</div>
-
-	<div class='full-width-background-blue-1-container'>
-		<div class='course-page-container'>
-			<div class='course-page-title-section '>
-				<h3>Example 1. How do you turn a button red when the user
-					clicks it?</h3>
-			</div>
-		</div>
-	</div>
-
-
-	<div class='course-page-container'>
-		<div class='standard-section'>
-
-			<div class="videoWrapper center-element">
-				<iframe src="//www.youtube.com/embed/8BkmkQBODzc" frameborder="0"
-					allowfullscreen></iframe>
-			</div>
-		</div>
-		<div class='standard-section'>
-			<div class='col-50'>
-
-				<p>
+				event-responses, of when-do blocks. Check out the following samples:{% endblock %}
+{% block question %} Example 1. How do you turn a button red when the user
+					clicks it? {% endblock %}
+{% block answer %}<p>
 					OK, this is a really silly app but it will get us started. The app
 					appears and there is a gray button. When the user touches (clicks)
 					the button, the button's color changes to red. The click of the
@@ -43,16 +18,11 @@
 					called an event-handler. The blocks inside it are the response to
 					the event. set means to change something, in this case, change the
 					button’s <b>BackgroundColor</b> to red. The blocks, as a whole,
-					specify that when the user clicks the button it should turn red.
-				</p>
+					specify that when the user clicks the button it should turn red.</p>
+{% endblock %}
 
-			</div>
-			<div class='col-50'>
-				<img class='responsive-fullwidth-img center-element'
-					src="/assets/img/Events/buttonRed.png" />
-			</div>
-		</div>
+{% block answerImage %} "/assets/img/Events/buttonRed.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/8BkmkQBODzc" {% endblock %}
+		{% block otherExampleLink %} <a href=shaking>example 2</a> {% endblock %}
 
-	</div>
 
-</article>
