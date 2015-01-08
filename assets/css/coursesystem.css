@@ -115,15 +115,25 @@
 
 .vertical-side-bar-item:hover {
 	background-color: rgba(149, 206, 100, .9);
+	color: #FFFFFF;
 }
+
+.vertical-side-bar-middle-box .selected {
+	background-color: rgba(149, 206, 100, .9);
+}
+
+.vertical-side-bar-middle-box .selected:hover {
+	color: #FFFFFF;
+}
+
 
 .vertical-side-bar-item {
 	width: 100%;
-	transition: background-color 0.1s linear;
+	transition: background-color 0.1s linear, color 0.1s linear;
 	cursor: pointer;
 	border-bottom: 1px #2d2d2d solid;
 	border-color: rgba(1, 1, 1, 0.1);
-	min-height: 80px;
+	min-height: 60px;
 	display: table;
 }
 
@@ -302,7 +312,7 @@
 .vertical-side-bar-middle-box {
 	border-right: 1px #2d2d2d solid;
 	border-color: rgba(1, 1, 1, 0.1);
-	background-color: #F9F9F9;
+	background-color: #F3F3F3;
 	width: 100%;
 	height: 100%;
 	overflow-y: auto;

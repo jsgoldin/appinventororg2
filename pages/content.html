@@ -10,9 +10,15 @@
         </div>
         <div class='vertical-side-bar-top-box-title'>{{module.m_title}}</div>
     </div>
-    <div id="sidebaritems" class='vertical-side-bar-middle-box'>
+    <div class='vertical-side-bar-middle-box'>
         {% for c in contents %}
-        <div content_ID='{{c.c_identifier}}' class='vertical-side-bar-item'>
+        
+        	{% if title == c.c_title %}
+        		<div content_ID='{{c.c_identifier}}' class='vertical-side-bar-item selected'">     		
+        	{% else %}
+        		<div content_ID='{{c.c_identifier}}' class='vertical-side-bar-item'>
+        	{% endif %}
+        
             <div class='vertical-side-bar-item-center-wrapper'>
                 {% if c.c_type == "App" %}
                     <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/play.png' height='30px'> 
