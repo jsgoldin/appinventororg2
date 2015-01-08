@@ -1064,6 +1064,38 @@ class RecordingItemHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/recordingitems.html')
         self.response.out.write(template.render(path, template_values))
 
+class RecordingItemNotesHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/recordingitems-notes.html')
+        self.response.out.write(template.render(path, template_values))
+class RecordingItemPhoneHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/recordingitems-phone.html')
+        self.response.out.write(template.render(path, template_values))
 class WalkingalistHandler(webapp.RequestHandler):
     def get(self):
         
@@ -1095,7 +1127,38 @@ class VariablesHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables.html')
         self.response.out.write(template.render(path, template_values))
-
+class VariablesCirclesHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables-circles.html')
+        self.response.out.write(template.render(path, template_values))
+class VariablesBackForthHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables-backForth.html')
+        self.response.out.write(template.render(path, template_values))
 class ListsHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -1147,6 +1210,40 @@ class LocationHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/location.html')
         self.response.out.write(template.render(path, template_values))         
 
+class LocationLatLongHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/location-latLong.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class LocationDistanceHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/location-distance.html')
+        self.response.out.write(template.render(path, template_values))    
+
 class DrawingHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -1164,6 +1261,73 @@ class DrawingHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/drawing.html')
         self.response.out.write(template.render(path, template_values))
 
+class DrawingCanvasHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/drawing-canvas.html')
+        self.response.out.write(template.render(path, template_values))
+
+class DrawingCircleHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/drawing-circle.html')
+        self.response.out.write(template.render(path, template_values))
+
+class DrawingTouchHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/drawing-touch.html')
+        self.response.out.write(template.render(path, template_values))
+
+class DrawingMiddleHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/drawing-middle.html')
+        self.response.out.write(template.render(path, template_values))
 class SpritesHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -1284,7 +1448,54 @@ class UserListNavHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/userListNav.html')
         self.response.out.write(template.render(path, template_values))
+class UserListNavNextHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
         
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/userListNav-next.html')
+        self.response.out.write(template.render(path, template_values))
+class UserListNavPrevHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/userListNav-prev.html')
+        self.response.out.write(template.render(path, template_values))
+class UserListNavLoopHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/userListNav-loop.html')
+        self.response.out.write(template.render(path, template_values))
 class PersistenceHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -1333,7 +1544,34 @@ class ListsHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/lists.html')
         self.response.out.write(template.render(path, template_values))
 
-
+class ListsTextHandler(webapp.RequestHandler):
+    def get(self):
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/lists-text.html')
+        self.response.out.write(template.render(path, template_values))
+class ListsSumHandler(webapp.RequestHandler):
+    def get(self):
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/lists-sum.html')
+        self.response.out.write(template.render(path, template_values))
 class KnowledgeMapHandler(webapp.RequestHandler):
     def get(self):
         
@@ -5349,8 +5587,9 @@ application = webapp.WSGIApplication(
         # AI2
 
         ('/IHaveADream-steps', NewAppRenderer_AI2), ('/paintpot2-steps', NewAppRenderer_AI2), ('/presidentsQuiz2-steps', NewAppRenderer_AI2), ('/notext-steps', NewAppRenderer_AI2), ('/mathblaster-steps', NewAppRenderer_AI2), ('/AndroidMash-steps', NewAppRenderer_AI2), ('/PresidentsQuiz-steps', NewAppRenderer_AI2), ('/pong-steps', NewAppRenderer_AI2), ('/stockMarket-steps', NewAppRenderer_AI2), ('/logo-steps', NewAppRenderer_AI2),
-    ('/book2', Book2Handler), ('/starterApps', StarterAppsHandler), ('/appInventor2Changes', AppInventor2ChangesHandler), ('/presidentsQuizTut', PresidentsQuizTutHandler), ('/IHaveADreamTut', IHaveADreamTutHandler), ('/TimedActivity', TimedActivityHandler), ('/TimedLists', TimedListsHandler), ('/Conditionals', ConditionalsHandler), ('/Variables', VariablesHandler), ('/recordItems', RecordingItemHandler), ('/incrementing', IncrementingVariablesHandler), ('/incrementingCount', IncrementingCountHandler),('/incrementingCountDown', IncrementingCountDownHandler), ('/Walkingalist', WalkingalistHandler), ('/Events-redbtn', EventsRedBtnHandler), ('/Events-shaking', EventsShakingHandler), ('/Lists', ListsHandler), ('/UserListNav', UserListNavHandler), ('/Persistence', PersistenceHandler), ('/FAQ', FAQHandler), ('/knowledgeMap', KnowledgeMapHandler), ('/lists', ListsHandler),
-    ('/proc', ProcHandler), ('/location', LocationHandler), ('/resources', ResourcesHandler), ('/Drawing', DrawingHandler), ('/sprites', SpritesHandler),
+    ('/book2', Book2Handler), ('/starterApps', StarterAppsHandler), ('/appInventor2Changes', AppInventor2ChangesHandler), ('/presidentsQuizTut', PresidentsQuizTutHandler), ('/IHaveADreamTut', IHaveADreamTutHandler), ('/TimedActivity', TimedActivityHandler), ('/TimedLists', TimedListsHandler), ('/Conditionals', ConditionalsHandler), ('/Variables', VariablesHandler), ('/VariablesCircles', VariablesCirclesHandler),('/VariablesBackForth', VariablesBackForthHandler), 
+    ('/recordItems', RecordingItemHandler), ('/recordItemsNotes', RecordingItemNotesHandler),('/recordItemsPhone', RecordingItemPhoneHandler), ('/incrementing', IncrementingVariablesHandler), ('/incrementingCount', IncrementingCountHandler),('/incrementingCountDown', IncrementingCountDownHandler), ('/Walkingalist', WalkingalistHandler), ('/Events-redbtn', EventsRedBtnHandler), ('/Events-shaking', EventsShakingHandler), ('/Lists', ListsHandler), ('/UserListNav', UserListNavHandler), ('/UserListNavNext', UserListNavNextHandler), ('/UserListNavPrev', UserListNavPrevHandler), ('/UserListNavLoop', UserListNavLoopHandler),('/Persistence', PersistenceHandler), ('/FAQ', FAQHandler), ('/knowledgeMap', KnowledgeMapHandler), ('/lists', ListsHandler), ('/listsText', ListsTextHandler),('/listsSum', ListsSumHandler),
+    ('/proc', ProcHandler), ('/location', LocationHandler), ('/locationLatLong', LocationLatLongHandler),('/locationDistance', LocationDistanceHandler),('/resources', ResourcesHandler), ('/Drawing', DrawingHandler), ('/DrawingCanvas', DrawingCanvasHandler), ('/DrawingCircle', DrawingCircleHandler), ('/DrawingTouch', DrawingTouchHandler), ('/DrawingMiddle', DrawingMiddleHandler),('/sprites', SpritesHandler),
      ('/MakeQuiz10', MakeQuiz10Handler), ('/teacherList', TeacherListHandler),
      ('/TeachingAI', TeachingAIHandler),
         # AI2 view all steps, error on 'IHaveADream'
