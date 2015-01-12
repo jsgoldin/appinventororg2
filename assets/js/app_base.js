@@ -8,7 +8,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
  * Parses and returns the video id from a youtube video url.
  */
 function getUTUBEID(url) {
-	id_start = url.indexOf('/v/') + 3;
+	id_start = url.indexOf('/v') + 3;
 	url = url.slice(id_start);
 	id_end = url.indexOf('&');
 	if (id_end == -1) {
@@ -32,6 +32,7 @@ function onYouTubeIframeAPIReady() {
 		desiredHeight = videotarget.width() * 0.56;
 		videotarget.height(desiredHeight);
 		video_id = getUTUBEID(videotarget.attr('data-utubeurl'));
+		console.log("path: " + videotarget.attr('data-utubeurl') + " video_id: " + video_id);
 		target_div = videotarget[0];
 		player = new YT.Player(target_div, {
 			height : '400px',
