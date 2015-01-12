@@ -4,8 +4,6 @@
 <!-- Default Theme -->
 <link rel="stylesheet" href="/assets/css/owl.theme.css">
 
-
-
 <div class='full-width-background-gray-gradient-container'>
 	<div class='course-page-container'>
 		<div class='app-header-left'>
@@ -49,13 +47,15 @@
 
 <div class='app-btn-section'>
 {% if app.pdfChapter %}
-	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf" class='app-btn'> <img src="/assets/img/ModuleIcons/flat-color/check-list.png"
+	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf" class='app-btn'>
+		<img src="/assets/img/ModuleIcons/flat-color/check-list.png"
 		height="170" width="170">
 		<h4>Book Chapter</h4>
 		<p>View this tutorial in text form</p>
+	</a>
  {% endif %}
 	<div class='app-btn'>
-	<img src="{{currentAppsDir}}/{{ app.appId }}/qr.png" height="170" width="170">
+		<img src="{{currentAppsDir}}/{{ app.appId }}/qr.png" height="170" width="170">
 		<h4>QR Code</h4>
 		<p>Scan to install this app.</p>
 	</div>
