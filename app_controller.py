@@ -658,15 +658,11 @@ class AppInventorIntroHandler(webapp.RequestHandler):
         if redirector(self) == True:
             return None
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        template_values = {'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/AppInventorIntro.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -3515,9 +3511,6 @@ class NewAppRenderer_AI2(webapp.RequestHandler):
         path = self.request.path
         # t_path = path[1:]
         t_path = path[1:(len(path) - 6)]  # take out -steps in path
-        
-
-        
         
         user = users.get_current_user()
         pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
