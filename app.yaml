@@ -33,6 +33,8 @@ handlers:
   static_dir: images
 - url: /assets/css
   static_dir: assets/css
+- url: /bookChapters/
+  static_dir: bookChapters 
 - url: /older
   static_dir: older
 - url: /tutorial_files

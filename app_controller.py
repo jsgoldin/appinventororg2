@@ -925,6 +925,20 @@ class IHaveADreamTutHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/IHaveADreamTut.html')
         self.response.out.write(template.render(path, template_values))
 
+class Mod1ReadingHandler(webapp.RequestHandler):
+    def get(self):
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod1Reading.html')
+        self.response.out.write(template.render(path, template_values))
 
 class BiblioHandler(webapp.RequestHandler):
     def get(self):
@@ -956,6 +970,102 @@ class TimedActivityHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedActivity.html')
         self.response.out.write(template.render(path, template_values))
 
+class TimedActivitySoundHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedActivity-sound.html')
+        self.response.out.write(template.render(path, template_values))
+class TimedActivitySoundFiveHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedActivity-soundFive.html')
+        self.response.out.write(template.render(path, template_values))
+class TimedActivitySpaceHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedActivity-space.html')
+        self.response.out.write(template.render(path, template_values))
+class TimedActivityFrameHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedActivity-frame.html')
+        self.response.out.write(template.render(path, template_values))
+class TimedActivityStartClickHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedActivity-startClick.html')
+        self.response.out.write(template.render(path, template_values))
+class TimedActivityStartSpeakHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedActivity-startSpeak.html')
+        self.response.out.write(template.render(path, template_values))
 class EventsRedBtnHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -1188,7 +1298,55 @@ class ProcHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/procedures2.html')
         self.response.out.write(template.render(path, template_values))      
+ 
+class ProcListHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
         
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/procedures2-list.html')
+        self.response.out.write(template.render(path, template_values))    
+class ProcParamHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/procedures2-param.html')
+        self.response.out.write(template.render(path, template_values))      
+class ProcAnyLabelHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/procedures2-anyLabel.html')
+        self.response.out.write(template.render(path, template_values)) 
 class LocationHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -1340,7 +1498,40 @@ class SpritesHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/sprites.html')
         self.response.out.write(template.render(path, template_values))
-       
+        
+class SpritesMoveHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/sprites-move.html')
+        self.response.out.write(template.render(path, template_values))  
+        
+class SpritesBounceHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/sprites-bounce.html')
+        self.response.out.write(template.render(path, template_values))        
 class ResourcesHandler(webapp.RequestHandler):
     def get(self):
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
@@ -1376,7 +1567,38 @@ class TimedListsHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedLists.html')
         self.response.out.write(template.render(path, template_values))
-
+class TimedListsMusicHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedLists-music.html')
+        self.response.out.write(template.render(path, template_values))
+class TimedListsAslHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/timedLists-asl.html')
+        self.response.out.write(template.render(path, template_values))
 class IncrementingCountHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -1509,7 +1731,38 @@ class PersistenceHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/persistence.html')
         self.response.out.write(template.render(path, template_values))
 
-
+class PersistenceMessageHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/persistence-message.html')
+        self.response.out.write(template.render(path, template_values))
+class PersistenceNotesHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/persistence-notes.html')
+        self.response.out.write(template.render(path, template_values))
 class FAQHandler(webapp.RequestHandler):
     def get(self):
         
@@ -4423,11 +4676,56 @@ class TestTemplateHandler(webapp.RequestHandler):
 
 class ScreenHandler(webapp.RequestHandler):
     def get(self):
-        template_values = {}
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}  
 
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/screens.html')
         self.response.out.write(template.render(path, template_values))
-    
+
+class ScreenSwapHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}  
+
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/screens-swap.html')
+        self.response.out.write(template.render(path, template_values))    
+class ScreenShareHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}  
+
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/screens-share.html')
+        self.response.out.write(template.render(path, template_values))
 
 class HelloPurrMiniHandler(webapp.RequestHandler):
     def get(self):
@@ -5581,9 +5879,9 @@ application = webapp.WSGIApplication(
         # AI2
 
         ('/IHaveADream-steps', NewAppRenderer_AI2), ('/paintpot2-steps', NewAppRenderer_AI2), ('/presidentsQuiz2-steps', NewAppRenderer_AI2), ('/notext-steps', NewAppRenderer_AI2), ('/mathblaster-steps', NewAppRenderer_AI2), ('/AndroidMash-steps', NewAppRenderer_AI2), ('/PresidentsQuiz-steps', NewAppRenderer_AI2), ('/pong-steps', NewAppRenderer_AI2), ('/stockMarket-steps', NewAppRenderer_AI2), ('/logo-steps', NewAppRenderer_AI2),
-    ('/book2', Book2Handler), ('/starterApps', StarterAppsHandler), ('/appInventor2Changes', AppInventor2ChangesHandler), ('/presidentsQuizTut', PresidentsQuizTutHandler), ('/IHaveADreamTut', IHaveADreamTutHandler), ('/TimedActivity', TimedActivityHandler), ('/TimedLists', TimedListsHandler), ('/Conditionals', ConditionalsHandler), ('/Variables', VariablesHandler), ('/VariablesCircles', VariablesCirclesHandler),('/VariablesBackForth', VariablesBackForthHandler), 
-    ('/recordItems', RecordingItemHandler), ('/recordItemsNotes', RecordingItemNotesHandler),('/recordItemsPhone', RecordingItemPhoneHandler), ('/incrementing', IncrementingVariablesHandler), ('/incrementingCount', IncrementingCountHandler),('/incrementingCountDown', IncrementingCountDownHandler), ('/Walkingalist', WalkingalistHandler), ('/Events-redbtn', EventsRedBtnHandler), ('/Events-shaking', EventsShakingHandler), ('/Lists', ListsHandler), ('/UserListNav', UserListNavHandler), ('/UserListNavNext', UserListNavNextHandler), ('/UserListNavPrev', UserListNavPrevHandler), ('/UserListNavLoop', UserListNavLoopHandler),('/Persistence', PersistenceHandler), ('/FAQ', FAQHandler), ('/knowledgeMap', KnowledgeMapHandler), ('/lists', ListsHandler), ('/listsText', ListsTextHandler),('/listsSum', ListsSumHandler),
-    ('/proc', ProcHandler), ('/location', LocationHandler), ('/locationLatLong', LocationLatLongHandler),('/locationDistance', LocationDistanceHandler),('/resources', ResourcesHandler), ('/Drawing', DrawingHandler), ('/DrawingCanvas', DrawingCanvasHandler), ('/DrawingCircle', DrawingCircleHandler), ('/DrawingTouch', DrawingTouchHandler), ('/DrawingMiddle', DrawingMiddleHandler),('/sprites', SpritesHandler),
+    ('/book2', Book2Handler), ('/starterApps', StarterAppsHandler), ('/appInventor2Changes', AppInventor2ChangesHandler), ('/presidentsQuizTut', PresidentsQuizTutHandler), ('/IHaveADreamTut', IHaveADreamTutHandler), ('/TimedActivity', TimedActivityHandler), ('/TimedActivitySound', TimedActivitySoundHandler), ('/TimedActivitySoundFive', TimedActivitySoundFiveHandler), ('/TimedActivitySpace', TimedActivitySpaceHandler), ('/TimedActivityFrame', TimedActivityFrameHandler), ('/TimedActivityStartClick', TimedActivityStartClickHandler), ('/TimedActivityStartSpeak', TimedActivityStartSpeakHandler), ('/TimedLists', TimedListsHandler), ('/TimedListsMusic', TimedListsMusicHandler), ('/TimedListsAsl', TimedListsAslHandler), ('/Conditionals', ConditionalsHandler), ('/Variables', VariablesHandler), ('/VariablesCircles', VariablesCirclesHandler),('/VariablesBackForth', VariablesBackForthHandler), 
+    ('/recordItems', RecordingItemHandler), ('/recordItemsNotes', RecordingItemNotesHandler),('/recordItemsPhone', RecordingItemPhoneHandler), ('/incrementing', IncrementingVariablesHandler), ('/incrementingCount', IncrementingCountHandler),('/incrementingCountDown', IncrementingCountDownHandler), ('/Walkingalist', WalkingalistHandler), ('/Events-redbtn', EventsRedBtnHandler), ('/Events-shaking', EventsShakingHandler), ('/Lists', ListsHandler), ('/UserListNav', UserListNavHandler), ('/UserListNavNext', UserListNavNextHandler), ('/UserListNavPrev', UserListNavPrevHandler), ('/UserListNavLoop', UserListNavLoopHandler),('/Persistence', PersistenceHandler), ('/PersistenceMessage', PersistenceMessageHandler), ('/PersistenceNotes', PersistenceNotesHandler),('/FAQ', FAQHandler), ('/knowledgeMap', KnowledgeMapHandler), ('/lists', ListsHandler), ('/listsText', ListsTextHandler),('/listsSum', ListsSumHandler),
+    ('/proc', ProcHandler), ('/procList', ProcListHandler), ('/procParam', ProcParamHandler), ('/procAnyLabel', ProcAnyLabelHandler),('/location', LocationHandler), ('/locationLatLong', LocationLatLongHandler),('/locationDistance', LocationDistanceHandler),('/resources', ResourcesHandler), ('/Drawing', DrawingHandler), ('/DrawingCanvas', DrawingCanvasHandler), ('/DrawingCircle', DrawingCircleHandler), ('/DrawingTouch', DrawingTouchHandler), ('/DrawingMiddle', DrawingMiddleHandler),('/sprites', SpritesHandler),('/spritesMove', SpritesMoveHandler),('/spritesBounce', SpritesBounceHandler),
      ('/MakeQuiz10', MakeQuiz10Handler), ('/teacherList', TeacherListHandler),
      ('/TeachingAI', TeachingAIHandler),
         # AI2 view all steps, error on 'IHaveADream'
@@ -5617,7 +5915,8 @@ application = webapp.WSGIApplication(
         # AI2 Chapter
         ('/PaintPot2', PaintPot2Handler), ('/MoleMash2', MoleMash2Handler), ('/HelloPurr2', HelloPurr2Handler), ('/NoTexting2', NoTexting2Handler), ('/PresidentsQuiz2', PresidentsQuiz2Handler), ('/MapTour2', MapTour2Handler), ('/AndroidCar2', AndroidCar2Handler), ('/BroadcastHub2', BroadcastHub2Handler), ('/Architecture2', Architecture2Handler), ('/Engineering2', Engineering2Handler), ('/Variables2', Variables2Handler), ('/Creation2', Creation2Handler), ('/Conditionals2', Conditionals2Handler), ('/Lists2', Lists2Handler), ('/Iteration2', Iteration2Handler), ('/Procedures2', Procedures2Handler), ('/Databases2', Databases2Handler), ('/Sensors2', Sensors2Handler), ('/API242', API242Handler), ('/Xylophone2', XYLoPhone2Handler), ('/Ladybug2', Ladybug2Handler),
         ('/starterApps', StarterAppsHandler), ('/robots', RobotsHandler), ('/amazonChapter', AmazonHandler),
-        ('/biblio', BiblioHandler),
+        ('/biblio', BiblioHandler), ('/mod1reading', Mod1ReadingHandler),
+        
 
         
         # Page that contains all the quizzes
@@ -5628,7 +5927,7 @@ application = webapp.WSGIApplication(
         ('/Django', TestTemplateHandler), ('/Django1', TestTemplateHandler),
 
         # Cayla's Pages
-        ('/screens', ScreenHandler), ('/HelloPurrMini', HelloPurrMiniHandler), ('/aiSetUp', AppInventorSetUpHandler), ('/NewIHaveADream', NewIHaveADreamHandler), ('/preface', PrefaceHandler), ('/conceptualizePaintPot', ConceptualizePaintPotHandler), ('/conceptualizeMoleMash', ConceptualizeMoleMashHandler), ('/animationChallenge', AnimationChallengeHandler), ('/creativeProject2Game', CreativeProject2GameHandler), ('/googleVoice', GoogleVoiceHandler), ('/conceptualizeNoTexting', ConceptualizeNoTextingHandler), ('/conceptualizeLocation', ConceptualizeLocationHandler), ('/conceptualizeStockMarket', ConceptualizeStockMarketHandler), ('/pretest', PretestHandler), ('/listiteration', ListIterationHandler), ('/conceptualizeSlideshow', ConceptualizeSlideshowHandler), ('/conceptualizeProcedures', ConceptualizeProceduresHandler), ('/conceptualizeIteration', ConceptualizeIterationHandler), ('/conceptualizeNoteTaker', ConceptualizeNoteTakerHandler), ('/conceptualizeCommunication', ConceptualizeCommunicationHandler), ('/pizzaParty', PizzaPartyHandler),
+        ('/screens', ScreenHandler), ('/screensSwap', ScreenSwapHandler), ('/screensShare', ScreenShareHandler), ('/HelloPurrMini', HelloPurrMiniHandler), ('/aiSetUp', AppInventorSetUpHandler), ('/NewIHaveADream', NewIHaveADreamHandler), ('/preface', PrefaceHandler), ('/conceptualizePaintPot', ConceptualizePaintPotHandler), ('/conceptualizeMoleMash', ConceptualizeMoleMashHandler), ('/animationChallenge', AnimationChallengeHandler), ('/creativeProject2Game', CreativeProject2GameHandler), ('/googleVoice', GoogleVoiceHandler), ('/conceptualizeNoTexting', ConceptualizeNoTextingHandler), ('/conceptualizeLocation', ConceptualizeLocationHandler), ('/conceptualizeStockMarket', ConceptualizeStockMarketHandler), ('/pretest', PretestHandler), ('/listiteration', ListIterationHandler), ('/conceptualizeSlideshow', ConceptualizeSlideshowHandler), ('/conceptualizeProcedures', ConceptualizeProceduresHandler), ('/conceptualizeIteration', ConceptualizeIterationHandler), ('/conceptualizeNoteTaker', ConceptualizeNoteTakerHandler), ('/conceptualizeCommunication', ConceptualizeCommunicationHandler), ('/pizzaParty', PizzaPartyHandler),
 
     
         ##################

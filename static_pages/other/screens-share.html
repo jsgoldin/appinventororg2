@@ -1,0 +1,26 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How do you setup an app with multiple screens?{% endblock %}
+			{% block description %}  Many apps have multiple screens, e.g., a splash screen
+			and the main activity screen of the app. App Inventor provides blocks
+			for swapping between screens and for sharing data between them. The following examples 
+			illustrate how to set up such an app.{% endblock %}
+{% block question %} Example 2. How do you share information between screens?{% endblock %}
+{% block answer %}
+<p>
+	The components and variables in one screen are not available to another. 
+	To share information between screens, use a TinyDB component. Though you'll have
+	a TinyDB defined on each screen, both really point to the one and only TinyDB database.
+	
+</p>
+<p> One or both screens might change the shared data. But in each screen, you'll need a 
+Screen.Initialize as in the blocks shown, to read the current
+values in the database. 
+
+{% endblock %}
+
+{% block answerImage %} "/assets/img/Screens/blocks1.PNG" {% endblock %}
+{% block answerVideo %} "" {% endblock %}
+{% block otherExampleLink %} <a href=swap>example 1</a> {% endblock %}
+
+
