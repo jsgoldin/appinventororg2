@@ -1,5 +1,5 @@
 application: appinventororg
-version: jordan
+version: jordanw
 runtime: python27
 api_version: 1
 threadsafe: no
@@ -35,6 +35,8 @@ handlers:
   static_dir: assets/css
 - url: /bookChapters/
   static_dir: bookChapters 
+- url: /bookFiles/
+  static_dir: bookFiles 
 - url: /older
   static_dir: older
 - url: /tutorial_files
