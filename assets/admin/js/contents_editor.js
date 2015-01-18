@@ -1,49 +1,75 @@
 /*
  *	The following is used on the contents editor page! 
- * 
- * 
  */
 
 /**
  * Retrieves data from the new content form, and then submits it to the server.
  */
-
-
-
 function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+	return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
+/**
+ * Checks that a url has a valid redirectFlag, if it doesn't it adds one.
+ * Assumes no duplicate keys.
+ */
+function validateURLRedirect(url) {
+	console.log("validating url: " + url)
+	
+	qI = url.indexOf("?");
+	
+	if (qI == -1) {
+		// has no query string
+		console.log("no query string was found");
+		url += "?flag=true";
+		return url;
+	} else {
+		// query string exists, check if
+		// it has the redirect flag
+		queryString = url.substring(qI);
 
+		rI = queryString.indexOf("flag=true");
+		if (rI == -1) {
+			// no redirect flag was found
+			if (queryString.length == 1) {
+				// no parameters
+				url += "flag=true";
+				return url;
+			} else {
+				url += "&flag=true"
+				return url;
+			}
+		} else {
+			// redirect flag was found
+			return url;
+		}
+	}
+}
+
+/**
+ * Handles the creation of a new content item. Retrieves user inputted data from
+ * fields on page, validates them, and sends them to the server.
+ */
 $("#createContentbtn").click(function(event) {
 	title = $("#new_content_title").val();
 	description = $("#new_content_description").val();
 	file_path = $("#new_content_file_path").val();
 	identifier = $('#new_content_identifier').val();
-	
-	
+
 	content_type = $('#new_content_type').val();
-	
-	// need better way to get course and module id
 	course_id = $('.subject-box-top-half-inner').attr('course_id')
 	module_id = $('.subject-box-top-half-inner').attr('module_id')
-	
-	
-	errorString="";
-	
-	if(file_path == "") {
-		// TODO: ADD BETTER FILEPATH VALIDATION
+
+	errorString = "";
+
+	if (file_path == "") {
 		errorString += "\tYou must enter a filepath!\n";
 		validate = false;
 	} else {
-		// make sure filepath ends with no redirect flag
-		if(!endsWith(file_path, "?flag=true")) {
-			file_path += "?flag=true"
-		}
-		
+		// make sure filepath ends with a no redirect flag
+		file_path = validateURLRedirect(file_path);
 	}
 
-	
 	validated = true;
 	errorString = "Missing required fields\n\n";
 
@@ -56,13 +82,12 @@ $("#createContentbtn").click(function(event) {
 		errorString += "\tYou must choose a type!\n";
 		validated = false;
 	}
-	
+
 	if (identifier == "") {
 		// TODO: add better identifier validation
 		errorString += "\tYou must enter an identifier!\n";
 		validated = false;
 	}
-	
 
 	if (validated) {
 		// submit it!
@@ -82,9 +107,7 @@ $("#createContentbtn").click(function(event) {
 	}
 });
 
-
 $(document).ready(function() {
-
 	// true if mouseover noclick element, false otherwise
 	var insideNoClick = false;
 
@@ -123,10 +146,6 @@ $(document).ready(function() {
 
 		});
 	});
-
-	
-
-
 
 	/* Allow drag and drop */
 	$(function() {
@@ -176,78 +195,68 @@ $(document).ready(function() {
 	$(document).on('mouseout', '.noclick', function() {
 		insideNoClick = false;
 	});
-	
-	
-	
+
 	/* edit button */
 	$(document).on('click', '#editmodulebtn', function() {
-		// get current attributes of content 
-		
+		// get current attributes of content
+
 		content_root = $(this).parent().parent();
 		title = content_root.find('h1');
 		description = content_root.find('p');
-		
+
 		content_type = content_root.attr('content_type');
-		
+
 		url = content_root.attr('content_url');
-		
-		editableURL = url.substring(0,url.indexOf('?'));
-		
+
 		identifier = content_root.attr('identifier');
-		
+
 		// set modal form inputs to current content values
 		$('#edit_content_title').val(title.text());
 		$('#edit_content_description').val(description.text());
-		$('#edit_content_url').val(editableURL);
+		$('#edit_content_url').val(url);
 		$('#edit_content_identifier').val(identifier);
-		
+
 		content_type
 		$('#edit_content_type').val(content_type);
-		
+
 		// set some sneaky modal attributes for later XP
 		$('#editModal').attr('content_id', content_root.attr('keyid'));
 	});
-	
+
 	/* update content */
 	$('#updateContent').click(function() {
-		
-		
 		content_id = $('#editModal').attr('content_id');
 		module_id = $('.subject-box-top-half-inner').attr('module_id');
 		course_id = $('.subject-box-top-half-inner').attr('course_id');
-		
+
 		title = $('#edit_content_title').val();
 		description = $('#edit_content_description').val();
 		url = $('#edit_content_url').val();
 		identifier = $('#edit_content_identifier').val();
-			
+
 		content_type = $('#edit_content_type').val();
-		
-		
+
 		validated = true;
 		errorString = "Missing required fields\n\n";
-		
+
 		if (title == "") {
 			errorString += "\tYou must enter a title!\n";
 			validated = false;
 		} else {
-			// make sure filepath ends with no redirect flag
-			if(!endsWith(url, "?flag=true")) {
-				url += "?flag=true"
-			}
+			// make sure url ends with a no redirect flag
+			url = validateURLRedirect(url);
 		}
 
 		if (content_type == "Choose a type:") {
 			errorString += "\tYou must choose a type!\n";
 			validated = false;
 		}
-		
+
 		if (identifier == "") {
 			// TODO: add better identifier validation
 			errorString += "\tYou must enter an identifier!\n";
 			validated = false;
 		}
-		
 
 		if (validated) {
 			$.post("/admin/course_system/update/Content", {
@@ -264,8 +273,7 @@ $(document).ready(function() {
 			});
 		} else {
 			alert(errorString)
-		}	
+		}
 	});
-	
-	
+
 });
