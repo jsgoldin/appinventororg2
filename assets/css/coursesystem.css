@@ -126,7 +126,6 @@
 	color: #FFFFFF;
 }
 
-
 .vertical-side-bar-item {
 	width: 100%;
 	transition: background-color 0.1s linear, color 0.1s linear;
@@ -156,10 +155,45 @@
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.vertical-content-nav-bar-item a {
+.content-item-box-wrapper {
+	width: 100%;
+	display: table;
+	min-height: 60px;
+}
+
+.content-item-box {
+	display: table-cell;
+	vertical-align: middle;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px #2d2d2d solid;
+	border-color: rgba(1, 1, 1, 0.1);
+}
+
+.content-item-box a span {
 	position: absolute;
 	height: 100%;
 	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+.content-item-box img {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+
+.content-item-box p {
+	display: inline-block;
+	width: 70%;
+	padding-left: 44px;
+	font-size: 18px;
+	vertical-align: middle;
 }
 
 .vertical-content-nav-bar-title-text {
@@ -1142,8 +1176,6 @@ footer a {
 	background-color: #F6F6F6 !important;
 }
 
-
-
 .course-page-header h1, .course-page-header h2, .course-page-header h3,
 	.course-page-header h4 {
 	max-width: 600px;
@@ -1315,10 +1347,7 @@ footer a {
 	}
 }
 
-
-
 /* Type Formatting */
-
 .headline {
 	color: #2d2d2d;
 }
