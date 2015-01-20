@@ -13,9 +13,6 @@ body {
 
 
 
-.navbar-default .navbar-nav>li>a {
-    color: white;
-}
 
 .no-padding {
     padding-left: 0px;
@@ -294,37 +291,8 @@ body {
     text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
 }
 
-.navbar-nav li a {
-    font-weight: 500;
-    font-size: 16px;
-    border-radius: 5px;
-}
 
-.navbar-nav li:hover {
-    border-radius: 5px;
-    background-color: #257A7C;
-    color: black;
-}
 
-.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus
-    {
-    color: white;
-}
-
-.navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus
-    {
-    color: white;
-    background-color: #257A7C;
-}
-
-.navbar-nav li a img {
-    position: relative;
-    margin-right: 5px;
-    bottom: 5px;
-    border-radius: 5px;
-    border: 1px solid #1E1D60;
-    vertical-align: top;
-}
 
 /* tiny screens ----------- */
 @media ( min-width : 0px) and (max-width : 760px) {

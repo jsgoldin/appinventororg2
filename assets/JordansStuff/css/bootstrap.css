@@ -3021,8 +3021,9 @@ input[type="button"].btn-block {
   list-style: none;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, .15);
+  border-left: rgba(0, 0, 0, 0.22) 1px solid;
+  border-right: rgba(0, 0, 0, 0.22) 1px solid;
+  border-bottom: rgba(0, 0, 0, 0.22) 1px solid;
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
           box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
@@ -3038,6 +3039,7 @@ input[type="button"].btn-block {
   background-color: #e5e5e5;
 }
 .dropdown-menu > li > a {
+  font-size: 16px;
   display: block;
   padding: 3px 20px;
   clear: both;
