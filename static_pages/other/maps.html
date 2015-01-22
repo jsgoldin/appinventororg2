@@ -1,43 +1,8 @@
 {% extends "site_base.html" %} {% block body %}
 
 <style type="text/css">
-         .personal_info {
-         		
-			margin-top:10px;
-			outline:1px solid grey;
-			background-color:#a5cd42;
-         }
-         .personal_avatar{
-			float:left;
-         }
-	    .personal_info > .personal_avatar > img{
-         		width:100px;
-			height:auto;
-         }
-	    
-	    .personal_content{
-			margin-left:10px;
-			float:right;
-         }
-	   .personal_info > .personal_content> p{
-         		color:#f9fff1;
-         }
-	   .personal_info > .personal_content> p > b > a{
-         		color:#f9fff1;
-         }
-	   .personal_info > .personal_content> p > b > a:hover{
-			text-decoration:underline; 
-         }
-	   .personal_info > .personal_content> p > a{
-         		color:#0072e4;
-         }
-
-	   .span3{
-			min-width:150px;
-	   }
-
 	   #earth-spinner {
-    		-webkit-animation: rotation 10s infinite linear;
+    	-webkit-animation: rotation 10s infinite linear;
 		margin-top:75px;
 		margin-bottom:75px;
 		width:220px;
@@ -51,14 +16,12 @@
     	to   {-webkit-transform: rotate(359deg);}
    }
 
-
-
 </style>
 
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=en"></script>
       <script type="text/javascript">
          var map;
-         var myCenter = new google.maps.LatLng(0, 0);
+         var myCenter = new google.maps.LatLng(35, 0);
 	    var lastInfoWindow = null;
 	    var markersArray = [];
 	    var markersArray_k_8 = [];
@@ -254,19 +217,6 @@ $('#results').empty();
 
 	 function handleChange(cb) {
     	 	if(cb.checked == true){
-
-			if (cb.value == "K-8") {
-							document.getElementById('account_k_8_well').style.display = '';
-
-						}else if (cb.value == "High School") {
-							document.getElementById('account_high_school_well').style.display = '';
-
-						}else if (cb.value == "College/University") {
-						document.getElementById('account_college_university_well').style.display = '';
-
-}
-
-			
 			{% for account in accounts %}
 				if('{{account.ifEducator}}' == 'True'){
 					if('{{account.educationLevel}}' == cb.value)
@@ -288,11 +238,6 @@ $('#results').empty();
 						{% else %}
 				
 						{% endif %}
-
-						
-
-					     
-
 					}
 				}
 				
@@ -334,220 +279,84 @@ if (cb.value == "K-8") {
 
 		//updatePeopleList();
 	 }
-      
-
+	 
+	
+	
       </script>
       
 <article>
 
-	<div class='full-width-background-blue-1-container'>
-		<div class='course-page-container'>
-			<div class='course-page-title-section '>
-				<h2>Whose Teaching App Inventor</h2>
+	<div class="center-children" id="spinner-div">
+		<img id="earth-spinner" src="/assets/img/earth.png"></img>
+	 		<p><b>Loading data now, please wait...</b></p>
+	</div>
+	<div class="googleMap" id="map_canvas" >
+		<div id="googleMap"></div>
+				
+		<div class='mapButtons'>
+			<input type="checkbox" id="All" value="All" onchange='handleChangeAll(this);'>All
+		   	<input type="checkbox" id="K_8_selected" value="K-8" onchange='handleChange(this);'>K-8
+			<img src="/assets/img/maps/green-dot.png"></img>	
+			<input type="checkbox" id="high_school_chool_selected" value="High School" onchange='handleChange(this);'>High School
+	 		<img src="/assets/img/maps/blue-dot.png"></img>
+	      	<input type="checkbox" id="College/University_selected" value="College/University" onchange='handleChange(this);'>College/University 
+	 		<img src="/assets/img/maps/red-dot.png"></img>
+		</div>
+				
+	</div>
+	
+	
+	<div class='gen-container'>
+		<div class="headline center-children">
+			<h1>App Inventor is Universal</h1>
+			<p>Educators from all over the world are choosing App Inventor to teach app creation in a fun and approachable way.</p>
+			
+			{% if userStatus.ifUser%}
+   			{% else %}
+    		<p>Are you an educator? <a href="{{userStatus.loginurl}}">Login</a> and tell us about yourself.</p>
+   			{% endif %}
+
+ 			<a class="btn btn-success btn-mini" style="background:#FFAE00; margin-bottom: 20px;"
+         	href="https://groups.google.com/forum/#!forum/app-inventor-instructors" target="_blank">
+			App Inventor Educators Google Forum
+			</a>
+			
+		</div>
+	</div>
+		
+	<div class="banner-green">
+		<div class='gen-container'>			
+			<h1>Meet the teachers</h1>
+			<p>The divese team of educators helping to shape the future of computer science.</p>
+		</div>
+	</div>
+		
+	<div class='gen-container teacherpics'>	
+	
+		{% for account in accounts%}
+		
+		<div class='teacherTile' onmouseover="this.getElementsByClassName('teacherTileInfo')[0].style.maxHeight = '188px'"
+		onmouseout="this.getElementsByClassName('teacherTileInfo')[0].style.maxHeight = '25px'">
+			<a href="/publicProfile?accountKey={{account.key}}"></a>
+			<img src="/imageHandler?key={{account.key}}"></img>
+			<div class='teacherTileInfo'>
+				<p>{{account.firstName}} {{account.lastName}}</p>
+				<p>{{account.organization}}</p>
+				{% if account.introductionLink %}
+				<a href="http://{{account.introductionLink }}" target="_blank">More Infomation</a>
+				{% endif %}
 			</div>
 		</div>
-	</div>
-	<div class='gen-container'>
-		<div class='standard-section center-children'>
-		      <input type="checkbox" id="All" value="All" onchange='handleChangeAll(this);'>&nbsp;All
-		      <input type="checkbox" id="K_8_selected" value="K-8" onchange='handleChange(this);'>&nbsp;K-8
-			<img src="/assets/img/maps/green-dot.png"></img>	
-			      <input type="checkbox" id="high_school_chool_selected" value="High School" onchange='handleChange(this);'>&nbsp;High School
-	 <img src="/assets/img/maps/blue-dot.png"></img>
-	       <input type="checkbox" id="College/University_selected" value="College/University" onchange='handleChange(this);'>&nbsp;College/University 
-	 <img src="/assets/img/maps/red-dot.png"></img>
-	    {% if userStatus.ifUser%}
-   {% else %}
-    <p>Are you an educator? <a href="{{userStatus.loginurl}}">login</a> and tell us about yourself</p>
-   {% endif %}
-   
-   
-   <div style='padding: 25px;'>
-   <a class="btn btn-success btn-mini" style="background:#FFAE00"
-                   href="https://groups.google.com/forum/#!forum/app-inventor-instructors" target="_blank">
-		App Inventor Educators Google Forum
-	</a>
-	</div>
-	
-   </div>
-		<div class='standard-section'>   
-	 <div class="center-children" id="spinner-div">
-	 	<img id="earth-spinner" src="/assets/img/earth.png"></img>
-	 <p><b>Loading data now, please wait...</b></p>
-	 </div>
-	 <div id="map_canvas" >
-		<div id="googleMap" style="width:100%;height:514px;"></div>
-	 </div>
-
-</div>
-		</div>
 		
+			
+			
+			
+			
+			
 		
-
-<!-------------------account_college_university--------------->
-				<div class='standard-section'>   
-				
-				
-				
-
-<div id="account_college_university_well">
-	<p>College/University:</p>
-<div class="row-fluid well">
-
-{% for account in account_college_university%}
-
-	
-	<div class="span3 personal_info">
-	
-		<div class="span4 personal_avatar">
-			<a href="/publicProfile?accountKey={{account.key}}" target="_blank"><img src="/imageHandler?key={{account.key}}"></img></a>
-			
-		</div>
-		<div class="span8 personal_content">
-			<p><b><a href="/publicProfile?accountKey={{account.key}}" target="_blank">{{account.firstName}}&nbsp;{{account.lastName}} </a></b></p>
-			<p>{{account.educationLevel}}</p>
-			<p style="display: inline;overflow:hidden;word-wrap:normal;text-overflow: ellipsis;">{{account.organization}}</p>
-			{% if account.introductionLink %}
-				
-				<p><a href="http://{{account.introductionLink }}" target="_blank">More Infomation</a></p>
-			{% else %}
-				<p></p>
-			{% endif %}
-
-					
-		</div>
-	
+		{% endfor %}
 	</div>
 
-
-
-
-
-<!-- if the the forloop counter is divisible by 4, close the
-<div class="row-fluid"> tag and open a new one -->
-   {% if forloop.counter|divisibleby:4 %}
-	{% ifequal forloop.counter account_college_university|length %}
-	{% else %}
-	</div>
-	<p></p>
-	<div class="row-fluid well">
-
-	{% endifequal %}
-   {% endif %}
-   {% endfor %}
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-<!-------------------account_high_school-------------------->
-<div id="account_high_school_well">
-	<p>High School:</p>
-
-<div class="row-fluid well">
-
-{% for account in account_high_school%}
-
-	
-	<div class="span3 personal_info">
-	
-		<div class="span4 personal_avatar">
-			<a href="/publicProfile?accountKey={{account.key}}" target="_blank"><img src="/imageHandler?key={{account.key}}"></img></a>
-		</div>
-		<div class="span8 personal_content">
-			<p><b><a href="/publicProfile?accountKey={{account.key}}" target="_blank">{{account.firstName}}&nbsp;{{account.lastName}} </a></b></p>
-			<p>{{account.educationLevel}}</p>
-			<p style="overflow:hidden;word-wrap:normal;">{{account.organization}}</p>
-			{% if account.introductionLink %}
-				<p><a href="http://{{account.introductionLink }}" target="_blank">More Infomation</a></p>
-			{% else %}
-				<p></p>
-			{% endif %}
-			
-		</div>
-	
-	</div>
-
-
-
-
-
-<!-- if the the forloop counter is divisible by 4, close the
-<div class="row-fluid"> tag and open a new one -->
-   {% if forloop.counter|divisibleby:4 %}
-	{% ifequal forloop.counter account_high_school|length %}
-	{% else %}
-	</div>
-	<p></p>
-	<div class="row-fluid well">
-
-	{% endifequal %}
-   {% endif %}
-   {% endfor %}
-</div>
-
-</div>
-
-
-
-<!-------------------account_k_8------------------------>
-
-
-<div id="account_k_8_well">
-	<p>K-8:</p>
-	<div class="row-fluid well">
-
-{% for account in account_k_8 %}
-
-	
-	<div class="span3 personal_info">
-	
-		<div class="span4 personal_avatar">
-			<a href="/publicProfile?accountKey={{account.key}}" target="_blank"><img src="/imageHandler?key={{account.key}}"></img></a>
-		</div>
-		<div class="span8 personal_content">
-			<p><b><a href="/publicProfile?accountKey={{account.key}}" target="_blank">{{account.firstName}}&nbsp;{{account.lastName}} </a></b></p>
-			<p>{{account.educationLevel}}</p>
-			<p style="overflow:hidden;word-wrap:normal;">{{account.organization}}</p>
-			{% if account.introductionLink %}
-				<p><a href="http://{{account.introductionLink }}" target="_blank">More Infomation</a></p>
-			{% else %}
-				<p></p>
-			{% endif %}
-			
-		</div>
-	
-	</div>
-
-
-
-
-
-<!-- if the the forloop counter is divisible by 4, close the
-<div class="row-fluid"> tag and open a new one -->
-   {% if forloop.counter|divisibleby:4 %}
-	{% ifequal forloop.counter account_k_8|length %}
-	{% else %}
-	</div>
-	<p></p>
-	<div class="row-fluid well">
-
-	{% endifequal %}
-   {% endif %}
-   {% endfor %}
-</div>
-
-</div>
-				
-				
-				</div>
-		
 		
 		
 </article>

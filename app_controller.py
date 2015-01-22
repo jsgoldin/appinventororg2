@@ -4214,46 +4214,27 @@ class ImageHandler (webapp.RequestHandler):
 # Map
 class TeacherMapHandler(webapp.RequestHandler):
     def get(self):
-
-        # all apps list
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         # allAccountsQuery = db.GqlQuery("SELECT * FROM Account")
-        allAccountsQuery = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1", True)
-                                                                                    # now only show teachers
+        allAccountsQuery = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1", True)                                                                            # now only show teachers
                                                                       
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
+        accounts = allAccountsQuery.fetch(None)
 
-        accountCount = allAccountsQuery.count()
-        accounts = allAccountsQuery.fetch(accountCount)
-
-        account_k_8 = []
-        account_high_school = []
-        account_college_university = []
-        for account in accounts:
-           if(account.ifEducator):
-               if(account.educationLevel == "K-8"):
-                   account_k_8.append(account)
-               elif(account.educationLevel == "High School"):
-                   account_high_school.append(account)
-               elif(account.educationLevel == "College/University"):
-                   account_college_university.append(account)
-               
-
-        
         template_values = { 'courses' : courses,
                            'userStatus': userStatus,
                            'title' : 'App Inventor',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
-                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'], 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'accounts': accounts, 'account_k_8':account_k_8, 'account_high_school':account_high_school, 'account_college_university':account_college_university, 'userStatus': userStatus}
+                           'scripts' : [ '/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           'accounts': accounts,                        
+                           'userStatus': userStatus
+                           }
+        
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/maps.html')
         self.response.out.write(template.render(path, template_values))               
                
