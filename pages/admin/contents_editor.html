@@ -17,13 +17,13 @@
                 <ul id="sortable">
                     {% for content in contents %}
                     <li href="{{content.c_url}}" identifier='{{content.c_identifier}}' id='noDrag' keyid='{{content.key.id}}' content_type='{{content.c_type}}' content_url='{{content.c_url}}'
-                        class='module-edit-box'>
+                        old_urls='{{content.c_oldurls}}' class='module-edit-box'>
                         <div class='item-box-icon'>
                             {% if content.c_type == "App" %} <img class='vertical-content-nav-bar-item-icon' src='/assets/img/appinventor-Jigsaw.jpg' height='100px' width='100px'>
-                            {% endif %} 
+                            {% endif %}
                             {% if content.c_type == "Quiz" %} 
                             <img class='vertical-content-nav-bar-item-icon' src='/assets/img/bird.png' height='100px' width='`100px'>
-                            {% endif %} 
+                            {% endif %}
                             {% if content.c_type == "Nugget" %}
                             <img  class='vertical-content-nav-bar-item-icon' src='/assets/img/kitty.png' height='100px' width='100px'>
                             {% endif %}       
@@ -97,6 +97,12 @@
                             <div class="help-block warning">Caution! Changing the identifier may cause broken external URLS</div>
                         </label> <input type="text" class="form-control" id="edit_content_identifier" placeholder="Identifier">
                     </div>
+                    <div class="form-group">
+                        <label for="edit_content_old_urls">Old URLs
+                        <div class="help-block warning">List URL's that will redirect to this content item separated by spaces.</div>
+                        </label>
+                        <input type="text" class="form-control" id="edit_content_old_urls">
+                    </div>                    
 
                     <label>Type</label>
                     
@@ -111,9 +117,7 @@
                         <option>Worksheet</option>
 						<option>Text Tutorial</option>
                         <option>Miscellaneous</option>
-                    </select>
-                    
-                    
+                    </select>                    
                 </div>
                 
                 <div class="modal-footer">
@@ -152,6 +156,13 @@
                         <div class="form-group">
                             <label for="new_content_identifier">URL Identifier</label> <input type="text" class="form-control" id="new_content_identifier" placeholder="New Identifier">
                         </div>
+                    <div class="form-group">
+                        <label for="new_content_old_urls">Old URLs
+                        <div class="help-block warning">List URL's that will redirect to this content item separated by spaces.</div>
+                        </label>
+                        <input type="text" class="form-control" id="new_content_old_urls">
+                    </div>                                       
+                        
                         <label>Type</label>
                         <select id='new_content_type' class="form-control">
                             <option>Choose a type: </option>

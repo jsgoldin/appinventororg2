@@ -46,6 +46,7 @@ function validateURLRedirect(url) {
 	}
 }
 
+
 /**
  * Handles the creation of a new content item. Retrieves user inputted data from
  * fields on page, validates them, and sends them to the server.
@@ -55,7 +56,7 @@ $("#createContentbtn").click(function(event) {
 	description = $("#new_content_description").val();
 	file_path = $("#new_content_file_path").val();
 	identifier = $('#new_content_identifier').val();
-
+	old_urls = $('#new_content_old_urls').val();
 	content_type = $('#new_content_type').val();
 	course_id = $('.subject-box-top-half-inner').attr('course_id')
 	module_id = $('.subject-box-top-half-inner').attr('module_id')
@@ -98,7 +99,8 @@ $("#createContentbtn").click(function(event) {
 			s_content_type : content_type,
 			s_course_id : course_id,
 			s_module_id : module_id,
-			s_identifier : identifier
+			s_identifier : identifier,
+			s_oldurls : old_urls,
 		}, function(data, status) {
 			location.reload(true)
 		});
@@ -199,24 +201,35 @@ $(document).ready(function() {
 	/* edit button */
 	$(document).on('click', '#editmodulebtn', function() {
 		// get current attributes of content
-
 		content_root = $(this).parent().parent();
 		title = content_root.find('h1');
 		description = content_root.find('p');
 
 		content_type = content_root.attr('content_type');
-
 		url = content_root.attr('content_url');
-
 		identifier = content_root.attr('identifier');
-
+		old_urls = content_root.attr('old_urls');
+		if (old_urls == "[]") {
+			old_urls = "";
+		} else {
+			// turn the list into white space separated for easy user
+			// editing
+			old_urls = old_urls.replace("[", ", ");
+			old_urls = old_urls.replace("]", "");
+			old_urls = old_urls.split(", u").join(" ");
+			old_urls = old_urls.replace(" ", "");
+			old_urls = old_urls.split("'").join("");
+		}
+		
+		
+		
+		
 		// set modal form inputs to current content values
 		$('#edit_content_title').val(title.text());
 		$('#edit_content_description').val(description.text());
 		$('#edit_content_url').val(url);
 		$('#edit_content_identifier').val(identifier);
-
-		content_type
+		$('#edit_content_old_urls').val(old_urls);
 		$('#edit_content_type').val(content_type);
 
 		// set some sneaky modal attributes for later XP
@@ -233,6 +246,7 @@ $(document).ready(function() {
 		description = $('#edit_content_description').val();
 		url = $('#edit_content_url').val();
 		identifier = $('#edit_content_identifier').val();
+		oldurls = $('#edit_content_old_urls').val();
 
 		content_type = $('#edit_content_type').val();
 
@@ -267,7 +281,8 @@ $(document).ready(function() {
 				s_description : description,
 				s_url : url,
 				s_content_type : content_type,
-				s_identifier : identifier
+				s_identifier : identifier,
+				s_oldurls : oldurls,
 			}, function(data, status) {
 				location.reload(true);
 			});

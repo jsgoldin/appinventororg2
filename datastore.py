@@ -128,6 +128,8 @@ class Content(ndb.Model):
     c_url = ndb.StringProperty()  # the url of the content
     c_index = ndb.IntegerProperty()    
     c_identifier = ndb.StringProperty()
+    c_oldurls = ndb.StringProperty(repeated=True) # this is used by the redirector, normally its the same
+                                    # as the c_url but sometimes it is different
 
 class Course(ndb.Model):
     """Represents a single course"""

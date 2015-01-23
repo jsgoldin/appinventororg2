@@ -1,6 +1,7 @@
 import logging
 import os
 import collections
+import ast
 try: import simplejson as json
 except ImportError: import json
 from google.appengine.ext import ndb
@@ -41,22 +42,23 @@ def redirector(requesthandler):
     """
     # redirect test
     if requesthandler.request.get('flag') == 'true':
-        logging.info("Do not redirect!")
+        logging.critical("Do not redirect!")
         return False
     else:
         # look up a content that uses this url
-        results = Content.query(ancestor=ndb.Key('Courses', 'ADMINSET')).filter(Content.c_url == requesthandler.request.path + "?flag=true").fetch()
+        
+        results = Content.query(ancestor=ndb.Key('Courses', 'ADMINSET')).filter(ndb.OR(Content.c_oldurls.IN([requesthandler.request.path]), Content.c_url == requesthandler.request.path + "?flag=true")).fetch()
         if len(results) == 0:
-            logging.error("Could not find a content to redirect too!")
+            logging.critical("Could not find a content to redirect too for: " + str(requesthandler.request.path))
         else:
             content = results[0]
             # build the url
             content_id = content.c_identifier
             module_id = content.key.parent().get().m_identifier
             course_id = content.key.parent().parent().get().c_identifier
-            redirectURL = "courses/" + course_id + "/" + module_id + "/" + content_id
+            redirectURL = "content/" + course_id + "/" + module_id + "/" + content_id
                 
-            logging.info("redirecting: " + requesthandler.request.path + " >>> " + redirectURL)
+            logging.critical("redirecting: " + requesthandler.request.path + " >>> " + redirectURL)
             requesthandler.redirect(redirectURL)
             return True;
 
@@ -3755,6 +3757,9 @@ class AdminHandler(webapp.RequestHandler):
 
 class AppRenderer(webapp.RequestHandler):
     def get(self):
+        if redirector(self) == True:
+            return None
+        
         path = self.request.path
         t_path = path[1:]
         logging.info(t_path)
@@ -3772,6 +3777,9 @@ class AppRenderer(webapp.RequestHandler):
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
+
+
+        logging.critical("app!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + str(app))
 
         if(app.version == '1'):
             currentAppsDir = APPSDIR
@@ -3793,7 +3801,9 @@ class AppRenderer(webapp.RequestHandler):
 
 class NewAppRenderer(webapp.RequestHandler):
     def get(self):
-
+        if redirector(self) == True:
+            return None
+        
         path = self.request.path
         # t_path = path[1:]
         t_path = path[1:(len(path) - 6)]  # take out -steps in path
@@ -4980,7 +4990,6 @@ class Chapter21Handler(webapp.RequestHandler):
         if redirector(self) == True:
             return None
         template_values = {}
-
         path = os.path.join(os.path.dirname(__file__), 'bookChapters/ch21.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -5583,9 +5592,15 @@ class AdminCourseSystemCreateHandler(webapp.RequestHandler):
             module_id = self.request.get("s_module_id")
             file_path = self.request.get("s_file_path")
             identifier = self.request.get("s_identifier")
+            old_urls = self.request.get("s_oldurls")
+            #split old_urls into list
+            old_urls = str(old_urls).split()
+            logging.info(str(old_urls) + " " + str(type(old_urls)))
             
             new_content = Content(parent=ndb.Key('Courses', 'ADMINSET', Course, long(course_id), Module, long(module_id)), c_title=title, c_description=description, c_type=content_type, c_url=file_path)
             new_content.c_identifier = identifier
+            new_content.c_url = file_path
+            new_content.c_oldurls = old_urls
             new_content.put()
         else:
             logging.error("An invalid kind was attempted to be created: " + kind)
@@ -5673,6 +5688,9 @@ class AdminCourseSystemUpdateHandler(webapp.RequestHandler):
             content_type = self.request.get("s_content_type")
             url = self.request.get("s_url")
             identifier = self.request.get("s_identifier")
+            oldurls = self.request.get("s_oldurls")
+            # split oldurls into list
+            oldUrlList = oldurls.split()    
             # retrieve content entity and update it
             content = ndb.Key('Courses', 'ADMINSET', Course, long(course_id), Module, long(module_id), Content, long(content_id)).get()
             content.c_title = title
@@ -5680,6 +5698,7 @@ class AdminCourseSystemUpdateHandler(webapp.RequestHandler):
             content.c_url = url
             content.c_type = content_type
             content.c_identifier = identifier
+            content.c_oldurls = oldUrlList
             content.put()
         else:
             logging.error("An invalid kind was attempted to be updated: " + kind)
@@ -5743,7 +5762,7 @@ class AdminImportCoursesHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))      
         
     def post(self):
-        """ For now this wipes this completely replaces the current contents of the datastore 
+        """ For now this completely replaces the current contents of the course system 
         with the imported file. """
         
         
@@ -5818,11 +5837,14 @@ class AdminImportCoursesHandler(webapp.RequestHandler):
                     i += 1
                     content_Identifier = splitContent[i]
                     i += 1    
-                    
+                    content_oldurls = splitContent[i]
+                    content_oldurlsList = ast.literal_eval(content_oldurls)                    
+                    i += 1                   
                     if content_Index == 'None':
                         content_Index = 0
                    
                     content = Content(parent=ndb.Key('Courses', 'ADMINSET', Course, long(course.key.id()), Module, long(module.key.id())), c_title=content_Title, c_description=content_Description, c_type=content_Type, c_url=content_URL , c_index=int(content_Index), c_identifier=content_Identifier)
+                    content.c_oldurls = content_oldurlsList
                     content.put() 
                 i += 1
             i += 1
@@ -5845,31 +5867,21 @@ class AdminSerialViewHandler(webapp.RequestHandler):
                 # for every content
                 contents = Content.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course.key.id()), Module, long(module.key.id()))).order(Content.c_index).fetch()
                 for content in contents:
-                    output += content.c_title + "\n" + content.c_description + "\n" + content.c_type + "\n" + content.c_url + "\n" + str(content.c_index) + "\n" + content.c_identifier + "\n"
+                    logging.info(str(content.c_oldurls))
+                    
+                    # format old url list to whitespace seperated string
+                    oldurlstring = ""
+                    for url in content.c_oldurls:
+                        oldurlstring += url + " "
+                    oldurlstring = oldurlstring.strip()
+                    
+                    output += content.c_title + "\n" + content.c_description + "\n" + content.c_type + "\n" + content.c_url + "\n" + str(content.c_index) + "\n" + content.c_identifier + "\n" + str(content.c_oldurls) + "\n"
                 output += "*****\n"
             output += "**********\n"        
         
         self.response.out.write(output)
 
-# TODO: DELETE
-class testView(webapp.RequestHandler):
-    
-    def get(self):
-        output = ""
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
-        # for every course
-        for course in courses:
-            # for every module
-            modules = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course.key.id()))).order(Module.m_index).fetch()
-            for module in modules:
-                # for every content
-                contents = Content.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course.key.id()), Module, long(module.key.id()))).order(Content.c_index).fetch()
-                for content in contents:
-                    output += content.c_url + "<br>"
-    
-        
-        self.response.out.write(output)        
-        
+
         
 class gDocHandler(webapp.RequestHandler):
     def get(self):
@@ -5901,8 +5913,354 @@ class gDocHandler(webapp.RequestHandler):
 
 
 
-
-
+class debugTestHandler(webapp.RequestHandler):
+    def get(self):
+        urls = ['/hellopurr', 
+'/paintpot', 
+'/molemash', 
+'/shootergame', 
+'/no-text-while-driving', 
+'/ladybug-chase', 
+'/map-tour', 
+'/android-where-s-my-car', 
+'/quiz', 
+'/notetaker', 
+'/xylophone', 
+'/makequiz-and-takequiz-1', 
+'/broadcaster-hub-1', 
+'/robot-remote', 
+'/stockmarket', 
+'/amazon', 
+'/gettingstarted', 
+'/AddApp', 
+'/AddStep', 
+'/AddConcept', 
+'/AddCustom', 
+'/PostApp', 
+'/PostStep', 
+'/PostCustom', 
+'/outline', 
+'/introduction', 
+'/course-in-a-box', 
+'/course-in-a-box2', 
+'/portfolio', 
+'/introTimer', 
+'/smoothAnimation', 
+'/soundboard', 
+'/media', 
+'/mediaFiles', 
+'/teaching-android', 
+'/lesson-introduction-to-app-inventor', 
+'/lesson-plan-creating', 
+'/lesson-plan-paintpot-and-initial-discussion-of-programming-con', 
+'/lesson-plan-mobile-apps-and-augmented-real', 
+'/lesson-plan-games', 
+'/iterate-through-a-list', 
+'/lesson-plan-user-g', 
+'/lesson-plan-foreach-iteration-and', 
+'/persistence-worksheet', 
+'/persistence-r', 
+'/functions', 
+'/hellopurrLesson', 
+'/paintpotLesson', 
+'/molemashLesson', 
+'/no-text-while-drivingLesson', 
+'/notetakerLesson', 
+'/broadcaster-hub-1Lesson', 
+'/quizLesson', 
+'/shootergameLesson', 
+'/paintPotIntro', 
+'/structure', 
+'/appPage', 
+'/appInventorIntro', 
+'/loveYouLesson', 
+'/loveYouWS', 
+'/raffle', 
+'/gpsIntro', 
+'/androidWhere', 
+'/quizIntro', 
+'/userGenerated', 
+'/tryit', 
+'/procedures', 
+'/deploying-an-app-and-posting-qr-code-on-web', 
+'/module1', 
+'/module2', 
+'/module3', 
+'/module4', 
+'/module5', 
+'/module6', 
+'/moduleX', 
+'/contact', 
+'/about', 
+'/book', 
+'/quizquestions', 
+'/Quiz1', 
+'/Quiz2', 
+'/Quiz3', 
+'/Quiz4', 
+'/Quiz5', 
+'/Quiz6', 
+'/Quiz7', 
+'/Quiz8', 
+'/Quiz9', 
+'/app-architecture', 
+'/engineering-and-debugging', 
+'/variables-1', 
+'/animation-3', 
+'/conditionals', 
+'/lists-2', 
+'/iteration-2', 
+'/procedures-1', 
+'/databases', 
+'/sensors-1', 
+'/apis', 
+'/course-in-a-box_teaching', 
+'/media_teaching', 
+'/DeleteApp', 
+'/AddStepPage', 
+'/DeleteStep', 
+'/AddCustomPage', 
+'/projects', 
+'/appinventortutorials', 
+'/get_app_data', 
+'/get_step_data', 
+'/get_custom_data', 
+'/setup', 
+'/setupAI2', 
+'/profile', 
+'/changeProfile', 
+'/saveProfile', 
+'/uploadPicture', 
+'/imageHandler', 
+'/teacherMap', 
+'/siteSearch', 
+'/moleMashManymo', 
+'/hellopurr-steps', 
+'/paintpot-steps', 
+'/molemash-steps', 
+'/shootergame-steps', 
+'/no-text-while-driving-steps', 
+'/ladybug-chase-steps', 
+'/map-tour-steps', 
+'/android-where-s-my-car-steps', 
+'/quiz-steps', 
+'/notetaker-steps', 
+'/xylophone-steps', 
+'/makequiz-and-takequiz-1-steps', 
+'/broadcaster-hub-1-steps', 
+'/robot-remote-steps', 
+'/stockmarket-steps', 
+'/amazon-steps', 
+'/IHaveADream-steps', 
+'/paintpot2-steps', 
+'/presidentsQuiz2-steps', 
+'/notext-steps', 
+'/mathblaster-steps', 
+'/AndroidMash-steps', 
+'/PresidentsQuiz-steps', 
+'/pong-steps', 
+'/stockMarket-steps', 
+'/logo-steps', 
+'/book2', 
+'/starterApps', 
+'/appInventor2Changes', 
+'/presidentsQuizTut', 
+'/IHaveADreamTut', 
+'/TimedActivity', 
+'/TimedActivitySound', 
+'/TimedActivitySoundFive', 
+'/TimedActivitySpace', 
+'/TimedActivityFrame', 
+'/TimedActivityStartClick', 
+'/TimedActivityStartSpeak', 
+'/TimedLists', 
+'/TimedListsMusic', 
+'/TimedListsAsl', 
+'/Conditionals', 
+'/Variables', 
+'/VariablesCircles', 
+'/VariablesBackForth', 
+'/recordItems', 
+'/recordItemsNotes', 
+'/recordItemsPhone', 
+'/incrementing', 
+'/incrementingCount', 
+'/incrementingCountDown', 
+'/Walkingalist', 
+'/Events-redbtn', 
+'/Events-shaking', 
+'/Lists', 
+'/UserListNav', 
+'/UserListNavNext', 
+'/UserListNavPrev', 
+'/UserListNavLoop', 
+'/Persistence', 
+'/PersistenceMessage', 
+'/PersistenceNotes', 
+'/FAQ', 
+'/knowledgeMap', 
+'/lists', 
+'/listsText', 
+'/listsSum', 
+'/proc', 
+'/procList', 
+'/procParam', 
+'/procAnyLabel', 
+'/location', 
+'/locationLatLong', 
+'/locationDistance', 
+'/resources', 
+'/Drawing', 
+'/DrawingCanvas', 
+'/DrawingCircle', 
+'/DrawingTouch', 
+'/DrawingMiddle', 
+'/sprites', 
+'/spritesMove', 
+'/spritesBounce', 
+'/MakeQuiz10', 
+'/teacherList', 
+'/TeachingAI', 
+'/IHaveADream', 
+'/IHaveADream', 
+'/paintpot2', 
+'/AndroidMash', 
+'/presidentsQuiz2', 
+'/notext', 
+'/pong', 
+'/stockMarket', 
+'/logo', 
+'/postComment', 
+'/deleteComment', 
+'/memcache_flush_all', 
+'/conditionalsStart', 
+'/introIf', 
+'/conditionalsWhere', 
+'/IHaveADream2', 
+'/properties', 
+'/eventHandlers', 
+'/quizly', 
+'/conditionalsInfo', 
+'/workingWithMedia', 
+'/mathBlaster', 
+'/appInventor2', 
+'/slideshowQuiz', 
+'/javaBridge', 
+'/meetMyClassmates', 
+'/webDatabase', 
+'/concepts', 
+'/abstraction', 
+'/galleryHowTo', 
+'/sentEmail', 
+'/updateDB', 
+'/updateDBGEO', 
+'/PrintOut', 
+'/convertProfileName1', 
+'/convertProfileName2', 
+'/printUserName', 
+'/stepIframe', 
+'/webtutorial', 
+'/get_tutorial_data', 
+'/PostTutorial', 
+'/AddTutorialStepPage', 
+'/PostTutorialStep', 
+'/get_tutorial_step_data', 
+'/publicProfile', 
+'/PaintPot2', 
+'/MoleMash2', 
+'/HelloPurr2', 
+'/NoTexting2', 
+'/PresidentsQuiz2', 
+'/MapTour2', 
+'/AndroidCar2', 
+'/BroadcastHub2', 
+'/Architecture2', 
+'/Engineering2', 
+'/Variables2', 
+'/Creation2', 
+'/Conditionals2', 
+'/Lists2', 
+'/Iteration2', 
+'/Procedures2', 
+'/Databases2', 
+'/Sensors2', 
+'/API242', 
+'/Xylophone2', 
+'/Ladybug2', 
+'/starterApps', 
+'/robots', 
+'/amazonChapter', 
+'/biblio', 
+'/mod1reading', 
+'/mod2reading', 
+'/mod3reading', 
+'/mod4reading', 
+'/mod5reading', 
+'/mod6reading', 
+'/mod7reading', 
+'/Quizzes', 
+'/Chapter1', 
+'/Chapter2', 
+'/Chapter3', 
+'/Chapter4', 
+'/Chapter5', 
+'/Chapter6', 
+'/Chapter7', 
+'/Chapter8', 
+'/Chapter9', 
+'/Chapter10', 
+'/Chapter11', 
+'/Chapter12', 
+'/Chapter13', 
+'/Chapter14', 
+'/Chapter15', 
+'/Chapter16', 
+'/Chapter17', 
+'/Chapter18', 
+'/Chapter19', 
+'/Chapter20', 
+'/Chapter21', 
+'/Chapter22', 
+'/Chapter23', 
+'/Chapter24', 
+'/Django', 
+'/Django1', 
+'/screens', 
+'/screensSwap', 
+'/screensShare', 
+'/HelloPurrMini', 
+'/aiSetUp', 
+'/NewIHaveADream', 
+'/preface', 
+'/conceptualizePaintPot', 
+'/conceptualizeMoleMash', 
+'/animationChallenge', 
+'/creativeProject2Game', 
+'/googleVoice', 
+'/conceptualizeNoTexting', 
+'/conceptualizeLocation', 
+'/conceptualizeStockMarket', 
+'/pretest', 
+'/listiteration', 
+'/conceptualizeSlideshow', 
+'/conceptualizeProcedures', 
+'/conceptualizeIteration', 
+'/conceptualizeNoteTaker', 
+'/conceptualizeCommunication', 
+'/pizzaParty' ]
+        
+        logging.disable(logging.INFO)
+        logging.critical("BEGIN TEST")
+        for url in urls:
+            logging.critical("testing: " + url)
+            self.redirect(url)
+        logging.critical("DONE")
+        
+class testHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None       
+        
 
 # create this global variable that represents the application and specifies which class
 # should handle each page in the site
@@ -5941,7 +6299,7 @@ application = webapp.WSGIApplication(
         ('/siteSearch', SearchHandler), ('/moleMashManymo', MoleMashManymoHandler),
 
 
-        # NewAppRenderer 
+        # AI1 APPS 
         ('/hellopurr-steps', NewAppRenderer), ('/paintpot-steps', NewAppRenderer), ('/molemash-steps', NewAppRenderer),
         ('/shootergame-steps', NewAppRenderer), ('/no-text-while-driving-steps', NewAppRenderer), ('/ladybug-chase-steps', NewAppRenderer),
         ('/map-tour-steps', NewAppRenderer), ('/android-where-s-my-car-steps', NewAppRenderer), ('/quiz-steps', NewAppRenderer),
@@ -5950,13 +6308,12 @@ application = webapp.WSGIApplication(
         ('/amazon-steps', NewAppRenderer),
 
         # AI2
-
         ('/IHaveADream-steps', NewAppRenderer_AI2), ('/paintpot2-steps', NewAppRenderer_AI2), ('/presidentsQuiz2-steps', NewAppRenderer_AI2), ('/notext-steps', NewAppRenderer_AI2), ('/mathblaster-steps', NewAppRenderer_AI2), ('/AndroidMash-steps', NewAppRenderer_AI2), ('/PresidentsQuiz-steps', NewAppRenderer_AI2), ('/pong-steps', NewAppRenderer_AI2), ('/stockMarket-steps', NewAppRenderer_AI2), ('/logo-steps', NewAppRenderer_AI2),
-    ('/book2', Book2Handler), ('/starterApps', StarterAppsHandler), ('/appInventor2Changes', AppInventor2ChangesHandler), ('/presidentsQuizTut', PresidentsQuizTutHandler), ('/IHaveADreamTut', IHaveADreamTutHandler), ('/TimedActivity', TimedActivityHandler), ('/TimedActivitySound', TimedActivitySoundHandler), ('/TimedActivitySoundFive', TimedActivitySoundFiveHandler), ('/TimedActivitySpace', TimedActivitySpaceHandler), ('/TimedActivityFrame', TimedActivityFrameHandler), ('/TimedActivityStartClick', TimedActivityStartClickHandler), ('/TimedActivityStartSpeak', TimedActivityStartSpeakHandler), ('/TimedLists', TimedListsHandler), ('/TimedListsMusic', TimedListsMusicHandler), ('/TimedListsAsl', TimedListsAslHandler), ('/Conditionals', ConditionalsHandler), ('/Variables', VariablesHandler), ('/VariablesCircles', VariablesCirclesHandler),('/VariablesBackForth', VariablesBackForthHandler), 
-    ('/recordItems', RecordingItemHandler), ('/recordItemsNotes', RecordingItemNotesHandler),('/recordItemsPhone', RecordingItemPhoneHandler), ('/incrementing', IncrementingVariablesHandler), ('/incrementingCount', IncrementingCountHandler),('/incrementingCountDown', IncrementingCountDownHandler), ('/Walkingalist', WalkingalistHandler), ('/Events-redbtn', EventsRedBtnHandler), ('/Events-shaking', EventsShakingHandler), ('/Lists', ListsHandler), ('/UserListNav', UserListNavHandler), ('/UserListNavNext', UserListNavNextHandler), ('/UserListNavPrev', UserListNavPrevHandler), ('/UserListNavLoop', UserListNavLoopHandler),('/Persistence', PersistenceHandler), ('/PersistenceMessage', PersistenceMessageHandler), ('/PersistenceNotes', PersistenceNotesHandler),('/FAQ', FAQHandler), ('/knowledgeMap', KnowledgeMapHandler), ('/lists', ListsHandler), ('/listsText', ListsTextHandler),('/listsSum', ListsSumHandler),
-    ('/proc', ProcHandler), ('/procList', ProcListHandler), ('/procParam', ProcParamHandler), ('/procAnyLabel', ProcAnyLabelHandler),('/location', LocationHandler), ('/locationLatLong', LocationLatLongHandler),('/locationDistance', LocationDistanceHandler),('/resources', ResourcesHandler), ('/Drawing', DrawingHandler), ('/DrawingCanvas', DrawingCanvasHandler), ('/DrawingCircle', DrawingCircleHandler), ('/DrawingTouch', DrawingTouchHandler), ('/DrawingMiddle', DrawingMiddleHandler),('/sprites', SpritesHandler),('/spritesMove', SpritesMoveHandler),('/spritesBounce', SpritesBounceHandler),
-     ('/MakeQuiz10', MakeQuiz10Handler), ('/teacherList', TeacherListHandler),
-     ('/TeachingAI', TeachingAIHandler),
+        ('/book2', Book2Handler), ('/starterApps', StarterAppsHandler), ('/appInventor2Changes', AppInventor2ChangesHandler), ('/presidentsQuizTut', PresidentsQuizTutHandler), ('/IHaveADreamTut', IHaveADreamTutHandler), ('/TimedActivity', TimedActivityHandler), ('/TimedActivitySound', TimedActivitySoundHandler), ('/TimedActivitySoundFive', TimedActivitySoundFiveHandler), ('/TimedActivitySpace', TimedActivitySpaceHandler), ('/TimedActivityFrame', TimedActivityFrameHandler), ('/TimedActivityStartClick', TimedActivityStartClickHandler), ('/TimedActivityStartSpeak', TimedActivityStartSpeakHandler), ('/TimedLists', TimedListsHandler), ('/TimedListsMusic', TimedListsMusicHandler), ('/TimedListsAsl', TimedListsAslHandler), ('/Conditionals', ConditionalsHandler), ('/Variables', VariablesHandler), ('/VariablesCircles', VariablesCirclesHandler),('/VariablesBackForth', VariablesBackForthHandler), 
+        ('/recordItems', RecordingItemHandler), ('/recordItemsNotes', RecordingItemNotesHandler),('/recordItemsPhone', RecordingItemPhoneHandler), ('/incrementing', IncrementingVariablesHandler), ('/incrementingCount', IncrementingCountHandler),('/incrementingCountDown', IncrementingCountDownHandler), ('/Walkingalist', WalkingalistHandler), ('/Events-redbtn', EventsRedBtnHandler), ('/Events-shaking', EventsShakingHandler), ('/Lists', ListsHandler), ('/UserListNav', UserListNavHandler), ('/UserListNavNext', UserListNavNextHandler), ('/UserListNavPrev', UserListNavPrevHandler), ('/UserListNavLoop', UserListNavLoopHandler),('/Persistence', PersistenceHandler), ('/PersistenceMessage', PersistenceMessageHandler), ('/PersistenceNotes', PersistenceNotesHandler),('/FAQ', FAQHandler), ('/knowledgeMap', KnowledgeMapHandler), ('/lists', ListsHandler), ('/listsText', ListsTextHandler),('/listsSum', ListsSumHandler),
+        ('/proc', ProcHandler), ('/procList', ProcListHandler), ('/procParam', ProcParamHandler), ('/procAnyLabel', ProcAnyLabelHandler),('/location', LocationHandler), ('/locationLatLong', LocationLatLongHandler),('/locationDistance', LocationDistanceHandler),('/resources', ResourcesHandler), ('/Drawing', DrawingHandler), ('/DrawingCanvas', DrawingCanvasHandler), ('/DrawingCircle', DrawingCircleHandler), ('/DrawingTouch', DrawingTouchHandler), ('/DrawingMiddle', DrawingMiddleHandler),('/sprites', SpritesHandler),('/spritesMove', SpritesMoveHandler),('/spritesBounce', SpritesBounceHandler),
+        ('/MakeQuiz10', MakeQuiz10Handler), ('/teacherList', TeacherListHandler),
+        ('/TeachingAI', TeachingAIHandler),
         # AI2 view all steps, error on 'IHaveADream'
         # ('/IHaveADream', AppRenderer),
         ('/IHaveADream', AppRenderer), ('/paintpot2', AppRenderer), ('/AndroidMash', AppRenderer), ('/presidentsQuiz2', AppRenderer), ('/notext', AppRenderer), ('/pong', AppRenderer), ('/stockMarket', AppRenderer), ('/logo', AppRenderer),
@@ -6003,6 +6360,15 @@ application = webapp.WSGIApplication(
         ('/screens', ScreenHandler), ('/screensSwap', ScreenSwapHandler), ('/screensShare', ScreenShareHandler), ('/HelloPurrMini', HelloPurrMiniHandler), ('/aiSetUp', AppInventorSetUpHandler), ('/NewIHaveADream', NewIHaveADreamHandler), ('/preface', PrefaceHandler), ('/conceptualizePaintPot', ConceptualizePaintPotHandler), ('/conceptualizeMoleMash', ConceptualizeMoleMashHandler), ('/animationChallenge', AnimationChallengeHandler), ('/creativeProject2Game', CreativeProject2GameHandler), ('/googleVoice', GoogleVoiceHandler), ('/conceptualizeNoTexting', ConceptualizeNoTextingHandler), ('/conceptualizeLocation', ConceptualizeLocationHandler), ('/conceptualizeStockMarket', ConceptualizeStockMarketHandler), ('/pretest', PretestHandler), ('/listiteration', ListIterationHandler), ('/conceptualizeSlideshow', ConceptualizeSlideshowHandler), ('/conceptualizeProcedures', ConceptualizeProceduresHandler), ('/conceptualizeIteration', ConceptualizeIterationHandler), ('/conceptualizeNoteTaker', ConceptualizeNoteTakerHandler), ('/conceptualizeCommunication', ConceptualizeCommunicationHandler), ('/pizzaParty', PizzaPartyHandler),
 
     
+        ###############################
+        #  Iframe google docs hotfix  #
+        ###############################
+        ('/gDoc', gDocHandler),        
+        ###################################
+        #  End Iframe google docs hotfix  #
+        ###################################
+    
+    
         ##################
         # Jordan's Pages #
         ##################
@@ -6041,21 +6407,15 @@ application = webapp.WSGIApplication(
         ('/admin/importcourses', AdminImportCoursesHandler),
         ('/admin/serialview', AdminSerialViewHandler),
         
-        
-        # TODO: delete this when no longer needed
-        ('/testView', testView),
-        
         ########################
         #  END Jordan's Pages  #
         ########################
         
-        ###############################
-        #  Iframe google docs hotfix  #
-        ###############################
-        ('/gDoc', gDocHandler),        
-        ###################################
-        #  End Iframe google docs hotfix  #
-        ###################################
+
+        
+        
+        ('/debugTest', debugTestHandler),
+        ('/test', testHandler),
         
     ],
     debug=True)
