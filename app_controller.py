@@ -162,7 +162,6 @@ class PublicProfileHandler(webapp.RequestHandler):
 
 class ProfileHandler(webapp.RequestHandler):
     def get(self):
-        
         user = users.get_current_user()
         pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
         account = pquery.get()
@@ -225,11 +224,18 @@ class ProfileHandler(webapp.RequestHandler):
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
         allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
 
-
-
-
-        template_values = {'account': account, 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus,
-                         'ifEducatorShow': ifEducatorShow, 'educationLevel': educationLevel, 'educationLevelCheck0': educationLevelCheck0, 'educationLevelCheck1': educationLevelCheck1, 'educationLevelCheck2': educationLevelCheck2}
+        template_values = {'account': account,
+                           'allAppsList': allAppsList,
+                           'allAppsList2': allAppsList2,
+                           'userStatus': userStatus,
+                           'ifEducatorShow': ifEducatorShow,
+                           'educationLevel': educationLevel,
+                           'educationLevelCheck0': educationLevelCheck0,
+                           'educationLevelCheck1': educationLevelCheck1,
+                           'educationLevelCheck2': educationLevelCheck2,
+                           'stylesheets' : ['/assets/css/coursesystem.css'],
+                           }
+        
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/profile.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -498,7 +504,9 @@ class CourseInABoxHandlerTeaching(webapp.RequestHandler):
 
 class CourseInABox2Handler(webapp.RequestHandler):
     def get(self):
-        
+        if redirector(self) == True:
+            return None
+                
         cacheHandler = CacheHandler()
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
         allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
@@ -1859,18 +1867,10 @@ class PersistenceNotesHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 class FAQHandler(webapp.RequestHandler):
     def get(self):
+        # hardcoded redirection to the howDoYou page
+        self.redirect("/content/howDoYou")
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/aiFAQ.html')
-        self.response.out.write(template.render(path, template_values))
+
 
 class ListsHandler(webapp.RequestHandler):
     def get(self):
@@ -4233,7 +4233,7 @@ class TeacherMapHandler(webapp.RequestHandler):
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
-        
+
         accounts = allAccountsQuery.fetch(None)
 
         template_values = { 'courses' : courses,
@@ -4331,9 +4331,7 @@ class MemcacheFlushHandler(webapp.RequestHandler):
 
 
 # user status checking(login/logout)
-class UserStatus(webapp.RequestHandler):
-    
-   
+class UserStatus(webapp.RequestHandler):   
     def getStatus(self, uri):
         user = users.get_current_user()
         pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
@@ -6063,11 +6061,7 @@ application = webapp.WSGIApplication(
         
         ########################
         #  END Jordan's Pages  #
-        ########################
-        
-
-
-        
+        ########################        
     ],
     debug=True)
 
