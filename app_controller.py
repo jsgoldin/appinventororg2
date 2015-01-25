@@ -506,16 +506,19 @@ class CourseInABox2Handler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
             return None
+<<<<<<< HEAD
                 
         cacheHandler = CacheHandler()
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
         allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+=======
+>>>>>>> branch 'master' of https://github.com/jsgoldin/appinventororg2.git
         
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        template_values = {'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/courseInABox2.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -616,19 +619,18 @@ class MediaFilesHandler(webapp.RequestHandler):
 
 class StructureHandler(webapp.RequestHandler):
     def get(self):
+    	courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+                    
+        userStatus = UserStatus().getStatus(self.request.uri)
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/structure.html')
         self.response.out.write(template.render(path, template_values))
-
 
 class HelloPurrHandler(webapp.RequestHandler):
     def get(self):
@@ -889,6 +891,7 @@ class StarterAppsHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/starterApps.html')
         self.response.out.write(template.render(path, template_values))
+
         
 class AppInventor2ChangesHandler(webapp.RequestHandler):
     def get(self):
@@ -1715,7 +1718,7 @@ class IncrementingCountHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/incrementing-count.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Incrementing-count.html')
         self.response.out.write(template.render(path, template_values))
 class IncrementingCountDownHandler(webapp.RequestHandler):
     def get(self):
@@ -1731,7 +1734,7 @@ class IncrementingCountDownHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/incrementing-countDown.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Incrementing-countDown.html')
         self.response.out.write(template.render(path, template_values))
     
     
@@ -1975,17 +1978,18 @@ class MediaHandlerTeaching(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
 class StarterAppsHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
+  def get(self):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor 2: Starter Apps',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/starterApps.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -3089,6 +3093,23 @@ class ConditionsHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
         self.response.out.write(template.render(path, template_values))
+
+class BookFilesHandler(webapp.RequestHandler):
+    def get(self):
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor 2 Book: Create Your Own Android Apps',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           }
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/bookFiles.html')
+        self.response.out.write(template.render(path, template_values))
+
 ###END OF QUIZ 9###
 
 
@@ -5980,7 +6001,7 @@ application = webapp.WSGIApplication(
         ('/conditionalsWhere', ConditionalsWhereHandler),
 
         ('/IHaveADream2', IHaveADreamHandler), ('/properties', PropertiesHandler), ('/eventHandlers', EventHandlersHandler), ('/quizly', QuizlyHandler), ('/conditionalsInfo', ConditionalsInfoHandler), ('/workingWithMedia', WorkingWithMediaHandler), ('/mathBlaster', MathBlasterHandler), ('/appInventor2', AppInventor2Handler) , ('/slideshowQuiz', SlideShowQuizHandler), ('/javaBridge', JavaBridgeHandler), ('/meetMyClassmates', MeetMyClassmatesHandler), ('/webDatabase', WebDatabaseHandler), ('/concepts', ConceptsHandler), ('/abstraction', AbstractionHandler), ('/galleryHowTo', GalleryHowToHandler),
-        ('/sentEmail', EmailHandler),
+        ('/sentEmail', EmailHandler), ('/bookFiles', BookFilesHandler),
 
         # Update Database
         ('/updateDB', UpdateDatabase), ('/updateDBGEO', UpdateGEODatabase), ('/PrintOut', PrintOut),
