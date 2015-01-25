@@ -17,7 +17,7 @@
 	border-radius: 6px;
 }
 
-.navbar-nav>li>a:hover, .navbar-nav>li>a:focus {
+.navbar-nav>li>a:hover, .navbar-default .navbar-nav > .open > a {
 	background-color: #257A7C !important;
 }
 
