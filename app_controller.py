@@ -506,14 +506,7 @@ class CourseInABox2Handler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
             return None
-<<<<<<< HEAD
-                
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-=======
->>>>>>> branch 'master' of https://github.com/jsgoldin/appinventororg2.git
-        
+
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
