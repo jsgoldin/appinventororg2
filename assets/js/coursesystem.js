@@ -97,8 +97,9 @@ $('.vertical-side-bar-top-bottom-next').click(
  * Scroll to top and stop behavior for the content page.
  */
 $(document).ready(
-		
 		function() {
+			
+			
 			// scroll top top then fixed
 			$(window).bind('scroll', function() {
 				var navHeight = $('#header-wrapper').height();
@@ -106,9 +107,11 @@ $(document).ready(
 				var topOfFooter = $("body").height() - $('footer').outerHeight();
 				
 				if ($(window).scrollTop() > navHeight) {
-					$('.vertical-side-bar-container').addClass('fixed-sidebar');					
+					$('.vertical-side-bar-container').addClass('fixed-sidebar');	
+					console.log("fixed!");
 				} else {
-					$('.vertical-side-bar-container').removeClass('fixed-sidebar');					
+					$('.vertical-side-bar-container').removeClass('fixed-sidebar');		
+					console.log("not fixed!");
 				}
 				
 				if (scrollBottom >= topOfFooter) {
