@@ -331,21 +331,59 @@ if (cb.value == "K-8") {
 		
 	<div class='gen-container teacherpics'>	
 	
-		{% for account in accounts%}
-		
+	<div class='teacherpics'>
+		<h1>K-8</h1>
+		{% for k8 in k8Teachers%}
 		<div class='teacherTile' onmouseover="this.getElementsByClassName('teacherTileInfo')[0].style.maxHeight = '188px'"
 		onmouseout="this.getElementsByClassName('teacherTileInfo')[0].style.maxHeight = '25px'">
-			<a href="/publicProfile?accountKey={{account.key}}"></a>
-			<img src="/imageHandler?key={{account.key}}"></img>
+			<a href="/publicProfile?accountKey={{k8.key}}"></a>
+			<img src="/imageHandler?key={{k8.key}}"></img>
 			<div class='teacherTileInfo'>
-				<p>{{account.firstName}} {{account.lastName}}</p>
-				<p>{{account.organization}}</p>
-				{% if account.introductionLink %}
-				<a href="http://{{account.introductionLink }}" target="_blank">More Infomation</a>
+				<p>{{k8.firstName}} {{k8.lastName}}</p>
+				<p>{{k8.organization}}</p>
+				{% if k8.introductionLink %}
+				<a href="http://{{k8.introductionLink }}" target="_blank">More Infomation</a>
 				{% endif %}
 			</div>
 		</div>
 		{% endfor %}
+		</div>
+		
+		
+		<h1>Highschool</h1>
+		{% for hs in hsTeachers%}
+		<div class='teacherTile' onmouseover="this.getElementsByClassName('teacherTileInfo')[0].style.maxHeight = '188px'"
+		onmouseout="this.getElementsByClassName('teacherTileInfo')[0].style.maxHeight = '25px'">
+			<a href="/publicProfile?accountKey={{hs.key}}"></a>
+			<img src="/imageHandler?key={{hs.key}}"></img>
+			<div class='teacherTileInfo'>
+				<p>{{hs.firstName}} {{hs.lastName}}</p>
+				<p>{{hs.organization}}</p>
+				{% if hs.introductionLink %}
+				<a href="http://{{hs.introductionLink }}" target="_blank">More Infomation</a>
+				{% endif %}
+			</div>
+		</div>
+		{% endfor %}
+				
+				
+		<h1>College</h1>
+		{% for cT in cTeachers%}
+		<div class='teacherTile' onmouseover="this.getElementsByClassName('teacherTileInfo')[0].style.maxHeight = '188px'"
+		onmouseout="this.getElementsByClassName('teacherTileInfo')[0].style.maxHeight = '25px'">
+			<a href="/publicProfile?accountKey={{cT.key}}"></a>
+			<img src="/imageHandler?key={{cT.key}}"></img>
+			<div class='teacherTileInfo'>
+				<p>{{cT.firstName}} {{cT.lastName}}</p>
+				<p>{{cT.organization}}</p>
+				{% if cT.introductionLink %}
+				<a href="http://{{cT.introductionLink }}" target="_blank">More Infomation</a>
+				{% endif %}
+			</div>
+		</div>
+		{% endfor %}		
+		
+		
 	</div>
 
 		

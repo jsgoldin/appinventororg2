@@ -4242,11 +4242,16 @@ class TeacherMapHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         # allAccountsQuery = db.GqlQuery("SELECT * FROM Account")
-        allAccountsQuery = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1", True)                                                                            # now only show teachers
+        allAccountsQuery = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='K-8'", True)                                                                            # now only show teachers
+                                                                      
+        k8Teachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='K-8'", True)
+        hsTeachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='High School'", True)
+        cTeachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='College/University'", True)
                                                                       
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
+
 
         accounts = allAccountsQuery.fetch(None)
 
@@ -4256,7 +4261,10 @@ class TeacherMapHandler(webapp.RequestHandler):
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : [ '/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            'accounts': accounts,                        
-                           'userStatus': userStatus
+                           'userStatus': userStatus,
+                           'k8Teachers' : k8Teachers,
+                           'hsTeachers' : hsTeachers,
+                           'cTeachers' : cTeachers,
                            }
         
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/maps.html')

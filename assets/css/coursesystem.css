@@ -21,8 +21,6 @@
 	background-color: #257A7C !important;
 }
 
-
-
 /* Horizontal menu*/
 .h-menu {
 	float: left;
@@ -1387,6 +1385,13 @@ footer a {
 	margin-top: 20px;
 }
 
+.teacherpics h1 {
+	clear: both;
+	padding-top: 55px;
+	font-size: 46px;
+	color: black;
+}
+
 .teacherTile {
 	width: 16%;
 	position: relative;
@@ -1407,7 +1412,6 @@ footer a {
 	max-height: 25px;
 }
 
-
 .teacherTileInfo a {
 	position: relative;
 	width: auto;
@@ -1415,7 +1419,7 @@ footer a {
 	color: #00C4FF !important;
 }
 
-.teacherTile > a {
+.teacherTile>a {
 	position: absolute;
 	left: 0;
 	top: 0;
