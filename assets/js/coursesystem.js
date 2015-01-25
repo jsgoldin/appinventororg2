@@ -108,10 +108,8 @@ $(document).ready(
 				
 				if ($(window).scrollTop() > navHeight) {
 					$('.vertical-side-bar-container').addClass('fixed-sidebar');	
-					console.log("fixed!");
 				} else {
 					$('.vertical-side-bar-container').removeClass('fixed-sidebar');		
-					console.log("not fixed!");
 				}
 				
 				if (scrollBottom >= topOfFooter) {
