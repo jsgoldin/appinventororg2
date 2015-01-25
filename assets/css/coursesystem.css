@@ -16,6 +16,12 @@
 	font-size: 16px;
 }
 
+.navbar-nav>li>a:hover, .navbar-nav>li>a:focus {
+	background-color: #257A7C !important;
+}
+
+
+
 /* Horizontal menu*/
 .h-menu {
 	float: left;
