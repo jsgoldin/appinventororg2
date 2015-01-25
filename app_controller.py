@@ -162,6 +162,11 @@ class PublicProfileHandler(webapp.RequestHandler):
 
 class ProfileHandler(webapp.RequestHandler):
     def get(self):
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+                    
+        userStatus = UserStatus().getStatus(self.request.uri)
+        
+        
         user = users.get_current_user()
         pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
         account = pquery.get()
@@ -224,7 +229,9 @@ class ProfileHandler(webapp.RequestHandler):
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
         allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
 
-        template_values = {'account': account,
+        template_values = {
+                           'courses' : courses,
+                           'account': account,
                            'allAppsList': allAppsList,
                            'allAppsList2': allAppsList2,
                            'userStatus': userStatus,
@@ -474,6 +481,9 @@ class IntroductionHandler(webapp.RequestHandler):
 
 class CourseInABoxHandler(webapp.RequestHandler):
     def get(self):
+        if redirector(self) == True:
+            return None
+        
         
         cacheHandler = CacheHandler()
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
