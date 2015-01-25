@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/jbase.css">
 
@@ -18,9 +19,9 @@
 
 <title>{{title}}</title>
 
+
 </head>
 <body>
-
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 
 	<div id='header-wrapper'>
@@ -30,7 +31,7 @@
          			<a href='/'><img class='banner-logo responsive-fullwidth-img' src='/assets/img/testbanner.png'></a>
          		</div>
          		<div class='col-50'>
-            		<div class='search-box-wrapper'>            
+            		<div class='search-box-wrapper'>
 						<form action="/siteSearch">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						
@@ -120,16 +121,14 @@
 	</div>
 
 
-    {% block body %} 
+    {% block body %} {% endblock %} 
     
-    {% endblock %} 
-    
-    
-    
+    {% for script in scripts %}
+    <script type="text/javascript" src="{{script}}"></script>
+    {% endfor %}
+
     <footer>
-   
-    	<div class='gen-container'>
-    	<!--		
+    	<div class='gen-container'>		
     		<div class='col-50'>
  				<img class='responsive-fullwidth-img footer-icon' src='/assets/img/testbanner.png'>
      			<a>Contact Us | </a>
@@ -180,20 +179,16 @@
     			</li>          			
     		</ul> 		
  			</div>
- 			-->
+ 			
     		<p class='footer-copyright'>AppInventor.org by David Wolber is licensed under an Attribution-NonCommercial-ShareAlike 3.0 Unported License. </p>
     	
     	</div>
     </footer>
     
-    
-    {% for script in scripts %}
-    <script type="text/javascript" src="{{script}}"></script>
-    {% endfor %}
 
     <script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
     
-    <!-- Google custom search  -->
+        <!-- Google custom search  -->
     <script>
 	  	(function() {
 	    var cx = '008494446149806911917:sgk1dgv7xgw';
