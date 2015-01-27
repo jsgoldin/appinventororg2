@@ -275,6 +275,7 @@
 	width: auto;
 	overflow: hidden;
 	margin-left: 260px;
+	min-height: 800px !important;
 }
 
 .vertical-side-bar-container {
