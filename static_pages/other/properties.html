@@ -1,8 +1,22 @@
 {% extends "site_base.html" %}
 {% block body %}
-<H1>Component Properties</H1>
-<div class="row-fluid">
-  <div class="span8">
+<article>
+
+	<div class='full-width-background-blue-1-container'>
+		<div class='course-page-container'>
+			<div class='course-page-title-section '>
+
+				<h2>Component Properties</h2>
+			</div>
+		</div>
+	</div>
+
+
+
+<div class='gen-container'>
+
+<div class='standard-section'>
+<div class='col-50'>
 <p>
 An app consists of a set of components: the screen, buttons, text labels, text boxes for user input, images, etc. Most of us are used to interacting with components from the perspective of an app user, but to become a programmer, you must conceive of an internal representation of an app, completely invisible from the user. This representation-- the app's internal memory-- is something like a spreadsheet or the private recesses of your brain. There is a named memory cell corresponding to each component property. Instead of memory cells named A1,A2, etc., as with a spreadsheet, you have memory cells with names like <strong>Screen.Title</strong> and <strong>Button1.Width</strong> The way a component looks and feels to the user is completely determined by the values in the component property memory cells.
 </p>
@@ -18,12 +32,14 @@ With the Blocks Editor, you can program blocks to change property values as the 
 
 Note that the button's width changes to 70 the first time it is clicked. After that, the Button.Click will have no effect (it will continually overwrite 70 with 70).
 </p>
+
 </div>
-  <div class="span2">
+<div class='col-50'>
+
       <img src="{{apps2Dir}}/Properties/propertyPanel.png" alt=""/>
-    
-  </div>
 </div>
+</div>   
+
 <h2>The Hidden Nature of Property Values</h2>
 <p>
 Note that the property values shown in the App Inventor designer do not change when these blocks are executed. When you test the app and click the button to change the button's width to 70, the button will indeed change in the app, but the value shown on the Designer screen will still be 50. This is confusing until you realize the following:
@@ -49,6 +65,7 @@ The green <strong>set</strong> block to the left and the blue <strong>get</stron
 <p>
 The blocks above increment the width of the button by 10 pixels each click. So if the button starts with a width of 50, it will be 60 after one click, 70 after two clicks, and so on. Note that the order of operation is right-to-left (or really inside-out). The app first gets the current value of the Button1.Width property. It then adds 10 to it, then finally places (sets) the result back into the Button1.Width memory cell.
 </p>
+<!--
 <h2>Programming Challenges</h2>
 <ol>
 <li>
@@ -60,4 +77,7 @@ The blocks above increment the width of the button by 10 pixels each click. So i
 <li>
 <a href="/quizly?quizname=quiz_setcomponenttocomponent">Set a label to display same text as a button.</a></li>
 </ol>
+-->
+</div>
+</article>
 {% endblock %}
