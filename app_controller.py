@@ -2519,48 +2519,58 @@ class API242Handler(webapp.RequestHandler):
 class EventHandlersHandler(webapp.RequestHandler):
     def get(self):
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus, 'apps2Dir':APPS2DIR}
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor 2 Book: Create Your Own Android Apps',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           'apps2Dir':APPS2DIR
+                           }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/eventHandlers.html')
         self.response.out.write(template.render(path, template_values))
+        
 
 class ConditionalsInfoHandler(webapp.RequestHandler):
     def get(self):
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus, 'apps2Dir':APPS2DIR}
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor 2 Book: Create Your Own Android Apps',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           'apps2Dir':APPS2DIR
+                           }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/conditionals.html')
         self.response.out.write(template.render(path, template_values))
-
+        
 class PropertiesHandler(webapp.RequestHandler):
     def get(self):
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus, 'apps2Dir':APPS2DIR}
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor 2 Book: Create Your Own Android Apps',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           'apps2Dir':APPS2DIR
+                           }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/properties.html')
         self.response.out.write(template.render(path, template_values))
-
+       
 class QuizlyHandler(webapp.RequestHandler):
     def get(self):
         quizName = self.request.get('quizname')
