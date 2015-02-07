@@ -17,7 +17,7 @@
 	border-radius: 6px;
 }
 
-.navbar-nav>li>a:hover, .navbar-default .navbar-nav > .open > a {
+.navbar-nav>li>a:hover, .navbar-default .navbar-nav>.open>a {
 	background-color: #257A7C !important;
 }
 
@@ -944,9 +944,35 @@
 	overflow: auto;
 }
 
+.banner-purple {
+	width: 100%;
+	background-color: #5B56A6;
+	overflow: auto;
+}
+
 .banner-green h1, .banner-green h2, .banner-green h3, .banner-green h4,
-	.banner-green p {
+	.banner-green p, .banner-purple h1, .banner-purple h2, .banner-purple h3,
+	.banner-purple h4, .banner-purple p {
 	color: white;
+}
+
+.banner-headline {
+	padding-top: 25px;
+	padding-bottom: 25px;
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 22px;
+}
+
+.banner-headline h1, .banner-headline h2, .banner-headline h3,
+	.banner-headline h4, .banner-headline p {
+	line-height: 1.2;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: bold;
+	color: white;
+	text-align: center;
 }
 
 .app-header-left {
@@ -1439,4 +1465,25 @@ footer a {
 
 .headline * {
 	color: #2d2d2d;
+}
+
+.bookchaptersbox {
+	border-top: 3px solid rgb(229, 120, 8);
+	margin-top: 22px;
+}
+
+.bookchaptersbox h2 {
+	font-weight: 900;
+}
+
+.bookchaptersbox a {
+	font-size: 17px;
+	color: #2a6496;
+}
+
+
+.bookchaptersbox ul {
+	max-width: 416px;
+	margin-left: auto;
+	margin-right: auto;
 }

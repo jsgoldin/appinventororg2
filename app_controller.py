@@ -2141,6 +2141,8 @@ class AbstractionHandler(webapp.RequestHandler):
 
 class MoleMash2Handler(webapp.RequestHandler):
     def get(self):
+        if redirector(self) == True:
+            return None
         
         cacheHandler = CacheHandler()
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
