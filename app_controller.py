@@ -941,6 +941,9 @@ class IHaveADreamTutHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/IHaveADreamTut.html')
         self.response.out.write(template.render(path, template_values))
 
+
+
+
 class Mod1ReadingHandler(webapp.RequestHandler):
     def get(self):
         
@@ -953,7 +956,7 @@ class Mod1ReadingHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod1Reading.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod1reading.html')
         self.response.out.write(template.render(path, template_values))
         
 
@@ -969,7 +972,7 @@ class Mod2ReadingHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod2Reading.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod2reading.html')
         self.response.out.write(template.render(path, template_values))
 class Mod3ReadingHandler(webapp.RequestHandler):
     def get(self):
@@ -983,7 +986,7 @@ class Mod3ReadingHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod3Reading.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod3reading.html')
         self.response.out.write(template.render(path, template_values))
 
 class Mod4ReadingHandler(webapp.RequestHandler):
@@ -998,7 +1001,7 @@ class Mod4ReadingHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod4Reading.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod4reading.html')
         self.response.out.write(template.render(path, template_values))
 
 class Mod5ReadingHandler(webapp.RequestHandler):
@@ -1013,7 +1016,7 @@ class Mod5ReadingHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod5Reading.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod5reading.html')
         self.response.out.write(template.render(path, template_values))
 
 class Mod6ReadingHandler(webapp.RequestHandler):
@@ -1028,7 +1031,7 @@ class Mod6ReadingHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod6Reading.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod6reading.html')
         self.response.out.write(template.render(path, template_values))
         
 class Mod7ReadingHandler(webapp.RequestHandler):
@@ -1043,7 +1046,7 @@ class Mod7ReadingHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod7Reading.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/mod7reading.html')
         self.response.out.write(template.render(path, template_values))
 
         
@@ -1877,22 +1880,6 @@ class FAQHandler(webapp.RequestHandler):
         self.redirect("/content/howDoYou")
         
 
-
-class ListsHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/lists.html')
-        self.response.out.write(template.render(path, template_values))
-
 class ListsTextHandler(webapp.RequestHandler):
     def get(self):
         
@@ -2204,6 +2191,8 @@ class HelloPurr2Handler(webapp.RequestHandler):
 
 class PaintPot2Handler(webapp.RequestHandler):
     def get(self):
+        if redirector(self) == True:
+            return None
         
         cacheHandler = CacheHandler()
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
@@ -2285,6 +2274,8 @@ class TeachingAIHandler(webapp.RequestHandler):
 
 class PresidentsQuiz2Handler(webapp.RequestHandler):
     def get(self):
+        if redirector(self) == True:
+            return None
         
         cacheHandler = CacheHandler()
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
@@ -2315,6 +2306,9 @@ class MapTour2Handler(webapp.RequestHandler):
 
 class AndroidCar2Handler(webapp.RequestHandler):
     def get(self):
+        
+        if redirector(self) == True:
+            return None
         
         cacheHandler = CacheHandler()
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
@@ -2660,15 +2654,17 @@ class JavaBridgeHandler(webapp.RequestHandler):
 class AppInventor2Handler(webapp.RequestHandler):
     def get(self):
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+                    
+        userStatus = UserStatus().getStatus(self.request.uri)
         
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'App Inventor',
+                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : [],
+                           }
+                
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/appInventor2.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -3306,7 +3302,7 @@ class Book2Handler(webapp.RequestHandler):
                            'userStatus': userStatus,
                            'title' : 'App Inventor 2 Book: Create Your Own Android Apps',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
-                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           'scripts' : ['/assets/js/coursesystem.js'],
                            }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/book2.html')
         self.response.out.write(template.render(path, template_values))
@@ -3804,8 +3800,6 @@ class AppRenderer(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
 
-
-        logging.critical("app!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + str(app))
 
         if(app.version == '1'):
             currentAppsDir = APPSDIR
@@ -6001,7 +5995,6 @@ application = webapp.WSGIApplication(
         ('/MakeQuiz10', MakeQuiz10Handler), ('/teacherList', TeacherListHandler),
         ('/TeachingAI', TeachingAIHandler),
         # AI2 view all steps, error on 'IHaveADream'
-        # ('/IHaveADream', AppRenderer),
         ('/IHaveADream', AppRenderer), ('/paintpot2', AppRenderer), ('/AndroidMash', AppRenderer), ('/presidentsQuiz2', AppRenderer), ('/notext', AppRenderer), ('/pong', AppRenderer), ('/stockMarket', AppRenderer), ('/logo', AppRenderer),
      
         # Comment
@@ -6031,7 +6024,19 @@ application = webapp.WSGIApplication(
         # AI2 Chapter
         ('/PaintPot2', PaintPot2Handler), ('/MoleMash2', MoleMash2Handler), ('/HelloPurr2', HelloPurr2Handler), ('/NoTexting2', NoTexting2Handler), ('/PresidentsQuiz2', PresidentsQuiz2Handler), ('/MapTour2', MapTour2Handler), ('/AndroidCar2', AndroidCar2Handler), ('/BroadcastHub2', BroadcastHub2Handler), ('/Architecture2', Architecture2Handler), ('/Engineering2', Engineering2Handler), ('/Variables2', Variables2Handler), ('/Creation2', Creation2Handler), ('/Conditionals2', Conditionals2Handler), ('/Lists2', Lists2Handler), ('/Iteration2', Iteration2Handler), ('/Procedures2', Procedures2Handler), ('/Databases2', Databases2Handler), ('/Sensors2', Sensors2Handler), ('/API242', API242Handler), ('/Xylophone2', XYLoPhone2Handler), ('/Ladybug2', Ladybug2Handler),
         ('/starterApps', StarterAppsHandler), ('/robots', RobotsHandler), ('/amazonChapter', AmazonHandler),
-        ('/biblio', BiblioHandler), ('/mod1reading', Mod1ReadingHandler), ('/mod2reading', Mod2ReadingHandler), ('/mod3reading', Mod3ReadingHandler), ('/mod4reading', Mod4ReadingHandler),('/mod5reading', Mod5ReadingHandler),('/mod6reading', Mod6ReadingHandler),('/mod7reading', Mod7ReadingHandler),
+        ('/biblio', BiblioHandler),
+        
+        
+        
+        
+        # Course additional reading and material handlers
+        ('/mod1reading', Mod1ReadingHandler),
+        ('/mod2reading', Mod2ReadingHandler),
+        ('/mod3reading', Mod3ReadingHandler),
+        ('/mod4reading', Mod4ReadingHandler),
+        ('/mod5reading', Mod5ReadingHandler),
+        ('/mod6reading', Mod6ReadingHandler),
+        ('/mod7reading', Mod7ReadingHandler),
         
 
         

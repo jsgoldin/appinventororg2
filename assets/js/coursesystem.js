@@ -40,6 +40,43 @@ $('.content-box').click(
 					+ wordToPrettyURL($(this).attr('content_title'));
 });
 
+
+
+/**
+ * More general hover link slide.
+ * Finds icon within class and slides it.
+ * Name a class slide-left or slide-right for it to work.
+*/
+$('.slide-left').hover(function() {
+	icon = $(this).find('.glyphicon');
+	icon.stop();
+	icon.animate({
+		right : "4px"
+	}, 150);
+}, function() {
+	icon = $(this).find('.glyphicon');
+	icon.stop();
+	icon.animate({
+		right : "0px"
+	}, 150);
+});
+
+$('.slide-right').hover(function() {
+	icon = $(this).find('.glyphicon');
+	icon.stop();
+	icon.animate({
+		left : "6px"
+	}, 150);
+}, function() {
+	icon = $(this).find('.glyphicon');
+	icon.stop();
+	icon.animate({
+		left : "0px"
+	}, 150);
+});
+
+
+
 /**
  * Hover link arrow slide
  */
