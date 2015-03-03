@@ -4227,20 +4227,12 @@ class UploadPictureHandler(webapp.RequestHandler):
 
 class ImageHandler (webapp.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        account_query = db.GqlQuery("Select * from Account where user=:1", user)
-        account = account_query.get()
-
-        # if not account:
-        #    self.redirect('/assets/img/avatar-default.gif')
-        #    return
-            
+                    
         account_key = self.request.get('key')
 
         if(len(account_key) == 0):
             self.redirect('/assets/img/avatar-default.gif')
-            return
-            
+            return    
 
         account = db.get(account_key)
         if account.profilePicture:
@@ -4248,42 +4240,73 @@ class ImageHandler (webapp.RequestHandler):
             self.response.out.write(account.profilePicture)
         else:
             self.redirect('/assets/img/avatar-default.gif')
-            # self.response.headers['Content-Type'] = "image/png"
-            # self.response.out.write('/assets/img/avatar-default.gif')
-            # self.error(404)
-# Map
+            
+
+# gets JSON string with data for map
+class getEducatorsInfo(webapp.RequestHandler):
+    def get(self):
+        allTeachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1", True)
+        teachers = {"teachers" : []}
+        for teacher in allTeachers:    
+            teacherDict = {}
+            teacherDict["name"] = teacher.firstName + " " + teacher.lastName
+            teacherDict["coord"] = {"lat" : teacher.latitude, "long" : teacher.longitude}
+            teacherDict["educationLevel"] = teacher.educationLevel
+            teacherDict["organization"] = teacher.organization
+            teacherDict["introductionLink"] = teacher.introductionLink
+            teachers["teachers"].append(teacherDict)
+        self.response.out.write(json.dumps(teachers, ensure_ascii=False))
+        
+class getEducatorsTiles(webapp.RequestHandler):
+    def get(self):
+        k8Teachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='K-8'", True)
+        hsTeachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='High School'", True)
+        cTeachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='College/University'", True)
+        
+        # only show profiles that have pictures
+        # for the section below the map
+        k8WithPic = []
+        for teacher in k8Teachers:
+            if teacher.profilePicture:
+                k8WithPic.append(teacher)
+        hsWithPic = []
+        for teacher in hsTeachers:
+            if teacher.profilePicture:
+                hsWithPic.append(teacher)
+        cWithPic = []
+        for teacher in cTeachers:
+            if teacher.profilePicture:
+                cWithPic.append(teacher)                            
+        
+        template_values = {
+                           'k8Teachers' : k8WithPic,
+                           'hsTeachers' : hsWithPic,
+                           'cTeachers' : cWithPic
+                           }                                     
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/teacherTilesTemplate.html')
+        self.response.out.write(template.render(path, template_values))            
+                
+            
 class TeacherMapHandler(webapp.RequestHandler):
     def get(self):
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
-        # allAccountsQuery = db.GqlQuery("SELECT * FROM Account")
-        allAccountsQuery = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='K-8'", True)                                                                            # now only show teachers
-                                                                      
-        k8Teachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='K-8'", True)
-        hsTeachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='High School'", True)
-        cTeachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='College/University'", True)
                                                                       
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
                     
-        userStatus = UserStatus().getStatus(self.request.uri)
+        userStatus = UserStatus().getStatus(self.request.uri)        
 
-
-        accounts = allAccountsQuery.fetch(None)
 
         template_values = { 'courses' : courses,
                            'userStatus': userStatus,
-                           'title' : 'App Inventor',
-                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
-                           'scripts' : [ '/assets/js/owl.carousel.js', '/assets/js/home.js'],
-                           'accounts': accounts,                        
+                           'title' : 'Who is teaching App Inventor',
+                           'stylesheets' : ['/assets/css/coursesystem.css'],
+                           'scripts' : [ ], # this page places the scripts on top, so the map loads first                    
                            'userStatus': userStatus,
-                           'k8Teachers' : k8Teachers,
-                           'hsTeachers' : hsTeachers,
-                           'cTeachers' : cTeachers,
                            }
         
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/maps.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/AIEducators.html')
         self.response.out.write(template.render(path, template_values))               
                
 # Google Custom Search
@@ -5223,6 +5246,7 @@ class Homehandler(webapp.RequestHandler):
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            }
+        
         path = os.path.join(os.path.dirname(__file__), 'pages/home.html')
         self.response.out.write(template.render(path, template_values))  
 
@@ -6107,6 +6131,9 @@ application = webapp.WSGIApplication(
         ('/admin/exportcourses', AdminExportCoursesHandler),
         ('/admin/importcourses', AdminImportCoursesHandler),
         ('/admin/serialview', AdminSerialViewHandler),
+        
+        ('/getEducatorsInfo', getEducatorsInfo),
+        ('/getEducatorsTiles', getEducatorsTiles)
         
         ########################
         #  END Jordan's Pages  #

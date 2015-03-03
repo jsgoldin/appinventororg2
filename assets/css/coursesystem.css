@@ -1342,6 +1342,11 @@ footer a {
 
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width : 1024px) {
+	
+	.teacherTileOuter {
+		width: 100% !important;
+	}
+	
 	.left-side {
 		float: none;
 		margin-bottom: 25px;
@@ -1424,6 +1429,7 @@ footer a {
 	}
 }
 
+
 .googleMap {
 	position: relative;
 	height: 50vh;
@@ -1442,7 +1448,9 @@ footer a {
 
 .teacherpics {
 	text-align: center;
-	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 98vw;
 }
 
 .teacherpics h1 {
@@ -1453,11 +1461,17 @@ footer a {
 }
 
 .teacherTile {
-	width: 16%;
-	position: relative;
-	height: 188px;
-	float: left;
 	overflow: hidden;
+	border-radius: 2051px;
+	height: 190px;
+	width: 190px;
+	margin: auto;
+}
+
+.teacherTileOuter {
+	float: left;
+	width: 25%;
+	height: 321px;
 }
 
 .teacherTileInfo {
@@ -1479,16 +1493,8 @@ footer a {
 	color: #00C4FF !important;
 }
 
-.teacherTile>a {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-}
-
 .teacherTile img {
-	width: 100%;
+	width: 205px;
 }
 
 /* Type Formatting */

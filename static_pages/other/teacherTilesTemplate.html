@@ -1,0 +1,48 @@
+
+<div class='teacherpics'>
+	<h1>K-8</h1>
+	
+	
+	{% for k8 in k8Teachers%}	
+	<div class="teacherTileOuter">
+		<p>{{k8.firstName}} {{k8.lastName}}</p>
+		<div class='teacherTile'>
+			<a href="/publicProfile?accountKey={{k8.key}}">
+				<img src="/imageHandler?key={{k8.key}}"></img>
+			</a> 
+		</div>
+	</div>
+	{% endfor %}
+
+
+
+
+ 	<h1>Highschool</h1>
+
+	{% for hs in hsTeachers%}
+	<div class="teacherTileOuter">
+		<p>{{hs.firstName}} {{hs.lastName}}</p>
+		<div class='teacherTile'>
+			<a href="/publicProfile?accountKey={{hs.key}}">
+				<img src="/imageHandler?key={{hs.key}}"></img>
+			</a> 
+		</div>
+	</div>
+	{% endfor %}
+
+
+	<h1>College</h1>
+
+	{% for cT in cTeachers%}
+	<div class="teacherTileOuter">
+		<p>{{cT.firstName}} {{cT.lastName}}</p>
+		<div class='teacherTile'>
+			<a href="/publicProfile?accountKey={{cT.key}}">
+				<img src="/imageHandler?key={{cT.key}}"></img>
+			</a> 
+		</div>
+	</div>
+	{% endfor %}
+
+
+</div>
