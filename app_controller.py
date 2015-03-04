@@ -4409,17 +4409,28 @@ class UserStatus(webapp.RequestHandler):
         else:
             ifUser = False
 
-        
-        
         status = {'loginurl': loginurl, 'logouturl':logouturl, 'ifUser':ifUser, 'account':account, 'admin': admin}
         return status
 
 
+class loginHandler(webapp.RequestHandler):
+    """
+    Handles users trying to log into an account.
+    If the user has an account log them in,
+    If the user does not have an account redirect them
+    to the sign up page. 
+    """
+    def get(self):
+        user = users.get_current_user()
+        pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
+        account = pquery.get()
+        
+        
+        
 
 
 # only use when add new field to database
 class UpdateDatabase (webapp.RequestHandler):
-
     def get(self):
         adam_boolean = true
         pquery = db.GqlQuery("SELECT * FROM Comment")
@@ -6132,8 +6143,12 @@ application = webapp.WSGIApplication(
         ('/admin/importcourses', AdminImportCoursesHandler),
         ('/admin/serialview', AdminSerialViewHandler),
         
+        # used on the teacher map page
         ('/getEducatorsInfo', getEducatorsInfo),
-        ('/getEducatorsTiles', getEducatorsTiles)
+        ('/getEducatorsTiles', getEducatorsTiles),
+        
+        # handles logging in and sign up
+        ('/login', loginHandler),
         
         ########################
         #  END Jordan's Pages  #

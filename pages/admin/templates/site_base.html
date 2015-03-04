@@ -41,7 +41,7 @@
                     		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
                     	    {{userStatus.account.displayName}}</a>
                     	    <a href="{{userStatus.logouturl}}">Logout</a> 
-                    	    {% else %} <a href="{{userStatus.loginurl}}">Login</a> 
+                    	    {% else %} <a href="/login">Login</a> 
                     	    <a href="#">Sign Up</a>
                     	    {% endif %}
                 		</div>
@@ -104,7 +104,7 @@
                         {% endif %}
 
                         <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> {% else %}
-                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
+                        <li class='hidden-on-big-screen'><a href="/login">Login</a></li>
                         <li class='hidden-on-big-screen'><a href="#">Sign Up</a></li> {% endif %} {% if userStatus.admin %}
                         <li><a href="/admin/dashboard">Administration</a></li> {% endif %}                        
                     </ul>
