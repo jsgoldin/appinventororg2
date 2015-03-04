@@ -53,10 +53,10 @@
 
                 		<div class="login-stuff-wrapper small-screen-hide">
                     		{% if userStatus.ifUser%} 
-                    		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+                    		<a id='profilenavbarbutton' href="{{userStatus.loginurl}}"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
                     	    {{userStatus.account.displayName}}</a>
                     	    <a href="{{userStatus.logouturl}}">Logout</a> 
-                    	    {% else %} <a href="/login">Login</a> 
+                    	    {% else %} <a href="{{userStatus.loginurl}}">Login</a> 
                     	    <a href="#">Sign Up</a>
                     	    {% endif %}
                 		</div>
@@ -114,11 +114,11 @@
                                 <li><a href="http://democratizecomputing.org">Democratize Computing Lab</a></li>
 
                             </ul></li> {% if userStatus.ifUser%}
-                        <li class='hidden-on-big-screen'><a href="/profile">Profile</a></li> {% if usserStatus.admin %}
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Profile</a></li> {% if usserStatus.admin %}
                         {% endif %}
 
                         <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> {% else %}
-                        <li class='hidden-on-big-screen'><a href="/login">Login</a></li>
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
                         <li class='hidden-on-big-screen'><a href="#">Sign Up</a></li> {% endif %} {% if userStatus.admin %}
                         <li><a href="/admin/dashboard">Administration</a></li> {% endif %}
 

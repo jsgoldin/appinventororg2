@@ -4398,7 +4398,7 @@ class UserStatus(webapp.RequestHandler):
         pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
         account = pquery.get()
 
-        loginurl = users.create_login_url(uri)
+        loginurl = users.create_login_url('/login')
         logouturl = users.create_logout_url('/')
 
         admin = False
@@ -4413,7 +4413,7 @@ class UserStatus(webapp.RequestHandler):
         return status
 
 
-class loginHandler(webapp.RequestHandler):
+class postLoginHandler(webapp.RequestHandler):
     """
     Handles users trying to log into an account.
     If the user has an account log them in,
@@ -4424,7 +4424,8 @@ class loginHandler(webapp.RequestHandler):
         user = users.get_current_user()
         pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
         account = pquery.get()
-        
+        logging.info(account)
+        self.response.out.write("<h1>HELLO " + user + "")
         
         
 
@@ -6148,7 +6149,7 @@ application = webapp.WSGIApplication(
         ('/getEducatorsTiles', getEducatorsTiles),
         
         # handles logging in and sign up
-        ('/login', loginHandler),
+        ('/login', postLoginHandler),
         
         ########################
         #  END Jordan's Pages  #
