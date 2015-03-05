@@ -140,6 +140,32 @@
 	</div>
 </div>
 
+<script>
+
+$(".userinfo a").click(function() {
+	if($(this).parent().parent().hasClass("selected")) {
+		$(this).parent().parent().removeClass("selected");
+	} else {
+		/* remove everyone selected */
+		$(".userinfo .row").removeClass("selected");
+		$(this).parent().parent().addClass("selected");
+	}
+	
+})
+
+
+/* Save edit user info */
+$(".userinfo .confirmbox button:nth-child(1)").click(function() {
+	$(this).parent().parent().parent().removeClass("selected");	
+})
+
+/* Cancel Edit user info */
+$(".userinfo .confirmbox button:nth-child(2)").click(function() {
+	$(this).parent().parent().parent().removeClass("selected");
+})
+
+
+</script>
 
 
 {% endblock %}
