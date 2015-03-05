@@ -367,9 +367,6 @@ class SaveProfile(webapp.RequestHandler):
             link = link.replace("http://", "")
             link = link.replace("https://", "")
             account.introductionLink = link
-        
-
-        
         account.put()
 
         # if uploading image
@@ -388,8 +385,6 @@ class SaveProfile(webapp.RequestHandler):
         account_query = db.GqlQuery("Select * from Account where user=:1", user)
         account = account_query.get()
 
-
-
         x1 = float(self.request.get('x1'))
         y1 = float(self.request.get('y1'))
         x2 = float(self.request.get('x2'))
@@ -407,8 +402,6 @@ class SaveProfile(webapp.RequestHandler):
 
         # originalW = 300
         # originalH = 300
-
-        
 
 
         x1_fixed = x1 - x_left

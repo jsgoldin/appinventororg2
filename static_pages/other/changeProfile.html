@@ -16,21 +16,18 @@ function submit_upload_picture_form()
 
 
 <div class="container" style="margin-top: 40px;">
-   <div class="row">
-      <!-- <iframe class="span5 thumbnail" width="550" height="324" src="http://www.youtube.com/embed/E9Zm56Od1pw"
-         frameborder="0" allowfullscreen></iframe> -->
-      
+   <div class="row">      
       <div class="offset1 span6">
          <!-- start of profile box -->
          <div class="span9">
             <!-- <a href="/notetaker">notetaker</a> -->
             <h2>User Profile</h2>
-            <p class="lead"> Please tell us some information about you.</p>
+            <p class="lead"> Edit your information.</p>
             <div class="row-fluid">
-      
-               <form class="form-search" action="/saveProfile" enctype="multipart/form-data" method="post">
+    
+               <form class="form" action="/saveProfile" enctype="multipart/form-data" method="post">
                   <table class="table table-hover">
-		     <tr>
+		     		<tr>
                         <td>Display Name: </td>
                         <td><input id="user_displayName" class="input-medium search-query span12" type="text" name="displayName" value="{{account.displayName}}" maxlength="30"/></td>
                      </tr>
@@ -170,45 +167,6 @@ else
    <!-- end of row -->
 </div>
 <!-- end of container -->
-
-
-
-
-
-
-
-
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3 id="myModalLabel">Enter your address, and we'll make sure its mappable</h3>
-  </div>
-  <div class="modal-body">
-    Step 1: Please input your address below: <br>
-    <textarea type="text" rows="5" id="address" placeholder="enter your address, e.g., 1234, street, city, state" onkeyup="validate()"></textarea>
-  
-  
-  
-  <p></p>
-  <p> Step2: click on a link that matches your location</p>
-  <div id="results">
-    <table>
-      
-      <tr><td><a href="#"  id="result0" size="60" style="display:none;" onclick="replaceAddress('result0');" data-dismiss="modal" aria-hidden="true"></a></td></tr>
-   <tr><td><a href="#"  id="result1" size="60" style="display:none;" onclick="replaceAddress('result1');" data-dismiss="modal" aria-hidden="true"></a></td></tr>
-   <tr><td><a href="#"  id="result2" size="60" style="display:none;" onclick="replaceAddress('result2');" data-dismiss="modal" aria-hidden="true"></a></td></tr>
-   <tr><td><p id="noresultsfound" style="color:red;"></p></td></tr>
-
-
-    </table>
-  </div>
-  </div>
-  <div class="modal-footer">
-    
-  </div>
-</div>
-
 
 
 

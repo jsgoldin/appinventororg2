@@ -1,19 +1,19 @@
 {% extends "site_base.html" %} {% block body %}
 
-<div class="container">
+<div class="container" style="min-height: 90vh;">
 	<div class="row" style="margin-top: 20px;">
-		<div class="col-md-3">
+		<div class="col-md-3" style="text-align: center;">
 			<img src="/imageHandler?key={{account.key}}"
-				style="width: 100%;"/>
+				style="width: 100%; max-width: 250px;"/>
 		</div>
 		<div class="col-md-9">
 			<h2>User Profile</h2>
 			<div class="row-fluid">
-
 				<table class="table table-hover">
 					<tr>
 						<td>DisplayName:</td>
 						<td>{{account.displayName}}</td>
+						
 					</tr>
 					<tr>
 						<td>First Name:</td>
@@ -51,12 +51,9 @@
 						<td>Link to your course/teaching website:</td>
 						<td><a class="introduction_link"
 							href="http://{{account.introductionLink}}" target="_blank">http://{{account.introductionLink}}</a></td>
-
 					</tr>
-
-
-
-					{% else %} {% endif %}
+					{% else %}
+					 {% endif %}
 				</table>
 
 				<table class="table">
