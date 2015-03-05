@@ -16,6 +16,7 @@
 
 <title>{{title}}</title>
 
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -51,42 +52,43 @@
 						</form>
 
                 		<div class="login-stuff-wrapper small-screen-hide">
-                    		{% if userStatus.ifUser%} 
-                    		<a id='profilenavbarbutton' href="{{userStatus.loginurl}}"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+                    		{% if userStatus.isAccount %} 
+                    		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
                     	    {{userStatus.account.displayName}}</a>
-                    	    <a href="{{userStatus.logouturl}}">Logout</a> 
-                    	    {% else %}
+                    	    <a href="{{userStatus.logouturl}}"">Logout</a> 
+                    	    {% else %} 
                     	    <a href="{{userStatus.loginurl}}">Login</a> 
-                    	    <a href="#">Sign Up</a>
+                    	    <a href="/createAccount">Sign Up</a>
                     	    {% endif %}
                 		</div>
-          			</div>         		
-         		</div>
-   			</div>
-   			<div style="clear: both"></div>
-        </div>
-
-
-		<div class="navbar-default global-navbar" role="navigation">
-            <div class="gen-container navbar-color">
+          			</div>         		        
+				</div>
+          			
+         	</div>
+         	<div style="clear: both"></div>
+   		</div>
+   			
+   			
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-default global-navbar" role="navigation">
+            <div class="gen-container navbar-color no-padding">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
                 </div>
-                <div class="navbar-collapse no-margin collapse in" style="height: auto;">
+                <div class="navbar-collapse collapse no-margin">
                     <ul class="nav navbar-nav">
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 {% for course in courses %}
-                               		<li><a href="/content/{{course.c_identifier}}">{{course.c_title}}</a></li> 
-                                {% endfor %}
+                                <li><a href="/content/{{course.c_identifier}}">{{course.c_title}}</a></li> {% endfor %}
                             </ul></li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Teach <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/TeachingAI">Teaching Ideas</a></li>
                                 <li><a href="/teacherMap">Who's Teaching AI?</a></li>
-                                <li><a href="https://groups.google.com/forum/#!forum/app-inventor-instructors" target="_blank">Teacher Forum</a></li>
+                                <li><a href="https://groups.google.com/forum/#!forum/app-inventor-instructors" TARGET="_blank">Teacher Forum</a></li>
                                 <li><a href="/resources">Teaching Resources</a></li>
                             </ul></li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Book <span class="caret"></span></a>
@@ -96,12 +98,12 @@
                             </ul></li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Build<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="http://ai2.appinventor.mit.edu" target="_blank">MIT App Inventor (AI2)</a></li>
-                                <li><a href="http://beta.appinventor.mit.edu" target="_blank">App Inventor Classic</a></li>
+                                <li><a href="http://ai2.appinventor.mit.edu" TARGET="_blank">MIT App Inventor (AI2)</a></li>
+                                <li><a href="http://beta.appinventor.mit.edu" TARGET="_blank">App Inventor Classic</a></li>
                             </ul></li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Share<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="http://gallery.appinventor.mit.edu" target="_blank">App Inventor Gallery</a></li>
+                                <li><a href="http://gallery.appinventor.mit.edu" TARGET="_blank">App Inventor Gallery</a></li>
                                 <li><a href="/appPage">Publishing Your App</a></li>
                                 <li><a href="https://groups.google.com/forum/#!forum/mitappinventortest">App Inventor Forum</a></li>
                             </ul></li>
@@ -111,26 +113,30 @@
                                 <li><a href="http://appinventorblog.com">App Inventor Blog</a></li>
                                 <li><a href="/media">Media</a></li>
                                 <li><a href="http://democratizecomputing.org">Democratize Computing Lab</a></li>
-                            </ul></li> 
-                            
-                            
-                        {% if userStatus.ifUser%}
-                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Profile</a></li> 
-                        {% if usserStatus.admin %}
+
+                            </ul></li> {% if userStatus.isAccount %} 
+                        <li class='hidden-on-big-screen'><a href="/profile">Profile</a></li>
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> 
+                        {% else %}
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
+                        <li class='hidden-on-big-screen'><a href="/createAccount">Sign Up</a></li> 
+                        {% endif %} 
+                        {% if userStatus.admin %}
+                        <li><a href="/admin/dashboard">Administration</a></li> 
                         {% endif %}
 
-                        <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> {% else %}
-                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
-                        <li class='hidden-on-big-screen'><a href="#">Sign Up</a></li> {% endif %} 
-                        {% if userStatus.admin %}
-                        <li><a href="/admin/dashboard">Administration</a></li>
-                        {% endif %}                        
                     </ul>
                 </div>
+                <!--/.nav-collapse -->
             </div>
         </div>
-        
-	</div>
+
+        </div>
+
+
+          			
+
+
 
 
     {% block body %} 
@@ -152,7 +158,7 @@
 
     <script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
     
-    <!-- Google custom search  -->
+    <!-- Google custom search  -->	
 	<script>
 	  (function() {
 	    var cx = '008494446149806911917:dtcoh6mydd8';
@@ -165,6 +171,7 @@
 	    s.parentNode.insertBefore(gcse, s);
 	  })();
 	</script>
+
 	
     
 </body>

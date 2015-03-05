@@ -162,8 +162,7 @@ class PublicProfileHandler(webapp.RequestHandler):
 
 class ProfileHandler(webapp.RequestHandler):
     def get(self):
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
-                    
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                          
         userStatus = UserStatus().getStatus(self.request.uri)
         
         
@@ -4259,10 +4258,10 @@ class getEducatorsInfo(webapp.RequestHandler):
         
 class getEducatorsTiles(webapp.RequestHandler):
     def get(self):
+        
         k8Teachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='K-8'", True)
         hsTeachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='High School'", True)
         cTeachers = db.GqlQuery("SELECT * FROM Account WHERE ifEducator=:1 AND educationLevel='College/University'", True)
-        
         # only show profiles that have pictures
         # for the section below the map
         k8WithPic = []
@@ -4277,7 +4276,7 @@ class getEducatorsTiles(webapp.RequestHandler):
         for teacher in cTeachers:
             if teacher.profilePicture:
                 cWithPic.append(teacher)                            
-        
+
         template_values = {
                            'k8Teachers' : k8WithPic,
                            'hsTeachers' : hsWithPic,
@@ -4398,8 +4397,17 @@ class UserStatus(webapp.RequestHandler):
         pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
         account = pquery.get()
 
-        loginurl = users.create_login_url('/login')
+        loginurl = users.create_login_url('/loginValidator')
         logouturl = users.create_logout_url('/')
+
+        isAccount = False
+        logging.info(account)
+        if user and account:
+            logging.info("user has an account!")
+            isAccount = True
+        else:
+            logging.info("user does not have an account!")
+            
 
         admin = False
         if user:
@@ -4409,27 +4417,98 @@ class UserStatus(webapp.RequestHandler):
         else:
             ifUser = False
 
-        status = {'loginurl': loginurl, 'logouturl':logouturl, 'ifUser':ifUser, 'account':account, 'admin': admin}
+        status = {'loginurl': loginurl, 'logouturl':logouturl, 'ifUser':ifUser, 'account':account, 'isAccount' : isAccount, 'admin': admin}
         return status
 
 
-class postLoginHandler(webapp.RequestHandler):
-    """
-    Handles users trying to log into an account.
-    If the user has an account log them in,
-    If the user does not have an account redirect them
-    to the sign up page. 
-    """
+class loginValidationHandler(webapp.RequestHandler):
     def get(self):
+        # check to see if the user that just signed in has an account
+        # if they do not have an account redirect them the account creation page
+        # if they have an account redirect them to the homepage
+        
         user = users.get_current_user()
+        if not user:
+            # not signed into google account, once signed in retry
+            # validation
+            self.redirect(users.create_login_url('/loginValidator'))
+            return None
+        
+        # check if user has an account
         pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
         account = pquery.get()
-        logging.info(account)
-        self.response.out.write("<h1>HELLO " + user + "")
+        
+        if account:
+            # account was found, redirect to home
+            self.redirect("/")
+            return None
+        else:
+            # no account was found redirect to account creation page
+            self.redirect("/createAccount")
+            return None
+
+class CreateAccountHandler(webapp.RequestHandler):
+    def get(self):
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                                
+        userStatus = UserStatus().getStatus(self.request.uri)
+        
+        template_values = {'courses' : courses,
+                           'userStatus': userStatus,
+                           'title' : 'Register an Account',
+                           'stylesheets' : ['/assets/css/coursesystem.css'],
+                           'scripts' : ['/assets/js/accountRegisteration.js'],
+                           }
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/accountregistration.html')
+        self.response.out.write(template.render(path, template_values))        
+
+class RegisterAccountHandler(webapp.RequestHandler):
+    def post(self):
+        firstName = self.request.get('sfirstName');
+        lastName = self.request.get('slastName');
+        displayName = self.request.get('sdisplayName')
+        isEducator = self.request.get('sisEducator')
+        organization = self.request.get('sorganization')
+        educationLevel = self.request.get('seducationLevel')
+        website = self.request.get('swebsite')        
+        location = self.request.get('slocation')       
+        logging.info(self.request.get('sisEducator'))
+        
+        # validation occurs here
+        # TODO: validation!
         
         
-
-
+        # actual creation of account happens here
+        user = users.get_current_user()
+        account = Account()
+        account.user = user
+        account.firstName = firstName
+        account.lastName = lastName
+        account.location = location
+        
+        if isEducator == "true":
+            account.ifEducator = True
+        else:
+            account.ifEducator = False
+            
+        
+        # attempt to geocode location
+        
+        logging.info("about to try geocoder!")
+        g = geocoders.GoogleV3()
+        if account.location:
+            try:             
+                place, (lat, lng) = g.geocode(account.location)
+                account.latitude = lat
+                account.longitude = lng
+            except:
+                logging.error("failed to gecode location for " + str(displayName))
+        
+        account.organization = organization
+        account.introductionLink = website
+        account.displayName = displayName  
+        account.put()
+        
+        
 # only use when add new field to database
 class UpdateDatabase (webapp.RequestHandler):
     def get(self):
@@ -6149,7 +6228,9 @@ application = webapp.WSGIApplication(
         ('/getEducatorsTiles', getEducatorsTiles),
         
         # handles logging in and sign up
-        ('/login', postLoginHandler),
+        ('/loginValidator', loginValidationHandler),
+        ('/createAccount', CreateAccountHandler),
+        ('/registerAccount', RegisterAccountHandler),
         
         ########################
         #  END Jordan's Pages  #

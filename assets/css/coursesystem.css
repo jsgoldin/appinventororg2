@@ -1620,3 +1620,9 @@ footer a {
 	transition: all 0.1s linear;
 	float: left;
 }
+
+.reg-button {
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 12px;
+}
