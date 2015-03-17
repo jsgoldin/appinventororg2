@@ -58,7 +58,7 @@
                     	    <a href="{{userStatus.logouturl}}"">Logout</a> 
                     	    {% else %} 
                     	    <a href="{{userStatus.loginurl}}">Login</a> 
-                    	    <a href="/createAccount">Sign Up</a>
+                    	    <a href="/loginValidator">Sign Up</a>
                     	    {% endif %}
                 		</div>
           			</div>         		        
@@ -119,7 +119,7 @@
                         <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> 
                         {% else %}
                         <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
-                        <li class='hidden-on-big-screen'><a href="/createAccount">Sign Up</a></li> 
+                        <li class='hidden-on-big-screen'><a href="/loginValidator">Sign Up</a></li> 
                         {% endif %} 
                         {% if userStatus.admin %}
                         <li><a href="/admin/dashboard">Administration</a></li> 

@@ -168,14 +168,24 @@ class PublicProfileHandler(webapp.RequestHandler):
 
 class ProfileHandler(webapp.RequestHandler):
     def get(self):
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                          
-        userStatus = UserStatus().getStatus(self.request.uri)
-        
-        
         user = users.get_current_user()
+        if not user:
+            # not signed into google account, once signed in retry
+            # validation
+            self.redirect(users.create_login_url('/loginValidator'))
+            return None
+        
+        # check if user has an account
         pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
-        account = pquery.get()
-
+        account = pquery.get()     
+        if not account:
+            # no account was found redirect to account creation page
+            self.redirect("/createAccount")
+            return None
+        
+        
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                          
+        
         educationLevelCheck0 = ''
         educationLevelCheck1 = ''
         educationLevelCheck2 = ''
@@ -240,6 +250,7 @@ class ProfileHandler(webapp.RequestHandler):
                            'allAppsList': allAppsList,
                            'allAppsList2': allAppsList2,
                            'userStatus': userStatus,
+                           'ifEducator' : ifEducator,
                            'ifEducatorShow': ifEducatorShow,
                            'educationLevel': educationLevel,
                            'educationLevelCheck0': educationLevelCheck0,
@@ -272,6 +283,8 @@ class ChangeProfileHandler(webapp.RequestHandler):
             self.redirect(userStatus['loginurl'])
 
 
+        
+        
         if account:  # dude has already registered
             message = 'Welcome Back,'
             firstName = account.firstName
@@ -310,13 +323,41 @@ class ChangeProfileHandler(webapp.RequestHandler):
         allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
         allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
 
-        
+    
+        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+                    
 
-        template_values = {'account': account, 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus,
-                         'ifEducatorShow': ifEducatorShow, 'educationLevelCheck0': educationLevelCheck0, 'educationLevelCheck1': educationLevelCheck1, 'educationLevelCheck2': educationLevelCheck2}
+
+        template_values = {'courses' : courses,
+                           'account': account,
+                           'userStatus': userStatus,
+                           'ifEducatorShow': ifEducatorShow,
+                           'ifEducator' : ifEducator,
+                           'educationLevelCheck0': educationLevelCheck0,
+                           'educationLevelCheck1': educationLevelCheck1,
+                           'educationLevelCheck2': educationLevelCheck2,
+                           'title' : 'Update Profile',
+                           'stylesheets' : ['/assets/css/coursesystem.css'],
+                           'scripts' : ['/assets/js/updateProfile.js'],
+                           }
+        
+        
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/changeProfile.html')
         self.response.out.write(template.render(path, template_values))
-    
+ 
+class updateProfilePictureHandler(webapp.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
+        account = pquery.get() 
+        
+        image = self.request.get('pictureFile')
+        if image is not None :
+            if len(image.strip(' \t\n\r')) != 0:                
+                account.profilePicture = db.Blob(image)
+                account.put()
+        self.redirect("/profile")
+
         
 class SaveProfile(webapp.RequestHandler):
     def post(self):
@@ -374,6 +415,8 @@ class SaveProfile(webapp.RequestHandler):
             if len(self.request.get('pictureFile').strip(' \t\n\r')) != 0:
                 self.uploadimage()
                 self.redirect("/profile?savePic=successful")
+
+
 
         self.redirect("/profile?save=successful" + str(self.request.get('h')))
         # self.redirect("/profile?save=successful")
@@ -4462,6 +4505,64 @@ class CreateAccountHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/accountregistration.html')
         self.response.out.write(template.render(path, template_values))        
 
+class updateAccountHandler(webapp.RequestHandler):
+    def post(self):
+        logging.info("updateAccountHandlercalled!!!!!!!!!!")
+        firstName = self.request.get('sfirstName');
+        lastName = self.request.get('slastName');
+        displayName = self.request.get('sdisplayName')
+        isEducator = self.request.get('sisEducator')
+        organization = self.request.get('sorganization')
+        educationLevel = self.request.get('seducationLevel')
+        website = self.request.get('swebsite')        
+        location = self.request.get('slocation')      
+       
+        # retrieve account
+        user = users.get_current_user()
+        pquery = db.GqlQuery("SELECT * FROM Account where user= :1 ", user)
+        account = pquery.get()
+        
+       
+
+                
+        if not account:
+            # no account was found redirect to account creation page
+            self.redirect("/createAccount")
+            return None
+        
+        account.user = user
+        account.firstName = firstName
+        account.lastName = lastName
+        account.location = location
+        
+        if isEducator == "true":
+            account.ifEducator = True
+        else:
+            account.ifEducator = False
+            
+        
+        # attempt to geocode location
+        
+        logging.info("about to try geocoder!")
+        g = geocoders.GoogleV3()
+        if account.location:
+            try:             
+                place, (lat, lng) = g.geocode(account.location)
+                account.latitude = lat
+                account.longitude = lng
+            except:
+                logging.error("failed to gecode location for " + str(displayName))
+        
+        account.educationLevel = educationLevel
+        account.organization = organization
+        account.introductionLink = website
+        account.displayName = displayName  
+        account.put()
+        self.redirect("/")
+        
+    
+
+
 class RegisterAccountHandler(webapp.RequestHandler):
     def post(self):
         firstName = self.request.get('sfirstName');
@@ -4472,8 +4573,6 @@ class RegisterAccountHandler(webapp.RequestHandler):
         educationLevel = self.request.get('seducationLevel')
         website = self.request.get('swebsite')        
         location = self.request.get('slocation')       
-        logging.info(self.request.get('sisEducator'))
-        
         # validation occurs here
         # TODO: validation!
         
@@ -6232,7 +6331,8 @@ application = webapp.WSGIApplication(
         ('/loginValidator', loginValidationHandler),
         ('/createAccount', CreateAccountHandler),
         ('/registerAccount', RegisterAccountHandler),
-        
+        ('/updateAccount', updateAccountHandler),
+        ('/updateProfilePicture', updateProfilePictureHandler)
         ########################
         #  END Jordan's Pages  #
         ########################        

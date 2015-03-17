@@ -1342,11 +1342,9 @@ footer a {
 
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width : 1024px) {
-	
 	.teacherTileOuter {
 		width: 100% !important;
 	}
-	
 	.left-side {
 		float: none;
 		margin-bottom: 25px;
@@ -1428,7 +1426,6 @@ footer a {
 		width: 100%;
 	}
 }
-
 
 .googleMap {
 	position: relative;
@@ -1625,4 +1622,58 @@ footer a {
 	width: 100%;
 	margin-bottom: 20px;
 	padding: 12px;
+}
+
+.userinfo .row {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.userinfo>.selected {
+	max-height: 200px !important;
+}
+
+.selected input {
+	display: block;
+}
+
+.userinfo .selected div[class|="col"]:nth-child(2) span {
+	display: none;
+}
+
+.lightcolor {
+	color: #777;
+}
+
+.darkcolor {
+	color: black;
+}
+
+.uploadPhotoBoxWrapper {
+	width: 100%;
+	max-width: 250px;
+	margin: auto;
+	position: relative;
+	cursor: pointer;
+}
+
+.photoHover {
+	opacity: 1 !important;
+}
+
+.uploadPhotoBox {
+	color: white;
+	position: absolute;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.44);
+	bottom: 0;
+	transition: opacity 0.2s ease;
+	opacity: 0.5;
+}
+
+.profileImage {
+	width: 100%;
+	max-width: 250px;
+	border: 1px solid black;
 }
