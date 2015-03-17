@@ -4996,17 +4996,6 @@ class QuizzesHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
 
-class TestTemplateHandler(webapp.RequestHandler):
-    def get(self):
-
-        quiz = self.request.url.rsplit('/', 1)[1]
-
-        template_values = {
-            'message': quiz
-        }
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/DjangoTest.html')
-        self.response.out.write(template.render(path, template_values))
-
 class ScreenHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -6223,36 +6212,80 @@ application = webapp.WSGIApplication(
         ('/IHaveADream', AppRenderer), ('/paintpot2', AppRenderer), ('/AndroidMash', AppRenderer), ('/presidentsQuiz2', AppRenderer), ('/notext', AppRenderer), ('/pong', AppRenderer), ('/stockMarket', AppRenderer), ('/logo', AppRenderer),
      
         # Comment
-        ('/postComment', PostCommentHandler), ('/deleteComment', DeleteCommentHandler),
+        ('/postComment', PostCommentHandler), 
+        ('/deleteComment', DeleteCommentHandler),
 
         # Memcache Flush
         ('/memcache_flush_all', MemcacheFlushHandler),
 
-        ('/conditionalsStart', ConditionalsStartHandler),('/introIf', ConditionsHandler),
+        ('/conditionalsStart', ConditionalsStartHandler),
+        ('/introIf', ConditionsHandler),
         ('/conditionalsWhere', ConditionalsWhereHandler),
 
-        ('/IHaveADream2', IHaveADreamHandler), ('/properties', PropertiesHandler), ('/eventHandlers', EventHandlersHandler), ('/quizly', QuizlyHandler), ('/conditionalsInfo', ConditionalsInfoHandler), ('/workingWithMedia', WorkingWithMediaHandler), ('/mathBlaster', MathBlasterHandler), ('/appInventor2', AppInventor2Handler) , ('/slideshowQuiz', SlideShowQuizHandler), ('/javaBridge', JavaBridgeHandler), ('/meetMyClassmates', MeetMyClassmatesHandler), ('/webDatabase', WebDatabaseHandler), ('/concepts', ConceptsHandler), ('/abstraction', AbstractionHandler), ('/galleryHowTo', GalleryHowToHandler),
-        ('/sentEmail', EmailHandler), ('/bookFiles', BookFilesHandler),
+        ('/IHaveADream2', IHaveADreamHandler),
+        ('/properties', PropertiesHandler),
+        ('/eventHandlers', EventHandlersHandler),
+        ('/quizly', QuizlyHandler),
+        ('/conditionalsInfo', ConditionalsInfoHandler),
+        ('/workingWithMedia', WorkingWithMediaHandler),
+        ('/mathBlaster', MathBlasterHandler),
+        ('/appInventor2', AppInventor2Handler),
+        ('/slideshowQuiz', SlideShowQuizHandler),
+        ('/javaBridge', JavaBridgeHandler),
+        ('/meetMyClassmates', MeetMyClassmatesHandler),
+        ('/webDatabase', WebDatabaseHandler),
+        ('/concepts', ConceptsHandler),
+        ('/abstraction', AbstractionHandler), 
+        ('/galleryHowTo', GalleryHowToHandler),
+        ('/sentEmail', EmailHandler), 
+        ('/bookFiles', BookFilesHandler),
 
         # Update Database
-        ('/updateDB', UpdateDatabase), ('/updateDBGEO', UpdateGEODatabase), ('/PrintOut', PrintOut),
-        ('/convertProfileName1', ConvertProfileName1), ('/convertProfileName2', ConvertProfileName2),
+        ('/updateDB', UpdateDatabase),
+        ('/updateDBGEO', UpdateGEODatabase),
+        ('/PrintOut', PrintOut),
+        ('/convertProfileName1', ConvertProfileName1),
+        ('/convertProfileName2', ConvertProfileName2),
         ('/printUserName', PrintUserName),
         ('/stepIframe', StepIframe),
         
         # Web Tutorial
-        ('/webtutorial', WebTutorialHandler), ('/get_tutorial_data', GetTutorialDataHandler), ('/PostTutorial', PostTutorial), ('/AddTutorialStepPage', AddTutorialStepRenderer), ('/PostTutorialStep', PostTutorialStep), ('/get_tutorial_step_data', GetTutorialStepDataHandler),
+        ('/webtutorial', WebTutorialHandler),
+        ('/get_tutorial_data', GetTutorialDataHandler),
+        ('/PostTutorial', PostTutorial),
+        ('/AddTutorialStepPage', AddTutorialStepRenderer),
+        ('/PostTutorialStep', PostTutorialStep),
+        ('/get_tutorial_step_data', GetTutorialStepDataHandler),
 
         # Public Profile
         ('/publicProfile', PublicProfileHandler),
 
         # AI2 Chapter
-        ('/PaintPot2', PaintPot2Handler), ('/MoleMash2', MoleMash2Handler), ('/HelloPurr2', HelloPurr2Handler), ('/NoTexting2', NoTexting2Handler), ('/PresidentsQuiz2', PresidentsQuiz2Handler), ('/MapTour2', MapTour2Handler), ('/AndroidCar2', AndroidCar2Handler), ('/BroadcastHub2', BroadcastHub2Handler), ('/Architecture2', Architecture2Handler), ('/Engineering2', Engineering2Handler), ('/Variables2', Variables2Handler), ('/Creation2', Creation2Handler), ('/Conditionals2', Conditionals2Handler), ('/Lists2', Lists2Handler), ('/Iteration2', Iteration2Handler), ('/Procedures2', Procedures2Handler), ('/Databases2', Databases2Handler), ('/Sensors2', Sensors2Handler), ('/API242', API242Handler), ('/Xylophone2', XYLoPhone2Handler), ('/Ladybug2', Ladybug2Handler),
-        ('/starterApps', StarterAppsHandler), ('/robots', RobotsHandler), ('/amazonChapter', AmazonHandler),
+        ('/PaintPot2', PaintPot2Handler),
+        ('/MoleMash2', MoleMash2Handler),
+        ('/HelloPurr2', HelloPurr2Handler),
+        ('/NoTexting2', NoTexting2Handler),
+        ('/PresidentsQuiz2', PresidentsQuiz2Handler),
+        ('/MapTour2', MapTour2Handler),
+        ('/AndroidCar2', AndroidCar2Handler),
+        ('/BroadcastHub2', BroadcastHub2Handler),
+        ('/Architecture2', Architecture2Handler),
+        ('/Engineering2', Engineering2Handler),
+        ('/Variables2', Variables2Handler),
+        ('/Creation2', Creation2Handler),
+        ('/Conditionals2', Conditionals2Handler),
+        ('/Lists2', Lists2Handler),
+        ('/Iteration2', Iteration2Handler),
+        ('/Procedures2', Procedures2Handler),
+        ('/Databases2', Databases2Handler),
+        ('/Sensors2', Sensors2Handler),
+        ('/API242', API242Handler),
+        ('/Xylophone2', XYLoPhone2Handler),
+        ('/Ladybug2', Ladybug2Handler),
+        ('/starterApps', StarterAppsHandler),
+        ('/robots', RobotsHandler),
+        ('/amazonChapter', AmazonHandler),
         ('/biblio', BiblioHandler),
-        
-        
-        
         
         # Course additional reading and material handlers
         ('/mod1reading', Mod1ReadingHandler),
@@ -6262,18 +6295,59 @@ application = webapp.WSGIApplication(
         ('/mod5reading', Mod5ReadingHandler),
         ('/mod6reading', Mod6ReadingHandler),
         ('/mod7reading', Mod7ReadingHandler),
-        
 
-        
         # Page that contains all the quizzes
         ('/Quizzes', QuizzesHandler),
         # HTML bookChapters
-        ('/Chapter1', Chapter1Handler), ('/Chapter2', Chapter2Handler), ('/Chapter3', Chapter3Handler), ('/Chapter4', Chapter4Handler), ('/Chapter5', Chapter5Handler), ('/Chapter6', Chapter6Handler), ('/Chapter7', Chapter7Handler), ('/Chapter8', Chapter8Handler), ('/Chapter9', Chapter9Handler), ('/Chapter10', Chapter10Handler), ('/Chapter11', Chapter11Handler), ('/Chapter12', Chapter12Handler), ('/Chapter13', Chapter13Handler), ('/Chapter14', Chapter14Handler), ('/Chapter15', Chapter15Handler), ('/Chapter16', Chapter16Handler), ('/Chapter17', Chapter17Handler), ('/Chapter18', Chapter18Handler), ('/Chapter19', Chapter19Handler), ('/Chapter20', Chapter20Handler), ('/Chapter21', Chapter21Handler), ('/Chapter22', Chapter22Handler), ('/Chapter23', Chapter23Handler), ('/Chapter24', Chapter24Handler),
-        # Test page for learning djang
-        ('/Django', TestTemplateHandler), ('/Django1', TestTemplateHandler),
-
+        ('/Chapter1', Chapter1Handler),
+        ('/Chapter2', Chapter2Handler),
+        ('/Chapter3', Chapter3Handler),
+        ('/Chapter4', Chapter4Handler),
+        ('/Chapter5', Chapter5Handler),
+        ('/Chapter6', Chapter6Handler),
+        ('/Chapter7', Chapter7Handler), 
+        ('/Chapter8', Chapter8Handler),
+        ('/Chapter9', Chapter9Handler),
+        ('/Chapter10', Chapter10Handler),
+        ('/Chapter11', Chapter11Handler),
+        ('/Chapter12', Chapter12Handler),
+        ('/Chapter13', Chapter13Handler),
+        ('/Chapter14', Chapter14Handler),
+        ('/Chapter15', Chapter15Handler),
+        ('/Chapter16', Chapter16Handler),
+        ('/Chapter17', Chapter17Handler),
+        ('/Chapter18', Chapter18Handler),
+        ('/Chapter19', Chapter19Handler),
+        ('/Chapter20', Chapter20Handler),
+        ('/Chapter21', Chapter21Handler),
+        ('/Chapter22', Chapter22Handler),
+        ('/Chapter23', Chapter23Handler),
+        ('/Chapter24', Chapter24Handler),
+        
         # Cayla's Pages
-        ('/screens', ScreenHandler), ('/screensSwap', ScreenSwapHandler), ('/screensShare', ScreenShareHandler), ('/HelloPurrMini', HelloPurrMiniHandler), ('/aiSetUp', AppInventorSetUpHandler), ('/NewIHaveADream', NewIHaveADreamHandler), ('/preface', PrefaceHandler), ('/conceptualizePaintPot', ConceptualizePaintPotHandler), ('/conceptualizeMoleMash', ConceptualizeMoleMashHandler), ('/animationChallenge', AnimationChallengeHandler), ('/creativeProject2Game', CreativeProject2GameHandler), ('/googleVoice', GoogleVoiceHandler), ('/conceptualizeNoTexting', ConceptualizeNoTextingHandler), ('/conceptualizeLocation', ConceptualizeLocationHandler), ('/conceptualizeStockMarket', ConceptualizeStockMarketHandler), ('/pretest', PretestHandler), ('/listiteration', ListIterationHandler), ('/conceptualizeSlideshow', ConceptualizeSlideshowHandler), ('/conceptualizeProcedures', ConceptualizeProceduresHandler), ('/conceptualizeIteration', ConceptualizeIterationHandler), ('/conceptualizeNoteTaker', ConceptualizeNoteTakerHandler), ('/conceptualizeCommunication', ConceptualizeCommunicationHandler), ('/pizzaParty', PizzaPartyHandler),
+        ('/screens', ScreenHandler),
+        ('/screensSwap', ScreenSwapHandler),
+        ('/screensShare', ScreenShareHandler),
+        ('/HelloPurrMini', HelloPurrMiniHandler),
+        ('/aiSetUp', AppInventorSetUpHandler),
+        ('/NewIHaveADream', NewIHaveADreamHandler),
+        ('/preface', PrefaceHandler),
+        ('/conceptualizePaintPot', ConceptualizePaintPotHandler),
+        ('/conceptualizeMoleMash', ConceptualizeMoleMashHandler),
+        ('/animationChallenge', AnimationChallengeHandler),
+        ('/creativeProject2Game', CreativeProject2GameHandler),
+        ('/googleVoice', GoogleVoiceHandler),
+        ('/conceptualizeNoTexting', ConceptualizeNoTextingHandler),
+        ('/conceptualizeLocation', ConceptualizeLocationHandler),
+        ('/conceptualizeStockMarket', ConceptualizeStockMarketHandler),
+        ('/pretest', PretestHandler),
+        ('/listiteration', ListIterationHandler),
+        ('/conceptualizeSlideshow', ConceptualizeSlideshowHandler),
+        ('/conceptualizeProcedures', ConceptualizeProceduresHandler),
+        ('/conceptualizeIteration', ConceptualizeIterationHandler),
+        ('/conceptualizeNoteTaker', ConceptualizeNoteTakerHandler),
+        ('/conceptualizeCommunication', ConceptualizeCommunicationHandler),
+        ('/pizzaParty', PizzaPartyHandler),
 
     
         ###############################
