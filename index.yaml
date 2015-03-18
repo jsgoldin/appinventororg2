@@ -58,6 +58,17 @@ indexes:
   properties:
   - name: m_index
 
+- kind: RSSItem
+  ancestor: yes
+  properties:
+  - name: dateUnFormatted
+
+- kind: RSSItem
+  ancestor: yes
+  properties:
+  - name: dateUnFormatted
+    direction: desc
+
 - kind: Step
   properties:
   - name: appId

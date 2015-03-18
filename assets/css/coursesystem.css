@@ -837,21 +837,41 @@
 
 .landing-big-button {
 	display: inline-block;
-	background-color: hsl(8, 70%, 44%);
-	color: #f8f8f8;
-	padding: 16px 32px;
-	font-size: 18px;
+	background-color: #FFA201;
+	color: white;
+	padding: 20px 32px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	font-size: 20px;
+	width: 100%;
 	font-weight: 500;
+	text-align: center;
 	line-height: 24px;
+	border-radius: 7px;
 	cursor: pointer;
 	margin: 25px 0px 25px 0px;
 	-webkit-transition: .1s background-color ease-in-out;
 }
 
 .landing-big-button:hover {
-	background-color: hsl(8, 70%, 36%);
+	background-color: #FF8D02;
 	text-decoration: none;
 	color: white;
+}
+
+.tileBoxes .col-md-12 {
+	margin-bottom: 20px;
+}
+
+.tileBoxes {
+	text-align: center;	
+}
+
+.tileBoxes img {
+	margin: auto;
+}
+
+.tileBoxes a {
+	font-size: 20px;
 }
 
 /* A responsive single tile 
@@ -1676,4 +1696,41 @@ footer a {
 	width: 100%;
 	max-width: 250px;
 	border: 1px solid black;
+}
+
+.rssFeedBox {
+	border: 1px solid rgba(0, 0, 0, 0.37);
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+.rssFeedBox .alignleft {
+	float: left;
+	margin: 5px 10px 0 0;
+}
+
+.rssFeedBox img {
+	padding: 4px;
+	border: 1px solid #ddd;
+	background: #fff;
+}
+
+.rssFeedBox .wp-caption {
+	border: 1px solid #ddd;
+	text-align: center;
+	background-color: #f3f3f3;
+	padding-top: 4px;
+	margin: 10px auto 10px auto;
+	max-width: 95.5%;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.rssFeedBox .wp-caption p.wp-caption-text {
+	font-size: 11px;
+	line-height: 17px;
+	padding: 0 4px 5px;
+	margin: 0;
 }

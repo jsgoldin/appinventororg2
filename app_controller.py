@@ -1,30 +1,36 @@
+import ast
+import collections
+import datetime
+import feedparser
 import logging
 import os
-import collections
-import ast
-try: import simplejson as json
-except ImportError: import json
-from google.appengine.ext import ndb
+import time
 
-from google.appengine.ext.webapp import template
-from google.appengine.ext import db
 from google.appengine.api import images
+from google.appengine.api import mail
 from google.appengine.api import memcache
 from google.appengine.api import users
+from google.appengine.ext import db
+from google.appengine.ext import ndb
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
+
+from datastore import Account, RSSItem
 from datastore import App
-from datastore import Step
-from datastore import Custom
-from datastore import Account
 from datastore import Comment
+from datastore import Custom
+from datastore import Module, Content, Course
+from datastore import Step
 from datastore import Tutorial
 from datastore import TutorialStep
-from datastore import Module, Content, Course
 import gdata.analytics.client
-import datetime
 from geopy import geocoders
-from google.appengine.api import mail
+
+
+try: import simplejson as json
+except ImportError: import json
+
 
 
 APPSDIR = '/apps'
@@ -5417,15 +5423,21 @@ class Homehandler(webapp.RequestHandler):
     def get(self):
         # look up all the courses for the global navbar
         courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
-                    
         userStatus = UserStatus().getStatus(self.request.uri)
+        
+        # render the rss feed box
+        path = os.path.join(os.path.dirname(__file__), 'pages/templates/rssFeedBox.html')
+        rssItems = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).order(-RSSItem.dateUnFormatted).fetch(1)        
+        rssFeedBox = template.render(path, {'rssItems' : rssItems})
         
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
                            'title' : 'App Inventor',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           'rssFeedBox' : rssFeedBox,
                            }
+        
         
         path = os.path.join(os.path.dirname(__file__), 'pages/home.html')
         self.response.out.write(template.render(path, template_values))  
@@ -6143,7 +6155,55 @@ class gDocHandler(webapp.RequestHandler):
         
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/gdoc.html')
         self.response.out.write(template.render(path, template_values))      
-                
+
+class updateRSSHandler(webapp.RequestHandler):
+    """
+    Updates the datastore's copy of the app inventor blog rss feed.
+    This is called via a cron job.
+    """
+    
+    def clean_content(self, content):
+        """ 
+        Gets rid of the add a comment link at the bottom of an item.
+        Hacky solution, just drops everything after the last a tag.
+        """
+        endIndex = content.rfind("<a")
+        logging.info(endIndex)
+        return content[:endIndex]
+        
+    
+    def read_feed(self):
+        feed = feedparser.parse( "http://appinventorblog.com/feed/" )
+       
+        results = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).fetch()
+        
+        savedLinks = []
+        for item in results:
+            savedLinks += [item.link]
+        logging.info(savedLinks)
+            
+       
+        for item in feed.entries:
+            # if the item is not in the datastore add it
+            if(item["link"] not in savedLinks):
+                self.response.out.write("<a href=>" + item["title"] + "</b> " + item.published + "<br>")                
+                self.response.out.write("<div>" + self.clean_content(item["content"][0]["value"]) + "</div>")
+                self.response.out.write("<hr>")
+                new_item = RSSItem(parent=ndb.Key('RSSFeeds', 'AppInventorBlog'))
+                new_item.title = item["title"]
+                new_item.content = self.clean_content(item["content"][0]["value"])
+                new_item.link = item["link"]
+                new_item.dateUnFormatted = datetime.datetime(*(item['updated_parsed'][0:6]))
+                new_item.date = time.strftime("%B %d, %Y", item.published_parsed)
+                new_item.put()
+            else:
+                self.response.out.write("<h1>" + item["title"] + " " + time.strftime("%B %d, %Y", item.published_parsed) +"SAVED!!!</h1>")
+    
+    def get(self):
+        self.read_feed()
+        
+
+            
 
 ####################################
 #       End Jordan's Classes       #
@@ -6348,21 +6408,12 @@ application = webapp.WSGIApplication(
         ('/conceptualizeNoteTaker', ConceptualizeNoteTakerHandler),
         ('/conceptualizeCommunication', ConceptualizeCommunicationHandler),
         ('/pizzaParty', PizzaPartyHandler),
-
-    
-        ###############################
-        #  Iframe google docs hotfix  #
-        ###############################
+        
         ('/gDoc', gDocHandler),        
-        ###################################
-        #  End Iframe google docs hotfix  #
-        ###################################
     
     
-        ##################
-        # Jordan's Pages #
-        ##################
-                
+        
+    
         # new home page
         ('/', Homehandler),
         
@@ -6406,10 +6457,10 @@ application = webapp.WSGIApplication(
         ('/createAccount', CreateAccountHandler),
         ('/registerAccount', RegisterAccountHandler),
         ('/updateAccount', updateAccountHandler),
-        ('/updateProfilePicture', updateProfilePictureHandler)
-        ########################
-        #  END Jordan's Pages  #
-        ########################        
+        ('/updateProfilePicture', updateProfilePictureHandler),
+        
+        #RSS feed stuff
+        ('/admin/updateRSS', updateRSSHandler),
     ],
     debug=True)
 

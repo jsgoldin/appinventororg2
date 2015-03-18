@@ -143,6 +143,14 @@ class Course(ndb.Model):
 
 
 
+class RSSItem(ndb.Model): 
+    title = ndb.StringProperty()
+    link = ndb.StringProperty()
+    content = ndb.TextProperty()
+    date = ndb.StringProperty()
+    dateUnFormatted = ndb.DateTimeProperty()
+    
+
 # for the "Conceptualize It" section of a generated app page    
 # class Concept(db.Model):     
 
