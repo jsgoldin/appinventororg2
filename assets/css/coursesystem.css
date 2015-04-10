@@ -837,12 +837,12 @@
 
 .landing-big-button {
 	display: inline-block;
-	background-color: #FFA201;
+	background-color: #FF8400;
 	color: white;
-	padding: 20px 32px;
+	padding: 13px 32px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
-	font-size: 20px;
-	width: 100%;
+	font-size: 18px;
+	width: 92%;
 	font-weight: 500;
 	text-align: center;
 	line-height: 24px;
@@ -853,21 +853,14 @@
 }
 
 .landing-big-button:hover {
-	background-color: #FF8D02;
+	background-color: #FF5300;
 	text-decoration: none;
 	color: white;
 }
 
-.tileBoxes .col-md-12 {
-	margin-bottom: 20px;
-}
-
-.tileBoxes {
-	text-align: center;	
-}
-
 .tileBoxes img {
 	margin: auto;
+	border: 1px solid rgba(0, 0, 0, 0.37);
 }
 
 .tileBoxes a {
