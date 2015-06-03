@@ -5471,7 +5471,7 @@ class ModulesHandler(webapp.RequestHandler):
             path = os.path.join(os.path.dirname(__file__), 'pages/pagenotfound.html')
             self.response.out.write(template.render(path, template_values))  
         else:
-            # course exists find the first module            
+            # course exists, find the first module            
             # and redirect to that
             
             courseId = x[0].key.id()
@@ -5525,8 +5525,7 @@ class ContentsHandler(webapp.RequestHandler):
                                'contents' : contents,
                                'courses' : courses,
                                 }
-
-
+                
                 path = os.path.join(os.path.dirname(__file__), 'pages/modules.html')
                 self.response.out.write(template.render(path, template_values))
                 
@@ -5633,7 +5632,7 @@ class AdminCourseDisplayHandler(webapp.RequestHandler):
         
         template_values = {"courses" : courses,
                            'stylesheets' : ['/assets/admin/css/editor.css', '/assets/admin/css/admin.css', '/assets/css/coursesystem.css'],
-                           'scripts' : ['/assets/admin/js/courses_editor.js'],
+                           'scripts' : ['/assets/admin/js/courses_editor.js', '/assets/js/coursesystem.js'],
                            'title' : 'Courses Admin',
                            'userStatus' : userStatus
                            }

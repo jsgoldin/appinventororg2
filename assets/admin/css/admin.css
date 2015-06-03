@@ -17,8 +17,11 @@
     min-height: 180px;
     border-radius: 20px;
     margin: 20px;
-    background-image: linear-gradient(to bottom, #FFFFFF, #DDEAF3);
     border: 1px solid #B4DBE4;
+}
+
+.dashboard-item:hover {
+	background-color: initial;
 }
 
 .dashboard-item p {

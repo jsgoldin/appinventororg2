@@ -46,7 +46,7 @@
 	box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
 	background-color: white;
 	height: 400px;
-	width: 23%;
+	width: 48%;
 	float: left;
 	margin-right: 1%;
 	margin-left: 1%;
@@ -481,18 +481,20 @@
 	margin: 10px auto;
 }
 
-.module-content-browser-box-tab-inner {
-	height: 50px;
+.module-navbox {
 	position: relative;
 	background-color: #BBB;
 	border-radius: 3px;
-	padding: 5px 10px 5px 10px;
-	width: 75%;
-	margin: 0px auto 10px auto;
 	color: white;
+	font-size: 18px;
 }
 
-.module-content-browser-box-tab-inner a {
+
+.module-navbox p {
+	padding: 15px;
+}
+
+.module-navbox a {
 	position: absolute;
 	height: 100%;
 	width: 100%;
@@ -548,6 +550,18 @@
 	text-align: center;
 	padding-top: 8px;
 }
+
+
+
+.navLink {
+	color: #31B4E7;
+	position: relative;
+	width: 90px;
+	position: relative;
+	top: 11px;
+}
+
+
 
 .vertical-side-bar-top-box-back {
 	color: #31B4E7;
@@ -1726,4 +1740,16 @@ footer a {
 	line-height: 17px;
 	padding: 0 4px 5px;
 	margin: 0;
+}
+
+.fullWHLink {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+
+.footerFix {
+	min-height: 100vh;
+	margin-bottom: 50px;
 }

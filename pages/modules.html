@@ -1,42 +1,52 @@
 {% extends "templates/site_base.html" %} {% block body %}
 
-<div class='col-25'>
-	<div style='width: 75%;' class='vertical-side-bar-top-box-back back-to-courses-link'>
-	    <a href='/'><span></span></a>
-		<span class="glyphicon glyphicon-chevron-left relative"></span> BACK
-	</div>
-
-	<h2 class='modules-left-box'>{{title}}</h2>
-
-	{% for m in modules %}
-
-	
-	{% if m.m_title == module.m_title %}
-	
-	<div class='module-content-browser-box-tab-inner selected-tab'>
-		<a href='{{m.m_identifier}}'><span></span></a>
-		<p>{{m.m_title}}</p>
-	</div>
-	
-	{% else %}
-	
-	<div class='module-content-browser-box-tab-inner'>
-		<a href='{{m.m_identifier}}'><span></span></a>
-		<p>{{m.m_title}}</p>
-	</div>
-
-	{% endif %}
-	
-	{% endfor %}
-</div>
-
-<div class='col-50'>
-	<div class='course-modules-wrapper'>
-		<div class='standard-section'>
-			<h1 class='small-screen-center-children'>{{module.m_title}}</h1>
+<div class='gen-container footerFix'>
+	<div class='row'>
+	        <div class='col-xs-4' style="max-width: 394px;">
+	        	
+	        	
+	        	<div class='navLink slide-left'>
+	    			<a class="fullWHLink" href='/'><span></span></a>
+					<span class="glyphicon glyphicon-chevron-left"></span> BACK
+				</div>
+				
+				
+	           	<h2>{{title}}</h2>
+	           	
+	           	<p>All Modules</p>
+	           	
+	        </div>
+	       	<div class='col-xs-8' style="border-bottom: 1px solid rgba(0, 0, 0, 0.39);">
+			<h1>{{module.m_title}}</h1>
 			<p style='color: color: #757575;'>{{module.m_description}}</p>
-			<hr>
-		</div>
+
+
+	        </div>
+	</div>
+	<div class='row'>
+        <div class='col-xs-4' style="max-width: 394px;">
+     
+       		{% for m in modules %}
+				{% if m.m_title == module.m_title %}
+	
+			<div class='module-navbox  selected-tab'>
+				<a href='{{m.m_identifier}}'><span></span></a>
+				<p>{{m.m_title}}</p>
+			</div>
+	
+				{% else %}
+	
+			<div class='module-navbox'>
+				<a href='{{m.m_identifier}}'><span></span></a>
+				<p>{{m.m_title}}</p>
+			</div>
+
+				{% endif %}
+	
+			{% endfor %}
+        </div>
+        <div class='col-xs-8'>
+        
 
 
 		{% for content in contents %}
@@ -85,9 +95,11 @@
 		</div>
 		{% endfor %}
 
-	</div>
 
-
+        
+        
+		</div>
+	</div>  
 </div>
 
 {% endblock %}
