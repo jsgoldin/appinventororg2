@@ -6,21 +6,20 @@
 
 <div class='full-width-background-gray-gradient-container'>
 	<div class='course-page-container'>
-		<div class='app-header-left'>
+		<div class='app-header'>
 			<h1 class='headline'>{{app.heroHeader}}</h1>
-			<p>{{app.heroCopy}}</p>
-		</div>
-		<div class='app-header-right'>
-			<div class='app-phone'>
-				<img class="app-screenshot"
-					src="{{currentAppsDir}}/{{ app.appId }}/hero.png" alt="screenshot">
-			</div>
+			<p>{{app.heroCopy}}
+			{% if app.pdfChapter %}
+				This tutorial can be viewed in book form 
+				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf">here</a>
+ 			{% endif %}
+ 			</p>
 		</div>
 	</div>
 </div>
 
 
-<div class='course-page-container'>
+<div class='app-big-video'>
 	<div id="carousel-wrapper">
 
 		{% for step in steps %}
@@ -36,37 +35,36 @@
 				</h3>
 				<p>{{step.copy}}</p>
 			</div>
-
 		</div>
 
 		{% endfor %}
 
 	</div>
-
-</div>
-
+	
 <div class='app-btn-section'>
-{% if app.pdfChapter %}
-	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf" class='app-btn'>
-		<img src="/assets/img/ModuleIcons/flat-color/check-list.png"
-		height="170" width="170">
-		<h4>Book Chapter</h4>
-		<p>View this tutorial in text form</p>
-	</a>
- {% endif %}
+
 	<div class='app-btn'>
-		<img src="{{currentAppsDir}}/{{ app.appId }}/qr.png" height="170" width="170">
 		<h4>QR Code</h4>
 		<p>Scan to install this app.</p>
 	</div>
-	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk" class='app-btn'> <img src="/assets/img/androidApk.jpeg" height="170" width="170">
+	
+	<div class='app-btn'>
+	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk" class=''>
 		<h4>APK download</h4>
 		<p>Download the .apk file to your computer</p>
-	</a> <a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia"class='app-btn'> <img src="/assets/img/androidAia.jpeg" height="170" width="170">
+	</a> 
+	</div>
+	
+		<div class='app-btn'>
+	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia"class=''>
 		<h4>Source Download</h4>
 		<p>Download the source (.aia file), then import it into App Inventor for
 			remixing.</p>
 	</a>
+	</div>
+</div>
+	
+
 </div>
 
 

@@ -489,7 +489,6 @@
 	font-size: 18px;
 }
 
-
 .module-navbox p {
 	padding: 15px;
 }
@@ -551,8 +550,6 @@
 	padding-top: 8px;
 }
 
-
-
 .navLink {
 	color: #31B4E7;
 	position: relative;
@@ -560,8 +557,6 @@
 	position: relative;
 	top: 11px;
 }
-
-
 
 .vertical-side-bar-top-box-back {
 	color: #31B4E7;
@@ -1029,14 +1024,6 @@
 	text-align: center;
 }
 
-.app-header-left {
-	width: 55%;
-	font-size: 20px;
-	float: left;
-	padding-left: 4%;
-	padding-top: 50px;
-}
-
 .top-banner {
 	background-color: white;
 	position: relative;
@@ -1069,29 +1056,35 @@
 
 /* A responsive container for buttons on the app page*/
 .app-btn-section {
-	width: 100%;
-	position: relative;
 	margin: 0 auto 0 auto;
-	min-height: 200px;
 	background-color: white;
 	overflow: auto;
 	margin-top: 20px;
+	text-align: center;
+	border-left: 1px #2d2d2d solid;
+	border-right: 1px #2d2d2d solid;
+	border-color: rgba(1, 1, 1, 0.1);
 }
 
 /* A responsive button for getting content on the app page, 
  * The styling assumes, their are 4 buttons!
  */
 .app-btn {
-	width: 25%;
-	height: 400px;
-	float: left;
+	font-size: 14px;
 	text-align: center;
 	background-color: white;
-	padding-top: 30px;
 	border-top: 1px #2d2d2d solid;
 	border-left: 1px #2d2d2d solid;
 	border-bottom: 1px #2d2d2d solid;
 	border-color: rgba(1, 1, 1, 0.1);
+	width: 33%;
+	float: left;
+	height: 111px;
+}
+
+.app-big-video {
+	max-width: 950px;
+	margin: auto;
 }
 
 .app-btn p, .app-btn h4 {
@@ -1328,21 +1321,15 @@ footer a {
 	padding-bottom: 15px;
 }
 
-
-
-
-
-/* Portrait and Landscape */
-@media only screen 
-  and (max-device-width: 768px) {
-  	.vertical-side-bar-container {
+/* Smaller than iPad Portrait and Landscape */
+@media only screen and (max-device-width: 768px) {
+	.vertical-side-bar-container {
 		display: none;
 	}
 	#contentarea {
 		margin-left: 0px;
 	}
 }
-
 
 /* tiny screens ----------- */
 @media ( min-width : 624px) and (max-width : 1300px) {
@@ -1383,9 +1370,6 @@ footer a {
 	}
 }
 
-
-
-
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width : 1024px) {
 	.teacherTileOuter {
@@ -1416,17 +1400,6 @@ footer a {
 	.no-padding-wrapper {
 		margin-left: -40px;
 		margin-right: -40px;
-	}
-
-	/* Resize app buttons*/
-	.app-btn {
-		width: 50%;
-	}
-	.app-btn:nth-child(1) {
-		border-bottom: none;
-	}
-	.app-btn:nth-child(2) {
-		border-bottom: none;
 	}
 	.col-50 {
 		width: 100%;
@@ -1760,7 +1733,6 @@ footer a {
 	height: 100%;
 	width: 100%;
 }
-
 
 .footerFix {
 	min-height: 100vh;

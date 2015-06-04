@@ -6212,6 +6212,14 @@ class updateRSSHandler(webapp.RequestHandler):
 
 
 
+
+
+class ObjectivesModule1(webapp.RequestHandler):
+    def get(self):
+        path = os.path.join(os.path.dirname(__file__), 'pages/objectives/objective1.html')
+        self.response.out.write(template.render(path, {}))
+
+
         
 
 
@@ -6460,6 +6468,10 @@ application = webapp.WSGIApplication(
         
         #RSS feed stuff
         ('/admin/updateRSS', updateRSSHandler),
+        
+        
+        
+        ('/Objective1', ObjectivesModule1)
     ],
     debug=True)
 
