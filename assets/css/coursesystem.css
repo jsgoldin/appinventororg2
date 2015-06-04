@@ -873,7 +873,7 @@
 }
 
 .tileBoxes img {
-	margin: auto;
+	margin: 0px auto 22px auto;
 	border: 1px solid rgba(0, 0, 0, 0.37);
 }
 
