@@ -1328,6 +1328,22 @@ footer a {
 	padding-bottom: 15px;
 }
 
+
+
+
+
+/* Portrait and Landscape */
+@media only screen 
+  and (max-device-width: 768px) {
+  	.vertical-side-bar-container {
+		display: none;
+	}
+	#contentarea {
+		margin-left: 0px;
+	}
+}
+
+
 /* tiny screens ----------- */
 @media ( min-width : 624px) and (max-width : 1300px) {
 	.course-box {
@@ -1367,6 +1383,9 @@ footer a {
 	}
 }
 
+
+
+
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width : 1024px) {
 	.teacherTileOuter {
@@ -1387,12 +1406,6 @@ footer a {
 	.right-side img {
 		margin-left: auto;
 		margin-right: auto;
-	}
-	.vertical-side-bar-container {
-		display: none;
-	}
-	#contentarea {
-		margin-left: 0px;
 	}
 	.course-page-banner-green {
 		height: auto;
