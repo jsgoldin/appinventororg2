@@ -21,14 +21,22 @@
 
 <div class='app-big-video'>
 	<div id="carousel-wrapper">
-
-		{% for step in steps %}
-
+	
 		<div class='carousel-step'>
-
 			<div class='carousel-step-video'
 				data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>
-
+			<div class='carousel-step-info'>
+				<h3>
+					<strong>Step {{step.number }}:</strong> {{step.header}}
+				</h3>
+				<p>{{step.copy}}</p>
+			</div>
+		</div>
+		
+		<div class='carousel-step'>
+			<div class='carousel-step-video'
+				data-utubeurl='{{step.fullscreenPath}}&showinfo=0'>
+			</div>
 			<div class='carousel-step-info'>
 				<h3>
 					<strong>Step {{step.number }}:</strong> {{step.header}}
@@ -37,29 +45,42 @@
 			</div>
 		</div>
 
+	
+		{% for step in steps %}
+		<div class='carousel-step'>
+			<div class='carousel-step-video'
+				data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>
+			<div class='carousel-step-info'>
+				<h3>
+					<strong>Step {{step.number }}:</strong> {{step.header}}
+				</h3>
+				<p>{{step.copy}}</p>
+			</div>
+		</div>
 		{% endfor %}
-
+		
+		
 	</div>
 	
 <div class='app-btn-section'>
-
 	<div class='app-btn'>
-		<h4>QR Code</h4>
-		<p>Scan to install this app.</p>
+		<a href="#" data-toggle="modal" data-target="#qrCodeModal">
+			<h4>QR Code</h4>
+			<p>Scan to install this app.</p>
+		</a>
 	</div>
 	
 	<div class='app-btn'>
-	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk" class=''>
-		<h4>APK download</h4>
-		<p>Download the .apk file to your computer</p>
+	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk">
+		<h4>APK</h4>
+		<p>Download as Android application</p>
 	</a> 
 	</div>
 	
 		<div class='app-btn'>
-	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia"class=''>
-		<h4>Source Download</h4>
-		<p>Download the source (.aia file), then import it into App Inventor for
-			remixing.</p>
+	<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia">
+		<h4>AIA</h4>
+		<p>Download the App Inventor source</p>
 	</a>
 	</div>
 </div>
@@ -67,6 +88,23 @@
 
 </div>
 
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="qrCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      <h4>Scan the QR code with your Android device to download the application.</h4>
+     	<img style="margin: auto; display: block;" src="{{currentAppsDir}}/{{ app.appId }}/qr.png">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

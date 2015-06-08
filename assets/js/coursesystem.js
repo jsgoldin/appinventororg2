@@ -134,26 +134,25 @@ $('.vertical-side-bar-top-bottom-next').click(
  * Scroll to top and stop behavior for the content page.
  */
 $(document).ready(
-		function() {
-			
-			
+		function() {			
 			// scroll top top then fixed
 			$(window).bind('scroll', function() {
-				var navHeight = $('#header-wrapper').height();
+				var headerHeight = $('#header-wrapper').height();
 				var scrollBottom = $(window).scrollTop() + $(window).height();
 				var topOfFooter = $("body").height() - $('footer').outerHeight();
 				
-				if ($(window).scrollTop() > navHeight) {
+				
+				if ($(window).scrollTop() > headerHeight) {
 					$('.vertical-side-bar-container').addClass('fixed-sidebar');	
 				} else {
 					$('.vertical-side-bar-container').removeClass('fixed-sidebar');		
 				}
 				
+				
 				if (scrollBottom >= topOfFooter) {
 					$('.vertical-side-bar-container').removeClass('fixed-sidebar');	
 					$('.vertical-side-bar-container').addClass('fixed-sidebar-bottom');	
 					$('.vertical-side-bar-container').css("bottom", $('footer').outerHeight());
-
 				} else {
 					$('.vertical-side-bar-container').removeClass('fixed-sidebar-bottom');
 					$('.vertical-side-bar-container').css("bottom", "0px");

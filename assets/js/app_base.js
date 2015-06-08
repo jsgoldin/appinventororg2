@@ -54,6 +54,11 @@ function onYouTubeIframeAPIReady() {
 		paginationNumbers : true,
 		lazyLoad : true,
 		afterAction : stopAllVideos,
+		navigation : true,
+		navigationText: [
+		                 "<span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>",
+		                 "<span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>",
+		                 ],
 	});
 	
 	
@@ -63,6 +68,9 @@ function onYouTubeIframeAPIReady() {
 		}
 	}
 	
+	
+	
+	/*
 	// add custom navigation buttons
 	$('.owl-pagination').prepend(
 		"<div id='carousel-nav-btn-left' class='carousel-nav-btn'>" +
@@ -75,40 +83,21 @@ function onYouTubeIframeAPIReady() {
 		"	</span>" +
 		"</div>");
 	return player;
+	*/
+	
 }
 
 
 
-
-var i = 1;
-$(window).resize(function() {
-	if (i % 2 == 0) {
-		setTimeout(function() {
-		if ($('#carousel-nav-btn-left').length == 0) {
-			$('.owl-pagination').prepend(
-			"<div id='carousel-nav-btn-left' class='carousel-nav-btn'>" +
-				"<span class='glyphicon glyphicon-chevron-left'>" +
-				"</span>" +
-			"</div>");
-		}
-		if ($('#carousel-nav-btn-right').length == 0) {
-			$('.owl-pagination').append(
-			"<div id='carousel-nav-btn-right' class='carousel-nav-btn'>" +
-			"	<span class='glyphicon glyphicon-chevron-right'>" +
-			"	</span>" +
-			"</div>");
-		}
-	}, 700);
-}
-i++;
-});
-
-
-
+/*
+// TODO: FIX!
 $(document).on("click", "#carousel-nav-btn-left", function() {
-	$(".owl-carousel").data('owlCarousel').prev();	
+	// $(".owl-carousel").data('owlCarousel').prev();	
 });
 
 $(document).on("click", "#carousel-nav-btn-right", function() {
-	$(".owl-carousel").data('owlCarousel').next();
+	// var owl = $('.owl-carousel');
+	// owl.trigger('next.owl.carousel');
+	// $(".owl-carousel").data('owlCarousel').next();
 });
+*/
