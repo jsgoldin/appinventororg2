@@ -21,31 +21,7 @@
 
 <div class='app-big-video'>
 	<div id="carousel-wrapper">
-	
-		<div class='carousel-step'>
-			<div class='carousel-step-video'
-				data-utubeurl='{{step.fullscreenPath}}&showinfo=0'></div>
-			<div class='carousel-step-info'>
-				<h3>
-					<strong>Step {{step.number }}:</strong> {{step.header}}
-				</h3>
-				<p>{{step.copy}}</p>
-			</div>
-		</div>
 		
-		<div class='carousel-step'>
-			<div class='carousel-step-video'
-				data-utubeurl='{{step.fullscreenPath}}&showinfo=0'>
-			</div>
-			<div class='carousel-step-info'>
-				<h3>
-					<strong>Step {{step.number }}:</strong> {{step.header}}
-				</h3>
-				<p>{{step.copy}}</p>
-			</div>
-		</div>
-
-	
 		{% for step in steps %}
 		<div class='carousel-step'>
 			<div class='carousel-step-video'

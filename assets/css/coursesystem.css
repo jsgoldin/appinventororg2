@@ -1737,3 +1737,8 @@ footer a {
 	min-height: 100vh;
 	margin-bottom: 50px;
 }
+
+.app-big-video .owl-buttons div {
+ 	background-color: rgba(91, 188, 5, 0.93) !important;
+ 	font-size: 19px !important;
+}
