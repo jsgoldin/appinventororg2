@@ -13,6 +13,18 @@ function wordToPrettyURL(word) {
 	return urlPrettyTitle;
 }
 
+
+
+$("#slidebarButton").click(function() {
+	
+	if ($(".vertical-side-bar-container").hasClass("sidebar-show")) {
+		$(".vertical-side-bar-container").removeClass("sidebar-show");		
+	} else {
+		$(".vertical-side-bar-container").addClass("sidebar-show");	
+	}
+})
+
+
 /**
  * link to corresponding course page on course-box click
  */
