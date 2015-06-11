@@ -160,7 +160,6 @@ $(document).ready(
 					$('.vertical-side-bar-container').removeClass('fixed-sidebar');		
 				}
 				
-				
 				if (scrollBottom >= topOfFooter) {
 					$('.vertical-side-bar-container').removeClass('fixed-sidebar');	
 					$('.vertical-side-bar-container').addClass('fixed-sidebar-bottom');	

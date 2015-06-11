@@ -290,6 +290,7 @@
 	position: relative;
 	transition-property: margin-left;
 	transition-duration: .5s;
+	z-index: 100;
 }
 
 .vertical-side-bar-top-box {
