@@ -272,25 +272,27 @@
 }
 
 #contentarea {
+	min-height: 100%;
 	width: auto;
-	overflow: hidden;
+	overflow: hidden; //
 	margin-left: 260px;
-	min-height: 100vh !important;
+	width: auto;
 }
 
 .vertical-side-bar-container {
+	position: absolute;
 	padding-left: 0;
 	padding-right: 0;
 	padding-top: 100px;
 	padding-bottom: 100px;
 	width: 260px;
-	height: 100vh;
+	height: 100%;
 	float: left;
 	background-color: green;
-	position: relative;
 	transition-property: margin-left;
 	transition-duration: .5s;
 	z-index: 100;
+	padding-left: 0;
 }
 
 .vertical-side-bar-top-box {
@@ -412,15 +414,13 @@
 	margin-top: 15px;
 }
 
-.fixed-sidebar {
-	position: fixed;
-	top: 0;
-	z-index: 1;
-	width: 260px;
+.fixed-sidebar-top {
+	position: fixed !important;
+	top: 0px !important;
 }
 
-.fixed-sidebar-bottom {
-	position: absolute;
+.sidebar-bottom {
+	position: absolute !important;
 }
 
 .container-sidepadder {
@@ -771,6 +771,7 @@
 	height: auto;
 	overflow: visible;
 	max-width: 1180px;
+	padding: 0px 15px 0 15px;
 }
 
 /* A magic responsive general container for placing content inside of on  app page.
@@ -872,6 +873,8 @@
 .tileBoxes img {
 	margin: 0px auto 22px auto;
 	border: 1px solid rgba(0, 0, 0, 0.37);
+	width: 100%;
+	height: auto;
 }
 
 .tileBoxes a {
@@ -1122,6 +1125,7 @@
 body {
 	-webkit-font-smoothing: antialiased;
 	position: relative;
+	height: 100vh;
 }
 
 /* 

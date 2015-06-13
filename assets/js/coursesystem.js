@@ -13,17 +13,16 @@ function wordToPrettyURL(word) {
 	return urlPrettyTitle;
 }
 
-
-
 $("#slidebarButton").click(function() {
-	
+
 	if ($(".vertical-side-bar-container").hasClass("sidebar-show")) {
-		$(".vertical-side-bar-container").removeClass("sidebar-show");		
+		$(".vertical-side-bar-container").removeClass("sidebar-show");
+		$("#contentarea").height("auto");
 	} else {
-		$(".vertical-side-bar-container").addClass("sidebar-show");	
+		$(".vertical-side-bar-container").addClass("sidebar-show");
+		$("#contentarea").height("0px");
 	}
 })
-
 
 /**
  * link to corresponding course page on course-box click
@@ -38,10 +37,8 @@ $('.course-box').click(function() {
 $('.module-box').click(
 		function() {
 			window.location = document.URL + "/"
-			+ wordToPrettyURL($(this).attr('module_title'));
-		}
-);
-
+					+ wordToPrettyURL($(this).attr('module_title'));
+		});
 
 /**
  * link to corresponding content page on module-box click
@@ -50,15 +47,12 @@ $('.content-box').click(
 		function() {
 			window.location = document.URL + "/"
 					+ wordToPrettyURL($(this).attr('content_title'));
-});
-
-
+		});
 
 /**
- * More general hover link slide.
- * Finds icon within class and slides it.
- * Name a class slide-left or slide-right for it to work.
-*/
+ * More general hover link slide. Finds icon within class and slides it. Name a
+ * class slide-left or slide-right for it to work.
+ */
 $('.slide-left').hover(function() {
 	icon = $(this).find('.glyphicon');
 	icon.stop();
@@ -87,8 +81,6 @@ $('.slide-right').hover(function() {
 	}, 150);
 });
 
-
-
 /**
  * Hover link arrow slide
  */
@@ -105,7 +97,6 @@ $('.vertical-side-bar-top-box-back').hover(function() {
 		right : "0px"
 	}, 150);
 });
-
 
 /**
  * Hover link arrow slide
@@ -140,50 +131,106 @@ $('.vertical-side-bar-top-bottom-next').click(
 			nextmod_id = $(this).attr('module_id');
 			window.location = url[0] + '/' + url[1] + '/' + url[2] + '/'
 					+ url[3] + '/' + url[4] + '/' + nextmod_id;
-});
+		});
 
 /**
  * Scroll to top and stop behavior for the content page.
  */
 $(document).ready(
-		function() {			
+		function() {
 			// scroll top top then fixed
-			$(window).bind('scroll', function() {
-				var headerHeight = $('#header-wrapper').height();
-				var scrollBottom = $(window).scrollTop() + $(window).height();
-				var topOfFooter = $("body").height() - $('footer').outerHeight();
-				
-				
-				if ($(window).scrollTop() > headerHeight) {
-					$('.vertical-side-bar-container').addClass('fixed-sidebar');	
-				} else {
-					$('.vertical-side-bar-container').removeClass('fixed-sidebar');		
-				}
-				
-				if (scrollBottom >= topOfFooter) {
-					$('.vertical-side-bar-container').removeClass('fixed-sidebar');	
-					$('.vertical-side-bar-container').addClass('fixed-sidebar-bottom');	
-					$('.vertical-side-bar-container').css("bottom", $('footer').outerHeight());
-				} else {
-					$('.vertical-side-bar-container').removeClass('fixed-sidebar-bottom');
-					$('.vertical-side-bar-container').css("bottom", "0px");
+			$(window).bind(
+					'scroll',
 
-				}
-				
-			});
+					function() {
+						var headerHeight = $('#header-wrapper').height();
+
+						var scrollBottom = $(window).scrollTop()
+								+ $(window).height();
+
+						var topOfFooter = $(document).height()
+								- $('footer').outerHeight();
+
+						if ($(window).scrollTop() < headerHeight
+								&& scrollBottom >= topOfFooter
+						) {
+							// WEIRD EDGE CASE ON SHORT PAGES!!!!!
+							console.log("EDGE CASE!!!!!");
+							
+						} else {
+							if ($(window).scrollTop() >= headerHeight) {
+								// scrollTop is below header
+								// sidebar should be fixed
+
+								$('.vertical-side-bar-container').addClass(
+										'fixed-sidebar-top');
+							} else {
+								// scrollTop is not below header
+								// sidebar should not be fixed
+								$('.vertical-side-bar-container').removeClass(
+										'fixed-sidebar-top');
+							}
+
+							if (scrollBottom >= topOfFooter) {
+								$('.vertical-side-bar-container').removeClass(
+										'fixed-sidebar-top');
+
+								$('.vertical-side-bar-container').addClass(
+										'sidebar-bottom');
+
+								var targetTopPos = $(document).height()
+										- $(window).height()
+										- $('footer').outerHeight();
+
+								$('.vertical-side-bar-container').css("top",
+										targetTopPos);
+
+							} else {
+								$('.vertical-side-bar-container').removeClass(
+										'sidebar-bottom');
+								$('.vertical-side-bar-container').css("top",
+										"auto");
+
+							}
+						}
+
+						/*
+						 * if ($(window).scrollTop() > headerHeight) { // scroll
+						 * top is below the header
+						 * $('.vertical-side-bar-container').addClass(
+						 * 'fixed-sidebar'); } else { // scroll top is above the
+						 * header $('.vertical-side-bar-container').removeClass(
+						 * 'fixed-sidebar'); }
+						 * 
+						 * if (scrollBottom >= topOfFooter) {
+						 * console.log("Scroll bottom is below the footer!");
+						 * console.log("scroll bottom: " + scrollBottom + ",
+						 * topOfFooter: " + topOfFooter);
+						 * 
+						 * $('.vertical-side-bar-container').removeClass(
+						 * 'fixed-sidebar');
+						 * $('.vertical-side-bar-container').addClass(
+						 * 'fixed-sidebar-bottom');
+						 * $('.vertical-side-bar-container').css("bottom",
+						 * $('footer').outerHeight()); } else {
+						 * console.log("Scroll bottom is above the footer!");
+						 * console.log("scroll bottom: " + scrollBottom + ",
+						 * topOfFooter: " + topOfFooter);
+						 * 
+						 * $('.vertical-side-bar-container').removeClass(
+						 * 'fixed-sidebar-bottom');
+						 * $('.vertical-side-bar-container').css("bottom",
+						 * "0px"); }
+						 */
+
+					});
 
 			// set height of vertical nav bar list thing
 			$('.vertical-content-nav-bar').height($(window).height());
 
-			// set min-height of content-area with weird padding to
-			// prevent scroll to and fix
-			// jump glitch
-			$('#contentarea').css('min-height',
-					$('.vertical-side-bar-container').height() + 10);
 
-			$(window).resize(
-				function() {
-					$('.vertical-content-nav-bar').height($(window).height());
+			$(window).resize(function() {
+				$('.vertical-content-nav-bar').height($(window).height());
 			});
-			
-});
+
+		});
