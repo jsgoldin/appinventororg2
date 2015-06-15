@@ -3172,19 +3172,28 @@ class BookFilesHandler(webapp.RequestHandler):
 
 ###END OF QUIZ 9###
 
+
+#Handlers created by Thomas Oropeza
 #Handler for course in a box i have a dream worksheet
 class IHDWorksheetHandler(webapp.RequestHandler):
     def get(self):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/i_have_a_dream_worksheet.html')
         self.response.out.write(template.render(path, {}))
         
-#Handler for setup page in introduction course in a box
-class setupOptionsHandler(webapp.RequestHandler):
+#Handlers for setup page in introduction course in a box
+class SetupOptionsHandler(webapp.RequestHandler):
     def get(self):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/setupOptions.html')
         self.response.out.write(template.render(path, {}))
-        #self.response.out.write("here!")
-        
+
+class SetupPortfolioHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/setup_portfolio.html')
+        self.response.out.write(template.render(path, {}))
+class PCworksheethandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/PCworksheet.html')
+        self.response.out.write(template.render(path, {}))
 
 
 
@@ -6505,8 +6514,10 @@ application = webapp.WSGIApplication(
         
         #Handlers for gdoc --> html
         ('/ihdworksheet',IHDWorksheetHandler),
+        ('/setup_options' , SetupOptionsHandler ),
+        ('/setup_portfolio' , SetupPortfolioHandler),
+        ('/pcworksheet', PCworksheethandler)
         
-        ('/setup_options' , setupOptionsHandler )
     ],
     debug=True)
 
