@@ -3172,6 +3172,19 @@ class BookFilesHandler(webapp.RequestHandler):
 
 ###END OF QUIZ 9###
 
+#Handler for course in a box i have a dream worksheet
+class IHDWorksheetHandler(webapp.RequestHandler):
+    def get(self):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/i_have_a_dream_worksheet.html')
+        self.response.out.write(template.render(path, {}))
+        
+#Handler for setup page in introduction course in a box
+class setupOptionsHandler(webapp.RequestHandler):
+    def get(self):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/setupOptions.html')
+        self.response.out.write(template.render(path, {}))
+        #self.response.out.write("here!")
+        
 
 
 
@@ -6486,7 +6499,14 @@ application = webapp.WSGIApplication(
         
         
         
-        ('/Objective1', ObjectivesModule1)
+        ('/Objective1', ObjectivesModule1),
+        
+        
+        
+        #Handlers for gdoc --> html
+        ('/ihdworksheet',IHDWorksheetHandler),
+        
+        ('/setup_options' , setupOptionsHandler )
     ],
     debug=True)
 
