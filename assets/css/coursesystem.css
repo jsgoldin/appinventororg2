@@ -274,7 +274,7 @@
 #contentarea {
 	min-height: 100%;
 	width: auto;
-	overflow: hidden; //
+	overflow: hidden;
 	margin-left: 260px;
 	width: auto;
 }
@@ -1338,7 +1338,7 @@ footer a {
 }
 
 /* Smaller than ipad portrait */
-@media ( max-width : 768px) {
+@media ( max-width : 767px) {
 	#contentarea {
 		margin-left: 0px;
 	}
