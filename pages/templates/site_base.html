@@ -36,36 +36,36 @@
 	<div id='header-wrapper'>
         <div class='top-banner'>
          	<div class='gen-container'>
-         		<div class='col-50'>
-         			<a href='/'><img class='banner-logo responsive-fullwidth-img' src='/assets/img/testbanner.png'></a>
-         		</div>
-         		<div class='col-50'>
-            		<div class='search-box-wrapper'>            
-						<form action="/siteSearch">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						
-            				{% if query %}
-            					<input class="form-control search-form" name="q" type="text" value={{query}} type="search">
-            				{% else %}
-            					<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org" type="search">            				
-            				{% endif %}
-						</form>
-
-                		<div class="login-stuff-wrapper small-screen-hide">
-                    		{% if userStatus.isAccount %} 
-                    		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-                    	    {{userStatus.account.displayName}}</a>
-                    	    <a href="{{userStatus.logouturl}}"">Logout</a> 
-                    	    {% else %} 
-                    	    <a href="{{userStatus.loginurl}}">Login</a> 
-                    	    <a href="/loginValidator">Sign Up</a>
-                    	    {% endif %}
-                		</div>
-          			</div>         		        
-				</div>
-          			
+         		<div class="row">
+         			<div class="col-xs-6">
+         				<a href='/'><img class='banner-logo responsive-fullwidth-img' src='/assets/img/testbanner.png'></a>
+         			</div>
+         			<div class="col-xs-6 hidden-xs">
+	            		<div class='search-box-wrapper'>            
+							<form action="/siteSearch">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							
+	            				{% if query %}
+	            					<input class="form-control search-form" name="q" type="text" value={{query}} type="search">
+	            				{% else %}
+	            					<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org" type="search">            				
+	            				{% endif %}
+							</form>
+	
+	                		<div class="login-stuff-wrapper">
+	                    		{% if userStatus.isAccount %} 
+	                    		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+	                    	    {{userStatus.account.displayName}}</a>
+	                    	    <a href="{{userStatus.logouturl}}"">Logout</a> 
+	                    	    {% else %} 
+	                    	    <a href="{{userStatus.loginurl}}">Login</a> 
+	                    	    <a href="/loginValidator">Sign Up</a>
+	                    	    {% endif %}
+	                		</div>
+	          			</div>         			
+         			</div>
+         		</div>          			
          	</div>
-         	<div style="clear: both"></div>
    		</div>
    			   			
         <div class="navbar navbar-default global-navbar" role="navigation">
