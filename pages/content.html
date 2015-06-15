@@ -1,12 +1,14 @@
 {% extends "templates/site_base.html" %} {% block body %}
 <!-- Vertical Side Bar  -->
 
+
+
 <div class='vertical-side-bar-container'>
     <div class='vertical-side-bar-top-box'>
         <div class='vertical-side-bar-top-box-back'>
             <a href='../{{module.m_identifier}}'><span></span></a>
             <span class="glyphicon glyphicon-chevron-left relative"></span>
-            BACK
+            Modules
         </div>
         <div class='vertical-side-bar-top-box-title'>{{module.m_title}}</div>
     </div>
@@ -71,7 +73,7 @@
 </div>
 
 <!-- CONTENT AREA  -->
-<div id='contentarea' style="font-size: 20px;">
+<div id='contentarea'>
     <!-- Actual content rendered here -->
 </div>
 

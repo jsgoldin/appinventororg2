@@ -5636,7 +5636,8 @@ class ContentHandler(webapp.RequestHandler):
                            "moduleContentMapping" : moduleContentMapping,
                            'stylesheets' : ['/assets/css/coursesystem.css'],
                            'scripts' : ['/assets/js/coursesystem.js'],
-                           'userStatus': userStatus
+                           'userStatus': userStatus,
+                           'slideBarRenderFlag' :'true'
                            }
                     
                     path = os.path.join(os.path.dirname(__file__), 'pages/content.html')
