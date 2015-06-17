@@ -13,16 +13,6 @@ function wordToPrettyURL(word) {
 	return urlPrettyTitle;
 }
 
-$("#slidebarButton").click(function() {
-
-	if ($(".vertical-side-bar-container").hasClass("sidebar-show")) {
-		$(".vertical-side-bar-container").removeClass("sidebar-show");
-		$("#contentarea").height("auto");
-	} else {
-		$(".vertical-side-bar-container").addClass("sidebar-show");
-		$("#contentarea").height("0px");
-	}
-})
 
 /**
  * link to corresponding course page on course-box click
@@ -143,91 +133,62 @@ $(document).ready(
 					'scroll',
 
 					function() {
-						var headerHeight = $('#header-wrapper').height();
 
-						var scrollBottom = $(window).scrollTop()
-								+ $(window).height();
+						// do not run on mobile devices
+						if ($(window).width() > 767) {
 
-						var topOfFooter = $(document).height()
-								- $('footer').outerHeight();
+							var headerHeight = $('#header-wrapper').height();
 
-						if ($(window).scrollTop() < headerHeight
-								&& scrollBottom >= topOfFooter
-						) {
-							// WEIRD EDGE CASE ON SHORT PAGES!!!!!
-							console.log("EDGE CASE!!!!!");
-							
-						} else {
-							if ($(window).scrollTop() >= headerHeight) {
-								// scrollTop is below header
-								// sidebar should be fixed
+							var scrollBottom = $(window).scrollTop()
+									+ $(window).height();
 
-								$('.vertical-side-bar-container').addClass(
-										'fixed-sidebar-top');
+							var topOfFooter = $(document).height()
+									- $('footer').outerHeight();
+
+							if ($(window).scrollTop() < headerHeight
+									&& scrollBottom >= topOfFooter) {
+								// WEIRD EDGE CASE ON SHORT PAGES!!!!!
+								console.log("EDGE CASE!!!!!");
 							} else {
-								// scrollTop is not below header
-								// sidebar should not be fixed
-								$('.vertical-side-bar-container').removeClass(
-										'fixed-sidebar-top');
+								if ($(window).scrollTop() >= headerHeight) {
+									// scrollTop is below header
+									// sidebar should be fixed
+
+									$('.vertical-side-bar-container').addClass(
+											'fixed-sidebar-top');
+								} else {
+									// scrollTop is not below header
+									// sidebar should not be fixed
+									$('.vertical-side-bar-container')
+											.removeClass('fixed-sidebar-top');
+								}
+
+								if (scrollBottom >= topOfFooter) {
+									$('.vertical-side-bar-container')
+											.removeClass('fixed-sidebar-top');
+
+									$('.vertical-side-bar-container').addClass(
+											'sidebar-bottom');
+
+									var targetTopPos = $(document).height()
+											- $(window).height()
+											- $('footer').outerHeight();
+
+									$('.vertical-side-bar-container').css(
+											"top", targetTopPos);
+								} else {
+									$('.vertical-side-bar-container')
+											.removeClass('sidebar-bottom');
+									$('.vertical-side-bar-container').css(
+											"top", "auto");
+								}
 							}
 
-							if (scrollBottom >= topOfFooter) {
-								$('.vertical-side-bar-container').removeClass(
-										'fixed-sidebar-top');
-
-								$('.vertical-side-bar-container').addClass(
-										'sidebar-bottom');
-
-								var targetTopPos = $(document).height()
-										- $(window).height()
-										- $('footer').outerHeight();
-
-								$('.vertical-side-bar-container').css("top",
-										targetTopPos);
-
-							} else {
-								$('.vertical-side-bar-container').removeClass(
-										'sidebar-bottom');
-								$('.vertical-side-bar-container').css("top",
-										"auto");
-
-							}
 						}
-
-						/*
-						 * if ($(window).scrollTop() > headerHeight) { // scroll
-						 * top is below the header
-						 * $('.vertical-side-bar-container').addClass(
-						 * 'fixed-sidebar'); } else { // scroll top is above the
-						 * header $('.vertical-side-bar-container').removeClass(
-						 * 'fixed-sidebar'); }
-						 * 
-						 * if (scrollBottom >= topOfFooter) {
-						 * console.log("Scroll bottom is below the footer!");
-						 * console.log("scroll bottom: " + scrollBottom + ",
-						 * topOfFooter: " + topOfFooter);
-						 * 
-						 * $('.vertical-side-bar-container').removeClass(
-						 * 'fixed-sidebar');
-						 * $('.vertical-side-bar-container').addClass(
-						 * 'fixed-sidebar-bottom');
-						 * $('.vertical-side-bar-container').css("bottom",
-						 * $('footer').outerHeight()); } else {
-						 * console.log("Scroll bottom is above the footer!");
-						 * console.log("scroll bottom: " + scrollBottom + ",
-						 * topOfFooter: " + topOfFooter);
-						 * 
-						 * $('.vertical-side-bar-container').removeClass(
-						 * 'fixed-sidebar-bottom');
-						 * $('.vertical-side-bar-container').css("bottom",
-						 * "0px"); }
-						 */
-
 					});
 
 			// set height of vertical nav bar list thing
 			$('.vertical-content-nav-bar').height($(window).height());
-
 
 			$(window).resize(function() {
 				$('.vertical-content-nav-bar').height($(window).height());

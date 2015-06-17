@@ -272,7 +272,6 @@
 }
 
 #contentarea {
-	min-height: 100%;
 	width: auto;
 	overflow: hidden;
 	margin-left: 260px;
@@ -280,7 +279,7 @@
 }
 
 .vertical-side-bar-container {
-	position: absolute;
+	position: relative;
 	padding-left: 0;
 	padding-right: 0;
 	padding-top: 100px;
@@ -288,7 +287,6 @@
 	width: 260px;
 	height: 100%;
 	float: left;
-	background-color: green;
 	transition-property: margin-left;
 	transition-duration: .5s;
 	z-index: 100;
@@ -1022,7 +1020,6 @@
 
 .banner-headline h1, .banner-headline h2, .banner-headline h3,
 	.banner-headline h4, .banner-headline p {
-	line-height: 1.2;
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -1332,9 +1329,6 @@ footer a {
 	.slidebar-toggle {
 		display: none;
 	}
-	.vertical-side-bar-container {
-		margin-left: 0px !important;
-	}
 }
 
 /* Smaller than ipad portrait */
@@ -1342,9 +1336,28 @@ footer a {
 	#contentarea {
 		margin-left: 0px;
 	}
+	.vertical-side-bar-middle-box {
+		height: auto !important;
+	}
 	.vertical-side-bar-container {
-		margin-left: -100%;
-		width: 100%;
+		width: 90%;
+		float: none;
+		margin: 28px auto;
+		padding-bottom: 0px !important;
+		height: auto;
+		position: relative !important;
+		border: 2px solid rgba(1, 1, 1, 0.1);
+	}
+	.vertical-side-bar-item:hover {
+		background-color: #F3F3F3 !important;
+		color: #555 !important;
+	}
+	.vertical-side-bar-top-box, .vertical-side-bar-middle-box,
+		.vertical-side-bar-bottom-box {
+		border: none !important;
+	}
+	.app-btn-section {
+		width: 90%;
 	}
 }
 
@@ -1781,5 +1794,18 @@ footer a {
 }
 
 .banner-logo {
-	min-width: 244px;
+	min-width: 172px;
+}
+
+.unstyled-list {
+	list-style: none;
+	padding-left: 0px;
+}
+
+.book-content-list li {
+	padding-top: 14px;
+}
+
+.book-content-list li a {
+	font-size: 16px;	
 }
