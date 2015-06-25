@@ -61,7 +61,7 @@ $('.slide-right').hover(function() {
 	icon = $(this).find('.glyphicon');
 	icon.stop();
 	icon.animate({
-		left : "6px"
+		left : "10px"
 	}, 150);
 }, function() {
 	icon = $(this).find('.glyphicon');

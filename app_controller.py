@@ -5544,13 +5544,14 @@ class ContentsHandler(webapp.RequestHandler):
                 userStatus = UserStatus().getStatus(self.request.uri)
                        
                 template_values = {"title" : course_entity.c_title ,
-                               "module" : module_entity,    
-                               "modules" : modules,
-                               'stylesheets' : ['/assets/css/coursesystem.css'],
-                               'scripts' : ['/assets/js/coursesystem.js'],
-                               'userStatus': userStatus,
-                               'contents' : contents,
-                               'courses' : courses,
+                                   "description" : course_entity.c_description ,
+                                   "module" : module_entity,    
+                                   "modules" : modules,
+                                   "stylesheets" : ["/assets/css/coursesystem.css"],
+                                   "scripts" : ["/assets/js/coursesystem.js"],
+                                   "userStatus": userStatus,
+                                   "contents" : contents,
+                                   "courses" : courses,
                                 }
                 
                 path = os.path.join(os.path.dirname(__file__), 'pages/modules.html')
