@@ -723,7 +723,7 @@
 }
 
 .selected-tab {
-	background-color: #A5D173;
+	background-color: #ECAB1A;
 }
 
 .video-section {
@@ -1872,4 +1872,8 @@ footer a {
 .carousel-step-end-overlay button:hover {
 	background-color: rgb(144, 180, 41);
 	color: white;
+}
+
+.modules-nav-menu {
+	margin-top: 60px;
 }
