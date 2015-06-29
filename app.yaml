@@ -4,10 +4,8 @@
 # back to the test version when you finish deploying.
 #
 # This file should not be pushed to github with a release version specified.
-
-
 application: appinventororg
-version: jordan
+version: dave
 runtime: python27
 api_version: 1
 threadsafe: no
