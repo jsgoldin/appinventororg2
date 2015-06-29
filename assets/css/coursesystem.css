@@ -198,7 +198,6 @@
 	display: inline-block;
 	width: 70%;
 	padding-left: 44px;
-	font-size: 18px;
 	vertical-align: middle;
 }
 
@@ -272,15 +271,15 @@
 }
 
 #contentarea {
-	min-height: 100%;
 	width: auto;
-	overflow: hidden; //
+	overflow: hidden;
 	margin-left: 260px;
 	width: auto;
+	min-height: 100vh;
 }
 
 .vertical-side-bar-container {
-	position: absolute;
+	position: relative;
 	padding-left: 0;
 	padding-right: 0;
 	padding-top: 100px;
@@ -288,7 +287,6 @@
 	width: 260px;
 	height: 100%;
 	float: left;
-	background-color: green;
 	transition-property: margin-left;
 	transition-duration: .5s;
 	z-index: 100;
@@ -314,16 +312,17 @@
 
 .carousel-step {
 	width: 100%;
-	background-color: white;
 }
 
 .carousel-step-info {
 	width: 100%;
-	height: 100px;
-	text-align: center;
-	border-left: 1px #2d2d2d solid;
-	border-right: 1px #2d2d2d solid;
-	border-color: rgba(1, 1, 1, 0.1);
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.78);
+	color: white;
+	top: 0px;
+	height: auto;
+	top: 0px;
+	padding-left: 20px;
 }
 
 .carousel-step-video {
@@ -488,7 +487,7 @@
 	background-color: #BBB;
 	border-radius: 3px;
 	color: white;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .module-navbox p {
@@ -724,7 +723,7 @@
 }
 
 .selected-tab {
-	background-color: #A5D173;
+	background-color: #ECAB1A;
 }
 
 .video-section {
@@ -1022,7 +1021,6 @@
 
 .banner-headline h1, .banner-headline h2, .banner-headline h3,
 	.banner-headline h4, .banner-headline p {
-	line-height: 1.2;
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -1033,6 +1031,10 @@
 	background-color: white;
 	position: relative;
 	padding: 10px 0px 10px 0px;
+}
+
+.app-header {
+	padding: 0px 18px;
 }
 
 .app-header-right {
@@ -1059,16 +1061,9 @@
 	width: 134px;
 }
 
-/* A responsive container for buttons on the app page*/
 .app-btn-section {
 	margin: 0 auto 0 auto;
-	background-color: white;
-	overflow: auto;
 	margin-top: 20px;
-	text-align: center;
-	border-left: 1px #2d2d2d solid;
-	border-right: 1px #2d2d2d solid;
-	border-color: rgba(1, 1, 1, 0.1);
 }
 
 /* A responsive button for getting content on the app page, 
@@ -1076,30 +1071,35 @@
  */
 .app-btn {
 	font-size: 14px;
-	text-align: center;
-	background-color: white;
-	border-top: 1px #2d2d2d solid;
-	border-left: 1px #2d2d2d solid;
-	border-bottom: 1px #2d2d2d solid;
+	background-color: #6AB344;
+	border: 1px #2d2d2d solid;
 	border-color: rgba(1, 1, 1, 0.1);
-	width: 33%;
-	float: left;
-	height: 111px;
+	width: 100%;
+	height: 78px;
+	display: inline-block;
+	transition: background-color 0.05s;
+	margin-bottom: 16px;
+}
+
+.app-btn:hover {
+	background-color: #4BA61C;
+}
+
+.app-btn a {
+	color: white;
+	text-decoration: none;
 }
 
 .app-big-video {
 	max-width: 950px;
 	margin: auto;
+	margin-bottom: 16px;
 }
 
 .app-btn p, .app-btn h4 {
 	width: 85%;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.app-btn:first-child {
-	border-left: none;
 }
 
 /* 
@@ -1332,19 +1332,35 @@ footer a {
 	.slidebar-toggle {
 		display: none;
 	}
-	.vertical-side-bar-container {
-		margin-left: 0px !important;
-	}
 }
 
 /* Smaller than ipad portrait */
-@media ( max-width : 768px) {
+@media ( max-width : 767px) {
 	#contentarea {
 		margin-left: 0px;
 	}
+	.vertical-side-bar-middle-box {
+		height: auto !important;
+	}
 	.vertical-side-bar-container {
-		margin-left: -100%;
-		width: 100%;
+		width: 90%;
+		float: none;
+		margin: 28px auto;
+		padding-bottom: 0px !important;
+		height: auto;
+		position: relative !important;
+		border: 2px solid rgba(1, 1, 1, 0.1);
+	}
+	.vertical-side-bar-item:hover {
+		background-color: #F3F3F3 !important;
+		color: #555 !important;
+	}
+	.vertical-side-bar-top-box, .vertical-side-bar-middle-box,
+		.vertical-side-bar-bottom-box {
+		border: none !important;
+	}
+	.app-btn-section {
+		width: 90%;
 	}
 }
 
@@ -1751,6 +1767,11 @@ footer a {
 	width: 100%;
 }
 
+.footer-fix {
+	min-height: 100vh;
+	margin-bottom: 50px;
+}
+
 .footerFix {
 	min-height: 100vh;
 	margin-bottom: 50px;
@@ -1781,5 +1802,78 @@ footer a {
 }
 
 .banner-logo {
-	min-width: 244px;
+	min-width: 172px;
+}
+
+.unstyled-list {
+	list-style: none;
+	padding-left: 0px;
+}
+
+.book-content-list li {
+	padding-top: 14px;
+}
+
+.book-content-list li a {
+	font-size: 16px;
+}
+
+.page-btm-spacer {
+	margin-bottom: 25px;
+}
+
+.carousel-step-end-overlay {
+	width: 100%;
+	height: 100%;
+	background-color: rgb(48, 139, 157);
+	padding: 0px 20px;
+	color: white;
+	display: none;
+	position: absolute;
+	top: 0px;
+}
+
+.owl-custom-nav-btn:hover {
+	background-color: rgb(144, 180, 41);
+}
+
+.owl-custom-nav-btn {
+	background-color: rgba(164, 202, 57, 1);
+	border-radius: 22px;
+	color: white;
+	font-size: 18px;
+	padding: 6px 9px;
+	margin: 0px 20px;
+	display: inline-block;
+	cursor: pointer;
+	transition: 0.05s;
+}
+
+.app-big-video .owl-pagination {
+	padding: 10px 0px !important;
+	background-color: rgb(243, 243, 243);
+}
+
+.app-big-video .owl-theme .owl-controls .owl-page span.owl-numbers {
+	background-color: white;
+}
+
+.carousel-step-end-overlay button {
+	background-color: #A4C639;
+	font-size: 21px;
+	width: 300px;
+	display: block;
+	margin: 100px auto;
+	border-radius: 16px;
+	transition: 0.05s;
+	padding: 10px 0px;
+}
+
+.carousel-step-end-overlay button:hover {
+	background-color: rgb(144, 180, 41);
+	color: white;
+}
+
+.modules-nav-menu {
+	margin-top: 60px;
 }
