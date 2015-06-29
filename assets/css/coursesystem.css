@@ -482,9 +482,13 @@
 	margin: 10px auto;
 }
 
+.modules-nav-menu {
+	margin-top: 60px;
+}
+
 .module-navbox {
 	position: relative;
-	background-color: #BBB;
+	background-color: #ACAAAA;
 	border-radius: 3px;
 	color: white;
 	font-size: 16px;
@@ -723,7 +727,7 @@
 }
 
 .selected-tab {
-	background-color: #A5D173;
+	background-color: #ECAB1A;
 }
 
 .video-section {
@@ -1473,6 +1477,12 @@ footer a {
 	}
 }
 
+@media ( min-width : 0px) and (max-width : 991px) {
+	.modules-nav-menu {
+		margin-top: 20px;
+	}
+}
+
 .googleMap {
 	position: relative;
 	height: 50vh;
@@ -1872,4 +1882,9 @@ footer a {
 .carousel-step-end-overlay button:hover {
 	background-color: rgb(144, 180, 41);
 	color: white;
+}
+
+.modules-menu-drop-down {
+	color: #333;
+	border: 1px solid #333;
 }
