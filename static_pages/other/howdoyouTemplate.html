@@ -15,16 +15,17 @@
 			</div>
 		</div>
 		<div class="row">		
-			<div class='col-md-6'>
+			<div class='col-md-12'>
 				{% block answer %}
 				{% endblock %}
 			</div>
-			<div class='col-md-6'>
+		</div>
+		<div class="row">
+			<div class='col-md-12'>
 				<img class='responsive-fullwidth-img center-element'
 					src= {% block answerImage %}{% endblock %} />
 			</div>
 		</div>
-		{% if answerVideo != "" %}
 		<div class='row'>
 			<div class="col-md-12">
 				<div class="videoWrapper center-element">
@@ -33,9 +34,5 @@
 				</div>
 			</div>
 		</div>
-		{% endif %}
 	</div>
-
-
-
 </article>
