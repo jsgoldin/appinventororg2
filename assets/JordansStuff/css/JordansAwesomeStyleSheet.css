@@ -272,9 +272,8 @@
 .quiz-panel-outer {
     padding: 2% 2% 2% 2%;
     margin-bottom: 30px;
-    background-color: #DAF2F5;
     border-radius: 16px;
-    border: 1px solid #A4CFD9;
+    border: 1px solid #455A64;
     font-size: 18px;
     font-weight: 200;
     line-height: 30px;
@@ -299,16 +298,17 @@
 .quiz-panel-inner {
     margin-top: 20px;
     padding: 20px 20px 20px 20px;
-    background-color: #E2F5FF;
+    background-color: #2B8C90;
     border-radius: 16px;
     border: 1px solid #87ABB2;
+    color:white;
 }
 
 /* Center and expand the show answer button */
 .quiz-panel-inner a {
     display: block;
     text-align: center;
-    color: #126CB0;
+    color: white;
 }
 
 .quiz-panel-inner li {
