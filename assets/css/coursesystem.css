@@ -1877,3 +1877,11 @@ footer a {
 .modules-nav-menu {
 	margin-top: 60px;
 }
+
+/* Margin for dark blue toolbar */
+.dark-blue-title{
+	width: 100%;
+	background-color: #455A64;
+	color:white;
+	padding-bottom: 10px;
+}
