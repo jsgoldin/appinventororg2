@@ -746,6 +746,7 @@
 	padding-bottom: 56.25%; /* 16:9 */
 	padding-top: 25px;
 	height: 0;
+	margin-bottom: 25px;
 }
 
 .videoWrapper iframe {
@@ -1879,7 +1880,7 @@ footer a {
 }
 
 /* Margin for dark blue toolbar */
-.dark-blue-title{
+.dark-blue-title {
 	width: 100%;
 	background-color: #455A64;
 	color:white;
