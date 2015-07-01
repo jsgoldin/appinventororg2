@@ -276,6 +276,7 @@
 	margin-left: 260px;
 	width: auto;
 	min-height: 100vh;
+	background-color: #F1F1F1;
 }
 
 .vertical-side-bar-container {
@@ -1882,9 +1883,18 @@ footer a {
 }
 
 /* class for dark blue toolbar */
-.dark-blue-title{
+.dark-blue-title {
 	width: 100%;
 	background-color: #455A64;
-	color:white;
+	color: white;
 	padding-bottom: 10px;
+}
+
+/* General purpose container for content */
+.card {
+	background-color: white;
+	color: #333;
+	border: 1px solid #e2e2e2;
+	padding: 10px 20px;
+	margin: 10px 0px;
 }
