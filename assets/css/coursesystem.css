@@ -1915,6 +1915,7 @@ footer a {
 	padding: 10px 20px;
 	margin: 10px 0px;
 	border-radius: 6px;
+	cursor: pointer;
 }
 
 .course-card .glyphicon {
