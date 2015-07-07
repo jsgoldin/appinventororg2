@@ -3194,7 +3194,19 @@ class PCworksheethandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/PCworksheet.html')
         self.response.out.write(template.render(path, {}))
-
+        
+class AppMakerCardsHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/appMakerCards.html')
+        self.response.out.write(template.render(path, {}))
+class LessonPlan11Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan11.html')
+        self.response.out.write(template.render(path, {}))
+class LessonPlan12Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan12.html')
+        self.response.out.write(template.render(path, {}))
 
 
 # LESSON PLANS
@@ -6516,7 +6528,10 @@ application = webapp.WSGIApplication(
         ('/ihdworksheet',IHDWorksheetHandler),
         ('/setup_options' , SetupOptionsHandler ),
         ('/setup_portfolio' , SetupPortfolioHandler),
-        ('/pcworksheet', PCworksheethandler)
+        ('/pcworksheet', PCworksheethandler),
+        ('/appmakercards', AppMakerCardsHandler),
+        ('/lessonplan11' , LessonPlan11Handler),
+        ('/lessonplan12', LessonPlan12Handler)
         
     ],
     debug=True)

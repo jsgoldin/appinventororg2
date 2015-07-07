@@ -1889,6 +1889,13 @@ footer a {
 	color: white;
 	padding-bottom: 10px;
 }
+.dark-blue-title a{
+	color:white;
+}
+.dark-blue-title a:hover{
+	color:#369D99;
+}
+
 
 /* General purpose container for content */
 .card {
