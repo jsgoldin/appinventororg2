@@ -1929,3 +1929,27 @@ footer a {
 .landing-courses-info {
 	padding: 38px 0px;
 }
+
+.landing-video-text {
+	margin-top: 252px;
+	margin-bottom: 33px;
+	text-align: center;
+}
+
+/* A big call to action button, basicly only used on landing page. */
+.landing-big-btn {
+	display: block;
+	background-color: #B5C434;
+	color: white;
+	padding: 13px 32px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	font-size: 18px;
+	width: 256px;
+	font-weight: 500;
+	text-align: center;
+	line-height: 24px;
+	border-radius: 7px;
+	cursor: pointer;
+	margin: auto;
+	-webkit-transition: .1s background-color ease-in-out;
+}
