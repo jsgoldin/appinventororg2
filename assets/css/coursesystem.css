@@ -1899,6 +1899,16 @@ footer a {
 	margin: 10px 0px;
 }
 
+.landing-teachers-section {
+	padding: 20px;
+}
+
+.teachers-graphic-box {
+	height: 500px;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.29);
+}
+
 .landing-courses-section {
 	background-color: #6AB344;
 	color: white;
@@ -1971,4 +1981,13 @@ footer a {
 	cursor: pointer;
 	margin: auto;
 	-webkit-transition: .1s background-color ease-in-out;
+}
+
+/* Another big call to action button for the landing page */
+.big-primary-btn {
+	background-color: rgb(252, 183, 27);
+	color: white;
+	padding: 16px 43px;
+	font-size: 20px;
+	border-radius: 6px;
 }
