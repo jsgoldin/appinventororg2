@@ -3207,6 +3207,22 @@ class LessonPlan12Handler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan12.html')
         self.response.out.write(template.render(path, {}))
+class CCPaintPotHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/conceptCustomizePaintPot.html')
+        self.response.out.write(template.render(path, {}))
+class IncrementingTimingWSHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/incrementingTimingWorksheet.html')
+        self.response.out.write(template.render(path, {}))
+class MoleMashCCHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/molemashCC.html')
+        self.response.out.write(template.render(path, {}))
+class AdvancedAnimationWSHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AdvancedAnimationWorksheet.html')
+        self.response.out.write(template.render(path, {}))
 
 
 # LESSON PLANS
@@ -5360,7 +5376,7 @@ class AnimationChallengeHandler(webapp.RequestHandler):
     def get(self):
         template_values = {}
 
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/animationChallenge.html')
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationChallenge.html')
         self.response.out.write(template.render(path, template_values))
 
 class CreativeProject2GameHandler(webapp.RequestHandler):
@@ -6524,14 +6540,21 @@ application = webapp.WSGIApplication(
         
         
         
-        #Handlers for gdoc --> html
+        #Handlers for introduction Module
         ('/ihdworksheet',IHDWorksheetHandler),
         ('/setup_options' , SetupOptionsHandler ),
         ('/setup_portfolio' , SetupPortfolioHandler),
         ('/pcworksheet', PCworksheethandler),
         ('/appmakercards', AppMakerCardsHandler),
         ('/lessonplan11' , LessonPlan11Handler),
-        ('/lessonplan12', LessonPlan12Handler)
+        ('/lessonplan12', LessonPlan12Handler),
+        
+        #Handlers for build drawing and animated games module
+        ('/conceptualizeCustomize', CCPaintPotHandler),
+        ('/incrementingTiming', IncrementingTimingWSHandler),
+        ('/molemashCC', MoleMashCCHandler),
+        ('/animationChallenge', AnimationChallengeHandler),
+        ('/advancedanimationWS', AdvancedAnimationWSHandler)
         
     ],
     debug=True)
