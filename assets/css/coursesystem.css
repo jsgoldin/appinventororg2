@@ -1909,13 +1909,32 @@ footer a {
 /* Card used to link to items in a course */
 .course-card {
 	text-align: center;
-	background-color: white;
 	color: rgba(41, 37, 63, 0.77);
-	border: 1px solid #e2e2e2;
-	padding: 10px 20px;
-	margin: 10px 0px;
+	padding: 20px 0px;
 	border-radius: 6px;
+	max-width: 256px;
+	margin: 0px auto 17px;
 	cursor: pointer;
+	background-image: url(/assets/img/puzzle-shadow.png);
+	background-size: 100% 100%;
+	transition: all 0.3s;
+}
+
+.course-card:hover {
+	margin-top: -20px;
+}
+
+.course-card-first {
+	-webkit-mask-image: url(/assets/img/puzzle-mask-left.png);
+}
+
+.course-card-last {
+	-webkit-mask-image: url(/assets/img/puzzle-mask-right.png);
+}
+
+.course-card>* {
+	position: relative;
+	left: 13px;
 }
 
 .course-card .glyphicon {
