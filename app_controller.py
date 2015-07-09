@@ -3235,7 +3235,33 @@ class LessonPlan23Handler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan23.html')
         self.response.out.write(template.render(path, {}))
-
+        
+        
+#Handlers for module 3 course in a box
+class GoogleVoiceSetupHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/googlevoicesetup.html')
+        self.response.out.write(template.render(path, {}))
+class WhereAmIAppHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/whereamiapp.html')
+        self.response.out.write(template.render(path, {}))
+class ConceptCustomizeWSHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/ConceptualizeCustomizeTextingWS.html')
+        self.response.out.write(template.render(path, {}))
+class LocationWSHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/LocationWorksheetCC.html')
+        self.response.out.write(template.render(path, {}))
+class LessonPlan31Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/Lessonplan31.html')
+        self.response.out.write(template.render(path, {}))
+class LessonPlan32Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/Lessonplan32.html')
+        self.response.out.write(template.render(path, {}))
 # LESSON PLANS
 
 class LPIntroHandler(webapp.RequestHandler):
@@ -6568,7 +6594,15 @@ application = webapp.WSGIApplication(
         ('/advancedanimationWS', AdvancedAnimationWSHandler),
         ('/lessonplan21', LessonPlan21Handler),
         ('/lessonplan22', LessonPlan22Handler),
-        ('/lessonplan23', LessonPlan23Handler)
+        ('/lessonplan23', LessonPlan23Handler),
+        
+        #Handlers for module 3 Course in a Box
+        ('/googlevoicesetup', GoogleVoiceSetupHandler),
+        ('/whereamiapp', WhereAmIAppHandler),
+        ('/conceptcustomizeWS', ConceptCustomizeWSHandler),
+        ('/locationws', LocationWSHandler),
+        ('/lessonplan31', LessonPlan31Handler),
+        ('/lessonplan32', LessonPlan32Handler)
         
     ],
     debug=True)

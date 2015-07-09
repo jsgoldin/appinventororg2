@@ -1,0 +1,342 @@
+<div class="dark-blue-title">
+	<div class="course-page-container">
+		<div style="float: left">
+			<h1>Lesson Plan 3.1 Texting</h1>
+		</div>
+
+
+		<div style="float: right;">
+			<a target="_blank"
+				href="https://docs.google.com/document/d/1K3zz9cTbL9MsbZH6JkLfPxoTtlCEsPnznDvQoigPkFg/edit?usp=sharing">
+				<img style="margin-top: 2%; float: right;"
+				src="/images/icons/download_white.png">
+				<h3 style="float: right;">Printable Version</h3>
+			</a>
+		</div>
+	</div>
+</div>
+		
+<div class="course-page-container">
+		<p class="c0 c3 c12 title">
+			<a name="h.6q7190tkw3q3"></a><span></span>
+		</p>
+	<div class="card">
+	<h1 class="c0 c3">
+		<a name="h.fhdook5kyzhe"></a><span>Objectives</span>
+	</h1>
+	<ul class="c6 lst-kix_q6iq86bh2lry-0 start">
+		<li class="c0 c2"><span>Learn how to send and respond to
+				SMS texts</span></li>
+		<li class="c0 c2"><span>Gain experience with the
+				TextToSpeech component.</span></li>
+		<li class="c0 c2"><span>Learn the basics of lists and
+				for-each loops</span></li>
+		<li class="c0 c2"><span>Learn the basics of dynamic and
+				persistent data.</span></li>
+	</ul>
+	</div>
+	
+	<div class="card">
+	<h1 class="c0 c3">
+		<a name="h.qau2wk4zxdii"></a><span>Outline</span>
+	</h1>
+	<p class="c0">
+		<span>1. Demonstrate the texting component</span>
+	</p>
+	<p class="c0">
+		<span>2. Students build the &ldquo;Thinking of you&rdquo; app
+			that texts a message to a list of their friends.</span>
+	</p>
+	<p class="c0">
+		<span>3. Introduce lists and have the students re-code their
+			app with a list and foreach.</span>
+	</p>
+	<p class="c0">
+		<span>4. No Texting While Driving tutorial </span>
+	</p>
+	<p class="c0">
+		<span>5. Texting: Conceptualize Worksheet</span>
+	</p>
+	<p class="c0">
+		<span>6. Texting: Customizations</span>
+	</p>
+	</div>
+	
+	
+	<div class="card">
+	<h1 class="c0 c3">
+		<a name="h.hf544twt4ehq"></a><span>Preparation</span>
+	</h1>
+	<p class="c0">
+		<span>Building apps which send and respond to texts is
+			incredibly motivating. If your students have devices with service
+			(texting) plans, they are good to go. However, if your students
+			don&rsquo;t have a service plan, they&rsquo;ll have to do some setup
+			to get things ready. </span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>Specifically, for phones that don&rsquo;t have a service
+			plan, the students will need to create a Google Voice account,
+			install Google Voice on the phone, and use it and WiFi for the
+			texting. It is a pretty easy setup, and once its set things work
+			fine. But make sure you try it yourself before class.</span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>MIT Help using Google Voice and Texting</span>
+	</p>
+	<p class="c0">
+		<span class="c9"><a class="c8"
+			href="http://www.google.com/url?q=http%3A%2F%2Fexplore.appinventor.mit.edu%2Fcontent%2Fgoogle-voice&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHvqlrrwxrDdHWXtJayJiI80N2a3w">http://explore.appinventor.mit.edu/content/google-voice</a></span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>Print out copies of the Conceptualize and Customize
+			worksheet.</span>
+	</p>
+	<p class="c0">
+		<span class="c9"><a class="c8"
+			href="https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng">https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng</a></span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	</div>
+	
+	<div class="card">
+	<h1 class="c0 c3">
+		<a name="h.frm1esbxg4zw"></a><span>1. Demonstrate the Texting
+			Component (15)</span>
+	</h1>
+	<ul class="c6 lst-kix_hagezxwsgyk0-0 start">
+		<li class="c0 c2"><span>If your students phones
+				don&rsquo;t have service plan, demonstrate how to get a Google Voice
+				account and install Google Voice on their phones. </span></li>
+		<li class="c0 c2"><span>Drag out a texting component and a
+				button</span></li>
+		<li class="c0 c2"><span>Demonstrate that there are three
+				blocks to send a text, setting the Texting.Message, the
+				Texting.PhoneNumber, and then sending it (Texting.SendMessage). If
+				someone in class is up for it, put their number in and text them
+				with the test app.</span></li>
+		<li class="c0 c2"><span>Demonstrate receiving a text with
+				the Texting.MessageReceived. One fun sample is just to respond to
+				any incoming text with the same message.</span></li>
+		<li class="c0 c2"><span>If you didn&rsquo;t show the
+				Raffle app earlier in the semester or want to show it again and
+				maybe run another raffle. The app is described here: </span><span>http://www.appinventor.org/raffle</span></li>
+	</ul>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	</div>
+	
+	<div class="card">
+	<h1 class="c0 c3">
+		<a name="h.4mn743j9h1l6"></a><span>2. Students build a
+			one-click texting app (no lists) (30)</span>
+	</h1>
+	<p class="c0">
+		<span>Ask the students to build an app that allows them to</span><span
+			class="c4">&nbsp;text three friends</span><span>&nbsp;a
+			message with a single click. For this exercise, don&rsquo;t provide a
+			step-by-step tutorial, just let the students build it. Don&rsquo;t
+			introduce lists yet; the expectation of this first exercise is that
+			they&rsquo;ll copy and paste blocks to text the three friends.</span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	</div>
+	
+	
+	<div class="card">
+	<h1 class="c0 c3">
+		<a name="h.5oz83aew0zv7"></a><span>3. Introduce Lists</span>
+	</h1>
+	<p class="c0">
+		<span>In the preceding section, some students may have realized
+			they could use a list for the exercise. Great, use their input to
+			lead into an introduction of lists. You might even have them demo
+			their solution. In any case, be sure and go over:</span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<ul class="c6 lst-kix_tnui7rgb2ypt-0 start">
+		<li class="c0 c2"><span>Defining a global variable to hold
+				the phone numbers</span></li>
+		<li class="c0 c2"><span>Plugging in a </span><span class="c4">make
+				a list </span><span>blocks and clicking the blue icon to give it
+				three slots</span></li>
+		<li class="c0 c2"><span>Plugging in three text blocks for
+				the three numbers.</span></li>
+		<li class="c0 c2"><span>The foreach block for looping
+				through and texting all in the list</span></li>
+	</ul>
+	<ul class="c6 lst-kix_tnui7rgb2ypt-1 start">
+		<li class="c0 c11"><span>emphasize that if there are 3
+				items in the list, the blocks inside foreach will be executed 3
+				times.</span></li>
+		<li class="c0 c11"><span>emphasize that the </span><span
+			class="c10">item</span><span>&nbsp;parameter is the current
+				item being processed</span></li>
+		<li class="c0 c11"><span>trace the code on the whiteboard,
+				showing how the parameter item changes.</span></li>
+	</ul>
+	<ul class="c6 lst-kix_tnui7rgb2ypt-0">
+		<li class="c0 c2"><span>Mention that this foreach
+				solution, unlike a solution which copy-pastes blocks, will work even
+				with dynamic data (e.g., a list of numbers that the user can input
+				and change).</span></li>
+	</ul>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>Assign the students the task of actually modifying their
+			app to use a list and foreach. This will give them experience with
+			the mechanics of it.</span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>The learning nugget at: </span><span>http://www.appinventor.org/Lists#textAll</span><span>&nbsp;has
+			a solution.</span>
+	</p>
+	
+	</div>
+	
+	
+	<div class="card">
+	<h1 class="c0 c3">
+		<a name="h.vcu0rvuc83jg"></a><span>4. No Text While Driving
+			Tutorial</span>
+	</h1>
+	<p class="c0">
+		<span>As an in-class assignment or homework, assign students
+			the No Text While Driving tutorial:</span>
+	</p>
+	<p class="c0">
+		<span>http://www.appinventor.org/notext-steps</span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>The students will gain experience with responding to
+			texts (The Texting.MessageReceived block), the TextToSpeech
+			component, and they&rsquo;ll be introduced to persistence and TinyDB.
+			Persistence is a difficult concept. The tutorial will introduce it
+			and you&rsquo;ll need to provide additional conceptual lessons to
+			fortify the student&rsquo;s understanding. </span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	</div>
+	
+	<div class="card">
+	<h1 class="c0 c3">
+		<a name="h.pxylcf1agfaj"></a><span>5. Texting: Conceptual
+			Worksheet(45)</span>
+	</h1>
+	<p class="c0">
+		<span>Hand out the document below and ask the students to form
+			groups of two or three to discuss. After a few minutes, lead a
+			full-class discussion of the first few questions, then repeat the
+			process.</span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span class="c10">Conceptualize and Customize Worksheet:</span>
+	</p>
+	<p class="c0">
+		<span class="c9"><a class="c8"
+			href="https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng">https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng</a></span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>The worksheet presents some difficult terminology. Here
+			are some simple ways to define the terms:</span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span class="c4">persistent data -- </span><span>data that
+			lives on even after an app is closed and re-opened.</span>
+	</p>
+	<p class="c0">
+		<span class="c4">dynamic data</span><span>-- data that is not
+			fixed, but is created/edited as an app runs, often through end-user
+			input (can also be data from the web, etc.).</span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>Here is a learning nugget on persistence:
+			http://www.appinventor.org/Persistence</span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	</div>
+	
+	<div class="card">
+	<h1 class="c0 c3">
+		<a name="h.trcnu1ij0jgb"></a><span>6</span><span>.
+			Customization Exercises (30-90)</span>
+	</h1>
+	<p class="c0">
+		<span>Assign the students the customization exercises in: </span><span
+			class="c9"><a class="c8"
+			href="https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng">https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng</a></span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>The first three questions ask the students to code more
+			complex text auto-responsing, e.g., sending a special text to a
+			particular number. </span>
+	</p>
+	<p class="c0 c1">
+		<span></span>
+	</p>
+	<p class="c0">
+		<span>The fourth question is more difficult and concerns
+			persistent data. It requires the students to create input forms for
+			entering the phone numbers of the dynamic list (and the custom
+			message), and to follow the pattern for storing and retrieving this
+			data from the TinyDB. Probably this should only be assigned to
+			advanced students, and this topic will be covered later in the
+			course.</span>
+	</p>
+	</div>
+	<div>
+		<p class="c0 c5">
+			<span>appinventor.org
+				course-in-a-box&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+		<p class="c0 c14">
+			<span class="c15">This document is licensed under an </span><span
+				class="c7"><a class="c8"
+				href="http://www.google.com/url?q=http%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby-nc-sa%2F3.0%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGKyqN5Tqh7KIvGy2XJV2hc_b4JpA">Attribution-NonCommercial-ShareAlike
+					3.0 Unported License</a></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+	</div>
+</div>
