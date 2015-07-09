@@ -3205,7 +3205,7 @@ class LessonPlan11Handler(webapp.RequestHandler):
         self.response.out.write(template.render(path, {}))
 class LessonPlan12Handler(webapp.RequestHandler):
     def get(self, *args):
-        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan12.html')
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/Lessonplan12.html')
         self.response.out.write(template.render(path, {}))
 class CCPaintPotHandler(webapp.RequestHandler):
     def get(self, *args):
@@ -3223,7 +3223,18 @@ class AdvancedAnimationWSHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AdvancedAnimationWorksheet.html')
         self.response.out.write(template.render(path, {}))
-
+class LessonPlan21Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan21.html')
+        self.response.out.write(template.render(path, {}))
+class LessonPlan22Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan22.html')
+        self.response.out.write(template.render(path, {}))
+class LessonPlan23Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan23.html')
+        self.response.out.write(template.render(path, {}))
 
 # LESSON PLANS
 
@@ -6554,7 +6565,10 @@ application = webapp.WSGIApplication(
         ('/incrementingTiming', IncrementingTimingWSHandler),
         ('/molemashCC', MoleMashCCHandler),
         ('/animationChallenge', AnimationChallengeHandler),
-        ('/advancedanimationWS', AdvancedAnimationWSHandler)
+        ('/advancedanimationWS', AdvancedAnimationWSHandler),
+        ('/lessonplan21', LessonPlan21Handler),
+        ('/lessonplan22', LessonPlan22Handler),
+        ('/lessonplan23', LessonPlan23Handler)
         
     ],
     debug=True)

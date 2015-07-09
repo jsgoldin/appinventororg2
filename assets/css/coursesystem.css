@@ -10,7 +10,10 @@
 	border: 0px;
 	border-radius: 0px;
 }
-
+.dropdown-menu > li > a:hover{
+	color:#379F9A;
+	
+}
 .navbar-nav>li>a {
 	color: white !important;
 	font-size: 16px;
