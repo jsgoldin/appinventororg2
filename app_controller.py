@@ -37,6 +37,22 @@ APPSDIR = '/apps'
 APPS2DIR = '/apps2'
 
 
+def getCourseToModuleDict():
+    """
+    Returns a dictionary of all the courses mapped to a list of the modules in them.
+    course_name => [module_a, module_b, ... ]
+    """
+    courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+
+    courseModDict = {}
+    for course in courses: 
+        course_id = long(course.key.id())
+        modules = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, course_id)).order(Module.m_index).fetch() 
+        courseModDict[str(course.c_title)] = []
+        for module in modules:
+            courseModDict[course.c_title].append(str(module.m_title))
+    return courseModDict
+    
 def redirector(requesthandler):
     """Used to redirect old content to their new url in a course
     
@@ -5466,12 +5482,15 @@ class Homehandler(webapp.RequestHandler):
         rssItems = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).order(-RSSItem.dateUnFormatted).fetch(1)        
         rssFeedBox = template.render(path, {'rssItems' : rssItems})
         
+        getCourseToModuleDict()
+        
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
                            'title' : 'App Inventor',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            'rssFeedBox' : rssFeedBox,
+                           'courseToModules' : getCourseToModuleDict(),
                            }
         
         

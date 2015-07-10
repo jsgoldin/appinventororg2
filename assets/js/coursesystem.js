@@ -13,7 +13,6 @@ function wordToPrettyURL(word) {
 	return urlPrettyTitle;
 }
 
-
 /**
  * link to corresponding course page on course-box click
  */
