@@ -3262,6 +3262,44 @@ class LessonPlan32Handler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/Lessonplan32.html')
         self.response.out.write(template.render(path, {}))
+        
+#Handlers for Module 4
+
+class LIPHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/ListIndexPreTest.html')
+        self.response.out.write(template.render(path, {}))
+class IteratingListExample(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/IteratingThroughaList.html')
+        self.response.out.write(template.render(path, {}))
+class ListIndexCCHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/ListIndexCC.html')
+        self.response.out.write(template.render(path, {}))
+class IndexingChallengesHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/IndexingChallenges.html')
+        self.response.out.write(template.render(path, {}))
+class ListChoosingHandlers(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/ListListsChoosingList.html')
+        self.response.out.write(template.render(path, {}))
+class LessonPlan41Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan41.html')
+        self.response.out.write(template.render(path, {}))
+class LessonPlan42Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan42.html')
+        self.response.out.write(template.render(path, {}))
+class LessonPlan43Handler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan43.html')
+        self.response.out.write(template.render(path, {}))
+        
+        
+        
 # LESSON PLANS
 
 class LPIntroHandler(webapp.RequestHandler):
@@ -6602,7 +6640,17 @@ application = webapp.WSGIApplication(
         ('/conceptcustomizeWS', ConceptCustomizeWSHandler),
         ('/locationws', LocationWSHandler),
         ('/lessonplan31', LessonPlan31Handler),
-        ('/lessonplan32', LessonPlan32Handler)
+        ('/lessonplan32', LessonPlan32Handler),
+        
+        #Handlers for module 4
+        ('/listindextpretest', LIPHandler),
+        ('/iteratinglist', IteratingListExample),
+        ('/listindexCC', ListIndexCCHandler),
+        ('/indexingchallenges', IndexingChallengesHandler),
+        ('/listchoosing', ListChoosingHandlers),
+        ('/lessonplan41', LessonPlan41Handler),
+        ('/lessonplan42', LessonPlan42Handler),
+        ('/lessonplan43', LessonPlan43Handler)
         
     ],
     debug=True)
