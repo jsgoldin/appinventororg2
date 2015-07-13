@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/jbase.css">
 <link rel="stylesheet" href="http://www.google.com/cse/style/look/v2/default.css" type="text/css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
 {% for stylesheet in stylesheets %}
@@ -15,6 +16,7 @@
 {% endfor %}
 
 <title>{{title}}</title>
+
 
 
 <script>
@@ -33,175 +35,78 @@
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 
-	<div id='header-wrapper'>
-        <div class='top-banner'>
-         	<div class='gen-container'>
-         		<div class="row">
-         			<div class="col-xs-12">
-         				<a href='/'><img class='banner-logo responsive-fullwidth-img' src='/assets/img/newlogo.png'></a>
-         			
-         				<div class="navbar-big-btn" style="border-left: 1px solid rgba(0, 0, 0, 0.14);">
-         					<span>Learn</span>
-         					<div class="mega-menu">
-         						<div class="megamenu-courses">
-         							{% for course in courseToModules %} 
-         								{% if key != "How do you...?" %}
-								 		<div class="megamenu-course">{{course}}</div>
-								 		{% else %}
-		 					 			{% endif %}
-								 	{% endfor %}
-         						</div>
-         						<div class="megamenu-modules">
-         							{% for key, values in courseToModules.items %} 
-         								{% if key != "How do you...?" %}
-         								<div data-course="{{key}}" class="megamenu-modules-list">
-								 			{% for value in values %} 
-								 				<a href="#" class="megamenu-course">{{value}}</a>
-							 				{% endfor %}
-							 			</div>
-							 			{% endif %}
-					 				{% endfor %}
-         						</div>
-         					</div>
-         				</div>
-         				
-         				<div class="navbar-big-btn">
-         					<span>Teach</span>
-         					<div class="mega-menu">
-         						<div class="mega-menu-inner">
-	         						<h1>HELLO!</h1>
-	         						<h1>HELLO!</h1>
-	         						<h1>HELLO!</h1>
-	         						<h1>HELLO!</h1>
-	         					</div>
-         					</div>
-         				</div>
-         		       	<a href="/about" class="navbar-big-btn">
-         					About
-         				</a>
-         		
-         		        {% if userStatus.isAccount %} 
-                   		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-                   	    {{userStatus.account.displayName}}</a>
-                   	    <a href="{{userStatus.logouturl}}"">Logout</a> 
-                   	    {% else %} 
-                   	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
-                   	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
-                   	    {% endif %}
-         		
-         		
-       					<form action="/siteSearch" class="nav-bar-search">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-	           				{% if query %}
-	           					<input class="form-control search-form" name="q" type="text" value={{query}} type="search">
-	           				{% else %}
-	           					<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org" type="search">            				
-	           				{% endif %}
-						</form>
-						
-		
+	<div class="header">
+		<div class="gen-container">
+			<div class="col-md-12">
+			
+				<a href="/">
+					<img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
+				</a>
 
+			    <div class="mega-menu">
+			        <ul>
+			            <li>
+			                <div class="root-item">Learn</div>
+			                <div class="slideout-menu two-part-menu ">
+			                    <ul>
+			                        <li>
+			                            <div class="menu-item">Rufus</div>
+			                            <div class="sub-item-menu">Taargus</div>
+			                        </li>
+			                        <li>
+			                            <div class="menu-item">Malone</div>
+			                            <div class="sub-item-menu">Paynus</div>
+			                        </li>
+			                    </ul>
+			                </div>
+			            </li>
+			            <li>
+			                <div class="root-item">Teach</div>
+			                <div class="slideout-menu">
+			                    <ul>
+			                        <li>
+			                            <div class="menu-item">Rufus</div>
+			                        </li>
+			                        <li>
+			                            <div class="menu-item">Malone</div>
+			                        </li>
+			                    </ul>
+			                </div>
+			            </li>
+			        </ul>
+			    </div>
+			    		 
+				
 
-         
-						
-						
-<!-- 	  
-         			   	<div class='search-box-wrapper'>            
+				<form action="/siteSearch" class="nav-bar-search">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
+          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
+				</form>		
+				
+				{% if userStatus.isAccount %} 
+           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+           	    {{userStatus.account.displayName}}</a>
+           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
+           	    {% else %} 
+           	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
+           	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
+           	    {% endif %}
+					
 
-              		<div class="login-stuff-wrapper">
-	                    		{% if userStatus.isAccount %} 
-	                    		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-	                    	    {{userStatus.account.displayName}}</a>
-	                    	    <a href="{{userStatus.logouturl}}"">Logout</a> 
-	                    	    {% else %} 
-	                    	    <a href="{{userStatus.loginurl}}">Login</a> 
-	                    	    <a href="/loginValidator">Sign Up</a>
-	                    	    {% endif %}
-	                		</div> -->
-	          			</div>  
-         			
-         			</div>
+   
 
+		    </div>           	    
+	    </div>  
+	</div>
+	
+	
+	
 
-     
-         			
-         		</div>          			
-         	</div>
-   		</div>
-   			   			
-<!--         <div class="navbar navbar-default global-navbar" role="navigation">
-            <div class="gen-container navbar-color no-padding">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse no-margin">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                {% for course in courses %}
-                                <li><a href="/content/{{course.c_identifier}}">{{course.c_title}}</a></li> {% endfor %}
-                            </ul></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Teach <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/TeachingAI">Teaching Ideas</a></li>
-                                <li><a href="/teacherMap">Who's Teaching AI?</a></li>
-                                <li><a href="https://groups.google.com/forum/#!forum/app-inventor-instructors" TARGET="_blank">Teacher Forum</a></li>
-                                <li><a href="/resources">Teaching Resources</a></li>
-                            </ul></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Book <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/book2">App Inventor 2 Book</a></li>
-                                <li><a href="/book">App Inventor Classic Book</a></li>
-                            </ul></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Build<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="http://ai2.appinventor.mit.edu" TARGET="_blank">MIT App Inventor (AI2)</a></li>
-                                <li><a href="http://beta.appinventor.mit.edu" TARGET="_blank">App Inventor Classic</a></li>
-                            </ul></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Share<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="http://gallery.appinventor.mit.edu" TARGET="_blank">App Inventor Gallery</a></li>
-                                <li><a href="/appPage">Publishing Your App</a></li>
-                                <li><a href="https://groups.google.com/forum/#!forum/mitappinventortest">App Inventor Forum</a></li>
-                            </ul></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/about">About</a></li>
-                                <li><a href="http://appinventorblog.com">App Inventor Blog</a></li>
-                                <li><a href="/media">Media</a></li>
-                                <li><a href="/dcl">Democratize Computing Lab</a></li>
-
-                            </ul></li> {% if userStatus.isAccount %} 
-                        <li class='hidden-on-big-screen'><a href="/profile">Profile</a></li>
-                        <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> 
-                        {% else %}
-                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
-                        <li class='hidden-on-big-screen'><a href="/loginValidator">Sign Up</a></li> 
-                        {% endif %} 
-                        {% if userStatus.admin %}
-                        <li><a href="/admin/dashboard">Administration</a></li> 
-                        {% endif %}
-
-                    </ul>
-                </div>
-                /.nav-collapse
-            </div>
-        </div> -->
-
-        </div>
-
-
-          			
-
-
-
-
+	<div class="body-wrapper">
     {% block body %} 
     
     {% endblock %} 
-    
+    </div>
     
     
     <footer>
@@ -236,36 +141,27 @@
 	<script>
 		// TODO: MOVE TO SEPERATE JS FILE
 		
-		
-		/* Click dropdown navigation */
+		// open and close root menu items
 		$(".navbar-big-btn").click(function() {
-			if ($(this).hasClass("nav-drop-down")) {
-				$(this).removeClass("nav-drop-down");
+			console.log($(this));
+			if ($(this).hasClass("selected-menu-item")) {
+				$(this).removeClass("selected-menu-item");
 			} else {
-				$(".navbar-big-btn").removeClass("nav-drop-down");
-				$(this).addClass("nav-drop-down");
+				$(this).addClass("selected-menu-item")
 			}
+		}).children().click(function(e) {
+			// prevent children from closing root menu-item
+  			return false;
 		});
 		
-		function selectMenuItem(menuItem) {
-			
-			// deselect everything else
-			$(".megamenu-course").removeClass("megamenu-selected-course");
-			$(".megamenu-modules-list").hide();
-			menuItem.addClass("megamenu-selected-course");
-			$(".megamenu-modules-list[data-course='" +$(menuItem).text() + "']").show();
-		}
-		
-		
-		
-		$(".megamenu-courses .megamenu-course").hover(function() {
-			selectMenuItem($(this));
+		$(".global-nav>ul>li>ul li").click(function() {
+			$(".global-nav>ul>li>ul li").removeClass("selected-menu-item");
+			$(this).addClass("selected-menu-item");
 		});
 		
-		
-		$(document).ready(function() {
-			// show the first course by default
-			selectMenuItem($(".megamenu-courses").children().first());
+		$(".global-nav>ul>li>ul>li").hover(function() {
+			$(".global-nav>ul>li>ul>li").removeClass("selected-menu-item");
+			$(this).addClass("selected-menu-item");
 		});
 		
 		

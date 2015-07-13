@@ -2029,11 +2029,11 @@ footer a {
 
 /* Styling for search box in navbar */
 .nav-bar-search {
-	float: right;
+	float: left;
 	width: 400px;
 	position: relative;
 	margin-top: 20px;
-	margin-right: 170px;
+	margin-left: 135px;
 }
 
 .nav-bar-search .glyphicon {
@@ -2066,7 +2066,7 @@ footer a {
 	margin-right: 17px;
 }
 
-.mega-menu {
+/* .mega-menu {
 	background-color: white;
 	position: absolute;
 	top: 85px;
@@ -2079,7 +2079,7 @@ footer a {
 	text-align: left;
 	cursor: default;
 	pointer-events: none;
-	/* ^quite possibly the most obsure css i've seen */
+	^quite possibly the most obsure css i've seen
 	border-radius: 0 0 6px 6px;
 	border-left: 1px solid rgba(0, 0, 0, 0.14);
 	border-right: 1px solid rgba(0, 0, 0, 0.14);
@@ -2128,7 +2128,185 @@ footer a {
 	height: 371px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.14);
 }
-
+ */
 a {
 	text-decoration: none !important;
+}
+
+/* Unstyle all lists in global navigation  */
+/* .global-nav ul {
+	list-style: none;
+}
+
+.global-nav>ul {
+	float: left;
+}
+
+.global-nav>ul>li {
+	float: left;
+}
+
+Hide all megamenu submenus,
+.global-nav li>ul>li ul {
+	display: none;
+}
+
+Show sub-menu after selected-menu-item class is added via via javascript.
+.global-nav .selected-menu-item>ul {
+	display: block;
+}
+
+top level menu items turn green when selected
+.global-nav>ul>.selected-menu-item {
+	color: rgb(164, 202, 57);
+	border-bottom: 1px solid white;
+}
+
+all dropdown menus
+.global-nav>ul>li>ul {
+	position: absolute;
+	top: 85px;
+	background-color: white;
+	color: #555;
+	padding: 0px;
+	max-height: 0px;
+	transition: max-height 0.5s ease-in-out;
+	overflow-y: hidden;
+	width: 425px;
+}
+
+dropdown menus that are selected
+.global-nav>ul>.selected-menu-item>ul, .global-nav>ul>li:hover>ul {
+	max-height: 500px;
+}
+
+Submenu container
+.global-nav>ul>li>ul>li>ul {
+	display: none;
+	left: 200px;
+	background-color: white;
+	top: 0px;
+	position: absolute;
+	padding: 0px;
+	height: 100%;
+	border-left: 1px solid rgba(0, 0, 0, 0.2);
+	width: auto;
+}
+
+Styling of all menu items except top level items
+.global-nav>ul>li>ul li {
+	padding: 8px 26px;
+	text-align: left;
+}
+
+Set width of left side of mega menu, must match the offset of the submenu container 
+.mega-menu-drop-down>li {
+	width: 200px;
+} */
+.body-wrapper {
+	margin-top: 85px; /* MUST MATCH THE HEIGHT OF THE HEADER */
+}
+
+.header {
+	background-color: white;
+	overflow: visible;
+	height: 85px;
+	width: 100%;
+	position: absolute;
+	z-index: 5000;
+	top: -85px; /* MUST MATCH THE HEIGHT OF THE HEADER * -1 */
+	border-bottom: 3px solid rgba(0, 0, 0, 0.14);
+}
+
+/* Prevent users from highlighting items in the menu  */
+.mega-menu {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Gets rid of all default list styles */
+.mega-menu ul {
+	list-style: none;
+	float: left;
+	padding: 0px;
+	margin: 0;
+}
+
+.mega-menu>ul>li {
+	/* Float root items left and give them fixed width */
+	float: left;
+	width: 100px;
+}
+
+.mega-menu>ul>li:first-child>.root-item {
+	border-left: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.root-item {
+	height: 84px;
+	width: 100px;
+	text-align: center;
+	padding-top: 32px;
+	font-size: 18px;
+	cursor: pointer;
+	border-right: 1px solid rgba(0, 0, 0, 0.14);
+	color: #555;
+	transition: color 0.2s;
+}
+
+.slideout-menu {
+	background-color: white;
+	height: 0px;
+	transition: height 0.5s;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid rgba(0, 0, 0, 0.14);
+	border-top: none;
+	z-index: 4000;
+}
+
+.slideout-menu>ul {
+	width: 100%;
+}
+
+.two-part-menu {
+	width: 500px;
+	/* fixed width needed for 2 part menu */
+}
+
+.sub-item-menu {
+	display: none;
+	position: absolute;
+	top: 0px;
+	height: 100%;
+	border-left: 1px solid black;
+	background-color: yellow;
+	width: 250px;
+	left: 250px;
+	z-index: 10;
+	left: 250px;
+	/* width + left must equal two-part-menu width */
+}
+
+.menu-item {
+	padding: 10px 27px;
+	font-size: 18px;
+}
+
+.mega-menu ul li:hover>.root-item {
+	color: green;
+	border-bottom: 5px solid white;
+}
+
+.mega-menu ul li:hover>.slideout-menu {
+	height: 100px;
+	z-index: 5000;
+}
+
+.mega-menu ul li:hover>.sub-item-menu {
+	display: block;
 }
