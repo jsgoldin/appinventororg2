@@ -3297,7 +3297,11 @@ class LessonPlan43Handler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan43.html')
         self.response.out.write(template.render(path, {}))
-        
+#Handlers for Module 5
+class NoteTakerTutHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/noteTaker.html')
+        self.response.out.write(template.render(path, {}))
         
         
 # LESSON PLANS
@@ -6650,7 +6654,11 @@ application = webapp.WSGIApplication(
         ('/listchoosing', ListChoosingHandlers),
         ('/lessonplan41', LessonPlan41Handler),
         ('/lessonplan42', LessonPlan42Handler),
-        ('/lessonplan43', LessonPlan43Handler)
+        ('/lessonplan43', LessonPlan43Handler),
+        
+        #Handlers for module
+        ('/notetakertut', NoteTakerTutHandler)
+        
         
     ],
     debug=True)
