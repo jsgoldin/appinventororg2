@@ -46,22 +46,50 @@
 			    <div class="mega-menu">
 			        <ul>
 			            <li>
-			                <div class="root-item">Learn</div>
+			                <div class="root-item">
+			                	Learn
+			                	<i class="fa fa-angle-down"></i>
+			                </div>
 			                <div class="slideout-menu two-part-menu ">
 			                    <ul>
+			                    	{% for key, values in courseToModules %}
+			                    	
+			                    	{% if key != "How do you...?" %}               		
 			                        <li>
-			                            <div class="menu-item">Rufus</div>
-			                            <div class="sub-item-menu">Taargus</div>
+			                            <div class="menu-item">
+											{{key}} 
+											<i class="fa fa-angle-right"></i>
+										</div>
+			                            <div class="sub-item-menu">
+										{% for v in values %}
+											<div class="menu-item">
+												<a href="{{v.1}}">{{v.0}}</a>
+											</div>
+										{% endfor %}
+										</div>
 			                        </li>
+			                        {% endif %}
+			                        {% endfor %} 
 			                        <li>
-			                            <div class="menu-item">Malone</div>
-			                            <div class="sub-item-menu">Paynus</div>
-			                        </li>
+			                            <div class="menu-item">
+											How do you...?
+										</div>
+			                            <div class="sub-item-menu">
+			                            	<div class="menu-item">
+			                            		<i class="fa fa-question"></i>
+			                            	
+												Glossary of essential app building techniques.
+											</div>
+										</div>
+			                        </li>  			                        
 			                    </ul>
 			                </div>
 			            </li>
 			            <li>
-			                <div class="root-item">Teach</div>
+			                <div class="root-item">
+			                	Teach
+			                	<i class="fa fa-angle-down"></i>			                
+			                </div>
 			                <div class="slideout-menu">
 			                    <ul>
 			                        <li>

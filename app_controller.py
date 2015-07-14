@@ -37,21 +37,23 @@ APPSDIR = '/apps'
 APPS2DIR = '/apps2'
 
 
-def getCourseToModuleDict():
+def getCoursesAndModules():
     """
-    Returns a dictionary of all the courses mapped to a list of the modules in them.
-    course_name => [module_a, module_b, ... ]
+    Returns an ordered list of all courses and the modules inside them.
+    [(course_a, [(module_a, module_a_url), (module_b, module_b_url), ... ]), ...]
     """
     courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
 
-    courseModDict = {}
+    courseModList = []
     for course in courses: 
+        # fetch modules for the current course
+        modulesList = []
         course_id = long(course.key.id())
         modules = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, course_id)).order(Module.m_index).fetch() 
-        courseModDict[str(course.c_title)] = []
         for module in modules:
-            courseModDict[course.c_title].append(str(module.m_title))
-    return courseModDict
+            modulesList.append((str(module.m_title), "/content/" + course.c_identifier + "/" + module.m_identifier))
+        courseModList.append((str(course.c_title), modulesList))
+    return courseModList
     
 def redirector(requesthandler):
     """Used to redirect old content to their new url in a course
@@ -5482,7 +5484,6 @@ class Homehandler(webapp.RequestHandler):
         rssItems = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).order(-RSSItem.dateUnFormatted).fetch(1)        
         rssFeedBox = template.render(path, {'rssItems' : rssItems})
         
-        getCourseToModuleDict()
         
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
@@ -5490,7 +5491,7 @@ class Homehandler(webapp.RequestHandler):
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            'rssFeedBox' : rssFeedBox,
-                           'courseToModules' : getCourseToModuleDict(),
+                           'courseToModules' : getCoursesAndModules(),
                            }
         
         

@@ -2274,7 +2274,7 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 }
 
 .two-part-menu {
-	width: 500px;
+	width: 735px;
 	/* fixed width needed for 2 part menu */
 }
 
@@ -2283,30 +2283,39 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	position: absolute;
 	top: 0px;
 	height: 100%;
-	border-left: 1px solid black;
-	background-color: yellow;
-	width: 250px;
-	left: 250px;
+	border-left: 1px solid rgba(0, 0, 0, 0.14);
+	width: 385px;
+	left: 350px;
 	z-index: 10;
-	left: 250px;
+	background-color: white;
 	/* width + left must equal two-part-menu width */
 }
 
 .menu-item {
 	padding: 10px 27px;
 	font-size: 18px;
+	color: #555;
 }
 
 .mega-menu ul li:hover>.root-item {
-	color: green;
+	color: #A4CA39;
 	border-bottom: 5px solid white;
 }
 
 .mega-menu ul li:hover>.slideout-menu {
-	height: 100px;
+	height: 328px;
 	z-index: 5000;
 }
 
 .mega-menu ul li:hover>.sub-item-menu {
 	display: block;
+}
+
+.two-part-menu>ul>li>.menu-item {
+	cursor: default;
+}
+
+.two-part-menu>ul>li:hover {
+	background-color: #6AB344;
+	color: white;
 }
