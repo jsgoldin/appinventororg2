@@ -2297,6 +2297,12 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	color: #555;
 }
 
+.slideout-menu.two-part-menu > ul > li > .menu-item > i {
+  position: absolute;
+  left: 322px;
+  padding-top: 5px;
+}
+
 .mega-menu ul li:hover>.root-item {
 	color: #A4CA39;
 	border-bottom: 5px solid white;
@@ -2315,7 +2321,13 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	cursor: default;
 }
 
-.two-part-menu>ul>li:hover {
+a.menu-item {
+	cursor: pointer !important;
+	display: block
+}
+
+
+.two-part-menu>ul>li:hover>.menu-item {
 	background-color: #6AB344;
 	color: white;
 }
