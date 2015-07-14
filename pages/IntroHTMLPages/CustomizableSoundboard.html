@@ -1,0 +1,172 @@
+<div class="dark-blue-title">
+	<div class="course-page-container">
+		
+		<div style="float:left;">
+			<h1>A Customizable Soundboard App</h1>
+
+			<h4>
+				worksheet on user-generated data, sound recording, and
+				multiple screens
+			</h4>
+		</div>
+		<div style="float:right;">
+		<a target="_blank" href="https://docs.google.com/document/d/1fY9ITQsm9TejhxPoVoqpDnGv2QMS0TjdWDc-xF12pQ8/edit?usp=sharing">
+		<img style="margin-top:2%;float:right;" src="/images/icons/download_white.png">
+			<h3 style="float:right; ">Printable Version</h3>
+			</a>
+		</div>
+	
+	</div>
+</div>
+
+<div class="course-page-container">
+<div class="card">
+	<h1 class="c3 c9">
+		<a name="h.u55h4c3wog45"></a><span>SoundRecorder Component</span>
+	</h1>
+	<p class="c3">
+		<span>The SoundRecorder component lets you record sounds input
+			by the user.</span>
+	</p>
+	
+	<p class="c3 c5">
+		<span></span>
+	</p>
+	<p class="c3">
+		<span>Demo: start button, stop button, play button</span>
+	</p>
+	<img class="img-responsive" width="50%" height="50%" alt="img02" src="/images/CourseInABoxImages/image02_CSB.png">
+	</div>
+	<div class="card">
+	<h1 class="c3 c9">
+		<a name="h.dxhfpf41cbpu"></a><span>Multiple Screens</span>
+	</h1>
+	<p class="c3">
+		<span>You can define screens in the designer.</span>
+	</p>
+	<p class="c3 c5">
+		<span></span>
+	</p>
+	<ul class="c1 lst-kix_9xoxlfrcbzia-0 start">
+		<li class="c2"><span>Each screen has its own components
+				and variables</span></li>
+		<li class="c2"><span>In the blocks editor, use the
+				following from the Control drawer to open/close screens.</span></li>
+	</ul>
+	
+
+			<img class="img-responsive" width="60%" height="60%"
+			alt="Screen Shot 2015-04-20 at 7.40.31 PM.png"
+			src="/images/CourseInABoxImages/image03_CSB.png"
+			>
+
+	
+	<p class="c3">
+	You can code the Screen.Initialize block for a screen. If
+			a screen is returned to from another, use:
+	
+	</p>
+	<img class="img-responsive" width="40%" height="40%"
+			alt="Screen Shot 2015-04-20 at 7.40.31 PM.png"
+			src="/images/CourseInABoxImages/image00_CSB.png"
+			>
+	
+	<p class="c3">
+		<span>In Screen.Initialize or Screen.OtherScreenClosed, you can
+			use the startValue block to grab information sent from the other
+			screen (if they sent it).</span>
+	</p>
+	<p class="c3 c5">
+		<span></span>
+	</p>
+	<p class="c3">
+		<span>You can also use TinyDB to share data between screens.
+			Note that there is only one database, even though both screens will
+			have a TinyDB component.</span>
+	</p>
+	<p class="c3 c5">
+		<span></span>
+	</p>
+	<p class="c3">
+		<span>demo: going between screens</span>
+	</p>
+	</div>
+
+	<div class="card">
+	<h1 class="c3 c9">
+		<a name="h.qddy3floxs9x"></a><span>SoundBoard App</span>
+	</h1>
+	<p class="c3">
+		<span>Consider the following soundboard app that is not
+			customizable:</span>
+	</p>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<img class="img-resposive" alt="img04" src="/images/CourseInABoxImages/image04_CSB.png" width="70%">
+		</div>
+		<div class="col-md-6">
+			<img class="img-resposive"  alt="img01" src="/images/CourseInABoxImages/image01_CSB.png" width="100%" >
+		</div>
+		
+	</div>
+
+	<p class="c3 c5">
+		<span></span>
+	</p>
+	<p class="c3 c5">
+		<span></span>
+	</p>
+	<p class="c3">
+		<span>The app above has fixed data-- it always plays
+			1.wav,2.wav, and 3.wav.</span>
+	</p>
+	<p class="c3">
+		<span>Suppose we want to make the soundboard customizable-- let
+			the user specify the sounds that should play when each button is
+			clicked. And suppose we want to allow that customization to occur on
+			another screen (sort of like a preferences screen).</span>
+	</p>
+	<p class="c3 c5">
+		<span></span>
+	</p>
+	<ol class="c1 lst-kix_51nm5psh1hkx-0 start" start="1">
+		<li class="c2"><span>Sketch the blocks for how you&rsquo;d
+				go between screens. You can assume there is a CustomizeSoundsButton
+				in Screen1 and a BackButton in the CustomizeSoundsScreen. For now,
+				don&rsquo;t worry about the data to be shared.</span></li>
+	</ol>
+	<p class="c3 c5">
+		<span><br>
+		<br>
+		<br></span>
+	</p>
+	<ol class="c1 lst-kix_51nm5psh1hkx-0" start="2">
+		<li class="c2"><span>Suppose the customization screen has
+				three buttons that when clicked, start the recorder so that the user
+				can associate a sound with a button. Sketch the click event for
+				Button1.Click, and any associated event handlers you&rsquo;ll need
+				(see SoundRecorder blocks above). Remember, your goal is to make it
+				so the recorded sound is set so that on screen 1 it will play.<br>
+			<br>
+			<br>
+		</span></li>
+		<li class="c2"><span>The &ldquo;CustomizeSounds&rdquo;
+				screen and the main screen need to share the soundsList. Sketch the
+				blocks you&rsquo;ll need for sharing information between screens.<br>
+		</span></li>
+	</ol>
+	</div>
+	<div>
+		<p class="c3 c10">
+			<span>appinventor.org
+				course-in-a-box&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+		<p class="c3 c6">
+			<span class="c13">This document is licensed under an </span><span
+				class="c11"><a class="c8"
+				href="http://www.google.com/url?q=http%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby-nc-sa%2F3.0%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGKyqN5Tqh7KIvGy2XJV2hc_b4JpA">Attribution-NonCommercial-ShareAlike
+					3.0 Unported License</a></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+	</div>
+</div>

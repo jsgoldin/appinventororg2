@@ -3302,6 +3302,14 @@ class NoteTakerTutHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/noteTaker.html')
         self.response.out.write(template.render(path, {}))
+class SoundBoardAppHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/CustomizableSoundboard.html')
+        self.response.out.write(template.render(path, {}))
+class UserGeneratedDataHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/UserGeneratedDataCC.html')
+        self.response.out.write(template.render(path, {}))
         
 class IntroDrawingHandler(webapp.RequestHandler):
     def get(self, *args):
@@ -6662,6 +6670,8 @@ application = webapp.WSGIApplication(
         
         #Handlers for module
         ('/notetakertut', NoteTakerTutHandler),
+        ('/customizesoundboard', SoundBoardAppHandler),
+        ('/userGeneratedDataCC', UserGeneratedDataHandler),
         
         
         #handler for intro drawing ani games module
