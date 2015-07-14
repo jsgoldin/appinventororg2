@@ -3315,6 +3315,10 @@ class IntroDrawingHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introDrawingAnimation.html')
         self.response.out.write(template.render(path, {}))
+class CarouselTestHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/carousel2.html')
+        self.response.out.write(template.render(path, {}))
         
 # LESSON PLANS
 
@@ -6675,7 +6679,8 @@ application = webapp.WSGIApplication(
         
         
         #handler for intro drawing ani games module
-        ('/introdrawing', IntroDrawingHandler)
+        ('/introdrawing', IntroDrawingHandler),
+        ('/carouseltest', CarouselTestHandler)
         
         
     ],
