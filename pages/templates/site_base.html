@@ -43,7 +43,7 @@
 					<img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
 				</a>
 
-			    <div class="mega-menu">
+			    <nav class="mega-menu">
 			        <ul>
 			            <li>
 			                <div class="root-item">
@@ -55,7 +55,10 @@
 			                    	{% for key, values in courseToModules %}
 			                    	
 			                    	{% if key != "How do you...?" %}               		
-			                        <li>
+			                        
+			                       
+			                        <li  {% if forloop.first %} class="selected-item" {% endif %}>
+			                        
 			                            <div class="menu-item">
 											{{key}} 
 											<i class="fa fa-angle-right"></i>
@@ -101,7 +104,7 @@
 			                </div>
 			            </li>
 			        </ul>
-			    </div>
+			    </nav>
 			    		 
 				
 
@@ -168,29 +171,16 @@
 	<script>
 		// TODO: MOVE TO SEPERATE JS FILE
 		
-		// open and close root menu items
-		$(".navbar-big-btn").click(function() {
-			console.log($(this));
-			if ($(this).hasClass("selected-menu-item")) {
-				$(this).removeClass("selected-menu-item");
-			} else {
-				$(this).addClass("selected-menu-item")
-			}
-		}).children().click(function(e) {
-			// prevent children from closing root menu-item
-  			return false;
+		$(".mega-menu .slideout-menu > ul >li").hover(function() {
+			$(".mega-menu .slideout-menu > ul >li").removeClass("selected-item");
+		
+			$(this).addClass("selected-item");
 		});
 		
-		$(".global-nav>ul>li>ul li").click(function() {
-			$(".global-nav>ul>li>ul li").removeClass("selected-menu-item");
-			$(this).addClass("selected-menu-item");
+		$(".two-part-menu").parent().mouseenter(function() {
+			$(this).find("li").removeClass("selected-item");
+			$(this).find("li").first().addClass("selected-item");
 		});
-		
-		$(".global-nav>ul>li>ul>li").hover(function() {
-			$(".global-nav>ul>li>ul>li").removeClass("selected-menu-item");
-			$(this).addClass("selected-menu-item");
-		});
-		
 		
 		
 	</script>

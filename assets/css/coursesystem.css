@@ -2204,7 +2204,7 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	width: 200px;
 } */
 .body-wrapper {
-	margin-top: 85px; /* MUST MATCH THE HEIGHT OF THE HEADER */
+	margin-top: 85px; /* MUST MATCH THE HEIGHT OF THE HEADER OR ELSE */
 }
 
 .header {
@@ -2278,6 +2278,25 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	/* fixed width needed for 2 part menu */
 }
 
+.two-part-menu>ul>li>.menu-item {
+	cursor: default;
+}
+
+a.menu-item {
+	cursor: pointer !important;
+	display: block
+}
+
+
+{
+	background-color: orange;
+}
+
+.slideout-menu>ul>.selected-item>.menu-item {
+	background-color: #6AB344;
+	color: white;
+}
+
 .sub-item-menu {
 	display: none;
 	position: absolute;
@@ -2297,10 +2316,10 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	color: #555;
 }
 
-.slideout-menu.two-part-menu > ul > li > .menu-item > i {
-  position: absolute;
-  left: 322px;
-  padding-top: 5px;
+.slideout-menu.two-part-menu>ul>li>.menu-item>i {
+	position: absolute;
+	left: 322px;
+	padding-top: 5px;
 }
 
 .mega-menu ul li:hover>.root-item {
@@ -2313,21 +2332,9 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	z-index: 5000;
 }
 
-.mega-menu ul li:hover>.sub-item-menu {
+/* Display side menu when drop down menu item is hovered or selected */
+.mega-menu li:hover>.sub-item-menu, .mega-menu .selected-item>.sub-item-menu
+{
 	display: block;
 }
 
-.two-part-menu>ul>li>.menu-item {
-	cursor: default;
-}
-
-a.menu-item {
-	cursor: pointer !important;
-	display: block
-}
-
-
-.two-part-menu>ul>li:hover>.menu-item {
-	background-color: #6AB344;
-	color: white;
-}
