@@ -1912,6 +1912,8 @@ footer a {
 
 .landing-teachers-section {
 	padding: 20px;
+	background-color: rgb(27, 76, 107);
+	color: white;
 }
 
 .teachers-graphic-box {
