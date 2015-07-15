@@ -37,95 +37,97 @@
 
 	<div class="header">
 		<div class="gen-container">
-			<div class="col-md-12">
-			
-				<a href="/">
-					<img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
-				</a>
-
-			    <nav class="mega-menu">
-			        <ul>
-			            <li>
-			                <div class="root-item">
-			                	Learn
-			                	<i class="fa fa-angle-down"></i>
-			                </div>
-			                <div class="slideout-menu two-part-menu ">
-			                    <ul>
-			                    	{% for key, values in courseToModules %}
-			                    	
-			                    	{% if key != "How do you...?" %}               		
-			                        
-			                       
-			                        <li  {% if forloop.first %} class="selected-item" {% endif %}>
-			                        
-			                            <div class="menu-item">
-											{{key}} 
-											<i class="fa fa-angle-right"></i>
-										</div>
-			                            <div class="sub-item-menu">
-										{% for v in values %}
-											<a href="{{v.1}}"class="menu-item">
-												{{v.0}}
-											</a>
-										{% endfor %}
-										</div>
-			                        </li>
-			                        {% endif %}
-			                        {% endfor %} 
-			                        <li>
-			                            <a href="/content/howDoYou" class="menu-item">
-											How do you...?
-										</a>
-			                            <div class="sub-item-menu">
-			                            	<div class="menu-item" style="text-align: center;">
-			                            		<i class="fa fa-question" style="font-size: 126px; margin: auto; display: block;"></i>                          	
-												Glossary of essential app building techniques.
+			<div class="row">
+				<div class="col-md-12">
+				
+					<a href="/">
+						<img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
+					</a>
+	
+				    <nav class="mega-menu">
+				        <ul>
+				            <li>
+				                <div class="header-item">
+				                	Learn
+				                	<i class="fa fa-angle-down"></i>
+				                </div>
+				                <div class="slideout-menu two-part-menu ">
+				                    <ul>
+				                    	{% for key, values in courseToModules %}
+				                    	
+				                    	{% if key != "How do you...?" %}               		
+				                        
+				                       
+				                        <li  {% if forloop.first %} class="selected-item" {% endif %}>
+				                        
+				                            <div class="menu-item">
+												{{key}} 
+												<i class="fa fa-angle-right"></i>
 											</div>
-										</div>
-			                        </li>  			                        
-			                    </ul>
-			                </div>
-			            </li>
-			            <li>
-			                <div class="root-item">
-			                	Teach
-			                	<i class="fa fa-angle-down"></i>			                
-			                </div>
-			                <div class="slideout-menu">
-			                    <ul>
-			                        <li>
-			                            <div class="menu-item">Teching info</div>
-			                        </li>
-			                        <li>
-			                            <div class="menu-item">Moar resources</div>
-			                        </li>
-			                    </ul>
-			                </div>
-			            </li>
-			        </ul>
-			    </nav>
-			    		 
-				
-
-				<form action="/siteSearch" class="nav-bar-search">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
-          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
-				</form>		
-				
-				{% if userStatus.isAccount %} 
-           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-           	    {{userStatus.account.displayName}}</a>
-           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
-           	    {% else %} 
-           	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
-           	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
-           	    {% endif %}
+				                            <div class="sub-item-menu">
+											{% for v in values %}
+												<a href="{{v.1}}"class="menu-item">
+													{{v.0}}
+												</a>
+											{% endfor %}
+											</div>
+				                        </li>
+				                        {% endif %}
+				                        {% endfor %} 
+				                        <li>
+				                            <a href="/content/howDoYou" class="menu-item">
+												How do you...?
+											</a>
+				                            <div class="sub-item-menu">
+				                            	<div class="menu-item" style="text-align: center;">
+				                            		<i class="fa fa-question" style="font-size: 126px; margin: auto; display: block;"></i>                          	
+													Glossary of essential app building techniques.
+												</div>
+											</div>
+				                        </li>  			                        
+				                    </ul>
+				                </div>
+				            </li>
+				            <li>
+				                <a href="/teacherMap" class="header-item">
+				                	Teach		                
+				                </a>	
+				            </li>
+				            <li>
+				                <a href="/about" class="header-item">
+				                	About		                
+				                </a>				             
+				            </li>				            
+				        </ul>
+				    </nav>
+				    		 
+				    		 
+				    <div style="float: right;">
+		
+	                <a href="/about" class="login-btn">
+	                	Login		                
+	                </a>	
+	
+					<form action="/siteSearch" class="nav-bar-search">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
+	          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
+					</form>		
 					
-
-   
-
-		    </div>           	    
+					</div>
+<!-- 					{% if userStatus.isAccount %} 
+	           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+	           	    {{userStatus.account.displayName}}</a>
+	           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
+	           	    {% else %} 
+	           	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
+	           	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
+	           	    {% endif %}
+						 -->
+	
+	   
+	
+			    </div>     
+		    </div>      	    
 	    </div>  
 	</div>
 	
