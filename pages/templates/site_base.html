@@ -104,28 +104,25 @@
 				    		 
 				    <div style="float: right;">
 		
-	                <a href="/about" class="login-btn">
+		
+					{% if userStatus.isAccount %} 
+	           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+	           	    {{userStatus.account.displayName}}</a>
+	           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
+	           	    {% else %} 
+	           	   	<a href="/loginValidator" class="login-btn">
 	                	Login		                
 	                </a>	
+	           	    {% endif %}
+	           	    		
+
 	
 					<form action="/siteSearch" class="nav-bar-search">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
 	          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
 					</form>		
 					
-					</div>
-<!-- 					{% if userStatus.isAccount %} 
-	           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-	           	    {{userStatus.account.displayName}}</a>
-	           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
-	           	    {% else %} 
-	           	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
-	           	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
-	           	    {% endif %}
-						 -->
-	
-	   
-	
+					</div>	
 			    </div>     
 		    </div>      	    
 	    </div>  
