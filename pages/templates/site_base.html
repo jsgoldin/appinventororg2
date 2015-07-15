@@ -97,7 +97,15 @@
 				                <a href="/about" class="header-item">
 				                	About		                
 				                </a>				             
-				            </li>				            
+				            </li>
+                            {% if userStatus.admin %}
+                       		<li>
+                       			<a href="/admin/dashboard" class="header-item">
+                       				Admin
+                       			</a>
+                       		</li> 
+                        	{% endif %}  
+				            				            
 				        </ul>
 				    </nav>
 				    		 
