@@ -36,13 +36,12 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 
 	<div class="header">
-		<div class="gen-container">
-			<div class="row">
-				<div class="col-md-12">
+		<div class="header-container">
 				
 					<a href="/">
 						<img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
 					</a>
+					
 	
 				    <nav class="mega-menu">
 				        <ul>
@@ -62,8 +61,12 @@
 				                        
 				                            <div class="menu-item">
 												{{key}} 
-												<i class="fa fa-angle-right"></i>
+												<i class="fa fa-angle-right"></i>		
+												<a href="{{values.0.1}}"></a>										
 											</div>
+											
+											
+											
 				                            <div class="sub-item-menu">
 											{% for v in values %}
 												<a href="{{v.1}}"class="menu-item">
@@ -112,28 +115,38 @@
 				    		 
 				    <div style="float: right;">
 		
+						<!-- {% if userStatus.isAccount %} 
+		           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+		           	    {{userStatus.account.displayName}}</a>
+		           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
+		           	    {% else %} 
+		           	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
+		           	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
+		           	    {% endif %} -->
+		           	    		
+		                <a href="/loginValidator" class="login-btn">
+		                	Login		                
+		                </a>	
 		
-<!-- 					{% if userStatus.isAccount %} 
-	           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-	           	    {{userStatus.account.displayName}}</a>
-	           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
-	           	    {% else %} 
-	           	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
-	           	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
-	           	    {% endif %} -->
-	           	    		
-	                <a href="/loginValidator" class="login-btn">
-	                	Login		                
-	                </a>	
-	
-					<form action="/siteSearch" class="nav-bar-search">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
-	          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
-					</form>		
+						<div class="header-item mega-menu-search-toggle">
+							<i class="fa fa-search"></i>
+						</div>
+						
+						
+						
+						<form action="/siteSearch" class="nav-bar-search">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
+		          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
+						</form>		
+					
+						<div class="header-item mega-menu-collapse-toggle">
+							<i class="fa fa-bars"></i>
+						</div>
 					
 					</div>	
-			    </div>     
-		    </div>      	    
+					
+
+ 	    
 	    </div>  
 	</div>
 	
@@ -181,13 +194,29 @@
 		
 		$(".mega-menu .slideout-menu > ul >li").hover(function() {
 			$(".mega-menu .slideout-menu > ul >li").removeClass("selected-item");
-		
 			$(this).addClass("selected-item");
 		});
 		
 		$(".two-part-menu").parent().mouseenter(function() {
 			$(this).find("li").removeClass("selected-item");
 			$(this).find("li").first().addClass("selected-item");
+		});
+		
+		$(".two-part-menu").parent().click(function() {
+			if($(this).hasClass("selected-item")) {
+				$(this).removeClass("selected-item");
+			} else {
+				$(this).addClass("selected-item");
+			}
+		});
+		
+		
+		$(".mega-menu-collapse-toggle").click(function() {
+			if ($(".mega-menu").hasClass("visible")) {
+				$(".mega-menu").removeClass("visible");
+			} else {
+				$(".mega-menu").addClass("visible");
+			}
 		});
 		
 		

@@ -359,7 +359,7 @@
 .vertical-side-bar-middle-box {
 	border-right: 1px #2d2d2d solid;
 	border-color: rgba(1, 1, 1, 0.1);
-	background-color: #F3F3F3;
+	background-color: #FEFEFE;
 	width: 100%;
 	height: 100%;
 	overflow-y: auto;
@@ -1818,6 +1818,7 @@ footer a {
 	float: left;
 	margin-right: 19px;
 	padding-top: 12px;
+	padding-left: 15px;
 }
 
 .unstyled-list {
@@ -1866,7 +1867,7 @@ footer a {
 
 .app-big-video .owl-pagination {
 	padding: 10px 0px !important;
-	background-color: rgb(243, 243, 243);
+	background-color: white;
 }
 
 .app-big-video .owl-theme .owl-controls .owl-page span.owl-numbers {
@@ -2031,11 +2032,11 @@ footer a {
 
 /* Styling for search box in navbar */
 .nav-bar-search {
-	float: right;
 	width: 400px;
 	position: relative;
 	margin-top: 20px;
 	margin-left: 46px;
+	padding-right: 15px;
 }
 
 .nav-bar-search .glyphicon {
@@ -2209,6 +2210,14 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	border-bottom: 3px solid rgba(0, 0, 0, 0.14);
 }
 
+.header-container {
+	position: relative;
+	margin: 0 auto 0 auto;
+	height: auto;
+	overflow: visible;
+	max-width: 1600px;
+}
+
 .header-item {
 	display: inline-block;
 	height: 84px;
@@ -2249,6 +2258,7 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	transition: max-height 0.5s;
 }
 
 /* Gets rid of all default list styles */
@@ -2317,6 +2327,15 @@ a.menu-item {
 	padding: 10px 27px;
 	font-size: 18px;
 	color: #555;
+	position: relative;
+}
+
+.menu-item a {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
 }
 
 .slideout-menu.two-part-menu>ul>li>.menu-item>i {
@@ -2325,7 +2344,7 @@ a.menu-item {
 	padding-top: 5px;
 }
 
-.mega-menu ul li:hover>.slideout-menu {
+.mega-menu ul li.selected-item>.slideout-menu {
 	height: 328px;
 	z-index: 5000;
 }
@@ -2334,4 +2353,86 @@ a.menu-item {
 .mega-menu li:hover>.sub-item-menu, .mega-menu .selected-item>.sub-item-menu
 	{
 	display: block;
+}
+
+.mega-menu-collapse-toggle {
+	display: none;
+}
+
+.mega-menu-search-toggle {
+	display: none;
+}
+
+/* mega menu collapsed mode */
+/*  iPads and smaller (portrait and landscape) ----------- */
+@media ( min-width : 0px) and (max-width : 1024px) {
+	.login-btn {
+		display: none;
+	}
+	.mega-menu-collapse-toggle {
+		display: inline-block;
+	}
+	.mega-menu-search-toggle {
+		display: inline-block;
+	}
+	.mega-menu {
+		max-height: 0px;
+		overflow: hidden;
+	}
+	.mega-menu.visible {
+		max-height: 500px;
+		overflow: hidden;
+	}
+	.mega-menu>ul>li {
+		float: none;
+		width: 100%;
+	}
+	.mega-menu {
+		position: absolute;
+		top: 85px;
+		background-color: white;
+		width: 100%;
+	}
+	.mega-menu ul {
+		width: 100%;
+	}
+	.mega-menu .header-item {
+		width: 100%;
+		text-align: left;
+		padding-left: 15px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+		height: 60px;
+		padding-top: 18px;
+	}
+	.mega-menu .header-item>i {
+		float: right;
+		padding-right: 15px;
+	}
+	.mega-menu .sub-item-menu {
+		display: none !important;
+	}
+	.mega-menu .slideout-menu {
+		border: none;
+		width: 100%;
+		background-color: rgba(214, 214, 214, 0.49);
+	}
+	.mega-menu  ul li.selected-item>.slideout-menu {
+		height: 240px;
+		/* Must be changed manually if number of items change or the height of the items change! */
+	}
+	.mega-menu .slideout-menu.two-part-menu>ul>li>.menu-item>i {
+		display: none;
+	}
+	.mega-menu .menu-item {
+		height: 60px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+		padding-top: 18px;
+	}
+	.mega-menu .slideout-menu>ul>.selected-item>.menu-item {
+		color: #555;
+		background-color: initial;
+	}
+	.nav-bar-search {
+		display: none;
+	}
 }
