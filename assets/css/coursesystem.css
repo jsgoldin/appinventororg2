@@ -2032,11 +2032,11 @@ footer a {
 
 /* Styling for search box in navbar */
 .nav-bar-search {
-	width: 400px;
+	width: 350px;
 	position: relative;
 	margin-top: 20px;
 	margin-left: 46px;
-	padding-right: 15px;
+	display: inline-block;
 }
 
 .nav-bar-search .glyphicon {
@@ -2363,6 +2363,15 @@ a.menu-item {
 	display: none;
 }
 
+@media ( min-width : 0px) and (max-width : 1360px) {
+	.nav-bar-search {
+		display: none;
+	}
+	.mega-menu-search-toggle {
+		display: inline-block;
+	}
+}
+
 /* mega menu collapsed mode */
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width : 1024px) {
@@ -2370,9 +2379,6 @@ a.menu-item {
 		display: none;
 	}
 	.mega-menu-collapse-toggle {
-		display: inline-block;
-	}
-	.mega-menu-search-toggle {
 		display: inline-block;
 	}
 	.mega-menu {
