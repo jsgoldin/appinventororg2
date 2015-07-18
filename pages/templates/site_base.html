@@ -111,6 +111,15 @@
 				            				            
 				        </ul>
 				    </nav>
+				    
+				    
+				    <div class="drop-down-search">
+						<form action="/siteSearch">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
+		          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
+						</form>		
+					</div>    		 
+				    		 
 				    		 
 			    
 			    	<div style="float: right; padding-right: 15px;">
@@ -134,20 +143,15 @@
 					</div>			 
 			
 		
-						<!-- {% if userStatus.isAccount %} 
-		           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-		           	    {{userStatus.account.displayName}}</a>
-		           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
-		           	    {% else %} 
-		           	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
-		           	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
-		           	    {% endif %} -->
-		           	    		
-		            
-		
-					
+					<!-- {% if userStatus.isAccount %} 
+	           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+	           	    {{userStatus.account.displayName}}</a>
+	           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
+	           	    {% else %} 
+	           	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
+	           	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
+	           	    {% endif %} -->
 
- 	    
 	    </div>  
 	</div>
 	
@@ -207,6 +211,7 @@
 			if($(this).hasClass("selected-item")) {
 				$(this).removeClass("selected-item");
 			} else {
+				$(".drop-down-search").removeClass("visible");
 				$(this).addClass("selected-item");
 			}
 		});
@@ -216,9 +221,26 @@
 			if ($(".mega-menu").hasClass("visible")) {
 				$(".mega-menu").removeClass("visible");
 			} else {
+				$(".drop-down-search").removeClass("visible");
 				$(".mega-menu").addClass("visible");
 			}
 		});
+		
+				
+		$(".mega-menu-search-toggle").click(function() {
+			if ($(".drop-down-search").hasClass("visible")) {
+				$(".drop-down-search").removeClass("visible");
+			} else {
+				$(".mega-menu").children("ul").children().removeClass("selected-item");
+				$(".mega-menu").removeClass("visible");
+				$(".drop-down-search").addClass("visible");
+			}
+		});
+		
+		
+
+		
+		
 		
 		
 	</script>

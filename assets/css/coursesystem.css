@@ -2363,6 +2363,19 @@ a.menu-item {
 	display: none;
 }
 
+.drop-down-search {
+	transition: height 0.5s;
+	height: 0px;
+	display: block;
+	top: 80px;
+	background-color: white;
+	width: 100%;
+	position: absolute;
+	z-index: 50000;
+	padding: 0 15px;
+	overflow: hidden;
+}
+
 @media ( min-width : 0px) and (max-width : 1360px) {
 	.nav-bar-search {
 		display: none;
@@ -2370,11 +2383,24 @@ a.menu-item {
 	.mega-menu-search-toggle {
 		display: inline-block;
 	}
+	.drop-down-search.visible {
+		height: 55px;
+	}
+	.drop-down-search form {
+		position: relative;
+		margin-top: 3px;
+	}
+	.drop-down-search span {
+		position: absolute;
+		top: 14px;
+		left: 16px;
+		font-size: 17px;
+	}
 }
 
 /* mega menu collapsed mode */
 /*  iPads and smaller (portrait and landscape) ----------- */
-@media ( min-width : 0px) and (max-width : 1024px) {
+@media ( min-width : 0px) and (max-width : 1120px) {
 	.login-btn {
 		display: none;
 	}
