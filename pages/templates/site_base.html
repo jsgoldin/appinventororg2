@@ -17,8 +17,6 @@
 
 <title>{{title}}</title>
 
-
-
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -37,121 +35,144 @@
 
 	<div class="header">
 		<div class="header-container">
+		
+			<a href="/">
+				<img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
+			</a>
+
+		    <nav class="mega-menu" id="mega-menu-drop-down">
+		        <ul>
+		            <li>
+		                <div class="header-item">
+		                	Learn
+		                	<i class="fa fa-angle-down"></i>
+		                </div>
+		                <div class="slideout-menu two-part-menu ">
+		                    <ul>
+		                    	{% for key, values in courseToModules %}
+		                    	
+		                    	{% if key != "How do you...?" %}               		
+		                        
+		                       
+		                        <li  {% if forloop.first %} class="selected-item" {% endif %}>
+		                        
+		                            <div class="menu-item">
+										{{key}} 
+										<i class="fa fa-angle-right"></i>		
+										<a href="{{values.0.1}}"></a>										
+									</div>
+									
+									
+									
+		                            <div class="sub-item-menu">
+									{% for v in values %}
+										<a href="{{v.1}}"class="menu-item">
+											{{v.0}}
+										</a>
+									{% endfor %}
+									</div>
+		                        </li>
+		                        {% endif %}
+		                        {% endfor %} 
+		                        <li>
+		                            <a href="/content/howDoYou" class="menu-item">
+										How do you...?
+									</a>
+		                            <div class="sub-item-menu">
+		                            	<div class="menu-item" style="text-align: center;">
+		                            		<i class="fa fa-cogs" style="font-size: 126px; margin: auto; display: block; margin-top: 20px; margin-bottom: 20px;"></i>                          	
+											Glossary of essential app building techniques.
+										</div>
+									</div>
+		                        </li>  			                        
+		                    </ul>
+		                </div>
+		            </li>
+		            <li>
+		                <a href="/teacherMap" class="header-item">
+		                	Teach		                
+		                </a>	
+		            </li>
+		            <li>
+		                <a href="/about" class="header-item">
+		                	About		                
+		                </a>				             
+		            </li>
+                          {% if userStatus.admin %}
+                     		<li>
+                     			<a href="/admin/dashboard" class="header-item">
+                     				Admin
+                     			</a>
+                     		</li> 
+                      	{% endif %}  
+		            				            
+		        </ul>
+		    </nav>
+		    
+		    <div id="drop-down-search" class="drop-down-search">
+				<form action="/siteSearch">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
+          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
+				</form>		
+			</div>    		 
+		    		 
+		    		 
+	    
+	    	<div class="header-menu-right-side">
+	    	
+<!--    						{% if userStatus.isAccount %} 
+					    <div class="profile-menu">
 				
-					<a href="/">
-						<img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
-					</a>
-					
-	
-				    <nav class="mega-menu">
-				        <ul>
-				            <li>
-				                <div class="header-item">
-				                	Learn
-				                	<i class="fa fa-angle-down"></i>
-				                </div>
-				                <div class="slideout-menu two-part-menu ">
-				                    <ul>
-				                    	{% for key, values in courseToModules %}
-				                    	
-				                    	{% if key != "How do you...?" %}               		
-				                        
-				                       
-				                        <li  {% if forloop.first %} class="selected-item" {% endif %}>
-				                        
-				                            <div class="menu-item">
-												{{key}} 
-												<i class="fa fa-angle-right"></i>		
-												<a href="{{values.0.1}}"></a>										
-											</div>
-											
-											
-											
-				                            <div class="sub-item-menu">
-											{% for v in values %}
-												<a href="{{v.1}}"class="menu-item">
-													{{v.0}}
-												</a>
-											{% endfor %}
-											</div>
-				                        </li>
-				                        {% endif %}
-				                        {% endfor %} 
-				                        <li>
-				                            <a href="/content/howDoYou" class="menu-item">
-												How do you...?
-											</a>
-				                            <div class="sub-item-menu">
-				                            	<div class="menu-item" style="text-align: center;">
-				                            		<i class="fa fa-cogs" style="font-size: 126px; margin: auto; display: block; margin-top: 20px; margin-bottom: 20px;"></i>                          	
-													Glossary of essential app building techniques.
-												</div>
-											</div>
-				                        </li>  			                        
-				                    </ul>
-				                </div>
-				            </li>
-				            <li>
-				                <a href="/teacherMap" class="header-item">
-				                	Teach		                
-				                </a>	
-				            </li>
-				            <li>
-				                <a href="/about" class="header-item">
-				                	About		                
-				                </a>				             
-				            </li>
-                            {% if userStatus.admin %}
-                       		<li>
-                       			<a href="/admin/dashboard" class="header-item">
-                       				Admin
-                       			</a>
-                       		</li> 
-                        	{% endif %}  
-				            				            
-				        </ul>
-				    </nav>
-				    
-				    
-				    <div class="drop-down-search">
-						<form action="/siteSearch">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
-		          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
-						</form>		
-					</div>    		 
-				    		 
-				    		 
-			    
-			    	<div style="float: right; padding-right: 15px;">
+			                <div class="header-item">
+			                 	<img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+			                	<span>{{userStatus.account.displayName}}</span>
+			                	<i class="fa fa-angle-down"></i>
+			                </div>
+				            <div class="slideout-menu">
+			                    <ul>	
+			                    	<li>
+				                    	<a href="#"class="menu-item">
+												hello
+										</a>
+			                    	</li>
+			                    </ul>
+		                   </div>
+		
+					    </div>        		
+		           		
+		           		<a class="header-item" id='profilenavbarbutton' href="/profile">
+		           	   </a>
+		           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
+		           	    
+		           	    {% else %} 
+		           	    
 				        <a href="/loginValidator" class="login-btn">
 		                	Login		                
 		                </a>	
-		
-						<div class="header-item mega-menu-search-toggle">
+		                
+		           	    {% endif %}  -->           	    
+           	    <ul>
+           	    	<li class="mega-menu-search-toggle">
+						<div class="header-item" data-target="drop-down-search">
 							<i class="fa fa-search"></i>
 						</div>
-						
+					</li>
+					
+					<li>
 						<form action="/siteSearch" class="nav-bar-search">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
 		          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
 						</form>		
-					
-						<div class="header-item mega-menu-collapse-toggle">
+					</li>
+				
+					<li class="mega-menu-collapse-toggle">
+						<div class="header-item" data-target="mega-menu-drop-down">
 							<i class="fa fa-bars"></i>
 						</div>	
-							 		
-					</div>			 
-			
-		
-					<!-- {% if userStatus.isAccount %} 
-	           		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-	           	    {{userStatus.account.displayName}}</a>
-	           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
-	           	    {% else %} 
-	           	    <a class="login-btn" href="{{userStatus.loginurl}}">Login</a> 
-	           	    <a class="signup-btn"  href="/loginValidator">Sign Up</a>
-	           	    {% endif %} -->
-
+					</li>
+				</ul>
+					 		
+			</div>			 
 	    </div>  
 	</div>
 	
@@ -197,44 +218,56 @@
 	<script>
 		// TODO: MOVE TO SEPERATE JS FILE
 		
+		
+		// hover and stay selected behavior on slideout menus
 		$(".mega-menu .slideout-menu > ul >li").hover(function() {
-			$(".mega-menu .slideout-menu > ul >li").removeClass("selected-item");
+			$(".mega-menu .slideout-menu > ul >li").not($(this)).removeClass("selected-item");
 			$(this).addClass("selected-item");
 		});
 		
-		$(".two-part-menu").parent().mouseenter(function() {
-			$(this).find("li").removeClass("selected-item");
-			$(this).find("li").first().addClass("selected-item");
-		});
 		
-		$(".two-part-menu").parent().click(function() {
-			if($(this).hasClass("selected-item")) {
-				$(this).removeClass("selected-item");
-			} else {
-				$(".drop-down-search").removeClass("visible");
-				$(this).addClass("selected-item");
-			}
-		});
+		$(".header-item").click(function() {
 		
-		
-		$(".mega-menu-collapse-toggle").click(function() {
-			if ($(".mega-menu").hasClass("visible")) {
-				$(".mega-menu").removeClass("visible");
-			} else {
-				$(".drop-down-search").removeClass("visible");
-				$(".mega-menu").addClass("visible");
-			}
-		});
-		
+			
+			
 				
-		$(".mega-menu-search-toggle").click(function() {
-			if ($(".drop-down-search").hasClass("visible")) {
-				$(".drop-down-search").removeClass("visible");
+			var parent = $(this).parent();
+			
+			
+			var maybeMegaMenu = parent.parent().parent();
+			
+			if (maybeMegaMenu.hasClass("mega-menu") && maybeMegaMenu.hasClass("visible") ) {
+				// item is in a drop down, only deselect other items in drop down
+				maybeMegaMenu.children("ul").children().not(parent).removeClass("selected-item");
 			} else {
-				$(".mega-menu").children("ul").children().removeClass("selected-item");
-				$(".mega-menu").removeClass("visible");
-				$(".drop-down-search").addClass("visible");
+				// remove all other selected items
+				$(".header-item").parent().not(parent).removeClass("selected-item");
+				
+				// hide all other linked drop down items
+				$("#" + $(".header-item[data-target]").not($(this)).attr("data-target")).removeClass("visible");
 			}
+			
+			
+			if (parent.hasClass("selected-item")) {
+				parent.removeClass("selected-item");
+			} else {
+				parent.addClass("selected-item");
+			}		
+			
+			var attr = $(this).attr("data-target");
+			if (typeof attr !== typeof undefined && attr !== false) {
+			    // header item is linked to a drop down,
+			    // make it visible
+			    
+			    if ($("#" + attr).hasClass("visible")) {
+			   		$("#" + attr).removeClass("visible");
+			    } else {
+			    	$("#" + attr).addClass("visible");
+			    }
+			    
+			} 
+				
+	
 		});
 		
 		

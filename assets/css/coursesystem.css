@@ -2230,6 +2230,18 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	transition: color 0.2s;
 }
 
+.profile-menu .header-item {
+	width: auto;
+}
+
+.profile-menu .header-item>span {
+	margin-left: 8px;
+}
+
+.profile-menu.selected-item>.slideout-menu {
+	height: 500px;
+}
+
 .login-btn {
 	background-color: #449EB3;
 	color: white;
@@ -2261,12 +2273,26 @@ Set width of left side of mega menu, must match the offset of the submenu contai
 	transition: max-height 0.5s;
 }
 
+.mega-menu.visible {
+	max-height: 500px;
+	overflow: hidden;
+}
+
 /* Gets rid of all default list styles */
-.mega-menu ul {
+.header ul {
 	list-style: none;
 	float: left;
 	padding: 0px;
 	margin: 0;
+}
+
+.header-menu-right-side {
+	float: right;
+	padding-right: 15px;
+}
+
+.header-menu-right-side li {
+	float: left;
 }
 
 .mega-menu>ul>li {
@@ -2376,6 +2402,28 @@ a.menu-item {
 	overflow: hidden;
 }
 
+.drop-down-search.visible {
+	height: 55px;
+}
+
+.drop-down-search form {
+	position: relative;
+	margin-top: 3px;
+}
+
+.drop-down-search span {
+	position: absolute;
+	top: 14px;
+	left: 16px;
+	font-size: 17px;
+}
+
+
+.selected-item > .header-item {
+	color: #A4CA39 !important;
+}
+
+
 @media ( min-width : 0px) and (max-width : 1360px) {
 	.nav-bar-search {
 		display: none;
@@ -2383,24 +2431,14 @@ a.menu-item {
 	.mega-menu-search-toggle {
 		display: inline-block;
 	}
-	.drop-down-search.visible {
-		height: 55px;
-	}
-	.drop-down-search form {
-		position: relative;
-		margin-top: 3px;
-	}
-	.drop-down-search span {
-		position: absolute;
-		top: 14px;
-		left: 16px;
-		font-size: 17px;
-	}
 }
 
 /* mega menu collapsed mode */
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width : 1120px) {
+	.header-item:hover {
+		color: initial;
+	}	
 	.login-btn {
 		display: none;
 	}
@@ -2409,10 +2447,6 @@ a.menu-item {
 	}
 	.mega-menu {
 		max-height: 0px;
-		overflow: hidden;
-	}
-	.mega-menu.visible {
-		max-height: 500px;
 		overflow: hidden;
 	}
 	.mega-menu>ul>li {
