@@ -254,6 +254,10 @@
     }
 
 
+    $(".slideout-menu > ul > li").click(function(e) {
+        e.stopPropagation();
+    });
+
     $(".header").click(function() {
         currentItem.parent().removeClass("selected-item");
         unexpandIfLinked(currentItem);
@@ -262,7 +266,6 @@
 
 
     $(".header-item").click(function (e) {
-
         e.stopPropagation();
 
         var newItem = $(this);
