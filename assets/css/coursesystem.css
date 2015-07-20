@@ -2296,6 +2296,7 @@ a.menu-item {
     z-index: 50000;
     padding: 0 15px;
     overflow: hidden;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.14);
 }
 
 .drop-down-search.visible {
