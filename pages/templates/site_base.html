@@ -1,281 +1,311 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="/assets/css/jbase.css">
-<link rel="stylesheet" href="http://www.google.com/cse/style/look/v2/default.css" type="text/css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/jbase.css">
+    <link rel="stylesheet" href="http://www.google.com/cse/style/look/v2/default.css" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
-{% for stylesheet in stylesheets %}
-<link rel='stylesheet' type='text/css' href='{{stylesheet}}'>
-{% endfor %}
+    {% for stylesheet in stylesheets %}
+    <link rel='stylesheet' type='text/css' href='{{stylesheet}}'>
+    {% endfor %}
 
-<title>{{title}}</title>
+    <title>{{title}}</title>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-684961-4', 'auto');
-  ga('send', 'pageview');
+        ga('create', 'UA-684961-4', 'auto');
+        ga('send', 'pageview');
 
-</script>
+    </script>
 
 </head>
 <body>
 
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 
-	<div class="header">
-		<div class="header-container">
-		
-			<a href="/">
-				<img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
-			</a>
+<div class="header">
+    <div class="header-container">
 
-		    <nav class="mega-menu" id="mega-menu-drop-down">
-		        <ul>
-		            <li>
-		                <div class="header-item">
-		                	Learn
-		                	<i class="fa fa-angle-down"></i>
-		                </div>
-		                <div class="slideout-menu two-part-menu ">
-		                    <ul>
-		                    	{% for key, values in courseToModules %}
-		                    	
-		                    	{% if key != "How do you...?" %}               		
-		                        
-		                       
-		                        <li  {% if forloop.first %} class="selected-item" {% endif %}>
-		                        
-		                            <div class="menu-item">
-										{{key}} 
-										<i class="fa fa-angle-right"></i>								
-									</div>
-									
-									
-									
-		                            <div class="sub-item-menu">
-									{% for v in values %}
-										<a href="{{v.1}}"class="menu-item">
-											{{v.0}}
-										</a>
-									{% endfor %}
-									</div>
-		                        </li>
-		                        {% endif %}
-		                        {% endfor %} 
-		                        <li>
-		                            <a href="/content/howDoYou" class="menu-item">
-										How do you...?
-									</a>
-		                            <div class="sub-item-menu">
-		                            	<div class="menu-item" style="text-align: center;">
-		                            		<i class="fa fa-cogs" style="font-size: 126px; margin: auto; display: block; margin-top: 20px; margin-bottom: 20px;"></i>                          	
-											Glossary of essential app building techniques.
-										</div>
-									</div>
-		                        </li>  			                        
-		                    </ul>
-		                </div>
-		            </li>
-		            <li>
-		                <a href="/teacherMap" class="header-item">
-		                	Teach		                
-		                </a>	
-		            </li>
-		            <li>
-		                <a href="/about" class="header-item">
-		                	About		                
-		                </a>				             
-		            </li>
-                          {% if userStatus.admin %}
-                     		<li>
-                     			<a href="/admin/dashboard" class="header-item">
-                     				Admin
-                     			</a>
-                     		</li> 
-                      	{% endif %}  
-		            				            
-		        </ul>
-		    </nav>
-		    
-		    <div id="drop-down-search" class="drop-down-search">
-				<form action="/siteSearch">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
-          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
-				</form>		
-			</div>    		 
-		    		 
-		    		 
-	    
-	    	<div class="header-menu-right-side">
-	    	
-<!--    						{% if userStatus.isAccount %} 
-					    <div class="profile-menu">
-				
-			                <div class="header-item">
-			                 	<img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
-			                	<span>{{userStatus.account.displayName}}</span>
-			                	<i class="fa fa-angle-down"></i>
-			                </div>
-				            <div class="slideout-menu">
-			                    <ul>	
-			                    	<li>
-				                    	<a href="#"class="menu-item">
-												hello
-										</a>
-			                    	</li>
-			                    </ul>
-		                   </div>
-		
-					    </div>        		
-		           		
-		           		<a class="header-item" id='profilenavbarbutton' href="/profile">
-		           	   </a>
-		           	    <a href="{{userStatus.logouturl}}"">Logout</a> 
-		           	    
-		           	    {% else %} 
-		           	    
-				        <a href="/loginValidator" class="login-btn">
-		                	Login		                
-		                </a>	
-		                
-		           	    {% endif %}  -->           	    
-           	    <ul>
-           	    	<li class="mega-menu-search-toggle">
-						<div class="header-item" data-target="drop-down-search">
-							<i class="fa fa-search"></i>
-						</div>
-					</li>
-					
-					<li>
-						<form action="/siteSearch" class="nav-bar-search">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>			
-		          			<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">            							
-						</form>		
-					</li>
-				
-					<li class="mega-menu-collapse-toggle">
-						<div class="header-item" data-target="mega-menu-drop-down">
-							<i class="fa fa-bars"></i>
-						</div>	
-					</li>
-				</ul>
-					 		
-			</div>			 
-	    </div>  
-	</div>
-	
-	
-	
+        <a href="/">
+            <img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
+        </a>
 
-	<div class="body-wrapper">
-    {% block body %} 
-    
-    {% endblock %} 
+        <nav class="mega-menu" id="mega-menu-drop-down">
+            <ul>
+                <li>
+                    <div class="header-item">
+                        Learn
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="slideout-menu two-part-menu ">
+                        <ul>
+                            {% for key, values in courseToModules %}
+
+                            {% if key != "How do you...?" %}
+
+
+                            <li {% if forloop.first %} class="selected-item" {% endif %}>
+
+                                <div class="menu-item">
+                                    {{key}}
+                                    <i class="fa fa-angle-right"></i>
+                                </div>
+
+
+                                <div class="sub-item-menu">
+                                    {% for v in values %}
+                                    <a href="{{v.1}}" class="menu-item">
+                                        {{v.0}}
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                            <li>
+                                <a href="/content/howDoYou" class="menu-item">
+                                    How do you...?
+                                </a>
+
+                                <div class="sub-item-menu">
+                                    <div class="menu-item" style="text-align: center;">
+                                        <i class="fa fa-cogs"
+                                           style="font-size: 126px; margin: auto; display: block; margin-top: 20px; margin-bottom: 20px;"></i>
+                                        Glossary of essential app building techniques.
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="/teacherMap" class="header-item">
+                        Teach
+                    </a>
+                </li>
+                <li>
+                    <a href="/about" class="header-item">
+                        About
+                    </a>
+                </li>
+                {% if userStatus.admin %}
+                <li>
+                    <a href="/admin/dashboard" class="header-item">
+                        Admin
+                    </a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+        <div id="drop-down-search" class="drop-down-search">
+            <form action="/siteSearch">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                <input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">
+            </form>
+        </div>
+
+
+        <div class="header-menu-right-side">
+
+            {% if userStatus.isAccount %}
+            <div class="profile-menu">
+                <div class="header-item">
+                    <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+                    <span>{{userStatus.account.displayName}}</span>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="slideout-menu">
+                    <ul>
+                        <li>
+                            <a class="menu-item" href="/profile">Profile</a>
+                        </li>
+                        <li>
+                            <a class="menu-item" href="{{userStatus.logouturl}}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {% else %}
+
+            <a href="/loginValidator" class="login-btn">
+                Login
+            </a>
+
+            {% endif %}
+
+
+            <ul>
+                <li>
+                    <form action="/siteSearch" class="nav-bar-search">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        <input class="form-control search-form" name="q" type="text"
+                               placeholder="Search Appinventor.org">
+                    </form>
+                </li>
+
+                <li class="mega-menu-collapse-toggle">
+                    <div class="header-item" data-target="mega-menu-drop-down">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </li>
+                <li class="mega-menu-search-toggle">
+                    <div class="header-item" data-target="drop-down-search">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
     </div>
-    
-    
-    <footer>
-    	<div class='gen-container'>
-    		<p class='footer-copyright'>AppInventor.org by David Wolber is licensed under an Attribution-NonCommercial-ShareAlike 3.0 Unported License. </p>
-    	</div>
-    </footer>
-    
-    
-    {% for script in scripts %}
-    <script type="text/javascript" src="{{script}}"></script>
-    {% endfor %}
+</div>
 
-    <script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
-    
-    <!-- Google custom search  -->	
-	<script>
-	  (function() {
-	    var cx = '008494446149806911917:dtcoh6mydd8';
-	    var gcse = document.createElement('script');
-	    gcse.type = 'text/javascript';
-	    gcse.async = true;
-	    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-	        '//www.google.com/cse/cse.js?cx=' + cx;
-	    var s = document.getElementsByTagName('script')[0];
-	    s.parentNode.insertBefore(gcse, s);
-	  })();
-	</script>
-	
-	
-	
-	<script>
-		// TODO: MOVE TO SEPERATE JS FILE
-		
-		
-		// hover and stay selected behavior on slideout menus
-		$(".mega-menu .slideout-menu > ul >li").hover(function() {
-			$(".mega-menu .slideout-menu > ul >li").not($(this)).removeClass("selected-item");
-			$(this).addClass("selected-item");
-		});
-		
-		
-		$(".header-item").click(function() {
-		
-			var parent = $(this).parent();
-			
-			var maybeMegaMenu = parent.parent().parent();
-			
-			if (maybeMegaMenu.hasClass("mega-menu") && maybeMegaMenu.hasClass("visible") ) {
-				// item is in a drop down, only deselect other items in drop down
-				maybeMegaMenu.children("ul").children().not(parent).removeClass("selected-item");
-			} else {
-				// remove all other selected items
-				$(".header-item").parent().not(parent).removeClass("selected-item");
-				
-				// hide all other linked drop down items
-				$("#" + $(".header-item[data-target]").not($(this)).attr("data-target")).removeClass("visible");
-			}
-			
-			
-			if (parent.hasClass("selected-item")) {
-				parent.removeClass("selected-item");
-			} else {
-				parent.addClass("selected-item");
-			}		
-			
-			var attr = $(this).attr("data-target");
-			if (typeof attr !== typeof undefined && attr !== false) {
-			    // header item is linked to a drop down,
-			    // make it visible
-			    
-			    if ($("#" + attr).hasClass("visible")) {
-			   		$("#" + attr).removeClass("visible");
-			    } else {
-			    	$("#" + attr).addClass("visible");
-			    }
-			    
-			} 
-				
-	
-		});
-		
-		
 
-		
-		
-		
-		
-	</script>
-	
-	
+<div class="body-wrapper">
+    {% block body %}
 
-	
-    
+    {% endblock %}
+</div>
+
+
+<footer>
+    <div class='gen-container'>
+        <p class='footer-copyright'>AppInventor.org by David Wolber is licensed under an
+            Attribution-NonCommercial-ShareAlike 3.0 Unported License. </p>
+    </div>
+</footer>
+
+
+{% for script in scripts %}
+<script type="text/javascript" src="{{script}}"></script>
+{% endfor %}
+
+<script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
+
+<!-- Google custom search  -->
+<script>
+    (function () {
+        var cx = '008494446149806911917:dtcoh6mydd8';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+    })();
+</script>
+
+
+<script>
+    // TODO: MOVE TO SEPERATE JS FILE
+
+
+    /* Contains jquery object of currently expanded menu item. If no menu item is expanded currentItem is null. */
+    var currentItem = null;
+
+    var curMegaMenuItem = null;
+
+
+    function expandIfLinked(item) {
+        var attr = item.attr("data-target");
+
+        if (typeof attr !== typeof undefined && attr !== false) {
+            // header item is linked to a drop down,
+            // make it invisible
+
+            $("#" + attr).addClass("visible");
+        }
+    }
+
+    function unexpandIfLinked(item) {
+        var attr = item.attr("data-target");
+
+
+        if (typeof attr !== typeof undefined && attr !== false) {
+            // header item is linked to a drop down,
+            // make it invisible
+
+            var itemToCollapse = $("#" + attr);
+
+
+            itemToCollapse.removeClass("visible");
+
+            // reset children
+            itemToCollapse.children("ul").children(".selected-item").removeClass("selected-item");
+        }
+    }
+
+    $(".header-item").click(function () {
+
+        var newItem = $(this);
+        var newParent = newItem.parent();
+
+
+        var maybeMegaMenu = newParent.parent().parent();
+
+        if (maybeMegaMenu.hasClass("mega-menu") && maybeMegaMenu.hasClass("visible")) {
+            if (curMegaMenuItem == null) {
+                newParent.addClass("selected-item");
+                curMegaMenuItem = newItem;
+            } else if (newItem.is(curMegaMenuItem)) {
+                newParent.removeClass("selected-item");
+                curMegaMenuItem = null;
+            }
+        } else {
+            if (currentItem == null) {
+                // nothing was open
+                newParent.addClass("selected-item");
+                currentItem = newItem;
+                expandIfLinked(currentItem);
+            } else if (newItem.is(currentItem)) {
+                // clicked on current item to close current item
+                newParent.removeClass("selected-item");
+                unexpandIfLinked(currentItem);
+                currentItem = null;
+            } else {
+                // item was already expanded when new item was clicked
+                // item was open, clicked on another
+                currentItem.parent().removeClass("selected-item");
+                unexpandIfLinked(currentItem);
+
+                newItem.parent().addClass("selected-item");
+                currentItem = newItem;
+                expandIfLinked(currentItem);
+            }
+        }
+    });
+
+
+    // hover and stay selected behavior on mega-menus menus
+    $(".mega-menu .slideout-menu > ul >li").hover(function () {
+        $(".mega-menu .slideout-menu > ul >li").not($(this)).removeClass("selected-item");
+        $(this).addClass("selected-item");
+    });
+
+
+</script>
+
+
 </body>
 </html>
