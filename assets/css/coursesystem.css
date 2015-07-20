@@ -2285,12 +2285,10 @@ Set width of left side of mega menu, must match the offset of the submenu contai
     float: left;
 }
 
-/*
-
 .header-item:hover {
 	color: #A4CA39;
 }
-*/
+
 
 /* Prevent users from highlighting items in the menu  */
 .mega-menu {
