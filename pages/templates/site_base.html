@@ -253,7 +253,17 @@
         }
     }
 
-    $(".header-item").click(function () {
+
+    $(".header").click(function() {
+        currentItem.parent().removeClass("selected-item");
+        unexpandIfLinked(currentItem);
+        currentItem = null;
+    });
+
+
+    $(".header-item").click(function (e) {
+
+        e.stopPropagation();
 
         var newItem = $(this);
         var newParent = newItem.parent();
@@ -292,7 +302,6 @@
             }
         }
     });
-
 
     // hover and stay selected behavior on mega-menus menus
     $(".mega-menu .slideout-menu > ul >li").hover(function () {
