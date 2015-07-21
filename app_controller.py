@@ -3387,6 +3387,22 @@ class RememberThingsHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/howAppsRememberThings.html')
         self.response.out.write(template.render(path, template_values)) 
+class PaintPotTextHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/paintPotText.html')
+        self.response.out.write(template.render(path, template_values)) 
 # LESSON PLANS
 
 class LPIntroHandler(webapp.RequestHandler):
@@ -6752,7 +6768,8 @@ application = webapp.WSGIApplication(
         ('/canvasProperties', CanvasPropertiesHandler),
         ('/canvasComponentNugget', CanvasComponentNuggetHandler),
         ('/VariablesCirclesNugget', VariablesCirclesNuggetHandler ),
-        ('/rememberThings', RememberThingsHandler)
+        ('/rememberThings', RememberThingsHandler),
+        ('/paintPotText', PaintPotTextHandler)
         
         
     ],
