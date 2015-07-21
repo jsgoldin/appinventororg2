@@ -1982,3 +1982,24 @@ footer a {
 	margin: auto;
 	-webkit-transition: .1s background-color ease-in-out;
 }
+.center-img {
+	display: block;
+	margin: auto;}
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #329796;
+}
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}

@@ -1,26 +1,64 @@
-{% extends "howdoyouTemplate.html" %}
+<link rel="stylesheet" type="text/css"
+	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+<div class="dark-blue-title">
+	<div class="course-page-container">
+		<h1>What is a Variable?</h1>
+	</div>
 
-{% block title %} Variables: How does an app remember things?{% endblock %}
-{% block description %}  An app remembers things, it has “hidden” memory. Think of it like a spreadsheet of data in the app’s private “brain”. You, the programmer, control the memory. When you drag a component (e.g.,
-    button, text box) into your app, each of the components has a set of <em>properties</em>. These properties are “spreadsheet” cells that you can change. You can also define new “spreadsheet” cells
-    called <em>variables</em> when you need to remember something. You define a variable when there isn’t a 
-    component property for storing the information you need. Check out these examples of using
-    variables to remember things:
-{% endblock %}
-{% block question %} Example 1. How do you make it so that each time the user clicks a larger circle is drawn? {% endblock %}
-{% block answer %}
-<p>
-            When <span class="empfont">Canvas1</span> is touched, <span class="empfont">DrawCircle</span> is called to draw a circle at the touch location (<span class="empfont">x</span> and <span
-                class="empfont">y</span>). The radius <span class="empfont">r</span> cannot be a fixed number as we want a different-sized circle each time. The variable <span class="empfont">circleSize</span>
-            is used to keep track of-- to remember-- the size of the circles each time we draw one. <span class="empfont">circleSize</span> is initialized to 1 so the first circle drawn is a small
-            dot. At the bottom of each <span class="empfont">Canvas1.Touched</span> event handler, <span class="empfont">circleSize</span> is doubled. So the second time the circle will be of radius
-            2, then 4, then 8, etc. The variable <span class="empfont">circleSize</span> is needed because there is no component property that can be used. The component <span class="empfont">Canvas</span>
-            has a <span class="empfont">lineWidth</span> property, so if you were drawing lines you wouldn’t need to define a variable. But <span class="empfont">Canvas</span> doesn’t have a <span
-                class="empfont">circleSize </span> property, so you must define it as a variable.
-        </p>{% endblock %}
+</div>
+<div class="course-page-container">
+	<div class="row row-centered">
+	
+			<div class="col-md-8 col-centered" style="height: 40%;">
+				<iframe width="100%" height="315"
+					src="https://www.youtube.com/embed/tHYis-DP0oU" frameborder="0"
+					allowfullscreen></iframe>
+			</div>
+		</div>
+	
+	<div class="card">
+		<h4>A <u>variable</u> labels (or names) a piece of text, a list, or a
+			number and can be changed in different places and different times.<br>
+			Like in the video&apos;s example, the variable Tips stood for however
+			much has been made in tips and he uses the tips variable to find out
+			how much was made during a particular hour.</h4>
+			<br><hr>
+			<h4>In coding, you define a variable when you need to remember a number, 
+			text, and&#47;or when there isn&apos;t a component property for storing the information you need.
+			A great example of this come from making the PaintPot app, when you need to control the size of a circle drawn by the user.</h4>
+	</div>
+	
+	<div class="card">
+		<h2>Challenge</h2>
+		<h4>Make it so that each time the user clicks a circle double the previous circle size is drawn.</h4>
+	</div>
+	
+	<div class="quiz-panel-outer">
 
-{% block answerImage %} "/assets/img/variables/circleSize.png" {% endblock %}
-{% block answerVideo %} "//www.youtube.com/embed/So55ML_y_S8" {% endblock %}
-		{% block otherExampleLink %} <a href="/content/howDoYou/Conditionals/backForth">example 2</a> {% endblock %}
 
+		<div class="quiz-panel-inner">
+			<div id="q3a" class="collapse">
+				<p>A component that allows you to draw on it and and move
+					objects on it (animate)</p>
 
+			</div>
+			<a type="button" href="#q3a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q3b" name="q3b">Need Help?</a>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-6">
+		<a href="/canvasProperties">
+			<img width="100%" alt="" src="/images/icons/prevButton.png">
+			</a>
+		</div>
+		<div class="col-sm-6">
+		<a href="/paintpot2-steps">
+			<img width="100%" alt="" src="/images/icons/nextButton.png">
+			</a>
+		</div>
+	</div>
+	<br>
+
+</div>

@@ -3312,14 +3312,81 @@ class UserGeneratedDataHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, {}))
         
 class IntroDrawingHandler(webapp.RequestHandler):
-    def get(self, *args):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introDrawingAnimation.html')
-        self.response.out.write(template.render(path, {}))
+        self.response.out.write(template.render(path, template_values))  
 class CarouselTestHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/carousel2.html')
         self.response.out.write(template.render(path, {}))
+class CanvasComponentHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
         
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/canvasComponent.html')
+        self.response.out.write(template.render(path, template_values))  
+class CanvasPropertiesHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/canvasProperties.html')
+        self.response.out.write(template.render(path, template_values)) 
+class CanvasComponentNuggetHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/canvasComponent.html')
+        self.response.out.write(template.render(path, {})) 
+class VariablesCirclesNuggetHandler(webapp.RequestHandler):
+    def get(self, *args):
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables-circles.html')
+        self.response.out.write(template.render(path, {})) 
+class RememberThingsHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/howAppsRememberThings.html')
+        self.response.out.write(template.render(path, template_values)) 
 # LESSON PLANS
 
 class LPIntroHandler(webapp.RequestHandler):
@@ -6680,7 +6747,12 @@ application = webapp.WSGIApplication(
         
         #handler for intro drawing ani games module
         ('/introdrawing', IntroDrawingHandler),
-        ('/carouseltest', CarouselTestHandler)
+        ('/carouseltest', CarouselTestHandler),
+        ('/canvasComponent', CanvasComponentHandler),
+        ('/canvasProperties', CanvasPropertiesHandler),
+        ('/canvasComponentNugget', CanvasComponentNuggetHandler),
+        ('/VariablesCirclesNugget', VariablesCirclesNuggetHandler ),
+        ('/rememberThings', RememberThingsHandler)
         
         
     ],
