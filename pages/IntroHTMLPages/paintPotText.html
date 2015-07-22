@@ -1,54 +1,274 @@
 <head>
 <meta charset="UTF-8">
 </head>
-<div class="dark-blue-title">
+<link rel="stylesheet" type="text/css"
+	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+	
+<style>
+.card .collapse{
+	font-style: italic;
+}
+.quiz-panel-outer {
+  padding: 0% 2% 2% 2%;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  background-color: #2b8c90;
+  border: 1px solid #2B8C90;
+}
+.totop {
+    position:fixed;
+    bottom:0;
+    right:0;
+    z-index:100;
+}
+</style>
+<a href="#top">
+<img width ="10%" class="totop img-responsive" src="/images/CourseInABoxImages/topButton.png"></a>
+
+<div  id="top" class="dark-blue-title">
 	<div class="course-page-container">
 		<h1>Paint Pot Text Tutorial (Optional)</h1>
 	</div>
 </div>
 
 <div class="course-page-container">
-	<div class="card">
-	<h1>Figuring out the Components</h1>
-	<h4>Just by looking at the tasks which components do you think will be needed to complete this app?
-Buttons, labels, sliders or text boxes, canvas.</h4>
-		<img class="img-responsive center-img" 
-		alt="" src="/images/CourseInABoxImages/img00_PPT.png">
+	<div  class="card">
+		<h1>Tasks</h1>
+		<h4>Create a drawing app where:</h4>
+		<ul>
+			<li>Beginner Coding</li>
+			<ol>
+				<li><a href="#settingUp">Setting Up</a></li>
+				<li><a href="#understanding">Understanding Canvas Component</a></li>
+				<li><a href="#dragtouch">Dragging and Touching</a></li>
+				<li>Touching causes dots to be drawn</li>
+				<li>The user can choose the color to draw in (at least 3).</li>
+				<li>Allow the user to clear the screen of any drawings</li>
+				<li>The user can take a picture and make the taken picture be
+					the background image of the Canvas.</li>
+			</ol>
+			<li>Advanced Coding</li>
+			<ol>
+				<li>Line size can be controlled by the user</li>
+				<li>dot size can be controlled by the user</li>
+				<li>The user must be able know which color they are drawing
+					with.</li>
+			</ol>
+		</ul>
+
 	</div>
-	
-	<div class="card">
-	<h1>Getting the Components</h1>
-	<h4>Now that we know which components we need, we need to drag them in and rename them and get them to look just how we want.</h4>
-	<hr>
-	<h4>Start by dragging in your canvas component. 
-Notice that it starts out very small, How are you going to be able to draw something on that 
-small? Lets change its width property to fill parent (or however big the screen is) and make the height 300 pixels. </h4>
-<img class="img-responsive center-img" 
-		alt="" src="/images/CourseInABoxImages/img01_PPT.png">
+	<div class="card" id="settingUp">
+		<h1>Setting Up</h1>
+		<h4>Just by looking at the tasks which components do you think
+			will be needed to complete this app? Buttons, labels, sliders or text
+			boxes, canvas.</h4>
+		<img class="img-responsive center-img" alt=""
+			src="/images/CourseInABoxImages/img00_PPT.png">
+			<br><hr>
+		<h2>Getting the Components</h2>
+		<h4>Now that we know which components we need, we need to drag
+			them in and rename them and get them to look just how we want.</h4>
+		<br>
+		<h4>Start by dragging in your canvas component. Notice that it
+			starts out very small, How are you going to be able to draw something
+			on that small? Lets change its width property to fill parent (or
+			however big the screen is) and make the height 300 pixels.</h4>
+		<img class="img-responsive center-img" alt=""
+			src="/images/CourseInABoxImages/img01_PPT.png">
 		<hr>
-		<h4>Then drag in you buttons. Remember to change their text and to rename each component to what they do. For example: Rename Button1 to RedButton. Rename Button3 to TakePictureButton.
-Be sure to use Horizontal Arrangement component under the Layout Tab to get things next to each other.
-Save a version as before you move on. </h4>
+		<h4>Then drag in you buttons. Remember to change their text and
+			to rename each component to what they do. For example: Rename Button1
+			to RedButton. Rename Button3 to TakePictureButton. Be sure to use
+			Horizontal Arrangement component under the Layout Tab to get things
+			next to each other. Save a version as before you move on.</h4>
 
-	<div class="row">
-		<div class="col-md-6">
-		<img class="img-responsive center-img" 
-		alt="" src="/images/CourseInABoxImages/img02_PPT.png">
-		
+		<div class="row">
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt=""
+					src="/images/CourseInABoxImages/img02_PPT.png">
+
+			</div>
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt=""
+					src="/images/CourseInABoxImages/img00_PPT.png">
+			</div>
 		</div>
-		<div class="col-md-6">
-			<img class="img-responsive center-img" 
-		alt="" src="/images/CourseInABoxImages/img00_PPT.png">
-		</div>
+
+
+
+
+
 	</div>
 
 
+	<div class="card" id="understanding">
+		<h1>
+			Understanding Canvas Component:<br> Function Calls
+		</h1>
+
+		<h4>For each Canvas Function Call Block, What do you think it
+			does and what do you think should go into the empty spaces?</h4>
+		<br>
+		
+		<div class="row">
 
 
+			<div class="col-md-6">
+			<hr style="border-top: 4px solid #329796;">
+				<img width="100%" alt=""
+					src="/images/CourseInABoxImages/PP_drawpoint.png">
+				<hr>
+				<h4>What it does?</h4>
+				<p class="collapse q2a">Draws a point at the given coordinates on the canvas.</p>
+				<hr>
+				<h4>What should go in the empty spaces?</h4>
+
+				<h4>X-</h4>
+				<p class="collapse q2a">The X position on the canvas that where it should be drawn.</p>
+				<br>
+				<h4>Y-</h4>
+				<p class="collapse q2a">The Y position on the canvas that where it should be drawn.</p>
+				
+			</div>
+
+			<div class="col-md-6">
+			<hr style="border-top: 4px solid #329796;">
+				<img width="80%" alt=""
+					src="/images/CourseInABoxImages/PP_drawText.png">
+				<hr>
+				<h4>What it does?</h4>
+				<p class="collapse q2a">Draws the specified text relative to the specified coordinates using the
+				 values of the FontSize and TextAlignment properties.</p>
+
+
+				<hr>
+				<h4>What should go in the empty spaces?</h4>
+
+
+				<h4>Text-</h4>
+				<p class="collapse q2a">The text that should be displayed.</p>
+				
+				<h4>X-</h4>
+				<p class="collapse q2a">The X position on the canvas that where it should be drawn.</p>
+				<h4>Y-</h4>
+				<p class="collapse q2a">The Y position on the canvas that where it should be drawn.</p>
+				
+			</div>
+
+
+			<div class="col-md-6">
+			<hr style="border-top: 4px solid #329796;">
+				<img width="100%" alt=""
+					src="/images/CourseInABoxImages/PP_drawCircle.png">
+
+				<hr>
+				<h4>What it does?</h4>
+				<p class="collapse q2a">Draws a circle (filled in) at the given coordinates on the canvas, with the given radius.</p>
+				<hr>
+				
+				<h4>What should go in the empty spaces?</h4>
+				<h4>X-</h4>
+				<p class="collapse q2a">The X position on the canvas where the center of the circle should be drawn.</p>
+				
+				<h4>Y-</h4>
+				<p class="collapse q2a">The Y position on the canvas where the center of the circle should be drawn.</p>
+				<h4>Radius-</h4>
+				<p class="collapse q2a">The size of the circle, in pixels, from the center to the edge of the circle.</p>
+				
+			</div>
+
+			<div class="col-md-6">
+			<hr style="border-top: 4px solid #329796;">
+				<img width="70%" alt=""
+					src="/images/CourseInABoxImages/PP_drawLine.png">
+
+				<hr>
+				<h4>What it does?</h4>
+				
+				<hr>
+				<h4>What should go in the empty spaces?</h4>
+				<h4>X1-</h4>
+				<p class="collapse q2a">The previous X position.</p>
+				
+				<h4>Y1-</h4>
+				<p class="collapse q2a">The previous Y position.</p>
+				<h4>X2-</h4>
+				<p class="collapse q2a">The current X position.</p>
+				<h4>Y2-</h4>
+				<p class="collapse q2a">The current Y position.</p>
+				
+		
+			</div>
+		</div>
+		<div class="quiz-panel-inner center-img" style="width:50%;">
+		<a type="button" href=".q2a" data-toggle="collapse"
+			onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answers</a>
+
+	</div>
 
 	</div>
 	
+	<br>
+	<div class="card" id="dragtouch">
+		<h1>Drag to Draw, Touch to Circle</h1>
+		<h3>By looking at the following event handlers:</h3>
+		<img class="img-responsive" src="/images/CourseInABoxImages/PP_eventH.png">
 
+		<h4>Which Event Handler do you think should be used for Drawing a Line?</h4>
+		<img class="collapse q1a img-responsive" src="/images/CourseInABoxImages/PP_DrawLine2.png">
+		<h4>Which Event Handler do you think should be used for Drawing a Circle?</h4>
+		<img class="collapse q1a img-responsive" src="/images/CourseInABoxImages/PP_TouchedCircle.png">
+
+		<div class="quiz-panel-inner center-img" style="width:50%;">
+		<a type="button" href=".q1a" data-toggle="collapse"
+			onclick="showHideToggle(id)" id="q1b" name="q1b">Show Answers</a>
+
+	</div>
+	</div>
+	<div class="card">
+		<h1>Now You Try:</h1>
+		<ul>
+			<li><h4>Code the drawing of lines when the canvas is dragged</h4></li>
+			<li><h4>Code the drawing of circles when the canvas is touched</h4></li>
+		</ul>	
+
+		<h2>Remember</h2>
+		<h4>For example when the user touches the canvas, the app should...</h4>
+	</div>
+
+	<div class="quiz-panel-outer">
+
+
+		<div  style="  border: 0px solid #87ABB2;" class="quiz-panel-inner">
+			<div id="q3a" class="collapse">
+				<h2>Hint:</h2>
+				<h4>We want a circle to be drawn at the point the user touched.</h4>
+						
+							<h4>We want a line to be drawn when the canvas is dragged </h4>
+							<ul>
+								<li>Think about it, When you draw a line there is the spot you started and the spot you ended</li>
+								<li>So, you are drawing  from the previous point to the current point.</li>
+							</ul>
+				<img src="/images/CourseInABoxImages/PP_helpcopy.png">
+				<div class="quiz-panel-outer">
+
+
+					<div class="quiz-panel-inner">
+						<div id="q2a" class="collapse">
+							<img src="/images/CourseInABoxImages/PP_answer.png">
+
+						</div>
+						<a type="button" href="#q2a" data-toggle="collapse"
+							onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
+					</div>
+				</div>
+			</div>
+			<a type="button" href="#q3a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q3b" name="q3b">Need Help?</a>
+		</div>
+	</div>
 
 
 </div>
