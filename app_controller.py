@@ -3208,9 +3208,22 @@ class LessonPlan12Handler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/Lessonplan12.html')
         self.response.out.write(template.render(path, {}))
 class CCPaintPotHandler(webapp.RequestHandler):
-    def get(self, *args):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/conceptCustomizePaintPot.html')
-        self.response.out.write(template.render(path, {}))
+        self.response.out.write(template.render(path, template_values)) 
+    
 class IncrementingTimingWSHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/incrementingTimingWorksheet.html')
@@ -3247,9 +3260,21 @@ class WhereAmIAppHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/whereamiapp.html')
         self.response.out.write(template.render(path, {}))
 class ConceptCustomizeWSHandler(webapp.RequestHandler):
-    def get(self, *args):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/ConceptualizeCustomizeTextingWS.html')
-        self.response.out.write(template.render(path, {}))
+        self.response.out.write(template.render(path, template_values)) 
 class LocationWSHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/LocationWorksheetCC.html')
@@ -3402,6 +3427,23 @@ class PaintPotTextHandler(webapp.RequestHandler):
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/paintPotText.html')
+        self.response.out.write(template.render(path, template_values)) 
+        
+class HowGamesWorkHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/howGamesWork.html')
         self.response.out.write(template.render(path, template_values)) 
 # LESSON PLANS
 
@@ -6769,7 +6811,8 @@ application = webapp.WSGIApplication(
         ('/canvasComponentNugget', CanvasComponentNuggetHandler),
         ('/VariablesCirclesNugget', VariablesCirclesNuggetHandler ),
         ('/rememberThings', RememberThingsHandler),
-        ('/paintPotText', PaintPotTextHandler)
+        ('/paintPotText', PaintPotTextHandler),
+        ('/howGamesWork', HowGamesWorkHandler)
         
         
     ],
