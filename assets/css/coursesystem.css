@@ -2236,6 +2236,7 @@ a.menu-item {
 	position: absolute;
 	top: 0px;
 	left: 0px;
+	display: none;
 }
 
 .slideout-menu.two-part-menu>ul>li>.menu-item>i {
@@ -2306,9 +2307,23 @@ a.menu-item {
 	}
 }
 
+@media ( min-width : 0px) and (max-width: 600px) {
+	.banner-logo {
+		width: 210px;
+		padding-top: 26px;
+		margin-right: 0px;
+	}
+	.header-item {
+		width: 46px;
+	}
+}
+
 /* mega menu collapsed mode */
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width: 1120px) {
+	.menu-item a {
+		display: inline-block;
+	}
 	.header-item:hover {
 		color: #555;
 	}
