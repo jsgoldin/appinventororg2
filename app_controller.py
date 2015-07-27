@@ -3477,6 +3477,24 @@ class TimerEventHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/timerevent.html')
         self.response.out.write(template.render(path, template_values))
+        
+        
+class MoleMashTextHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/molemashtext.html')
+        self.response.out.write(template.render(path, template_values))
 # LESSON PLANS
 
 class LPIntroHandler(webapp.RequestHandler):
@@ -6846,7 +6864,8 @@ application = webapp.WSGIApplication(
         ('/paintPotText', PaintPotTextHandler),
         ('/howGamesWork', HowGamesWorkHandler),
         ('/incrementingws', IncrementingWSHandler),
-        ('/timerEvent', TimerEventHandler)
+        ('/timerEvent', TimerEventHandler),
+        ('/molemashtext', MoleMashTextHandler)
         
         
     ],
