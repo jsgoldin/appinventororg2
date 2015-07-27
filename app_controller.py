@@ -3445,6 +3445,38 @@ class HowGamesWorkHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/howGamesWork.html')
         self.response.out.write(template.render(path, template_values)) 
+class IncrementingWSHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/incrementing.html')
+        self.response.out.write(template.render(path, template_values))
+class TimerEventHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/timerevent.html')
+        self.response.out.write(template.render(path, template_values))
 # LESSON PLANS
 
 class LPIntroHandler(webapp.RequestHandler):
@@ -6812,7 +6844,9 @@ application = webapp.WSGIApplication(
         ('/VariablesCirclesNugget', VariablesCirclesNuggetHandler ),
         ('/rememberThings', RememberThingsHandler),
         ('/paintPotText', PaintPotTextHandler),
-        ('/howGamesWork', HowGamesWorkHandler)
+        ('/howGamesWork', HowGamesWorkHandler),
+        ('/incrementingws', IncrementingWSHandler),
+        ('/timerEvent', TimerEventHandler)
         
         
     ],
