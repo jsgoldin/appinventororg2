@@ -1,0 +1,228 @@
+
+    <section data-type="chapter" data-pdf-bookmark="Chapter 21. Defining Procedures and Reusing Blocks" id="defining_procedures_reusing_blocks">
+<h1>Defining Procedures and Reusing Blocks</h1>
+
+<p><em>Programming languages like App Inventor provide a base set of built-in functionality-in App Inventor’s case, a base set of blocks. Programming languages also provide a way to extend that functionality by adding new functions (blocks) to the language. In App Inventor, you do this by defining procedures--named sequences of blocks--</em><em>that your app can call just as it calls App Inventor’s predefined blocks. As you’ll see in this chapter, being able to create such abstractions is very important for solving complex problems, which is the cornerstone of building truly compelling apps.</em></p>
+
+<div class="informalfigure"><img alt="Defining Procedures: Reusing Blocks" src="/assets/img/bookChapters/p21.png"/></div>
+
+<p>When parents tell their child, “Go brush your teeth before bed,” they really mean “take your toothbrush and toothpaste from the cabinet, squeeze out some toothpaste onto the brush, swivel the brush on each tooth for 10 seconds (ha!)," and so on. “Brush your teeth” is an abstraction: a recognizable name for a sequence of lower-level instructions. In this case, the parents are asking the child to perform the instructions that they’ve all agreed mean “brush your teeth.”</p>
+
+<p>In programming, you can create such named sequences of instructions. Some programming languages call them <em>functions</em> or <em>subprograms</em>. In App Inventor, they’re called <em>procedures</em>. A procedure is a named sequence of blocks that can be called from any place in an app.</p>
+
+<p><a data-type="xref" href="#procedure_for_computing_the_distance_bet">Figure 21-1</a> is an example of a procedure whose job is to estimate the distance, in miles, between two GPS coordinates you send to it.</p>
+
+<figure id="procedure_for_computing_the_distance_bet"><img alt="Procedure for computing the distance between points" src="/assets/img/bookChapters/p21-1new.png"/>
+<figcaption>Procedure for computing the distance between points</figcaption>
+</figure>
+
+<p>Don’t worry about the internals of this procedure too much just yet; just realize that procedures like this let you extend the language by which you design and build programs. If every parent had to explain the steps of “brush your teeth” to his or her child each night, that kid might not make it to the fifth grade. It’s much more efficient to just say, “Brush your teeth,” and everyone can move on with getting to bed at a reasonable hour.</p>
+
+<p>Similarly, once you define the procedure <strong>distanceBetweenPoints</strong>, you can ignore the details of how it works and simply refer to (call) the procedure’s name when designing or coding a larger app. This type of <em>abstraction</em> is key to solving large problems and lets us break down a large software project into more manageable chunks of code.</p>
+
+<p>Procedures also help reduce errors because they eliminate <em>redundancy</em> in your code. With procedures, you can put a chunk of code in one place and then call it from various places in your app. So, if you’re building an app that needs to know the minimum distance between your current location and 10 other spots, you don’t need to have 10 copies of the blocks shown in <a data-type="xref" href="#procedure_for_computing_the_distance_bet">Figure 21-1</a>. Instead, you just define the <strong>distanceBetweenPoints</strong> procedure and then call it whenever you need it. The alternative--copying and pasting blocks--is much more error-prone because when you make a change, you have to find all the other copies of those blocks and change each one in the same way. Imagine trying to find the 5–10 places where you pasted a particular chunk of code in an app with 1,000 lines or blocks! A procedure lets you instead <em>encapsulate</em> blocks in one place, then call it many times.</p>
+
+<p>Procedures also help you build up a library of code that can be reused in many apps. Even when building an app for a very specific purpose, experienced programmers are always thinking of ways to create the code in such a way that it can be reused in other apps. Some programmers never even create apps, but instead focus solely on building reusable code libraries for other programmers to use in their apps!</p>
+
+<section data-type="sect1" data-pdf-bookmark="Eliminating Redundancy" id="eliminating_redundancy">
+<h1>Eliminating Redundancy</h1>
+
+<p>The blocks in <a data-type="xref" href="#note_taker_app_with_redundant_code">Figure 21-2</a>  are from a note-taker app. Take a look at the blocks and see if you can you identify the redundant ones.</p>
+
+<figure id="note_taker_app_with_redundant_code"><img alt="A Note Taker app with redundant code" src="/assets/img/bookChapters/p21-redundant1.png"/> <img alt="A Note Taker app with redundant code" src="/assets/img/bookChapters/p21-redundant2.png"/>
+<figcaption>A Note Taker app with redundant code</figcaption>
+</figure>
+
+<p>The redundant blocks are the ones involving a <strong>for each</strong> block (actually the <strong>for each</strong> and its nested blocks and the <strong>set NotesLabel.Text</strong> <strong>to</strong> above it). In all three <strong>for each</strong> instances, the block’s job is to display the list of notes. In this app, this behavior needs to take place in three event handlers: when a new item is added, when an item is removed, and when the list is loaded from the database at application launch.</p>
+
+<p>When experienced programmers see such redundancy, a bell goes off in their heads, probably even before they’ve copied and pasted the blocks in the first place. They know that it’s best to encapsulate such redundancy into a procedure, both to make the program more understandable and so that changes will be much easier later.</p>
+
+<p>So an experienced programmer would create a procedure, move a copy of the redundant blocks into it, and then call the procedure from the three places containing the redundant blocks. The app will not behave any differently, but it will be easier to maintain and easier for other programmers to work with. Such code (block) reorganization is called <em>refactoring</em>.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Defining a Procedure" id="defining_a_procedure">
+<h1>Defining a Procedure</h1>
+
+<p>Let’s build a procedure to do the job of the redundant code blocks from <a data-type="xref" href="#note_taker_app_with_redundant_code">Figure 21-2</a>. In App Inventor, you define a procedure in a manner similar to how you define variables. From the Procedures drawer, drag out either a <strong>to procedure</strong> block or a <strong>to procedure result</strong> block. Use the latter if your procedure should calculate some value and return it (we’ll discuss this approach a bit later in the chapter).</p>
+
+<p>After dragging out a <strong>to procedure</strong> block, you can change its name from the default “procedure” by clicking the word “procedure” and typing the new name. The redundant blocks being refactored performed the job of displaying a list, so we’ll name the procedure <strong>displayList</strong>, shown in <a data-type="xref" href="#giving_the_procedure_a_name">Figure 21-3</a>.</p>
+
+<figure id="giving_the_procedure_a_name"><img alt="Giving the procedure a name" src="/assets/img/bookChapters/p21-3a.png"/> <img alt="Giving the procedure a name" src="/assets/img/bookChapters/p21-3b.png"/>
+<figcaption>Giving the procedure a name</figcaption>
+</figure>
+
+<p>The next step is to add the blocks within the procedure. In this case, we’re using blocks that already exist, so we’ll drag one of the original redundant blocks out of its event handler and place it within the <strong>to displayList</strong> block, as shown in <a data-type="xref" href="#displaylist_procedure_encapsulates_the_r">Figure 21-4</a>.</p>
+
+<figure id="displaylist_procedure_encapsulates_the_r"><img alt="The displayList procedure encapsulates the redundant code" src="/assets/img/bookChapters/p21-4.png"/>
+<figcaption>The displayList procedure encapsulates the redundant code</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Calling a Procedure" id="calling_a_procedure">
+<h1>Calling a Procedure</h1>
+
+<p>Procedures, like <strong>displayList</strong> and “brush your teeth,” are entities with the <em>potential</em> to perform a task. However, they’ll only perform that task if they are called upon to do so. Thus far, we’ve created a procedure but haven’t <em>called</em> it. To call a procedure means to <em>invoke</em> it, or to make it happen.</p>
+
+<p>In App Inventor, when you define a procedure, a call block is added to the Procedures drawer as shown in <a data-type="xref" href="#call_block_appears_in_the_procedures_dra">Figure 21-5</a>.</p>
+
+<figure id="call_block_appears_in_the_procedures_dra"><img alt="A call block appears in the Procedures drawer when you define a procedure" src="/assets/img/bookChapters/p21-5.png"/>
+<figcaption>A call block appears in the Procedures drawer when you define a procedure</figcaption>
+</figure>
+
+<p>You’ve been using <strong>call</strong> blocks already to call App Inventor’s predefined functions, like <strong>Ball.MoveTo</strong> and <strong>Texting.SendMes</strong><strong>sage</strong>. When you define a procedure, you have in essence created your own block; you’ve extended the App Inventor language. The new <strong>call</strong> block lets you invoke your creation.</p>
+
+<p>For the note taker app sample, you’d drag out three <strong>call displayList</strong> blocks and use them to replace the redundant code in the three event handlers. For instance, the <strong>ListPicker1</strong><strong>.AfterPicking</strong> event handler (for deleting a note) should be modified as shown in <a data-type="xref" href="#using_the_displaylist_call_to_invoke_the">Figure 21-6</a>.</p>
+
+<figure id="using_the_displaylist_call_to_invoke_the"><img alt="Using the displayList call to invoke the blocks now in the procedure" height="auto" src="/assets/img/bookChapters/p21-call.png" width="200%"/>
+<figcaption>Using the displayList call to invoke the blocks now in the procedure</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="The Program Counter" id="program_counter">
+<h1>The Program Counter</h1>
+
+<p>To understand how the <strong>call</strong> block works, think of an app as having a pointer that steps through the blocks performing functions. In computer science, this pointer is called the <em>program counter</em>.</p>
+
+<p>When the program counter is performing the blocks within an event handler and it reaches a <strong>call</strong> block, it jumps over to the procedure and executes the blocks in it. When the procedure completes, the program counter jumps back to its previous location (the <strong>call</strong> block) and proceeds from there. So, for the Note Taker example, the <strong>remove list item</strong> block is performed; then the program counter jumps to the <strong>displayList</strong> procedure and performs its blocks (setting the <strong>NotesLabel.Text</strong> to the empty text, and the <strong>foreach</strong>); and finally the program counter returns to perform the <strong>TinyDB1.StoreValue</strong> block.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Adding Parameters to Your Procedure" id="adding_parameters_to_your_procedure">
+<h1>Adding Parameters to Your Procedure</h1>
+
+<p>The <strong>displayList</strong> procedure allows redundant code to be refactored into a single place. The app is easier to understand because you can read the event handlers at a high level and generally ignore the details of how a list is displayed. It is also helpful because you may decide to modify how you display the list, and the procedure allows you to make such a modification in a single place (instead of three).</p>
+
+<p>The <strong>displayList</strong> procedure has limits in terms of its <em>general</em> usefulness, however. The procedure only works for a specific list (<strong>notes</strong>) and displays that list in a specific label (<strong>NotesLabel</strong>). You couldn’t use it to display a different data list--say, a list of the app’s users--because it is defined too specifically.</p>
+
+<p>App Inventor and other languages provide a mechanism called <strong>parameters</strong> for making procedures more general-purpose. Parameters comprise the information a procedure needs to do its job--the specifics of how the procedure should be performed. In our bedtime tooth-brushing example, you might define “toothpaste type” and “brushing time” as parameters of the procedure “brush your teeth.”</p>
+
+<p>You define parameters for a procedure by clicking on the blue icon at the left-top of the procedure definition. For the displayList procedure, we would define a parameter named “list,” as shown in <a data-type="xref" href="#procedure_now_accepts_a_list_as_a_parame">Figure 21-7</a>.</p>
+
+<figure id="procedure_now_accepts_a_list_as_a_parame"><img alt="The procedure now accepts a list as a parameter" src="/assets/img/bookChapters/p21-7.png"/>
+<figcaption>The procedure now accepts a list as a parameter</figcaption>
+</figure>
+
+<p>Even with the parameter defined, the blocks still refer directly to the specific list <strong>notes</strong> (it’s plugged into the “in list” slot of the <strong>foreach</strong>). Because we want the procedure to use the list we send in as a parameter, we replace the reference to <strong>global notes</strong> with a reference to <strong>get list</strong>, as demonstrated in <a data-type="xref" href="#now_the_foreach_will_use_the_list_sent_i">Figure 21-8</a>.</p>
+
+<figure id="now_the_foreach_will_use_the_list_sent_i"><img alt="Now the foreach will use the list sent in" src="/assets/img/bookChapters/p21-8.png"/>
+<figcaption>Now the foreach will use the list sent in</figcaption>
+</figure>
+
+<p>The new version of the procedure is more generic: calls to <strong>displayList</strong> can now send it any list, and <strong>displayList</strong> will display it. When you add a parameter to a procedure, App Inventor automatically puts a corresponding slot in the <strong>call</strong> block. So, when the parameter list is added to <strong>displayList</strong>, the call blocks to <strong>displayList</strong> look like <a data-type="xref" href="#calling_displaylist_now_requires_you_to">Figure 21-9</a>.</p>
+
+<figure id="calling_displaylist_now_requires_you_to"><img alt="Calling displayList now requires you to specify which list to display" src="/assets/img/bookChapters/p21-9.png"/>
+<figcaption>Calling displayList now requires you to specify which list to display</figcaption>
+</figure>
+
+<p>The parameter<strong> list</strong> within the procedure definition is called a <em>formal parameter</em>. The corresponding slot within the call block is called an <em>actual parameter</em>. When you call a procedure from somewhere in the app, you must supply an actual parameter for each formal parameter of the procedure. You do this by filling in all the slots in the call.</p>
+
+<p>For the Note Taker app, you’d add a reference <strong>get notes</strong> as the actual parameter. <a data-type="xref" href="#calling_the_displaylist_with_notes_sent">Figure 21-10</a> shows how <strong>ListPicker.AfterSelection</strong> should be modified.</p>
+
+<figure id="calling_the_displaylist_with_notes_sent"><img alt="Calling the displayList with notes sent as the actual parameter" src="/assets/img/bookChapters/p21-10.png"/>
+<figcaption>Calling the displayList with notes sent as the actual parameter</figcaption>
+</figure>
+
+<p>Now when <strong>displayList</strong> is called, the list <strong>notes</strong> is sent over to the procedure and placed in the parameter <strong>list</strong>. The program counter proceeds to execute the blocks in the procedure, referring to the parameter <strong>list</strong> but really working with the variable <strong>notes</strong>.</p>
+
+<p>Because of the parameter, the procedure <strong>displayList</strong> can now be used with any list, not just <strong>notes</strong>. For example, if the Note Taker app was shared among a list of users and you wanted to display the list of users, you could call <strong>displayList</strong> and send it the user List, as shown in <a data-type="xref" href="#displaylist_procedure_can_now_be_used_to">Figure 21-11</a>.</p>
+
+<figure id="displaylist_procedure_can_now_be_used_to"><img alt="The displayList procedure can now be used to display any list, not just notes" src="/assets/img/bookChapters/p21-11.png"/>
+<figcaption>The displayList procedure can now be used to display any list, not just notes</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Returning Values from a Procedure" id="returning_values_from_a_procedure">
+<h1>Returning Values from a Procedure</h1>
+
+<p>There is still one issue with the <strong>displayList</strong> procedure in terms of its general usefulness--can you figure out what it is? As it’s currently written, it can display any list of data, but it will always display that data in the label <strong>NotesLabel</strong>. What if you wanted the list to be displayed in a different user interface object (e.g., you had a different label for displaying the <strong>userList</strong>)?</p>
+
+<p>One solution is to re-conceptualize the procedure--to change its job from displaying a list in a particular label to simply returning a text object that can be displayed anywhere. To do this, you’ll use a <strong>procedure result</strong> block, shown in <a data-type="xref" href="#procedure_result_block">Figure 21-12</a>, instead of the <strong>procedure</strong> block.</p>
+
+<figure id="procedure_result_block"><img alt="The procedure result block" src="/assets/img/bookChapters/p21-12.png"/>
+<figcaption>The procedure result block</figcaption>
+</figure>
+
+<p>You’ll notice that, when compared to the <strong>procedure</strong> block, the <strong>procedure result</strong> block has an extra slot at the bottom. You place a variable in this slot and it’s returned to the caller. So, just as the caller can send data to a procedure with a parameter, a procedure can send data back with a return value.</p>
+
+<p><a data-type="xref" href="#convertlisttotext_returns_a_text_object">Figure 21-13</a> shows the reworked version of the preceding procedure, now using a <strong>procedure result</strong> block. Note that because the procedure is now doing a different job, its name is changed from <strong>displayList</strong> to <strong>listToText</strong>.</p>
+
+<figure id="convertlisttotext_returns_a_text_object"><img alt="convertListToText returns a text object that the caller can place in any label" src="/assets/img/bookChapters/p21-13.png"/>
+<figcaption>listToText returns a text object that the caller can place in any label</figcaption>
+</figure>
+
+<p>In the blocks shown in <a data-type="xref" href="#convertlisttotext_returns_a_text_object">Figure 21-13</a>, a <em>local variable</em> <strong>text</strong> is defined to hold the data as the procedure iterates through each item of the list. <strong>tex</strong>t is initialized as a local variable, instead of a global, because it is only used in this procedure. </p>
+
+<p>This <strong>text</strong> variable replaces the overly specific <strong>NotesLabel</strong> component that was being used in the <strong>displayList</strong> version of this procedure. When the <strong>foreach</strong> completes, the variable <strong>text</strong> contains the list items, with each item separated by a newline character, \n (e.g., “item1\nitem2\item3”). This <strong>text</strong> variable is then plugged into the return value slot.</p>
+
+<p>When a <strong>procedure result</strong> is defined, its corresponding call blocks look different than those for a procedure. Compare the call to <strong>listToText</strong> with the call to the <strong>displayList</strong> in <a data-type="xref" href="#call_on_the_right_returns_a_value_and_so">Figure 21-14</a>.</p>
+
+<figure id="call_on_the_right_returns_a_value_and_so"><img alt="The call on the right returns a value and so must be plugged into something" src="/assets/img/bookChapters/p21-twoCalls.png"/>
+<figcaption>The call on the right returns a value and so must be plugged into something</figcaption>
+</figure>
+
+<p>The difference is that the <strong>call listToText</strong> has a plug on the left. This is because when the call is executed, the procedure will run through its task and then return a value to the <strong>call</strong> block. That return value must be plugged into something.</p>
+
+<p>In this case, the callers to <strong>displayList</strong> can plug that return value into any label they want. For the note taker example, the three event handlers that need to display a list will call the procedure as shown in <a data-type="xref" href="#converting_the_list_notes_into_text_and">Figure 21-15</a>.</p>
+
+<figure id="converting_the_list_notes_into_text_and"><img alt="Converting the list notes into text and displaying it in NotesLabel" src="/assets/img/bookChapters/p21-notesList.png"/>
+<figcaption>Converting the list notes into text and displaying it in NotesLabel</figcaption>
+</figure>
+
+<p>The important point here is that, because the procedure is completely generic and doesn’t refer to any lists or labels specifically, another part of the app could use it to display any list in any label, as exemplified in <a data-type="xref" href="#procedure_is_no_longer_tied_to_a_particu">Figure 21-16</a>.</p>
+
+<figure id="procedure_is_no_longer_tied_to_a_particu"><img alt="The procedure is no longer tied to a particular Label component" src="/assets/img/bookChapters/p21-userList.png"/>
+<figcaption>The procedure is no longer tied to a particular Label component</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Reusing Blocks Among Apps" id="reusing_blocks_among_apps">
+<h1>Reusing Blocks Among Apps</h1>
+
+<p>Reusing code blocks through procedures need not be restricted to a single app. There are many procedures, like <strong>converListToText</strong>, that could be used in just about any app you create. In practice, organizations and programming communities build up code libraries of procedures for their domains of interest.</p>
+
+<p>Typically, programming languages provide an “import” utility that allows for including library code in any app. App Inventor doesn’t yet have such a utility. The only way to share procedures is to create a special “library app” and begin new app development by saving a new copy of that app and working from it.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="The distanceBetweenPoints Procedure" id="second_example_distancebetweenpoints">
+<h1>The distanceBetweenPoints Procedure</h1>
+
+<p>With the <strong>displayList</strong> (<strong>convertListToText</strong>) example, we characterized procedure definition as a way to eliminate redundant code: you start writing code, find redundancies as you go along, and refactor your code to eliminate them. Generally, however, a software developer or team will design an app from the beginning with procedures and reusable parts in mind. This sort of planning can save you significant time as the project progresses.</p>
+
+<p>Consider an app to determine the local hospital closest to one’s current location, something that would come in very handy in case of an emergency. Here’s a high-level design description of the app:</p>
+
+<blockquote><em>When the app launches, find the distance, in miles, between the current location and the first hospital. Then find it for the second hospital, and so on. When you have the distances, determine the minimum distance and display the address (and/or a map) to that location.</em></blockquote>
+
+<p>From this description, can you determine the procedures this app needs?</p>
+
+<p>Often, the verbs in such a description hint at the procedures you’ll need. Repetition in your description, as indicated with the “so on,” is another clue. In this case, <em>finding the distance between two points</em> and<em> determining the minimum of some distances</em> are two necessary procedures.</p>
+
+<p>Let’s think about the design of the procedure for finding the <em>distance between two points, </em>which we’ll name <strong>distanceBetweenPoints</strong>. When designing a procedure, you need to determine its inputs and outputs: the parameters the caller will send to the procedure for it to do its job, and the result value the procedure will send back to the caller. In this case, the caller needs to send the latitude and longitude of both points to the procedure shown in <a data-type="xref" href="#caller_sends_four_input_parameters_and_r">Figure 21-17</a>. The procedure’s job is to return the distance, in miles.</p>
+
+<figure id="caller_sends_four_input_parameters_and_r"><img alt="The caller sends four input parameters and receives a distance" src="/assets/img/bookChapters/p21-17.png"/>
+<figcaption>The caller sends four input parameters and receives a distance</figcaption>
+</figure>
+
+<p><a data-type="xref" href="#distancebetweenpoints_procedure">Figure 21-18</a> shows the procedure we encountered at the start of the chapter, using a formula for approximating the mileage between two GPS coordinates.</p>
+
+<figure id="distancebetweenpoints_procedure"><img alt="distanceBetweenPoints procedure" src="/assets/img/bookChapters/p21-1new.png"/>
+<figcaption>distanceBetweenPoints procedure</figcaption>
+</figure>
+
+<p><a data-type="xref" href="#two_calls_to_the_distancebetweenpoints_p">Figure 21-19</a> shows blocks that make two calls to the procedure, each of which finds the distance from the current location to a particular hospital.</p>
+
+<p>For the first call, the actual parameters for the first point are the the current readings from the <strong>LocationSensor, </strong>while the second point is defined by the GPS coordinates for St. Mary’s Hospital. The result value is placed in the variable <strong>distanceStMarys</strong>. The second call is similar, but instead uses the data for CPMC Hospital for the second point.</p>
+
+<p>The app goes on to compare the two distances returned to determine which hospital is closest. But if there were more hospitals involved, you’d really need to compare a list of distances to find the minimum. From what you’ve learned, can you create a procedure called <strong>findMinimum</strong> that accepts a list of numbers as a parameter and returns the index of the minimum?</p>
+
+<figure id="two_calls_to_the_distancebetweenpoints_p"><img alt="Two calls to the distanceBetweenPoints procedure" src="/assets/img/bookChapters/p21-19new.png"/>
+<figcaption>Two calls to the distanceBetweenPoints procedure</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00140">
+<h1>Summary</h1>
+
+<p>Programming languages like App Inventor provide a base set of built-in functionality. Procedures let app inventors extend that language with new abstractions. App Inventor doesn’t provide a block for displaying a list, so you build one. Need a block for computing the distance between GPS coordinates? You can create your own.</p>
+
+<p>The ability to define higher-level procedure blocks is the key to engineering large, maintainable software and solving complex problems without being constantly overwhelmed by all of the details. Procedures let you encapsulate code blocks and give those blocks a name. While you program the procedure, you focus solely on the details of those blocks. But in programming the rest of the app, you now have an abstraction-a name-that you can refer to at a high level.</p>
+</section>
+</section>

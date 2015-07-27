@@ -1,0 +1,4 @@
+cron:
+- description: rssUpdater
+  url: /admin/updateRSS
+  schedule: every 15 mins

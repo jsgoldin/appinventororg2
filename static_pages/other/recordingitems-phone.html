@@ -1,0 +1,35 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %} How do you record information in a list?{% endblock %}
+{% block description %}
+			When a user enters information in an app, or other data arrives to the app, 
+			you'll often store it in a list. 
+		 
+{% endblock %}
+{% block question %}Example 2. How do you record the phone numbers of incoming SMS texts and then call 
+		  one randomly to tell them they've won a prize? {% endblock %}
+
+{% block answer %}
+<p>
+		<p>
+			This app is great for contests. You ask your audience to text you, then you 
+			click a button to pick a winner and the winner’s phone rings! 
+			</p>
+
+		<p>You first define a variable <span class="empfont">incomingTexts</span> and initialize it to the create 
+		empty list block. This marks the variable as a list so you can put items into it.</p>
+
+		<p>When a text comes in, <span class="empfont">Texting.MessageReceived</span> is triggered. The app first 
+		checks to make sure the number isn’t already in the list. If it is not, the number
+		 is added to the list.</p>
+
+		<p>When ready, the user can click the <span class="empfont">PickWinnerButton.Click</span> button. In that
+		 event-handler, pick a random item is called to to grab a lucky winner and a 
+		 <span class="empfont">PhoneCall</span> component is used to call the number.</p></p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/recordingitems/pickWinner.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/BpS2DugMJq4" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/RecordingInfo/notes">example 1</a> {% endblock %}
+
+

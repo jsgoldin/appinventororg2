@@ -1,0 +1,48 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+<title>Screens</title>
+
+<h2>Dealing with Multiple Screens in a Single App</h2>
+<p>
+	You can create apps with multiple screens. The most common purpose is to have an about or splash screen 
+	which introduces the app. The components and variables in one screen are not available to another. 
+	To share information between screens, use a TinyDB component as there is only one underlying database 
+	that all TinyDB’s connect to. Go through and build the following sample app. 
+	You can also download a multi-screen starter app (.aia) <a href = "https://drive.google.com/file/d/0B8LK1JljV2faWXNmbmk5MU9kMXM/edit?usp=sharing">here </a>
+</p>
+<div class="row-fluid">   
+            <div class="span6">
+<a name="multiscreens"></a> 
+<h3>Example 1. How do you swap between two or more screens?</h3>
+<p>
+	Create a new app. Add a new screen by clicking on “Add Screen…” in the top menu and name it “AboutScreen."  Add a menu bar at the top. Add a <span class="empfont">HorizontalArrangement</span> at the top of the screen and place two buttons in it, one with text “Home” and one with text “About”. <span class="empfont">Screen1</span> is “Home”, so make the “Home” button click event open up Screen1. The block “open another screen” is in the control folder as shown below.
+</p>
+<img class="thumbnail" src="../../assets/img/Screens/home.PNG" border="0"/>
+<p>
+	Now select “Screen1” and create a copy of the menu bar from the other screen (you have to recreate everything for each screen). Program the “AboutButton.Click” event so that clicking it opens up the AboutScreen.
+</p>
+<hr/>
+			</div>
+			 </div>
+
+<div class="row-fluid">   
+          <div class="span6">	
+			<a name="datasharing"></a> 
+			<h3>Example 2. How do you share information between screens?</h3> 
+			<p>
+				Add a label, text box, and button to the “Home” screen (Screen1). When the user clicks the button, move the value in the text box to the label, store the value in <span class="empfont">TinyDB</span>, and clear out the text box. Add a Screen.Initialize event handler in the “Home” screen. In that event handler, get the persistently stored value and place it in the label.
+				Add a label, text box, and button to the “Home” screen (Screen1). When the user clicks the button, move the value in the text box to the label, store the value in <span class="empfont">TinyDB</span>, and clear out the text box. Add a <span class="empfont">Screen.Initialize</span> event handler in the “Home” screen. In that event handler, get the persistently stored value and place it in the label.
+			</p>
+<img class="thumbnail" src="../../assets/img/Screens/blocks1.PNG" border="0"/>
+<p>
+	In the “About” screen, add a <span class="empfont">Label</span>, and add a <span class="empfont">Screen.Initialize</span> event handler that gets the persistently stored value from <span class="empfont">TinyDB</span> and place it in the label.
+</p>
+<img class="thumbnail" src="../../assets/img/Screens/blocks2.PNG" border="0"/>
+<hr/>
+ </div>
+		</div>
+
+
+
+{% endblock %}

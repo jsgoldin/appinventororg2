@@ -1,0 +1,19 @@
+{% extends "templates/site_base.html" %} {% block body %}
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-md-6'>
+            <h1>{{module.m_title}}:</h1>
+        </div>
+        <div class='col-md-6'>
+            {% for content in contents %} 
+                <div content_title='{{content.c_title}}' class='content-box'>
+                    <h1>{{content.c_title}}</h1>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

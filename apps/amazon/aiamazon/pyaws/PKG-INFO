@@ -1,0 +1,18 @@
+Metadata-Version: 1.0
+Name: pyaws
+Version: 0.2.0
+Summary: A Python wrapper for Amazon Web Service
+Home-page: http://pyaws.sourceforge.net
+Author: Kun Xi
+Author-email: kunxi@kunxi.org
+License: Python Software Foundation License
+Download-URL: http://prdownloads.sourceforge.net/pyaws/pyaws-0.1.0.tar.gz?download
+Description: PyAWS is a Python wrapper for the latest Amazon Web Service. It is designed to pave the way for Python developers to interactivate AWS. This project is forked from the code base of pyamazon. The Amazone E-Commerce Services is supported.
+Platform: OS Independent
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Python Software Foundation License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: WWW/HTTP

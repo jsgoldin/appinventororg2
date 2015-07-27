@@ -1,0 +1,193 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+            <div class="hero-unit" style="#A4CA39; background:#A4CA39">
+                <hgroup>
+                    <h1>App Inventor Roadmap</h1>
+                    <h1></h1>
+                    <p>
+                        This page maps programming concepts to specific tutorials and lessons. Find what you want to learn!
+                    </p>
+                </hgroup>
+            </div>
+
+	<div class="row-fluid">
+	<div class="span6">
+	    <h3>What is an App?</h3>
+	    <ul>
+	    <li>
+	    <a href="/assets/pdf/ch14Architecture.pdf">Chapter 14, App Architecture</a>, in the App Inventor Book</li>
+	    <li><a href="/eventHandlers">Introduction to Event Handlers</a></li>
+	    </ul>
+	    <h3>Component Properties</h3>
+	    <ul>
+	    <li><a href="/properties">Introduction</a></li>
+	    <li>Paintpot demonstrates the use of component properties, both in designer and blocks. <a href="/paintpot-steps">AI1</a> <a href="/paintpot2-steps">AI2</a></li>
+	    </ul>
+
+	    <h3>Functions and Parameters</h3>
+	    <p>Functions are things an app can do, like vibrating the phone or sending a text. They are built-in to the App Inventor language and can be called by your apps.</p> 
+	    <ul>
+	    <li>
+	    <a href="/hellopurr-steps">Hello Purr</a>, step 3, demonstrates setting function parameters.
+	    </li>
+	    </ul>
+
+            <h3>Variables</h3>
+	    <p>Variables are named memory cells, something like the cells in a spreadsheet. If your app needs to remember something and you don't have a component property to do that, you need a variable</p>
+	    <ul>
+	    <li>Paintpot introduces variables, check out step 3 <a href="/paintpot-steps">AI1</a> <a href="/paintpot2-steps">AI2</a></li>
+	    <li><a href="/assets/pdf/ch16Variables.pdf">Chapter 16</a>  from the App Inventor book</li>
+	    </ul>
+
+	    <h3>Conditionals</h3>
+	    <p>Conditionals are "if" and "if-else" blocks that allow the app to ask questions before determining what action to take.</p>
+	    <ul>
+	    <li><a href="/conditionalsInfo">Introduction</a>-- introduces if-blocks</li>
+	    <li><a href="/IHaveADream-steps">I Have a Dream Tutorial</a> provides an introductory example</li>
+	    <li><a href="/assets/pdf/ch18Conditionals.pdf">Chapter 18</a> in the App Inventor book</li>
+	    </ul>
+
+	     <h3>Timing, Animation, and games</h3>
+	    <p>Animation-- action over time-- is a key concepts and a fun way to learn programming.</p>
+	    <ul>
+	    <li><a href="/TimedActivity">TimedActivity</a>-- How to program timed activity, including starting and stopping it.</li>
+	    <li>MoleMash-- clock timers and randomness <a href="/molemash-steps">AI1</a> <a href="/AndroidMash-steps">AI2</a> </li>
+	    <li><a href="/smoothAnimation">Smooth Animation</a>-- an introduction to movement over time </li>
+	    <li><a href="/shootergame-steps">Shooter Game (AI1 only)</a>-- moving characters, collisions, etc.</li>
+	    <li>Ladybug Chase-- uses the orientation sensor <a href="/ladybug-chase-steps">AI1</a> <a href="/Ladybug2">AI2</a> </li>
+	    </ul>
+
+	    <h3>Texting</h3>
+	    <p>Texting is a great way to add a social element to an app.</p> 
+	    <ul>
+	    <li>
+	    <a href="/loveYouLesson">Love You App</a>, an introductory lesson for texting, with <a href="/loveYouWS">worksheet</a>
+	    </li>
+	    <li>
+	    <a href="/no-text-while-driving-steps">No Text While Driving</a>, a text answering machine.
+	    </li>
+	    <li>
+	   <a href="http://appinventor.mit.edu/explore/content/google-voice-texting-over-wifi.html">Texting over Wifi</a>-- Texting without a Sim Card and using Google Voice
+	    </li>
+	    </ul>
+
+	    <h3>Location and Maps</h3>
+	    <ul>
+	    <li>
+	    <a href="/locationApp">Introduction</a>--LocationSensor, WebViewer, Google Maps, and a sample tracker app</li>
+	    <li>
+	    <a href="/android-where-s-my-car-steps">Android, Where's My Car?</a> demonstrates the use of Location sensor.
+	    </li>
+	    <li>
+	    <a href="/map-tour-steps">Map Tour</a> demonstrates the use of Activity Starter and Google Maps
+	    </li>
+	    </ul>
+
+	    <h3>Lists</h3>
+	    <p>Lists are variables that represent multiple memory cells</p>
+	    <ul>
+	    <li>
+	    The President's Quiz introduces lists and indexes for walking through them <a href="/quiz-steps">AI1</a> <a href="/presidentsQuiz2-steps">AI2</a></li>
+	    <li>
+	    <a href="/notetaker-steps">The Notetaker app</a> demonstrates the use of (persistent) lists (AI1 only).
+	    </li>
+	    </ul>
+
+	    <h3>User-generated data</h3>
+	    <p>User-generated data is information added as an app runs, typically by the end-user entering data in a form. It is more complicated to program than static (fixed) data because the code is more abstract</p>
+	    <ul>
+	    <li>
+	    <a href="/notetaker-steps">Notetaker</a>-- the user enters notes in a Twitter-like form. 
+	    </li>
+	    <li>
+	    Xylophone-- the user plays an instrument and the system records it. <a href="/xylophone-steps">AI1</a> <a href="/Xylophone2">AI2</a> 
+	    </li>
+	    <li>
+	    <a href="/makequiz-and-takequiz-1-steps">MakeQuiz-TakeQuiz</a>-- the "teacher" enters quiz questions, the "student" takes the quiz.
+	    </li>
+	    <li>
+	    BroadcastHub-- the system records a list of phone numbers who have texted in. <a href="/broadcaster-hub-1-steps">AI1</a> <a href="/BroadcastHub2">AI2</a>
+            </li>
+	    </ul>   
+	    
+	    
+	    <h3>Persistent Data</h3>
+	    <p>Persistent data is <em>database</em> data-- information that lives on even if you close and re-open an app</p>
+	    <ul>
+	    <li>
+	     <a href="/assets/pdf/ch22Databases.pdf">Chapter 22</a> from the App Inventor book.
+            </li>
+	    <li>
+	    <a href="/no-text-while-driving-steps">No Text While Driving</a>, step 4, provides a simple example of persistence with TinyDB.
+	    </li> 
+	    <li> 
+	    <a href="/apps/android-where-s-my-car/android-where-s-my-car.pdf">Android, Where's my Car?</a>, step 4, provides a simple example of persistence with TinyDB.
+	    </li>
+	    </ul>
+
+	   
+	</div>
+	<div class="span6">
+
+	 <h3>Iteration</h3>
+	    <p>
+	    Iteration means to repeat blocks. Need to do something a thousand times, or on each item of a list-- you need iteration.
+	    </p>
+	    <ul>
+	    <li>
+	     <a href="/assets/pdf/ch20Iteration.pdf">Chapter 20</a> from the App Inventor book (foreach and while)
+            </li>
+	    <li>
+	    <a href="/notetaker-steps"> The Notetaker app (AI1 only)</a> uses a foreach to display a list of notes, see steps 3-5.
+	    <li>
+             <a href="/mathBlaster">The Math Blaster App (AI2 only)</a>. The MathBlaster app generates addition questions for students and checks their answers. It uses for range to generate a random number of items in the equation, and foreach to sum the numbers up. This tutorial is for <em>App Inventor 2</em>.
+	    
+	    </li>
+	    </ul>
+
+	    <h3>Procedures</h3>
+	    <p>Procedures are how you can turn a sequence of blocks into a single one that can be called/reused. They are fundamental to effective software engineering</p>
+	    <ul>
+	    <li>This <a href="/abstraction">Introduction to procedural abstraction</a>, authored by Ellen Spertus, is terrific! (It's p. 47 of our book)</li>
+	    <li>MoleMash (<a href="/molemash-steps">AI1</a> <a href="/AndroidMash-steps">AI2</a> ), LadyBug (<a href="/ladybug-chase-steps">AI1</a> <a href="/Ladybug2">AI2</a>), and Xylophone (<a href="/xylophone-steps">AI1</a> <a href="/Xylophone2">AI2</a>) use simple procedures</li>
+	    <li><a href="/assets/pdf/ch21Procedures.pdf">Chapter 21</a> in the App Inventor book</li>
+	     <li><a href="/notetaker-steps">Notetaker</a> steps 6 and 8, provides advanced discussion of procedures</li>
+	    </ul>
+
+	    <h3>Software Engineering</h3>
+	    <ul>
+	    <li>
+	    <a href="/assets/pdf/ch15Engineering.pdf">Chapter 15</a> in the App Inventor book
+	    </li>
+	    </ul>
+
+
+		    <h3>Web Data</h3>
+	    <p>Web data is persistent data that is shared amongst users and devices. App Inventor provides the TinyWebDB and Fusion Table components for this.</p>
+	    <ul>
+	    <li>
+	     <a href="/assets/pdf/ch24API.pdf">Chapter 24</a> from the App Inventor book.
+            </li>
+	    <li> 
+	    <a href="/webDatabase">Introduction to TinyWebDB</a>-- includes video of a notetaker where notes are stored on web.
+	    </li>
+	    <li><a href="http://appinventor.mit.edu/explore/content/pizzaparty.html">Pizza Party sample using Fusion Tables</a>-- tutorial by Ralph Morelli.</li>
+	    <li><a href="http://appinventorapi.com/create-a-web-database-python-2-7/">How to setup your own TinyWebDB web service</a></li>
+	    </ul>
+
+	    <h3>Web APIs</h3>
+	    <p>Many organizations provide programmatic access to data through application programmer interfaces (APIs). Using the Web component, you can use such APIs to integrate and mashup data within your apps</p>
+	    <ul>
+	    <li>
+	     <a href="/stockmarket-steps">Stock Market App</a>-- an app that accesses data from the Yahoo Finance API.
+            </li>
+	    <li> 
+	    <a href="http://appinventorapi.com/amazon/">Setup a TinyWebDB that calls an API</a>-- Amazon sample
+	    </li>
+	    </ul>
+
+	</div>
+     </div>
+
+{% endblock %}

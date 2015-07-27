@@ -1,0 +1,31 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %} Variables: How does an app remember things?{% endblock %}
+{% block description %}  An app remembers things, it has “hidden” memory. Think of it like a spreadsheet of data in the app’s private “brain”. You, the programmer, control the memory. When you drag a component (e.g.,
+    button, text box) into your app, each of the components has a set of <em>properties</em>. These properties are “spreadsheet” cells that you can change. You can also define new “spreadsheet” cells
+    called <em>variables</em> when you need to remember something. You define a variable when there isn’t a 
+    component property for storing the information you need. Check out these examples of using
+    variables to remember things:
+{% endblock %}
+{% block question %}Example 2. How do you make a ball go back and forth across the screen? {% endblock %}
+{% block answer %}
+<p>
+            In this example, a variable <span class="empfont">distance</span> is defined so the app can remember (keep track of) the current direction the ball is moving. You want the ball to move on
+            each clock timer event, so the ball’s horizontal location (<span class="empfont">Ball1.X</span>) is changed (set) within the <span class="empfont">Clock1.Timer</span> event handler. The
+            complicated part is you don’t always want to move the ball the same amount. When the ball is moving to the right, you want to add a positive number (e.g., 5) to Ball1.X. When the ball is
+            moving to the left you want to add a negative number (e.g., -5). The amount you add to Ball1.X is dependent on the direction the ball is moving.
+        </p>
+        <p>
+            To remember which way the ball is going, you define the variable distance. distance is initialized to 5, so when the app starts each timer event moves the ball to the right. When the ball
+            hits the (right) edge, <span class="empfont">Ball1.EdgeReached</span> is triggered, and distance is set to itself times -1, or -5. In other words, its sign is flipped. Because distance is
+            -5, the next timer events cause the ball to move left. When the ball hits the left edge, <span class="empfont">Ball1.EdgeReached</span> is triggered again, the sign of distance is flipped
+            again, back to 5, and the ball begins moving right. This behavior continues so that the ball moves back and forth forever.
+        </p>
+        <p>Note: there are many ways to code this back-and-forth behavior and some that don’t include using a variable.</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/variables/backAndForth.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/G2uL-P-qrFs" {% endblock %}
+{% block otherExampleLink %} <a href=/content/howDoYou/Conditionals/touch>example 1</a> {% endblock %}
+
+

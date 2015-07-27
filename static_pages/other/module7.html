@@ -1,0 +1,81 @@
+{% extends "../other/teaching_base.html" %}
+{% block body %}
+
+            <div class="hero-unit">
+                <hgroup>
+                    <h1>Module 7<small>&nbsp;&nbsp;Apps that Access Web Data</small></h1>
+                    <h1></h1>
+                    <p>
+                        This module introduces APIs and accessing data from the web. The
+                        students have already dealt with URLs in Module 3 when they access Google Maps. Here we go over apps that call an API
+                        then process the data that is returned.
+                    </p>
+                </hgroup>
+            </div>
+
+            <p>
+                The first app is a Stock Market app that gets data from Yahoo Finance.
+                It works as a first foray into APIs because the data returned is a simple list of comma-separated data. It uses the Web
+                component in App Inventor.
+            </p>
+
+            <p>
+                The Amazon app uses the TinyWebDB component. TinyWebDB is really for web databases,
+                but a programmer (or teacher) can build a tinywebdb web service that serves as an API. I built one for the Amazon Books
+                API. Students can use it to access book data that is returned in list form. Advanced students can go further and access
+                more complex APIs. Here, you'll need to teach them XML or JSON parsing. I don't have examples of those.
+            </p>
+
+
+
+
+
+            <br/>
+
+            <table border="1" bordercolor="#888" cellspacing="0"
+                   style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;border-collapse:collapse;border-top-color:rgb(136,136,136);border-right-color:rgb(136,136,136);border-bottom-color:rgb(136,136,136);border-left-color:rgb(136,136,136);border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px">
+                <tbody>
+                <tr>
+                    <td style="width:195px;height:18px"><b>Topics</b></td>
+                    <td style="width:232px;height:18px"><b>Lessons</b></td>
+                    <td style="width:243px;height:18px"><b>Reading and Video</b></td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:top;padding-top:1px;padding-right:4px;padding-bottom:1px;padding-left:4px;width:195px;height:111px">
+                        <font size="2">URLs and URL parameters<br/>
+                            Web component<br/>
+                            TinyWebDB component<br/>
+                            Parsing CSV<br/>
+                            Parsing XML <br/>
+                        </font></td>
+                    <td style="vertical-align:top;padding-top:1px;padding-right:4px;padding-bottom:1px;padding-left:4px;width:232px;height:111px">
+                        <font size="2">Displaying charts with Google Chart API<br/>
+                            <br/>
+                            <br/>
+                        </font></td>
+                    <td style="vertical-align:top;padding-top:1px;padding-right:4px;padding-bottom:1px;padding-left:4px;width:243px;height:111px">
+                        <font size="2"><i>Tutorials:</i></font><a href="/stockmarket"
+                                                                  style="color:rgb(68,68,68)"></a><br/><font size="2"><i>
+                    </i><a href="/stockmarket">Stock Market</a><i> video<br/></i><a
+                            href="/amazon">Amazon (ch 13)</a> pdf<br/><br/><i>Sites:</i><br/><a
+                            href="http://appinventorapi.com">appinventorapi.com</a><br/>
+                        <br/><i>
+                            Video:</i><br/><a href="http://oreilly.com/catalog/0636920016137/#video-preview">O'Reilly
+                            Video</a><br/>
+
+                        <div style="display:block;text-align:left"><br/></div>
+                    </font></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,87 @@
+<div class='full-width-background-gray-gradient-container'>
+	<div class='gen-app-container'>
+		<div class='standard-section'>
+			<h2>Conditionals: How do you program an app to make decisions?</h2>
+			<p>
+				With App Inventor, you program event handlers-- how an app should
+				respond to something like the user clicking a button. But sometimes
+				an app shouldn't respond to an event the same every time. This is
+				where <span class="empfont">if</span> blocks, known as
+				"conditionals", come in. They allow the app to make decisions and
+				form the basis of artificial intelligence.
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class='gen-app-container'>
+	<div class='standard-section'>
+
+		<h3>Example 1. How do you start and pause a sound file when the
+			user clicks a button?</h3>
+
+		<div class='nugget-section-left'>
+			<p>
+				This behavior from the <a href="/IHaveADream-steps">I Have a
+					Dream app</a> illustrates the fundamental way that an app makes
+				decisions. There is a button with a picture of Martin Luther King on
+				it. The action taken when the button is clicked is not always the
+				same. If the sound file (MLK’s speech) is playing, it should be
+				paused. If it is not playing, it should be started. The <span
+					class="empfont">if-else</span> block is used to branch based on the
+				situation. It checks the IsPlaying property of the <span
+					class="empfont">Player</span> component. If it is true, it pauses
+				the speech. If it is false (else), the speech is (re-) started.
+			</p>
+
+			<img class="responsive-fullwidth-img"
+				src="/assets/img/conditionals/ifElsePlayPause.png" />
+
+		</div>
+		<div class='nugget-section-right'>
+			<div class="videoWrapper center-element">
+				<iframe width="560" height="315"
+					src="//www.youtube.com/embed/M1Wu1QzbJsE" frameborder="0"
+					allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class='gen-app-container'>
+	<div class='standard-section'>
+
+		<h3>Example 2. How do you auto-respond to a “WHERE” text from a
+			particular person?</h3>
+
+		<img class="responsive-fullwidth-img" style='margin-bottom: 20px;'
+			src="/assets/img/conditionals/textParticular.png">
+
+		<div class='nugget-section-left'>
+			<p>If your child or friend leaves this app running, you can
+				always find out where they are by sending a “WHERE” text to them.
+				This code illustrates a complex if-test, one with an “and” clause,
+				as you must test that both the sender is a particular phone number
+				and the text sent was “WHERE”. If both are true, a text auto-reply
+				is sent back to the phone number.</p>
+
+		</div>
+		<div class='nugget-section-right'>
+
+			<div class="videoWrapper center-element">
+				<iframe width="560" height="315"
+					src="//www.youtube.com/embed/YUjaMYJagn8" frameborder="0"
+					allowfullscreen></iframe>
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+</div>
+

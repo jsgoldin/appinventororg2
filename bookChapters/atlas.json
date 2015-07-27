@@ -1,0 +1,57 @@
+{
+  "branch": "master",
+  "files": [
+    "01-titlepage.html",
+    "02-copyright.html",
+    "03-toc.html",
+    "part1.html",
+    "ch01.html",
+    "ch02.html",
+    "ch03.html",
+    "ch04.html",
+    "ch05.html",
+    "ch06.html",
+    "ch07.html",
+    "ch08.html",
+    "ch09.html",
+    "ch10.html",
+    "ch11.html",
+    "ch12.html",
+    "ch13.html",
+    "part2.html",
+    "ch14.html",
+    "ch15.html",
+    "ch16.html",
+    "ch17.html",
+    "ch18.html",
+    "ch19.html",
+    "ch20.html",
+    "ch21.html",
+    "ch22.html",
+    "ch23.html",
+    "chapter24new.html",
+    "index.html"
+  ],
+  "formats": {
+    "pdf": {
+      "version": "web",
+      "toc": true,
+      "index": true
+    },
+    "epub": {
+      "index": false,
+      "toc": false,
+      "epubcheck": false
+    },
+    "mobi": {
+      "index": false,
+      "toc": false
+    },
+    "html": {
+      "toc": true,
+      "index": false
+    }
+  },
+  "theme": "oreillymedia/oreilly_animal4c_theme",
+  "title": "atlas book skeleton"
+}

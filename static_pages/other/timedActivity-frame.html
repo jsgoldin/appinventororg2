@@ -1,0 +1,21 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} Timed Activity: How do you repeat an action, pausing between each iteration?{% endblock %}
+			{% block description %}How do you program time? How do you program animation? With many programming languages, concepts like animation are pushed back in the curriculum-- you might not get there until a year or two
+    of coursework. With App Inventor’s event-based approach, you can explore timed activity and animation as a beginner. The high-level Clock component serves as an alarm clock, and you use its Timer
+    event to trigger timed activity. Check out the following examples:{% endblock %}
+{% block question %} Example 4. A "moving picture" is really a sequence of pictures displayed very fast. The frame rate of a moving picture is the number of pictures (frames) shown every second. If you
+            set the timer interval for the spaceship to 40 ms, what will be the frame rate for your “movie”? What is the typical frame rate for a movie you see at the theater?{% endblock %}
+{% block answer %}
+ <p>If the timer interval is set to 40 ms, the object will move every 40 ms. So each frame-- each new picture with the spaceship in a different location-- will appear for 40 ms. Frames per
+            second is the number of frames that will appear in one second (1000 ms). Since each frame is 40 ms long, you’ll end up with 1000/40=25 frames per second.</p>
+        <p>
+            The standard frame rate for the film industry is 24 frames per second, see <a href="http://en.wikipedia.org/wiki/Frame_rate">http://en.wikipedia.org/wiki/Frame_rate</a> for details.
+        </p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/TimedActivity/spaceshipmove.png" {% endblock %}
+{% block answerVideo %} "" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/timedActivity/sound">example 1</a> {% endblock %}
+
+

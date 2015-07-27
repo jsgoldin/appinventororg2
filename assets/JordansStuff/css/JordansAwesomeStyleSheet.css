@@ -1,0 +1,347 @@
+/* New and Improved Module Admin Page */
+.module-list {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px 20px 20px 20px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.module-list-item {
+    background-color: #fff2ee;
+    color: #444;
+    display: table;
+    min-height: 40px;
+    padding: 25px 20px;
+    display: block;
+    border-radius: 20px;
+    margin-left: -40px;
+}
+
+.module-list-separator {
+    border-top: 1px solid #ddd;
+    margin: -1px 20px;
+    position: relative;
+    z-index: 200;
+}
+
+.j-topper {
+    margin-top: 13%;
+}
+
+/* End New and Improved Module Admin Page */
+.j-top-fixed {
+    top: 0;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    margin-bottom: 200px;
+}
+
+.module-list ul {
+    list-style-type: none;
+}
+
+.module-list ul li {
+    background-color: #fff2ee;
+    color: #444;
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    margin-left: -40px;
+    width: 670px;
+    height: 128px;
+}
+
+.module-list ul li img {
+    
+}
+
+#original_items,#cloned_items {
+    list-style: none;
+}
+
+#original_items li {
+    position: relative;
+    z-index: 5;
+}
+
+#cloned_items li {
+    position: absolute;
+    z-index: 1;
+}
+
+/* Used for Quizes page */
+.j-title {
+    padding: 25px 20px;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 22px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.topic-list {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px 20px 20px 20px;
+    background-color: #E2F5FF;
+    border-radius: 20px;
+}
+
+.topic-list .topic-list-item {
+    background-color: #E2F5FF;
+    color: #444;
+    display: table;
+    min-height: 40px;
+    padding: 25px 20px;
+    display: block;
+    border-radius: 20px;
+}
+
+.topic-list .topic-list-item img {
+    border-radius: 20px;
+}
+
+.module-info h1,.module-info p {
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 40px;
+    margin-top: 0px;
+}
+
+.topic-info h1,.topic-info p {
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 0px;
+    margin-top: 10px;
+}
+
+.topic-list .topic-list-separator {
+    border-top: 1px solid #ddd;
+    margin: -1px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* End of Quizzes page stuff*/
+
+/* Used on Admin page*/
+.j-header {
+    min-width: 100%;
+    background-color: white;
+    float: left;
+    padding: 0% 0% 0% 0%;
+}
+
+.nav-bar-mod {
+    min-width: 100%;
+    float: right;
+}
+
+.admin-chat-box {
+    background-color: #FFFFFF;
+    border-radius: 20px 0px 0px 20px;
+    width: 100%;
+    margin: 0 auto 20px auto;
+    height: 300px;
+    text-align: left;
+    padding: 20px;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+
+/* A inner white box to put inside of a j-box*/
+.j-box-inner-box {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin: 10px;
+}
+
+.fixed-height-400 {
+    height: 400px;
+}
+
+.scrollable {
+    overflow: auto;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.open-module-button {
+    position: relative;
+    left: -10px;
+    background: transparent;
+    padding: 5px;
+}
+
+.delete-module-button {
+    position: relative;
+    left: -10px;
+    background: transparent;
+    padding: 5px;
+}
+
+/* Used to display an individual module in a list of modules */
+.module-list-item p {
+    min-height: 50px;
+}
+
+.module-list-item h2 {
+    white-space: nowrap;
+    margin: 1px;
+}
+
+.highlight {
+    border: 5px solid yellow;
+}
+
+.module-content-list {
+    
+}
+
+.module-content-list-item {
+    background-color: #90C2DB;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin: 20px;
+    min-height: 100px;
+    padding: 20px;
+    text-align: left;
+}
+
+.j-box {
+    background-color: #E2F5FF;
+    border-radius: 0px 0px 20px 20px;
+    padding: 15px 15px 15px 15px;
+}
+
+.j-center {
+    text-align: center;
+}
+
+.dashboard-box {
+    background-color: #E2F5FF;
+    border-radius: 0px 0px 20px 20px;
+    padding: 20px;
+}
+
+.dashboard-item {
+    text-align: center;
+    min-width: 27%;
+    min-height: 180px;
+    border-radius: 20px;
+    margin: 20px;
+    background-image: linear-gradient(to bottom, #FFFFFF, #DDEAF3);
+    border: 1px solid #B4DBE4;
+}
+
+.j-box .dashboard-item img {
+    margin-top: 5px;
+}
+
+.j-box .dashboard-item  p {
+    margin: 5px;
+}
+
+.j-box-title {
+    background-color: #00BCFF;
+    border-radius: 20px 20px 0px 0px;
+    color: white;
+}
+
+.j-box-title  h4 {
+    margin: auto;
+    padding: 15px 15px 15px 15px;
+}
+
+/* End of Admin page stuff*/
+
+/* Used on Quiz pages */
+.btn-huge {
+    color: #126CB0 padding:       18px 28px;
+    font-size: 22px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.quiz-panel-outer {
+    padding: 2% 2% 2% 2%;
+    margin-bottom: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    background-color: white;
+}
+}
+
+/* Aligns the question better, excludes the numbers*/
+.quiz-panel-outer>p,.quiz-panel-outer>ul {
+    margin-left: 4%;
+}
+
+.quiz-panel-outer li {
+    line-height: 30px;
+}
+
+/* Centers all images inside of a quiz-panel-outer */
+.quiz-panel-outer img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quiz-panel-inner {
+    margin-top: 20px;
+    padding: 20px 20px 20px 20px;
+    background-color: #2B8C90;
+    border: 1px solid #87ABB2;
+    color:white;
+}
+
+/* Center and expand the show answer button */
+.quiz-panel-inner a {
+    display: block;
+    text-align: center;
+    color: white;
+}
+
+.quiz-panel-inner li {
+    line-height: 30px;
+}
+
+.pad-med {
+    padding: 20px;
+}
+
+.pad-small {
+    padding: 10px;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-button {
+    width: 140px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.center-text {
+    text-align: center;
+    vertical-align: center;
+}
+
+.center-link {
+    margin-left: auto;
+    margin-right: auto;
+    width: 6em
+}

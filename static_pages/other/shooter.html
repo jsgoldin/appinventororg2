@@ -1,0 +1,60 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Shooter Game: Build, Conceptualize, Customize</H1>
+<br/>
+
+<h2> Build It</h2>
+<ol>
+<li>
+Open a browser and navigate to <a href="http://beta.appinventor.mit.edu">http://beta.appinventor.mit.edu</a>. Login with your Google account.
+</li>
+<li>
+Now build the Shooter Game app. There is no book chapter for this one, so follow the <a href="/shootergame">step-by-step video lesson</a>. At each step, try the challenge before watching the video.
+</li>
+</ol>
+<h2>Conceptualize It</h2>
+ <div class="row-fluid">
+<div class="span6">
+<p>After completing the Shooter tutorial, discuss these questions with a partner or small group, jotting down notes while you discuss. Later, create a portfolio page with answers to the questions in your own words.
+Topics: Canvases and drawing, event parameters
+
+<ol>
+<li>
+When the shooter is touched, we want the bullet to start moving. Yet we don't actually move the bullet in the Touched event. Why?
+</li>
+<li>
+What does happen when the shooter is touched?
+</li>
+
+<li>
+Does the X,Y property of an imageSprite denote its middle? What does it denote?</li>
+
+
+<li>
+What if the shooter was on the left edge of the canvas and we shot horizontally across the screen. Show the blocks you would use to move the bullet to the tip of the gun.</li>
+<li>
+If you position the bullet so that it overlaps the shooter, your CollidedWith event will add a point as if the bullet hit the target. Can you program a CollidedWith event so it only does something when two particular sprites collide, e.g., the bullet and target? If so, show the blocks.
+</li>
+</ul>
+
+</div>
+<div class="span6">
+<img src="/apps/shootergame/blocks6.png"/><br/>
+
+</div>
+</div>
+
+<h2>Customize It</h2>
+
+<ol>
+<li>
+Add another image sprite, the anti-target, that when hit causes the user to lose a point.
+</li>
+<li>
+Code the app so that the player starts with a certain amount of energy, loses energy for every missed target, and the game ends when energy is down to zero. Show the energy with a colored bar (you can use a label and change the width). 
+</li>
+
+</ol>
+
+{% endblock %}

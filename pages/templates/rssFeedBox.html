@@ -1,0 +1,16 @@
+<h1>App Inventor News</h1>
+<hr>
+{% for item in rssItems %}
+<div class="rssItem">
+	<h3>{{item.title}}</h3>
+	<p>
+		<small>{{item.date}}</small>
+	</p>
+	{% autoescape off %} {{item.content}} {% endautoescape %}
+	<div class="center-children">
+		<a href="http://appinventorblog.com/" target="_blank"><img
+			src="assets/img/rsslogo.png" height="40px" width="40px"
+			style="border: none">Check out more posts on the blog</a>
+	</div>
+</div>
+{% endfor %}

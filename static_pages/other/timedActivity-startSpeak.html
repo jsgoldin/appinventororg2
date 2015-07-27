@@ -1,0 +1,26 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} Timed Activity: How do you start and stop an animation?{% endblock %}
+			{% block description %}Just as you can turn an alarm clock on and off, you can turn the 
+			Clock component’s timer on and off. Check out the following examples:{% endblock %}
+{% block question %} Example 2. How do you start an animation when the user speaks and stop it when he shakes? {% endblock %}
+
+{% block answer %}
+  <p>
+            You need two additional components, a <span class="empfont">SpeechRecognizer</span> that can recognize when the user is speaking, and an AccelerometerSensor that senses when the device is
+            being shook.
+        </p>
+        <p>
+            The <span class="empfont">Screen.Initialize</span> event handler is triggered when the app begins. The <span class="empfont">SpeechRecognizer.GetText</span> block opens the speech
+            recognizer so that it is waiting for the user to say something. When the user speaks, the <span class="empfont">SpeechRecognizer.AfterGettingText</span> event handler is triggered. Here,
+            you set <span class="empfont">Clock.TimerEnabled</span> to true so the clock timer will start triggering and the sprite will begin moving. When the user shakes the phone, <span
+                class="empfont">AccelerometerSensor.Shaking</span> is triggered, the timer is disabled so the sprite stops, and the <span class="empfont">SpeechRecognizer.GetText</span> is called to
+            await the next time the user speaks.
+        </p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/TimedActivity/shakeSpeak.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/LTnGTZhT8YQ" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/startStop/startClick">example 1</a> {% endblock %}
+
+

@@ -1,0 +1,323 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>Hello Purr</h1>
+<div class="span5">
+<img src="{{apps2Dir}}/HelloPurr/hp.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span5">
+<p>
+<em>This chapter gets you started building apps. It presents the key elements of App Inventor, the Component Designer and the Blocks Editor, and leads you through the basic steps of creating your first app, HelloPurr. When you're
+finished, you'll be ready to build apps on your own.</em>
+</p>
+</div>
+</div>
+<div class="row-fluid">
+	<div class="span5">
+<p>
+A typical first program with a new computer system prints the message "Hello World" to show that everything is connected correctly. This tradition goes back to the 1970s and Brian Kernighan's work on the C programming language at Bell Labs. With App Inventor, even the simplest apps do more than just show messages: they play sounds and react when you touch the device. So we're going to get started right
+away with something more exciting; your first app (as shown in Figure 1-1) will be "HelloPurr," a picture of a cat that meows when you touch it and purrs when you shake it.
+</p>
+</div>
+<div class="span5">
+<img src="{{apps2Dir}}/HelloPurr/hp1-1.png" alt="">
+<p>
+<em>Figure 1-1. The HelloPurr app</em>
+</div>
+</div>
+<h2>What You'll Learn</h2>
+<p>
+The chapter covers the following topics:
+<ul>
+<li>Building apps by selecting components and then telling them what to do and when to do it.</li>
+<li>Using the Component Designer to select components. Some components are visible on the device's screen and some aren't.</li>
+<li>Adding media (sounds and images) to apps by uploading them from your computer.</li>
+<li>Working in the Blocks Editor to assemble blocks that define the components' behavior.</li>
+<li>Testing apps with App Inventor's <em>live testing</em>. This lets you see how apps will look and behave on the device step by step, even as you're building them.</li>
+<li>Packaging the apps you build and downloading them to a device.</li>
+</ul>
+<h2>The App Inventor Environment</h2>
+<p>
+The App Inventor programming environment has three key parts, all shown in
+Figure 1-2:
+<ul>
+<li>The <em>Component Designer</em>, shown in Figure 1-2A, runs in your browser window. You use it to select components for your app and specify their properties.</li>
+<li>The <em>Blocks Editor</em>, shown in Figure 1-2B, also runs in your browser window like the Component Designer. You use the Blocks Editor to create behaviors for the components.</li>
+<li>A device allows you to actually run and test your app as you are developing it. If you don't have an Android device handy, you can test the apps you build using the Android emulator that comes integrated with the system.</li>
+</ul>
+</p>
+<div class="row-fluid">
+<div class="span5">
+<img src="{{apps2Dir}}/HelloPurr/hp1-2A.png" alt="">
+<em>Figure 1-2A. The Components Designer.</em>
+</div>
+<div class="span5">
+<img src="{{apps2Dir}}/HelloPurr/hp1-2B.png" alt="">
+<em>Figure 1-2B. The Blocks Editor.</em>
+</div>
+</div>
+<p>
+You start App Inventor by browsing to <a href="http://ai2.appinventor.mit.edu/"><em>ai2.appinventor.mit.edu</em></a>. If this is the first time you've used App Inventor, you'll see the Projects page, which will be mostly blank because you haven't created any projects yet. To create a project, click New at the top left of the page, enter the project name "HelloPurr" (one word with no spaces), and click OK.
+</p>
+<p>
+The first window that opens is the Component Designer. The Blocks Editor is available by clicking on Blocks in the top right corner of the window.
+</p>
+<p>
+When the Blocks Editor is open you'll see a button near the top left of the screen with three options in the drop down menu, as shown in Figure 1-3.
+</p>
+<img src="{{apps2Dir}}/HelloPurr/hp1-3.png" alt="">
+<p>
+<em>Figure 1-3. Click "Connect" and select AI Companion</em>
+</p>
+<p>
+If you have an Android device, and an internet connection with WIFI, go to the Play Store on your device and search for MIT AICompanion and install it.  Then select AI Companion from the drop down menu, and follow the instructions on the pop up window and those in the Companion app itself. If instead you want to test the apps you build using an emulator, select "Emulator" and wait about 30 seconds while the Android emulator loads.
+</p>
+<p>
+If all is well, you should see a window for the Component Designer, and Blocks Editor, as well as the emulator window if you chose that option (your screen should look something like Figure 1-2A and 1-2B, shown previously, but with the windows mostly empty). If you're having problems here, review the setup instructions at <a href="http://ai2.appinventor.mit.edu/"><em>ai2.appinventor.mit.edu</em></a>.
+</p>
+<h2>Designing the Components</h2>
+<p>
+The first tool you'll use is the Component Designer (or just Designer). Components are the elements you combine to create apps, like ingredients in a recipe. Some components are very simple, like a <b>Label</b> component, which shows text on the screen, or a <b>Button</b> component, which you tap to initiate an action. Other components are more elaborate: a drawing <b>Canvas</b> that can hold still images or animations; an <b>accelerometer</b>, a motion sensor that works like a Wii controller and detects when you move or shake the device; or components that make or send text messages, play music, and video, get information from websites, and so on.
+</p>
+<p>
+When you open the Designer, it will appear as shown in Figure 1-4.
+</p>
+<img src="{{apps2Dir}}/HelloPurr/hp1-4.png" alt="">
+<p>
+<em>Figure 1-4. The App Inventor Component Designer</em>
+</p>
+<p>
+The Designer is divided into several areas:
+<ul>
+<li>Toward the center is a white area called the <em>Viewer</em>. This is where you place components and arrange them to map out what you want your app to look like. The Viewer shows only a rough indication of how the app will look, so, for example, a line of text might break at a different place in your app than what you see in the Viewer. To see how your app will <em>really</em> appear, you'll need to either download the app to your device (we'll go through how to do this a bit later, in the section "Packaging the App for Downloading") or view it in the emulator that comes with App Inventor.</li>
+<li>To the left of the Viewer is the <em>Palette</em>, which is a list of components you can select from. The Palette is divided into sections; at this point, only the User Interface components are visible, but you can see components in other sections of the Palette by clicking the headers labeled Layout, Media, and so on.</li>
+<li>To the right of the Viewer is the <em>Components</em> list, which lists the components in your project. Any component that you drag into the Viewer will show up in this list. Currently, the project has only one component listed: <b>Screen1</b>, which represents the device's screen itself.</li>
+<li>Under the Components list is an area that shows the <em>Media</em> (pictures and sound) in the project. This project doesn't have any media yet, but you'll be adding some soon.</li>
+</ul>
+</p>
+<p>
+At the far right is a section that shows the Properties of components; when you click a component in the Viewer, you'll see its Properties listed here. Properties are details about each component that you can change. (For example, when clicking on a <b>Label</b> component, you might see properties related to color, text, font, and so on.) Right now, it shows the properties of the screen (called <b>Screen1</b>), which include a background color, a background image, and a title.
+</p>
+<p>
+For the HelloPurr app, you'll need two <em>visible</em> components (you can think of these as components you can actually see in the app): the <b>Label</b> component reading "Pet the Kitty" and a <b>Button</b> component with an image of a cat in it. You'll also need a <em>non-visible</em> <b>Sound</b> component that knows how to play sounds, such as "meow," and an <b>Accelerometer</b> component for detecting when the device is being shaken. Don't worry-we'll walk you through each component step by step.
+</p>
+<h2>Making a Label</h2>
+<p>
+The first component to add is a <b>Label</b>:
+<ol>
+<li>Go to the Palette, click <b>Label</b> (which appears about five spots down in the list of components), and drag it to the Viewer. You'll see a rectangular shape appear on the Viewer, with the words "Text for Label1."</li>
+<li>Look at the Properties box on the right side of the Designer. It shows the properties of the label. There's a property called Text about halfway down, with a box for the label's text. Change the text to "Pet the Kitty" and press Return. You'll see the text change in the Viewer.</li>
+<li>Change the <b>BackgroundColor</b> of the label by clicking the box, which currently reads None, to select a color from the list that appears. Select Blue. Also change the <b>TextColor</b> of the label to Yellow. Finally, change the <b>FontSize</b> to 20.</li>
+</ol>
+<p>
+The Designer should now appear as shown in Figure 1-5.
+</p>
+<img src="{{apps2Dir}}/HelloPurr/hp1-5.png" alt="">
+<p>
+<em>Figure 1-5. The app now has a label</em>
+</p>
+<p>
+Be sure you have your device or emulator connected and the Blocks Editor open. You should see the label appear on the device as you add it in the Designer. In App Inventor, you build the application on the device as you pick the components in the Designer. That way, you can see right away how your application will look. This is called <em>live testing</em>, and it also applies to the behaviors you create for the components in the Blocks Editor, as you'll see shortly.
+</p>
+<h2>Adding the Button</h2>
+<p>
+The kitty for HelloPurr is implemented as a <b>Button</b> component-you create a normal button, and then change the button image to the kitty. To make the basic button first, go to the Palette in the Designer and click <b>Button</b> (at the top of the list of components). Drag it onto the Viewer, placing it below the label. You'll see a rectangular button appear on the Viewer. After about 10 seconds, the button should appear on the device. Go ahead and tap the device's button-do you think anything will happen? It won't, because your app hasn't told the button to do anything yet. This is the first important point to understand about App Inventor: for every component you add in the Designer, you have to move over to the Blocks Editor and create the code to make something happen with that component (we'll do that after we finish adding the components we need in the Designer).
+</p>
+<p>
+Now we've got a button that we'll use to trigger the sound effect when someone clicks it, but we really want it to look like the picture of the kitty, not a plain old rectangle. To make the button look like the kitty:
+<ol>
+<li>First, you need to download a picture of the kitty and save it on your computer desktop. You can download it at <a href="{{apps2Dir}}/HelloPurr/Media/kitty.png"><em>kitty.png</em></a>. The picture is the file called <em>kitty.png</em>. (<em>.png</em> is a standard image format similar to <em>.jpg</em> and <em>.gif</em>; all of these file types will work in App Inventor, as will most standard sound files like <em>.mpg</em> or <em>.mp3</em>.) You can also download the sound file we need, <a href="{{apps2Dir}}/HelloPurr/Media/meow.mp3"><em>meow.mp3</em></a>.</li>
+<li>The Properties box should show the properties of the button. If it doesn't, click the image of the button in the Viewer to expose the button's properties on the right. In the Properties box, click the area under Image (which currently reads None). A box appears with a button marked Upload New.</li>
+<li>Click Upload New and you'll see "Upload file." Click Choose File, browse to select the <em>kitty.png</em> file you downloaded to your computer earlier, and click OK.</li>
+<li>After about 30 seconds, <em>kitty.png</em> should be listed as an option for the image property of the button, click ok. You'll also see this listed in the Media area of the Designer window, just below the Components list. And if you look at the device, you'll see the kitty picture displayed-the button now looks like a kitty.</li>
+<li>You may have also noticed that the kitty picture on your device has the words "Text for Button 1" displayed on it. You probably don't want that in your app, so go ahead and change the <b>Text</b> property of <b>Button1</b> to something like "Pet the Kitty," or just delete the text altogether.</li>
+</ol>
+Now the Designer should appear as shown in Figure 1-6.
+</p>
+<img src="{{apps2Dir}}/HelloPurr/hp1-6.png" alt="">
+<p>
+<em>Figure 1-6. The app with a label and a button with an image on it</em>
+</p>
+<h2>Adding the Meow Sound</h2>
+<p>
+In your app, the kitty will meow when you tap the button. For this, you'll need to add the meow sound, and program the button behavior to play that sound when the button is clicked:
+<ol>
+<li>If you haven't downloaded the <em>meow.mp3</em> file to your computer's desktop, do so now with this link <a href="{{apps2Dir}}/PaintPot/Media/meow.mp3"><em>meow.mp3</em></a>.</li>
+<li>Go to the Palette at the left of the Designer window and click the header marked Media to expand the Media section. Drag out a <b>Sound</b> component and place it in the Viewer. Wherever you drop it, it will appear in the area at the bottom of the Viewer marked "Non-visible components." Non-visible components are objects that do things for the app but don't appear in the visual user interface of the app.</li>
+<li>Click <b>Sound1</b> to show its properties. Set its <b>Source</b> to <em>meow.mp3</em>. You'll need to follow the same steps to upload this file from your computer as you did for the kitty picture. When you’re done, you should see both <em>kitty.png</em> and <em>meow.mp3</em> listed in the Media section of the Designer.</li>
+</ol>
+You should now have the components depicted in Table 1-1.
+</p>
+<p>
+<em>Table 1-1. The components you've added to the HelloPurr app</em>
+</p>
+<img src="{{apps2Dir}}/HelloPurr/hp1-1A.png" alt="">
+<h2>Adding Behaviors to the Components</h2>
+<p>
+You've just added <b>Button</b>, <b>Label</b>, and <b>Sound</b> components as the building blocks for your first app. Now let's make the kitty meow when you tap the button. You do this with the Blocks Editor. Click "Blocks" in the top right of the Component Designer. 
+</p>
+<p>
+Look at the Blocks Editor window. This is where you tell the components what to do and when to do it. You're going to tell the kitty button to play a sound when the user taps it. If components are ingredients in a recipe, you can think of blocks as the cooking instructions.
+</p>
+<h2>Making the Kitty Meow</h2>
+<p>
+At the top left of the window, you'll see buttons below "Blocks" beneath this header and you'll see a column that includes a <em>drawer</em> for each component you created in the Designer: <b>Button1</b>, <b>Label1</b>, <b>Screen1</b>, and <b>Sound1</b>. When you click a drawer, you get a bunch of options (<em>blocks</em>) for that component you created. Click the drawer for <b>Button1</b>. The drawer opens, showing a selection of blocks that you can use to tell the button what to do, starting with <strong>Button1.Click</strong> at the top, as shown in Figure 1-7.
+</p>
+<img src="{{apps2Dir}}/HelloPurr/hp1-7.png" alt="">
+<p>
+<em>Figure 1-7. Clicking Button1 shows the component's blocks</em>
+</p>
+<p>
+Click the block labeled <strong>Button1.Click</strong> and drag it into the workspace. When you're looking for the block, you'll notice that the word "when" is included on the <strong>Button1.Click</strong> block. Blocks including the word "when" are called <em>event handlers</em>; they specify what components should do <em>when</em> some particular event happens. In this case, the event we're interested in happens when the app user clicks on the kitty (which is really a button), as shown in Figure 1-8. Next, we'll add some blocks to program what will happen in response to that event.
+</p>
+<img src="{{apps2Dir}}/HelloPurr/hp1-8.png" alt="">
+<p>
+<em>Figure 1-8. You'll specify a response to the user clicking within the Button.Click block</em>
+</p>
+<p>
+Click <b>Sound1</b> to open the drawer for the sound component, and drag out the <strong>call Sound1.Play</strong> block. (Remember, earlier we set the property for <b>Sound1</b> to the meow sound file you downloaded to your computer.) You may notice at this point that the <strong>call Sound1.Play</strong> block is shaped so it can fit into a gap marked "do" in the <strong>Button1.Click</strong> block. App Inventor is set up so that only certain blocks fit together; this way, you always know you're connecting blocks that actually work together. In this case, blocks with the word "call" make components do things. The two blocks should snap together to form a unit, as shown in Figure 1-9, and you'll hear a snapping sound when they connect.
+</p>
+<img src="{{apps2Dir}}/HelloPurr/hp1-9.png" alt="">
+<p>
+<em>Figure 1-9. Now when someone clicks the button, the meow sound will play</em>
+</p>
+<p>
+Unlike traditional programming code (which often looks like a jumbled mess of gobbledygook "words"), blocks in App Inventor spell out the behaviors you're trying to create. In this case, we're essentially saying, "Hey, App Inventor, when someone clicks on the kitty button, play the meow sound."
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<p> 
+<strong>Test your app.</strong> <em>Let's check to make sure everything is working properly-it's important to test your app each time you add something new. Tap the button on the device (or click it using the emulator). You should hear the kitty meow. Congratulations, your first app is running!</em>
+</p>
+</div>
+</div>
+<h2>Adding a Purr</h2>
+<p>
+Now we're going to make the kitty purr <em>and</em> meow when you tap the button. We'll simulate the purr by making the device vibrate. That may sound hard, but in fact, it's easy to do because the <b>Sound</b> component we used to play the meow sound can make the device vibrate as well. App Inventor helps you tap into this kind of core device functionality without having to deal with <em>how</em> the device actually vibrates. You don't need to do anything different in the Designer; you can just add a second behavior to the button click in the Blocks Editor:
+<ol>
+<li>Go to the Blocks Editor and click <b>Sound1</b> to open the drawer.</li>
+<li>Select <strong>call Sound1.Vibrate</strong> and drag it under the <strong>call Sound1.Play</strong> block in the <strong>Button1.Click</strong> slot. The block should click into place, as shown in Figure 1-10. If it doesn't, try dragging it so that the little dip on the top of <strong>call Sound1.Vibrate</strong> touches the little bump on the bottom of <strong>call Sound1.Play</strong>.</li>
+<img src="{{apps2Dir}}/HelloPurr/hp1-10.png" alt="">
+<p>
+<em>Figure 1-10. Playing the sound and vibrating on the Click event</em>
+</p>
+<li>You've likely noticed that the <strong>call Sound1.Vibrate</strong> block includes the text "millisecs" at the top right. An open slot in a block means you can plug something into it to specify more about how the behavior should work. In this case, you must tell the <strong>Vibrate</strong> block how long it should vibrate. You need to input this time in thousandths of a second (milliseconds), which is pretty common for many programming languages. So, to make the device vibrate for half a second, put in a value of 500 milliseconds. To put in a value of 500, you need to grab a number block. Click the Math drawer, as shown in Figure 1-11. You should see a 0 as the first item; 0 indicates a block that represents a number.</li>
+<img src="{{apps2Dir}}/HelloPurr/hp1-11.png" alt="">
+<p>
+<em>Figure 1-11. Opening the Math drawer</em>
+</p>
+<li>Click the 0 at the top of the list and you'll see a blue block with the number 0, as shown in Figure 1-12.</li>
+<img src="{{apps2Dir}}/HelloPurr/hp1-12.png" alt="">
+<p>
+<em>Figure 1-12. Choosing a number block (0 is the default value)</em>
+</p>
+<li>Change the 0 to 500 by clicking it and typing a new value, as shown in Figure 1-13.</li>
+<img src="{{apps2Dir}}/HelloPurr/hp1-13.png" alt="">
+<p>
+<em>Figure 1-13. Changing the value to 500</em>
+</p>
+<li>Plug the 500 number block into the socket at the right of <strong>call Sound1.Vibrate</strong>, as shown in Figure 1-14.</li>
+<img src="{{apps2Dir}}/HelloPurr/hp1-14.png" alt="">
+<p>
+<em>Figure 1-14. Plugging the 500 into the millisecs slot</em>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<p> 
+<strong>Test your app.</strong> <em>Try it! Tap the button on the device, and you'll feel the purr for half a second.</em>
+</p>
+</div>
+</div>
+<h2>Shaking the Device</h2>
+<p>
+Now let's add a final element that taps into another cool feature of Android device's: make the kitty meow when you shake the device. To do this, you'll use a component called <b>AccelerometerSensor</b> that can sense when you shake or move the device around.
+<ol>
+<li>In the Designer, expand the Sensors area in the Palette components list and drag out an <b>AccelerometerSensor</b>. Don't worry about where you drag it-as with any non-visible component, no matter where you place it in the Viewer, it will move to the "Non-visible components" section at the bottom of the Viewer.</li>
+<li>You'll want to treat someone shaking the device as a different, separate event from the button click. That means you need a new event handler. Go to the Blocks Editor. There should be a new drawer for <b>AccelerometerSensor1</b>. Open it and drag out the <strong>AccelerometerSensor1.Shaking</strong> block-it should be the second block in the list.</li>
+<li>Just as you did with the sound and the button click, drag out a <strong>call Sound1.Play</strong> block and fit it into the gap in <strong>AccelerometerSensor1.Shaking</strong>. Try it out by shaking the device.</li>
+</ol>
+Figure 1-15 shows the blocks for the completed HelloPurr app.
+</p>
+<img src="{{apps2Dir}}/HelloPurr/hp1-15.png" alt="">
+<p>
+<em>Figure 1-15. The blocks for HelloPurr</em>
+</p>
+<h2>Packaging the App for Downloading</h2>
+<p>
+App Inventor is a <em>cloud computing</em> tool, meaning your app is stored on Google's online servers as you work. So if you close App Inventor, your app will be there when you return; you don't have to save anything on your computer as you would with a Word file or a music track. This also allows you to easily test the app while connected to your device (what we call <em>live testing</em>), without having to download anything to your device, either. The only problem is that if you disconnect your device from App Inventor, the app running on the device will stop, and you won't find an icon for it anywhere because it was never truly installed.
+</p>
+<p>
+You can download and install the completed app so that it works on any device, even when it's not connected to the computer. First, make sure your device allows apps to be downloaded from places other than the Android Market. Typically, you do this by going to Settings→Applications on your device and checking the box next to "Unknown sources." Then, go to back into the Designer in App Inventor, click "Build," and select "Application (provide QR Code)." You should see a "Progress Bar" message in the window, a process that takes up to a minute. After the "Progress Bar" message disappears, continue to wait for another 10-15 seconds while the QR Code for the finished app is displayed. Scan the QR Code with a Barcode Scanner. After scanning the QR Code the device will prompt you to enter your password for your Google account, when finished entering your password your app will download to your device. If you do not have a Barcode Scanner, go to the Play Store and search for one to download.  Once the app has been downloaded you will need to go into the downloads folder and select the HelloPurr.apk file.  A message will appear asking if you want to install, click Install.
+</p>
+<p>
+Once you've installed it, look at the apps available on your device, and you'll now see HelloPurr, the app we just built. You run it just like any other app. (Make sure that you run your new app, not the App Inventor application.) You can now unplug or even reboot the device and kill all applications, and your new packaged application will still be there.
+</p>
+<p>
+It's important to understand that this means your packaged app is now separate from the project on App Inventor. You can do more work on the project in App Inventor by connecting the device with the AI Companion as before. But that won't change the packaged app that is now installed on your device. If you make further changes to your app in App Inventor, you'll want to package the result and download the new version to replace the old one on the device.
+</p>
+<p>
+Go ahead and download, and install your HelloPurr app so you have it on your device. Once you've done this, you can share it with your family and friends, too!
+</p>
+<h2>Sharing the App</h2>
+<p>
+You can share your app in a couple of ways. To share the executable app, first click "Build" and choose "Application (save to my computer)." This will create a file with a <em>.apk</em> extension on your computer. You need to upload this file so that it is accessible on the Web. Once the app is on the Web, other people can install it on their device's by opening the device's browser and downloading it. Just let them know they need to allow "unknown sources" in their device's Application settings in order to install apps that aren't from the Android Market.
+</p>
+<p>
+You can also share the <em>source code</em> (blocks) of your app with another App Inventor developer. To do this, click My Projects, check the app you want to share (in this case, HelloPurr), and select File→Export Project. The file created on your computer will have a <em>.aia</em> extension. You can email this file to someone, and they can open App Inventor, choose File→Import Project, and select the <em>.aia</em> file. This will give the user their own complete copy of your app, which they can then edit and customize without affecting your version.
+</p>
+<p>
+The process of sharing apps is easy and more fun-work is available at the community sharing site <a href="http://gallery.appinventor.mit.edu/"><em>gallery.appinventor.mit.edu</em></a>.
+</p>
+<h2>Variations</h2>
+<p>
+Now that you've built a complete app and had the chance to play with it (and maybe download it to share with other people), you might have noticed a couple of things. Take a look at the following items and consider how you'd address them in your app. As you'll likely soon discover, you'll often build an app, find ways to improve and change it, and then go back into it to program those new ideas. Don't worry, that's a good thing-it means you're on your way to becoming a full-fledged app developer!
+<ul>
+<li>As you shake the device, the meows will sound strange, as if they are echoing. That's because the accelerometer sensor is triggering the shaking event many times a second, so the meows are overlapping. If you look at the Sound component in the Designer, you'll see a property called <b>Minimum Interval</b>. That determines how close together successive sounds can start. It's currently set at a little under a half-second (400 milliseconds), which is less than the duration of a single meow. By playing with the minimum interval, you can change how much the meows overlap.</li>
+<li>If you run the packaged app and walk around with the device in your pocket, your device will meow every time you move suddenly-something you might find embarrassing. Android apps are typically designed to keep running even when you're not looking at them; your app continues to communicate with the accelerometer and the meow just keeps going. To really quit the app, bring up HelloPurr and press the device's menu button. You'll be offered an option to stop the applicationselect this to close the app completely.</li>
+</ul>
+</p>
+<h2>Summary</h2>
+<p>
+Here are some of the concepts we've covered in this chapter:
+<ul>
+<li>You build apps by selecting components in the Designer and then telling them what to do and when to do it in the Blocks Editor.</li>
+<li>Some components are visible and some aren't. The visible ones appear in the user interface of the app. The non-visible ones do things like play sounds.</li>
+<li>You define components' behavior by assembling blocks in the Blocks Editor. You first drag out an event handler like <strong>Button1.Click</strong>, and then place command blocks like <strong>Sound.Play</strong> within it. Any blocks within <strong>Button1.Click</strong> will be performed when the user clicks the button.</li>
+<li>Some commands need extra information to make them work. An example is <b>Vibrate</b>, which needs to know how many milliseconds to vibrate. These values are called <em>arguments</em>.</li>
+<li>Numbers are represented as number blocks. You can plug these into commands that take numbers as arguments.</li>
+<li>App Inventor has sensor components. The <b>AccelerometerSensor</b> can detect when the device is moved.</li>
+<li>You can package the apps you build and download them to the phone, where they run independently of App Inventor.</li>
+</ul>
+</p>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

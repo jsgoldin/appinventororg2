@@ -1,0 +1,35 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %} 
+How do you animate sprites?
+{% endblock %}
+
+
+{% block description %}
+App Inventor images sprites are provided specifically for animation. Check out the following
+examples:{% endblock %}
+
+
+{% block question %}
+Example 1. How do you move a sprite down, smoothly, at 100 pixels a second
+{% endblock %}
+
+{% block answer %}
+<p>
+	An ImageSprite's speed, pixels/second, is actually determined by two properties.
+	The Interval property specifies how often the sprite will be moved-- it is similar
+	to the TimerInterval property of the Clock component. The Speed property specifies
+	how many pixels the sprite will move each interval (the property is misnamed). In this
+	example, the sprite moves 5 pixels per 50 ms, or 1 pixel per 10 ms, which is 100 pixels/second.
+</p>
+<p>
+	A Sprite's Heading property specifies the direction it moves. As shown below,
+	a Heading of 270 degrees will move the sprite down.
+</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/sprites/headingEdge.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/yddwRnVWdwU" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/Sprites/bounce">example 2</a> {% endblock %}
+
+

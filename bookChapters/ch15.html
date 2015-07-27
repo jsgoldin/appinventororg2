@@ -1,0 +1,314 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>atlas book skeleton</title>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+    <link rel="stylesheet" type="text/css" href="theme/html/html.css"/>
+  </head>
+  <body data-type="book">
+    <section data-type="chapter" data-pdf-bookmark="Chapter 15. Engineering and Debugging an App" id="engineering_and_debugging_an_app">
+<h1>Engineering and Debugging an App</h1>
+
+<p><em>HelloPurr, MoleMash, and the other apps covered in this book’s early chapters are relatively small software projects and don’t really require a significant amount of software engineering.  As soon as you take on a more complicated project, you’ll realize that the difficulty of building software increases rapidly for each bit of complexity you add--it is not anywhere close to a linear relationship. You’ll quickly learn that to build even moderately complex software you need forethought, planning, blueprints, user and system testing, and in general techniques and skills that are more engineering than programming. For most of us, it takes a few hard knocks before we realize this fact. At that point, you’ll be ready to learn some software engineering principles and debugging techniques. If you’re already at that point, or if you’re one of those few people who want to learn a few techniques in the hope of avoiding some of those growing pains, this chapter is for you.</em></p>
+
+<div class="informalfigure"><img alt="Engineering and Debugging an App" src="images/e15.png"/></div>
+
+<section data-type="sect1" data-pdf-bookmark="Software Engineering Principles" id="software_engineering_principles">
+<h1>Software Engineering Principles</h1>
+
+<p>Here are some basic principles that we’ll cover in this chapter:</p>
+
+<ul>
+	<li>Involve your prospective users in the process as early and as often as possible.</li>
+	<li>Build an initial, simple prototype and then add to it incrementally.</li>
+	<li>Code and test in small increments, never more than a few blocks at a time.</li>
+	<li>Design the logic for your app before beginning to code.</li>
+	<li>Divide, layer, and conquer.</li>
+	<li>Comment your blocks so others (and you) can understand them.</li>
+	<li>Learn to trace blocks with pencil and paper so that you understand their mechanics.</li>
+</ul>
+
+<p>If you follow this advice, you will save yourself time and frustration and build better software. But you probably won’t follow it every time! Some of this advice may seem counterintuitive. Your natural inclination is to think of an idea, assume you know what your users want, and then start piecing together blocks until you think you’ve finished the app. Let’s go back to the first principle and look at how to understand what your users want before you start building anything.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Solve Real Problems" id="design_for_real_people_with_real_problem">
+<h1>Solve Real Problems</h1>
+
+<p>In the movie <em>Field of Dreams</em>, the character Ray hears a voice whisper, “If you build it, [they] will come.” Ray listens to the whisper, builds a baseball field in the middle of his Iowa corn patch, and indeed, the 1919 White Sox and thousands of fans show up.</p>
+
+<p>You should know right now that the whisperer’s advice does not apply to software. In fact, it’s the opposite of what you should do. The history of software is littered with great solutions <em>for which there is no problem. </em>Solving a <em>real</em> problem is what makes for an amazing app and a successful and perhaps lucrative project. And to know what the problem is, you’ve got to talk to the people who have it. This is often referred to as <em>user-centered</em> design, and it will help you build better apps.</p>
+
+<p>If you meet some programmers, ask them what percentage of the programs they have written have actually been deployed with real users. You’ll be surprised at how low the percentage is, even for great programmers. Most software projects run into so many issues that they don’t even see the light of day.</p>
+
+<p>User-centered design means thinking and talking to prospective users early and often. This should really start even before you decide what to build. Most successful software was built to solve a particular person’s pain point, and then--and only then--generalized into the next big thing.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Build a Prototype and Show Users" id="build_prototype">
+<h1>Build a Prototype and Show Users</h1>
+
+<p> </p>
+Most prospective users won’t react too well if you ask them to read a document that specifies what the app will do and give their feedback based on that. What <em>does</em> work is to show them an interactive model for the app you’re going to create-a <em>prototype</em>. A prototype is an incomplete, unrefined version of the app. When you build it, don’t worry about details or completeness or having a beautiful graphical interface; build it so that it does just enough to illustrate the core value--add of the app. Then, show it to your prospective users, be quiet, and listen.
+
+<p> </p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Incremental Development" id="incremental_development">
+<h1>Incremental Development</h1>
+
+<p>When you begin your first significantly sized app, your natural inclination might be to add all of the components and blocks you’ll need in one grand effort and then download the app to your phone to see if it works. Take, for instance, a quiz app. Without guidance, most beginning programmers will add blocks with a long list of the questions and answers, blocks to handle the quiz navigation, blocks to handle checking the user’s answer, and blocks for every detail of the app’s logic, all before testing to see if any of it works. In software engineering, this is called the <em>Big Bang approach</em>.</p>
+
+<p>Just about every beginning programmer uses this approach. In my (author Wolber) classes at USF, I will often ask a student, “How’s it going?” as the student is working on an app.</p>
+
+<p>“I think I’m done,” the student will reply.</p>
+
+<p>“Splendid. Can I see it?”</p>
+
+<p>“Ummm, not yet; I don’t have my phone with me.”</p>
+
+<p>“So you haven’t run the app at all?” I ask.</p>
+
+<p>“No....”</p>
+
+<p>I’ll look over the student’s shoulder at an amazing, colorful configuration of 30 or so blocks, none of them tested. The problem is that, when you test all at once, it is much more difficult to diagnose the bugs, and there will be bugs, big hairy ones!</p>
+
+<p><span style="line-height: 1.5em;">Probably the best advice I can give my students-and aspiring programmers everywhere, is this:</span></p>
+
+<ul type="nomark">
+	<li><em>Code a little, test a little, repeat.</em></li>
+</ul>
+
+<p>Build your app one piece at a time, testing as you go. You’ll find bugs, but tiny ones you can easily swat away. And the process will become surprisingly satisfying, because you’ll see results sooner when you follow it.</p>
+
+<p>Hundreds of books and thesis have been written on incremental software development. If you’re interested in  the process of building software (and other things), check out the <em>agile development<a data-type="noteref" id="idp4380368-marker" href="ch15.html#idp4380368"><sup>4</sup></a></em> methodology.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Design Before Coding" id="design_before_coding">
+<h1>Design Before Coding</h1>
+
+<p>There are two parts to programming: understanding the logic of the app, and then translating that logic into some form of programming language. Before you tackle the translation, spend some time on the logic. Specify what should happen both for the user and internally in the app. Nail down the logic of each event handler before moving on to translating that logic into blocks.</p>
+
+<p>Entire books have been written on various program design methodologies. Some people use diagrams like flowcharts or structure charts for design, while others prefer handwritten text and sketches. Some believe that all “design” should end up directly alongside your code as annotation (comments), not in a separate document. The key for beginning programmers is to understand that there is a logic to all programs that has nothing to do with a particular programming language. Simultaneously tackling both that logic and its translation into a language, no matter how intuitive the language, can be overwhelming. So, throughout the process, get away from the computer and think about your app, make sure you’re clear on what you want it to do, and document what you come up with in some way. Then be sure and hook that “design documentation” to your app so others can benefit from it. We’ll cover this next.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Comment Your Code" id="comment_your_code">
+<h1>Comment Your Code</h1>
+
+<p>If you’ve completed a few of the tutorials in this book, you’ve probably seen the small yellow boxes within the blocks (see <a data-type="xref" href="#using_a_comment_on_the_if_block_to_descr">Figure 15-1</a>). These are called <em>comments</em>. In App Inventor, you can add comments to any block by right-clicking it and choosing Add Comment. Comments are just annotation; they don’t affect the app’s execution at all.</p>
+
+<figure id="using_a_comment_on_the_if_block_to_descr"><img alt="Using a comment on the if block to describe what it does in plain English" src="images/e15-1.png"/>
+<figcaption>Using a comment on the if block to describe what it does in plain English</figcaption>
+</figure>
+
+<p>Why comment then? Well, if your app is successful, it will live a long life. Even after spending only a week away from your app, you will forget what you were thinking at the time and not have a clue what some of the blocks are for. For this reason, even if nobody else will ever see your blocks, you should provide comments for them.</p>
+
+<p>And if your app is successful, it will undoubtedly pass through many hands. People will want to understand it, customize it, extend it. As soon as you have the wonderful experience of starting a project with someone’s uncommented code, you’ll understand completely why comments are essential.</p>
+
+<p>Commenting a program is not intuitive, and I’ve never met a beginning programmer who thought it was important. But I’ve also never met an experienced programmer who didn’t do it.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Divide, Layer, and Conquer" id="dividecomma_layercomma_and_conquer">
+<h1>Divide, Layer, and Conquer</h1>
+
+<p>Problems become overwhelming when they’re too big. The key is to break a problem down. There are two main ways to do this. The one we’re most familiar with is to break a problem down into parts (A, B, C) and tackle each one individually. A second, less common way is to break a problem into layers from simple to complex. Add a few blocks for some simple behavior, test the software to make sure it behaves as you want, add another layer of complexity, and so on.</p>
+
+<p>Let’s use the MakeQuiz app in <a data-type="xref" href="ch10.html#makequiz_and_takequiz">Chapter 10</a> as an example for evaluating these two methods. That app lets the user navigate through the questions by clicking a Next button. It also checks the user’s answers to see if she’s correct. So, in designing this app, you might break it into two parts-question navigation and answer checking and program each separately.</p>
+
+<p>But within each of those two parts, you could also break down the process from simple to complex. So, for question navigation, start by creating the code to display only the first question in the list of questions, and test it to make sure it works. Then build the code for getting to the next question, but ignore the issue of what happens when you get to the last question. Once you’ve tested that the quiz will take you to the end, add the blocks to handle the “special case” of the user reaching the last question.</p>
+
+<p>It’s not an either/or case of whether you should break a problem down into parts or into layers of complexity, you should do both. People who can do this well-- software architects--are in extremely high demand.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Understand Your Language: Tracking with Pen and Paper" id="understand_your_language_tracking_with_p">
+<h1>Understand Your Language: Tracking with Pen and Paper</h1>
+
+<p>When an app is in action, it is only partially visible. The end user of an app sees only its outward face, the images and data that are displayed in the user interface. The inner workings of software are hidden to the outside world, just like the internal mechanisms of the human brain (thankfully!). As an app executes, we don’t see the instructions (blocks), we don’t see the program counter that tracks which instruction is currently being executed, and we don’t see the software’s internal memory cells (its variables and properties). In the end, this is how we want it: the end user should see only what the program explicitly displays. But while you are developing and testing software, you want to see <em>everything</em> that is happening.</p>
+
+<p>You the programmer see the code during development, but only a static view of it. Thus, you must <em>imagine</em> the software in action: events occurring, the program counter moving to and executing the next block, the values in the memory cells changing, and so on.</p>
+
+<p>Programming requires a shift between two different views. You begin with the static model--the code blocks--and try to envision how the program will actually behave. When you are ready, you shift to testing mode: playing the role of the end user and testing the software to see if it behaves as you expect. If it does not, you must shift back to the static view, tweak your model, and test again. Through this back and forth process, you move toward an acceptable solution.</p>
+
+<p>When you begin programming, you have only a partial model of how a computer program works--the entire process seems almost magical. You begin with some simple apps: clicking a button causes a cat to meow! You then move on to more complex apps, step through some tutorials, and maybe make a few changes to customize them. The beginner partially understands the inner workings of the apps but certainly does not feel in control of the process. The beginner will often say, “<em>it’s</em> not working,” or “<em>it’s</em> not doing what it’s supposed to do.” The key is to learn how things work to the point that you think more subjectively about the program and say things such as, “<em>My</em> program is doing this,” and “<em>My</em> logic is causing the program to....”</p>
+
+<p>One way to learn how programs work is to trace the execution of some simple app, representing on <em>paper</em> exactly what happens inside the device when each block is performed. Envision the user triggering some event handler and then step through and show the effect of each block: how the variables and properties in the app change, how the components in the user interface change. Like a “close reading” in a literature class, this step-by-step <em>tracing</em> forces you to examine the elements of the language-in this case, App Inventor blocks.</p>
+
+<p>The complexity of the sample you trace is almost immaterial; the key is that you slow down your thought process and examine the cause and effect of each block. You’ll gradually begin to understand that the rules governing the whole process are not as overwhelming as you originally thought.</p>
+
+<p>For example, consider these blocks, shown in <a data-type="xref" href="#setting_the_text_in_questionlabel_to_the">Figure 15-2</a>, which are slight alterations of those from the Presidents Quiz app (<a data-type="xref" href="ch08.html#presidents_quiz">Chapter 8</a>).</p>
+
+<figure id="setting_the_text_in_questionlabel_to_the"><img alt="Setting the Text in QuestionLabel to the first item in QuestionList when the app begins" src="images/e15-2.png"/>
+<figcaption>Setting the Text in QuestionLabel to the first item in QuestionList when the app begins</figcaption>
+</figure>
+
+<p>Do you understand this code? Can you trace it and show exactly what happens in each step?</p>
+
+<p>You start tracing by first drawing memory cell boxes for all pertinent variables and properties. In this case, you need boxes for the <strong>currentQuestionIndex</strong> and the <strong>QuestionLabel.Text</strong>, as shown in <a data-type="xref" href="#boxes_to_hold_the_changing_text_and_inde">Table 15-1</a>.</p>
+
+<table id="boxes_to_hold_the_changing_text_and_inde">
+	<caption>Boxes to hold the changing text and index values</caption>
+	<thead>
+		<tr>
+			<th>QuestionLabel.Text</th>
+			<th>currentQuestionIndex</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td> </td>
+			<td> </td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Next, think about what happens when an app begins--not from a user’s perspective, but internally within the app when it initializes. If you’ve completed some of the tutorials, you probably know this, but perhaps you haven’t thought about it in mechanical terms. When an app begins:</p>
+
+<ol>
+	<li>All the component properties are set based on their initial values in the Component Designer.</li>
+	<li>All variable definitions and initializations are performed.</li>
+	<li>The blocks in the Screen.Initialize event handler are performed.</li>
+</ol>
+
+<p>Tracing a program helps you understand these mechanics. So what should go in the boxes after the initialization phase?</p>
+
+<p>As shown in <a data-type="xref" href="#values_after_the_presidents_quiz_app_ini">Table 15-2</a>, the 1 is in <strong>currentQuestionIndex</strong> because the variable definition is executed when the app begins, and it initializes it to 1. The first question is in <strong>QuestionLabel.Text</strong> because <strong>Screen.Initialize</strong> selects the first item from <strong>QuestionList</strong> and puts it there.</p>
+
+<table id="values_after_the_presidents_quiz_app_ini">
+	<caption>The values after the Presidents Quiz app initializes</caption>
+	<thead>
+		<tr>
+			<th>QuestionLabel.Text</th>
+			<th>currentQuestionIndex</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p>Which president implemented the “New Deal” during the Great Depression?</p>
+			</td>
+			<td>
+			<p>1</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Next, trace what happens when the user clicks the Next button.</p>
+
+<figure id="this_block_is_executed_when_the_user_cli"><img alt="This block is executed when the user clicks the NextButton" src="images/e15-3.png"/>
+<figcaption>This block is executed when the user clicks the NextButton</figcaption>
+</figure>
+
+<p>Examine each block one by one. First, the <strong>currentQuestionIndex</strong> is incremented. At an even more detailed level, the current value of the variable (1) is added to 1, and the result (2) is placed in <strong>currentQuestionIndex</strong>. The if statement is false because the value of <em>currentQuestionIndex</em> (2) is less than the length of QuestionList (3). So the second item is selected and put into <strong>QuestionLabel.Text</strong>, as illustrated in <a data-type="xref" href="#values_after_nextbutton_is_clicked">Table 15-3</a>.</p>
+
+<table id="values_after_nextbutton_is_clicked">
+	<caption>The values after NextButton is clicked</caption>
+	<thead>
+		<tr>
+			<th>QuestionLabel.Text</th>
+			<th>currentQuestionIndex</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p>Which president granted communist China formal recognition in 1979?</p>
+			</td>
+			<td>
+			<p>2</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Trace what happens on the second click. Now <strong>currentQuestionIndex</strong> is incremented and becomes 3. What happens with the <strong>if</strong>? Before reading ahead, examine it very closely and see if you can trace it correctly.</p>
+
+<p>On the <strong>if</strong> test, the value of <strong>currentQuestionIndex</strong> (3) is indeed greater than or equal to the length of <strong>QuestionList</strong>. So the <strong>currentQuestionIndex</strong> is set to 1 and the first question is placed into the label, as shown in <a data-type="xref" href="#values_after_nextbutton_is_clicked_a_sec">Table 15-4</a>.</p>
+
+<table id="values_after_nextbutton_is_clicked_a_sec">
+	<caption>The values after NextButton is clicked a second time</caption>
+	<thead>
+		<tr>
+			<th>QuestionLabel.Text</th>
+			<th>currentQuestionIndex</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p>Which president implemented the “New Deal” during the Great Depression?</p>
+			</td>
+			<td>
+			<p>1</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>The trace has uncovered a bug: the last question in the list never appears! Do you know how to fix it?</p>
+
+<p>When you can trace an app to this level of detail, you become a programmer, an engineer. You begin to understand the mechanics of the programming language, absorbing sentences and words in the code instead of vaguely grasping paragraphs. Yes, the programming language is complex, but each “word” has a definite and straight-forward interpretation by the machine. If you understand how each block maps to some variable or property changing, you can figure out how to write or fix your app. You realize that <em>you</em> are in complete control.</p>
+
+<p>Now if you tell your friends, “I’m learning how to let a user click a Next button to get to the next question; it’s really tough,” they’d think you were crazy. But such programming <em>is</em> very difficult, not because the concepts are so complex, but because you have to slow down your brain to figure out how it, or a computer, processes each and every step, including those things your brain does subconsciously.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Debugging an App" id="debugging_an_app">
+<h1>Debugging an App</h1>
+
+<p>Tracing an app step-by-step, on paper, is one way to understand programming; it’s also a time-tested method of debugging an app when it has problems.</p>
+
+<p>Programming environments, like App Inventor, also provide the high-tech version of pen-and-paper tracing through debugging tools that automate some of the process. Such tools improve the app development process by providing an illuminated view of an app <em>in action</em>. These tools allow the programmer to:</p>
+
+<ul>
+	<li>Pause an app at any point and examine its variables and properties.</li>
+	<li>Perform individual instructions (blocks) to examine their effects.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Watching Variables" id="watching_variables">
+<h1>Watching Variables</h1>
+
+<p><em>NOTE: Watching, a feature of AI1, is not yet implemented in AI2.</em></p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Testing Individual Blocks" id="testing_individual_blocks">
+<h1>Testing Individual Blocks</h1>
+
+<p>While the Watch mechanism allows you to examine variables during an app’s execution, another tool called Do It lets you try out individual blocks <em>outside</em> the ordinary execution sequence. Right-click any block and choose Do It, and the block will be performed. If the block is an expression that returns a value, App Inventor will show that value in a box above the block.</p>
+
+<p>Do It is very useful in debugging logic problems in your blocks. Consider the quiz’s <strong>NextButton.Click</strong> event handler again, and suppose it has a logic problem in which you don’t navigate through all the questions. You could test the program by clicking Next in the user interface and checking to see if the appropriate question appears each time. You might even watch the <strong>currentQuestionIndex</strong> to see how each click changes it.</p>
+
+<p>But this type of testing only allows you to examine the effect of entire event handlers. The app will perform all the blocks in the event handler for the button click before allowing you to examine your watch variables or the user interface.</p>
+
+<p>The Do It tool lets you slow down the testing process and examine the state of the app after any block. The general scheme is to initiate user interface events until you get to the problem point in the app. After discovering that the third question wasn’t appearing in the quiz app, you might click the <strong>NextButton</strong> once to get to the second question. Then, instead of clicking the <strong>NextButton</strong> again and having the entire event handler performed in one swoop, you could use Do It to perform the blocks within the <strong>NextButton.Click</strong> event handler one at a time. You’d start by right-clicking the top row of blocks (the increment of <strong>currentQuestionIndex</strong>) and choosing Do It, as illustrated in <a data-type="xref" href="#using_the_do_it_tool_to_perform_the_bloc">Figure 15-4</a>.</p>
+
+<p>This would change the index to 3. App execution would then stop-Do It causes only the chosen block and any subordinate blocks to be performed. This allows you, the tester, to examine the watched variables and the user interface. When you’re ready, you can choose the next row of blocks (the <strong>if</strong> test) and select Do It so that it’s performed. At every step of the way, you can see the effect of each block.</p>
+
+<figure id="using_the_do_it_tool_to_perform_the_bloc"><img alt="Using the Do It tool to perform the blocks one at a time" src="images/e15-7.png"/>
+<figcaption>Using the Do It tool to perform the blocks one at a time</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Incremental Development with Do It" id="incremental_development_with_do_it">
+<h1>Incremental Development with <em>Do It</em></h1>
+
+<p>It ‘s important to note that performing individual blocks is not just for debugging. It can also be used during development to test blocks as you go. For instance, if you were creating a long formula to compute the distance in miles between two GPS coordinates, you might test the formula at each step to verify that the blocks make sense.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Activating and Deactivating Blocks" id="activating_and_deactivating_blocks">
+<h1>Activating and Deactivating Blocks</h1>
+
+<p>Another way to help you debug and test your app incrementally is to activate and deactivate blocks. This allows you to leave problematic or untested blocks in an app but tell the system to ignore them temporarily as the app runs. You can then test the activated blocks and get them to work fully without worrying about the problematic ones. You can deactivate any block by right-clicking it and choosing Deactivate. The block will be grayed out, and when you run the app it will be ignored. When you’re ready, you can activate the block by right-clicking it again and choosing Activate.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00131">
+<h1>Summary</h1>
+
+<p>The great thing about App Inventor is how easy it is. Its visual nature gets you started building an app right away, and you don’t have to worry about a lot of low-level details. But the reality is that App Inventor can’t figure out what your app should do for you, much less exactly <em>how</em> to do it. Even though it’s tempting to just jump right into the Designer and Blocks Editor and start building an app, it’s important to spend some time thinking about and planning in detail what exactly your app will do. It sounds a bit painful, but if you listen to your users, prototype, test, and trace the logic of your app, you’ll be building better apps in no time.</p>
+</section>
+<aside data-type="footnotes"><p data-type="footnote" id="idp4380368"><a href="ch15.html#idp4380368-marker"><sup>4</sup></a> Beck, Kent; et al. (2001). “Manifesto for Agile Software Development”. Agile Alliance, Retrieved June 5, 2014</p></aside></section>
+  </body>
+</html>
+{% endblock %}

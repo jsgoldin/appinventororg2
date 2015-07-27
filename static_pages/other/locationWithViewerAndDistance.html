@@ -1,0 +1,95 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Location-Aware Apps</H1>
+<p>
+An app can determine the device's location using GPS. How can this information and/or such information from multiple devices be used to to build software that helps people? What are the potential pitfalls of such technology? In your next creative project you'll design a location-aware app. Let's first learn some of the technology and how you use it with App Inventor.
+</p>
+
+<h3>GPS and Google Maps</h3>
+<ol>
+<li>
+What does GPS stand for, who developed it and where does the data come from?
+</li>
+<li>
+What is latitude? What is longitude?
+</li>
+<li>
+Go to <a href="http://maps.google.com" target="_blank">maps.google.com</a> and click on My Places then the link to maps labs (near bottom of left panel) In Maps Labs, find the lat/long Tooltip and enable it. After you do that, you can  hold the shift key down on a map and it will show lat/long on map. Use the map to answer the following questions:
+
+What is the GPS location of: 1) your birthplace? 2) Harney Science Center? 3) Greenwich in the UK? 4) Quito, Ecuador?
+</li>
+<li>
+Enter the following URLs into a browser. What do they display?:<br/>
+<a href="http://maps.google.com/maps?saddr=38.59,-121.47&daddr=37.7,-122.47" target="_blank">http://maps.google.com/maps?saddr=38.59,-121.47&daddr=37.7,-122.47</a><br/>
+<a href="https://maps.google.com/maps?q=37.77679,-122.4511" target="_blank">https://maps.google.com/maps?q=37.77679,-122.4511</a>
+</li>
+<li>
+Determine a Maps URL, like the first one above, that shows a map from your hometown to your dorm/apt. in SF.
+</li>
+</ol>
+<h3>App Inventor Component: LocationSensor</h3>
+<ul>
+<li>
+Key Event: LocationChanged
+</li>
+<li>
+Key Properties: Latitude, Longitude, Altitude, CurrentAddress, DistanceInterval, TimeInterval
+</li>
+<li>
+Functions: HasLongitudeLatitude?
+</li>
+</ul>
+
+<h3>App Inventor Component: WebViewer</h3>
+<p>
+Put a browser in your app! Key Function: GoToURL</p>
+
+<h3>Building URLs</h3>
+<p>
+In your apps, you'll often need to build a URL combining a fixed part and a dynamic part. For example, if you want to show the user's current location in a Web Viewer, you'll need to build a URL that starts with a fixed Google Maps URL such as: "http://maps.google.com/maps?q=" and ends with dynamic information you get by using the LocationSensor blocks.
+</p>
+<p>Instructor Demo: show one's current location in a Google Map. Use makeText to build URL.
+</p>
+<h3>
+Sample App: Show map of current location and distance from some point:
+</h3>
+  <img src="/assets/img/sampleLocationScreen.png"/>
+<p>
+ Here are the blocks:</p>
+<img src="/assets/img/sampleLocation.png"/>
+<img src="/assets/img/distanceProc.png"/>
+Note: the distance procedure shown calculates the distance, in miles, between two GPS coordinates. For more information, see <a href="http://www.studymode.com/essays/Calculating-Distance-Between-Tow-Points-On-758112.html">this specification</a>
+</p>
+
+
+<h3>Your Turn</h3>
+<ol>
+<li>
+Install the apk for this app on your phone using this QR code:<img src="/assets/img/sampleLocationQR.png"/>. 
+</li>
+<li>
+Walk outside and see what the app does. Play with the settings and see how they effect things. Play around with the options to get a feel for TimeInterval and DistanceInterval.
+</li>
+<li>
+Customize: Download <a href="/assets/tracker.zip">the sample app</a> then upload it into app inventor (on My Projects page, choose More Actions | Upload Source). Make the following changes to the app:
+<ul>
+<li>
+Personalize it so the app shows you the distance from some place of interest to you (your dorm room, USF campus, etc.). You'll need to change the parameters sent to the distance procedure, and be sure to also specify in the UI what place it is.
+</li>
+<li>
+Talk It: instead of just vibrating and changing the display on updates, have the app also speak your current location aloud. You'll need to add a TextToSpeech component and its speak function block, and you'll need to use makeText ( the text drawer) to build the text that is spoken.
+</li>
+<li>
+Add a WebViewer component that shows your current location in a Google map at all times.
+</li>
+<li>
+Add a feature so that if you receive a text "where" from someone, the app will automatically send that person your location information. You'll need a Texting component and its "when Texting.MessageReceived" block. In your auto-response text, send the location and a link to a Google maps URL.
+The distance from X label shows the distance in miles. Change this so that it shows the distance in meters.
+</li>
+</ul>
+</ol>
+
+
+
+{% endblock %}

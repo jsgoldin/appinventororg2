@@ -1,0 +1,224 @@
+{% extends "site_base.html" %}
+{% block body %}
+<div class="container-fluid" style="padding-top: 0px;">
+   <div class="row-fluid">
+      <div class="span4">
+         <h2>{{tutorial.heroHeader}}</h2>
+         <p>{{tutorial.heroCopy}}</p>
+      </div>
+      <div class="offset1 span2">
+         
+      </div>
+      <div class="offset2 span2">
+         
+      </div>
+   </div>
+   <div class="row-fluid">
+	
+
+
+
+
+
+     {% if tuturialSteps %}
+    <div class="span11" id="course-steps">
+         <div id="myCarousel" class="carousel slide thumbnail">
+            <!-- Carousel Nav -->
+            <div id="carousel-nav">
+               {% for step in tuturialSteps|slice:":1" %}
+               <a href="#myCarousel" data-to="{{forloop.counter}}" class="active" onclick="stopVideo();">{{forloop.counter}}</a>
+               {%  endfor %}
+               {% for step in tuturialSteps|slice:"1:" %}
+               <a href="#myCarousel" data-to="{{forloop.counter|add:1}}" onclick="stopVideo();">{{forloop.counter|add:1}}</a>
+               {%  endfor %}
+            </div>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+               {% for step in tuturialSteps|slice:":1" %}
+               <div class="active item">
+                  <div class="row-fluid">
+                     <div class="span9">
+                        <p class="leadfont">
+                           <a href="" onclick="return false;">
+                           <strong>Step{{ step.number }}:</strong> {{step.header}}
+                           </a>
+                           <br>
+                           <small>{{step.copy}}</small>
+                        </p>
+           <p></p>
+                        <p class="smal6Cleadfont">
+                           
+                        <div id="step{{ step.number }}block" class="collapse"> <img src="apps/{{ tutorial.appId }}/blocks{{ step.number }}.png" ></img></div>
+                        </p>
+                        
+                     </div>
+        
+                  </div>
+                  <iframe src="{{step.tutorialLink}}" width="1500" height="700"></iframe>
+                  <div class="carousel-caption">
+                     <h4>&nbsp&nbsp&nbsp&nbsp&nbsp {{ step.number }}: {{step.header}}</h4>
+                  </div>
+               </div>
+               {%  endfor %}
+               {% for step in tuturialSteps|slice:"1:" %}
+               <div class="item">
+                  <div class="row-fluid">
+                     <div class="span9">
+                        <p class="leadfont">
+                           <a href="" onclick="return false;">
+                           <strong>Step{{ step.number }}:</strong> {{step.header}}
+                           </a>
+                           <br>
+                           <small>{{step.copy}}</small>
+                        </p>
+                        <p class="smallleadfont">
+                                                  <div id="step{{ step.number }}block" class="collapse"> <img src="apps/{{ tutorial.appId }}/blocks{{ step.number }}.png" ></img></div>
+                        </p>                        
+                     </div>
+        
+
+                  </div>
+                  <iframe src="{{step.tutorialLink}}" width="1500" height="700"></iframe>
+
+                  
+                  <div class="carousel-caption">
+                     <h4>&nbsp&nbsp&nbsp&nbsp&nbsp {{ step.number }}: {{step.header}}</h4>
+                  </div>
+               </div>
+               {%  endfor %}
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#myCarousel" onclick="if(currentPage>0){currentPage=((currentPage-(2))%pagesCount);$('#myCarousel').carousel(currentPage+1);stopVideo();}">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" onclick="if(currentPage<pagesCount){$('#myCarousel').carousel(currentPage+1);stopVideo();}">&rsaquo;</a>
+         </div>
+      </div>
+   {% else %}
+    
+   {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+   </div>
+   <!-- End of row-fluid-->
+
+   <div class="row-fluid">
+  <div class="span4">
+         
+      </div>
+
+  <div class="span4"> 
+  </div>
+
+      <div class="offset1 span2">
+         
+      </div>
+      </br>
+
+    </br>
+        
+    
+   </div>
+
+
+   <div class="row-fluid" style="margin-top:50px;">
+    <div class="span18">
+      {% if userStatus.ifUser%}
+    <div class="span1">
+      <img src="/imageHandler?key={{userStatus.account.key}}" style="width:50px;height=50px;" />
+    </div>
+      <div class="span11">
+
+      <form action="/postComment" method="post">
+      <textarea type="text" rows="2"  name="comment_content" placeholder="Enter comment/question" class="span2" maxlength="800"></textarea>
+    
+      <input type="hidden" value= "{{ tutorial.appId }}" name="comment_appId" />
+      <input type="hidden" value= "{{ tutorial.appId }}-steps" name="redirect_link" />
+    
+      
+      <div class="pull-right" style="margin-bottom:50px;">
+      <input type="submit" class="btn" value="Submit"/>
+      </div>
+    
+            </form>
+      </div>
+      {% else %}
+      <div class="span12" style="background: #eee;
+border: 1px solid #ccc;height:50px;width:100%;">
+      <p><a href="{{userStatus.loginurl}}"> Login </a>
+ now to post a comment!</p>
+      </div>
+      {% endif %}
+
+
+        
+    
+
+     <table class="table table-striped">
+  
+  
+
+
+     {% for comment in comments %}
+  <tr>
+    <td width="100%">
+    
+    
+    <div class="span9">
+      <div class="span1">
+        <img src="/imageHandler?key={{comment.submitter.key}}" style="width:50px;height=50px;" />
+      </div>
+      <div class="span3">
+        <b>{{comment.submitter.displayName}}
+        
+      </div>
+      <div class="span18">
+        {{comment.content}}
+        <font size="1" color="grey">{{comment.timestamp}}</font>
+      </div>
+          {% if userStatus.admin %}
+        <div class="span2">
+        <a href="/deleteComment?commentKey={{comment.key}}&redirect_link=%2F{{ tutorial.appId }}-steps">delete</a>
+            </div>
+          {% endif %}
+
+      
+      
+      
+    </div>
+    </td> 
+  </tr>
+     {% endfor %}
+  
+  
+  </table>
+
+   </div>
+   </div>
+
+
+
+
+</div>
+<!-- End of Container-->{% endblock %}
+{#end of body block#}

@@ -1,0 +1,369 @@
+﻿
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>Xylophone</h2>
+		<div class="row-fluid">
+		<div class="span6">
+			<p>
+			<em>It's hard to believe that using technology to record and play back music only dates back to 1878, when Edison patented the phonograph. We've come so far since then-with music synthesizers, CDs, sampling and remixing, phones that play music, and even long-distance jamming over the Internet. In this chapter, you'll take part in this tradition by building a Xylophone app that records and plays music.</em>
+			</p>
+</div>
+<div class="span6">
+<img src="{{apps2Dir}}/Xylophone/xp.png" alt="">
+</div>
+</div>
+<div class="row-fluid">
+	<div class="span5">
+<h2>What You'll Build</h2>
+<p>
+	With the app shown in Figure 9-1 (originally created by Liz Looney of the App Inventor team), you can:
+	<ul>
+		<li>Play eight different notes by touching colored buttons on the screen.</li>
+		<li>Press a Play button to replay the notes you played earlier.</li>
+		<li>Press a Reset button to make the app forget what notes you played earlier so you can enter a newsong. </li>
+	</ul>
+</p>
+</div>
+<div class="span5">
+<img src="{{apps2Dir}}/Xylophone/xp9-1.png" alt="">
+<p><em>Figure 9-1. The Xylophone app UI</em></p>
+</div>
+</div>
+
+<h2>What You'll Learn</h2>
+<p>
+	This tutorial covers the following concepts:
+	<ul>
+		<li>Using a single <b>Sound</b> component to play different audio files.</li>
+		<li>Using the <b>Clock</b> component to measure and enforce delays between actions.</li>
+		<li>Deciding when to create a procedure.</li>
+		<li>Creating a procedure that calls itself.</li>
+		<li>Advanced use of lists, including adding items, accessing them, and clearing the list.</li>
+	</ul>
+</p>
+<h2>Getting Started</h2>
+<p>
+	Connect to the App Inventor website and start a new project. Name it "Xylophone", and also set the screen’s title to "Xylophone". Open the Blocks Editor and connect to your phone or emulator.
+</p>
+<h2>Designing the Components</h2>
+<p>
+	This app has 13 different components (8 of which compose the keyboard), listed in Table 9-1. Since there are so many, it would get pretty boring to create all of them before starting to write our program, so we'll break down the app into its functional parts and build them sequentially by going back and forth between the Designer and the Blocks Editor, as we did with the Ladybug Chase app in Chapter 5.
+</p>
+<p><em>Table 9-1. All of the components for the Xylophone app</em></p>
+<img src="{{apps2Dir}}/Xylophone/xp9-1T.png" alt="">
+<h2>Creating the Keyboard</h2>
+<p>
+	Our user interface will include an eight-note keyboard for a pentatonic (seven-note) major scale ranging from Low C to High C. We will create this musical keyboard in this section.
+</p>
+<h2>Creating the First Note Buttons</h2>
+<p>
+	Start by creating the first two xylophone keys, which we will implement as buttons.
+	<ol>
+		<li>From the Basic category, drag a Button onto the screen. Leave its name as <b>Button1</b>. We want it to be a long magenta bar, like a key on a xylophone, so set its properties as follows:
+			<ul>
+				<li>Changing its <b>BackgroundColor</b> property to Magenta.</li>
+				<li>Changing its <b>Text</b> property to "C".</li>
+				<li>Setting its <b>Width</b> property to "Fill parent" so it goes all the way across the screen.</li>
+				<li>Setting its <b>Height</b> property to 40 pixels.</li>
+			</ul>
+		</li>
+		<li>Repeat for a second <b>Button</b>, named <b>Button2</b>, placing it below <b>Button1</b>. Use <b>Width</b> and <b>Height</b> property values, but set its <b>BackgroundColor</b> property to Red and its <b>Text</b> property to "D".</li>
+	</ol>
+</p>
+<p>
+	(Later, we will repeat step 2 for six more note buttons.)
+</p>
+<p>
+	The view in the Component Designer should look something like Figure 9-2.
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-2.png" alt="">
+<p><em>Figure 9-2. Placing buttons to create a keyboard</em></p>
+<p>
+	The display on your phone should look similar, although there will not be any empty space between the two colored buttons.
+</p>
+<h2>Adding the Sound Component</h2>
+<p>
+	We can't have a xylophone without sounds, so create a <b>Sound</b> component, leaving its name as <b>Sound1</b>. Change the <b>MinimumInterval</b> property from its default value of 500 milliseconds to 0. This allows us to play the sound as often as we want, instead of having to wait half a second (500 milliseconds) between plays. Don’t set its <b>Source</b> property, which we will set in the Blocks Editor.
+</p>
+<p>
+	Upload the sound files <a href="{{apps2Dir}}/Xylophone/Media/1.wav"><em>1.wav</em></a> and <a href="{{apps2Dir}}/Xylophone/Media/2.wav"><em>2.wav</em></a> by clicking the sound link. Unlike in previous chapters, where it was OK to change the names of media files, it is important to use these exact names for reasons that will soon become clear. You can upload the remaining six sound files when directed to later.
+</p>
+<h2>Connecting the Sounds to the Buttons</h2>
+<p>
+	The behavior we need to program is for a sound file to play when the corresponding button is clicked. Specifically, if <b>Button1</b> is clicked, we'd like to play <em>1.wav</em>; if <b>Button2</b> is clicked, we'd like to play <em>2.wav</em>; and so on. We can set this up in the Blocks Editor as shown in Figure 9-3 by doing the following:
+	<ol>
+		<li>From the My Blocks tab and Button1 drawer, drag out the <strong>Button1.Click</strong> block.</li>
+		<li>From the Sound1 drawer, drag out the set <strong>Sound1.Source</strong> block, placing it in the <strong>Button1.Click</strong> block.</li>
+		<li>Type "text" to create a text block. (This is quicker than going to the Built-In tab and then the Text drawer, although that would work too.) Set its <b>text</b> value to "1.wav" and place it in the <strong>Sound1.Source</strong> block.</li>
+		<li>Add a <strong>Sound1.Play</strong> block.</li>
+	</ol>
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-3.png" alt="">
+<p><em>Figure 9-3. Playing a sound when a button is clicked</em></p>
+<p>
+	We could do the same for <b>Button2</b>, as shown in Figure 9-4 (just changing the text value), but the code would be awfully repetitive.
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-4.png" alt="">
+<p><em>Figure 9-4. Adding more sounds</em></p>
+<p>
+	Repeated code is a good sign that you should create a procedure, which you've already done in Chapter 3’s MoleMash game and Chapter 5’s Ladybug Chase game. Specifically, we'll create a procedure that takes a number as an argument, sets <b>Sound1</b>'s <b>Source</b> to the appropriate file, and plays the sound. This is another example of <em>refactoring</em>-improving a program’s implementation without changing its behavior, a concept introduced in the MoleMash tutorial. We can use the Text drawer's <strong>join</strong> block to combine the number (e.g., 1) and the text ".wav" to create the proper filename (e.g., "1.wav"). Here are the steps for creating the procedure we need:
+	<ol>
+		<li>Under the Built-In tab, go to the Definition drawer and drag out the <strong>to procedure</strong> block.</li>
+		<li>Go back to the Definition drawer and drag a <strong>name</strong> block into the "arg" socket of <strong>to procedure</strong>.</li>
+		<li>Click the rightmost "name" and set the name to "number".</li>
+		<li>Click <strong>procedure</strong> and set the name to "PlayNote".</li>
+		<li>Drag the <strong>Sound1.Source</strong> block from <strong>Button1.Click</strong> into <strong>PlayNote</strong> to the right of the word "do". The <strong>Sound1.Play</strong> block will move with it.</li>
+		<li>Drag the <strong>1.wav</strong> block into the trash can.</li>
+		<li>From the Text drawer, drag the <strong>join</strong> block into <strong>Sound1.Source</strong>'s socket.</li>
+		<li>Type "number" and move it to the left socket of the <strong>join</strong> block (if it is not already there).</li>
+		<li>From the Text drawer, drag the <strong>text</strong> block into the right socket of the <strong>join</strong> block.</li>
+		<li>Change the text value to ".wav". (Remember not to type the quotation marks.)</li>
+		<li>Under the My Blocks tab, go to the My Definitions drawer and drag a <strong>call PlayNote</strong> block into the empty body of <strong>Button1.Click</strong>.</li>
+		<li>Type "1" and put it in the "number" socket.</li>
+	</ol>
+</p>
+<p>
+	Now, when <b>Button1</b> is clicked, the procedure <b>PlayNote</b> will be called, with its number argument having the value 1. It should set <b>Sound1.Source</b> to "1.wav" and play the sound.
+</p>
+<p>
+	Create a similar <strong>Button2.Click</strong> block with a call to <b>PlayNote</b> with an argument of 2.(You can copy the existing <strong>PlayNote</strong> block and move it into the body of <strong>Button2.Click</strong>, making sure to change the argument.) Your program should look like Figure 9-5.
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-5.png" alt="">
+<p><em>Figure 9-5. Creating a procedure to play a note</em></p>
+<h2>Telling Android to Load the Sounds</h2>
+<p>
+	If you tried out the preceding calls to <b>PlayNote</b>, you may have been disappointed by not hearing the sound you expected or by experiencing an unexpected delay. That's because Android needs to load sounds at runtime, which takes time, before they can be played. This issue didn't come up before, because filenames placed in a <b>Sound</b> component’s <b>Source</b> property in the Designer are automatically loaded when the program starts. Since we don’t set <b>Sound1.Source</b> until <em>after</em> the program has started, that initialization process does not take place. We have to explicitly load the sounds when the program starts up, as shown in Figure 9-6.
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-6.png" alt="">
+<em>Figure 9-6. Loading sounds when the app launches</em>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<p> 
+<strong>Test your app.</strong> <em>Now if you restart the app by clicking on "Connect to Device..." in the Blocks Editor, the notes should play without delay. (If you don’t hear anything, make sure that the media volume on your phone is not set to mute.)</em>
+</p>
+</div>
+</div>
+<h2>Implementing the Remaining Notes</h2>
+<p>
+	Now that we have the first two buttons and notes implemented and working, add the remaining six notes by going back to the Designer and uploading the sound files <a href="{{apps2Dir}}/Xylophone/Media/3.wav"><em>3.wav</em></a>, <a href="{{apps2Dir}}/Xylophone/Media/4.wav"><em>4.wav</em></a>, <a href="{{apps2Dir}}/Xylophone/Media/5.wav"><em>5.wav</em></a>, <a href="{{apps2Dir}}/Xylophone/Media/6.wav"><em>6.wav</em></a>, <a href="{{apps2Dir}}/Xylophone/Media/7.wav"><em>7.wav</em></a>, and <a href="{{apps2Dir}}/Xylophone/Media/8.wav"><em>8.wav</em></a>. Then create six new buttons, following the same steps as you did before but setting their <b>Text</b> and <b>BackgroundColor</b> properties as follows:
+	<ul>
+		<li>Button3 ("E", Pink)</li>
+		<li>Button4 ("F", Orange)</li>
+		<li>Button5 ("G", Yellow)</li>
+		<li>Button6 ("A", Green)</li>
+		<li>Button7 ("B", Cyan)</li>
+		<li>Button8 ("C", Blue)</li>
+	</ul>
+	You may also want to change <b>Button8</b>’s <b>TextColor</b> property to White, as shown in Figure 9-7, so it is more legible.</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-7.png" alt="">
+<em>Figure 9-7. Putting the remaining buttons and sounds in the Component Designer</em>
+<p>
+	Back in the Blocks Editor, create <strong>Click</strong> blocks for each of the new buttons with appropriate calls to <b>PlayNote</b>. Similarly, add each new sound file to <strong>Screen.Initialize</strong>, as shown in Figure 9-8.
+</p>
+<p>
+	With your program getting so large, you might find it helpful to click the white minus signs near the bottom of the "container" blocks, such as <strong>PlayNote</strong>, to minimize them and conserve screen space.
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<p> 
+<strong>Test your app.</strong> <em>You should now have all the buttons, and each one will play a different note when you click it.</em>
+</p>
+</div>
+</div>
+<img src="{{apps2Dir}}/Xylophone/xp9-8.png" alt="">
+<em>Figure 9-8. Programming the button click events to correspond to all the keyboard keys</em>
+<h2>Recording and Playing Back Notes</h2>
+<p>
+	Playing notes by pressing buttons is fun, but being able to record and play back songs is even better. To implement playback, we will need to maintain a record of played notes. In addition to remembering the pitches (sound files) that were played, we must also record the amount of time between notes, or we won't be able to distinguish between two notes played in quick succession and two played with a 10-second silence between them.
+</p>
+<p>
+	Our app will maintain two lists, each of which will have one entry for each note that has been played:
+	<ul>
+		<li><b>notes</b>, which will contain the names of the sound files in the order in which they were played</li>
+		<li><b>times</b>, which will record the points in time at which the notes were played</li>
+	</ul>
+	<div class="span2">
+<img src="{{apps2Dir}}/block.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Note.</strong> <em>Before continuing, you may wish to review lists, which we covered in the Presidents Quiz.</em>
+</p>
+</div>
+</div>
+<p>
+	We can get the timing information from a <b>Clock</b> component, which we will also use to properly time the notes for playback.
+</p>
+<h2>Adding the Components</h2>
+<p>
+	In the Designer, you will need to add a <b>Clock</b> component and Play and Reset buttons, which we will put in a <b>HorizontalArrangement</b>:
+	<ol>
+		<li>Drag in a <b>Clock</b> component. It will appear in the "Non-visible components" section. Uncheck its <b>TimerEnabled</b> property because we don’t want its timer to go off until we tell it to during playback.</li>
+		<li>Go to the Screen Arrangement category and drag a <b>HorizontalArrangement</b> component beneath the existing button. Set its <b>Width</b> property to "Fill parent."</li>
+		<li>From the Basic category, drag in a <b>Button</b>. Rename it <b>PlayButton</b> and set its <b>Text</b> property to "Play".</li>
+		<li>Drag in another <b>Button</b>, placing it to the right of <b>PlayButton</b>. Rename the new <b>Button</b> to <b>ResetButton</b> and set its <b>Text</b> property to "Reset".</li>
+	</ol>
+</p>
+<p>
+	The Designer view should look like Figure 9-9.
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-9.png" alt="">
+<em>Figure 9-9. Adding components for recording and playing back sounds</em>
+<h2>Recording Notes and Times</h2>
+<p>
+	We now need to add the correct behavior in the Blocks Editor. We will need to maintain lists of notes and times and add to the lists whenever the user presses a button.
+	<ol>
+		<li>Create a new variable by going to the Built-In tab and dragging out a <strong>def variable</strong> block from the Definition drawer.</li>
+		<li>Click "variable" and change it to "notes".</li>
+		<li>Open the Lists drawer and drag a <strong>make a list</strong> block out, placing it in the socket of <strong>def notes</strong>.</li>
+	</ol>
+</p>
+<p>
+	This defines a new variable named "notes" to be an empty list. Repeat the steps for another variable, which you should name "times". These new blocks should look like Figure 9-10.
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-10.png" alt="">
+<em>Figure 9-10. Setting the variables to record notes</em>
+<h2>How the blocks work</h2>
+<p>
+	Whenever a note is played, we need to save both the name of the sound file (to the list <b>notes</b>) and the instant in time at which it was played (to the list <b>times</b>). To record the instant in time, we will use the <strong>Clock1.Now</strong> block, which returns the current instant in time (e.g., March 12, 2011, 8:33:14 AM), to the nearest millisecond. These values, obtained through the <strong>Sound1.Source</strong> and <strong>Clock1.Now</strong> blocks, should be added to the lists <b>notes</b> and <b>times</b>, respectively, as shown in Figure 9-11.
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-11.png" alt="">
+<em>Figure 9-11. Adding the sounds played to the list</em>
+<p>
+	For example, if you play "Row, Row, Row Your Boat" [C C C D E], your lists would end up having five entries, which might be:
+	<ul>
+		<li><b>notes</b>: 1.wav, 1.wav, 1.wav, 2.wav, 3.wav</li>
+		<li><b>times</b> [dates omitted]: 12:00:01, 12:00:02, 12:00:03, 12:00:03.5, 12:00:04</li>
+	</ul>
+</p>
+<p>
+	When the user presses the Reset button, we want the two lists to go back to their original, empty states. Since the user won’t see any change, it's nice to add a small <strong>Sound1.Vibrate</strong> block so he knows that the key click was registered. Figure 9-12 shows the blocks for this behavior.
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-12.png" alt="">
+<em>Figure 9-12. Providing feedback when the user resets the app</em>
+<h2>Playing Back Notes</h2>
+<p>
+	As a thought experiment, let's first look at how to implement note playback without worrying about timing. We could (but won't) do this by creating these blocks as shown in Figure 9-13:
+	<ul>
+		<li>A variable <b>count</b> to keep track of which note we're on.</li>
+		<li>A new procedure, <b>PlayBackNote</b>, which plays that note and moves on to the next one.</li>
+		<li>Code to run when <b>PlayButton</b> is pressed that sets the count to 1 and calls <b>PlayBackNote</b> unless there are no saved notes.</li>
+	</ul>
+</p>
+<h2>How the blocks work</h2>
+<p>
+	This may be the first time you've seen a procedure make a call to itself. While at first glance this might seem bogus, it is in fact an important and powerful computer science concept called <em>recursion</em>.
+</p>
+<p>
+	To get a better idea of how recursion works, let's step through what happens if a user plays three notes (<em>1.wav</em>, <em>3.wav</em>, and <em>6.wav</em>) and then presses the Play button. First, <b>PlayButton.Click</b> starts running. Since the length of the list <b>notes</b> is 3, which is greater than 0, <b>count</b> gets set to 1, and <b>PlayBackNote</b> is called:
+	<ol>
+		<li>The first time <b>PlayBackNote</b> is called, <b>count</b> = 1:</li>
+		<ul>
+			<li><b>Sound1.Source</b> is set to the first item in <b>notes</b>, which is <em>1.wav</em>.</li>
+			<li><b>Sound1.Play</b> is called, playing this note.</li>
+			<li>Since count (1) less than the length of notes (3),count gets incremented to 2, and <b>PlayBackNote</b> gets called again.</li>
+		</ul>
+		<img src="{{apps2Dir}}/Xylophone/xp9-13.png" alt="">
+<em>Figure 9-13. Playing back the recorded notes</em>
+	<li>The second time <b>PlayBackNote</b> is called, <b>count</b> = 2:</li>
+	<ul>
+		<li><b>Sound1.Source</b> is set to the second item in <b>notes</b>, which is <em>3.wav</em>.</li>
+		<li><b>Sound1.Play</b> is called, playing this note.</li>
+		<li>Since <b>count</b> (2) less than the length of <b>notes</b> (3), <b>count</b> gets incremented to 3, and <b>PlayBackNote</b> gets called again.</li>
+	</ul>
+	<li>The third time <b>PlayBackNote</b> is called, <b>count</b> = 3:</li>
+	<ul>
+		<li><b>Sound1.Source</b> is set to the third item in notes, which is 6.wav.</li>
+		<li><b>Sound1.Play</b> is called, playing this note.</li>
+		<li>Since <b>count</b> (3) is <em>not</em> less than the length of <b>notes</b> (3), nothing else happens, and playback is complete.</li>
+	</ul>
+</ol>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/block.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Note.</strong> <em>Although recursion is powerful, it can also be dangerous. As a thought experiment, ask yourself what would have happened if the programmer forgot to insert the blocks in</em> <b>PlayBackNote</b> <em>that incremented</em> <b>count</b><em>.</em>
+</p>
+</div>
+</div>
+<p>
+	While the recursion is correct, there is a different problem with the preceding example: almost no time passes between one call to <b>Sound1.Play</b> and the next, so each note gets interrupted by the next note, except for the last one. No note (except for the last) is allowed to complete before <b>Sound1</b>’s source is changed and <b>Sound1.Play</b> is called again. To get the correct behavior, we need to implement a delay between calls to <b>PlayBackNote</b>.
+</p>
+<h2>Playing Back Notes with Proper Delays</h2>
+<p>
+	We will implement the delay by setting the timer on the clock to the amount of time between the current note and the next note. For example, if the next note is played 3,000 milliseconds (3 seconds) after the current note, we will set <b>Clock1.TimerInterval</b> to 3,000, after which <b>PlayBackNote</b> should be called again. Make the changes shown in Figure 9-14 to the body of the <strong>if</strong> block in <b>PlayBackNote</b>, and create and fill in the <strong>Clock1.Timer</strong> event handler, which says what should happen when the timer goes off.
+</p>
+<img src="{{apps2Dir}}/Xylophone/xp9-14.png" alt="">
+<em>Figure 9-14. Adding delays between the notes</em>
+<h2>How the blocks work</h2>
+	<p>
+		Let's assume the following contents for the two lists:
+		<ul>
+			<li><b>notes</b>: <em>1.wav, 3.wav, 6.wav</em></li>
+			<li><b>times</b>: 12:00:00, 12:00:01, 12:00:04</li>
+		</ul>
+
+As Figure 9-14 shows, <strong>PlayButton.Click</strong> sets <b>count</b> to 1 and calls <strong>PlayBackNote</strong>.
+<ol>
+	<li>The first time <b>PlayBackNote</b> is called, <b>count</b> = 1:</li>
+	<ul>
+		<li><b>Sound1.Source</b> is set to the first item in <b>notes</b>, which is "1.wav".</li>
+		<li><strong>Sound1.Play</strong> is called, playing this note.</li>
+		<li>Since <b>count</b> (1) less than the length of <b>notes</b> (3), <b>Clock1.TimerInterval</b> is set to the amount of time between the first (12:00:00) and second items in <b>times</b> (12:00:01): 1 second. <b>count</b> gets incremented to 2. <b>Clock1.Timer</b> is enabled and starts counting down.</li>
+	</ul>
+
+Nothing else happens for 1 second, at which time <strong>Clock1.Timer</strong> runs, temporarily disabling the timer and calling <strong>PlayBackNote</strong>.
+<li>The second time <strong>PlayBackNote</strong> is called, <b>count</b> = 2:
+	<ul>
+		<li><b>Sound1.Source</b> is set to the second item in <b>notes</b>, which is "3.wav".</li>
+		<li><b>Sound1.Play</b> is called, playing this note.</li>
+		<li>Since <b>count</b> (2) less than the length of <b>notes</b> (3), <b>Clock1.TimerInterval</b> is set to the amount of time between the second (12:00:01) and third items in <b>times</b> (12:00:04): 3 seconds. <b>count</b> gets incremented to 3. <b>Clock1.Timer</b> is enabled and starts counting down.</li>
+	</ul>
+
+Nothing else happens for 3 seconds, at which time <strong>Clock1.Timer</strong> runs, temporarily disabling the timer and calling <strong>PlayBackNote</strong>.
+<li>The third time <strong>PlayBackNote</strong> is called, <b>count</b> = 3:</li>
+<ul>
+	<li><b>Sound1.Source</b> is set to the third item in <b>notes</b>, which is "6.wav".</li>
+	<li><b>Sound1.Play</b> is called, playing this note.</li>
+	<li>Since <b>count</b> (3) is <em>not</em> less than the length of <b>notes</b> (3), nothing else happens. Playback is complete.</li>
+</ul>
+</ol>
+<h2>Variations</h2>
+<p>
+	Here are some alternative scenarios to explore:
+	<ul>
+		<li>Currently, there's nothing to stop a user from clicking <b>ResetButton</b> during playback, which will cause the program to crash. (Can you figure out why?) Modify <strong>PlayButton.Click</strong> so it disables <b>ResetButton</b>. To reenable it when the song is complete, change the if block in <strong>PlayButton.Click</strong> into an <strong>ifelse</strong> block, and reenable <b>ResetButton</b> in the “else” portion.</li>
+		<li>Similarly, the user can currently click <b>PlayButton</b> while a song is already playing. (Can you figure out what will happen if she does so?) Make it so <strong>PlayButton.Click</strong> disables <b>PlayButton</b> and changes its text to "Playing…"" You can reenable it and reset the text in an <strong>ifelse</strong> block, as described in the previous bullet.</li>
+		<li>Add a button with the name of a song, such as "Für Elise". If the user clicks it, populate the notes and times lists with the corresponding values, set count to 1, and call <b>PlayBackNote</b>. To set the appropriate times, you'll find the <strong>Clock1.MakeInstantFromMillis</strong> block useful.</li>
+		<li>If the user presses a note, goes away and does something else, and comes back hours later and presses an additional note, the notes will be part of the same song, which is probably not what the user intended. Improve the program by (1)stopping recording after some reasonable interval of time, such as a minute; or (2) putting a limit on the amount of time used for <b>Clock1.TimerInterval</b> using the <strong>max</strong> block from the Math drawer.</li>
+		<li>Visually indicate which note is playing by changing the appearance of the button—for example, by changing its <b>Text</b>, <b>BackgroundColor</b>, or <b>ForegroundColor</b>.</li>
+	</ul>
+</p>
+<h2>Summary</h2>
+<p>
+	Here are some of the ideas we’ve covered in this tutorial:
+	<ul>
+		<li>You can play different audio files from a single <b>Sound</b> component by changing its <b>Source</b> property. This enabled us to have one <b>Sound</b> component instead of eight. Just be sure to load the sounds at initialization to prevent delays (Figure 9-6).</li>
+		<li>Lists can provide a program with memory, with a record of user actions stored in the list and later retrieved and reprocessed. We used this functionality to record and play back a song.</li>
+		<li>The <b>Clock</b> component can be used to determine the current time. Subtracting two time values gives us the amount of time between two events.</li>
+		<li>The <b>Clock's TimerInterval</b> property can be set within the program, such as how we set it to the duration of time between the starts of two notes.</li>
+		<li>It is not only possible but sometimes desirable for a procedure to make a call to itself. This is a powerful technique called recursion. When writing a recursive procedure, make sure that there is a base case in which the procedure ends, rather than calling itself, or the program will loop infinitely.</li>
+	</ul>
+</p>
+
+
+{% endblock %}
+
+
+

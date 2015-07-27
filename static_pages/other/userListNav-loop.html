@@ -1,0 +1,27 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %}User List Navigation: How do you step through a list of information?{% endblock %}
+{% block description %}
+		App Inventor provides a <span class="empfont">for each</span> block for processing a list of information 
+			all at once. But what if you have an app, such as a slideshow, in which the 
+			user controls the movement through the list?  To program this behavior, you’ll 
+			use an index variable to keep track of your position in the list. Check out 
+			the following examples:
+{% endblock %}
+{% block question %}Example 3. How do you make it so the slideshow loops back to the front?{% endblock %}
+
+{% block answer %}
+<p>
+			In this sample, when the user clicks “Next” and the last item is already 
+			showing, the index is set back to 1 and the first item, “pic1.jpg”, is
+			 displayed again. The <span class="empfont">set Image1.Picture</span> blocks are outside of the 
+			 <span class="empfont">if-else</span> block, so a different picture is always displayed when “Next” is clicked.
+
+			</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/userListNav/prevButton.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/PlXwvu18Je4" {% endblock %}
+		{% block otherExampleLink %} <a href="/content/howDoYou/ListNav/next">example 1</a> {% endblock %}
+
+

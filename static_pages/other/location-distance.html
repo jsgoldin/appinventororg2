@@ -1,0 +1,31 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %} How do you know where you are?{% endblock %}
+{% block description %}
+			The LocationSensor communicates with GPS satellites and other mechanisms to 
+			determine the location of your phone/tablet. 
+		 
+{% endblock %}
+{% block question %}Example 2. How do you know how far you are from a given point? {% endblock %}
+
+{% block answer %}
+<img class="thumbnail" src="/assets/img/location/distanceUI.png" border="0"/>
+<p>
+			App Inventor doesn’t provide a “distance” block for computing the distance between 
+			two GPS coordinates. But there are known mathematical formulas for approximating 
+			such a distance between two points. The solution is to create your own block-- a procedure-- 
+			and plug in one of the known formulas. The procedure “distance”  above uses a formula 
+			from <a href="http://geokoder.com/distances">http://geokoder.com/distances</a>. 
+
+		Once you have a distance procedure, you can call it as in the bottom row of the <span class="empfont">LocationChanged</span> 
+		event handler. This sample computes the distance from your current location and the University 
+		of San Francisco campus.
+
+		</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/location/distance.png" {% endblock %}
+{% block answerVideo %} "" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/location/latLong">example 1</a> {% endblock %}
+
+

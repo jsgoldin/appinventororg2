@@ -1,0 +1,93 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %} 
+How and why should I define a procedure?
+{% endblock %}
+
+{% block description %}
+When is it appropriate to code and call a procedure? How can you
+make such a procedure as general as possible so it can be reused as much as possible?
+{% endblock %}
+
+{% block question %} 
+Example 1. How do I define a procedure that displays the items of a list?
+{% endblock %}
+
+{% block answer %}
+	<p>
+	A procedure is a named sequence of instructions (blocks). In real life, when 
+	I tell my son to  “brush your teeth”, I really mean for him to perform a bunch 
+	of detailed steps like grabbing his toothbrush, opening the toothpaste, putting 
+	it on the toothbrush, etc. “brush your teeth” is a procedure, a name for a sequence 
+	of instructions. In App Inventor, you can define a procedure, place blocks into it, 
+	and then can call it from anywhere in the app. 
+	</p>
+	
+	<img class="responsive-fullwidth-img center-element" src="/assets/img/procedures/displayListCircled.png" border="0"/>
+	<img class="responsive-fullwidth-img center-element" src="/assets/img/procedures/ScreenInitDisplay.png" border="0"/>
+	
+	<p>
+	Consider the code above.
+	Both event handlers have code to display a list. When a user submits a new entry (
+	<span class="empfont">when SubmitButton.Click</span>), 
+	the item is added to the list and the list is displayed. When the app is launched (
+	<span class="empfont">when Screen.Initialize</span>), 
+	the data is retrieved from the database into the list, and the list is displayed. 
+	The blocks to display a list are the same in the two event handlers.
+	</p> 
+		  
+	<p>
+	This code is ripe for refactoring. Refactoring means to modify the code so that it is 
+	more readable and maintainable from a programmer’s perspective-- refactoring doesn’t change 
+	the behavior of the app at all. 
+	</p> 
+	<p>
+	Removing duplicate code is a common way to refactor. The basic idea is that software changes 
+	a lot: bugs are found that need to be fixed, specifications for how the software should behave 
+	change, and code, especially good code, is often repurposed. When you make changes to software, 
+	you don’t want to have to find and also change a bunch of “dependencies”, e.g., other code that 
+	does the same thing. It is better to have code that does a particular thing in one place, a procedure, 
+	and call that procedure from all the places that need it. Then if the procedure needs to be changed, 
+	it is changed in only one place.
+	</p> 
+		
+	<p>
+	In the blocks above-left the code to display a list appears in two event handlers. We can refactor 
+	by defining a procedure displayList, moving the common blocks into it, then calling it from the two event handlers:
+	</p>
+		
+        <p>
+		The code to display the list is now in the procedure displayList, and both 
+		<span class="empfont">SubmitButton.Click</span>
+		 and <span class="empfont">Screen1.Initialize</span> call the procedure. The call block represents all the blocks within the
+		  procedure definition. Calling a procedure means to jump into the blocks within the procedure 
+		  and execute them. Once all the blocks are executed, program control jumps back to the block 
+		  below the call. When the SubmitButton is clicked, add items to list is called and then the call 
+		  to <span class="empfont">displayList</span> is made. Program control jumps down to the procedure where 
+		  <span class="empfont">ListLabel.Text</span> is set 
+		  to the empty string and the for each block is executed. When the for each completes, program control 
+		  jumps back up to below the <span class="empfont">displayList</span> call within the when 
+		  <span class="empfont">SubmitButton.Click</span> event handler-- <span class="empfont">TextBox1.Text </span>
+		  is set to the empty string and <span class="empfont">TinyDB.StoreValue</span> is called.
+		</p><p>
+		The behavior, from a user’s perspective is the same, but the code is better from a programmer’s 
+		perspective in terms of maintenance.  With this refactored code, if a bug is found in the list 
+		display code, or if it is decided the list should be displayed in a different way (e.g., commas 
+		in between items instead of new lines), the code would only have to be changed in one place.
+
+		</p><p>
+		<em>Designing your App with Procedures</em>
+		The example above refactors existing code. As you become familiar with procedures, you’ll 
+		begin to include them from the beginning of your design process.You’ll begin to think in 
+		terms of a larger software architecture consisting of event handlers, procedures, and the 
+		calls between them. As you’re designing an app, before you drag in a single block, you’ll think 
+		of the building blocks-- the procedures-- you need. 
+		</p>
+			
+{% endblock %}
+
+{% block answerImage %} "/assets/img/procedures/displayListProc.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/VF_1UeBlsBU" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/procedures/param">example 2</a> {% endblock %}
+
+

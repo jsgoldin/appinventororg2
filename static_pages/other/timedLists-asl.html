@@ -1,0 +1,37 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} Timed Lists: How do you process each item of a list, pausing in between?{% endblock %}
+			{% block description %} You can't use a for each or while loop to process a list if timing is 
+			involved because those iterative blocks don’t pause between processing each
+			 item-- they go too fast! To deal with timing and lists, you define an index 
+			 to keep track of the position in the list as processing proceeds, and you 
+			 process each item in some event handler. Check out the following examples:{% endblock %}
+{% block question %} Example 2. How do you sign the word “code” using American Sign Langage (ASL)?{% endblock %}
+{% block answer %}
+<p>
+			In this example, you have four images that you want to display one after 
+			the other with a short pause in between. The techniques is called key 
+			frame animation and you’re able to show motion by rapidly sequencing 
+			through images (the canonical example is to show a person running by 
+			rapidly sequencing through the various parts of his stride).
+
+			</p>
+			<img class="thumbnail" src="/assets/img/TimedLists/aslSigns.png" border="0"/>
+			<p>
+			The solution is based on a <span class="empfont">Clock.Timer</span> event. When the user clicks the 
+			<span class="empfont">PlayButton</span> to initiate the activity, the app shows the first picture, 
+			then enables the clock (<span class="empfont">Clock.TimerEnabled</span> should be false to begin). 
+			The <span class="empfont">Clock.Timer</span> event is then triggered periodically. It increments an 
+			index to get to the next image, then checks to see if the last image has 
+			been reached. If not, it displays the next image. If the end has been 
+			reached, its sets the index back to 0. The next time the timer triggers, 
+			it will set <span class="empfont">index</span> to 1 and show the signs again (the ASL for “CODE” is 
+			signed over and over).
+			</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/TimedLists/allSigns.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/edc5b68Y8Xc" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/timedLists/music">example 1</a> {% endblock %}
+
+

@@ -1,0 +1,182 @@
+
+{% extends "teaching_base.html" %}
+{% block body %}
+<H1>I Have a Dream!</H1>
+
+<h2>Introduction</h2>
+<p>
+Most people have never even dreamed of building an app; software is this mysterious world of 0s and 1s and computer nerds. The goal of this site is to show people they can create in this medium, that they can program software and contribute in the new, highly digitized society.
+</p>
+<p>
+You will begin by building a “I Have a Dream” app. It has a picture of Martin Luther King and a play button that, when touched, plays the famous speech given to 250,000 on the steps of the Lincoln Memorial in 1963.
+</p>
+<p>
+After completing the first version, you will add an image of Malcolm X and one of his speeches, turning the app into a soundboard for the civil rights movement. Of course the “I Have a Dream” app is really a template-- you can use similar coding to build all kinds of apps with interesting content.
+</p>
+<p>
+In terms of programming, you will learn two fundamentals: 1) that an app consists of a set of event handlers, and is in fact an event-response machine, and 2) that an app can make decisions and does so with conditional if blocks.
+</p>
+<h2>App Inventor Setup</h2>
+<p>The new release of App Inventor (App Inventor 2) has made it so you can get going building apps within minutes. If you have an Android device, do the following:
+</p>
+<ol>
+<li>Download the MIT App Inventor Companion app onto your phone or tablet. This app lets you try the apps you build as you build them, a process called live testing. On your device, go to the Google Play store and search for “MIT App Inventor Companion”. When it appears, install it and start it up. It will look like this:
+</li>
+
+<li>On your computer: open a browser and go to [beta.appinventor.mit.edu]. Create a new project and name it “MLKDream” (note: spaces aren’t allowed in project names).</li>
+<li>Open the Blocks Editor by choosing “Blocks” from the top menu.  Then Choose Connect to Companion. This will bring up the following dialog:
+</li>
+
+<li>Pick up your device now and launch the MIT App Inventor Companion app. Click Scan QR Code and scan the QR code showing on the computer screen. After some time (10-60 seconds) your app should appear on your device. When it does, you will see  “Screen1” in the gray bar at the top:
+
+[pic]
+</li>
+<li>Change the Screen Title. In the App Inventor Design editor, change Screen1s Title property to “I Have a Dream”. [picture]
+
+You should see this change both in the designer view of the app and, because of live testing, on your device.
+</li>
+</ol>
+<h2>Upload Media</h2>
+
+<p>You have the skeleton of an app setup, so the next step is to load the media you will need into the app, both a picture of MLK and a sound file of his speech.</p>
+<ol>
+<li>In a new browser page, go to [mlkFiles] and download the two files there.
+</li>
+<li>
+In App Inventor Design Editor, find the Media section and choose “Upload New”. Choose the image and sound files you just downloaded.
+</li>
+<li>
+Add an Image component.The left-side of the designer has numerous component palettes (folders), including the one that is open by default named “Basic”. Click on the Image component, and drag an instance into the designer (click and drag in one motion!). 
+</li>
+<li>
+    Set the picture of the Image component so that MLK appears on it. In the Image component properties, click on the Picture property and choose the image file you previously uploaded (MLK.jpg)
+</li>
+<li>
+    Change the name of the Image from Image1 to MLKImage. The picture of MLK should now appear both in the App Inventor viewer and on your device. 
+</li>
+</ol>
+<h2>Add the Start Button and Player Component </h2>
+
+<p>Next, add a button that when clicked will play the “I Have a Dream” Speech:</p>
+<ol>
+<li>From the Basic palette, drag in a Button component.
+</li>
+<li>
+    Change the Button’s Text property to “Play” so that “Play” appears on the Button.
+</li>
+<li>
+    Change the Button’s name to “MLKButton”
+</li>
+<li>
+Add the Player Component. Drag in a Player component for playing the speech. You will find the Player component in the Media folder (not the Basic folder). Drag it out and drop it on the Viewer. Note that it will appear below the rectangle representing the phone. This is because the Player is a non-visible component-- it is part of your app but not visible to the user.
+</li>
+<li>
+
+    Set the Player component’s Source property to “dream.mp3”. Just as you associated the image file with the Image component, associate the mp3 sound file with the Player component. Click on the Source property of the Player and choose the mlk.mp3 file you uploaded earlier.
+</li>
+</ol>
+<h2>Program the App Behavior</h2>
+
+
+
+<p>
+So far you have designed the user interface and also added a non-visible component to play the speech. But if you run the app, nothing will happen when the user clicks the Play button. Now its time to program how the app responds to user input, in this case playing a speech when the user clicks a button.
+</p>
+<p>
+You program behavior in the Blocks Editor, so click on the “Blocks” button. When the Blocks editor appears it lists all your components by name on the left-side. You should see the MLKButton and the Player1 components listed under “Screen1”
+</p>
+When you click on a component, you will see all the blocks related to that component. 
+<ol> 
+<li>Drag out the event handler. The first block under MLKButton is the most important: when MLKButton.Click. Drag this block into the viewer.
+</li>
+<li>
+When the user clicks the MLKButton (which has the picture of MLK on it), you want to play his speech. So click on the Player1 component. drag out a Player1.Start block., and place it within the when MLKButton.Click block:
+Recall that you set Player1’s Source property to the file “mlk.mp3” which is the clip from the “I Have a Dream” Speech. So when the app calls Player1.Start, the speech will play.
+</li>
+Test the Behavior
+<p>
+As soon as you specify a behavior, you can test it on the device. If you have your device connected (see Section 2.x above) you should now see the MLK picture and the Play button below it. Touch the button. Does the speech start playing?
+</p>
+
+<h2>Add Behavior to Stop the Speech</h2>
+<p>
+Suppose you wanted to change the app so that the user could start and stop the speech by clicking the same button. The behavior might be described as:
+</p>
+<code>
+  when the button is clicked,
+     if the button has the text “Play” on it, then
+         play the speech and set the button’s text to “Stop”.
+     Otherwise (if the button has the text “Stop” on it),
+             stop the speech and set the button’s text to “Play”.
+</code>
+<p>
+This behavior does not fit as a simple “when event, do” block. You will keep the when Button.Click event, but you will insert a conditional  “if-else” block within it.
+</p>
+<ol>
+<li>
+    In the Blocks editor, open the Control folder within the Built-in blocks.
+</li>
+<li>
+    Drag out an if block and place it just within the “when MLKButton.Click” block.
+</li>
+<li>
+    Click the + on the if block and drag in an else block within the if in the subscreen.
+
+<p>The blocks should appear as:</p>
+
+</li>
+    Drag out an equals block from the Math folder
+</li>
+<li>
+    Drag out a MLKButton.get block and choose “Text” as its property. Place this block in the left-side of the equals block.
+</li>
+<li>
+    Drag out a text block from the Text folder of the Built-in blocks. Enter the text “Play” and plug the block into the right side of the equals.
+</li>
+<li>
+    Within the if-do block, place the Player.Start block
+</li>
+<li>
+    Drag out a MLKButton.set block and change the property to “Text”.
+</li>
+<li>
+    Drag out a text block from the Text folder and enter “Stop” in it. Place this text block in the right side of the MLKButton.set block.
+</li>
+<li>
+    Place the entire MLKButton.set block in the if-do block, just below the Player.start.
+</li>
+<li>
+    Drag out a Player.Stop block and place it in the else-do block
+</li>
+<li>
+    Copy the MLKButton.set block and paste it into the else-do block. Change the text to “Stop” instead of “Play”
+</li>
+</ol>
+<p>
+The blocks should now appear as:
+</p>
+<h2>Test the App</h2>
+<h2>Package the App</h2>
+<p>
+Congratulations! You have just built your first app with App Inventor. However, you really do not have the app on your device yet. Yes, you are “live testing” it, but the MLK app is not installed on your device so if you broke the (WiFi) connection with App Inventor, you wouldn’t be able to launch your app and it wouldn’t appear as one of your apps.
+</p>
+<p>
+To actually get the app to your device, do the following:
+</p>
+<ol>
+<li>
+    In the App Inventor Designer, choose Package for Phone | Download to connected device. This will take a minute.
+</li>
+<li>
+    When the process completes, a dialog will appear on the computer telling you so. Dismiss the dialog.
+</li>
+<li>
+    On your device, close the live testing app.
+</li>
+<li>
+    Still on your device, drag your finger from the top to view notifications. You should see that your app has been downloaded. Click on it and go through the steps to install the app. Afterward, the app icon will appear in the apps screen of your device.
+</li>
+<ol>
+
+
+{% endblock %}

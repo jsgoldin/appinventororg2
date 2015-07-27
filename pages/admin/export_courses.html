@@ -1,0 +1,18 @@
+{% extends "templates/site_base.html" %} {% block body %}
+<div class="jumbotron jumbotron-wherami ">
+    <div class='jumbotron-wherami-text'>Export Courses</div>
+</div>
+<a href='/admin/dashboard' class='back-to-courses-link'><span class="glyphicon glyphicon-chevron-left"></span> Dashboard</a>
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-md-12 export-container'>
+            <h2>Export the current courses and content</h2>
+
+            <a href='/admin/serialview' class="btn btn-default" download="appinventor_export.dat">Export</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

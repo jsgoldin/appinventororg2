@@ -1,0 +1,62 @@
+
+<title>Recording items in a list</title>
+  
+<h2>How do you record information in a list?</h2>
+   <div class="row-fluid">
+       	<div class="span6">
+       	<a name="recordnotes"></a> 
+		<h3>Example 1. How do you record notes input by the user?</h3>
+ 			<img class="thumbnail" src="/assets/img/recordingitems/notesToList.png" border="0"/>
+          <p>
+			This behavior illustrates the basics of a note taking or twitter-like app. 
+			You first define a variable <span class="empfont">noteList</span> and initialize it to the create empty 
+			list block. This marks the variable <span class="empfont">noteList</span> as a list so you can put items 
+			into it.
+		  </p> 
+		<p>When the user enters a note in the <span class="empfont">NoteTextBox</span> and clicks 
+		“Submit”, add items to list is called to append the user’s entry to the end of 
+		the list. noteList is then set into <span class="empfont">ListLabel.Text</span> to display it to the user, and 
+		the user’s entry in <span class="empfont">NoteTextBox</span> is blanked out to ready it for the next entry.</p>
+	<p>Note: this data in this sample is not persistent, meaning the notes entered by the 
+	user will only be recorded for the current run of the app. If you stopped the app and 
+	re-opened it, the notes list would be empty. To learn how to record data persistently, 
+	see <a href="/Persistence">these notes</a></p>
+		</div>
+          <div class="span4">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/aiFrwX7M4vc" 
+             frameborder="0" allowfullscreen></iframe>
+          </div>
+	</div>
+       <div class="row-fluid">
+       	<div class="span6">
+       	<a name="recordphonenumbers"></a> 
+		  <h3>Example 2. How do you record the phone numbers of incoming SMS texts and then call 
+		  one randomly to tell them they've won a prize?</h3>
+		    <img class="thumbnail" src="/assets/img/recordingitems/pickWinner.png" border="0"/>
+		   <p>
+			This app is great for contests. You ask your audience to text you, then you 
+			click a button to pick a winner and the winner’s phone rings! 
+			</p>
+
+		<p>You first define a variable <span class="empfont">incomingTexts</span> and initialize it to the create 
+		empty list block. This marks the variable as a list so you can put items into it.</p>
+
+		<p>When a text comes in, <span class="empfont">Texting.MessageReceived</span> is triggered. The app first 
+		checks to make sure the number isn’t already in the list. If it is not, the number
+		 is added to the list.</p>
+
+		<p>When ready, the user can click the <span class="empfont">PickWinnerButton.Click</span> button. In that
+		 event-handler, pick a random item is called to to grab a lucky winner and a 
+		 <span class="empfont">PhoneCall</span> component is used to call the number.</p>
+
+			<hr/>
+		</div>
+          <div class="span4">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/BpS2DugMJq4" 
+             frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+        
+
+    </div>     
+

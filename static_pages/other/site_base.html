@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/jbase.css">
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/v2/default.css" type="text/css">
+
+
+{% for stylesheet in stylesheets %}
+<link rel='stylesheet' type='text/css' href='{{stylesheet}}'>
+{% endfor %}
+
+<title>{{title}}</title>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-684961-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body>
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+	<div id='header-wrapper'>
+        <div class='top-banner'>
+         	<div class='gen-container'>
+         		<div class='col-50'>
+         			<a href='/'><img class='banner-logo responsive-fullwidth-img' src='/assets/img/testbanner.png'></a>
+         		</div>
+         		<div class='col-50'>
+            		<div class='search-box-wrapper'>            
+						<form action="/siteSearch">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						
+            				{% if query %}
+            					<input class="form-control search-form" name="q" type="text" value={{query}} type="search">
+            				{% else %}
+            					<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org" type="search">            				
+            				{% endif %}
+						</form>
+
+                		<div class="login-stuff-wrapper small-screen-hide">
+                    		{% if userStatus.isAccount %} 
+                    		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+                    	    {{userStatus.account.displayName}}</a>
+                    	    <a href="{{userStatus.logouturl}}"">Logout</a> 
+                    	    {% else %} 
+                    	    <a href="{{userStatus.loginurl}}">Login</a> 
+                    	    <a href="/createAccount">Sign Up</a>
+                    	    {% endif %}
+                		</div>
+          			</div>         		        
+				</div>
+          			
+         	</div>
+         	<div style="clear: both"></div>
+   		</div>
+   			
+   			
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-default global-navbar" role="navigation">
+            <div class="gen-container navbar-color no-padding">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse no-margin">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                {% for course in courses %}
+                                <li><a href="/content/{{course.c_identifier}}">{{course.c_title}}</a></li> {% endfor %}
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Teach <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/TeachingAI">Teaching Ideas</a></li>
+                                <li><a href="/teacherMap">Who's Teaching AI?</a></li>
+                                <li><a href="https://groups.google.com/forum/#!forum/app-inventor-instructors" TARGET="_blank">Teacher Forum</a></li>
+                                <li><a href="/resources">Teaching Resources</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Book <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/book2">App Inventor 2 Book</a></li>
+                                <li><a href="/book">App Inventor Classic Book</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Build<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="http://ai2.appinventor.mit.edu" TARGET="_blank">MIT App Inventor (AI2)</a></li>
+                                <li><a href="http://beta.appinventor.mit.edu" TARGET="_blank">App Inventor Classic</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Share<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="http://gallery.appinventor.mit.edu" TARGET="_blank">App Inventor Gallery</a></li>
+                                <li><a href="/appPage">Publishing Your App</a></li>
+                                <li><a href="https://groups.google.com/forum/#!forum/mitappinventortest">App Inventor Forum</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/about">About</a></li>
+                                <li><a href="http://appinventorblog.com">App Inventor Blog</a></li>
+                                <li><a href="/media">Media</a></li>
+                                <li><a href="http://democratizecomputing.org">Democratize Computing Lab</a></li>
+
+                            </ul></li> {% if userStatus.isAccount %} 
+                        <li class='hidden-on-big-screen'><a href="/profile">Profile</a></li>
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> 
+                        {% else %}
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
+                        <li class='hidden-on-big-screen'><a href="/createAccount">Sign Up</a></li> 
+                        {% endif %} 
+                        {% if userStatus.admin %}
+                        <li><a href="/admin/dashboard">Administration</a></li> 
+                        {% endif %}
+
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+
+        </div>
+
+
+          			
+
+
+
+
+    {% block body %} 
+    
+    {% endblock %} 
+    
+    
+    
+    <footer>
+    	<div class='gen-container'>
+    		<p class='footer-copyright'>AppInventor.org by David Wolber is licensed under an Attribution-NonCommercial-ShareAlike 3.0 Unported License. </p>
+    	</div>
+    </footer>
+    
+    
+    {% for script in scripts %}
+    <script type="text/javascript" src="{{script}}"></script>
+    {% endfor %}
+
+    <script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
+    
+    <!-- Google custom search  -->	
+	<script>
+	  (function() {
+	    var cx = '008494446149806911917:dtcoh6mydd8';
+	    var gcse = document.createElement('script');
+	    gcse.type = 'text/javascript';
+	    gcse.async = true;
+	    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	        '//www.google.com/cse/cse.js?cx=' + cx;
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(gcse, s);
+	  })();
+	</script>
+
+	
+    
+</body>
+</html>

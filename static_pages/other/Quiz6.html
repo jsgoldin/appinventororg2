@@ -1,0 +1,68 @@
+
+        <link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+        <title>
+            App Inventor Quiz 6
+        </title>
+
+        <script src="/assets/JordansStuff/js/JordansAwesomeJS.js" type="text/javascript">
+</script>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="page-header">
+                            <h1>
+                                Quiz 6. Indexing through a List
+                            </h1>
+                            <p>
+                            Here are some blocks you can use to answer the questions in the quiz (you are welcome to use others
+                            including any number blocks, variable blocks, or mathematical operators.
+                            </p>
+                            <img class='pad-med' src="/assets/img/Quiz6/quiz6blocks.png" height="187" width="636">
+                    </div>
+                    <div class="quiz-panel-outer">
+                        <h1>
+                            1.
+                        </h1>
+                        <p>
+                            Consider a quiz app that lets the user step through the questions of the quiz by clicking a Next button. The Next button should move to the next question and display it. When the user gets to the last question, the Next button should be disabled. 
+                        </p><img src="/assets/img/Quiz6/Quiz6-1-1.png" width="330" height="479">
+                        <p>
+                            Show the blocks for the NextButton.Click event handler. Your NextButton.Click blocks should work no matter how many items are in the list. Keep in mind that you may need to re-use some of the blocks.
+                        </p>   
+                        <div class="quiz-panel-inner">
+      
+                            <div id="q1a" class="collapse">
+                                <img src="/assets/img/Quiz6/Quiz6-1-2.png" width="591" height="136">
+                            </div>
+                     
+                            <a type="button" href="#q1a" data-toggle="collapse" onclick="showHideToggle(id)" id="q1b" name="q1b">Show Answer</a>
+                  
+                    
+                        </div>
+                    </div>
+                    <div class="quiz-panel-outer">
+                        <h1>
+                            2.
+                        </h1>
+                 
+                        <p>
+                            Why is it important that the blocks above work regardless of how many items are in the list?
+                        </p>
+                    
+                        <div class="quiz-panel-inner">
+
+                            <div id="q2a" class="collapse">
+                                <p>
+                                    Since there were four quiz questions in the given blocks, you could have put "4" instead of "length of list" in the blocks above, and the code would work. But you always want code that is maintainable because code, at least if its good, is often changed and remixed. By using the more generic "length of list" above, the programmer sets it up so that she can change the list without modifying the computational code if the number of quiz questions changes. Also, most apps have dynamic user generated data. So if the code were remixed in an app in which the user (quiz writer) builds the list, it will still work.
+                                </p>
+                            </div>
+                 
+                            <a type="button" href="#q2a" data-toggle="collapse" onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
+                 
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+

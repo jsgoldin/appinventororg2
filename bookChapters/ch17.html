@@ -1,0 +1,205 @@
+
+    <section data-type="chapter" data-pdf-bookmark="Chapter 17. Creating Animated Apps" id="creating_animated_apps">
+<h1>Creating Animated Apps</h1>
+
+<p><em>This chapter discusses methods for creating apps with simple animations-objects that move. You’ll learn the basics of creating two-dimensional games with App Inventor and become comfortable with image sprites and handling events like two objects colliding.</em></p>
+
+<div class="informalfigure"><img alt="Creating Animated Apps" src="/assets/img/bookChapters/c17.png"/></div>
+
+<p>When you see an object moving smoothly along the computer screen, what you’re really seeing is a quick succession of images with the object in a slightly different place each time. It’s an illusion not much different from “flipbooks,” in which you see a moving picture by flipping quickly through the pages (or how animated films are made!).</p>
+
+<p>With App Inventor, you’ll program animation by placing Ball and ImageSprite components within a Canvas component and then moving and transforming those objects each fraction of a second. In this chapter, you’ll learn how the Canvas coordinate system works, how the Clock.Timer event can be used to trigger movement, how to control the speed of objects, and how to respond to events such as two objects colliding.</p>
+
+<section data-type="sect1" data-pdf-bookmark="Adding a Canvas Component to Your App" id="adding_a_canvas_component_to_your_app">
+<h1>Adding a Canvas Component to Your App</h1>
+
+<p>You can drag a <strong>Canvas</strong> component into your app from the Drawing and Animation palette. After dragging it out, specify the <strong>Canvas</strong>’s <strong>Width</strong> and <strong>Height</strong>. Often, you’ll want the <strong>Canvas</strong> to span the width of the device screen. To do this, choose “Fill parent” when specifying the <strong>Width</strong>, as shown in <a data-type="xref" href="#width">???</a>.</p>
+
+<div class="informalfigure" id="width"><img alt="Width" src="/assets/img/bookChapters/c17-1.png"/></div>
+
+<p>You can do the same for the <strong>Height</strong>, but generally you’ll set it to some number (e.g., 300 pixels) to leave room for other components above and below the <strong>Canvas</strong>.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="The Canvas Coordinate System" id="canvas_coordinate_system">
+<h1>The Canvas Coordinate System</h1>
+
+<p>A drawing on a canvas is really a grid of <em>pixels</em>, where a pixel is the tiniest possible dot of color that can appear on the phone (or other device). Each pixel’s location is defined by an x–y coordinate system, as illustrated in <a data-type="xref" href="#canvas_coordinate_system-id00133">Figure 17-1</a>. In this coordinate system, x defines a location on the horizontal plane (left to right), and y defines a location on the vertical plane (up and down).</p>
+
+<figure id="canvas_coordinate_system-id00133"><img alt="The Canvas coordinate system" src="/assets/img/bookChapters/c17-2.png"/>
+<figcaption>The Canvas coordinate system</figcaption>
+</figure>
+
+<p>The top-left cell in a <strong>Canvas</strong> starts with 0 for both coordinates, so this position is represented as (x=0,y=0). As you move right, the x coordinate gets larger; as you move down, the y coordinate gets larger. The cell to the immediate right of the top-left corner is (x=1,y=0). The top-right corner has an x coordinate equal to the width of the canvas minus 1. Most phone screens have a width close to 300, but for the sample canvas shown here, the <strong>Width</strong> is 20, so the top-right corner is the coordinate (x=19,y=0).</p>
+
+<p>You can change the appearance of the canvas in two ways: (1) by painting on it, or (2) by placing and moving objects within it. This chapter will focus primarily on the latter, but let’s first discuss how you “paint” and how to create animation by painting (this is also the topic of the PaintPot app in <a data-type="xref" href="ch02.html#paintpot">Chapter 2</a>).</p>
+
+<p>Each cell of the canvas holds a pixel defining the color that should appear there. The <strong>Canvas</strong> component provides the <strong>Canvas.DrawLine</strong> and <strong>Canvas.DrawCircle</strong> blocks for painting pixels. You first set the <strong>Canvas.PaintColor</strong> property to the color you want and then call one of the Draw blocks to draw in that color. With <strong>DrawCircle</strong>, you can paint circles of any radius, but if you set the radius to 1, as shown in <a data-type="xref" href="#drawcircle_with_radius_1_paints_an_indiv">Figure 17-2</a>, you’ll paint an individual pixel.</p>
+
+<figure id="drawcircle_with_radius_1_paints_an_indiv"><img alt="DrawCircle with radius 1 paints an individual pixel with each touch" src="/assets/img/bookChapters/c17-3.png"/>
+<figcaption>DrawCircle with radius 1 paints an individual pixel with each touch</figcaption>
+</figure>
+
+<p>App Inventor provides a palette of  basic colors that you can use to paint pixels (or other user interface components). You can access a wider range of colors by using the color numbering scheme explained in the App Inventor documentation at ***http://appinventor.mit.edu/explore/ai2/support/blocks/colors.html.</p>
+
+<p>Besides painting individual pixels, you can also place objects-- <strong>Ball</strong> and <strong>ImageSprite</strong> components, on a <strong>Canvas</strong>. A <em>sprite</em> is a graphical object placed within a larger scene (in App Inventor, the “scene” is a <strong>Canvas</strong> component). Both the <strong>Ball</strong> and <strong>ImageSprite</strong> components are sprites; they are different only in appearance. A <strong>Ball</strong> is a circle whose appearance can only be modified by changing its color or radius, whereas an <strong>ImageSprite</strong> can take on any appearance, as defined by an image file. Balls and ImageSprites can only be added within a <strong>Canvas</strong>; you can’t drag them into the user interface outside of one.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Animating Objects with Timer Events" id="animating_objects_with_timer_events">
+<h1>Animating Objects with Timer Events</h1>
+
+<p>One way to specify animation in App Inventor is to change an object in response to a timer event. Most commonly, you’ll move sprites to different locations on the canvas at set time intervals. Using timer events is the most general method of defining those set time intervals. Later, we’ll also discuss an alternative method of programming animation using the <strong>ImageSprite</strong> and <strong>Ball</strong> components’ <strong>Speed</strong> and <strong>Heading</strong> properties.</p>
+
+<p>Button clicks and other user-initiated events are simple to understand: the user does something, and the app responds by performing some operations. Timer events are different: they aren’t triggered by the end user but instead by the passing of time. You have to conceptualize the phone’s clock triggering events in the app instead of a user doing something.</p>
+
+<p>To define a timer event, you first drag a <strong>Clock</strong> component into your app within the Component Designer. The <strong>Clock</strong> component has a <strong>TimerInterval</strong> property associated with it. The interval is defined in terms of milliseconds (1/1,000 of a second). If you set the <strong>TimerInterval</strong> to 500, that means a timer event will be triggered every half-second. The smaller the <strong>TimerInterval</strong>, the faster the “frame-rate” of the animation.</p>
+
+<p>After adding a <strong>Clock</strong> and setting a <strong>TimerInterval</strong> in the Designer, you can drag out a <strong>Clock.Timer</strong> event in the Blocks Editor. You can put any blocks you like in this event, and they’ll be performed every time interval.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Creating Movement" id="creating_movement">
+<h1>Creating Movement</h1>
+
+<p>To show a sprite moving over time, you’ll use the <strong>MoveTo</strong> function found in both the <strong>ImageSprite</strong> and <strong>Ball</strong> components. For example, to move a ball <em>horizontally</em> across the screen, you’d use blocks like those in <a data-type="xref" href="#moving_the_ball_horizontally_across_the">Figure 17-3</a>.</p>
+
+<figure id="moving_the_ball_horizontally_across_the"><img alt="Moving the ball horizontally across the screen" src="/assets/img/bookChapters/c17-4.png"/>
+<figcaption>Moving the ball horizontally across the screen</figcaption>
+</figure>
+
+<p><strong>MoveTo</strong> moves an object to an <em>absolute</em> location on the canvas, not a relative amount. So, to move an object some amount, you set the <strong>MoveTo</strong> arguments to the object’s current location plus an offset. Since we’re moving horizontally, the x argument is set to the current x location (<strong>Ball1.X</strong>) plus the offset 20, while the y argument is set to stay at its current setting (<strong>Ball1.Y</strong>).</p>
+
+<p>To move an object down, you’d modify just the <strong>Ball1.Y</strong> coordinate and leave <strong>Ball1.X </strong>the same. If you wanted to move the ball diagonally, you’d add an offset to both the X and Y coordinates, as shown in <a data-type="xref" href="#offsetting_both_the_x_and_y_coordinates">Figure 17-4</a>.</p>
+
+<figure id="offsetting_both_the_x_and_y_coordinates"><img alt="Offsetting both the x and y coordinates to move the ball diagonally" src="/assets/img/bookChapters/c17-5.png"/>
+<figcaption>Offsetting both the X and Y coordinates to move the ball diagonally</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Speed" id="speed">
+<h1>Speed</h1>
+
+<p>How fast is the ball moving in the preceding example? The speed depends on both the <strong>Clock1’s</strong> <strong>TimerInterval</strong> property and the parameters you specify in the <strong>MoveTo</strong> function. If the <strong>Clock.TimerInterval</strong> is set to 1,000 milliseconds, that means a <strong>Clock1.Timer </strong>event will be triggered every second. For the horizontal example shown in <a data-type="xref" href="#moving_the_ball_horizontally_across_the">Figure 17-3</a>, the ball will move 20 pixels per second.</p>
+
+<p>But a <strong>TimerInterval</strong> of 1,000 milliseconds doesn’t provide very smooth animation; the ball will only move every second, and the movement will appear jerky. To get smoother movement, you need a smaller interval. If the <strong>TimerInterval</strong> was set instead to 100 milliseconds, the ball would move 20 pixels every tenth of a second, or 200 pixels per second--a rate that will appear much smoother.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Collision Detection" id="high-level_animation_functions">
+<h1>Collision Detection</h1>
+
+<p>To create games and other animated apps, you need more complex functionality than just movement. Fortunately, App Inventor provides some high-level blocks for dealing with animation events such as an object reaching the screen’s edge or two objects colliding.</p>
+
+<p>In this context, <em>high-level block</em> means that App Inventor takes care of the <em>lower-level</em> details of determining events like two sprites colliding. You could check for such occurrences manually by checking sprite and canvas properties within <strong>Clock.Timer </strong>events.  Such programming requires some fairly complex logic, however. Because these events are common to many games and other apps, App Inventor provides them for you.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="EdgeReached" id="edgereached">
+<h1>EdgeReached</h1>
+
+<p>Consider again the animation in <a class="xref " data-type="xref" href="#offsetting_both_the_x_and_y_coordinates">Figure 17-4</a>, in which the object is moving diagonally from the top left to the bottom right of the canvas. As programmed, the ball would move diagonally and then stop when it reached the right or bottom edge of the canvas (the system won’t move an object past the canvas boundaries).</p>
+
+<p>If you instead wanted the object to reappear at the top-left corner each time it reached the bottom or right edge, you could define a response to the <strong>Ball.EdgeReached</strong> event, as  shown in <a data-type="xref" href="#making_the_ball_reappear_at_the_top-left">Figure 17-5</a>.</p>
+
+<figure id="making_the_ball_reappear_at_the_top-left"><img alt="Making the ball reappear at the top-left corner when it reaches an edge" src="/assets/img/bookChapters/c17-6.png"/>
+<figcaption>Making the ball reappear at the top-left corner when it reaches an edge</figcaption>
+</figure>
+
+<p><strong>EdgeReached </strong>is triggered when a ball or image sprite hits any edge of a canvas. This event handler, combined with the diagonal movement specified with the previously described timer event (<a data-type="xref" href="#offsetting_both_the_x_and_y_coordinates">Figure 17-4</a>), will cause the ball to move diagonally from top left to bottom right, pop back up to the top left when it reaches an edge, and then do it all over again, forever (or until the app tells it otherwise).</p>
+
+<p>For this example, we didn’t distinguish between which edge was hit. The <strong>EdgeReached </strong>event does have a parameter <strong>edge, </strong>which specifies the particular edge using the following code:</p>
+
+<ul>
+	<li>North = 1</li>
+	<li>Northeast = 2</li>
+	<li>East = 3</li>
+	<li>Southeast = 4</li>
+	<li>South = –1</li>
+	<li>Southwest = –2</li>
+	<li>West = –3</li>
+	<li>Northwest = –4</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="CollidingWith and NoLongerCollidingWith" id="collidingwith_and_nolongercollidingwith">
+<h1>CollidingWith and NoLongerCollidingWith</h1>
+
+<p>Games and other animated apps often rely on activity occurring when two or more objects collide (e.g., a bullet hitting a target).</p>
+
+<p>Consider a game, for instance, in which an object changes colors and plays an explosion sound when it hits another object. <a data-type="xref" href="#making_the_ball_change_color_and_play_an">Figure 17-6</a> shows the blocks for such an event handler.</p>
+
+<figure id="making_the_ball_change_color_and_play_an"><img alt="Making the ball change color and play an explosion sound when it hits another object" src="/assets/img/bookChapters/c17-7.png"/>
+<figcaption>Making the ball change color and play an explosion sound when it hits another object</figcaption>
+</figure>
+
+<p><strong>NoLongerCollidingWith</strong> provides the opposite event of <strong>CollidedWith</strong>. It is triggered only when two objects have come together and then separated. So, for your game, you might include blocks as shown in <a data-type="xref" href="#changing_the_color_back_and_stopping_the">Figure 17-7</a>.</p>
+
+<figure id="changing_the_color_back_and_stopping_the"><img alt="Changing the color back and stopping the explosion noise when the objects separate" src="/assets/img/bookChapters/c17-8.png"/>
+<figcaption>Changing the color back and stopping the explosion noise when the objects separate</figcaption>
+</figure>
+
+<p>Note that both <strong>CollidedWith</strong> and <strong>NoLongerCollidingWith</strong> have an argument, <strong>other. other</strong> specifies the particular object you collided with (or separated from). This allows you to perform operations only when the object (e.g., <strong>Ball1</strong>) interacts with a particular other object, as shown in <a data-type="xref" href="#only_perform_the_response_if_ball1_hit_i">Figure 17-8</a>.</p>
+
+<figure id="only_perform_the_response_if_ball1_hit_i"><img alt="Only perform the response if Ball1 hit ImageSprite1" src="/assets/img/bookChapters/c17-9.png"/>
+<figcaption>Only perform the response if Ball1 hit ImageSprite1</figcaption>
+</figure>
+
+<p>The <strong>ImageSprite1</strong> block is one we haven’t yet discussed. This block refers to the component as a whole, not a particular property of the component. When you need to compare components (e.g., to know which ones have collided), you use this block. Each component has such a block in its drawer and the block has the same name as the component.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Interactive Animation" id="interactive_animation">
+<h1>Interactive Animation</h1>
+
+<p>In the animated behaviors we’ve discussed so far, the end user isn’t involved. Games are interactive, of course, with the end user playing a central role. Often, the end user controls the speed or direction of an object with buttons or other user interface objects.</p>
+
+<p>As an example, let’s update the diagonal animation by allowing the user to stop and start the diagonal movement. You can do this by programming a <strong>Button.Click</strong> event handler to disable and reenable the timer event of the clock component.</p>
+
+<p>By default, the <strong>Clock</strong> component’s <strong>timerEnabled</strong> property is checked. You can disable it dynamically by setting it to false in an event handler. The event handler in <a data-type="xref" href="#stopping_the_timer_the_first_time_the_bu">Figure 17-9</a>, for example, would stop the activity of a <strong>Clock</strong> timer on the first click.</p>
+
+<figure id="stopping_the_timer_the_first_time_the_bu"><img alt="Stopping the timer the first time the button is clicked" src="/assets/img/bookChapters/c17-10.png"/>
+<figcaption>Stopping the timer the first time the button is clicked</figcaption>
+</figure>
+
+<p>After the <strong>Clock1.TimerEnabled</strong> property is set to false, the <strong>Clock1.Timer</strong> event will no longer trigger, and the ball will stop moving.</p>
+
+<p>Of course, stopping the movement on the first click isn’t too interesting. Instead, you could “toggle” the movement of the ball by adding an <strong>ifelse</strong> in the event handler that either enables or disables the timer, as shown in <a data-type="xref" href="#adding_an_ifelse_so_that_clicking_the_bu">Figure 17-10</a>.</p>
+
+<p>This event handler stops the timer on first click, and resets the button so that it says “Start” instead of “Stop.” The second time the user clicks the button, the <strong>TimerEnabled</strong> is false, so the “else” part is executed. In this case, the timer is enabled, which gets the object moving again, and the button text is switched back to “Stop.” For more information about <strong>ifelse</strong> blocks, see <a data-type="xref" href="ch18.html#programming_your_app_to_make_decisions_c">Chapter 18</a>, and for examples of interactive animations that use the orientation sensor, see <a data-type="xref" href="ch05.html#ladybug_chase">Chapter 5</a> and <a data-type="xref" href="ch23.html#reading_and_responding_to_sensors">Chapter 23</a>.</p>
+
+<figure id="adding_an_ifelse_so_that_clicking_the_bu"><img alt="Adding an ifelse so that clicking the button starts and stops the movement of the ball" src="/assets/img/bookChapters/c17-11.png"/>
+<figcaption>Adding an ifelse so that clicking the button starts and stops the movement of the ball</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Specifying Sprite Animation Without a Clock Timer" id="specifying_sprite_animation_without_a_cl">
+<h1>Specifying Sprite Animation Without a Clock Timer</h1>
+
+<p>The animation samples described so far use a <strong>Clock</strong> component and specify that an object should move each time the <strong>Clock.Timer</strong> event is triggered. The <strong>Clock.Timer</strong> event scheme is the most general method of specifying animation; other than moving an object, you could also have it change an object’s color over time, change some text (to appear as though the app is typing), or have the app speak words at a certain pace.</p>
+
+<p>If you only want to move objects, App Inventor provides an alternative that doesn’t require the use of a <strong>Clock</strong> component. As you may have noticed, the <strong>ImageSprite</strong> and <strong>Ball</strong> components have properties for <strong>Heading</strong>, <strong>Speed</strong>, and <strong>Interval</strong>. Instead of defining a <strong>Clock.Timer</strong> event handler, you can set these properties in the Component Designer or Blocks Editor to control how a sprite moves.</p>
+
+<p>To illustrate, let’s reconsider the example that moved a ball diagonally. The Heading property of a sprite or ball has a range of 360 degrees, as seen in <a data-type="xref" href="#heading_property_has_a_range_of_360_degr">Figure 17-11</a>.</p>
+
+<figure id="heading_property_has_a_range_of_360_degr"><img alt="The Heading property has a range of 360 degrees" src="/assets/img/bookChapters/c17-12new.png"/>
+<figcaption>The Heading property has a range of 360 degrees</figcaption>
+</figure>
+
+<p>If you set the <strong>Heading</strong> to 0, the ball will move left to right. If you set it to 90, it will move bottom to top. If you set it to 180, it will move right to left. If you set it to 270, it will move top to bottom.</p>
+
+<p>Of course, you can set it to any number between 0 and 360. To move a ball diagonally from top left to bottom right, you’d set the <strong>Heading</strong> to 315. You also need to set the <strong>Speed</strong> property to a value other than 0. The Speed property is in some sense misnamed: it really specifies the distance the object will move per time interval, where the interval is defined by the object’s <strong>Interval</strong> property.</p>
+
+<p>To try out these properties, create a test app with a <strong>Canvas</strong> and <strong>Ball</strong> and connect you device or emulator for live testing. Then modify the <strong>Heading</strong>, <strong>Speed</strong>, and <strong>Interval</strong> properties of the ball to see how they work.</p>
+
+<p>Suppose, for instance, that you wanted to move a ball back-and-forth from the top-left to the bottom-right of the canvas. In the Designer, you might initialize the ball’s <strong>Speed </strong>to 5 and <strong>Interval</strong> to 100, and then set the <strong>Heading</strong> property to 315. You’d then add the <strong>Ball1.EdgeReached</strong> event handler, shown in <a data-type="xref" href="#changing_the_ballapostrophes_direction_w">Figure 17-12</a>, to change the ball’s direction when it reaches either edge.</p>
+
+<figure id="changing_the_ballapostrophes_direction_w"><img alt="Changing the ball’s direction when it reaches either edge" src="/assets/img/bookChapters/c17-13.png"/>
+<figcaption>Changing the ball’s direction when it reaches either edge</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00134">
+<h1>Summary</h1>
+
+<p>The <strong>Canvas</strong> component allows you to define a subarea of the device’s screen in which objects can move around and interact. You can put only two types of components, <strong>ImageSprites</strong> and <strong>Ball</strong>s, within a <strong>Canvas</strong>.</p>
+
+<p>Animation is an object being moved or otherwise transformed over time. You can program animation, including movement and other graphical transformations, with the <strong>Clock</strong> component’s <strong>Timer</strong> event. If you just want to move objects, you can use an alternative method based on the <strong>Heading</strong>, <strong>Speed</strong> and <strong>Interval </strong>properties internal to<strong> ImageSprite</strong> and <strong>Ball</strong> components.</p>
+
+<p>With either method, you can also take advantage of high-level functionality for handling events for handling collisions.</p>
+</section>
+</section>

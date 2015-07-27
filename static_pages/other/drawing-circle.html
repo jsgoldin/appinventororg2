@@ -1,0 +1,20 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How do you draw shapes and images in an app?{% endblock %}
+			{% block description %} Learn how to use the Canvas component to draw shapes 
+			and place images, and to allow the end-user to draw as well.{% endblock %}
+{% block question %} Example 2. How do you draw a circle at 10,10? {% endblock %}
+{% block answer %}
+<p>
+            Canvas has function blocks for drawing a circle or line. The DrawCircle has three parameters, <span class="empfont">x</span>, <span class="empfont">y</span>, and <span class="empfont">radius</span>.
+            <span class="empfont">x</span> is the horizontal location, <span class="empfont">y</span> is the vertical location, and <span class="empfont">r</span> is the radius of the circle to be
+            drawn. An x-value of 10 means the circle will be located 10 pixels to the right of the left border of the canvas. A y-value of 10 means the circle is located 10 pixels down from the top of
+            the canvas.
+        </p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/Drawing/circle1010.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/iErm4clnXOg" {% endblock %}
+		{% block otherExampleLink %} <a href="/content/howDoYou/drawing/touch">example 3</a> {% endblock %}
+
+

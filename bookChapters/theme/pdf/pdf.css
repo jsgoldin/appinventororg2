@@ -1,0 +1,515 @@
+/* ---- Custom CSS for App Inventor, using Animal4c Theme as a base --- */
+
+/* --------------------------------------------------------------------- */
+/* ------------------------------ Globals ------------------------------ */
+/* --------------------------------------------------------------------- */
+
+p {
+	font-size: 10.2pt;
+	font-family: "MyriadPro", sans-serif;
+	font-weight: normal;
+}
+
+p strong,
+li strong {
+	font-weight: normal;
+	font-family: "TheSansMonoCd-W5Regular", "UbuntuMono", sans-serif;;
+}
+
+a {color: cmyk(0,0,0,100%);}
+
+/* --------------------------------------------------------------------- */
+/* ------------------------------ Pages -------------------------------- */
+/* --------------------------------------------------------------------- */
+@page { /* 7x9 Animal */
+  size: 7in 9.1875in;
+  margin: 0.75in 1in;
+  border-bottom: 0pt solid cmyk(0%,0%,0%,100%);
+}
+
+@page :left {
+  @bottom-left{ content: none; }
+  @top-center { /* verso run foot */
+    font-family: "MyriadPro-SemiboldCond";
+    text-align: left;
+    vertical-align: bottom;
+  }
+  @top-left { 
+  	font-family: "MyriadPro-SemiboldCond";
+    vertical-align: bottom;}
+}
+  
+@page :right {
+  @bottom-right{ content: none; }
+  @top-center { /* recto run foot */
+    font-family: "MyriadPro-SemiboldCond";
+    text-align: right;
+    vertical-align: bottom;
+  }
+   @top-right { 
+   	font-family: "MyriadPro-SemiboldCond";
+    vertical-align: bottom;
+    width: 20pt;}
+} 
+
+@page chapter:left {
+	border-top: 0.25pt solid cmyk(62%,27%,100%,9%);
+	padding-top: 0.2in;
+  @bottom-left{ content: none; }
+  @top-center { content: "Chapter "counter(ChapterNumber)":\00a0\00a0\00a0"string(ChapterTitle);}
+  @top-left {   	   	
+  	font-family: "MyriadPro-SemiboldCond";
+   	color: cmyk(62%,27%,100%,9%);
+   	content: counter(page);
+   	width: 20pt;}   	
+}
+
+@page chapter:right {
+	border-top: 0.25pt solid cmyk(62%,27%,100%,9%);
+	padding-top: 0.2in;
+  @bottom-right{ content: none; }
+  @top-right { 
+  	color: cmyk(62%,27%,100%,9%);
+  	content: counter(page); 
+  }
+  @top-center {
+    content: string(SectionTitle);
+  }
+}
+
+@page chapter:first { 
+	border-top: 0pt solid cmyk(62%,27%,100%,9%);
+	@bottom-right { content: none; } 
+    @top-center { content: none; }
+    @top-right { content: none; }
+    @top-left { content: none; }
+}
+/* --------------------------------------------------------------------- */
+/* ---------------------------- Front Matter --------------------------- */
+/* --------------------------------------------------------------------- */
+/*----- title page -----*/
+
+section[data-type="halftitlepage"] h1, 
+section[data-type="titlepage"] h1 {
+  border-top: cmyk(62%,27%,100%,9%) solid 0.25pt; 
+}
+
+
+section[data-type="titlepage"] p.author {
+  padding-left: 2.5in;
+  hyphens: none;
+  -ah-hyphenate-hyphenated-word: false;
+}
+
+
+/*copyright*/
+section[data-type="copyright-page"] h1 { color: cmyk(62%,27%,100%,9%);}
+
+
+/* --------------------------------------------------------------------- */
+/* -------------------------------- TOC -------------------------------- */
+/* --------------------------------------------------------------------- */
+
+
+@page toc {
+  @top-left { font-family: "MyriadPro-SemiboldCond"; color: cmyk(62%,27%,100%,9%); }
+  @top-center { font-family: "MyriadPro-SemiboldCond"; }
+  @top-right { font-family: "MyriadPro-SemiboldCond"; color: cmyk(62%,27%,100%,9%); }
+}
+
+
+@page toc:left {
+    border-top: 0.25pt solid cmyk(62%,27%,100%,9%);
+	padding-top: 0.2in;
+
+  @top-left { content: counter(page, lower-roman); width: 15pt;}
+  @top-center { content:"Contents"; }	
+  @bottom-left { content: none;}
+}
+
+@page toc:right {
+    border-top: 0.25pt solid cmyk(62%,27%,100%,9%);
+	padding-top: 0.2in;
+
+  @top-center {content: "Contents";}
+  @top-right {content: counter(page, lower-roman); width: 15pt;}
+  @bottom-right { content: none; }
+}
+
+@page toc:first { 
+	border-top: 0pt;
+
+	@top-right {content: none;}
+	@bottom-right{content: none;}
+	@top-center {content: none;}
+}
+
+
+
+nav[data-type="toc"] h1{
+  border-bottom: solid cmyk(62%,27%,100%,9%) 0.25pt;
+  border-top: 0pt;
+}
+
+/* ------------------------------- chapters ---------------------------- */
+
+nav[data-type="toc"] li[data-type="chapter"]::marker {
+  color: cmyk(62%,27%,100%,9%);
+}
+
+li[data-type="sect1"] a,
+li[data-type="sect1"] a::after{
+  font-size: 10pt;
+  font-family: "MyriadPro-Cond", sans-serif;
+  font-weight: normal;
+}
+
+nav[data-type="toc"] li[data-type="sect2"] a { display: none;}
+
+nav[data-type="toc"] li[data-type="chapter"] a{ 
+	margin-bottom: 10pt;
+}
+/* ------------------------------- parts ------------------------------- */
+
+nav[data-type="toc"] li[data-type="part"] {
+  border-bottom: solid cmyk(62%,27%,100%,9%) 0.25pt;
+  border-top: 0pt;
+  padding-top: 0.05in;
+  margin-bottom: 0.2in;
+  margin-top: 0.15in;
+}
+
+nav[data-type="toc"] li[data-type="part"]:before {
+  color: cmyk(62%,27%,100%,9%);
+}
+
+
+/* ------------------------------- end TOC ------------------------------- */
+
+
+
+/* --------------------------------------------------------------------- */
+/* ---------------------------- Part Opener ---------------------------- */
+/* --------------------------------------------------------------------- */
+@page partOpener:right {
+	margin-right: 0.17in;
+	padding-right: 0.68in;
+  bleed: 12pt;
+  @bottom-right-corner { 
+    background-color: cmyk(62%,27%,100%,9%);
+    margin-right: -12pt;
+    margin-bottom: -12pt;}
+	@right-middle { background-color: cmyk(62%,27%,100%,9%);
+    margin-right: -12pt;}
+	@top-right-corner { background-color: cmyk(62%,27%,100%,9%);
+    margin-top: -12pt;
+    margin-right: -12pt;}
+}
+
+@page partOpener:left {
+	margin-left: 0.17in;
+	padding-left: 0.68in;
+  bleed: 12pt;
+  @bottom-left-corner { background-color: cmyk(62%,27%,100%,9%);
+    margin-bottom: -12pt;
+    margin-left: -12pt;}
+	@left-middle { 
+    background-color: cmyk(62%,27%,100%,9%);
+    margin-left: -12pt;}
+	@top-left-corner { 
+    background-color: cmyk(62%,27%,100%,9%);
+    margin-left: -12pt;
+    margin-top: -12pt;}
+}
+
+div[data-type="part"] { 
+  page: partOpener
+}
+
+div[data-type="part"] h1 { 
+	border-top: 0pt;
+    border-bottom: 0pt;}
+
+div[data-type="part"] h1:before {
+	border-top: none;
+border-bottom: solid cmyk(62%,27%,100%,9%) 0.25pt;}
+
+
+
+/* --------------------------------------------------------------------- */
+/* ------------------------------ Chapters ----------------------------- */
+/* --------------------------------------------------------------------- */
+
+nav[data-type="toc"] > h1,
+section[data-type="preface"] > h1, 
+div[data-type="part"] > h1,
+section[data-type="chapter"] > h1, 
+section[data-type="appendix"] > h1,
+section[data-type="glossary"] > h1,
+section[data-type="bibliography"] > h1,
+section[data-type="index"] > h1 {
+	text-align: right;
+	font-size: 24pt;
+  font-family: "MyriadPro-SemiboldCond";
+    margin: 0.25in 0 1in 0;
+
+}
+
+
+section[data-type="chapter"] { page: chapter;}
+
+section[data-type="chapter"] > h1:before {
+    content: "CHAPTER  " counter(ChapterNumber);
+    background-color: cmyk(62%,27%,100%,9%);
+    color: cmyk(0,0,0,0);
+    text-align: right;
+	font-size: 14pt;
+    font-family: "MyriadPro-SemiboldCond";
+    display: block;
+    width: 100%;
+    height: 0.23in;
+    padding-right: 3pt;
+    padding-bottom: 3pt;
+    margin-bottom: 5pt;
+    border-bottom: cmyk(0%,0%,0%,100%) 0pt solid;
+}
+
+
+section[data-type="sect1"] > h1 { /* A-level headings */
+  font-size: 18pt;}
+
+
+/* --------------------------------------------------------------------- */
+/* ------------------------------ Figures ------------------------------ */
+/* --------------------------------------------------------------------- */
+figure {  border: 0pt; }
+ 
+figure.floatRight {
+	-ah-float: right;
+	padding-left: 5pt;
+  margin-left: 5pt;
+	margin-top: -3pt;
+	vertical-align: top;
+  -ah-float-wrap: wrap;
+  clear: all;
+    max-width: 40%;
+
+}
+
+figure.floatLeft {
+	-ah-float: left;
+	padding-right: 5pt;
+  margin-right: 5pt;
+	margin-top: -3pt;
+	vertical-align: top;
+  -ah-float-wrap: wrap;
+  clear: all;
+  max-width: 40%;
+}
+
+figure.floatLeft,
+figure.floatRight {text-align: left }
+
+figure div.border-box {
+  border: 0pt solid cmyk(0%,0%,0%,100%);
+  width: 100%;
+}
+
+figure figcaption { 
+   font-size: 9pt; 
+   margin-top: 0;
+ }
+
+figure img { 
+  text-align: center;
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------- */
+/* ------------------------------- Lists ------------------------------- */
+/* --------------------------------------------------------------------- */
+
+ul, ol { 	
+	font-size: 10.2pt;
+	font-family: "MyriadPro", sans-serif;
+	font-weight: normal;
+}
+
+ul li, ol li { 
+  margin-bottom: 5pt;
+}
+
+/* --------------------------------------------------------------------- */
+/* ------------------------------- Tables ------------------------------ */
+/* --------------------------------------------------------------------- */
+
+table {
+  margin: 12.5pt 0 20pt 0;
+  border-collapse: collapse;
+  max-width: 100%;
+  hyphens: none;
+}
+
+thead tr th {
+  background-color: cmyk(18%,5%,29%,0);
+  color: cmyk(0%,0%,0%,100%);
+  border: 0.25pt solid cmyk(0%,0%,0%,100%);
+}
+
+td { 
+  border: 0.25pt solid cmyk(0%,0%,0%,100%);
+  padding: 0.1em 0.3em 0.1em 0.3em;
+}
+
+/* --------------------------------------------------------------------- */
+/* ---------------------------- Admonitions ---------------------------- */
+/* --------------------------------------------------------------------- */
+
+div[data-type="note"],
+div[data-type="tip"],
+div[data-type="warning"] {
+  margin: 15pt 0 15pt 0;
+  page-break-inside: avoid;
+  border-top: 0.25pt solid cmyk(62%,27%,100%,9%);
+  border-bottom: 0.25pt solid cmyk(62%,27%,100%,9%);
+  padding: 10pt 0 10pt 1.15in;
+  display: block;
+}
+
+div[data-type="note"]:before,
+div[data-type="tip"]:before,
+div[data-type="warning"]:before { content: none;
+}
+
+
+div[data-type="note"] h5,
+div[data-type="tip"] h5,
+div[data-type="warning"] h5 {
+  font-size: 10.2pt;
+  font-family: "MyriadPro-Semibold";
+  color: cmyk(62%,27%,100%,9%);
+  display: inline;
+}
+
+div[data-type="note"] p,
+div[data-type="tip"] p,
+div[data-type="warning"] p {
+  font-size: 10.2pt;
+  margin-left: 0;
+  display: inline;
+}
+
+div[data-type="note"] h5:before,
+div[data-type="tip"] h5:before{
+  -ah-float: left;
+  width: 0.6in;
+  margin-left: -0.88in;
+}
+
+div[data-type="tip"] h5:before {
+  content: url("../../images/block.png");
+}
+div[data-type="note"] h5:before {
+  content: url("../../images/phone.png");
+}
+
+/* --------------------------------------------------------------------- */
+/* ------------------------------- Index ------------------------------- */
+/* --------------------------------------------------------------------- */
+
+section[data-type="index"] { 
+  page: index 
+}
+
+
+@page index {
+  @top-left { 
+    font-family: "MyriadPro-SemiboldCond"; color: cmyk(62%,27%,100%,9%); 
+  }
+  @top-center {
+    font-family: "MyriadPro-SemiboldCond"; 
+}
+  @top-right { 
+    font-family: "MyriadPro-SemiboldCond"; color: cmyk(62%,27%,100%,9%); }
+}
+
+
+@page index:left {
+  margin-left: 0.17in;
+  padding-left: 0.68in;
+  border-top: 0.25pt solid cmyk(62%,27%,100%,9%);
+	padding-top: 0.2in;
+  bleed: 12pt;
+
+  @top-left { 
+    content: counter(page); width: 15pt;
+  }
+  @top-center { 
+    content:"Index"; 
+  }	
+  @bottom-left { 
+    content: none;
+  }
+  @left-middle { 
+    background-color: cmyk(31%,11%,52%,0%);
+    margin-left: -12pt;
+  }
+  @left-top {
+    border-left: 0;
+    margin: 0;}
+  @bottom-left-corner { 
+    background-color: cmyk(31%,11%,52%,0%);
+    border-left: 0;
+    margin-left: -12pt;
+    margin-bottom: -12pt;}
+  @top-left-corner { 
+    background-color: cmyk(31%,11%,52%,0%);
+    border-left: 0;
+    margin-left: -12pt;
+    margin-top: -12pt;}
+}
+
+@page index:right {
+  margin-right: 0.17in;
+  padding-right: 0.68in;
+  border-top: 0.25pt solid cmyk(62%,27%,100%,9%);
+	padding-top: 0.2in;
+  bleed: 12pt;
+
+  @top-center {content: "Index";}
+  @top-right {content: counter(page); width: 15pt;}
+  @bottom-right { content: none; }
+  @right-middle { 
+    background-color: cmyk(31%,11%,52%,0%);
+    margin-right: -12pt;
+}
+  @bottom-right-corner { 
+    background-color: cmyk(31%,11%,52%,0%);
+    border-right: 0;
+    margin-right: -12pt;
+    margin-bottom: -12pt;}
+  @right-top {
+    border-right: 0;
+    margin:0;
+  }
+  @top-right-corner { 
+    background-color: cmyk(31%,11%,52%,0%); 
+    border-right: 0;
+    margin-top: -12pt;
+    margin-right: -12pt;
+}
+}
+
+
+
+@page index:first { 
+	border-top: 0pt;
+  bleed: 12pt;
+	@top-right {content: none;}
+	@bottom-right{content: none;}
+	@top-center {content: none;}
+}
+
+
+
+

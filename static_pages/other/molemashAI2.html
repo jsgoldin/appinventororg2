@@ -1,0 +1,321 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>MoleMash</h1>
+<div class="span6">
+<img src="{{apps2Dir}}/MoleMash/mm.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span6">
+<p><em>This chapter shows you how to create MoleMash, a game inspired by the arcade classic Whac-A-Mole, in which mechanical critters pop briefly out of holes, and players score points by whacking them with a mallet. MoleMash was created by a member of the App Inventor team, nominally to test the sprite functionality (which she implemented), but really because she is a fan of the game.</em></p>
+</div>
+</div>
+<p><em>When Ellen Spertus joined the App Inventor team at Google, she was eager to add support for creating games, so she volunteered to implement <em>sprites</em>. The term, originally reserved for mythological creatures such as fairies and pixies, emerged in the computing community in the 1970s, where it referred to images capable of movement on a computer screen (for video games). Ellen first worked with sprites when she attended a computer camp in the early 1980s and programmed a TI 99/4.  Her work on sprites and MoleMash was motivated by double nostalgia-for both the computers and games of her childhood.</em></p>
+<p><strong>check out the <a href="/AndroidMash-steps">video tutorial</a> of the Android Mash version</strong></p>
+<div class="row-fluid">
+	<div class="span6">
+<h2>What You'll Build</h2>
+<p>For the MoleMash app shown in Figure 3-1, you&apos;ll implement the following functionality:
+<ul>
+<li>A mole pops up at random locations on the screen, moving once every second.</li>
+<li>Touching the mole causes the device to vibrate, the display of hits to be incremented (increased by one), and the mole to move immediately to a new location.</li>
+<li>Touching the screen but missing the mole causes the display of misses to be incremented.</li>
+<li>Pressing the Reset button resets the counts of hits and misses.</li>
+</ul>
+</div>
+<div class="span4">
+<img src="{{apps2Dir}}/MoleMash/mm3-1a.png" alt="">
+<p>
+	<em>Figure 3-1. The MoleMash user interface</em>
+</p>
+</div>
+</div>
+</p>
+<h2>What You'll Learn</h2>
+<p>The tutorial covers the following components and concepts:
+<ul>
+<li>The <b>ImageSprite</b> component for touch-sensitive movable images.</li>
+<li>The <b>Canvas</b> component, which acts as a surface on which to place the <b>ImageSprite</b>.</li>
+<li>The <b>Clock</b> component to move the sprite around.</li>
+<li>The <b>Sound</b> component to produce a vibration when the mole is touched.</li>
+<li>The <b>Button</b> component to start a new game.</li>
+<li>Procedures to implement repeated behavior, such as moving the mole.</li>
+<li>Generating random numbers.</li>
+<li>Using the addition (+) and subtraction (-) blocks.</li>
+</ul>
+</p>
+<h2>Getting Started</h2>
+<p>
+Connect to the App Inventor website and start a new project. Name it &quot;MoleMash&quot; and also set the screen&apos;s title to &quot;MoleMash&quot;. Open the Blocks Editor and connect to the device.
+</p>
+<div class="row-fluid">
+	<div class="span9">
+<p>Download the picture of a mole to the right and name it <em>mole.png</em>. You can download it by control clicking (Mac) or right-clicking (Windows) and selecting "Save Image As" or the equivalent. Once you've downloaded it, go to the Media section of the Component Designer, click Add, browse to where the file is located on your computer, and upload it to App Inventor.</p>
+</div>
+<div class="span2">
+<img src="{{apps2Dir}}/MoleMash/mole.png" alt="">
+</div>
+</div>
+<h2>Designing the Components</h2>
+<p>You&apos;ll use these components to make MoleMash:
+<ul>
+<li>A <b>Canvas</b> that serves as a playing field.</li>
+<li>An <b>ImageSprite</b> that displays a picture of a mole and can move around and sense when the mole is touched.</li>
+<li>A <b>Sound</b> that vibrates when the mole is touched.</li>
+<li><b>Labels</b> that display &quot;Hits: &quot;, &quot;Misses: &quot;, and the actual numbers of hits and misses.</li>
+<li><b>HorizontalArrangements</b> to correctly position the <b>Labels</b>.</li>
+<li>A <b>Button</b> to reset the numbers of hits and misses to 0.</li>
+<li>A <b>Clock</b> to make the mole move once per second.</li>
+</ul>
+</p>
+<p>
+	Table 3&ndash;1 shows the complete list of components.
+</p>
+<p>
+	<em>Table 3-1. The complete list of components for MoleMash</em>
+</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-1.png" alt="">
+<h2>Placing the Action Components</h2>
+<p>In this section, we will place the components necessary for the game&apos;s action. In the next section, we will place the components for displaying the score.
+<ol>
+<li>Drag in a <b>Canvas</b> component, leaving it with the default name <b>Canvas1</b>. Set its <b>Width</b> property to &quot;Fill parent&quot; so it is as wide as the screen, and set its <b>Height</b> to 300 pixels.</li>
+<li>Drag in an <b>ImageSprite</b> component from the Animation group on the Palette. Place it anywhere on <b>Canvas1</b>. Click Rename at the bottom of the Components list and change its name to &quot;Mole&quot;. Set its <b>Picture</b> property to <em>mole.png</em>, which you uploaded earlier.</li>
+<li>Drag in a <b>Button</b> component from the Basic group on the Palette, placing it beneath <b>Canvas1</b>. Rename it to &quot;ResetButton&quot; and set its <b>Text</b> property to &quot;Reset&quot;.
+<li>Drag in a <b>Clock</b> component. It will appear at the bottom of the Viewer in the &quot;Non&ndash;visible components&quot; section.</li>
+<li>Drag in a <b>Sound</b> component from the Media group on the Palette. It, too, will appear in the &quot;Non-visible components&quot; section.</li>
+</ol>
+</p>
+<p>Your screen should now look something like Figure 3-2 (although your mole may be in a different position).</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-2.png" alt="">
+<p>
+	<em>Figure 3-2. The Component Designer view of the "action" components </em>
+</p>
+<h2>Placing the Label components</h2>
+<p>
+We will now place components for displaying the user&apos;s score&ndash;specifically, the number of hits and misses.
+<ol>
+<li>Drag in a <b>HorizontalArrangement</b> from the Screen Arrangement group, placing it beneath the <b>Button</b> and keeping the default name of <b>HorizontalArrangement1</b>.</li>
+<li>Drag two <b>Labels</b> from the Basic group into <b>HorizontalArrangement1</b>.</li>
+<ul>
+<li>Rename the left <b>Label</b> to &quot;HitsLabel&quot; and set its <b>Text</b> property to &quot;Hits: &quot; (making sure to include a space after the colon).</li>
+<li>Rename the right <b>Label</b> to &quot;HitsCountLabel&quot; and set its <b>Text</b> property to &quot;0&quot;.</li>
+</ul>
+<li>Drag in a second <b>HorizontalArrangement</b>, placing it beneath <b>HorizontalArrangement1</b>.</li>
+<li>Drag two Labels into <b>HorizontalArrangement2</b>.</li>
+<ul>
+<li>Rename the left <b>Label</b> to &quot;MissesLabel&quot; and set its <b>Text</b> property to &quot;Misses: &quot; (making sure to include a space after the colon).</li>
+<li>Rename the right <b>Label</b> to &quot;MissesCountLabel&quot; and set its <b>Text</b> property to &quot;0&quot;.</li>
+</ul>
+</ol>
+Your screen should now look like something like Figure 3-3.
+</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-3.png" alt="">
+<p>
+	<em>Figure 3-3. The Component Designer view of all the MoleMash components</em>
+</p>
+<h2>Adding Behaviors to the Components</h2>
+<p>
+After creating the preceding components, we can move to the Blocks Editor to implement the program&apos;s behavior. Specifically, we want the mole to move to a random location on the canvas every second. The user&apos;s goal is to tap on the mole wherever it appears, and the app will display the number of times the user hits or misses the mole. (Note: We recommend using your finger, not a mallet!) Pressing the Reset button resets the number of hits and misses to 0.
+</p>
+<h2>Moving the Mole</h2>
+<p>
+In the programs you&apos;ve written thus far, you&apos;ve called built-in procedures, such as <b>Vibrate</b> in HelloPurr. Wouldn&apos;t it be nice if App Inventor had a procedure that moved an <b>ImageSprite</b> to a random location on the screen? The bad news: it doesn&apos;t. The good news: you can create your own procedures! Just like the built-in procedures, your procedure will show up in a drawer and can be used anywhere in the app.
+</p>
+<p>
+Specifically, we will create a procedure to move the mole to a random location on the screen, which we will name <b>MoveMole</b>. We want to call <b>MoveMole</b> at the start of the game, when the user successfully touches the mole, and once per second.</p> 
+<h2>Creating MoveMole</h2>
+<p>
+To understand how to move the mole, we need to look at how Android graphics work. The canvas (and the screen) can be thought of as a grid with <em>x</em> (horizontal) and <em>y</em> (vertical) coordinates, where the (x, y) coordinates of the upper-left corner are (0, 0). The <em>x</em> coordinate increases as you move to the right, and the <em>y</em> coordinate increases as you move down, as shown in Figure 3-4. The X and Y properties of an <b>ImageSprite</b> indicate where its upper-left corner should be, so the top-left mole has X and Y values 
+of 0.
+</p>
+<p>
+To determine the maximum available X and Y values so that <b>Mole</b> fits on the screen, we need to make use of the <b>Width</b> and <b>Height</b> properties of <b>Mole</b> and <b>Canvas1</b>. (The mole&apos;s <b>Width</b> and <b>Height</b> properties are the same as the size of the image you uploaded. When you created <b>Canvas1</b>, you set its <b>Height</b> to 300 pixels and its <b>Width</b> to &quot;Fill parent,&quot; which copies the width of its &quot;parent&quot; element, the screen.) If the mole is 36 pixels wide and the canvas is 200 pixels wide, the x coordinate of the left side of the mole can be as low as 0 (all the way to the left) or as high as 164 (200 &ndash; 36, or <b>Canvas1.Width</b> &ndash; <b>Mole.Width</b>) without the mole extending off the right edge of the screen. Similarly, the y coordinate of the top of the mole can range from 0 to <b>Canvas1.Height</b> &ndash; <b>Mole.Height</b>.
+</p>
+Figure 3-5 shows the procedure you will create, annotated with descriptive comments (which you can optionally add to your procedure).
+</p>
+<p>
+To randomly place the mole, we will want to select an x coordinate in the range from 0 to <em>Canvas1.Width</em> &ndash; <em>Mole.Width</em>. Similarly, we will want the y coordinate to be in the range from 0 to <em>Canvas1.Height</em> &ndash; <em>Mole.Height</em>. We can generate a random number through the built-in procedure <em>random integer</em>, found in the Math drawer. You will need to change the default &quot;from&quot; parameter from 1 to 0 and replace the &quot;to&quot; parameters, as shown in Figure 3-5.
+</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-4.png" alt="">
+<p>
+	<em>Figure 3-4. Positions of the mole on the screen, with coordinate, height, and width information; x coordinates and widths are shown in blue, while y coordinates and heights are shown in orange</em>
+</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-5.png" alt="">
+<p>
+	<em>Figure 3-5. The MoveMole procedure, which places the mole in a random location</em>
+</p>
+<p>
+To create the procedure:
+<ol>
+<li>Click the Procedure drawer in the Blocks Editor.</li>
+<li>Drag out the <strong>to procedure</strong> block (not <strong>to procedureWithResult</strong>). </li>
+<li>Click the text &quot;procedure&quot; on the new block and enter &quot;MoveMole&quot; to set the name of the procedure.</li>
+<li>Since we want to move the mole, click the Mole drawer, and drag <strong>call Mole.MoveTo</strong> into the procedure, to the right of &quot;do.&quot; Note that we need to provide x and y coordinates.</li>
+<li>To specify that the new x coordinate for the mole should be between 0 and <b>Canvas1.Width</b> &ndash; <b>Mole.Width</b>, as discussed earlier:
+<ul>
+<li>Click the Math drawer.</li>
+<li>Drag out the <strong>random integer from</strong> block, putting the plug (protrusion) on its left side into the "x" socket on <strong>call Mole.MoveTo</strong>.</li>
+<li>Change the <strong>number 1</strong> on the &quot;from&quot; socket by clicking it and then entering 0.</li>
+<li>Discard the <strong>number 100</strong> by clicking it and pressing your keyboard&apos;s Del or Delete button, or by dragging it to the trash can.</li>
+<li>Click the Math drawer and drag a subtraction (-) block into the &quot;to&quot; socket.</li>
+<li>Click the Canvas1 drawer and scroll down until you see <strong>Canvas1.BackgroundColor</strong>, which you should drag to the left side of the subtraction operation; select the Width option from the drop down menu.</li>
+<li>Similarly, click the Mole drawer and drag <strong>Mole.Enabled</strong> into the workspace and select the Width option from the drop down menu. Then plug that into  right side of the subtraction block.</li>
+</ul>
+<li>Follow a similar procedure to specify that the y coordinate should be a random integer in the range from 0 to <b>Canvas1.Height</b> &ndash; <b>Mole.Height</b>.</li>
+<li>Check your results against Figure 3-5.</li>
+</ol>
+</p>
+<h2>Calling MoveMole when the app starts</h2>
+<p>
+Now that you&apos;ve written the <b>MoveMole</b> procedure, let&apos;s make use of it. Because it&apos;s so common for programmers to want something to happen when an app starts, there&apos;s a block for that very purpose: <strong>Screen1.Initialize</strong>.
+<ol>
+<li>Click the Screen1 drawer, and drag out <strong>Screen1.Initialize</strong>.</li>
+<li>Click the Procedures drawer, where you&apos;ll see a <strong>call MoveMole</strong> block. (It&apos;s pretty cool that you&apos;ve created a new block, isn&apos;t it?!) Drag it out, putting it in <strong>Screen1.Initialize</strong>, as shown in Figure 3-6.</li>
+</ol>
+</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-6.png" alt="">
+<p>
+	<em>Figure 3-6. Calling the MoveMole procedure when the application starts</em>
+</p>
+<h2>Calling MoveMole every second</h2>
+<p>
+Making the mole move every second will require the <b>Clock</b> component. We left <b>Clock1&apos;s TimerInterval</b> property at its default value of 1,000 (milliseconds), or 1 second. That means that every second, whatever is specified in a <strong>Clock1.Timer</strong> block will take place. Here&apos;s how to set that up:
+<ol>
+<li>Click the Clock1 drawer, and drag out <strong>Clock1.Timer</strong>.</li>
+<li>Click the Procedures drawer and drag a <strong>call MoveMole</strong> block into the <strong>Clock1.Timer</strong> block, as shown in Figure 3-7.</li>
+</ol>
+<img src="{{apps2Dir}}/MoleMash/mm3-7.png" alt="">
+<p>
+	<em>Figure 3-7. Calling the MoveMole procedure when the timer goes off (every second)</em>
+</p>
+If that&apos;s too fast or slow for you, you can change <b>Clock1&apos;s TimerInterval</b> property in the Component Designer to make it move more or less frequently.
+</p>
+<h2>Keeping Score</h2>
+<p>
+As you may recall, you created two labels, <b>HitsCountsLabel</b> and <b>MissesCountsLabel</b>, which had initial values of 0. We&apos;d like to increment the numbers in these labels whenever the user successfully touches the mole (a hit) or taps the screen without touching the mole (a miss). To do so, we will use the <strong>Canvas1.Touched</strong> block, which indicates that the canvas was touched, the x and y coordinates of where it was touched (which we don&apos;t need to know), and whether a sprite was touched (which we do need to know). Figure 3-8 shows the code you will create.
+</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-8.png" alt="">
+<p>
+	<em>Figure 3-8. Incrementing the number of hits (HitsCountLabel) or misses (MissesCountLabel) when Canvas1 is touched</em>
+</p>
+<p>
+Figure 3&ndash;8&apos;s translation is whenever the canvas is touched, check whether a sprite was touched. Since there&apos;s only one sprite in our program, it has to be <b>Mole1</b>. If <b>Mole1</b> is touched, add one to the number in <b>HitsCountLabel.Text</b>; otherwise, add one to <b>MissesCountLabel.Text</b>. (The value of touchedSprite is false if no sprite was touched.)
+</p>
+<p>
+Here&apos;s how to create the blocks:
+<ol>
+<li>Click the Canvas1 drawer, and drag out <strong>Canvas1.Touched</strong>.</li>
+<li>Click the Control drawer, and drag out <strong>ifelse</strong>, (you will need to add the else block after moving it into the workspace) placing it within <strong>Canvas1.Touched</strong>.</li>
+<li>Click the Variables drawer, and drag out a get block and select <strong>touchedSprite</strong> from the menu and place it in <strong>ifelse</strong>&apos;s test socket.</li>
+<li>Since we want <b>HitsCountLabel.Text</b> to be incremented if the test succeeded (if the mole was touched):
+<ul>
+<li>From the HitsCountLabel drawer, drag out the <strong>set HitsCountLabel.Text to</strong> block, putting it to the right of &quot;then-do.&quot;</li>
+<li>Click the Math drawer, and drag out a plus sign (+), placing it in the &quot;to&quot; socket.</li>
+<li>Click the HitsCountLabel drawer, and drag the <strong>HitsCountLabel.Text</strong> block to the left of the plus sign.</li>
+<li>Click the Math drawer, and drag a <strong>0</strong> block to the right of the plus sign. Click 0 and change it to 1.</li>
+</ul>
+<li>Repeat step 4 for <b>MissesCountLabel</b> in the &quot;else-do&quot; section of the <strong>ifelse</strong> block.</li>
+</ol>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+		<p> 
+<strong>Test your app.</strong> <em>You can test this new code on your device by touching the canvas, on and off the mole, and watching the score change.</em>
+</p>
+</div>
+</div>
+<h2>Procedural Abstraction</h2>
+<p>
+The ability to name and later call a set of instructions like MoveMole is one of the key tools in computer science and is referred to as <em>procedural abstraction</em>. It is called &quot;abstraction&quot; because the caller of the procedure (who, in real-world projects, is likely to be different from the author of the procedure) only needs to know what the procedure does (moves the mole), not how it does it (by making two calls to the random-number generator). Without procedural abstraction, big computer programs would not be possible, because they contain too much code for one person to hold in his head at a time. This is analogous to the division of labor in the real world, where, for example, different engineers design different parts of a car, none of them understanding all of the details, and the driver only has to understand the interface (e.g.,pressing the brake pedal to stop the car), not the implementation.
+</p>
+<p>
+Some advantages of procedural abstraction over copying and pasting code are:
+<ul>
+<li>It is easier to test code if it is neatly segregated from the rest of the program.</li>
+<li>If there&apos;s a mistake in the code, it only needs to be fixed in one place.</li>
+<li>To change the implementation, such as making sure that the mole doesn&apos;t move somewhere that it appeared recently, you only have to modify the code in one place.</li>
+<li>Procedures can be collected into a library and used in different programs. (Unfortunately, this functionality is not currently supported in App Inventor.)</li>
+<li>Breaking code into pieces helps you think about and implement the application (&quot;divide and conquer&quot;).</li>
+<li>Choosing good names for procedures helps document the code, making it easier for someone else (or you, a month later)to read.</li>
+</ul>
+In later chapters, you will learn ways of making procedures even more powerful: adding arguments, providing return values, and having procedures call themselves. For an overview, see Chapter 21.</p>
+<h2>Resetting the Score</h2>
+<p>
+A friend who sees you playing MoleMash will probably want to give it a try too, so it&apos;s good to have a way to reset the number of hits and misses to 0. Depending on which tutorials you&apos;ve already worked through, you may be able to figure out how 
+to do this without reading the following instructions. Consider giving it a try before reading ahead.
+</p>
+<p>
+What we need is a <strong>ResetButton.Click block</strong> that sets the values of <b>HitsCountLabel.Text</b> and <b>MissesCountLabel.Text</b> to 0. Create the blocks shown in Figure 3-9.
+</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-9.png" alt="">
+<p>
+	<em>Figure 3-9. Resetting the number of Hits (HitsCountLabel) and Misses (MissesCountLabel) when the Reset button is pressed</em>
+</p>
+<p>
+At this point, you probably don&apos;t need step-by-step instructions for creating a button click event handler with text labels, but here&apos;s a tip to help speed up the process: instead of getting your number from the Math drawer, just type 0, and the block should be created for you. (These kinds of keyboard shortcuts exist for other blocks, too.)
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+<p>
+<strong>Test your app.</strong> <em>Try hitting and missing the mole and then pressing the Reset button.</em>
+</p>
+</div>
+</div>
+<h2>Adding Behavior When the Mole Is Touched</h2>
+<p>
+We said earlier that we want the device to vibrate when the mole is touched, which we can do with the <strong>Sound1.Vibrate</strong> block, as shown in Figure 3-10. 
+</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-10.png" alt="">
+<p>
+	<em>Figure 3-10. Making the device vibrate briefly (for 100 milliseconds) when the mole is touched</em>
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+<strong>Test your app.</strong> <em>See how the vibration works when you actually touch the mole. If the vibration is too long or too short for your taste, change the number of milliseconds in <strong>Sound1.Vibrate</strong> block.</em>
+</p>
+</div>
+</div>
+<h2>The Complete App: MoleMash</h2>
+<p>
+	Figure 3-11 illustrates the blocks for the complete MoleMash app.
+</p>
+<img src="{{apps2Dir}}/MoleMash/mm3-11.png" alt="">
+<p>
+	<em>Figure 3-11. The complete MoleMash application</em>
+</p>
+<h2>Variations</h2>
+<p>
+Here are some ideas for additions to MoleMash:
+<ul>
+<li>Add buttons to let the user make the mole move faster or slower.</li>
+<li>Add a label to keep track of and display the number of times the mole has appeared (moved).</li>
+<li>Add a second <b>ImageSprite</b> with a picture of something that the user should <em>not</em> hit, such as a flower. If the user touches it, penalize him by reducing his score or ending the game.</li>
+<li>Instead of using a picture of a mole, let the user select a picture with the <b>ContactPicker</b> component.</li>
+</ul>
+</p>
+<h2>Summary</h2>
+<p>
+In this chapter, we&apos;ve covered a number of techniques useful for apps in general and 
+games in particular:
+<ul>
+<li>The <b>Canvas</b> component makes use of an x-y coordinate system, where x represents the horizontal direction (from 0 at the left to <b>Canvas.Width</b>&ndash;1 at the right) and y the vertical direction (from 0 at the top to <b>Canvas.Height</b>&ndash;1 at the bottom). The height and width of an <b>ImageSprite</b> can be subtracted from the height and width of a <b>Canvas</b> to make sure the sprite fits entirely on the <b>Canvas</b>.</li>
+<li>You can take advantage of the device&apos;s touchscreen through the <b>Canvas</b> and <b>ImageSprite</b> components&apos; <b>Touched</b> methods.</li>
+<li>You can create real-time applications that react not just to user input but also in response to the device&apos;s internal timer. Specifically, the <strong>Clock.Timer</strong> block runs at the frequency specified in the <em>Clock.Interval</em> property and can be used to move <b>ImageSprite</b> (or other) components.</li>
+<li>Labels can be used to display scores, which go up (or down) in response to the player&apos;s actions.</li>
+<li>Tactile feedback can be provided to users through the <b>Sound.Vibrate</b> method, which makes the device vibrate for the specified number of milliseconds.</li>
+<li>Instead of just using the built-in methods, you can create procedures to name a set of blocks (<strong>MoveMole</strong>) that can be called just like the built-in ones. This is called procedural abstraction and is a key idea in computer science, enabling code reuse and making complex applications possible.</li>
+<li>You can generate unpredictable behavior with the <strong>random integer</strong> block in the Math drawer, making a game different every time it is played.</li>
+</ul>
+You&apos;ll learn more techniques for games, including detecting collisions between moving <b>ImageSprite</b> components, in Chapter 5 (Ladybug Chase).
+</p>
+
+{% endblock %}

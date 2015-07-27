@@ -1,0 +1,383 @@
+<div class="dark-blue-title">
+	<div class="course-page-container">
+
+		<div style="float: left;">
+			<h1>Math Blaster</h1>
+
+			<h4>The Khan Academy (khanacademy.org) revolutionized on-line
+				education and taught Math to millions with its video and interactive
+				lessons. One thing the site does is generate practice problems for
+				students to test their Math skills. In this chapter, you'll learn
+				how to build a mobile app that generates arithmetic problems and
+				checks the students answers, just like it is done on
+				khanacademy.org! You can use what you learn as a template for
+				building educational apps of all types.</h4>
+		</div>
+
+	</div>
+</div>
+
+<div class="course-page-container">
+	<div class="card">
+		<h2>What You'll Learn</h2>
+		<ol>
+			<li>Working with lists of dynamic (changing) data.</li>
+			<li>Coding repeat blocks (Iteration)</li>
+			<li>Generating random numbers</li>
+		</ol>
+
+
+
+
+		<img class="img-responsive"
+			src="{{apps2Dir}}/mathBlaster/mathBlasterScreen.png" alt="">
+
+
+	</div>
+
+	<div class="card">
+		<h2>Define and Display a List of Numbers</h2>
+		<p>An important strategy in programming is to break down a problem
+			into small parts, then tackle each part separately by building and
+			testing blocks of code. Though the ultimate goal of this tutorial is
+			to build an complete math blaster that generates random problems and
+			checks them, you'll start with a more focused problem: defining a
+			list and displaying that list in the user interface.</p>
+	</div>
+
+	<div class="card">
+		<h3>Set-up a Test User Interface</h3>
+
+
+
+
+
+		<p>To begin, create a test user interface in the Designer. The
+			final user interface will be different, but don't worry about that
+			for now. Create a new project named "MathBlaster" and drag out the
+			following components:
+		<ol>
+			<li>A label for displaying the list. Name it "NumbersLabel".</li>
+			<li>A label for displaying the sum. Name it "SumLabel".</li>
+			<li>A button named "ComputeButton" with the text "Compute Sum".
+			</li>
+		</ol>
+
+		
+			<img class="img-responsive" src="{{apps2Dir}}/mathBlaster/mathBlasterTestUI.png" alt="">
+
+		
+	</div>
+	<div class="card">
+		<h3>Define the List Variable</h3>
+		<p>
+			Now that you've set up the user interface for this initial sub-goal,
+			open the Blocks Editor. For this app, you need a variable to hold the
+			list of numbers to be added up. For now, define the list with the
+			numbers 5, 11, and 7, and later on we'll make it so the numbers are
+			randomly generated. In the Blocks Editor, drag out an <strong>initialize
+				global</strong> block from the <strong>Variables</strong> folder, a <strong>make
+				a list</strong> block from the List folder, and three number blocks from the
+			Math folder. Name and connect the blocks in the following manner: <br />
+			<img class="img-responsive" src="{{apps2Dir}}/mathBlaster/numbersList.png" /><br />
+	</div>
+
+	<div class="card">
+		<h3>Display the List</h3>
+		<p>
+			The <strong>numbers</strong> list variable, like all variables, is
+			part of the app's hidden memory. If you want such data to appear in
+			the user interface, it must be displayed explicitly, typically in a
+			label. You want the list displayed when the app starts, so you'll add
+			blocks to <strong>set</strong> the <strong>NumbersLabel</strong> in
+			the <strong>Screen1.Initialize</strong> event handler: <br /> <img
+				src="{{apps2Dir}}/mathBlaster/screenInit.png" class="img-responsive"/><br /> The list is
+			displayed in the default manner that occurs when you place a list
+			directly into a label. Specifically, the items of the list are
+			separated with spaces and the entire list is displayed within
+			parenthesis.
+		</p>
+	</div>
+
+	<div class="card">
+
+		<h2>Challenge 1: Add up a List of Numbers</h2>
+		<p>A second sub-goal for the app is to compute the total of the
+			numbers in order to check the student's arithmetic. Keep in mind that
+			you want blocks that will sum the list of numbers generically, i.e.,
+			even if the items were changed or items were added, the computation
+			would still work.</p>
+		<p>
+			In the final app you won't show the answer at all, you'll just
+			compare the sum to whatever the user enters. But you're still working
+			on an intermediate goal here, a test app. Your immediate goal is to
+			sum the numbers and just display the result in the label named <strong>SumLabel</strong>.
+
+		</p>
+	</div>
+	<div class="card">
+
+
+		<H3>How Does Your Brain Add Up Numbers?</h3>
+		Ask a friend to shout out some numbers to you while you sum them up.
+		How do you do it? Our brains tends to work on auto-pilot, so this is
+		not an easy question to answer. But to become a good programmer, you
+		must learn to shut off the auto-pilot and examine your brain processes
+		closely.
+		</p>
+		<p>If you're like most people, your "algorithm" for summing
+			numbers is something like the following:
+		<div class="well">Take the first number and remember it, then
+			when the second number comes, add it to the first and remember the
+			total. When the third number comes, add it to the previous total, and
+			so on.</div>
+		Your app needs to follow a similar algorithm, but of course
+		translating the description to blocks is not so easy! First, you need
+		a way to program, the "and so on" part of the description as you need
+		a solution that will work no matter how many numbers are in the list
+		(we want math problems of all sizes!). In programming, "and so on" is
+		coded with <i>iteration</i> , that is, code that tells the app to
+		repeat something some number of times.
+		</p>
+		<p>
+			App Inventor, and most languages, provide a <strong>foreach</strong>
+			construct, which basically says, "do the blocks inside for each item
+			in the list": <br /> <img class="img-responsive" src="{{apps2Dir}}/mathBlaster/foreach.png" /><br />
+		</p>
+		<p>
+			If the list has three items, like our sample, the blocks inside the <strong>foreach</strong>
+			will be repeated three times. If the list has four items, the blocks
+			inside will be repeated four times, and so on. For the sample <strong>numbers</strong>
+			list, the variable <strong>item</strong> will hold the value 5 on the
+			first iteration, 11 on the second, and 7 on the third. So <strong>foreach</strong>
+			is exactly what you want.
+		</p>
+		<p>
+			But what do you want to do for each of those iterations-- what blocks
+			go within the foreach? You want to add the next number in the list to
+			a <i>running total</i>. Anytime your app needs to remember something,
+			like a running total, you define a variable. In this case, you can
+			define a variable "total" and give it an initial value of 0: <br />
+			<img class="img-responsive" src="{{apps2Dir}}/mathBlaster/varTotal.png" /><br />
+		<p>
+			For each item in your list, you add the item to the variable <strong>total</strong>.
+			When the foreach completes (three iterations in this case), you can
+			display the calculated total in a label: <br /> <img class="img-responsive"
+				src="{{apps2Dir}}/mathBlaster/foreachComplete.png" /><br />
+		</p>
+	</div>
+	<div class="card">
+		<h2>Design the User Interface</h2>
+		<div class="row-fluid">
+			<div class="span6">
+				<p>Now your app can create and display a list of numbers, and
+					even add them up. Now its time to create the user interface for the
+					complete version of MathBlaster. You'll need to rename some of the
+					components, but your ultimate goal is for the user interface to
+					appear as on the right. You'll need:
+				<ol>
+					<li>A new label for the "add up the following numbers:".</li>
+					<li>Keep the "NumbersLabel" as is.</li>
+					<li>A text box for the user's answer. Name it "AnswerText" and
+						set its <strong>hint</strong> property to "enter the sum here".
+					</li>
+					<li>Two buttons, one named "AnswerButton" and one named
+						"NextButton". The best way to do this is to just rename the
+						ComputeButton "AnswerButton", then create a new button named
+						"NextButton".</li>
+					<li>A label that will say whether the user's answer is correct
+						or not. Name it "AnswerCheckLabel".</li>
+				</ol>
+			</div>
+			<div class="span4">
+				<img class="img-responsive" src="{{apps2Dir}}/mathBlaster/mathBlaster2Marked.png" alt="">
+
+			</div>
+		</div>
+	</div>
+	<div class="card">
+		<h2>Challenge 2: Compare the Computed Answer to the User's Answer</h2>
+		<p>
+			Now that your app knows how to add, you can set up it so the user can
+			answer and have her answer checked. When the user clicks the
+			AnswerButton, the app should still add up the numbers in the list.
+			Instead of displaying that answer, the app should compare it-- the
+			computed total-- to the answer submitted by the user in <strong>AnswerTextBox</strong>.
+			Depending on the result, the app should display "correct" or
+			"incorrect" in the <strong>AnswerCheckLabel</strong>: <br /> <img class="img-responsive"
+				src="{{apps2Dir}}/mathBlaster/checkAnswer.png" /><br />
+		</p>
+	</div>
+	<div class="card">
+		<h3>Challenge: Debugging the App</h3>
+		<p>If you code the app with the blocks above, the app will not
+			behave correctly. Before moving on, try to identify and fix the bug.
+			When you are ready, click on "View Answer"</p>
+
+		<div id="myCollapsibleExample">
+			<a href="#demo3" data-toggle="collapse">View Answer</a>
+		</div>
+	</div>
+
+
+	<div id="demo3" class="collapse">
+		<p>
+			The given solution works the first time the <strong>AnswerButton</strong>
+			is clicked, but not the second. The problem is that the variable <strong>total</strong>
+			is not reinitialized to zero on each click. So after the first time
+			the button is clicked, <strong>total</strong> is set to 23. When the
+			second click occurs, and AnswerButton.Click is triggered again, the
+			list items will be added to the current value of <strong>total</strong>
+			(23) and the result will be 46.
+		</p>
+		<p>
+			The solution is simple: set <strong>total</strong> to zero at the top
+			of the event handler: <br /> <img class="img-responsive"
+				src="{{apps2Dir}}/mathBlaster/checkAnswer2.png" /><br />
+	</div>
+	<div class="card">
+		<h2>Challenge 3: Generating a List of Random Numbers</h2>
+		<p>The app thus far isn't much fun because the same problem is
+			asked over and over. The next step is to add a "Next Problem" button
+			and make it so that the app generates random problems each time it is
+			clicked.</p>
+		<p>For now, assume that you always want to generate exactly three
+			random numbers. Later, you can modify the code so that problems of
+			different sizes are generated. Also, assume that the numbers should
+			be randomly chosen within the range 1-20.</p>
+		<p>
+			Here are the blocks for the <strong>NextButton.Click</strong> event
+			handler: <br /> <img class="img-responsive" src="{{apps2Dir}}/mathBlaster/random3.png" /><br />
+		<p>
+			The blocks first empty out the <strong>numbers</strong> list by
+			setting it to an empty <strong>make a list</strong> block. Then <strong>add
+				items to list</strong> is called to add the three random numbers. Finally,
+			the <strong>NumbersLabel</strong> is updated to display the list and
+			the <strong>AnswerTextBox</strong> is modified to erase the previous
+			answer.
+		</p>
+	</div>
+
+	<div class="card">
+		<h2>Challenge 4: Generating a Random Number of Random Numbers</h2>
+		<p>So you now have a "Math Blaster" app but all the problems are
+			exactly three numbers long. The next step is to eliminate this
+			restriction so questions of different lengths will be generated and
+			asked.</p>
+		<p>
+			Your task is to change the app so that the list of numbers has
+			between two and five items on each question. For such a task, <strong>foreach</strong>
+			isn't useful as you are not trying to iterate over the items of an
+			existing list (you are creating a new one!). Instead, you need a <strong>while</strong>
+			or <strong>for range</strong> as in the following solution: <br /> <img class="img-responsive"
+				src="{{apps2Dir}}/mathBlaster/randomNumItems.png" /><br />
+		</p>
+		<p>
+			With a <strong>for range</strong>, the blocks within the "do" are
+			performed some number of times as defined by a range. Think of the
+			range <strong>i</strong> as a counter or index. In this case, it
+			starts out as 1, on the first iteration. Each time the inner block (<strong>add
+				items to list</strong>) is performed, the step (1) is added to <strong>i</strong>,
+			until it reaches the end, which in this case is a random number
+			between 2 and 5. So if the random integer generated is 4, the range
+			will be 1-4 and the inner block will be performed four times.
+		</p>
+		<p>
+			Note that the blocks within the <strong>NextButton.Click</strong>
+			event handler should be copied to the <strong>Screen.Initialize</strong>
+			event handler, as the first question should also be generated with a
+			random number of items as opposed to the "fixed" three items in the <strong>numbers</strong>
+			list definition. Furthermore, the <strong>numbers</strong> definition
+			should have an empty <strong>make a list</strong> block within it
+			instead of the three items that we used for the initial version of
+			the app. An empty <strong>make a list</strong> block is a common
+			pattern for defining a "dynamic" list: you are defining a list to
+			hold items, but the items are generated as the app runs. Here are the
+			blocks for these updates: <br /> <img class="img-responsive"
+				src="{{apps2Dir}}/mathBlaster/screenInitialize2.png" /><br />
+		</p>
+	</div>
+	<div class="card">
+		<h2>Challenge 5: Showing the + Signs in the Arithmetic</h2>
+		<p>As is, the app displays the list of numbers within parenthesis
+			and with spaces, not + signs, separating the numbers. Your next task
+			is to change this so that a proper addition equation is displayed.
+			For example, for the default list, your app should display "5+11+7",
+			not "(5 11 7)"</p>
+		<p>
+			App Inventor doesn't provide a simple way to format list items
+			nicely, so you'll have to use iteration-- a <strong>foreach</strong>--
+			to walk through the list of numbers and build a text string with "+"
+			between the numbers. You will build the text in NumbersLabel
+			step-by-step, adding a number and a plus on each iteration:
+		</p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Iteration</th>
+					<th>NumbersLabel</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>5+11</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>5+11+7</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>
+			Here are the updated blocks: <br /> <img class="img-responsive"
+				src="{{apps2Dir}}/mathBlaster/displayPlus1.png" /><br /> Instead
+			of just dumping the list into NumbersLabel, the label is built a
+			number at a time, with the <strong>join</strong> block taking care of
+			adding the "+" between each number.
+		</p>
+	</div>
+
+	<div class="card">
+		<h3>Challenge: Debugging the App</h3>
+		<p>The blocks above are close but not quite right. Before moving
+			on, test the app and try to identify the issues and fix them. When
+			you are ready, click on "View Solution"</p>
+
+		<div id="myCollapsibleExample">
+			<a href="#demo4" data-toggle="collapse">View Solution</a>
+		</div>
+		<div id="demo4" class="collapse">
+			<p>
+				The given solution leaves an additional "+" at the end of the
+				equation, e.g., 5+11+7<strong>+</strong>. There are a number of ways
+				to fix this, including using a different iteration block such as <strong>while-do</strong>
+				or <strong>for range</strong>.
+			</p>
+			If the <strong>foreach</strong> block is retained, you need to add
+			some blocks to "post-process" the label and remove the last "+": <br />
+			<img src="{{apps2Dir}}/mathBlaster/displayPlusFix.png" class="img-responsive" /><br />
+			<p>The segment block takes a part (segment) of some text, in this
+				case starting from the first character and taking all but the last
+				character (the unwanted "+").</p>
+			<p>
+				Note that you'll need to update the <strong>Screen.Initialize</strong>
+				event handler with these blocks as well so the first question will
+				appear correctly
+			</p>
+		</div>
+	</div>
+	<div class="card">
+		<h2>Refactoring</h2>
+		<p>Effective software engineers know that having redundant code
+			(blocks) in an app is bad practice: if something changes, you have to
+			find all copies of the code and make the change. Copying and pasting
+			blocks, as done above, is a sub-optimal solution. A better solution
+			involves refactoring the blocks and defining a procedure.</p>
+	</div>
+</div>

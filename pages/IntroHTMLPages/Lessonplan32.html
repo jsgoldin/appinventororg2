@@ -1,0 +1,191 @@
+<div class="dark-blue-title">
+	<div class="course-page-container">
+		<div style="float: left">
+			<h1>Lesson Plan 3.2 Location-Aware Apps</h1>
+		</div>
+
+
+		<div style="float: right;">
+			<a target="_blank"
+				href="https://docs.google.com/document/d/16eR_g8oez2vjXDQtiTFMfj1FNNSxuOujQMwBa4GifR8/edit?usp=sharing">
+				<img style="margin-top: 2%; float: right;"
+				src="/images/icons/download_white.png">
+				<h3 style="float: right;">Printable Version</h3>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="course-page-container">
+	<div class="card">
+		<h1 class="c4">
+			<a name="h.fhdook5kyzhe"></a><span>Objectives</span>
+		</h1>
+		<ul class="c10 lst-kix_q6iq86bh2lry-0 start">
+			<li class="c2"><span>Learn about GPS and location sensing</span></li>
+			<li class="c2"><span>Learn how to determine the current
+					location of the device.</span></li>
+			<li class="c2"><span>Learn about the WebViewer and how to
+					show a map in your app.</span></li>
+			<li class="c2"><span>Learn how to build URLs (e.g., to
+					maps) dynamically</span></li>
+		</ul>
+	</div>
+
+	<div class="card">
+		<h1 class="c4">
+			<a name="h.qau2wk4zxdii"></a><span>Outline</span>
+		</h1>
+		<p class="c6">
+			<span>1. Send the students out to try an app that lists GPS
+				coordinates.</span>
+		</p>
+		<p class="c6">
+			<span>2. Students build &ldquo;Android Where&rsquo;s My
+				Car&rdquo; tutorial</span>
+		</p>
+		<p class="c6">
+			<span>3. Location: Conceptualize Worksheet</span>
+		</p>
+		<p class="c6">
+			<span>4. Location: Customizations</span>
+		</p>
+	</div>
+
+	<div class="card">
+		<h1 class="c4">
+			<a name="h.hf544twt4ehq"></a><span>Preparation</span>
+		</h1>
+		<p class="c6">
+			<span>Location-aware apps can be tricky. You have to make sure
+				the device&rsquo;s location settings are on, and that you test the
+				app in a place that can get a reading. Sometimes you need to restart
+				the device to get it to start sensing location. Be sure and play
+				around with the Android settings and sensing in your classroom
+				setting before class.</span>
+		</p>
+		<p class="c3">
+			<span></span>
+		</p>
+		<p class="c6">
+			<span>Print out copies of the Conceptualize and Customize
+				worksheet.</span>
+		</p>
+		<p class="c6">
+			<span class="c7"><a class="c1"
+				href="https://docs.google.com/document/d/1b67_OlKzYfoUPOhHEUw_ivOiFxBXGX3BMpD08ueZWAM/edit">https://docs.google.com/document/d/1b67_OlKzYfoUPOhHEUw_ivOiFxBXGX3BMpD08ueZWAM/edit</a></span>
+		</p>
+	</div>
+
+	<div class="card">
+		<h1 class="c4">
+			<a name="h.frm1esbxg4zw"></a><span>1. Send the students
+				outside to try out a location-aware app (20)</span>
+		</h1>
+		<ul class="c10 lst-kix_hagezxwsgyk0-0 start">
+			<li class="c2"><span>Have the students install the Where
+					Am I? app, then go outside and walk around and see how the data
+					changes. Let them know that the distance setting is an
+					approximation of how far they are from Prof. Wolber&rsquo;s office
+					at USF. &nbsp;link link</span></li>
+			<li class="c2"><span>Alternatively, have them build it
+					from the first sample app in the learning nugget on location: </span><span>http://www.appinventor.org/location</span><span>.
+					It just displays latitude, longitude, and street address.</span></li>
+			<li class="c2"><span>When the students get back, display
+					the code for the app and talk about how LocationSensor and
+					LocationSensor.LocationChanged works, and the latitude, longitude,
+					and CurrentAddress properties. You can also introduce the distance
+					procedure, basically just saying its a named sequence of blocks
+					that approximates the distance between two points, that we&rsquo;ll
+					talk about procedures later, and that the formula was just grabbed
+					from the web somewhere.</span></li>
+		</ul>
+	</div>
+
+
+
+	<div class="card">
+		<h1 class="c4">
+			<a name="h.4mn743j9h1l6"></a><span>2. Students build Android
+				Where&rsquo;s My Car Tutorial (30)</span>
+		</h1>
+		<p class="c6">
+			<span>The tutorial is at: </span><span>http://www.appinventor.org/AndroidCar2</span>
+		</p>
+		<p class="c6">
+			<span>They&rsquo;ll get experience with the LocationSensor
+				component and another look at persistent data.</span>
+		</p>
+	</div>
+
+
+	<div class="card">
+		<h1 class="c4">
+			<a name="h.pxylcf1agfaj"></a><span>3. Location: Conceptual
+				Worksheet(30)</span>
+		</h1>
+		<p class="c6">
+			<span>Hand out the document below and ask the students to
+				explore the questions. Depending on the age/sophistication of your
+				students, you may want to spend more or less time on discussing what
+				GPS is, playing with Google Maps, etc. In general it is really fun
+				to explore this and it adds some interesting non-code technology
+				work.</span>
+		</p>
+		<p class="c3">
+			<span></span>
+		</p>
+		<p class="c6">
+			<span>The last couple of questions are about coding including
+				LocationSensor and building URLs. A key skill to learn is how to
+				build a URL out of static and dynamic parts, e.g., using join to
+				combine the first part of a Maps URL (</span><span class="c7"><a
+				class="c1" href="http://maps.google.com?q=">http://maps.google.com?q=</a></span><span>)
+				with the current latitude and longitude (and putting the comma
+				in-between).</span>
+		</p>
+		<p class="c3">
+			<span></span>
+		</p>
+		<p class="c6">
+			<span>After a few minutes, lead a full-class discussion of the
+				questions.</span>
+		</p>
+		<p class="c3">
+			<span></span>
+		</p>
+		<p class="c6">
+			<span class="c8">Conceptualize and Customize Worksheet:</span>
+		</p>
+		<p class="c6">
+			<span class="c7"><a class="c1"
+				href="https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng">https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng</a></span>
+		</p>
+		<p class="c3">
+			<span></span>
+		</p>
+	</div>
+	<div class="card">
+		<h1 class="c4">
+			<a name="h.trcnu1ij0jgb"></a><span>4</span><span>.
+				Customization Exercises (30-60)</span>
+		</h1>
+		<p class="c6">
+			<span>Assign the students the customization exercises in: </span><span
+				class="c7"><a class="c1"
+				href="https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng">https://docs.google.com/document/d/1R9eoiyxnCZtNV3eisxkJGuG-l7EVB-p7oys-qBA_SzA/edit#heading=h.ubd6xcgo6ng</a></span>
+		</p>
+	</div>
+	<div>
+		<p class="c6 c5 c9">
+			<span>appinventor.org
+				course-in-a-box&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+		<p class="c6 c13">
+			<span class="c12">This document is licensed under an </span><span
+				class="c7 c12"><a class="c1"
+				href="http://www.google.com/url?q=http%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby-nc-sa%2F3.0%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGKyqN5Tqh7KIvGy2XJV2hc_b4JpA">Attribution-NonCommercial-ShareAlike
+					3.0 Unported License</a></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+	</div>
+</div>

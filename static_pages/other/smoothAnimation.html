@@ -1,0 +1,94 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Smooth Animation</H1>
+<div class="row-fluid">
+  <div class="span6">
+<p>Animation: transformation of an object over time. Transformations include move, rotate, color change, etc.</p>
+<h3>Two ways to Program Animation in App Inventor</h3>
+
+<ul>
+<li>
+Use a Clock.Timer event and move (transform) image sprite within that event
+</li>
+<li>
+Image sprites have their own internal timers you can use. 
+</li>
+</ul>
+<H3>Moving over time</h3>
+<ul>
+<li>
+The following blocks move a ball horizontally:<br/>
+<img src="/apps/sillyBalls/moveHoriz.png"/>
+</li>
+<li> Note similarity to mole mash scoring (set HitLabel.Text to HitLabel.Text + 1)
+</li>
+<li>
+Alternative and equivalent blocks:<br/>
+<img src="/apps/sillyBalls/moveHoriz2.png"/>
+</li>
+<li>How would you move vertically? How fast is the ball moving?</li>
+<li>Use a small interval for smooth animation</li>
+</ul>
+
+
+<h4>Instructor Demo</h4>
+<ul>
+<li>
+   Move ball to the right 20 px/second 
+</li>
+<li>
+   Move ball to the right 20 px/second smoothly
+</li>
+<li>
+   Move the ball but only once a button is clicked
+</li>
+</ul>
+<h4>Animation Events</h4>
+<ul>
+<li>    
+    Ball.EdgeReached
+</li>
+<li>    
+    Ball.CollidedWith
+</li>
+</ul>
+
+
+<h4>Your Turn</h4>
+<ol>
+<li>Create a new app and add a Canvas. Set the Width to "fill parent" and the height to 400. Add three balls from the Animation folder.
+</li>
+<li>
+Code Ball1 so that, upon app startup, it moves smoothly from the left edge of the screen to the right at 100 px/second. Code and test this before you move on.
+</li>
+<li>
+Code Ball2 so that, upon app startup, it moves smoothly from the top edge to the bottom edge at 20 pixels a second.
+</li>
+<li>
+Code Ball3 so that, upon app startup, it moves smoothly and diagonally from the top-left corner to the right-bottom corner.  at 50 pixels a second.
+</li>
+<li>
+Code Ball1 so that when it hits the right edge it reverses and goes left. It can stop when it hits the left edge. </li>
+<li>
+Add Faster and Slower buttons that change the speed of Ball2 by 10%.
+</li>
+<li>
+Code Ball3 so that it changes color every 20 ms. 
+Hint: You can set the PaintColor of a ball (or anything) using either a built-in color or a number. For instance, dark orange is the number -29696. So try setting the PaintColor of the ball in the Screen.Initialize event, then adding 100 to it every 20 ms. For more info on colors, see http://experimental.appinventor.mit.edu/learn/reference/blocks/colors.html.
+</li>
+<li>
+Code Ball2 so that if it hits another ball, it immediately jumps to the top of the screen.
+</li>
+<li>
+Code Ball2 so that when it hits the bottom edge, it reverses course and goes up, and when it hits the top edge, it reverses course and goes down. So it should go top-to-bottom, bottom-to-top, continuously.
+
+</ol>
+</div>
+<div class="span5">
+<iframe width="420" height="315" src="//www.youtube.com/embed/dPw0JxBHMrM" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="//www.youtube.com/embed/kjd-IQSQBCY" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="//www.youtube.com/embed/xnq1-kQLcCM" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+{% endblock %}

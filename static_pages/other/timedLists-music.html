@@ -1,0 +1,58 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} Timed Lists: How do you process each item of a list, pausing in between?{% endblock %}
+			{% block description %} You can't use a for each or while loop to process a list if timing is 
+			involved because those iterative blocks don’t pause between processing each
+			 item-- they go too fast! To deal with timing and lists, you define an index 
+			 to keep track of the position in the list as processing proceeds, and you 
+			 process each item in some event handler. Check out the following examples:{% endblock %}
+{% block question %} Example 1. How do you play a list of musical notes?{% endblock %}
+{% block answer %}
+<p>
+			For this example, assume three short sound clips, “do.mp3”, “re.mp3”, 
+			and “mi.mp3”, have been uploaded as media for the app. The goal is to play 
+			the three notes one after the other.
+			</p>
+			<p> A musical note takes time to play. 
+			If you tried to use a for each block to play a list of notes, they would 
+			play on top of each other, as the app doesn’t pause between iterations.</p>
+			<p> The solution is event-based. When the user initiates the note playing by clicking 
+			a button, you play the first note. You then program the 
+			<span class="empfont">Player.Completed</span> event, 
+			which is triggered when the <span class="empfont">Player</span> component finishes playing an entire sound
+			 clip. In <span class="empfont">Player.Completed</span>, you check where you are in the list, and if you 
+			 are not done, you get the next note and play it. The scheme is supported 
+			 through the definition of a variable, index, which keeps track of the 
+			 current position in the list. It starts out as 1, and is incremented each 
+			 time a note completes. The select list item block is used to grab the 
+			 “indexth” item to play. 
+			 </p>
+			<p> The blocks shown would play any list of notes, 
+			 but let’s walk through what happens with this particular list. When 
+			 the user clicks the <span class="empfont">PlayButton</span>, <span class="empfont">index</span> is set to 1 so that the select list 
+			 item block selects the first item, “do.mp3”, which is played.
+			 </p>
+			<p> 
+
+			When “do.mp3” finishes playing, the <span class="empfont">Player.Completed</span> event handler is triggered. 
+			It increments index from 1 to 2, checks if the <span class="empfont">index</span> is past the end of the notes 
+			list (it is not), and then selects and plays the second note (“re.mp3”).
+			</p>
+			<p> 
+			When “re.mp3” finishes playing, the <span class="empfont">Player.Completed</span> event handler is triggered a second 
+			time. It increments index from 2 to 3, checks if <span class="empfont">index</span> is past the end of the notes 
+			(is still is not), and plays the third note, “mi.mp3”.
+			</p>
+			<p>
+			When “mi.mp3” completes, the <span class="empfont">Player.Completed</span> event handler is triggered a third time. 
+			index is incremented again, now to 4, and it is now larger than the length of the list. 
+			So the “if test” is false and no more notes are played.
+			</p>
+			
+{% endblock %}
+
+{% block answerImage %} "/assets/img/TimedLists/playNotes.png" {% endblock %}
+{% block answerVideo %} "" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/timedLists/asl">example 2</a> {% endblock %}
+
+

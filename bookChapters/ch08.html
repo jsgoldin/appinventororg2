@@ -1,0 +1,968 @@
+
+    <section data-type="chapter" data-pdf-bookmark="Chapter 8. Presidents Quiz" id="presidents_quiz">
+<h1>Presidents Quiz</h1>
+
+<p><em>The Presidents Quiz is a trivia game about former leaders of the United States. Though this quiz is about presidents, you can use it as a template to build quizzes or study guides on any topic.</em></p>
+
+<p><em>In the previous chapters, you’ve been introduced to some fundamental programming concepts. Now you’re ready for something more challenging. You’ll find that this chapter requires a conceptual leap in terms of programming skills and abstract thinking. In particular, you’ll use two list variables to store the data--in this case, the quiz questions and answers--and you’ll use an index variable to track where the user is in the quiz. When you finish, you’ll be armed with the knowledge to create quiz apps and many other apps that require list processing.</em></p>
+
+<div class="informalfigure"><img alt="Presidents Quiz" src="/assets/img/bookChapters/pq.png"/></div>
+
+<p>This chapter assumes you’re familiar with the basics of App Inventor: using the Component Designer to build the user interface, and using the Blocks Editor to specify event handlers and program the component behavior. If you are not familiar with these fundamentals, be sure to review the previous chapters before continuing.</p>
+
+<p>You’ll design the quiz so that the user proceeds from question to question by clicking a Next button and receives feedback on whether each answer he inputs is correct or incorrect.</p>
+
+<section data-type="sect1" data-pdf-bookmark="What You’ll Learn" id="what_youapostrophell_learn-id00062">
+<h1>What You’ll Learn</h1>
+
+<p><em>This app, shown in <a data-type="xref" href="#presidents_quiz_running_in_the_emulator">Figure 8-1</a>, covers:</em></p>
+
+<ul>
+	<li>Defining list variables for storing the questions and answers in lists.</li>
+	<li>Sequencing through a list using an index; each time the user clicks Next, you’ll display the next question.</li>
+	<li>Using conditional (if) behaviors: performing certain operations only under specific conditions. You’ll use an <strong>if</strong> block to handle the app’s behavior when the user reaches the end of the quiz.</li>
+	<li>Switching an image to show a different picture for each quiz question.</li>
+</ul>
+
+<figure id="presidents_quiz_running_in_the_emulator"><img alt="The Presidents Quiz running in the emulator" src="/assets/img/bookChapters/pq8-1.png"/>
+<figcaption><em>The Presidents Quiz in action</em></figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Getting Started" id="getting_started-id00063">
+<h1>Getting Started</h1>
+
+<p>Navigate to the App Inventor website and start a new project. Name it “PresidentsQuiz” and set the screen’s title to “Presidents Quiz”. Connect your device or emulator for live testing. </p>
+
+<p>You’ll need to download the pictures for the quiz from the appinventor.org website onto your computer: <a href="http://appinventor.org/bookFiles/Xylophone/1.wav">http://appinventor.org/bookFiles/PresidentsQuiz/roosChurch.gif</a>,<a href="http://appinventor.org/bookFiles/Xylophone/1.wav">http://appinventor.org/bookFiles/PresidentsQuiz/nixon.gif</a><i>,</i> <a href="http://appinventor.org/bookFiles/Xylophone/1.wav">http://appinventor.org/bookFiles/PresidentsQuiz/carterChina.gif</a><i>, </i>and <a class="link " href="http://appinventor.org/bookFiles/Xylophone/1.wav">http://appinventor.org/bookFiles/PresidentsQuiz/atomic.gif</a><i>.</i> You’ll load these images into your project in the next section.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Designing the Components" id="designing_the_components-id00064">
+<h1>Designing the Components</h1>
+
+<p>The Presidents Quiz app has a simple interface for displaying the questions and allowing the user to answer. You can build the components from the snapshot of the Component Designer shown in <a data-type="xref" href="#presidents_quiz_in_the_designer">Figure 8-2</a>.</p>
+
+<figure id="presidents_quiz_in_the_designer"><em><img alt="The Presidents Quiz in the Designer" src="/assets/img/bookChapters/pq8-2.png"/> </em>
+
+<figcaption><em>The Presidents Quiz in the Designer</em></figcaption>
+</figure>
+
+<p>To create this interface, first load the images you downloaded into the project. Click “Add” in the Media area and select one of the downloaded files (e.g., roosChurch.gif). Do the same for the other three images. Then add the components listed in <a data-type="xref" href="#components_for_the_presidents_quiz_app">Table 8-1</a>.</p>
+
+<table id="components_for_the_presidents_quiz_app">
+	<caption>Components for the Presidents Quiz app</caption>
+	<thead>
+		<tr>
+			<th>Component type</th>
+			<th>Palette group</th>
+			<th>What you’ll name it</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><code>Image</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Image1</code></p>
+			</td>
+			<td>
+			<p>The picture displayed with the question.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>QuestionLabel</code></p>
+			</td>
+			<td>
+			<p>Display the current question.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>HorizontalArrangement</code></p>
+			</td>
+			<td>
+			<p>Layout</p>
+			</td>
+			<td>
+			<p><code>HorizontalArrangement1</code></p>
+			</td>
+			<td>
+			<p>Put the answer text and button in a row. </p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>TextBox</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>AnswerText</code></p>
+			</td>
+			<td>
+			<p>The user will enter his answer here.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>AnswerButton</code></p>
+			</td>
+			<td>
+			<p>The user clicks this to submit an answer.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>RightWrongLabel</code></p>
+			</td>
+			<td>
+			<p>Display “correct!” or “incorrect!”</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>NextButton</code></p>
+			</td>
+			<td>
+			<p>The user clicks this to proceed to the next question.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><set as="" components="" of="" p="" properties="" the=""> </set></p>
+
+<ol>
+	<li>Set <strong>Image1.Picture</strong> to the image file roosChurch.gif, the first picture that should appear. Set its Width to “Fill parent” and its Height to 200.</li>
+	<li>Set <strong>QuestionLabel.Text</strong> to “Question...”” (you’ll input the first question in the Blocks Editor).</li>
+	<li>Set <strong>AnswerText.Hint</strong> to “Enter an answer”. Set its <strong>Text</strong> property to blank. Move it into <strong>HorizontalArrangement1</strong>.</li>
+	<li>Change <strong>AnswerButton.Text</strong> to “Submit” and move it into <strong>Horizontal Arrangement1</strong>.</li>
+	<li>Change <strong>NextButton.Text</strong> to “Next”.</li>
+	<li>Change <strong>RightWrongLabel.Text</strong> to blank.</li>
+</ol>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Adding Behaviors to the Components" id="adding_behaviors_to_the_componen-id00065">
+<h1>Adding Behaviors to the Components</h1>
+
+<p>You’ll need to program the following behaviors:</p>
+
+<ul>
+	<li>When the app starts, the first question appears, including its corresponding image.</li>
+	<li>When the user clicks the <strong>NextButton</strong>, the second question appears. When he clicks it again, the third question appears, and so on.</li>
+	<li>When the user reaches the last question and clicks the <strong>NextButton</strong>, the first question should appear again.</li>
+	<li>When the user answers a question, the app will report whether it is correct or not.</li>
+</ul>
+
+<p>You’ll code these behaviors one-by-one, testing as you go.</p>
+
+<section data-type="sect2" data-pdf-bookmark="Defining the Question and Answer Lists" id="defining the lists">
+<h2>Defining the Question and Answer Lists</h2>
+To start, you’ll define two list variables based on the items listed in <a data-type="xref" href="#variables_for_holding_question_and_answe">Table 8-2</a>: <strong>QuestionList</strong> to hold the list of questions, and <strong>AnswerList</strong> to hold the list of corresponding answers. <a data-type="xref" href="#lists_for_the_quiz">Figure 8-3</a> shows the two lists you’ll create in the Blocks Editor.
+
+<p> </p>
+
+<table id="variables_for_holding_question_and_answe">
+	<caption>Variables for holding question and answer lists</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>initialize global to</strong> (“QuestionList”)</p>
+			</td>
+			<td>
+			<p>Variables</p>
+			</td>
+			<td>
+			<p>Store the list of questions (rename it <code>QuestionList</code>).</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>initialize global to </strong>(“AnswerList”)</p>
+			</td>
+			<td>
+			<p>Variables</p>
+			</td>
+			<td>
+			<p>Store the list of answers (rename it <code>AnswerList</code>).</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>make a list </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Insert the items of the <code>QuestionList</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>text</strong> (three of them)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The questions.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>make a list </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Insert the items of the <code>AnswerList</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>text</strong> (three of them)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The answers.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<figure id="lists_for_the_quiz"><img alt="The lists for the quiz" src="/assets/img/bookChapters/pq8-3.png"/>
+<figcaption>The lists for the quiz</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Defining the Index Variable" id="defining_the_index_variable">
+<h2>Defining the Index Variable</h2>
+
+<p>The app needs to keep track of the current question as the user clicks the <strong>NextButton</strong> to proceed through the quiz. You’ll define a variable named <strong>currentQuestionIndex</strong> for this, and the variable will serve as the index into both the <strong>QuestionList</strong> and <strong>AnswerList</strong>. <a data-type="xref" href="#creating_the_index">Table 8-3</a> lists the blocks you’ll need to do this, and <a data-type="xref" href="#initiating_the_index_blocks_with_a_value">Figure 8-4</a> shows what that variable will look like.</p>
+
+<table id="creating_the_index">
+	<caption>Creating the index</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>initialize global to</strong> (“currentQuestionIndex”)</p>
+			</td>
+			<td>
+			<p>Variables</p>
+			</td>
+			<td>
+			<p>Hold the index (position) of the current question/answer.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>number</strong> (1)</p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>Set the initial value of <code>currentQuestionIndex</code> to 1 (the first question).</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<figure id="initiating_the_index_blocks_with_a_value"><img alt="Initiating the index blocks with a value of 1" src="/assets/img/bookChapters/pq8-4.png"/>
+<figcaption>Initiating the index variable with a value of 1</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Displaying the First Question" id="displaying_the_first_question">
+<h2>Displaying the First Question</h2>
+
+<p>Now that you’ve defined the variables you need, you can specify the app’s interactive behavior. As with any app, it’s important to work incrementally and define one behavior at a time. To start,  think only about the questions and specifically displaying the first question in the list when the app launches. We’ll come back and deal with the images and answers a bit later.</p>
+
+<p>You want your code blocks to work regardless of the specific questions that are in the list. That way, if you decide to change the questions or create a new quiz by copying and modifying this app, you’ll only need to change the actual questions in the list definitions, and you won’t need to change any event handlers.</p>
+
+<p>So, for this first behavior, you don’t want to refer directly to the first question, “Which president implemented the ‘New Deal’ during the Great Depression?” Instead, you want to refer, abstractly, to the first slot in the <strong>QuestionList</strong> (regardless of the specific question there). That way, the blocks will still work even if you modify the question in that first slot.</p>
+
+<p>You select particular items in a list with the <strong>select list item</strong> block. The block asks you to specify the list and an index (a position in the list). If a list has three items, you can enter 1, 2, or 3 as the index.</p>
+
+<p>For this first behavior, when the app launches, you want to select the first item in <strong>QuestionList</strong> and place it in the <strong>QuestionLabel</strong>. As you’ll recall from the “Android, Where’s My Car?” app, if you want something to happen when your app launches, you program that behavior in the <strong>Screen1.Initialize</strong> event handler using the blocks listed in <a data-type="xref" href="#blocks_to_load_the_initial_question_when">Table 8-4</a>.</p>
+
+<table id="blocks_to_load_the_initial_question_when">
+	<caption>Blocks to load the initial question when the app starts</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>Screen1.Initialize </strong></p>
+			</td>
+			<td>
+			<p>Screen1</p>
+			</td>
+			<td>
+			<p>Event handler triggered when the app begins.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>set QuestionLabel.Text to </strong></p>
+			</td>
+			<td>
+			<p>QuestionLabel</p>
+			</td>
+			<td>
+			<p>Put the first question in <code>QuestionLabel</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>select list item </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Select the first question from <code>QuestionList</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>get global QuestionList </strong></p>
+			</td>
+			<td>
+			<p>Variables</p>
+			</td>
+			<td>
+			<p>The list to select questions from.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>number</strong> (1)</p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>Select the first question by using an index of 1.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the Blocks Work</h3>
+
+<p>The <strong>Screen1.Initialize</strong> event is triggered when the app begins. As shown in <a data-type="xref" href="#selecting_the_first_question">Figure 8-5</a>, the first item of the variable <strong>QuestionList</strong> is selected and placed into <strong>QuestionLabel.Text</strong>. So, when the app begins, the user will see the first question.</p>
+
+<figure id="selecting_the_first_question"><img alt="Selecting the first question" src="/assets/img/bookChapters/pq8-5.png"/>
+<figcaption>Selecting the first question</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+
+<p>Click “Connect” and connect to your device or the emulator for live testing.  When your app loads, do you see the first item of <strong>QuestionList</strong>, “Which president implemented the ‘New Deal’ during the Great Depression?”</p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Iterating Through the Questions" id="iterating_through_the_questions">
+<h2>Iterating Through the Questions</h2>
+
+<p>Now program the behavior of the <strong>NextButton</strong>. You’ve already defined the <strong>currentQuestionIndex</strong> to remember which question the user is on. When the user clicks the <strong>NextButton</strong>, the app needs to increment (add one to) the <strong>currentQuestionIndex</strong> (i.e., change it from 1 to 2 or from 2 to 3, and so on). You’ll then use the resulting value of <strong>currentQuestionIndex</strong> to select the new question to display. As a challenge, see if you can build these blocks on your own. When you’re finished, compare your results against <a data-type="xref" href="#moving_to_the_next_question">Figure 8-6</a>.</p>
+
+<figure id="moving_to_the_next_question"><img alt="Moving to the next question" src="/assets/img/bookChapters/pq8-next1.png"/>
+<figcaption>Moving to the next question</figcaption>
+</figure>
+
+<h3>How the blocks work</h3>
+
+<p>The first row of blocks increments the variable <strong>currentQuestionIndex</strong>. If <strong>currentQuestionIndex</strong> has a 1 in it, it is changed to 2. If it has a 2, it is changed to 3, and soon. Once the <strong>currentQuestionIndex</strong> variable has been changed, the app uses it to select the new question to display. When the user clicks <strong>NextButton</strong> for the first time, the increment blocks will change <strong>currentQuestionIndex</strong> from 1 to 2, so the app will select the second item from <strong>QuestionList</strong>, “Which president granted communist China formal recognition in 1979?” The second time <strong>NextButton</strong> is clicked, <strong>currentQuestionIndex</strong> will be set from 2 to 3, and the app will select the third question in the list, “Which president resigned due to the Watergate scandal?”</p>
+
+<div data-type="tip">
+<h5>Note</h5>
+
+
+<p>Take a minute to compare the blocks of <strong>NextButton.Click</strong> to those in the <strong>Screen.Initialize</strong> event handler. In the <strong>Screen.Initialize</strong> blocks, the app used select list item with a concrete number (1) to select the list item. In these blocks, you’re selecting the list item using a variable as the index. The app doesn’t choose the first item in the list, or the second or third; it chooses the <em>currentQuestionIndexth </em>item, and thus a different item will be selected each time the <strong>NextButton</strong> is clicked. This is a very common use for an index--incrementing its value to find and display or process items in a list.</p>
+</div>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+
+<p>Test the behavior of the <strong>NextButton</strong> to see if the app is working correctly. Click the <strong>NextButton</strong> on the phone. Does the phone display the second question, “Which president granted communist China formal recognition in 1979?” It should, and the third question should appear when you click the <strong>NextButton</strong> again. But if you click again, you should see an error: “Attempting to get item 4 of a list of length 3.” The app has a bug! Do you know what the problem is? Try figuring it out before moving on.</p>
+</div>
+
+<p>The problem with the code thus far is that it simply increments to the next question each time without any concern for the end of the quiz. When <strong>currentQuestionIndex </strong>is already 3 and the user clicks the<strong>NextButton</strong>, the app changes <strong>currentQuestionIndex</strong>from 3 to 4. It then calls <strong>select list item</strong> to get the currentQuestionIndexth item--in this case, the fourth item. Since there are only three items in the variable <strong>QuestionList</strong>, the Android device doesn’t know what to do. So it displays an error and forces the app to quit. So how can we let the app know that it has reached the end of the quiz?</p>
+The app needs to ask a question when the <strong style="line-height: 1.5em;">NextButton</strong><span style="line-height: 1.5em;"> is clicked, and execute different blocks depending on the answer. Since you know your app contains three questions, one way to ask the question would be, “Is the variable </span><strong style="line-height: 1.5em;">currentQuestionIndex</strong><span style="line-height: 1.5em;"> greater than 3?” If the answer is yes, you should set </span><strong style="line-height: 1.5em;">currentQuestionIndex</strong><span style="line-height: 1.5em;"> back to 1 so the user is taken back to the first question. The blocks you’ll need for this are listed in </span><a data-type="xref" style="line-height: 1.5em;" href="#blocks_for_checking_the_index_value_for">Table 8-5</a><span style="line-height: 1.5em;">.</span>
+
+<table id="blocks_for_checking_the_index_value_for">
+	<caption>Blocks for checking the index value for the end of the list</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>if </strong></p>
+			</td>
+			<td>
+			<p>Control</p>
+			</td>
+			<td>
+			<p>Figure out if the user is on the last question.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>= </strong></p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>Test if <code>currentQuestionIndex</code> is 3.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>get global currentQuestionIndex </strong></p>
+			</td>
+			<td>
+			<p>Drag from initialize block</p>
+			</td>
+			<td>
+			<p>Put this into the left side of <strong>=</strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>number 3 </strong></p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>Put this into the right side of <strong>=</strong> since 3 is the number of items in the list.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>set global currentQuestionIndex to </strong></p>
+			</td>
+			<td>
+			<p>Drag from initialize block</p>
+			</td>
+			<td>
+			<p>Set to 1 to revert to the first question.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>number 1 </strong></p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>Set the index to 1.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>The blocks should appear in the following manner:</p>
+
+<figure id="checking_if_the_last_left_parenthesisthi"><img alt="Checking if the last (third) question has been reached" src="/assets/img/bookChapters/pq8-8.png"/>
+<figcaption>Checking if the last (third) question has been reached</figcaption>
+</figure>
+
+<h3>How the Blocks Work</h3>
+
+<p>When the user clicks the <strong>NextButton</strong>, the app increments the index as it did before. But then, as shown in <a data-type="xref" href="#adding_an_item_to_both_lists">Figure 8-8</a>, it checks to see if <strong>currentQuestionIndex</strong> is larger than 3, the number of questions. If it is larger than 3, <strong>currentQuestionIndex</strong> is set back to 1, and the first question is displayed. If it is 3 or less, the blocks within the <strong>if</strong> block are not performed, and the current question is displayed as usual.</p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+
+<p>Pick up the phone and click the <strong>NextButton</strong>. The second question, “Which president granted communist China formal recognition in 1979?” should appear in the <strong>QuestionLabel</strong> on the phone, as before.</p>
+
+<p>When you click again, the third question should appear on the phone. Now for the behavior you’re really testing: if you click again, you should see the first question (“Which president implemented the ‘New Deal’ during the Great Depression?”) appear on the phone.</p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Making the Quiz Easy to Modify" id="making_the_quiz_easy_to_modify">
+<h2>Making the Quiz Easy to Modify</h2>
+
+<p>If your blocks for the <strong>NextButton</strong> work, pat yourself on the back--you are on your way to becoming a programmer! But what if you added a new question (and answer) to the quiz? Would your blocks still work? To explore this, first add a fourth question to <strong>QuestionList</strong> and a fourth answer into <strong>AnswerList</strong>, as shown in <a data-type="xref" href="#adding_an_item_to_both_lists">Figure 8-8</a>.</p>
+
+<figure id="adding_an_item_to_both_lists"><img alt="Adding an item to both lists" src="/assets/img/bookChapters/pq8-9.png"/>
+<figcaption>Adding an item to both lists</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+
+<p>Click the <strong>NextButton</strong> several times. You’ll notice that the fourth question never appears, no matter how many times you click Next. Do you know what the problem is? Before reading on, see if you can fix the blocks so the fourth question appears.</p>
+</div>
+
+<p>The problem is that the test to determine whether the user is on the last question is too specific; it asks if the <strong>currentQuestionIndex</strong> variable is greater than 3. You could just change the number 3 to a 4, and the app would work correctly again. The problem with that solution, however, is that each time you modify the questions and answer lists, you also have to remember to make this change to the if-test. Such dependencies in a computer program often lead to bugs, especially as an app grows in complexity. A much better strategy is to design the blocks so that they will work no matter how many questions there are. Such generality makes it easier if you, as a programmer, want to customize your quiz for some other topic. It is also essential if the list you are working with changes dynamically—for example, think of a quiz app that allows the user to add new questions (you’ll build this in <a data-type="xref" href="ch10.html#makequiz_and_takequiz">Chapter 10</a>). For a program to be more general, it can’t refer to concrete numbers like 3, as that only works for quizzes of three questions. So, instead of asking if the value of <strong>currentQuestionIndex</strong> is larger than the specific number 3, ask if it is as large as the number of items in <strong>QuestionList</strong>. If the app asks this more general question, it will work even when you add to or remove items from the <strong>QuestionList</strong>. So modify the <strong>NextButton.Click</strong> event handler to replace the previous test that referred directly to 3. You’ll need the blocks listed in <a data-type="xref" href="#blocks_to_check_the_length_of_the_list">Table 8-6</a>.</p>
+
+<table id="blocks_to_check_the_length_of_the_list">
+	<caption>Blocks to check the length of the list</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>length of list </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Ask how many items are in <code>QuestionList</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>get global QuestionList </strong></p>
+			</td>
+			<td>
+			<p>Drag in from initialization block</p>
+			</td>
+			<td>
+			<p>Put this into the “list” slot of <strong>length of list</strong>.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the Blocks Work</h3>
+
+<p>The <strong>if</strong> test now compares the <strong>currentQuestionIndex</strong> to the length of the <strong>QuestionList</strong>, as shown in <a data-type="xref" href="#selecting_the_currentquestionindexth_pic">Figure 8-11</a>. So, if <strong>currentQuestionIndex</strong> is 5, and the length of the <strong>QuestionList</strong> is 4, then the <strong>currentQuestionIndex</strong> will be set back to 1. Note that, because the blocks no longer refer to 3 or any specific number, the behavior will work no matter how many items are in the list.</p>
+
+<figure id="checking_for_the_end_of_the_list_in_a_ge"><img alt="Checking for the end of the list in a generic way" src="/assets/img/bookChapters/pq8-10.png"/>
+<figcaption>Checking if the index is larger than length of list (instead of 3)</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p>When you click the <strong>NextButton</strong> does the app now cycle through the four questions, moving to the first one after the fourth?</p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Switching the Image for Each Question" id="switching_the_image_for_each_question">
+<h2>Switching the Image for Each Question</h2>
+
+<p>Now that you’ve programmed all the behaviors for moving through the questions (and you’ve made your code smarter and more flexible by making it more abstract), your next task is to get the images working properly, too. Right now, the app shows the same image no matter what question is being asked. You can change this so an image pertaining to each question appears when the user clicks the <strong>NextButton</strong>. Earlier, you added four pictures as media for the project. Now, you’ll create a third list, <strong>PictureList</strong>, with the image filenames as its items. You’ll also modify the <strong>NextButton.Click</strong> event handler to switch the picture each time, just as you switch the question text  (If you’re already thinking about using the <strong>currentQuestionIndex</strong> here, you’re on the right track!) First, create a <strong>PictureList</strong> and initialize it with the names of the image files. Be sure that the names are exactly the same as the filenames you loaded into the Media section of the project. <a data-type="xref" href="#picturelist_with_image_filenames_as_item">Figure 8-10</a> shows how the blocks for the <strong>PictureList</strong> should look.</p>
+
+<figure id="picturelist_with_image_filenames_as_item"><img alt="The PictureList with image filenames as items" src="/assets/img/bookChapters/pq8-11.png"/>
+<figcaption>The PictureList with image filenames as items</figcaption>
+</figure>
+
+<p>Next, modify the <strong>NextButton.Click</strong> event handler so that it changes the picture that appears for each question. The <strong>Image.Picture</strong> property is used to change the picture displayed. To modify <strong>NextButton.Click</strong>, you’ll need the blocks listed in <a data-type="xref" href="#blocks_to_add_the_image_that_accompanies">Table 8-7</a>.</p>
+
+<table id="blocks_to_add_the_image_that_accompanies">
+	<caption>Blocks to add the image that accompanies the question</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>set Image1.Picture to </strong></p>
+			</td>
+			<td>
+			<p>Image1</p>
+			</td>
+			<td>
+			<p>Set this to change the picture.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>select list item </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Select the picture corresponding to the current question.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>get global PictureList </strong></p>
+			</td>
+			<td>
+			<p>Drag out from initialization block</p>
+			</td>
+			<td>
+			<p>Select a filename from this list.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>get global currentQuestionIndex </strong></p>
+			</td>
+			<td>
+			<p>Drag out from initialization block</p>
+			</td>
+			<td>
+			<p>Select the <code>currentQuestionIndex</code>th item.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the Blocks Work</h3>
+
+<p>The <strong>currentQuestionIndex</strong> serves as the index for both the <strong>QuestionList</strong> and the <strong>PictureList</strong>. As long as you’ve set up your lists properly such that the first question corresponds to the first picture, the second to the second, and so on, the single index can serve both lists, as shown in <a data-type="xref" href="#selecting_the_currentquestionindexth_pic">Figure 8-11</a>. For instance, the first picture, roosChurch.gif, is a picture of President Franklin Delano Roosevelt (sitting with British Prime Minister Winston Churchill), and “Roosevelt” is the answer to the first question.</p>
+
+<figure id="selecting_the_currentquestionindexth_pic"><img alt="Selecting the currentQuestionIndexth picture each time" src="/assets/img/bookChapters/pq8-12.png"/>
+<figcaption>Selecting the currentQuestionIndexth picture each time</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p>Click next a few times. Now does a different image appear each time you click the <strong>NextButton</strong>?</p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Checking the User’s Answers" id="checking_the_userapostrophes_answers">
+<h2>Checking the User’s Answers</h2>
+
+<p>Thus far, you’ve created an app that simply cycles through questions and answers (paired with an image of the answer). It’s a great example of apps that use lists, but to be a true quiz app, it needs to give users feedback on whether there answers are right or wrong. So now let’s add blocks that report whether the user has answered a question correctly or not. Our interface is set up so the user enters her answer in <strong>AnswerText</strong> and then clicks the <strong>AnswerButton</strong>. The app must compare the user’s entry with the answer to the current question, using an <strong>if else</strong> block to check. The <strong>RightWrongLabel</strong> should then be modified to report whether or not the answer is correct. There are quite a few blocks needed to program this behavior, all of which are listed in <a data-type="xref" href="#blocks_for_indicating_whether_an_answer">Table 8-8</a>.</p>
+
+<table id="blocks_for_indicating_whether_an_answer">
+	<caption>Blocks for indicating whether an answer is correct or not</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>AnswerButton.Click </strong></p>
+			</td>
+			<td>
+			<p>AnswerButton</p>
+			</td>
+			<td>
+			<p>Triggered when the user clicks the <code>AnswerButton</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>ifelse </strong></p>
+			</td>
+			<td>
+			<p>Control</p>
+			</td>
+			<td>
+			<p>If the answer is correct, do one thing; otherwise, do another.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>= </strong></p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>Ask if the answer is correct.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>AnswerText.Text </strong></p>
+			</td>
+			<td>
+			<p>AnswerText</p>
+			</td>
+			<td>
+			<p>Contains the user’s answer.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>select list item </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Select the current answer from <code>AnswerList</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>get global AnswerList </strong></p>
+			</td>
+			<td>
+			<p>Drag out from initialization block</p>
+			</td>
+			<td>
+			<p>The list to select from.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>get global currentQuestionIndex </strong></p>
+			</td>
+			<td>
+			<p>Drag out from initialization block</p>
+			</td>
+			<td>
+			<p>The question (and answer) number the user is on.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>set RightWrongLabel.Text to </strong></p>
+			</td>
+			<td>
+			<p>RightWrongLabel</p>
+			</td>
+			<td>
+			<p>Report the answer here.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>text</strong> (“correct!”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Display this if the answer is right.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>set RightWrongLabel.Text to </strong></p>
+			</td>
+			<td>
+			<p>RightWrongLabel</p>
+			</td>
+			<td>
+			<p>Report the answer here.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>text</strong> (“incorrect!”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Display this if the answer is wrong.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the Blocks Work</h3>
+
+<p>As shown in <a data-type="xref" href="#checking_the_answer">Figure 8-12</a>, the <strong>if else</strong> test asks whether the answer the user entered (<strong>AnswerText.Text</strong>) is equal to the<em> currentQuestionIndexth</em> item in the <strong>AnswerList</strong>. If <strong>currentQuestionIndex</strong> is 1, the app will compare the user’s answer with the first item in <strong>Answe</strong><strong>rList</strong>, “Roosevelt.” If <strong>currentQuestionIndex</strong> is 2, the app will compare the user’s answer with the second answer in the list, “Carter,” and so on. If the test result is positive, the “then” branch is executed and the <strong>RightWrongLabel</strong> is set to “correct!” If the test is false, the “else” branch is  executed and the <strong>RightWrongLabel</strong> is set to “incorrect!”</p>
+
+<figure id="checking_the_answer"><img alt="Checking the answer" src="/assets/img/bookChapters/pq8-13.png"/>
+<figcaption>Checking the answer</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p>Try answering one of the questions. It should report whether or not you answered the question exactly as specified in the <strong>AnswerList</strong>. Test with both a correct and incorrect answer. You’ll likely notice that for an answer to be marked as correct, it has to be an exact match and case-specific  to what you entered in the <strong>AnswerList</strong>. Be sure to also test that things work on successive questions.</p>
+</div>
+
+<figure id="presidents_quiza"><img alt="U.S. Presidents Quiz" src="/assets/img/bookChapters/pq8-14.png"/>
+<figcaption>The quiz in action with the previous answer appearing when it shouldn’t.</figcaption>
+</figure>
+
+<p>The app should work, but you might notice that when you click the <strong>NextB</strong><strong>utton</strong>, the “correct!” or “incorrect!” text and the previous answer are still there, as shown in <a data-type="xref" href="#presidents_quiza">Figure 8-13</a>, even though you’re looking at the next question. It’s fairly innocuous, but your app users will definitely notice such user interface issues. To blank out the <strong>RightWrongLabel</strong> and the <strong>AnswerText</strong>, you’ll put the blocks listed in <a data-type="xref" href="#blocks_to_clear_the_rightwronglabel">Table 8-9</a> within the <strong>NextButton.Click</strong> event handler.</p>
+
+<table id="blocks_to_clear_the_rightwronglabel">
+	<caption>Blocks to clear the RightWrongLabel</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>set RightWrongLabel.Text to </strong></p>
+			</td>
+			<td>
+			<p>RightWrongLabel</p>
+			</td>
+			<td>
+			<p>This is the label to blank out.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>text</strong> (“”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>When the user clicks <code>NextButton</code>, erase the previous answer’s feedback.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>set AnswerText.Text to </strong></p>
+			</td>
+			<td>
+			<p>AnswerText</p>
+			</td>
+			<td>
+			<p>The user’s answer from the previous question.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong>text</strong> (“”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>When the user clicks the <code>NextButton</code>, erase the previous answer.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the Blocks Work</h3>
+
+<p>As shown in <a data-type="xref" href="#picturelist_with_image_filenames-id00072">Figure 8-14</a>, when the user clicks the <strong>NextButton</strong>, he is moving on to the next question, so the top two rows of the event handler blank out the <strong>RightWrongLabel</strong> and the <strong>AnswerText</strong>.</p>
+
+<figure id="picturelist_with_image_filenames-id00072"><img alt="The PictureList with image filenames as items" src="/assets/img/bookChapters/pq8-15.png"/>
+<figcaption>The PictureList with image filenames as items</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p>Answer a question and click “Submit”, then click the <strong>NextButton</strong>. Did your previous answer and its feedback disappear?</p>
+</div>
+</section>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="The Complete App: The Presidents Quiz" id="complete_app_the_presidents_quiz">
+<h1>The Complete App: The Presidents Quiz</h1>
+
+<p><a data-type="xref" href="#blocks_for_the_presidents_quiz">Figure 8-15</a> shows the final block configuration for the Presidents Quiz.</p>
+
+<figure id="blocks_for_the_presidents_quiz"><img alt="The blocks for the Presidents Quiz" src="/assets/img/bookChapters/pq8-16.png"/> <img alt="The blocks for the Presidents Quiz" src="/assets/img/bookChapters/pq8-17.png"/>
+<figcaption>The blocks for the Presidents Quiz</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Variation" id="variation">
+<h1>Variation</h1>
+
+<p>Once you get this quiz working, you might want to explore some variations. For example:</p>
+
+<ul>
+	<li>Instead of just showing images for each question, try playing a sound clip or a short video. With sound, you can turn your quiz into a “Name That Tune” app.</li>
+	<li>The quiz is very rigid in terms of what it accepts as a valid answer. There are a number of ways to improve this, taking advantage of text processing blocks in the text drawer. One way is to use the upcase block to convert the user’s answer and actual answer to all upper case before comparing. Another is to use the <strong>text.contains</strong> block to see if the user’s answer is contained in the actual answer. Another option is to provide multiple answers for each question, and check by iterating (<strong>foreach</strong>) through them to see if any match. </li>
+	<li>Another way to improve the answer checking is to transform the quiz so that it is multiple choice. You’ll need an additional list to hold the answer choices for each question. The possible answers will be a list of lists, with each sublist holding the answer choices for a particular question. Use the <strong>ListPicker</strong> component to allow the user to choose an answer. You can read more about lists in <a data-type="xref" href="ch19.html#programming_lists_of_data">Chapter 19</a>.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00073">
+<h1>Summary</h1>
+
+<p>Here are some of the ideas we’ve covered in this tutorial:</p>
+
+<ul>
+	<li>Most fairly sophisticated apps have data (often stored in lists) and behavior-- its event handlers.</li>
+	<li>Use an <strong>ifelse</strong> block to check conditions. For more information on conditionals, see <a data-type="xref" href="ch18.html#programming_your_app_to_make_decisions_c">Chapter 18</a>.</li>
+	<li>The blocks in event handlers should refer only abstractly to list items and list size so that the app will work even if the data in the list is changed.</li>
+	<li>Index variables track the current position of an item within a list. When you increment them, be careful about using an <strong>if</strong> block to handle the app’s behavior when the user reaches the end of the list.</li>
+</ul>
+</section>
+</section>

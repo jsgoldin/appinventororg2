@@ -1,0 +1,27 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How do you animate sprites?{% endblock %}
+			{% block description %} App Inventor images sprites are provided specifically for animation. Check out the following
+			examples:{% endblock %}
+{% block question %} Example 2. How do you make a ball bounce?{% endblock %}
+{% block answer %}
+<p>
+			App Inventor provides a Bounce block that causes a ball to bounce off the edge
+			of a canvas. You typically use Bounce within the EdgeReached event handler, as
+			that event handler tells you which edge was hit, as a parameter, and you can
+			plug that parameter into the Bounce function (which need to know which edge
+			of the canvas to bounce off).
+			</p>
+			<p>You can also bounce off other objects (sprites or balls). The CollidedWith
+			event handler is triggered when you hit another object. The Bounce function
+			only works off a Canvas edge, so you cannot use it. But you can make the ball
+			bounce in the other direction by setting its Heading property to 360 minus its
+			current setting, as in the blocks above.
+			</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/sprites/bounce.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/x9_B0eXCLrs" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/Sprites/move">example 1</a> {% endblock %}
+
+

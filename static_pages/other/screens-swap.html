@@ -1,0 +1,23 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How do you setup an app with multiple screens?{% endblock %}
+			{% block description %}  Many apps have multiple screens, e.g., a splash screen
+			and the main activity screen of the app. App Inventor provides blocks
+			for swapping between screens and for sharing data between them. The following examples 
+			illustrate how to set up such an app.{% endblock %}
+{% block question %} Example 1. How do you swap between two or more screens?{% endblock %}
+{% block answer %}
+<p>
+	You can add a new screen in the Designer by clicking on “Add Screen…” Suppose you
+	named the screen "HomeScreen". Then you can add a button on it called "HomeButton".
+	When you click HomeButton, use the 'open another screen' block to swap to Screen1.
+	You can provide a similar mechanism on Screen1 to swap to HomeScreen.
+</p>
+
+{% endblock %}
+
+{% block answerImage %} "/assets/img/Screens/home.PNG" {% endblock %}
+{% block answerVideo %} "" {% endblock %}
+{% block otherExampleLink %} <a href=share>example 2</a> {% endblock %}
+
+

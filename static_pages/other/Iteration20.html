@@ -1,0 +1,285 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+
+
+
+<h1>Iteration Blocks: Iteration</h2>
+	<div class="row-fluid">
+		<div class="span6">
+			<p>
+			<em>One thing computers are good at is Iteration operations-like little children, they never tire of repetition. They are also very fast and can do things like process your entire list of Facebook friends in a microsecond.</em>
+			</p>
+			<p>
+	In this chapter, you'll learn how to program repetition with just a few blocks instead of copying and pasting the same blocks over and over. You'll learn how to do things like send an SMS text to every phone number in a list and sort list items. You'll also learn that repeat blocks can significantly simplify an app.
+</p>
+			</div>
+<div class="span4">
+<img src="{{apps2Dir}}/Iteration20/r20.png" alt="">
+</div>
+</div>
+
+<h2>Controlling an App's Execution: Branching and Looping </h2>
+<p>
+	In previous chapters, you learned that you define an app's behavior with a set of event handlers: events and the functions that should be executed in response. You also learned that the response to an event is often not a linear sequence of functions and can contain blocks that are performed only under certain conditions. 
+</p>
+	<div class="row-fluid">
+		
+		<div class="span6">
+<p>
+	Repeat blocks are the other way in which an app behaves nonlinearly. Just as if and ifelse blocks allow a program to branch, repeat blocks allow a program to loop; that is, to perform some set of functions and then jump back up in the code and do it again, as illustrated in Figure 20-1. When an app executes, a program counter working beneath the hood of the app keeps track of the next operation to be performed. So far, you've examined apps in which the program counter starts at the top of an event handler and (conditionally) performs operations top to bottom. With repeat blocks, the program counter loops back up in the blocks, continuously Iteration functions.
+</p>
+</div>
+<div class="span4">
+			<img src="{{apps2Dir}}/Iteration20/r20-1.png" alt="">
+			<p>
+				<em>Figure 20-1. Repeat blocks cause a program to loop</em>
+			</p>
+		</div>
+</div>
+<p>
+	In App Inventor, there are two types of repeat blocks: <strong>foreach</strong> and <strong>while.foreach</strong> is used to specify functions that should be performed on each item of a list. So, if you have a list of phone numbers, you can specify that a text should be sent to each number in the list 
+</p>
+<p>
+	The <strong>while</strong> block is more general than the <strong>foreach</strong>. With it, you can program blocks that continually repeat until some arbitrary condition changes. <strong>while</strong> blocks can be used to compute mathematical formulas such as adding the first <em>n</em> numbers or computing the factorial of <em>n</em>. You can also use <strong>while</strong> when you need to process two lists simultaneously; <strong>foreach</strong> processes only a single list at a time.
+</p>
+<h2>Iteration Functions on a List Using foreach</h2>
+<p>
+	In Chapter 18, we discussed a Random Call app. Randomly calling one friend might work out sometimes, but if you have friends like mine, they don't always answer. A different strategy would be to send a "Missing you" text to <em>all </em>of your friends and see who responds first (or more charmingly!). 
+</p>
+<p>
+	With such an app, clicking a button sends a text to more than one friend. One way to implement this would be to simply copy the blocks for texting a single number, and then copy and paste them for each friend you want to text, as shown in Figure 20-2.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-2.png" alt="">
+</p>
+<p>
+	<em>Figure 20-2. Copying and pasting the blocks for each phone number to be texted</em>
+</p>
+<p>
+	This "brute force" copy-paste method is fine if you have just a few blocks to repeat. But data lists, such as the list of your friends, tend to change. You won't want to have to modify your app with the copy-paste method each time you add or remove a phone number from your list. 
+</p>
+<p>
+	The <strong>foreach</strong> block provides a better solution. You define a <b>phoneNumbers</b> list variable with all the numbers and then wrap a <strong>foreach</strong> block around a single copy of the blocks you want to perform. Figure 20-3 shows the <strong>foreach</strong> solution for texting a group.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-3.png" alt="">
+</p>
+<p>
+	<em>Figure 20-3. Using the foreach block to perform the same blocks for each item in the list</em>
+</p>
+<p>
+	This code can be read as:
+	<p>
+		&nbsp;&nbsp;For each item (phone number) in the list <b>phoneNumbers</b>, set the <b>Texting</b> object's phone number to the item and send out the text message. 
+	</p>
+</p>
+<p>
+	When you drag out a <strong>foreach</strong> block, you must specify the list to process by 
+	plugging a reference into the "in list" parameter slot. In this case, the <strong>get global phoneNumbers</strong> block 
+	was dragged out the phoneNumbers initialization block and plugged in to provide the list of phone numbers to text. 
+</p>
+<p>
+	At the top of the <strong>foreach</strong> block, there is also  a <em>placeholder</em> variable that comes with the <strong>foreach</strong>. By default, this placeholder is named "item." You can leave it that way or rename it. This variable represents the current item being processed in the list. 
+</p>
+<p>
+	The blocks within the <strong>foreach</strong> are repeated for each item in the list, with the placeholder variable (in this example, <b>item</b>) always holding the item currently being processed. If a list has three items, the inner blocks will be executed three times. The inner blocks are said to be subordinate to, or within, the <strong>foreach</strong> block. We say that the program counter "loops" back up when it reaches the bottom block within the <strong>foreach</strong>.
+</p>
+<h2>A Closer Look at Looping </h2>
+<p>
+	Let's examine the mechanics of the <strong>foreach</strong> blocks in detail, because understanding loops is fundamental to programming. When the <b>TextGroupButton</b> is clicked and the event handler invoked, the first operation executed is the <strong>set Texting1.Message to</strong> block, which sets the message to "Missing you." This block is only executed once. 
+</p>
+<p>
+	The<strong>foreach</strong> block then begins. Before the inner blocks of a <strong>foreach</strong> are executed, the placeholder variable <b>item</b> is set to the first number in the <b>phoneNumbers</b> list (111–1111). This happens automatically; the <strong>foreach</strong> relieves you of having to manually call <strong>select list item</strong>. After the first <b>item</b> is selected into the variable item, the blocks within the <strong>foreach</strong> are executed for the first time. The <b>Texting1.PhoneNumber</b> property is set to the value of <b>item</b> (111–1111), and the message is sent. 
+</p>
+<p>
+	After reaching the last block within a <strong>foreach</strong> (the <strong>Texting.SendMessage</strong> block), the app "loops" back up to the top of the <strong>foreach</strong> and automatically puts the next item in the list (222–2222) into the variable <b>item</b>. The two operations within the <strong>foreach</strong> are then repeated, sending the "Missing you" text to 222–2222. The app then loops back up again and sets <b>item</b> to the last item in the list (333–3333). The operations are repeated a third time, sending the third text. 
+</p>
+<p>
+	Because the final item in the list-in this case, the third has been processed, the <strong>foreach</strong> looping stops at this point. We say that control "pops" out of the loop, which means that the program counter moves on to deal with the blocks below the <strong>foreach</strong>. In this example, there are no blocks below it, so the event handler ends.
+</p>
+<h2>Writing Maintainable Code </h2>
+<p>
+	To the end user, the <strong>foreach</strong> solution just described behaves exactly the same as the "brute force" method of copying and then pasting the texting blocks. From a programmer's perspective, however, the <strong>foreach</strong> solution is more <em>maintainable</em> and can be used even if the data (the phone list) is entered dynamically. 
+</p>
+<p>
+	Maintainable software is software that can be changed easily without introducing bugs. With the <strong>foreach</strong> solution, you can change the list of friends who are sent texts by modifying <em>only</em> the list variable-you don't need to change the logic of your program (the event handler) at all. Contrast this with the brute force method, which requires you to add new blocks in the event handler when a new friend is added. Anytime you modify a program's logic, you risk introducing bugs. 
+</p>
+<p>
+	Even more important, the <strong>foreach</strong> solution would work even if the phone list was dynamic-that is, one in which the end user, not just the programmer, could add numbers to the list. Unlike our sample, which has three particular phone numbers listed in the code, most apps work with dynamic data that comes from the end user or some other source. If you redesigned this app so that the end user could enter the phone numbers, you would <em>have</em> to use a <strong>foreach</strong> solution, because when you write the program, you don't know what numbers to put in the brute force solution.
+</p>
+<h2>A Second foreach Example: Displaying a List </h2>
+<p>
+	When you want to display the items of a list on the phone, you can plug the list into the <b>Text</b> property of a <b>Label</b>, as shown in Figure 20-4.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-4.png" alt="">
+</p>
+<p>
+	<em>Figure 20-4. The simple way to display a list is to plug it directly into a label</em>
+</p>
+<p>
+	When you plug a list directly into a <b>Text</b> property of a <b>Label</b>, the list items are displayed in the label as a single row of text separated by spaces and contained in parentheses: 
+	&nbsp;&nbsp;(111–1111 222–2222 333–3333) 
+</p>
+<p>
+	The numbers may or may not span more than one line, depending on how many there are. The user can see the data and perhaps comprehend that it's a list of phone numbers, but it's not very elegant. List items are more commonly displayed on separate lines or with commas separating them.
+</p>
+<p>
+	To display a list properly, you need blocks that transform each list item into a single text value with the formatting you want. Text objects generally consist of letters, digits, and punctuation marks. But text can also store special <em>control</em> characters, which don't map to a character you can see. A tab, for instance, is denoted by \t. (To learn more about control characters, check out the Unicode standard for text representation at ***http://www.unicode.org/standard/standard.html.) 
+</p>
+<p>
+	In our phone number list, we want a newline character, which is denoted by \n. When \n appears in a text block, it means "go down to the next line before you display the next thing." So the text object "111–1111\n222–2222\n333–3333" would appear as:
+</p>
+<p>
+	&nbsp; 111–1111 
+</p>
+<p>
+	&nbsp; 222–2222
+</p>
+<p>
+	&nbsp; 333–3333
+</p>
+<p>
+	To build such a text object, we use a <strong>foreach</strong> block and "process" each item by adding it and a newline character to the <b>PhoneNumberLabel.Text</b>property, as shown in Figure 20-5.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-5.png" alt="">
+</p>
+<p>
+	<em>Figure 20-5. Using the foreach block to process the list and put a newline character before each item</em>
+</p>
+<p>
+	Let's trace the blocks to see how they work. As discussed in Chapter 15, tracing shows how each variable 
+	or property changes as the blocks are executed. With a <strong>foreach</strong>, we consider the values after each 
+	<em>iteration</em> that is, each time the program goes through the <strong>foreach</strong> loop.
+</p>
+<p>
+	Before the <strong>foreach</strong>, the <b>PhoneNumbersLabel</b>, is initialized to the empty text. 
+	When the <strong>foreach</strong> begins, the app automatically places the first 
+	item of the list (111–1111) into the placeholder variable <strong>number</strong>. The blocks in the <strong>foreach </strong> then make text</strong> with <strong>PhoneNumbersLabel.Text</strong> (the empty text), \n, and number, and set the result into <strong>PhoneNumbersLabel.Text</strong>. Thus, after the first iteration of the <strong>foreach</strong>, the pertinent variables store the values shown in Table 20-1. 
+</p>
+<p>
+	<em>Table 20-1. The values of the variables after the first iteration of foreach</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-1T.png" alt="">
+</p>
+<p>
+	Since the bottom of the <strong>foreach</strong> has been reached, control loops back up and the next item of the list (222–2222) is put into the variable <strong>number</strong>. When the inner blocks are repeated, make text concatenates the value of <strong>PhoneNumbersLabel.Text</strong> (\n111–1111) with \n, and then with <strong>number</strong>, which is now 222–2222. After this second iteration, the variables store the values shown in Table 20-2.
+</p>
+<p>
+	<em>Table 20-2. The variable values after the second iteration of foreach</em> 
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-2T.png" alt="">
+</p>
+<p>
+	The third item of the list is then placed in <strong>number</strong>, and the inner block is repeated a third time. The final value of the variables, after this last iteration, is shown in Table 20-3.
+</p>
+<p>
+	<em>Table 20-3. The variable values after the final iteration</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-3T.png" alt="">
+</p>
+So, after each iteration, the label becomes larger and holds one more phone number (and one more newline). By the end of the <strong>foreach</strong>, <b>PhoneNumbersLabel.Text</b> is set so that the numbers will appear as:
+</p>
+<p>
+	&nbsp;&nbsp; 111–1111 
+</p>
+<p>
+	&nbsp;&nbsp; 222–2222
+</p>
+<p>
+	&nbsp;&nbsp; 333–3333
+</p>
+<h2>Iteration Blocks with while </h2>
+<p>
+	The <strong>while</strong> block is a bit more complicated to use than <strong>foreach</strong>. The advantage of the <strong>while</strong> block lies in its generality: <strong>foreach</strong> repeats over a list, but <strong>while</strong> can repeat <em>while any arbitrary condition is true</em>. As a trivial example, suppose you wanted to text every other person in your phone list. You couldn't do it with <strong>foreach</strong>, but with <strong>while</strong>, you could just increment the index by two instead of one each time.
+</p>
+<p>
+	As you learned in Chapter 18, a condition tests something and returns a value of either true or false. <strong>while-do</strong> blocks include a conditional test, just like <strong>if</strong> blocks. If the test of a <strong>while</strong> evaluates to true, the app executes the inner blocks, and then loops back up and rechecks the test. As long as the test evaluates to true, the inner blocks are repeated. When the test evaluates to false, the app "pops" out of the loop (like we saw with the <strong>foreach</strong> block) and continues with the blocks below the <strong>while</strong>.
+</p>
+<h2>Using while to Synchronously Process Two Lists </h2>
+<p>
+	A more instructive example of <strong>while</strong> and its generality involves situations in which you need to process two lists in a synchronous fashion. For example, in the MakeQuiz app (Chapter 10), you keep separate lists of the quiz questions and answers, along with an index variable to keep track of the current question number. To display each question-answer pair together, you need to iterate through the two lists in a synchronous fashion, grabbing the <b>index</b>th item of each. <strong>foreach</strong> only allows for traversing a single list, but with a <strong>while</strong> loop, you can use the index to grab an item from each list. Figure 20-6 illustrates using a <strong>while</strong> block to display the question-answer pairs on separate lines.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-6.png" alt="">
+</p>
+<p>
+	<em>Figure 20-6. Using a while loop to display the question-answer pairs on separate lines</em>
+</p>
+<p>
+	Because a <strong>while</strong> is used instead of a <strong>foreach</strong>, the blocks explicitly initialize the <b>index</b>, check for the end of the list, select the items in each loop, and increment the <b>index</b>.
+</p>
+<h2>Using while to Compute a Formula </h2>
+<p>
+	Here's another example of <strong>while</strong> that repeats operations but has nothing to do with a list. What do you think the blocks in Figure 20-7 do, at a high level? One way to figure this out is to trace each block (see Chapter 15 for more on tracing), tracking the value of each variable as you go.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-7.png" alt="">
+</p>
+<p>
+	<em>Figure 20-7. Can you figure out what these blocks are doing?</em>
+</p>
+<p>
+	The blocks within the <strong>while</strong> loop will be repeated <em>while the variable number is less than or equal to the variable N</em>. For this app, <b>N</b> is set to a number that the end user enters in a text box (<b>NTextBox</b>). Say the user entered a 3. The variables of the app would look like Table 20-4 when the <strong>while</strong> block is reached. 
+</p>
+<p>
+	<em>Table 20-4. This is how the variables look when the while block is reached</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-4T.png" alt="">
+</p>
+<p>
+	The <strong>while</strong> block first asks: is <b>number</b> less than or equal to (&le;) N? The first time this question is asked, the test is true, so execution proceeds within the <strong>while</strong> block. <b>total</b> is set to itself (0) plus <b>number</b> (1), and <b>number</b> is incremented. After the first iteration of the blocks within the <strong>while</strong>, the variable values are as listed in Table 20-5. 
+</p>
+<p>
+	<em>Table 20-5. The variable values after the first iteration of the blocks within the while block</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-5T.png" alt="">
+</p>
+<p>
+	On second iteration, the test "number&le;N" is still true (2&le;3), so the inner blocks are executed again. <b>total</b> is set to itself (1) plus <b>number</b> (2). <b>number</b> is incremented. When this second iteration completes, the variables are as listed in Table 20-6.
+</p>
+<p>
+	<em>Table 20-6. The variable values after the second iteration</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-6T.png" alt="">
+</p>
+<p>
+	The app loops back up again and tests the condition. Once again, it is true (3&le;3), so the blocks are executed a third time. Now <b>total</b> is set to itself (3) plus <b>number</b> (3), so it becomes 6. <b>number</b> is incremented to 4, as shown in Table 20-7.
+</p>
+<p>
+	<em>Table 20-7. The values after the third iteration</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Iteration20/r20-7T.png" alt="">
+</p>
+<p>
+	After this third iteration, control loops back one more time. Now the test "number&le;N", or 4&le;3, evaluates to false. Thus, the inner blocks of the <strong>while</strong> are not executed again, and the event handler completes.
+</p>
+<p>
+	So what did these blocks do? They performed one of the most fundamental mathematical operations: counting numbers. Whatever number the user enters, the app will report the sum of the numbers 1..<em>N</em>, where <em>N</em> is the number entered. In this example, we assumed the user had entered 3, so the app came up with a total of 6. If the user had entered 4, the app would have calculated 10.
+</p>
+<h2>Summary </h2>
+<p>
+	Computers are good at Iteration the same function over and over. Think of all the bank accounts that are processed to accrue interest, all the grades processed to compute students' grade point averages, and countless other everyday examples where computers use repetition to perform a task. 
+</p>
+<p>
+	App Inventor provides two blocks for Iteration operations. The <strong>foreach</strong> block applies a set of functions to each element of a list. By using it, you can design processing code that works on an abstract list instead of concrete data. Such code is more maintainable, and it's required if the data is dynamic. 
+</p>
+<p>
+	Compared to <strong>foreach</strong>, <strong>while</strong> is more general: you can use it to process a list, but you can also use it to synchronously process two lists or compute a formula. With <strong>while</strong>, the inner blocks are performed continuously while a certain condition is true. After the blocks within the <strong>while</strong> are executed, control loops back up and the test condition is tried again. Only when the test evaluates to false does the <strong>while</strong> block complete.
+</p>
+
+
+
+
+
+
+	{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %}User List Navigation: How do you step through a list of information?{% endblock %}
+{% block description %}
+		App Inventor provides a <span class="empfont">for each</span> block for processing a list of information 
+			all at once. But what if you have an app, such as a slideshow, in which the 
+			user controls the movement through the list?  To program this behavior, you’ll 
+			use an index variable to keep track of your position in the list. Check out 
+			the following examples:
+{% endblock %}
+{% block question %}Example 2. How do you add a previous button to make the slideshow go backwards?{% endblock %}
+
+{% block answer %}
+<p>
+			This sample is similar to the “Next” button code above but now the index 
+			variable decrements and the slideshow goes backward. The if-test checks if 
+			the index is greater than 1, because if it is already 1, the first picture 
+			is being displayed and we can’t go further back.
+			</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/userListNav/prevButton.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/HNQyCdJqPFc" {% endblock %}
+		{% block otherExampleLink %} <a href="/content/howDoYou/ListNav/loop">example 3</a> {% endblock %}
+
+

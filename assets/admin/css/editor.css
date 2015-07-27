@@ -1,0 +1,279 @@
+/* Revamped admin pages */
+.new-course-form-box {
+    padding-left: 50px;
+    padding-right: 20px;
+}
+
+#newcourseformtitle {
+    line-height: 70px;
+}
+
+/*
+ * The following styles are used on Admin pages!
+ */
+.subject-box-top-half-outer {
+    height: 45%;
+    background-color: #46a8bf;
+    padding: 10%;
+}
+
+.subject-box-top-half-inner {
+    color: white;
+}
+
+.form-box {
+    height: 55%;
+    background-color: #46a8bf;
+    color: white;
+}
+
+.course-edit-box {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.course-box {
+    list-style-type: none;
+    cursor: pointer;
+    position: relative;
+    border: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
+    margin-bottom: 25px;
+    min-height: 150px;
+}
+
+}
+.item-box {
+    background-color: white;
+    min-height: 150px;
+    padding: 20px 20px;
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+.item-box-icon {
+    position: absolute;
+    float: left;
+}
+
+.item-box-title {
+    margin-left: 30%;
+}
+
+.item-box-description {
+    margin-left: 30%;
+}
+
+.content-title {
+    margin-left: 30%;
+}
+
+.content-description {
+    margin-left: 30%;
+}
+
+.hover {
+    background-color: #eeeeee
+}
+
+.item-box-btns {
+    position: absolute;
+    cursor: default;
+    top: 4%;
+    right: 2%;
+}
+
+.item-box-button {
+    background: transparent;
+    padding: 5px;
+    cursor: default;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #cccccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #ffffff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+/*
+ * Content display page styling
+ */
+.progress-menu-container {
+    background-color: #eeeeee;
+    height: 100%;
+    overflow: auto;
+    width: 20%;
+    float: left;
+}
+
+.content-display-box {
+    width: 80%;
+    float: left;
+    height: 100%;
+    overflow: auto;
+}
+
+.progress-menu-text-box {
+    padding: 20px 40px 20px 40px;
+}
+
+.progress-menu-module-link {
+    color: #46a8bf;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    right: 5%;
+}
+
+.progress-menu-item-container {
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+
+.progress-menu-item {
+    text-align: center;
+    cursor: pointer;
+    height: 12%;
+}
+
+.progress-menu-item-left {
+    height: 100%;
+    width: 25%;
+    float: left;
+}
+
+.progress-menu-item-right {
+    height: 100%;
+    width: 75%;
+    float: left;
+}
+
+.progress-hover {
+    background-color: #1c758a;
+    color: white;
+}
+
+#edit_icon {
+    height: 0;
+    width: 0;
+}
+
+#edit_icon_btn {
+    display: block;
+    border: none;
+    padding: 0;
+    border-radius: 0px;
+    background-color: #eeeeee;
+}
+
+#edit_icon_btn_text {
+    position: absolute;
+    color: black;
+    margin-left: 8px;
+    margin-top: 40px;
+    opacity: 1;
+    font-weight: 900;
+}
+
+.hover-opacify {
+    opacity: 0.2;
+}
+
+.module-edit-box {
+    background-color: white;
+    min-height: 150px;
+    padding: 20px 20px;
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+    border: 1px #2d2d2d solid;
+    border-color: rgba(1, 1, 1, 0.1);
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px rgba(1, 1, 1, 0.1);
+    margin-bottom: 25px;
+}
+
+.module-edit-box:hover {
+    background-color: #eeeeee
+}
+
+.module-edit-box-title {
+    margin-left: 30%;
+}
+
+.editor-sidebar {
+    padding-left: 40;
+    width: 10%;
+}
+
+.editor-item-area {
+    width: 90%;
+}
+
+.new-course-button {
+    z-index: 1000;
+    height: 80px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.new-course-button-container {
+    padding-left: 0px;
+}
+
+.warning {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 0px;
+}

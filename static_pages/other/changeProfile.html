@@ -1,0 +1,136 @@
+{% extends "site_base.html" %} {% block body %}
+
+
+
+
+<div class="container" style="min-height: 90vh;">
+	<div class="row" style="margin-top: 20px;">
+		<div class="col-md-4" style="text-align: center;">
+			<form id="photoForm" action="/updateProfilePicture" method="post" enctype="multipart/form-data">
+			<div class="uploadPhotoBoxWrapper">
+				<img class="profileImage" src="/imageHandler?key={{account.key}}"/> 			
+				<div class="uploadPhotoBox">
+					<h4><span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+					Change photo</h4>
+				</div>	
+			</div>
+			<input type="file" style="display: none;" name="pictureFile" id="pictureFile" onchange="submitPhoto()" accept="image/*" />
+			</form>
+		</div>
+		<div class="col-md-6 userinfo">
+			<h2 style="display: inline;">Update Profile</h2>
+			<a href="/profile" style="float: right;"
+				class="btn btn-default">Cancel</a>
+				 
+			<button id="saveBtn" type="button" onclick="updateProfile()" style="float:right; margin-right: 10px;" class="btn btn-primary">Save changes</button>
+
+			<hr>
+			<div style="margin-top: 30px;" id="displayname" class="row">
+				<div class="form-group">
+					<label for="displayName" class="col-sm-4 control-label">Display
+						name</label>
+					<div class="col-sm-8">
+						<input type="text" value="{{account.displayName}}" maxlength="30"
+							class="form-control" id="displayName">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<label for="firstName" class="col-sm-4 control-label">First
+						name</label>
+					<div class="col-sm-8">
+						<input type="text" value="{{account.firstName}}" maxlength="30"
+							class="form-control" id="firstName">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="form-group">
+					<label for="lastName" class="col-sm-4 control-label">Last
+						name</label>
+					<div class="col-sm-8">
+						<input type="text" value="{{account.lastName}}" maxlength="30"
+							class="form-control" id="lastName">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group">
+					<label for="location" class="col-sm-4 control-label">Location</label>
+					<div class="col-sm-8">
+						<input type="text" value="{{account.location}}" maxlength="30"
+							class="form-control" id="location">
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Are you an educator?</label>
+					<div class="col-sm-8">
+						
+						<label class="radio-inline">
+							<input 
+							{% if ifEducator %}
+								checked="checked"
+							{% endif%}														
+							type="radio"	value="Yes" id="isEducatorRadio" name="educatorRadio">Yes
+						</label>
+						
+						
+						<label class="radio-inline">
+							<input type="radio"
+							{% if not ifEducator %}
+								checked="checked"
+							{% endif%}	
+							 value="No" name="educatorRadio">No
+						</label>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="collapse {% if ifEducator %} in {% endif %}" id="educatorCollapsable">
+				<div class="row">
+					<div class="form-group">
+						<label for="organization" class="col-sm-4 control-label">Organization</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="organization" value={{account.organization}}>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label for="educationLevel" class="col-sm-4 control-label">Education
+							Level</label>
+						<div class="col-sm-8">
+							<select id="educationLevel" class="form-control">
+								<option {%if account.educationLevel == "K-8"%} selected {% endif %}>K-8</option>
+								<option {%if account.educationLevel == "High School"%} selected {% endif %}>Highschool</option>						
+								<option {%if account.educationLevel == "College/University"%} selected {% endif %}>College/University</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label for="website" class="col-sm-4 control-label">Website</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="website"
+								placeholder="Leave empty if none" value={{account.introductionLink}}>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+{% endblock %}

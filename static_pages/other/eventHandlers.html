@@ -1,0 +1,67 @@
+{% extends "site_base.html" %}
+{% block body %}
+<article>
+
+	<div class='full-width-background-blue-1-container'>
+		<div class='course-page-container'>
+			<div class='course-page-title-section '>
+
+				<h2>Event Handlers</h2>
+			</div>
+		</div>
+	</div>
+
+
+
+<div class='gen-container'>
+
+<p>In the early days of computers, software computed things and solved big, hairy math formulas. Because of this, software languages were modeled after a recipe, a set of math instructions: do A, then B, then C. Programming languages were developed such that the top-level structure is a "main" program consisting of high-level steps. 
+</p>
+<blockquote><p class=.lead>The Recipe Analogy is Dead</p></blockquote>
+<p>With the advent of the modern user interface and certainly with the do-everything devices we now carry around with us, the recipe analogy doesn't hold. Software is now a relational entity that reacts to various stimuli from the user and external environment. Instead of an app being a single recipe or main program, it is, in essence, a stimulus-response machine.
+</p>
+A stimulus, more commonly called an event, is something that happens to your app. Your job as a programmer is to specify how the app should respond to events.</p>
+<p>
+Probably the most common event is a button click event: what should the app do when the user clicks a button. 
+<br><img src="{{apps2Dir}}/eventHandlers/buttonClick.png" alt=""/><br/>
+
+In the "I Have a Dream" app, there are two button-click event handlers, one specifying what happens when MLK's button is clicked, and the other 
+specifying what happens when Malcolm X's button is clicked. 
+</p>
+<div class="row-fluid">
+  <div class="span5">
+<p>
+A button click is an example of a <i>user-initiated event</i>. But not all events are directly initiated by the user. There are also:
+</p>
+<ul>
+<li>Timer events, sort of like an alarm clock going off</li>
+<li>Sensor events, such as when GPS coordinates are beamed to the device</li>
+<li>Phone events, including incoming texts.
+<li>Animation events, such as two objects colliding</li>
+<li>Web events, such as some requested data arriving from the web</li>
+<li>App (Screen) launch events.
+</ul>
+  </div>
+  <div class="span5">
+      <img src="{{apps2Dir}}/eventHandlers/eventHandlerDiagram.png" alt=""/>
+    
+  </div>
+</div>
+<p>You might find all event types in a single app. In a game, for instance, the app might respond to the app startup by requesting high game information from the web. When the information arrives to the app, the app might respond by displaying it in on the screen. Once the game gets going, the app might respond to time passing by moving characters or shortening an energy bar. You can also conceive of a game that responds to an incoming text from another player, or to the phone being moved to another physical location.
+</p>
+<h2>An App is a Set of Event Handlers</h2>
+<p>With many of today's popular languages-- Python, Java, C, C++, Objective C-- events are second-class citizens. One reason App Inventor  is intuitive is that it is based directly on the
+stimulus-response paradigm. Instead of specifying a "main" program, you specify a set of event handlers: <i>when this event happens, perform the following operations.</i>These first-level blocks are called event-handlers.
+<p>
+Your job as a programmer is to specify what should happen in response to each event. You start by dragging out <strong>event handler</strong> 
+blocks, yellowish blocks that read, "when <some event> do". You program event responses by placing blocks within the <strong>when-do</strong> 
+blocks. The following blocks are some of the event you'll code:
+<img src="{{apps2Dir}}/eventHandlers/eventHandlers.png" alt=""/><br/>
+
+<h2>What Happened to the Recipe?</h2>
+<p>App Inventor apps still have recipes-- do A, do B...- but the recipes are embedded in event handlers. Indeed, each event handler is like its own "main" program and can include step-by-step instructions along with conditionals and iteration just like in traditional languages.
+</p> 
+<a href="/Events-redbtn">Event Handling Learning Nugget (includes video)</a>
+</div>
+</article>
+{% endblock %}

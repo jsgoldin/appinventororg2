@@ -1,0 +1,193 @@
+<div class="dark-blue-title">
+	<div class="course-page-container">
+		<div style="float: left">
+			<h1>Lesson Plan 4.1: <br>Using an
+				Index to Step Through a List</h1>
+		</div>
+
+
+		<div style="float: right;">
+			<a target="_blank"
+				href="https://docs.google.com/document/d/1FNat-_1H3_EAwvkLgKbArP7Hywf49s6EshjUpkv_9_Y/edit?usp=sharing">
+				<img style="margin-top: 2%; float: right;"
+				src="/images/icons/download_white.png">
+				<h3 style="float: right;">Printable Version</h3>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="course-page-container">
+
+	<div class="card">
+	<h1 class="c4">
+		<a name="h.srw6y9cmwfgx"></a><span>Objectives</span>
+	</h1>
+	<ul class="c5 lst-kix_27dyfreiewb1-0 start">
+		<li class="c2 c8"><span>Learn how to iterate through a
+				list using an index and </span><span class="c7">select list item</span></li>
+		<li class="c2 c8"><span>Learn how to use an </span><span
+			class="c7">if</span><span>&nbsp;conditional to control the
+				iteration.</span></li>
+		<li class="c2 c8"><span>Learn to code using abstract
+				references (e.g., </span><span class="c7">length of list</span><span>)</span></li>
+	</ul>
+	</div>
+	
+	<div class="card">
+	<h1 class="c4">
+		<a name="h.dj1r8647ucyv"></a><span>Expected Prior Knowledge:</span>
+	</h1>
+	<ul class="c5 lst-kix_qxprxas3r5o8-0 start">
+		<li class="c2"><span>Understand </span><span>the mechanics
+				of building an app.</span></li>
+		<li class="c2"><span>Experience finding and uploading
+				media into App Inventor</span></li>
+		<li class="c2"><span>A basic understanding of variables. </span><span
+			class="c12"><a class="c10"
+				href="http://www.google.com/url?q=http%3A%2F%2Fwww.appinventor.org%2FVariables&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGpWDbIMfi8PnqbKEsD2lUanjvC_g">http://www.appinventor.org/Variables</a></span></li>
+		<li class="c2"><span>A basic understanding of how to
+				increment a variable.</span></li>
+	</ul>
+	</div>
+	
+	<div class="card">
+	<h1 class="c4">
+		<a name="h.ovds579yvkk1"></a><span>Preparation</span>
+	</h1>
+	</div>
+	
+	<div class="card">
+	<h1 class="c4">
+		<a name="h.qrfqpiqolswb"></a><span>1. Pre-Task Worksheet:
+			Variables and Incrementing</span>
+	</h1>
+	<p class="c3">
+		<span>Handout the pre-task worksheet on variables and
+			incrementing. This can serve as a review of fundamental concepts
+			they&rsquo;ll need prior to learning about indexes and list
+			iteration.</span>
+	</p>
+	<p class="c3">
+		<span class="c12"><a class="c10"
+			href="https://docs.google.com/document/d/1hGTy3hRJG3CuVUBJY9W0w7taFiXma_qm6zoNIfN8aSY">https://docs.google.com/document/d/1hGTy3hRJG3CuVUBJY9W0w7taFiXma_qm6zoNIfN8aSY</a></span>
+	</p>
+	</div>
+	
+	<div class="card">
+	<h1 class="c4">
+		<a name="h.kqd4uixj0b8u"></a><span>2. Teacher: Go over
+			Objectives/Motivation (5 minutes)</span>
+	</h1>
+	<ul class="c5 lst-kix_lnuafvs18ohk-0 start">
+		<li class="c2"><span>Learn how to build a slideshow app.
+				Motivate by emphasizing that the concepts learned can be used to
+				build a quiz app, a study guide, a &ldquo;Meet your
+				Classmates&rdquo; app, basically any app in which user navigates
+				through information.</span></li>
+		<li class="c2"><span>Learn a fundamental concept: how to
+				iterate through a list with an index variable</span></li>
+	</ul>
+	</div>
+	
+	<div class="card">
+	<h1 class="c4">
+		<a name="h.br67686mft4i"></a><span>3. Teacher: Demo (10
+			minutes)</span>
+	</h1>
+	<p class="c6">
+		<span>Begin with this starter app (</span><span>http://appinventor.org/starterApps/slideShowStarter.aia</span><span>),
+			which has three images loaded and a list variable with the image
+			names.</span>
+	</p>
+	<ul class="c5 lst-kix_pnqrvauijlcd-0 start">
+		<li class="c2"><span>Demo definition of index variable,
+				explain that it tracks the position in list. Draw a memory cell on
+				the board with a 1 in it.</span></li>
+		<li class="c2"><span>Demo Screen.Initialize showing the
+				first image. Explain that you could set the first picture in the
+				designer. Key blocks are </span><span class="c7">select list item</span><span>&nbsp;which
+				grabs an item from a list, and </span><span class="c7">set
+				Image.Picture</span><span>, which takes a file name as a parameter.
+				That file name must match a loaded media file exactly.</span></li>
+		<li class="c2"><span>Demo NextButton.Click incrementing
+				index and showing next picture. Show how index memory cell changes
+				to 2 (then 3&hellip;). Emphasize how </span><span class="c11">select
+				list item </span><span>works.</span></li>
+		<li class="c2"><span>Run the app to show how the program
+				bombs out when go past last image.</span></li>
+		<li class="c2"><span>Trace the code on whiteboard, showing
+				how index and </span><span class="c7">Image.Picture</span><span>&nbsp;change
+				each time </span><span class="c7">NextButton</span><span>&nbsp;is
+				clicked.</span></li>
+	</ul>
+	</div>
+	
+	<div class="card">
+	<h1 class="c4">
+		<a name="h.b9lwvn92u2g"></a><span>4. Class discussion: how to
+			fix the index out of range error? (10 minutes)</span>
+	</h1>
+	<p class="c3">
+		<span>Break the students into small groups and have them
+			discuss how they would fix the problem. Then come together as a class
+			and discuss. The basic solution is:</span>
+	</p>
+	<ul class="c5 lst-kix_9o9lspe7255v-0 start">
+		<li class="c2"><span>if-statement to check the size of
+				index. Set index to 1 if it is too large.</span></li>
+	</ul>
+	<ul class="c5 lst-kix_w77ge7px3xsf-0 start">
+		<li class="c2"><span>use length of list instead of a fixed
+				number (e.g., 3), so will work even if list is changed.</span></li>
+	</ul>
+	</div>
+	
+	<div class="card">
+	<h1 class="c4">
+		<a name="h.pg56j1tes80u"></a><span>5. Students: Programming
+			Exercise </span>
+	</h1>
+	<p class="c6">
+		<span>Assign the students the task of actually programming the
+			fixes: </span><span class="c12"><a class="c10"
+			href="https://docs.google.com/document/d/1KhtOZLB-2b-PeRNCeMwwBLNI81Asa8uTaCpqO-31w20">https://docs.google.com/document/d/1KhtOZLB-2b-PeRNCeMwwBLNI81Asa8uTaCpqO-31w20</a></span><span>.
+			This assignment also has a fun exercise of transforming the quiz into
+			a &ldquo;Meet your Classmates&rdquo; app.</span>
+	</p>
+	</div>
+	
+	<div class="card">
+	<h1 class="c4">
+		<a name="h.ozvtiitns9c3"></a><span>6. Summarize (expected
+			outcomes, 10 minutes)</span>
+	</h1>
+	<p class="c3">
+		<span>Discuss and d</span><span>emonstrate the following,
+			emphasizing the general importance:</span>
+	</p>
+	<ul class="c5 lst-kix_sta98eeg38xq-0 start">
+		<li class="c2"><span>understand how to use an index
+				variable to track the position in a list.</span></li>
+		<li class="c2"><span>understand how to use if-conditions
+				to check start and end of list.</span></li>
+		<li class="c2"><span>understand that list traversal code
+				should work even if list or list size is changed</span></li>
+		<li class="c2"><span>Need to see it again: </span><span>http://www.appinventor.org/UserListNav</span></li>
+		<li class="c2"><span>Other uses: quiz, musical note
+				recorder and player</span></li>
+	</ul>
+	</div>
+	<div>
+		<p class="c3 c13">
+			<span>appinventor.org
+				course-in-a-box&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+		<p class="c3 c17">
+			<span class="c14">This document is licensed under an </span><span
+				class="c1"><a class="c10"
+				href="http://www.google.com/url?q=http%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby-nc-sa%2F3.0%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGKyqN5Tqh7KIvGy2XJV2hc_b4JpA">Attribution-NonCommercial-ShareAlike
+					3.0 Unported License</a></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+	</div>
+</div>

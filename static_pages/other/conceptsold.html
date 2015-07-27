@@ -1,0 +1,47 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+            <div class="hero-unit">
+                <hgroup>
+                    <h1>Concept-Map</h1>
+                    <h1></h1>
+                    <p>
+                        Want to learn about a particular programming concept or App Inventor component? This page provides a
+			map for getting to what you want.
+                    </p>
+                </hgroup>
+            </div>
+
+       
+               
+	    <h2>Iteration</h2>
+	    <ul>
+	    <li>
+	    foreach and while: <a href="/assets/pdf/ch20Iteration.pdf">App Inventor book chapter on Iteration</a>
+            </li>
+	    <li>
+	    
+	    foreach: The <a href="/notetaker-steps">Notetaker app</a> uses a foreach to display a list of notes, see steps 3-5.
+	    <li>
+            foreach and forrange: <a href="/mathBlaster">Math Blaster App</a>
+	    The MathBlaster app generates addition questions for students and checks their answers. It uses for range to generate a random number of items in the equation, and foreach to sum the numbers up. This tutorial is for <strong>App Inventor 2</strong>.
+	    
+	    </li>
+	    </ul>
+	    
+	    <h2>Persistence-- Database data</h2>
+	    <ul>
+	    <li>
+	     <a href="/assets/pdf/ch20Iteration.pdf">App Inventor book chapter on persistent data</a>
+            </li>
+	    <li>
+	    <a href="/no-text-while-driving-steps">No Text While Driving</a>, step 4, provides a simple example of persistence with TinyDB.
+	    </li> 
+	    <li> 
+	    <a href="/apps/android-where-s-my-car/android-where-s-my-car.pdf">Android, Where's my Car?</a>, p. 108, provides another simple example of persistence with TinyDB.
+	    </li>
+	    <li> 
+	   <a href="/notetaker-steps">Notetaker</a>, step 5, provides a sample for saving a list to TinyDB.
+	    </li>
+	    </ul>
+{% endblock %}

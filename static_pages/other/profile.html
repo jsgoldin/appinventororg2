@@ -1,0 +1,93 @@
+{% extends "site_base.html" %} {% block body %}
+
+<div class="container" style="min-height: 90vh;">
+	<div class="row" style="margin-top: 20px;">
+		<div class="col-md-4" style="text-align: center;">
+			<img class="profileImage" src="/imageHandler?key={{account.key}}"/>
+		</div>
+		<div class="col-md-6 userinfo">
+			<h2 style="display: inline;" >User profile</h2>
+			<a href="/changeProfile" style="float: right;"
+				class="btn btn-default">Edit profile</a>
+			<div style="margin-top: 30px;" id="displayname" class="row">
+				<div class="form-group">
+					<label for="displayName" class="col-sm-4 control-label">Display
+						name</label>
+					<div class="col-sm-8">
+						<p>{{account.displayName}}</p>
+					</div>
+				</div>
+			</div>
+
+			<div id="firstname" class="row">
+				<div class="form-group">
+					<label for="firstName" class="col-sm-4 control-label">First
+						name</label>
+					<div class="col-sm-8">
+						<p>{{account.firstName}}</p>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="lastname" class="row">
+				<div class="form-group">
+					<label for="lastName" class="col-sm-4 control-label">Last
+						name</label>
+					<div class="col-sm-8">
+						<p>{{account.lastName}}</p>
+					</div>
+				</div>
+			</div>
+			<div id=location class="row">
+				<div class="form-group">
+					<label for="location" class="col-sm-4 control-label">Location</label>
+					<div class="col-sm-8">
+						<p>{{account.location}}</p>
+					</div>
+				</div>
+			</div>
+			
+			{% if ifEducator %}
+			<div class="colapse" id="educatorCollapsable">
+				<div class="row">
+					<div class="form-group">
+						<label for="organization" class="col-sm-4 control-label">Organization</label>
+						<div class="col-sm-8">
+							<p>{{account.organization}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label for="educationLevel" class="col-sm-4 control-label">Education
+							Level</label>
+						<div class="col-sm-8">
+							<p>{{account.educationLevel}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label for="website" class="col-sm-4 control-label">Website</label>
+						<div class="col-sm-8">
+							<p>{{account.introductionLink}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% endif %}
+
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+

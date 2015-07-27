@@ -1,0 +1,52 @@
+{% extends "templates/site_base.html" %} {% block body %}
+
+
+
+
+
+
+<div class='container-fluid container-sidepadder'>
+    <div class='row'>
+        <div class='col-md-12'>
+
+
+            <div class="jumbotron tutorials-jumbotron-settings ">
+                            <h2>Tutorials</h2>
+                <img src='assets/img/tutorials-banner-logo.png'>
+
+            </div>
+            <div class='tutorials-below-jumbotron-text'>
+                <p>Choose a course and start building your dream app today.</p>
+            </div>
+
+
+
+
+
+            <div class='course-box-container'>
+
+
+                {% for course in courses %}
+
+                <div identifier='{{course.c_identifier}}' class='course-box'>
+
+                    <img src='{{course.c_icon}}' height='100px' width='100px'>
+                    <div class='course-view-box-info'>
+                        <h2>{{course.c_title}}</h2>
+                        <p>{{course.c_description}}</p>
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

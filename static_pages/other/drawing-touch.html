@@ -1,0 +1,20 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How do you draw shapes and images in an app?{% endblock %}
+			{% block description %} Learn how to use the Canvas component to draw shapes 
+			and place images, and to allow the end-user to draw as well.{% endblock %}
+{% block question %} Example 3. How do you draw a circle where the user touches?{% endblock %}
+{% block answer %}
+<p>
+            <p>The Canvas.Touched event is triggered when the user touches (clicks) the canvas. It has parameters x and y which specify the location of the touch. The parameter touchedSprite specifies
+            whether or not the touch occurred on an ImageSprite-- it is not important to this behavior.</p>
+        <p>You want to draw the circle at the location of the touch, so mouse over the x and y parameters, grab get blocks for them, and plug them into the slots for x an y in the DrawCircle
+            block. It is somewhat confusing because the Touched event parameters are named the same as the parameters (slots) for the DrawCircle function.</p>
+
+{% endblock %}
+
+{% block answerImage %} "/assets/img/Drawing/circleXY.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/hijJ8OffhdM" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/drawing/middle">example 4</a> {% endblock %}
+
+

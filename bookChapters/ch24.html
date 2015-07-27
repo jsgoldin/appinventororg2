@@ -1,0 +1,105 @@
+
+    <section data-type="chapter" data-pdf-bookmark="Chapter 24. Communicating with the Web" id="idp5751184">
+<h1>Communicating with the Web</h1>
+
+<p><em>Mobile technology and the ubiquitous nature of the Web have changed the world we live in. You can now sit in the park and do your banking, search Amazon.com to find reviews of the book you’re reading, and check Twitter to see what people in every other park in the world are thinking about. Mobile phones have moved well past just calling and texting--now you have instant access to the world’s data, too.</em></p>
+
+<p><em>You can use your phone’s browser to reach the Web, but often the small screen and limited speed of a mobile device can make this problematic. Custom apps, specially designed to pull in small chunks of particularly suitable information from the Web, can provide a more attractive alternative to the mobile browser.</em></p>
+
+<p><em>In this chapter, we’ll take at App Inventor components that access information from the Web. You’ll learn how to show a web page within the user interface of your app, and you’ll learn about APIs and how to access information from a web service.</em></p>
+
+<div class="informalfigure"><img alt="Communicating with Web APIs" src="/assets/img/bookChapters/a24.png"/></div>
+
+<p>Creativity is about remixing the world, combining (<em>mashing</em>) existing ideas and content in interesting new ways. Eminem popularized the music mashup when he set his Slim Shady vocal over AC/DC and Vanilla Ice tracks. This kind of “sampling” is now common, and numerous artists--including Girl Talk and Negativland--focus primarily on creating new tracks from mashing old content.</p>
+
+<p>The web and mobile world are no different: websites and apps remix content from various data sources, and most sites are now designed with such interoperability in mind. An illustrative example of a web mashup is Housing Maps (<em><a href="http://www.housingmaps.com">http://www.housingmaps.com</a></em>), pictured in <a data-type="xref" href="#housing_maps_mashes_information_from_cra">Figure 24-1</a>, which takes apartment rental information from Craigslist (<em><a href="http://www.craigslist.org">http://www.craigslist.org</a></em>) and mashes it with the Google Maps API.</p>
+
+<figure id="housing_maps_mashes_information_from_cra"><img alt="Housing Maps mashes information from Craigslist and Google Maps" src="/assets/img/bookChapters/a24-1.png"/>
+<figcaption>Housing Maps mashes information from Craigslist and Google Maps</figcaption>
+</figure>
+
+<p>Mashups like Housing Maps are possible because services like Google Maps provide both a website and a corresponding <em>web service API</em>. We humans visit <em><a href="http://maps.google.com/">http://maps.google.com/</a></em> in a browser, but apps like Housing Maps communicate <em>machine to machine</em> with the Google Maps API. Mashups process the data, combine it with data from other sites (e.g., Craigslist), and then present it in new and interesting ways.</p>
+
+<p>Just about every popular website now provides this alternative, machine-to-machine access. The program providing the data is called a <em>web service</em>, and the protocol for how a <em>client</em> app should communicate with the service is called an <em>application programmer interface</em>, or API. In practice, the term <em>API</em> is used to refer to the web service as well.</p>
+
+<p>The Amazon Web Service (AWS) was one of the first web services, as Amazon realized that opening its data for use by third-party entities would eventually lead to more books being sold. When Facebook launched its API in 2007, many people raised their eyebrows. Facebook’s data isn’t book advertisements, so why should it let other apps “steal” that data and potentially draw many users away from the Facebook site (and its advertisements!). But its openness led Facebook toward becoming a <em>platform</em> instead of just a site--meaning that other programs could build on and tap into Facebook’s functionality-and no one can argue with its success today. By the time Twitter launched in 2009, API access was an expectation, not a novelty, and Twitter acted accordingly. Now, as shown in <a data-type="xref" href="#most_websites_provide_both_a_human_inter">Figure 24-2</a>, most websites offer both an API and a human interface.</p>
+
+<figure id="most_websites_provide_both_a_human_inter"><img alt="Most websites provide both a human interface and an API for client apps" src="/assets/img/bookChapters/a24-2.png"/>
+<figcaption>Most websites provide both a human interface and an API for client apps</figcaption>
+</figure>
+
+<p>So the Web is one thing to us average humans-a collection of sites to visit. To programmers, it is the world’s largest and most diverse database of information. Machine-to-machine communication is now poised to outpace human–machine communication on the Web!</p>
+
+<section data-type="sect1" id="web_component">
+<h2>The WebViewer Component</h2>
+
+<p>The <strong>WebViewer</strong> component lets you show a web page within your app. You can show a Google Maps page showing the user’s current location, a twitter page showing the most recent trending topics related to your app, or a page from nba.com showing the statistics for your favorite players.</p>
+
+<p><strong>WebViewer </strong>is like the <strong>Canvas </strong>component in that it defines a sub-panel of the screen. But whereas <strong>Canvas</strong> is used for drawings and animations, <strong>WebViewer</strong> shows a web page.</p>
+
+<figure id="web_view_design"><img alt="WebViewer in the Designer" src="/assets/img/bookChapters/a24-wvDesign.png"/>
+<figcaption>The WebViewer as it appears in Designer.</figcaption>
+</figure>
+
+<p>You drag a WebViewer out from the User Interface drawer and it appear as in <a data-type="xref" href="#web_view_design">Figure 24-3</a>.  You can then dynamically change the URL that appears, as in the following blocks from an app that shows the stats of NBA players Lebron James and Stephen Curry:</p>
+
+<figure id="web_view_blocks"><img alt="WebViewer in the Designer" src="/assets/img/bookChapters/a24-wvBlocks.png"/>
+<figcaption>Blocks to show the web page for the chosen player.</figcaption>
+</figure>
+If the picture of Stephen Curry is clicked, the app would show his page from nba.com in the WebViewer, as in <a data-type="xref" href="#web_view_app">Figure 24-5</a>
+
+<figure id="web_view_app"><img alt="WebViewer in the Designer" src="/assets/img/bookChapters/a24-webviewer.png"/>
+<figcaption>WebViewer in the app.</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" id="web_component">
+<h2>The Web Component</h2>
+The <strong>Web</strong> component, a relatively new component in App Inventor, facilitates an app talking to a web service using the standard Hypertext Transfer Protocol (HTTP). That protocol provides Get, Put, and Post methods for bringing information into your app and for allowing your app to modify data on the web.
+
+<p>The component is fairly low-level and using it requires some programming expertise. You typically set the <strong>Web.URL</strong> property to specify which web service you will communicate with, then you call one of the HTTP methods to request some action. Its complicated because you need to understand the API of the web service (the protocol for communication), and you need to understand how to process the information that the web service returns to your app. Such processing, called “parsing”, is an advanced programming technique.</p>
+
+<p>In this chapter, you’ll be introduced to the <strong>Web</strong> component through a relatively simple example that accesses financial stock price information from  a public API made available by Yahoo Finance. The protocol for talking to this API is fairly simple, and the data returned in a list of values separated by commas (comma-separated values, or CSV), so it serves as a nice introduction to API communication. But most APIs have complicated permission schemes and APIs, and they often return data in formats like JSON or XML which require some advanced code to parse.</p>
+
+<div>
+<h3>Stock Market Sample</h3>
+
+<p><a data-type="xref" href="#c1809">???</a> shows the blocks for an app that displays Google stock information when the app launches:</p>
+
+<p><img id="c1809" src="/assets/img/bookChapters/a24-web1.png"/></p>
+
+<p>On <strong>Screen.Initialize</strong>, <strong>Web1.Url </strong>is set to the URL for communicating with Yahoo Finance. When <strong>Web1.Get</strong> is called, the request is made, but no data is returned immediately.</p>
+
+<p>Instead, when Yahoo returns the requested data to your app, the <strong>Web1.GotText</strong> event is triggered and this is where you can process the returned data. The event parameter <strong>responseContent </strong>holds the data. As mentioned above, the Yahoo Finance API returns data in CSV format. If you build this app and run it, you’ll see that the current Google stock price and the change in the price for the day are displayed in StockInfoLabel, separated by commas.</p>
+
+<p>This example can be customized to get the information for a different company (or companies), and to get various types of stock market information. The Yahoo Finance API, at</p>
+
+<p><a href="https://code.google.com/p/yahoo-finance-managed/wiki/CSVAPI">https://code.google.com/p/yahoo-finance-managed/wiki/CSVAPI</a></p>
+, specifies how you can change the URL to customize your request as well as the format of the data it returns.
+
+<p> </p>
+</div>
+</section>
+
+<section data-type="sect1" id="creating_your_own_app_inventoren_dashcom">
+<h2>TinyWebDB and TinyWebDB-Compliant APIs</h2>
+
+<p>The <strong>Web</strong> component provides a method for accessing APIs. If an API is fairly simple, like Yahoo Finance, beginning programmers can use the <strong>Web</strong> component to directly access it. But other APIs, like the Amazon API introduced in chapter 13, are more complicated.</p>
+
+<p>For complicated APIs, an experienced programmer can setup a “TinyWebDB-compliant” web service that can then be used by less experienced App Inventor programmers to access the API. When such a service is setup, other programmers can access the web service with the simple tag-value protocol inherent in the <strong>TinyWebDB.GetValue</strong> function. You send a particular tag as the parameter, and a list or text object is returned as the value. In this way, the App Inventor programmer is shielded from the difficult programming required to <em>parse</em> (understand and extract data from) standard data formats like XML or JSON. </p>
+
+<p>“TinyWebDB-Compliant” just means a web service that follows <strong>TinyWebDB</strong>’s expected protocol: it expects a specific request, and returns data that TinyWebDB can understand. The Amazon API web service used in chapter 13 is an example of such a web service, and can be used as a sample for programmers who would like to setup such a service (e.g., if you’re a teacher and want to provide access to some API for your students).</p>
+
+<p>In the past, building APIs was difficult because you not only needed to understand the programming and web protocols, but you also needed to set up a server to host your web service, and a database to store the data. Now it’s much easier, as you can leverage cloud-computing tools like Google’s App Engine and Amazon’s Elastic Compute Cloud to immediately deploy the service you create. These platforms will not only host your web service, but they’ll also let hundreds of users access it before charging you a single dime. As you can imagine, these sites are a great boon to innovation.</p>
+
+<p>The details of creating a TinyWebDB-Compliant web service are beyond the scope of this book. But if you’re interested, check out the documentation and samples at <em><a class="link " href="http://appinventorapi.com/using-tinywebdb-to-talk-to-an-api/" style="text-decoration: underline; outline: 0px;">http://appinventorapi.com/</a></em></p>
+</section>
+
+<section data-type="sect1" id="summary-id00143">
+<h2>Summary</h2>
+
+<p>Most websites and many mobile apps are not standalone entities; they rely on the interoperability of other sites to do their jobs. With App Inventor, you can build games, quizzes, and other standalone apps, but soon enough, you’ll encounter issues related to web access. Can I write an app that tells me when the next bus will arrive at my usual stop? Can I write an app that texts a special subset of my Facebook friends? Can I write an app that sends tweets? App Inventor provides three components that can talk to the Web: (1) the <strong>WebViewer</strong> for showing a live web page (2) the <strong>Web</strong> component, for accessing information from an API, and 3) the <strong>TinyWebDB </strong>component to access data in a specially designed web API.</p>
+
+<p>Accessing an API can be complicated-- you need to know the protocol for requesting information, and you need to process (parse) the often complex data returned.  But the reward for learning how to do this is great-- your apps can interact with the world!</p>
+</section>
+</section>
