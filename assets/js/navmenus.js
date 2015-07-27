@@ -1,6 +1,6 @@
 /*
- * Contains functionality for the header navigation menu.
- * Requires Jquery.
+ * Contains stuff for the header navigation menu.
+ * Requires jQuery.
  */
 
 
@@ -22,10 +22,11 @@
             $("#" + attr).addClass("visible");
         }
     }
-
+    
+    
+    /* If the menu item is linked to a drop down collapse it */
     function unexpandIfLinked(item) {
         var attr = item.attr("data-target");
-
 
         if (typeof attr !== typeof undefined && attr !== false) {
             // header item is linked to a drop down,
@@ -63,12 +64,18 @@
         var maybeMegaMenu = newParent.parent().parent();
 
         if (maybeMegaMenu.hasClass("mega-menu") && maybeMegaMenu.hasClass("visible")) {
+        	// megaMenu is in expanded state and user clicked on a header-item inside of it
             if (curMegaMenuItem == null) {
+            	// no menu items were expanded, so no need to unexpand anything
                 newParent.addClass("selected-item");
                 curMegaMenuItem = newItem;
             } else if (newItem.is(curMegaMenuItem)) {
+            	// user clicked to close the current item
                 newParent.removeClass("selected-item");
                 curMegaMenuItem = null;
+            } else {
+            	// a sub menu item was expanded and the user clicked another one.
+            	// unexpand
             }
         } else {
             if (currentItem == null) {

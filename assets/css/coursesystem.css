@@ -2098,6 +2098,7 @@ a {
 	float: left;
 }
 
+
 .profile-menu .header-item {
 	width: auto;
 }
@@ -2177,7 +2178,7 @@ a {
 .slideout-menu {
 	background-color: white;
 	height: 0px;
-	transition: height 0.5s;
+	transition: height 0.3s;
 	overflow: hidden;
 	position: relative;
 	border: 1px solid rgba(0, 0, 0, 0.14);
@@ -2265,7 +2266,7 @@ a.menu-item {
 }
 
 .drop-down-search {
-	transition: height 0.5s;
+	transition: height 0.3s;
 	height: 0px;
 	display: block;
 	top: 80px;
@@ -2307,14 +2308,43 @@ a.menu-item {
 	}
 }
 
-@media ( min-width : 0px) and (max-width: 600px) {
+@media ( min-width : 0px) and (max-width: 850px) {
+	.header-item {
+		width: 60px;
+	}
+}
+
+.mega-menu-profile-menu {
+	display: none;
+}
+
+/* Smaller than ipad portrait width */
+@media ( min-width : 0px) and (max-width: 768px) {
+	.profile-menu {
+		display: none;
+	}
+	.mega-menu-profile-menu {
+		display: inline-block;
+	}
 	.banner-logo {
-		width: 210px;
-		padding-top: 26px;
+		width: 300px;
+		padding-top: 18px;
+	}
+}
+
+@media ( min-width : 0px) and (max-width: 465px) {
+	.banner-logo {
+		width: 238px;
+		padding-top: 25px;
 		margin-right: 0px;
 	}
-	.header-item {
-		width: 46px;
+}
+
+@media ( min-width : 0px) and (max-width: 377px) {
+	.banner-logo {
+		width: 184px;
+		padding-top: 31px;
+		margin-right: 0px;
 	}
 }
 
