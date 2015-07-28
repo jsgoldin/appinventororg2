@@ -4436,6 +4436,7 @@ class SearchHandler (webapp.RequestHandler):
                            'stylesheets' : ['/assets/css/coursesystem.css'],
                            'scripts' : [],
                            'query' : query,
+                           'courseToModules' : getCoursesAndModules(),
                            }
            
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/searchResult.html')
