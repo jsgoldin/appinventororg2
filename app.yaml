@@ -6,14 +6,13 @@
 # This file should not be pushed to github with a release version specified.
 
 
-application: appinventororg
+application: appinventororgtesting
 version: jordan
 runtime: python27
 api_version: 1
 threadsafe: no
 
 handlers:
-
 - url: /admin/.*
   script: app_controller.py
   login: admin

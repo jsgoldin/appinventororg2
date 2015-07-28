@@ -2029,10 +2029,9 @@ footer a {
 
 /* Styling for search box in navbar */
 .nav-bar-search {
-	width: 350px;
+	width: 334px;
 	position: relative;
 	margin-top: 20px;
-	margin-left: 46px;
 	display: inline-block;
 }
 
@@ -2098,9 +2097,9 @@ a {
 	float: left;
 }
 
-
 .profile-menu .header-item {
 	width: auto;
+	margin-left: 20px;
 }
 
 .profile-menu .header-item>span {
@@ -2125,11 +2124,17 @@ a {
 	border-radius: 5px;
 	display: inline-block;
 	text-align: center;
-	width: 100px;
+	width: 70px;
 	font-size: 18px;
 	cursor: pointer;
-	transition: color 0.2s;
+	transition: background-color 0.2s;
 	float: left;
+	margin-left: 30px;
+}
+
+.login-btn:hover {
+	color: white;
+	background-color: #29B1D1;
 }
 
 .header-item:hover {
@@ -2145,6 +2150,8 @@ a {
 	-ms-user-select: none;
 	user-select: none;
 	transition: max-height 0.5s;
+	position: relative;
+	top: 1px;
 }
 
 .mega-menu.visible {
@@ -2299,14 +2306,20 @@ a.menu-item {
 	color: #A4CA39 !important;
 }
 
-@media ( min-width : 0px) and (max-width: 1360px) {
+@media ( min-width : 0px) and (max-width: 1200px) {
 	.nav-bar-search {
-		display: none;
-	}
-	.mega-menu-search-toggle {
-		display: inline-block;
+		width: 255px;
 	}
 }
+
+@media ( min-width : 0px) and (max-width: 1325px) {
+	.nav-bar-search.isAdmin {
+		width: 120px !important;
+	}
+}
+
+
+
 
 @media ( min-width : 0px) and (max-width: 850px) {
 	.header-item {
@@ -2320,12 +2333,6 @@ a.menu-item {
 
 /* Smaller than ipad portrait width */
 @media ( min-width : 0px) and (max-width: 768px) {
-	.profile-menu {
-		display: none;
-	}
-	.mega-menu-profile-menu {
-		display: inline-block;
-	}
 	.banner-logo {
 		width: 300px;
 		padding-top: 18px;
@@ -2351,6 +2358,18 @@ a.menu-item {
 /* mega menu collapsed mode */
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width: 1120px) {
+	.nav-bar-search {
+		display: none;
+	}
+	.mega-menu-search-toggle {
+		display: inline-block;
+	}
+	.profile-menu {
+		display: none;
+	}
+	.mega-menu-profile-menu {
+		display: block;
+	}
 	.menu-item a {
 		display: inline-block;
 	}
@@ -2401,8 +2420,11 @@ a.menu-item {
 		background-color: rgba(214, 214, 214, 0.49);
 	}
 	.mega-menu ul li.selected-item>.slideout-menu {
-		height: 240px;
+		height: 180px;
 		/* Must be changed manually if number of items change or the height of the items change! */
+	}
+	.mega-menu ul li.selected-item.mega-menu-profile-menu>.slideout-menu {
+		height: 120px;
 	}
 	.mega-menu .slideout-menu.two-part-menu>ul>li>.menu-item>i {
 		display: none;

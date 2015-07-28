@@ -46,13 +46,16 @@
     $(".slideout-menu > ul > li").click(function (e) {
         e.stopPropagation();
     });
+    
+    $("#drop-down-search").click(function (e) {
+        e.stopPropagation();
+    });
 
     $(".header").click(function () {
         currentItem.parent().removeClass("selected-item");
         unexpandIfLinked(currentItem);
         currentItem = null;
     });
-
 
     $(".header-item").click(function (e) {
         e.stopPropagation();
@@ -76,6 +79,9 @@
             } else {
             	// a sub menu item was expanded and the user clicked another one.
             	// unexpand
+            	curMegaMenuItem.parent().removeClass("selected-item");
+            	curMegaMenuItem = newItem;
+            	newParent.addClass("selected-item");
             }
         } else {
             if (currentItem == null) {
