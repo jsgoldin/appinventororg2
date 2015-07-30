@@ -5489,7 +5489,7 @@ class Homehandler(webapp.RequestHandler):
         
         # render the rss feed box
         path = os.path.join(os.path.dirname(__file__), 'pages/templates/rssFeedBox.html')
-        rssItems = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).order(-RSSItem.dateUnFormatted).fetch(1)        
+        rssItems = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).order(-RSSItem.dateUnFormatted).fetch(4)        
         rssFeedBox = template.render(path, {'rssItems' : rssItems})
         
         
@@ -6256,14 +6256,10 @@ class updateRSSHandler(webapp.RequestHandler):
         for item in results:
             savedLinks += [item.link]
         logging.info(savedLinks)
-            
-       
+
         for item in feed.entries:
             # if the item is not in the datastore add it
             if(item["link"] not in savedLinks):
-                self.response.out.write("<a href=>" + item["title"] + "</b> " + item.published + "<br>")                
-                self.response.out.write("<div>" + self.clean_content(item["content"][0]["value"]) + "</div>")
-                self.response.out.write("<hr>")
                 new_item = RSSItem(parent=ndb.Key('RSSFeeds', 'AppInventorBlog'))
                 new_item.title = item["title"]
                 new_item.content = self.clean_content(item["content"][0]["value"])

@@ -485,10 +485,9 @@
 
 .module-navbox {
 	position: relative;
-	background-color: #BBB;
 	border-radius: 3px;
-	color: white;
 	font-size: 16px;
+	max-width: 338px;
 }
 
 .module-navbox p {
@@ -725,6 +724,7 @@
 
 .selected-tab {
 	background-color: #ECAB1A;
+	color: white;
 }
 
 .video-section {
@@ -1735,20 +1735,12 @@ footer a {
 }
 
 .rssFeedBox {
-	border: 1px solid rgba(0, 0, 0, 0.37);
 	margin-bottom: 20px;
-	overflow: hidden;
 }
 
 .rssFeedBox .alignleft {
 	float: left;
 	margin: 5px 10px 0 0;
-}
-
-.rssFeedBox img {
-	padding: 4px;
-	border: 1px solid #ddd;
-	background: #fff;
 }
 
 .rssFeedBox .wp-caption {
@@ -1771,10 +1763,22 @@ footer a {
 	margin: 0;
 }
 
+.rss-headline-wrapper {
+	width: 100%;
+	position: absolute;
+	background-color: rgb(69, 150, 27);
+	color: white;
+	padding: 20px 40px;
+	font-size: 28px;
+	bottom: 0px;
+}
+
 .fullWHLink {
 	position: absolute;
 	height: 100%;
 	width: 100%;
+	top: 0px;
+	left: 0px;
 }
 
 .footer-fix {
@@ -1909,11 +1913,13 @@ footer a {
 }
 
 .landing-teachers-section {
-	padding: 20px;
-	background-color: rgb(27, 76, 107);
+	padding: 70px;
 	color: white;
+	background-image: url(https://code.org/images/homepage/girl6.jpg);
+	background-size: 100% auto;
 }
 
+1
 .teachers-graphic-box {
 	height: 500px;
 	width: 100%;
@@ -2014,12 +2020,52 @@ footer a {
 }
 
 /* Another big call to action button for the landing page */
-.big-primary-btn {
+.big-btn--orange {
 	background-color: rgb(252, 183, 27);
 	color: white;
-	padding: 16px 43px;
+	padding: 20px 43px;
 	font-size: 20px;
 	border-radius: 6px;
+	min-width: 224px;
+	display: inline-block;
+	transition: background-color 0.4s;
+}
+
+.big-btn--orange:hover {
+	color: white;
+	background-color: rgb(237, 145, 22);
+}
+
+.big-btn--gray {
+	color: #333;
+	background-color: #D7D5D5;
+	padding: 20px 43px;
+	font-size: 20px;
+	border-radius: 6px;
+	min-width: 224px;
+	display: inline-block;
+	transition: all 0.4s;
+}
+
+.big-btn--gray:hover {
+	color: white;
+	background-color: #B1B1B1;
+}
+
+.big-btn--green {
+	color: white;
+	background-color: #6AB344;
+	padding: 20px 43px;
+	font-size: 20px;
+	border-radius: 6px;
+	min-width: 224px;
+	display: inline-block;
+	transition: background-color 0.4s;
+}
+
+.big-btn--green:hover {
+	color: white;
+	background-color: #4A8D26;
 }
 
 /* big button for the navbar */
@@ -2353,6 +2399,17 @@ a.menu-item {
 	}
 }
 
+.or {
+	padding: 20px;
+	font-size: 20px
+}
+
+@media ( min-width : 0px) and (max-width: 600px) {
+	.or {
+		display: block;
+	}
+}
+
 @media ( min-width : 0px) and (max-width: 465px) {
 	.banner-logo {
 		width: 238px;
@@ -2455,4 +2512,38 @@ a.menu-item {
 	.nav-bar-search {
 		display: none;
 	}
+}
+
+.rssItem {
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+
+.what-it-is-tile-wrapper {
+	max-width: 300px;
+	margin: auto;
+}
+
+.what-it-is-tile-wrapper h4 {
+	font-size: 23px;
+}
+
+.what-it-is-tile-wrapper p {
+	font-size: 18px;
+}
+
+.what-it-is-tile {
+	text-align: center;
+	height: 150px;
+	width: 100%;
+	color: white;
+	font-size: 80px;
+	margin: 121px auto 0px;
+	padding-top: 16px;
+}
+
+.what-it-is-section {
+	text-align: center;
+	padding-bottom: 105px;
 }
