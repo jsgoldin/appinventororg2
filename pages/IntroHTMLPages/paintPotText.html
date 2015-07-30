@@ -33,7 +33,7 @@
 
 <div style="width: 30%; height: auto;">
 	<a href="#top" id="topbutton"> <img class="totop"
-		src="/images/CourseInABoxImages/topButton.png"></a>
+		src="/images/icons/back-to-top-icon.png"></a>
 </div>
 <div id="top" class="dark-blue-title">
 	<div class="course-page-container">
@@ -44,7 +44,7 @@
 <div class="course-page-container">
 	<div class="card">
 		<h1>Tasks</h1>
-		<h4>Create a drawing app where:</h4>
+		<p>Create a drawing app where:</p>
 		<ul>
 			<li>Beginner Coding</li>
 			<ol>
@@ -69,18 +69,18 @@
 	<div class="card" id="settingUp">
 		<h1>Setting Up</h1>
 
-		<h4>
+		<p>
 			Just by looking at the tasks and the image below...<br> Which
 			components will you need to complete this app?
-		</h4>
+		</p>
 		<img class="img-responsive center-img" alt=""
 			src="/images/CourseInABoxImages/img00_PPT.png">
 		<div class="quiz-panel-inner">
 			<div id="q2a" class="collapse">
 
-				<h4>
+				<p>
 					<i>Buttons, labels, sliders or text boxes, canvas.</i>
-				</h4>
+				</p>
 
 			</div>
 			<a type="button" href="#q2a" data-toggle="collapse"
@@ -88,567 +88,67 @@
 		</div>
 	</div>
 
-<a type="button" href="#q3a" data-toggle="collapse"
-	onclick="showHideToggle(id)" id="q3b" name="q3b"></a>
-
-
-<br>
+	<a type="button" href="#q3a" data-toggle="collapse"
+		onclick="showHideToggle(id)" id="q3b" name="q3b"></a> <br>
 
 
 	<div class="card">
-	<h2>Getting the Components</h2>
-<h4>Now that we know which components we need, we need to drag them
-	in and rename them and get them to look just how we want.</h4>
-<br>
-<h4>Start by dragging in your canvas component.</h4>
+		<h2>Getting the Components</h2>
+		<p>Now that we know which components we need, we need to drag them
+			in and rename them and get them to look just how we want.</p>
+		<br>
+		<p>Start by dragging in your canvas component.</p>
 
 
 
 
 
 
-<div class="row">
-	<div class="col-md-6">
-		<img class="img-responsive center-img" alt=""
-			src="/images/CourseInABoxImages/PPT_Canvas.png">
+		<div class="row">
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt=""
+					src="/images/CourseInABoxImages/PPT_Canvas.png">
 
-	</div>
-	<div class="col-md-6">
-		<img class="img-responsive center-img" alt=""
-			src="/images/CourseInABoxImages/img01_PPT.png">
-	</div>
-</div>
-
-
-
-
-
-<h4>Notice that it starts out very small, How are you going to be
-	able to draw something on that small? Lets change its width property to
-	fill parent (or however big the screen is) and make the height 300
-	pixels.</h4>
-
-<hr>
-<h4>Then drag in you buttons. Remember to change their text and to
-	rename each component to what they do. For example: Rename Button1 to
-	RedButton. Rename Button3 to TakePictureButton. Be sure to use
-	Horizontal Arrangement component under the Layout Tab to get things
-	next to each other. Save a version as before you move on.</h4>
-
-<div class="row">
-	<div class="col-md-6">
-		<img class="img-responsive center-img" alt=""
-			src="/images/CourseInABoxImages/img02_PPT.png">
-
-	</div>
-	<div class="col-md-6">
-		<img class="img-responsive center-img" alt=""
-			src="/images/CourseInABoxImages/img00_PPT.png">
-	</div>
-</div>
-
-</div>
-
-
-
-
-
-
-<div class="card" id="understanding">
-	<h1>
-		Understanding Canvas Component:<br> Function Calls
-	</h1>
-
-	<h4>For each Canvas Function Call Block, What do you think it does
-		and what do you think should go into the empty spaces?</h4>
-	<br>
-
-	<div class="row">
-
-
-		<div class="col-md-6">
-			<hr style="border-top: 4px solid #329796;">
-			<img width="100%" alt=""
-				src="/images/CourseInABoxImages/PP_drawpoint.png">
-			<hr>
-			<h4>What it does?</h4>
-			<p class="collapse q2a">Draws a point at the given coordinates on
-				the canvas.</p>
-			<hr>
-			<h4>What should go in the empty spaces?</h4>
-
-			<h4>X-</h4>
-			<p class="collapse q2a">The X position on the canvas that where
-				it should be drawn.</p>
-			<br>
-			<h4>Y-</h4>
-			<p class="collapse q2a">The Y position on the canvas that where
-				it should be drawn.</p>
-
-		</div>
-
-		<div class="col-md-6">
-			<hr style="border-top: 4px solid #329796;">
-			<img class="img-responsive" width="80%" alt=""
-				src="/images/CourseInABoxImages/PP_drawText.png">
-			<hr>
-			<h4>What it does?</h4>
-			<p class="collapse q2a">Draws the specified text relative to the
-				specified coordinates using the values of the FontSize and
-				TextAlignment properties.</p>
-
-
-			<hr>
-			<h4>What should go in the empty spaces?</h4>
-
-
-			<h4>Text-</h4>
-			<p class="collapse q2a">The text that should be displayed.</p>
-
-			<h4>X-</h4>
-			<p class="collapse q2a">The X position on the canvas that where
-				it should be drawn.</p>
-			<h4>Y-</h4>
-			<p class="collapse q2a">The Y position on the canvas that where
-				it should be drawn.</p>
-
-		</div>
-
-
-		<div class="col-md-6">
-			<hr style="border-top: 4px solid #329796;">
-			<img width="100%" alt=""
-				src="/images/CourseInABoxImages/PP_drawCircle.png">
-
-			<hr>
-			<h4>What it does?</h4>
-			<p class="collapse q2a">Draws a circle (filled in) at the given
-				coordinates on the canvas, with the given radius.</p>
-			<hr>
-
-			<h4>What should go in the empty spaces?</h4>
-			<h4>X-</h4>
-			<p class="collapse q2a">The X position on the canvas where the
-				center of the circle should be drawn.</p>
-
-			<h4>Y-</h4>
-			<p class="collapse q2a">The Y position on the canvas where the
-				center of the circle should be drawn.</p>
-			<h4>Radius-</h4>
-			<p class="collapse q2a">The size of the circle, in pixels, from
-				the center to the edge of the circle.</p>
-
-		</div>
-
-		<div class="col-md-6">
-			<hr style="border-top: 4px solid #329796;">
-			<img width="70%" alt=""
-				src="/images/CourseInABoxImages/PP_drawLine.png">
-
-			<hr>
-			<h4>What it does?</h4>
-
-			<hr>
-			<h4>What should go in the empty spaces?</h4>
-			<h4>X1-</h4>
-			<p class="collapse q2a">The previous X position.</p>
-
-			<h4>Y1-</h4>
-			<p class="collapse q2a">The previous Y position.</p>
-			<h4>X2-</h4>
-			<p class="collapse q2a">The current X position.</p>
-			<h4>Y2-</h4>
-			<p class="collapse q2a">The current Y position.</p>
-
-
-		</div>
-	</div>
-	<div class="quiz-panel-inner center-img">
-		<a type="button" href=".q2a" data-toggle="collapse"
-			onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answers</a>
-
-	</div>
-
-</div>
-
-<br>
-<div class="card" id="dragtouch">
-	<h1>Drag to Draw, Touch to Circle</h1>
-	<h3>By looking at the following event handlers:</h3>
-	<img class="img-responsive"
-		src="/images/CourseInABoxImages/PP_eventH.png">
-
-	<h4>Which Event Handler do you think should be used for Drawing a
-		Line?</h4>
-	<img class="collapse in q1a img-responsive"
-		src="/images/CourseInABoxImages/PP_DrawLine2.png">
-	<h4>Which Event Handler do you think should be used for Drawing a
-		Circle?</h4>
-	<img class="collapse in q1a img-responsive"
-		src="/images/CourseInABoxImages/PP_TouchedCircle.png">
-
-	<div class="quiz-panel-inner center-img">
-		<a type="button" href=".q1a" data-toggle="collapse"
-			onclick="showHideToggle(id)" id="q1b" name="q1b">Show Answers</a>
-
-	</div>
-</div>
-<div class="card">
-	<h1>Now You Try:</h1>
-	<ul>
-		<li><h4>Code the drawing of lines when the canvas is dragged</h4></li>
-		<li><h4>Code the drawing of circles when the canvas is
-				touched</h4></li>
-	</ul>
-
-	<h2>Remember</h2>
-	<h4>For example when the user touches the canvas, the app
-		should...</h4>
-</div>
-
-<div class="quiz-panel-outer" style="padding: 0px 0px 0px 0px;">
-
-
-	<div style="border: 0px solid #87ABB2;" class="quiz-panel-inner">
-		<div id="q3a" class="collapse">
-			<h2>Hint:</h2>
-			<h4>We want a circle to be drawn at the point the user touched.</h4>
-
-			<h4>We want a line to be drawn when the canvas is dragged</h4>
-			<ul>
-				<li>Think about it, When you draw a line there is the spot you
-					started and the spot you ended</li>
-				<li>So, you are drawing from the previous point to the current
-					point.</li>
-			</ul>
-			<img class="img-responsive"
-				src="/images/CourseInABoxImages/PP_helpcopy.png">
-			<div class="quiz-panel-outer img-responsive"
-				style="padding: 0px 0px 0px 0px;">
-
-
-				<div class="quiz-panel-inner" style="padding: 0px 0px 0px 0px;">
-					<div id="q2a" class="collapse img-responsive">
-						<img class="img-responsive"
-							src="/images/CourseInABoxImages/PP_answer.png">
-
-					</div>
-					<a type="button" href="#q2a" data-toggle="collapse"
-						onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
-				</div>
+			</div>
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt=""
+					src="/images/CourseInABoxImages/img01_PPT.png">
 			</div>
 		</div>
-		<a type="button" href="#q3a" data-toggle="collapse"
-			onclick="showHideToggle(id)" id="q3b" name="q3b">Need Help?</a>
-	</div>
-</div>
 
-<div class="card" id="chooseColor">
-	<h1>Changing the Color</h1>
-	<h4>If we want to change the color of lines being drawn, which
-		component are we talking about? (Hint: Which component does the
-		drawing of lines.)</h4>
-	<br>
-	<h4>Look through the Canvas Component Property blocks (green
-		blocks) and find the Set Canvas1.paintcolor. This block will change
-		the color that is painted with.</h4>
-	<img alt="" width="60%" class="img-responsive center-img"
-		src="/images/CourseInABoxImages/PP_setPaintColor.png">
-	<div class="row">
-		<div class="col-md-6">
-			<h4>Place this block (and its corresponding color) inside the
-				event handler for each color button. Colors can be found in the
-				colors drawer in the blocks editor on the left hand side.</h4>
 
+
+
+
+		<p>Notice that it starts out very small, How are you going to be
+			able to draw something on that small? Lets change its width property
+			to fill parent (or however big the screen is) and make the height 300
+			pixels.</p>
+
+		<hr>
+		<p>Then drag in you buttons. Remember to change their text and to
+			rename each component to what they do. For example: Rename Button1 to
+			RedButton. Rename Button3 to TakePictureButton. Be sure to use
+			Horizontal Arrangement component under the Layout Tab to get things
+			next to each other. Save a version as before you move on.</p>
+
+		<div class="row">
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt=""
+					src="/images/CourseInABoxImages/img02_PPT.png">
+
+			</div>
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt=""
+					src="/images/CourseInABoxImages/img00_PPT.png">
+			</div>
 		</div>
-		<div class="col-md-6">
-			<img width="100%" class="img-responsive"
-				src="/images/CourseInABoxImages/PPT_colors.png">
-		</div>
-
-	</div>
-	<h2>The Logic</h2>
-	<h4>
-		When the Green button is clicked, set the Canvas’ PaintColor to Green.<br>
-		Remember: Colors are found in the blocks editor’s built-in blocks
-		under “Color.”
-	</h4>
-	<br>
-
-	<h4>Test that the color buttons change the color that is drawn.</h4>
-
-
-	<div class="quiz-panel-inner">
-		<div id="q10a" class="collapse">
-			<img alt="" src="/images/CourseInABoxImages/PPT_showcolor.png" class="img-responsive center-img">
-
-
-		</div>
-		<a type="button" href="#q10a" data-toggle="collapse"
-			onclick="showHideToggle(id)" id="q10b" name="q10b">Show Answer</a>
-	</div>
-</div>
-
-
-
-
-
-<div class="card" id="clearCanvas">
-	<h2>Clear the Canvas</h2>
-	<h4>Clearing the Canvas component of all of the user’s drawings is
-		fairly simple thanks to the following block.</h4>
-	<img src="/images/CourseInABoxImages/PPT_clearCanvas.png"
-		class="img-responsive center-img">
-
-	<h4>Now all you need is an event (button) to trigger this function
-		call.</h4>
-
-	<div class="quiz-panel-inner">
-		<div id="q6a" class="collapse">
-			<img alt=""
-				src="/images/CourseInABoxImages/PPT_clearCanvasAnswer.png" class="img-responsive center-img">
-
-
-		</div>
-		<a type="button" href="#q6a" data-toggle="collapse"
-			onclick="showHideToggle(id)" id="q6b" name="q6b">Show Answer</a>
-	</div>
-
-
-
-
-</div>
-<div class="card" id="customCanvas">
-	<h1>Custom Canvas Image</h1>
-	<h4>Taking a picture and putting it as the Canvas Background Image
-		is pretty simple. First make sure that you have the Camera Component
-		in your app.</h4>
-	<img src="/images/CourseInABoxImages/PPT_Camera.png"
-		class="img-responsive center-img">
-
-	<h4>Then you want to think, “When do I want to allow the camera
-		component to turn on to allow the user to take a photo?</h4>
-	<br>
-
-	<h4>The answer to this question is probably when the TakePicture
-		Button is pressed. So for this button’s event handler
-		(TakePicture_Button) you’re going to put in take picture.</h4>
-
-	<img src="/images/CourseInABoxImages/PPT_TPB.png"
-		class="img-responsive center-img">
-
-	<h4>Once the picture has been taken and saved, the Camera
-		Component’s AfterPicture event handler goes off. What do we want to do
-		after the picture is taken? Set Canvas.BackgroundImage to the Image
-		that was taken by the camera.</h4>
-
-
-
-</div>
-
-<div class="quiz-panel-inner center-img">
-	<div id="q11a" class="collapse">
-		<img alt="" src="/images/CourseInABoxImages/PPT_APE2.png" width="100%"
-			class="img-responsive"> <img
-			src="/images/CourseInABoxImages/PPT_APE1.png" width="100%"
-			class="img-responsive">
-	</div>
-	<a type="button" href="#q11a" data-toggle="collapse"
-		onclick="showHideToggle(id)" id="q11b" name="q11b">Show Answer</a>
-</div>
-<a type="button" href="#q11a" data-toggle="collapse"
-	onclick="showHideToggle(id)" id="q11b" name="q11b"></a>
-
-
-
-
-
-
-<div id="drawingLines" class="card">
-	<h1>Drawing Different Size Lines</h1>
-	<h4>Part of the task is to allow the user to be able to change the
-		line size that they are drawing with by having the user interact with
-		something to make the lines bigger or smaller.</h4>
-	<br>
-	<h4>So you are going to need a visual component that will allow
-		the user to control line size. This can be a textbox, slider, + and -
-		buttons, or whatever you want.</h4>
-	<h4>Changing line size is fairly easy because the canvas component
-		has a property for line size that can be changed anywhere.</h4>
-	<img src="/images/CourseInABoxImages/PPT_canvasLineWith.png"
-		width="80%" class="img-responsive center-img">
-	<h4>You want the line width to change to what the user wants. You
-		can use a Button and a Texbox, a slider, or even plus or minus buttons
-		with a variable.</h4>
-
-	<img src="/images/CourseInABoxImages/PPT_DrawExample.png" width="30%"
-		class="img-responsive center-img">
-
-
-</div>
-<div class="quiz-panel-inner">
-	<div id="q12a" class="collapse">
-		<img alt="" src="/images/CourseInABoxImages/PPT_DrawExampleAnswer.png"
-			width="100%" class="img-responsive">
-
-
-	</div>
-	<a type="button" href="#q12a" data-toggle="collapse"
-		onclick="showHideToggle(id)" id="q12b" name="q12b">Show Answer
-		(Texbox with Button)</a>
-</div>
-
-<a type="button" href="#q12a" data-toggle="collapse"
-	onclick="showHideToggle(id)" id="q12b" name="q12b"></a>
-
-
-
-
-
-
-
-
-
-
-
-<div id="drawingDifSize" class="card">
-	<h1>Drawing different Sized Circles</h1>
-	<h4>Part of the task is to allow the user to also be able to
-		change the circle size that they are drawing with by having the user
-		interact with something to make the circles bigger or smaller.</h4>
-
-	<h4>So you are going to need a component that will allow the user
-		to control circle size. This can be a textbox, slider, a + and -
-		button, or whatever you want.</h4>
-
-	<h4>Changing the size of a circle is a bit more challenging
-		because no matter how hard you look, there is no block to change the
-		property of circle size.</h4>
-	<br>
-
-	<h4>
-		Which event currently causes circle to be made? (Canvas.touched)<br>
-		What are the parameters for the .DrawCircle Function Call?<br> X
-		and Y - location<br> Radius - Size
-	</h4>
-	<img src="/images/CourseInABoxImages/PPT_DSC.png" width="70%"
-		class="img-responsive center-img">
-
-	<h4>
-		Now all you have to do is change the variable global CircleSize by
-		going back to the variables drawer ang getting a set block, and that
-		will change the radius of the circle every time it is drawn.<br>
-		So the textbox example would look like this where there is a text box
-		on the screen that allows the user to input a number:
-	</h4>
-	<div class="quiz-panel-inner center-img">
-		<img src="/images/CourseInABoxImages/PPT_DSC2.png" width="90%"
-			class="img-responsive centar image collapse q9a"> 
-
-		<h4 class="collapse q9a">
-			When the Canvas is touched, <br> Set the Variable Circle size to
-			- whatever is in the text box<br> Draw a circle at the point the
-			user touched, with the size of - the variable Circle_Size<br> <br>
-			Code this, save a version as, and test it before you move on.
-		</h4>
-
-		<a type="button" href=".q9a" data-toggle="collapse"
-			onclick="showHideToggle(id)" id="q9b" name="q9b">Show Answer</a>
 
 	</div>
 
 
-</div>
-
-<div class="card" id="changingColor">
-	<h1>Changing the Color: Know Which Color is Pressed</h1>
-	<h4>Giving the user feedback to let them know that their tap on
-		the screen was successful or the current settings are important in any
-		app. In the example below, the user knows which menu option they are
-		in because the bottom menu icon is highlighted telling the user that
-		they are currently in the Keypad menu.</h4>
-
-	<img src="/images/CourseInABoxImages/PPT_phone.png" width="30%"
-		class="img-responsive center-img">
-
-	<h4>In this app, we want the user to know what color they are
-		about to draw with before they draw. This can happen a number of ways.</h4>
-	<h4>Options:</h4>
-	<ul>
-		<li>You could make the ColorButton’s text that is being pressed <b>bold</b>
-		</li>
-		<li>You can make the background color change to the color
-			selected</li>
-		<li>You could add in a button with no text and have that button’s
-			color change to the current color each time the user presses on a
-			color button</li>
-	</ul>
-	<h4>In the snapchat example below, the color that will be drawn
-		with is turquoise and one knows that because it is the color of the
-		box on the top left corner).</h4>
-
-	<div class="row">
-		<div class="col-md-6">
-			<img src="/images/CourseInABoxImages/paintGif.gif" width="100%"
-				class="img-responsive center-img">
-		</div>
-		<div class="col-md-6">
-			<img src="/images/CourseInABoxImages/PPT_snapchat.png" width="60%"
-				class="img-responsive center-img">
-			<p>Source:Snapchat</p>
-		</div>
-	</div>
-	<h2>Logic Hint</h2>
-	<h4>If you are trying to identify the current color that will be
-		drawn with, you have to identify the colors that won’t be drawn. That
-		means if you change the clicked button’s text to bold, tthe other
-		buttons should no longer be bold.</h4>
-	<h4>For example if you have 3 colors, each time you hit Red you
-		want the paint color to change to red, the RedButton.fontbold to true
-		and you want the blackbutton.fontbold to false and the whitebutton.
-		fontbold to false. This way only the red button is bold while the rest
-		are not bold.</h4>
-
-	<h4>Code this, save a version as, and test it before you move on.</h4>
 
 
-
-</div>
-<div class="quiz-panel-inner">
-	<div id="q13a" class="collapse">
-		<img src="/images/CourseInABoxImages/PPT_GRB.png" width="100%">
-
-
-	</div>
-	<a type="button" href="#q13a" data-toggle="collapse"
-		onclick="showHideToggle(id)" id="q13b" name="q13b">Show Answer</a>
-</div>
-
-<a type="button" href="#q13a" data-toggle="collapse"
-	onclick="showHideToggle(id)" id="q31b" name="q13b"></a>
-
-
-
-
-
-
-
-
-
-<div class="row">
-	<div class="col-sm-6">
-		<a href="/VariablesCircles"> <img width="100%" alt=""
-			src="/images/icons/prevButton.png">
-		</a>
-	</div>
-	<div class="col-sm-6">
-		<a href="/conceptualizeCustomize"> <img width="100%" alt=""
-			src="/images/icons/nextButton.png">
-		</a>
-	</div>
-</div>
-=======
-	</div>
 
 
 	<div class="card" id="understanding">
@@ -656,8 +156,8 @@
 			Understanding Canvas Component:<br> Function Calls
 		</h1>
 
-		<h4>For each Canvas Function Call Block, What do you think it
-			does and what do you think should go into the empty spaces?</h4>
+		<p>For each Canvas Function Call Block, What do you think it does
+			and what do you think should go into the empty spaces?</p>
 		<br>
 
 		<div class="row">
@@ -668,17 +168,17 @@
 				<img width="100%" alt=""
 					src="/images/CourseInABoxImages/PP_drawpoint.png">
 				<hr>
-				<h4>What it does?</h4>
+				<p>What it does?</p>
 				<p class="collapse q2a">Draws a point at the given coordinates
 					on the canvas.</p>
 				<hr>
-				<h4>What should go in the empty spaces?</h4>
+				<p>What should go in the empty spaces?</p>
 
-				<h4>X-</h4>
+				<p>X-</p>
 				<p class="collapse q2a">The X position on the canvas that where
 					it should be drawn.</p>
 				<br>
-				<h4>Y-</h4>
+				<p>Y-</p>
 				<p class="collapse q2a">The Y position on the canvas that where
 					it should be drawn.</p>
 
@@ -689,23 +189,23 @@
 				<img class="img-responsive" width="80%" alt=""
 					src="/images/CourseInABoxImages/PP_drawText.png">
 				<hr>
-				<h4>What it does?</h4>
+				<p>What it does?</p>
 				<p class="collapse q2a">Draws the specified text relative to the
 					specified coordinates using the values of the FontSize and
 					TextAlignment properties.</p>
 
 
 				<hr>
-				<h4>What should go in the empty spaces?</h4>
+				<p>What should go in the empty spaces?</p>
 
 
-				<h4>Text-</h4>
+				<p>Text-</p>
 				<p class="collapse q2a">The text that should be displayed.</p>
 
-				<h4>X-</h4>
+				<p>X-</p>
 				<p class="collapse q2a">The X position on the canvas that where
 					it should be drawn.</p>
-				<h4>Y-</h4>
+				<p>Y-</p>
 				<p class="collapse q2a">The Y position on the canvas that where
 					it should be drawn.</p>
 
@@ -718,20 +218,20 @@
 					src="/images/CourseInABoxImages/PP_drawCircle.png">
 
 				<hr>
-				<h4>What it does?</h4>
+				<p>What it does?</p>
 				<p class="collapse q2a">Draws a circle (filled in) at the given
 					coordinates on the canvas, with the given radius.</p>
 				<hr>
 
-				<h4>What should go in the empty spaces?</h4>
-				<h4>X-</h4>
+				<p>What should go in the empty spaces?</p>
+				<p>X-</p>
 				<p class="collapse q2a">The X position on the canvas where the
 					center of the circle should be drawn.</p>
 
-				<h4>Y-</h4>
+				<p>Y-</p>
 				<p class="collapse q2a">The Y position on the canvas where the
 					center of the circle should be drawn.</p>
-				<h4>Radius-</h4>
+				<p>Radius-</p>
 				<p class="collapse q2a">The size of the circle, in pixels, from
 					the center to the edge of the circle.</p>
 
@@ -743,18 +243,18 @@
 					src="/images/CourseInABoxImages/PP_drawLine.png">
 
 				<hr>
-				<h4>What it does?</h4>
+				<p>What it does?</p>
 
 				<hr>
-				<h4>What should go in the empty spaces?</h4>
-				<h4>X1-</h4>
+				<p>What should go in the empty spaces?</p>
+				<p>X1-</p>
 				<p class="collapse q2a">The previous X position.</p>
 
-				<h4>Y1-</h4>
+				<p>Y1-</p>
 				<p class="collapse q2a">The previous Y position.</p>
-				<h4>X2-</h4>
+				<p>X2-</p>
 				<p class="collapse q2a">The current X position.</p>
-				<h4>Y2-</h4>
+				<p>Y2-</p>
 				<p class="collapse q2a">The current Y position.</p>
 
 
@@ -771,17 +271,17 @@
 	<br>
 	<div class="card" id="dragtouch">
 		<h1>Drag to Draw, Touch to Circle</h1>
-		<h3>By looking at the following event handlers:</h3>
+		<p>By looking at the following event handlers:</p>
 		<img class="img-responsive"
 			src="/images/CourseInABoxImages/PP_eventH.png">
 
-		<h4>Which Event Handler do you think should be used for Drawing a
-			Line?</h4>
-		<img class="collapse in q1a img-responsive" 
+		<p>Which Event Handler do you think should be used for Drawing a
+			Line?</p>
+		<img class="collapse q1a img-responsive"
 			src="/images/CourseInABoxImages/PP_DrawLine2.png">
-		<h4>Which Event Handler do you think should be used for Drawing a
-			Circle?</h4>
-		<img class="collapse in q1a img-responsive"
+		<p>Which Event Handler do you think should be used for Drawing a
+			Circle?</p>
+		<img class="collapse q1a img-responsive"
 			src="/images/CourseInABoxImages/PP_TouchedCircle.png">
 
 		<div class="quiz-panel-inner center-img">
@@ -793,15 +293,13 @@
 	<div class="card">
 		<h1>Now You Try:</h1>
 		<ul>
-			<li><h4>Code the drawing of lines when the canvas is
-					dragged</h4></li>
-			<li><h4>Code the drawing of circles when the canvas is
-					touched</h4></li>
+			<li><p>Code the drawing of lines when the canvas is dragged</p></li>
+			<li><p>Code the drawing of circles when the canvas is
+					touched</p></li>
 		</ul>
 
 		<h2>Remember</h2>
-		<h4>For example when the user touches the canvas, the app
-			should...</h4>
+		<p>For example when the user touches the canvas, the app should...</p>
 	</div>
 
 	<div class="quiz-panel-outer" style="padding: 0px 0px 0px 0px;">
@@ -810,9 +308,9 @@
 		<div style="border: 0px solid #87ABB2;" class="quiz-panel-inner">
 			<div id="q3a" class="collapse">
 				<h2>Hint:</h2>
-				<h4>We want a circle to be drawn at the point the user touched.</h4>
+				<p>We want a circle to be drawn at the point the user touched.</p>
 
-				<h4>We want a line to be drawn when the canvas is dragged</h4>
+				<p>We want a line to be drawn when the canvas is dragged</p>
 				<ul>
 					<li>Think about it, When you draw a line there is the spot you
 						started and the spot you ended</li>
@@ -826,13 +324,14 @@
 
 
 					<div class="quiz-panel-inner" style="padding: 0px 0px 0px 0px;">
-						<div id="q2a" class="collapse img-responsive">
+						<div id="q20a" class="collapse img-responsive">
 							<img class="img-responsive"
 								src="/images/CourseInABoxImages/PP_answer.png">
 
 						</div>
-						<a type="button" href="#q2a" data-toggle="collapse"
-							onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
+						<a type="button" href="#q20a" data-toggle="collapse"
+							onclick="showHideToggle(id)" id="q20b" name="q20b">Show
+							Answer</a>
 					</div>
 				</div>
 			</div>
@@ -843,20 +342,20 @@
 
 	<div class="card" id="chooseColor">
 		<h1>Changing the Color</h1>
-		<h4>If we want to change the color of lines being drawn, which
+		<p>If we want to change the color of lines being drawn, which
 			component are we talking about? (Hint: Which component does the
-			drawing of lines.)</h4>
+			drawing of lines.)</p>
 		<br>
-		<h4>Look through the Canvas Component Property blocks (green
+		<p>Look through the Canvas Component Property blocks (green
 			blocks) and find the Set Canvas1.paintcolor. This block will change
-			the color that is painted with.</h4>
+			the color that is painted with.</p>
 		<img alt="" width="60%" class="img-responsive center-img"
 			src="/images/CourseInABoxImages/PP_setPaintColor.png">
 		<div class="row">
 			<div class="col-md-6">
-				<h4>Place this block (and its corresponding color) inside the
+				<p>Place this block (and its corresponding color) inside the
 					event handler for each color button. Colors can be found in the
-					colors drawer in the blocks editor on the left hand side.</h4>
+					colors drawer in the blocks editor on the left hand side.</p>
 
 			</div>
 			<div class="col-md-6">
@@ -866,148 +365,185 @@
 
 		</div>
 		<h2>The Logic</h2>
-		<h4>
+		<p>
 			When the Green button is clicked, set the Canvas’ PaintColor to
 			Green.<br> Remember: Colors are found in the blocks editor’s
 			built-in blocks under “Color.”
-		</h4>
+		</p>
 		<br>
 
-		<h4>Test that the color buttons change the color that is drawn.</h4>
+		<p>Test that the color buttons change the color that is drawn.</p>
 
 
+		<div class="quiz-panel-inner">
+			<div id="q10a" class="collapse">
+				<img alt="" src="/images/CourseInABoxImages/PPT_showcolor.png"
+					class="img-responsive center-img">
 
-		<div class="quiz-panel-inner center-img">
-			<img src="/images/CourseInABoxImages/PPT_showcolor.png"
-				class="collapse q5a img-responsive"> <a type="button"
-				href=".q5a" data-toggle="collapse" onclick="showHideToggle(id)"
-				id="q5b" name="q5b">Show Answer</a>
 
+			</div>
+			<a type="button" href="#q10a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q10b" name="q10b">Show Answer</a>
 		</div>
-
-
 	</div>
+
+
+
+
+
 	<div class="card" id="clearCanvas">
 		<h2>Clear the Canvas</h2>
-		<h4>Clearing the Canvas component of all of the user’s drawings
-			is fairly simple thanks to the following block.</h4>
+		<p>Clearing the Canvas component of all of the user’s drawings is
+			fairly simple thanks to the following block.</p>
 		<img src="/images/CourseInABoxImages/PPT_clearCanvas.png"
 			class="img-responsive center-img">
 
-		<h4>Now all you need is an event (button) to trigger this
-			function call.</h4>
+		<p>Now all you need is an event (button) to trigger this function
+			call.</p>
+
+		<div class="quiz-panel-inner">
+			<div id="q6a" class="collapse">
+				<img alt=""
+					src="/images/CourseInABoxImages/PPT_clearCanvasAnswer.png"
+					class="img-responsive center-img">
 
 
-
-		<div class="quiz-panel-inner center-img">
-			<img src="/images/CourseInABoxImages/PPT_clearCanvasAnswer.png"
-				class="img-responsive collapse q6a"> <a type="button"
-				href=".q6a" data-toggle="collapse" onclick="showHideToggle(id)"
-				id="q6b" name="q6b">Show Answer</a>
-
+			</div>
+			<a type="button" href="#q6a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q6b" name="q6b">Show Answer</a>
 		</div>
+
 
 
 
 	</div>
 	<div class="card" id="customCanvas">
 		<h1>Custom Canvas Image</h1>
-		<h4>Taking a picture and putting it as the Canvas Background
-			Image is pretty simple. First make sure that you have the Camera
-			Component in your app.</h4>
+		<p>Taking a picture and putting it as the Canvas Background Image
+			is pretty simple. First make sure that you have the Camera Component
+			in your app.</p>
 		<img src="/images/CourseInABoxImages/PPT_Camera.png"
 			class="img-responsive center-img">
 
-		<h4>Then you want to think, “When do I want to allow the camera
-			component to turn on to allow the user to take a photo?</h4>
+		<p>Then you want to think, “When do I want to allow the camera
+			component to turn on to allow the user to take a photo?</p>
 		<br>
 
-		<h4>The answer to this question is probably when the TakePicture
+		<p>The answer to this question is probably when the TakePicture
 			Button is pressed. So for this button’s event handler
-			(TakePicture_Button) you’re going to put in take picture.</h4>
+			(TakePicture_Button) you’re going to put in take picture.</p>
 
 		<img src="/images/CourseInABoxImages/PPT_TPB.png"
 			class="img-responsive center-img">
 
-		<h4>Once the picture has been taken and saved, the Camera
+		<p>Once the picture has been taken and saved, the Camera
 			Component’s AfterPicture event handler goes off. What do we want to
 			do after the picture is taken? Set Canvas.BackgroundImage to the
-			Image that was taken by the camera.</h4>
+			Image that was taken by the camera.</p>
 
-		<div class="quiz-panel-inner center-img">
-			<img src="/images/CourseInABoxImages/PPT_APE2.png" width="100%"
-				class="img-responsive collapse q7a"> <img
-				src="/images/CourseInABoxImages/PPT_APE1.png" width="100%"
-				class="img-responsive collapse q7a"> <a type="button"
-				href=".q7a" data-toggle="collapse" onclick="showHideToggle(id)"
-				id="q7b" name="q7b">Show Answer</a>
 
-		</div>
+
 	</div>
+
+	<div class="quiz-panel-inner center-img">
+		<div id="q11a" class="collapse">
+			<img alt="" src="/images/CourseInABoxImages/PPT_APE2.png"
+				width="100%" class="img-responsive"> <img
+				src="/images/CourseInABoxImages/PPT_APE1.png" width="100%"
+				class="img-responsive">
+		</div>
+		<a type="button" href="#q11a" data-toggle="collapse"
+			onclick="showHideToggle(id)" id="q11b" name="q11b">Show Answer</a>
+	</div>
+	<a type="button" href="#q11a" data-toggle="collapse"
+		onclick="showHideToggle(id)" id="q11b" name="q11b"></a>
+
+
+
+
+
 
 	<div id="drawingLines" class="card">
 		<h1>Drawing Different Size Lines</h1>
-		<h4>Part of the task is to allow the user to be able to change
-			the line size that they are drawing with by having the user interact
-			with something to make the lines bigger or smaller.</h4>
+		<p>Part of the task is to allow the user to be able to change the
+			line size that they are drawing with by having the user interact with
+			something to make the lines bigger or smaller.</p>
 		<br>
-		<h4>So you are going to need a visual component that will allow
-			the user to control line size. This can be a textbox, slider, + and -
-			buttons, or whatever you want.</h4>
-		<h4>Changing line size is fairly easy because the canvas
-			component has a property for line size that can be changed anywhere.
-		</h4>
+		<p>So you are going to need a visual component that will allow the
+			user to control line size. This can be a textbox, slider, + and -
+			buttons, or whatever you want.</p>
+		<p>Changing line size is fairly easy because the canvas component
+			has a property for line size that can be changed anywhere.</p>
 		<img src="/images/CourseInABoxImages/PPT_canvasLineWith.png"
 			width="80%" class="img-responsive center-img">
-		<h4>You want the line width to change to what the user wants. You
+		<p>You want the line width to change to what the user wants. You
 			can use a Button and a Texbox, a slider, or even plus or minus
-			buttons with a variable.</h4>
+			buttons with a variable.</p>
 
 		<img src="/images/CourseInABoxImages/PPT_DrawExample.png" width="30%"
 			class="img-responsive center-img">
-		<div class="quiz-panel-inner center-img">
-			<img src="/images/CourseInABoxImages/PPT_DrawExampleAnswer.png"
-				width="100%" class="img-responsive collapse q8a"> <a
-				type="button" href=".q8a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q8b" name="q8b">Show Answer
-				(textbox with button)</a>
+
+
+	</div>
+	<div class="quiz-panel-inner">
+		<div id="q12a" class="collapse">
+			<img alt=""
+				src="/images/CourseInABoxImages/PPT_DrawExampleAnswer.png"
+				width="100%" class="img-responsive">
+
 
 		</div>
+		<a type="button" href="#q12a" data-toggle="collapse"
+			onclick="showHideToggle(id)" id="q12b" name="q12b">Show Answer
+			(Texbox with Button)</a>
 	</div>
+
+	<a type="button" href="#q12a" data-toggle="collapse"
+		onclick="showHideToggle(id)" id="q12b" name="q12b"></a>
+
+
+
+
+
+
+
+
+
+
 
 	<div id="drawingDifSize" class="card">
 		<h1>Drawing different Sized Circles</h1>
-		<h4>Part of the task is to allow the user to also be able to
-			change the circle size that they are drawing with by having the user
-			interact with something to make the circles bigger or smaller.</h4>
+		<p>Part of the task is to allow the user to also be able to change
+			the circle size that they are drawing with by having the user
+			interact with something to make the circles bigger or smaller.</p>
 
-		<h4>So you are going to need a component that will allow the user
+		<p>So you are going to need a component that will allow the user
 			to control circle size. This can be a textbox, slider, a + and -
-			button, or whatever you want.</h4>
+			button, or whatever you want.</p>
 
-		<h4>Changing the size of a circle is a bit more challenging
-			because no matter how hard you look, there is no block to change the
-			property of circle size.</h4>
+		<p>Changing the size of a circle is a bit more challenging because
+			no matter how hard you look, there is no block to change the property
+			of circle size.</p>
 		<br>
 
-		<h4>
+		<p>
 			Which event currently causes circle to be made? (Canvas.touched)<br>
 			What are the parameters for the .DrawCircle Function Call?<br> X
 			and Y - location<br> Radius - Size
-		</h4>
+		</p>
 		<img src="/images/CourseInABoxImages/PPT_DSC.png" width="70%"
 			class="img-responsive center-img">
 
-		<h4>
+		<p>
 			Now all you have to do is change the variable global CircleSize by
 			going back to the variables drawer ang getting a set block, and that
 			will change the radius of the circle every time it is drawn.<br>
 			So the textbox example would look like this where there is a text box
 			on the screen that allows the user to input a number:
-		</h4>
+		</p>
 		<div class="quiz-panel-inner center-img">
-			<img src="/images/CourseInABoxImages/PPT_DSC2.png" width="70%"
-				class="img-responsive  collapse q9a">
+			<img src="/images/CourseInABoxImages/PPT_DSC2.png" width="90%"
+				class="img-responsive centar image collapse q9a">
 
 			<h4 class="collapse q9a">
 				When the Canvas is touched, <br> Set the Variable Circle size
@@ -1015,11 +551,10 @@
 				the user touched, with the size of - the variable Circle_Size<br>
 				<br> Code this, save a version as, and test it before you move
 				on.
-			</h4>
+				</p>
 
-			<a type="button" href=".q9a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q9b" name="q9b">Show Answer</a>
-
+				<a type="button" href=".q9a" data-toggle="collapse"
+					onclick="showHideToggle(id)" id="q9b" name="q9b">Show Answer</a>
 		</div>
 
 
@@ -1027,19 +562,18 @@
 
 	<div class="card" id="changingColor">
 		<h1>Changing the Color: Know Which Color is Pressed</h1>
-		<h4>Giving the user feedback to let them know that their tap on
-			the screen was successful or the current settings are important in
-			any app. In the example below, the user knows which menu option they
-			are in because the bottom menu icon is highlighted telling the user
-			that they are currently in the Keypad menu.</h4>
+		<p>Giving the user feedback to let them know that their tap on the
+			screen was successful or the current settings are important in any
+			app. In the example below, the user knows which menu option they are
+			in because the bottom menu icon is highlighted telling the user that
+			they are currently in the Keypad menu.</p>
 
 		<img src="/images/CourseInABoxImages/PPT_phone.png" width="30%"
 			class="img-responsive center-img">
 
-		<h4>In this app, we want the user to know what color they are
-			about to draw with before they draw. This can happen a number of
-			ways.</h4>
-		<h4>Options:</h4>
+		<p>In this app, we want the user to know what color they are about
+			to draw with before they draw. This can happen a number of ways.</p>
+		<p>Options:</p>
 		<ul>
 			<li>You could make the ColorButton’s text that is being pressed
 				<b>bold</b>
@@ -1050,9 +584,9 @@
 				button’s color change to the current color each time the user
 				presses on a color button</li>
 		</ul>
-		<h4>In the snapchat example below, the color that will be drawn
+		<p>In the snapchat example below, the color that will be drawn
 			with is turquoise and one knows that because it is the color of the
-			box on the top left corner).</h4>
+			box on the top left corner).</p>
 
 		<div class="row">
 			<div class="col-md-6">
@@ -1062,44 +596,55 @@
 			<div class="col-md-6">
 				<img src="/images/CourseInABoxImages/PPT_snapchat.png" width="60%"
 					class="img-responsive center-img">
-				<p>Source:Snapchat</p>
+				<p style="text-align: center;">Source:Snapchat</p>
 			</div>
 		</div>
 		<h2>Logic Hint</h2>
-		<h4>If you are trying to identify 
-		the current color that will be drawn with, you have to identify the
-		 colors that won’t be drawn. That means if you change the clicked button’s
-		  text to bold, tthe other buttons should no longer be bold. </h4>
-		  <h4>For example if you have 3 colors, each time you hit 
-		  Red you want the paint color to change to red, the RedButton.fontbold
-		   to true and you want the blackbutton.fontbold to false and the whitebutton.
-		   fontbold to false. This way only the red button is bold while the rest are
-		    not bold. </h4>
-		    
-		    <h4>Code this, save a version as, and test it before you move on.</h4>
-		    
-		    <div class="quiz-panel-inner center-img">
-			<img src="/images/CourseInABoxImages/PPT_GRB.png" width="100%"
-				class="img-responsive collapse q10a">
+		<p>If you are trying to identify the current color that will be
+			drawn with, you have to identify the colors that won’t be drawn. That
+			means if you change the clicked button’s text to bold, tthe other
+			buttons should no longer be bold.</p>
+		<p>For example if you have 3 colors, each time you hit Red you
+			want the paint color to change to red, the RedButton.fontbold to true
+			and you want the blackbutton.fontbold to false and the whitebutton.
+			fontbold to false. This way only the red button is bold while the
+			rest are not bold.</p>
 
-			<a type="button" href=".q10a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q10b" name="q10b">Show Answer</a>
+		<p>Code this, save a version as, and test it before you move on.</p>
+
+
+
+	</div>
+	<div class="quiz-panel-inner">
+		<div id="q13a" class="collapse">
+			<img src="/images/CourseInABoxImages/PPT_GRB.png" width="100%">
+
 
 		</div>
+		<a type="button" href="#q13a" data-toggle="collapse"
+			onclick="showHideToggle(id)" id="q13b" name="q13b">Show Answer</a>
 	</div>
+
+	<a type="button" href="#q13a" data-toggle="collapse"
+		onclick="showHideToggle(id)" id="q31b" name="q13b"></a>
+
+
+
 	<div class="row">
-		<div class="col-sm-6">
-		<a href="/VariablesCircles">
-			<img width="100%" alt="" src="/images/icons/prevButton.png">
-			</a>
+
+		<div class="col-md-6">
+			<p class="btnNav">Previous</p>
+
 		</div>
-		<div class="col-sm-6">
-		<a href="/conceptualizeCustomize">
-			<img width="100%" alt="" src="/images/icons/nextButton.png">
-			</a>
+		<div class="col-md-6">
+			<p class="btnNav">Next</p>
 		</div>
 	</div>
->>>>>>> c1122abeed9a52f091ee3309d55cb8ef275092b0
+
+
+
+
+
 
 </div>
 <script>

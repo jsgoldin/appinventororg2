@@ -3394,7 +3394,7 @@ class CanvasComponentNuggetHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, {})) 
 class VariablesCirclesNuggetHandler(webapp.RequestHandler):
     def get(self, *args):
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables-circles.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variablesCircleNugget.html')
         self.response.out.write(template.render(path, {})) 
 class RememberThingsHandler(webapp.RequestHandler):
     def get(self):
@@ -3494,6 +3494,87 @@ class MoleMashTextHandler(webapp.RequestHandler):
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/molemashtext.html')
+        self.response.out.write(template.render(path, template_values))
+class AIAnimationHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/aianimation.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class HowAnimationworksHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/howanimationworks.html')
+        self.response.out.write(template.render(path, template_values))
+class AnimationChallengeBrianHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/animationchallengebrian.html')
+        self.response.out.write(template.render(path, template_values))
+class AnimationChallengeInternalHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationChallengeInternal.html')
+        self.response.out.write(template.render(path, template_values))
+class AnimationIntComponentHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationInternalComponents.html')
         self.response.out.write(template.render(path, template_values))
 # LESSON PLANS
 
@@ -6865,7 +6946,12 @@ application = webapp.WSGIApplication(
         ('/howGamesWork', HowGamesWorkHandler),
         ('/incrementingws', IncrementingWSHandler),
         ('/timerEvent', TimerEventHandler),
-        ('/molemashtext', MoleMashTextHandler)
+        ('/molemashtext', MoleMashTextHandler),
+        ('/aianimation', AIAnimationHandler),
+        ('/howanimationworks', HowAnimationworksHandler),
+        ('/animationchallengebrian', AnimationChallengeBrianHandler),
+        ('/animationChallengeinternal', AnimationChallengeInternalHandler),
+        ('/animationinternalcomp', AnimationIntComponentHandler)
         
         
     ],
