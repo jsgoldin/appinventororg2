@@ -35,3 +35,10 @@ nosetests.xml
 .pydevproject
 .DS_Store
 /test.html
+
+
+
+atom/
+gdata/
+geopy/
+
