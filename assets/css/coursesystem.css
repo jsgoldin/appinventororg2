@@ -1937,8 +1937,8 @@ footer a {
 .course-card {
 	text-align: center;
 	color: rgba(41, 37, 63, 0.77);
-	padding: 78px 0px;
-	height: 272px;
+	padding: 64px 0px;
+	height: 244px;
 	border-radius: 6px;
 	max-width: 370px;
 	margin: 0px auto 35px;
@@ -2124,7 +2124,6 @@ a {
 }
 
 .body-wrapper {
-	margin-top: 85px; /* MUST MATCH THE HEIGHT OF THE HEADER OR ELSE */
 }
 
 .header {
@@ -2134,7 +2133,7 @@ a {
 	width: 100%;
 	position: absolute;
 	z-index: 5000;
-	top: -85px; /* MUST MATCH THE HEIGHT OF THE HEADER * -1 */
+	top: 0px; /* MUST MATCH THE HEIGHT OF THE HEADER * -1 */
 	border-bottom: 3px solid rgba(0, 0, 0, 0.14);
 }
 
@@ -2546,4 +2545,11 @@ a.menu-item {
 .what-it-is-section {
 	text-align: center;
 	padding-bottom: 105px;
+}
+
+.peekaboo-robot {
+	z-index: -1;
+	width: 385px;
+	position: absolute;
+	left: -17px;
 }
