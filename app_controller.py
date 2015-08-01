@@ -929,20 +929,7 @@ class QuizHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/quiz.html')
         self.response.out.write(template.render(path, template_values))
     
-class StarterAppsHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/starterApps.html')
-        self.response.out.write(template.render(path, template_values))
+
 
         
 class AppInventor2ChangesHandler(webapp.RequestHandler):
@@ -2001,23 +1988,8 @@ class IntroIfHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
         self.response.out.write(template.render(path, template_values))
 
-class MediaHandlerTeaching(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/paintpot.html')
-        self.response.out.write(template.render(path, template_values))
-
 class StarterAppsHandler(webapp.RequestHandler):
-  def get(self):
+    def get(self):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
@@ -2851,20 +2823,7 @@ class ModuleXHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/moduleX.html')
         self.response.out.write(template.render(path, template_values))
 
-class ConditionsHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
-        self.response.out.write(template.render(path, template_values))
+
 
 # Quiz Page
 class QuizQuestionsHandler(webapp.RequestHandler):
@@ -2891,21 +2850,7 @@ class Quiz1Handler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Quiz1.html')
         self.response.out.write(template.render(path, template_values))
 
-class ConditionsHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
-        self.response.out.write(template.render(path, template_values))
-###END OF QUIZ 1###
+
 
 class Quiz2Handler(webapp.RequestHandler):
     def get(self):
@@ -2924,20 +2869,7 @@ class Quiz2Handler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Quiz2.html')
         self.response.out.write(template.render(path, template_values))
 
-class ConditionsHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
-        self.response.out.write(template.render(path, template_values))
+
 ###END OF QUIZ 2###
 class Quiz3Handler(webapp.RequestHandler):
     def get(self):
@@ -2955,20 +2887,7 @@ class Quiz3Handler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Quiz3.html')
         self.response.out.write(template.render(path, template_values))
-class ConditionsHandler(webapp.RequestHandler):
-    def get(self):
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
-        self.response.out.write(template.render(path, template_values))
 ###END OF QUIZ 3###
 class Quiz4Handler(webapp.RequestHandler):
     def get(self):
@@ -3017,20 +2936,7 @@ class Quiz5Handler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Quiz5.html')
         self.response.out.write(template.render(path, template_values))
-class ConditionsHandler(webapp.RequestHandler):
-    def get(self):
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
-        self.response.out.write(template.render(path, template_values))
 ###END OF QUIZ 5###
 class Quiz6Handler(webapp.RequestHandler):
     def get(self):
@@ -3048,20 +2954,7 @@ class Quiz6Handler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Quiz6.html')
         self.response.out.write(template.render(path, template_values))
-class ConditionsHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
-        self.response.out.write(template.render(path, template_values))
+
 ###END OF QUIZ 6###
 class Quiz7Handler(webapp.RequestHandler):
     def get(self):
@@ -3079,20 +2972,7 @@ class Quiz7Handler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Quiz7.html')
         self.response.out.write(template.render(path, template_values))
-class ConditionsHandler(webapp.RequestHandler):
-    def get(self):
         
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
-        self.response.out.write(template.render(path, template_values))
 ###END OF QUIZ 7###
 class Quiz8Handler(webapp.RequestHandler):
     def get(self):
@@ -3108,20 +2988,7 @@ class Quiz8Handler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Quiz8.html')
         self.response.out.write(template.render(path, template_values))
-class ConditionsHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
-        self.response.out.write(template.render(path, template_values))
+
 ###END OF QUIZ 8###
 class Quiz9Handler(webapp.RequestHandler):
     def get(self):
@@ -3138,20 +3005,6 @@ class Quiz9Handler(webapp.RequestHandler):
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/Quiz9.html')
-        self.response.out.write(template.render(path, template_values))
-class ConditionsHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/introIf.html')
         self.response.out.write(template.render(path, template_values))
 
 class BookFilesHandler(webapp.RequestHandler):
