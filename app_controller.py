@@ -2004,25 +2004,6 @@ class StarterAppsHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/starterApps.html')
         self.response.out.write(template.render(path, template_values))
 
-class TryItHandler(webapp.RequestHandler):
-    def get(self):
-        
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
-
-        manyMoldAppsList = []
-        for app in allAppsList:
-            if app.manyMold:
-                manyMoldAppsList.append(app)
-
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'manyMoldAppsList': manyMoldAppsList, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/tryit.html')
-        self.response.out.write(template.render(path, template_values))
 
 
 class PaintPotIntroHandler(webapp.RequestHandler):
@@ -4818,7 +4799,7 @@ class UpdateDatabase (webapp.RequestHandler):
     
     def bacup3(self):
       # this is from adam
-        adam_boolean = true
+        adam_boolean = True
         pquery = db.GqlQuery("SELECT * FROM Account")
         accounts = pquery.fetch(pquery.count())
         for account in accounts:
