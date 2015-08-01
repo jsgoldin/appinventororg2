@@ -19,40 +19,26 @@
     	
     	$("body").append(hiderElem);
     	
-    	// Places hideElem's top at the hideTopPos point.
+    	// Places hideElem's top at the hideBtmPos point.
     	// To fully expose the hideElem its top must be at
-    	// hideTopPos + hideElem.outerHeight()
+    	// hideBtmPos + hideElem.outerHeight()
     	hiderElem.css("top", hideBtmPos);
 
-    	
     	var wallHeight = scrollZoneBottom - scrollZoneTop;
     	var hideHeight = hideTopPos - hideBtmPos;
     	
     	$(window).scroll(function() {
     		var jWindow = $(this);
     		var scrollBottom = jWindow.scrollTop() + jWindow.height()
-    		
-
     		var newTop;
     		
-    		console.log(scrollBottom + " !! " + scrollZoneTop);
-    		
     		if (scrollBottom < scrollZoneTop) {
-    			console.log("above");
     			newTop = hideBtmPos;
     		} else if (scrollBottom > scrollZoneBottom) {
-    			console.log("below");
     			newTop = hideTopPos;
     		} else {
-    			console.log("in");
     			var percentThroughWall = 1 - ((scrollZoneBottom - scrollBottom) / (scrollZoneBottom - scrollZoneTop));	    
-	    		
-    			console.log(percentThroughWall);
-    			
-	    		var hideElemOffset = percentThroughWall * (hideTopPos - hideBtmPos);
-	    		
-	    		console.log(percentThroughWall + " offset: " + hideElemOffset);
-	    		
+	    		var hideElemOffset = percentThroughWall * (hideTopPos - hideBtmPos);	    		
 	    		newTop = hideBtmPos + hideElemOffset;
     		}
     		
