@@ -1,16 +1,27 @@
-<h1>App Inventor News</h1>
-<hr>
-{% for item in rssItems %}
-<div class="rssItem">
-	<h3>{{item.title}}</h3>
-	<p>
-		<small>{{item.date}}</small>
-	</p>
-	{% autoescape off %} {{item.content}} {% endautoescape %}
-	<div class="center-children">
-		<a href="http://appinventorblog.com/" target="_blank"><img
+<div class="row">
+	<div class="col-md-9">
+		<div style="position: relative;">
+			<a class="fullWHLink" href="{{rssItems.0.link}}"></a>
+
+			<div class="rss-headline-wrapper">
+				{{rssItems.0.title}} <a class="fullWHLink"
+					href="{{rssItems.0.link}}"></a>
+			</div>
+			<img alt="20150613_090816" style="width: 100%;" class="wp-image-2657"
+				src="https://appinventor.files.wordpress.com/2015/07/20150613_090816.jpg?w=746&amp;h=425">
+		</div>
+	</div>
+	<div class="col-md-3">
+		{% for item in rssItems|slice:"1:" %}
+		<div class="rssItem">
+			<a href="{{item.link}}"><h3>{{item.title}}</h3></a>
+			<p>
+				<small>{{item.date}}</small>
+			</p>
+		</div>
+		{% endfor %} <a href="http://appinventorblog.com/"
+			style="font-size: 20px;" target="_blank"><img
 			src="assets/img/rsslogo.png" height="40px" width="40px"
-			style="border: none">Check out more posts on the blog</a>
+			style="border: none; margin-right: 10px;">Check out more posts</a>
 	</div>
 </div>
-{% endfor %}

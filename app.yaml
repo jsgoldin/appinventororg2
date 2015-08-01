@@ -7,13 +7,12 @@
 
 
 application: appinventororgtesting
-version: 1
+version: jordan
 runtime: python27
 api_version: 1
 threadsafe: no
 
 handlers:
-
 - url: /admin/.*
   script: app_controller.py
   login: admin

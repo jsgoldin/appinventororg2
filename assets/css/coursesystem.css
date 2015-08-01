@@ -274,12 +274,11 @@
 }
 
 #contentarea {
-	width: auto;
-	overflow: hidden;
+	overflow: auto;
 	margin-left: 260px;
-	width: auto;
-	min-height: 100vh;
 	background-color: #F1F1F1;
+	height: 100%;
+	min-height: 110vh;
 }
 
 .vertical-side-bar-container {
@@ -289,12 +288,11 @@
 	padding-top: 100px;
 	padding-bottom: 100px;
 	width: 260px;
-	height: 100%;
+	height: 100vh;
 	float: left;
 	transition-property: margin-left;
 	transition-duration: .5s;
 	z-index: 100;
-	padding-left: 0;
 }
 
 .vertical-side-bar-top-box {
@@ -339,7 +337,7 @@
 
 .search-box-wrapper {
 	float: right;
-	width: 76%;
+	width: 200px;
 	font-size: 15px;
 }
 
@@ -354,13 +352,15 @@
 }
 
 .search-form {
-	padding-left: 34px;
+	padding-left: 44px;
+	height: 44px;
+	font-size: 18px;
 }
 
 .vertical-side-bar-middle-box {
 	border-right: 1px #2d2d2d solid;
 	border-color: rgba(1, 1, 1, 0.1);
-	background-color: #F3F3F3;
+	background-color: #FEFEFE;
 	width: 100%;
 	height: 100%;
 	overflow-y: auto;
@@ -488,10 +488,9 @@
 
 .module-navbox {
 	position: relative;
-	background-color: #BBB;
 	border-radius: 3px;
-	color: white;
 	font-size: 16px;
+	max-width: 338px;
 }
 
 .module-navbox p {
@@ -728,6 +727,7 @@
 
 .selected-tab {
 	background-color: #ECAB1A;
+	color: white;
 }
 
 .video-section {
@@ -775,7 +775,7 @@
 	width: 95%;
 	height: auto;
 	overflow: visible;
-	max-width: 1180px;
+	max-width: 1600px;
 	padding: 0px 15px 0 15px;
 }
 
@@ -823,7 +823,7 @@
 	margin-right: auto;
 }
 
-@media ( min-width : 0px) and (max-width : 1160px) {
+@media ( min-width : 0px) and (max-width: 1160px) {
 	.course-page-container {
 		width: 97%;
 	}
@@ -870,7 +870,7 @@
 }
 
 .landing-big-button:hover {
-	background-color: #FF5300;
+	background-color: #449EB3;
 	text-decoration: none;
 	color: white;
 }
@@ -925,7 +925,7 @@
 	margin-bottom: 8px;
 }
 
-@media ( min-width : 0px) and (max-width : 1170px) {
+@media ( min-width : 0px) and (max-width: 1170px) {
 	.tile-3 {
 		width: 100%;
 		margin: 30px 0px 0px 0px;
@@ -954,7 +954,7 @@
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,
 		rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0.04) 91%, rgba(0, 0, 0, 0.04)
 		100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000',
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000',
 		endColorstr='#0a000000', GradientType=0); /* IE6-9 */
 	border-bottom: 1px #2d2d2d solid;
 	border-color: rgba(1, 1, 1, 0.1);
@@ -1036,7 +1036,14 @@
 .top-banner {
 	background-color: white;
 	position: relative;
-	padding: 10px 0px 10px 0px;
+	height: 85px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.33);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .app-header {
@@ -1132,7 +1139,6 @@
 body {
 	-webkit-font-smoothing: antialiased;
 	position: relative;
-	height: 100vh;
 }
 
 /* 
@@ -1372,7 +1378,7 @@ footer a {
 }
 
 /* tiny screens ----------- */
-@media ( min-width : 624px) and (max-width : 1300px) {
+@media ( min-width : 624px) and (max-width: 1300px) {
 	.course-box {
 		cursor: pointer;
 		border: 1px #2d2d2d solid;
@@ -1387,7 +1393,7 @@ footer a {
 }
 
 /* really tiny screens ----------- */
-@media ( min-width : 0px) and (max-width : 624px) {
+@media ( min-width : 0px) and (max-width: 624px) {
 	.course-box {
 		cursor: pointer;
 		border: 1px #2d2d2d solid;
@@ -1411,7 +1417,7 @@ footer a {
 }
 
 /*  iPads and smaller (portrait and landscape) ----------- */
-@media ( min-width : 0px) and (max-width : 1024px) {
+@media ( min-width : 0px) and (max-width: 1024px) {
 	.teacherTileOuter {
 		width: 100% !important;
 	}
@@ -1732,20 +1738,12 @@ footer a {
 }
 
 .rssFeedBox {
-	border: 1px solid rgba(0, 0, 0, 0.37);
 	margin-bottom: 20px;
-	overflow: hidden;
 }
 
 .rssFeedBox .alignleft {
 	float: left;
 	margin: 5px 10px 0 0;
-}
-
-.rssFeedBox img {
-	padding: 4px;
-	border: 1px solid #ddd;
-	background: #fff;
 }
 
 .rssFeedBox .wp-caption {
@@ -1768,10 +1766,22 @@ footer a {
 	margin: 0;
 }
 
+.rss-headline-wrapper {
+	width: 100%;
+	position: absolute;
+	background-color: rgb(69, 150, 27);
+	color: white;
+	padding: 20px 40px;
+	font-size: 28px;
+	bottom: 0px;
+}
+
 .fullWHLink {
 	position: absolute;
 	height: 100%;
 	width: 100%;
+	top: 0px;
+	left: 0px;
 }
 
 .footer-fix {
@@ -1809,7 +1819,10 @@ footer a {
 }
 
 .banner-logo {
-	min-width: 172px;
+	float: left;
+	margin-right: 19px;
+	padding-top: 12px;
+	padding-left: 15px;
 }
 
 .unstyled-list {
@@ -1858,7 +1871,7 @@ footer a {
 
 .app-big-video .owl-pagination {
 	padding: 10px 0px !important;
-	background-color: rgb(243, 243, 243);
+	background-color: white;
 }
 
 .app-big-video .owl-theme .owl-controls .owl-page span.owl-numbers {
@@ -1909,6 +1922,20 @@ footer a {
 	margin: 10px 0px;
 }
 
+.landing-teachers-section {
+	padding: 70px;
+	color: white;
+	background-image: url(https://code.org/images/homepage/girl6.jpg);
+	background-size: 100% auto;
+}
+
+1
+.teachers-graphic-box {
+	height: 500px;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.29);
+}
+
 .landing-courses-section {
 	background-color: #6AB344;
 	color: white;
@@ -1920,26 +1947,22 @@ footer a {
 .course-card {
 	text-align: center;
 	color: rgba(41, 37, 63, 0.77);
-	padding: 20px 0px;
+	padding: 64px 0px;
+	height: 244px;
 	border-radius: 6px;
-	max-width: 256px;
-	margin: 0px auto 17px;
-	cursor: pointer;
-	background-image: url(/assets/img/puzzle-shadow.png);
+	max-width: 370px;
+	margin: 0px auto 35px;
 	background-size: 100% 100%;
 	transition: all 0.3s;
+	position: relative;
 }
 
 .course-card:hover {
 	margin-top: -20px;
 }
 
-.course-card-first {
-	-webkit-mask-image: url(/assets/img/puzzle-mask-left.png);
-}
-
-.course-card-last {
-	-webkit-mask-image: url(/assets/img/puzzle-mask-right.png);
+.course-card:hover .course-card-description {
+	opacity: 1;
 }
 
 .course-card>* {
@@ -1947,16 +1970,39 @@ footer a {
 	left: 13px;
 }
 
-.course-card .glyphicon {
-	font-size: 40px;
-	padding: 20px;
+.course-card a {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.course-card .glyphicon, .course-card i {
+	font-size: 80px;
 	border-radius: 100px;
-	border: 3px solid rgb(106, 179, 68);
-	margin-bottom: 16px;
+	margin-bottom: -10px;
+}
+
+.course-card-description {
+	position: relative;
+	top: 65px;
+	color: white;
+	font-size: 20px;
+	opacity: 0;
+	transition: opacity 0.3s;
 }
 
 .landing-courses-info {
 	padding: 38px 0px;
+}
+
+.landing-courses-info h1 {
+	font-size: 49px;
+}
+
+.landing-courses-info p {
+	font-size: 24px;
 }
 
 .landing-video-text {
@@ -1968,7 +2014,7 @@ footer a {
 /* A big call to action button, basicly only used on landing page. */
 .landing-big-btn {
 	display: block;
-	background-color: #B5C434;
+	background-color: #E58D1F;
 	color: white;
 	padding: 13px 32px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
@@ -1982,6 +2028,7 @@ footer a {
 	margin: auto;
 	-webkit-transition: .1s background-color ease-in-out;
 }
+
 .center-img {
 	display: block;
 	margin: auto;}
@@ -2002,4 +2049,540 @@ hr {
     text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
+}
+
+/* Another big call to action button for the landing page */
+.big-btn--orange {
+	background-color: rgb(252, 183, 27);
+	color: white;
+	padding: 20px 43px;
+	font-size: 20px;
+	border-radius: 6px;
+	min-width: 224px;
+	display: inline-block;
+	transition: background-color 0.4s;
+}
+
+.big-btn--orange:hover {
+	color: white;
+	background-color: rgb(237, 145, 22);
+}
+
+.big-btn--gray {
+	color: #333;
+	background-color: #D7D5D5;
+	padding: 20px 43px;
+	font-size: 20px;
+	border-radius: 6px;
+	min-width: 224px;
+	display: inline-block;
+	transition: all 0.4s;
+}
+
+.big-btn--gray:hover {
+	color: white;
+	background-color: #B1B1B1;
+}
+
+.big-btn--green {
+	color: white;
+	background-color: #6AB344;
+	padding: 20px 43px;
+	font-size: 20px;
+	border-radius: 6px;
+	min-width: 224px;
+	display: inline-block;
+	transition: background-color 0.4s;
+}
+
+.big-btn--green:hover {
+	color: white;
+	background-color: #4A8D26;
+}
+
+/* big button for the navbar */
+.navbar-big-btn {
+	width: 100px;
+	height: 85px;
+	text-align: center;
+	padding-top: 32px;
+	font-size: 18px;
+	float: left;
+	cursor: pointer;
+	border-right: 1px solid rgba(0, 0, 0, 0.14);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	color: #555;
+	transition: all 0.2s;
+}
+
+.navbar-big-btn:hover {
+	color: rgb(164, 202, 57);
+}
+
+/* Styling for search box in navbar */
+.nav-bar-search {
+	width: 334px;
+	position: relative;
+	margin-top: 20px;
+	display: inline-block;
+}
+
+.nav-bar-search .glyphicon {
+	position: absolute;
+	top: 13px;
+	left: 14px;
+	font-size: 19px;
+}
+
+.signup-btn {
+	float: right;
+	border: 1px solid rgb(106, 179, 68);
+	padding: 10px;
+	border-radius: 8px;
+	font-size: 18px;
+	background-color: rgb(106, 179, 68);
+	color: white;
+	margin-top: 16px;
+	margin-right: 17px;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+.body-wrapper {
+}
+
+.header {
+	background-color: white;
+	overflow: visible;
+	height: 85px;
+	width: 100%;
+	position: absolute;
+	z-index: 5000;
+	top: 0px; /* MUST MATCH THE HEIGHT OF THE HEADER * -1 */
+	border-bottom: 3px solid rgba(0, 0, 0, 0.14);
+}
+
+.header-container {
+	position: relative;
+	margin: 0 auto 0 auto;
+	height: auto;
+	overflow: visible;
+	max-width: 1600px;
+}
+
+.header-item {
+	display: inline-block;
+	height: 84px;
+	width: 100px;
+	text-align: center;
+	padding-top: 32px;
+	font-size: 18px;
+	cursor: pointer;
+	color: #555;
+	transition: color 0.2s;
+}
+
+.profile-menu {
+	float: left;
+}
+
+.profile-menu .header-item {
+	width: auto;
+	margin-left: 20px;
+}
+
+.profile-menu .header-item>span {
+	margin-left: 8px;
+}
+
+.profile-menu>.slideout-menu {
+	width: 155px;
+}
+
+.profile-menu.selected-item>.slideout-menu {
+	height: 91px;
+}
+
+.login-btn {
+	background-color: #449EB3;
+	color: white;
+	margin-top: 22px;
+	height: auto;
+	padding-top: 0px;
+	padding: 8px;
+	border-radius: 5px;
+	display: inline-block;
+	text-align: center;
+	width: 70px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	float: left;
+	margin-left: 30px;
+}
+
+.login-btn:hover {
+	color: white;
+	background-color: #29B1D1;
+}
+
+.header-item:hover {
+	color: #A4CA39;
+}
+
+/* Prevent users from highlighting items in the menu  */
+.mega-menu {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	transition: max-height 0.5s;
+}
+
+.mega-menu.visible {
+	max-height: 500px;
+	overflow: hidden;
+}
+
+/* Gets rid of all default list styles */
+.header ul {
+	list-style: none;
+	float: left;
+	padding: 0px;
+	margin: 0;
+}
+
+.header-menu-right-side {
+	float: right;
+	padding-right: 15px;
+}
+
+.header-menu-right-side>ul>li {
+	float: left;
+}
+
+.mega-menu>ul>li {
+	/* Float root items left and give them fixed width */
+	float: left;
+	width: 100px;
+}
+
+.slideout-menu {
+	background-color: white;
+	height: 0px;
+	transition: height 0.3s;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid rgba(0, 0, 0, 0.14);
+	border-top: none;
+	z-index: 4000;
+	border-radius: 0 0 5px 5px;
+}
+
+.slideout-menu>ul {
+	width: 100%;
+}
+
+.two-part-menu {
+	width: 735px;
+	/* fixed width needed for 2 part menu */
+}
+
+.two-part-menu>ul>li>.menu-item {
+	cursor: default;
+}
+
+a.menu-item {
+	cursor: pointer !important;
+	display: block
+}
+
+.slideout-menu>ul>.selected-item>.menu-item, .profile-menu>.slideout-menu>ul>li>.menu-item:hover
+	{
+	background-color: #6AB344;
+	color: white;
+}
+
+.sub-item-menu {
+	display: none;
+	position: absolute;
+	top: 0px;
+	height: 100%;
+	border-left: 1px solid rgba(0, 0, 0, 0.14);
+	width: 385px;
+	left: 350px;
+	z-index: 10;
+	background-color: white;
+	/* width + left must equal two-part-menu width */
+}
+
+.menu-item {
+	padding: 10px 27px;
+	font-size: 18px;
+	color: #555;
+	position: relative;
+}
+
+.menu-item a {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: none;
+}
+
+.slideout-menu.two-part-menu>ul>li>.menu-item>i {
+	position: absolute;
+	left: 322px;
+	padding-top: 5px;
+}
+
+.mega-menu ul li.selected-item>.slideout-menu {
+	height: 328px;
+	z-index: 5000;
+}
+
+/* Display side menu when drop down menu item is hovered or selected */
+.mega-menu li:hover>.sub-item-menu, .mega-menu .selected-item>.sub-item-menu
+	{
+	display: block;
+}
+
+.mega-menu-collapse-toggle {
+	display: none;
+}
+
+.mega-menu-search-toggle {
+	display: none;
+}
+
+.drop-down-search {
+	transition: height 0.3s;
+	height: 0px;
+	display: block;
+	top: 80px;
+	background-color: white;
+	width: 100%;
+	position: absolute;
+	z-index: 50000;
+	padding: 0 15px;
+	overflow: hidden;
+}
+
+.drop-down-search.visible {
+	height: 55px;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.14);
+}
+
+.drop-down-search form {
+	position: relative;
+	margin-top: 3px;
+}
+
+.drop-down-search span {
+	position: absolute;
+	top: 14px;
+	left: 16px;
+	font-size: 17px;
+}
+
+.selected-item>.header-item {
+	color: #A4CA39 !important;
+}
+
+@media ( min-width : 0px) and (max-width: 1200px) {
+	.nav-bar-search {
+		width: 255px;
+	}
+}
+
+@media ( min-width : 0px) and (max-width: 1325px) {
+	.nav-bar-search.isAdmin {
+		width: 120px !important;
+	}
+}
+
+@media ( min-width : 0px) and (max-width: 850px) {
+	.header-item {
+		width: 60px;
+	}
+}
+
+.mega-menu-profile-menu {
+	display: none;
+}
+
+/* Smaller than ipad portrait width */
+@media ( min-width : 0px) and (max-width: 768px) {
+	.banner-logo {
+		width: 300px;
+		padding-top: 18px;
+	}
+}
+
+.or {
+	padding: 20px;
+	font-size: 20px
+}
+
+@media ( min-width : 0px) and (max-width: 600px) {
+	.or {
+		display: block;
+	}
+}
+
+@media ( min-width : 0px) and (max-width: 465px) {
+	.banner-logo {
+		width: 238px;
+		padding-top: 25px;
+		margin-right: 0px;
+	}
+}
+
+@media ( min-width : 0px) and (max-width: 377px) {
+	.banner-logo {
+		width: 184px;
+		padding-top: 31px;
+		margin-right: 0px;
+	}
+}
+
+/* mega menu collapsed mode */
+/*  iPads and smaller (portrait and landscape) ----------- */
+@media ( min-width : 0px) and (max-width: 1120px) {
+	.nav-bar-search {
+		display: none;
+	}
+	.mega-menu-search-toggle {
+		display: inline-block;
+	}
+	.profile-menu {
+		display: none;
+	}
+	.mega-menu-profile-menu {
+		display: block;
+	}
+	.menu-item a {
+		display: inline-block;
+	}
+	.header-item:hover {
+		color: #555;
+	}
+	.login-btn {
+		display: none;
+	}
+	.mega-menu-collapse-toggle {
+		display: inline-block;
+	}
+	.mega-menu {
+		max-height: 0px;
+		overflow: hidden;
+	}
+	.mega-menu>ul>li {
+		float: none;
+		width: 100%;
+	}
+	.mega-menu {
+		position: absolute;
+		top: 85px;
+		background-color: white;
+		width: 100%;
+	}
+	.mega-menu ul {
+		width: 100%;
+	}
+	.mega-menu .header-item {
+		width: 100%;
+		text-align: left;
+		padding-left: 15px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+		height: 60px;
+		padding-top: 18px;
+	}
+	.mega-menu .header-item>i {
+		float: right;
+		padding-right: 15px;
+	}
+	.mega-menu .sub-item-menu {
+		display: none !important;
+	}
+	.mega-menu .slideout-menu {
+		border: none;
+		width: 100%;
+		background-color: rgba(214, 214, 214, 0.49);
+	}
+	.mega-menu ul li.selected-item>.slideout-menu {
+		height: 180px;
+		/* Must be changed manually if number of items change or the height of the items change! */
+	}
+	.mega-menu ul li.selected-item.mega-menu-profile-menu>.slideout-menu {
+		height: 120px;
+	}
+	.mega-menu .slideout-menu.two-part-menu>ul>li>.menu-item>i {
+		display: none;
+	}
+	.mega-menu .menu-item {
+		height: 60px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+		padding-top: 18px;
+	}
+	.mega-menu .slideout-menu>ul>.selected-item>.menu-item {
+		color: #555;
+		background-color: initial;
+	}
+	.nav-bar-search {
+		display: none;
+	}
+}
+
+.rssItem {
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+
+.what-it-is-tile-wrapper {
+	max-width: 300px;
+	margin: auto;
+}
+
+.what-it-is-tile-wrapper h4 {
+	font-size: 23px;
+}
+
+.what-it-is-tile-wrapper p {
+	font-size: 18px;
+}
+
+.what-it-is-tile {
+	text-align: center;
+	height: 150px;
+	width: 100%;
+	color: white;
+	font-size: 80px;
+	margin: 121px auto 0px;
+	padding-top: 16px;
+}
+
+.what-it-is-section {
+	text-align: center;
+	padding-bottom: 105px;
+}
+
+.peekaboo-robot {
+	z-index: -1;
+	width: 385px;
+	position: absolute;
+	left: -17px;
+
 }

@@ -33,10 +33,32 @@ except ImportError: import json
 
 
 
+
+
+
+
 APPSDIR = '/apps'
 APPS2DIR = '/apps2'
 
 
+def getCoursesAndModules():
+    """
+    Returns an ordered list of all courses and the modules inside them.
+    [(course_a, [(module_a, module_a_url), (module_b, module_b_url), ... ]), ...]
+    """
+    courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+
+    courseModList = []
+    for course in courses: 
+        # fetch modules for the current course
+        modulesList = []
+        course_id = long(course.key.id())
+        modules = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, course_id)).order(Module.m_index).fetch() 
+        for module in modules:
+            modulesList.append((str(module.m_title), "/content/" + course.c_identifier + "/" + module.m_identifier))
+        courseModList.append((str(course.c_title), modulesList))
+    return courseModList
+    
 def redirector(requesthandler):
     """Used to redirect old content to their new url in a course
     
@@ -263,6 +285,7 @@ class ProfileHandler(webapp.RequestHandler):
                            'educationLevelCheck1': educationLevelCheck1,
                            'educationLevelCheck2': educationLevelCheck2,
                            'stylesheets' : ['/assets/css/coursesystem.css'],
+                           'courseToModules' : getCoursesAndModules(),
                            }
         
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/profile.html')
@@ -345,6 +368,7 @@ class ChangeProfileHandler(webapp.RequestHandler):
                            'title' : 'Update Profile',
                            'stylesheets' : ['/assets/css/coursesystem.css'],
                            'scripts' : ['/assets/js/updateProfile.js'],
+                           'courseToModules' : getCoursesAndModules(),
                            }
         
         
@@ -4237,6 +4261,7 @@ class AboutHandler(webapp.RequestHandler):
                            'title' : 'About Us',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           'courseToModules' : getCoursesAndModules(),
                            }
         
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/about.html')
@@ -4521,6 +4546,7 @@ class TeacherMapHandler(webapp.RequestHandler):
                            'stylesheets' : ['/assets/css/coursesystem.css'],
                            'scripts' : [ ], # this page places the scripts on top, so the map loads first                    
                            'userStatus': userStatus,
+                           'courseToModules' : getCoursesAndModules(),
                            }
         
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/AIEducators.html')
@@ -4542,6 +4568,7 @@ class SearchHandler (webapp.RequestHandler):
                            'stylesheets' : ['/assets/css/coursesystem.css'],
                            'scripts' : [],
                            'query' : query,
+                           'courseToModules' : getCoursesAndModules(),
                            }
            
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/searchResult.html')
@@ -5590,20 +5617,20 @@ class PizzaPartyHandler(webapp.RequestHandler):
 class Homehandler(webapp.RequestHandler):
     def get(self):
         # look up all the courses for the global navbar
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
         userStatus = UserStatus().getStatus(self.request.uri)
         
         # render the rss feed box
         path = os.path.join(os.path.dirname(__file__), 'pages/templates/rssFeedBox.html')
-        rssItems = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).order(-RSSItem.dateUnFormatted).fetch(1)        
+        rssItems = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).order(-RSSItem.dateUnFormatted).fetch(4)        
         rssFeedBox = template.render(path, {'rssItems' : rssItems})
         
-        template_values = {'courses' : courses,
-                           'userStatus': userStatus,
+        
+        template_values = {'userStatus': userStatus,
                            'title' : 'App Inventor',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            'rssFeedBox' : rssFeedBox,
+                           'courseToModules' : getCoursesAndModules(),
                            }
         
         
@@ -5651,6 +5678,10 @@ class ModulesHandler(webapp.RequestHandler):
             self.redirect(course.c_identifier + "/" + first_module.m_identifier)     
 
 class ContentsHandler(webapp.RequestHandler):
+    """
+    TODO: Phase out unused template variables with courseToModules!
+    I think there are some redudant ones in here.
+    """
     def get(self, module_ID="", course_ID=""):
         # retrieve corresponding contents entities
         
@@ -5693,6 +5724,7 @@ class ContentsHandler(webapp.RequestHandler):
                                    "userStatus": userStatus,
                                    "contents" : contents,
                                    "courses" : courses,
+                                   'courseToModules' : getCoursesAndModules(),
                                 }
                 
                 path = os.path.join(os.path.dirname(__file__), 'pages/modules.html')
@@ -5701,6 +5733,10 @@ class ContentsHandler(webapp.RequestHandler):
                 
                
 class ContentHandler(webapp.RequestHandler):
+    """
+    TODO: Phase out unused template variables with courseToModules!
+    I think there are some redudant ones in here.
+    """
     def get(self, course_ID="", module_ID="", content_ID=""):
         # retrieve corresponding content entity
         
@@ -5778,7 +5814,8 @@ class ContentHandler(webapp.RequestHandler):
                            "moduleContentMapping" : moduleContentMapping,
                            'stylesheets' : ['/assets/css/coursesystem.css'],
                            'scripts' : ['/assets/js/coursesystem.js'],
-                           'userStatus': userStatus
+                           'userStatus': userStatus,
+                           'courseToModules' : getCoursesAndModules(),
                            }
                     
                     path = os.path.join(os.path.dirname(__file__), 'pages/content.html')
@@ -5803,7 +5840,8 @@ class AdminCourseDisplayHandler(webapp.RequestHandler):
                            'stylesheets' : ['/assets/admin/css/editor.css', '/assets/admin/css/admin.css', '/assets/css/coursesystem.css'],
                            'scripts' : ['/assets/admin/js/courses_editor.js', '/assets/js/coursesystem.js'],
                            'title' : 'Courses Admin',
-                           'userStatus' : userStatus
+                           'userStatus' : userStatus,
+                           'courseToModules' : getCoursesAndModules(),
                            }
         
         
@@ -6135,7 +6173,8 @@ class AdminDashboardHandler(webapp.RequestHandler):
                            'stylesheets' : ['/assets/admin/css/admin.css', '/assets/css/coursesystem.css'],
                            'userStatus' : userStatus,
                            'courses' : courses,
-                           'title' : 'Admin Dashboard'
+                           'title' : 'Admin Dashboard',
+                           'courseToModules' : getCoursesAndModules(),
                            }
         
         path = os.path.join(os.path.dirname(__file__), 'pages/admin/admin_dashboard.html')
@@ -6349,14 +6388,10 @@ class updateRSSHandler(webapp.RequestHandler):
         for item in results:
             savedLinks += [item.link]
         logging.info(savedLinks)
-            
-       
+
         for item in feed.entries:
             # if the item is not in the datastore add it
             if(item["link"] not in savedLinks):
-                self.response.out.write("<a href=>" + item["title"] + "</b> " + item.published + "<br>")                
-                self.response.out.write("<div>" + self.clean_content(item["content"][0]["value"]) + "</div>")
-                self.response.out.write("<hr>")
                 new_item = RSSItem(parent=ndb.Key('RSSFeeds', 'AppInventorBlog'))
                 new_item.title = item["title"]
                 new_item.content = self.clean_content(item["content"][0]["value"])
@@ -6390,7 +6425,6 @@ class ObjectivesModule1(webapp.RequestHandler):
 
 
         
-
 
 # create this global variable that represents the application and specifies which class
 # should handle each page in the site
@@ -6700,8 +6734,6 @@ application = webapp.WSGIApplication(
         ('/incrementingws', IncrementingWSHandler),
         ('/timerEvent', TimerEventHandler),
         ('/molemashtext', MoleMashTextHandler)
-        
-        
     ],
     debug=True)
 
