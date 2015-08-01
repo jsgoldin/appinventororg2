@@ -7,22 +7,22 @@
 	 * As the windows scrolls through the scroll zone an element will travel another zone
 	 * in the opposite direction.
 	 * 
-	 *The peekabooer will move from hideBottom to hideTop.
+	 *The peekabooer will move from hideTopPos to hideBtmPos.
 	*/
-    $.fn.peekaboo = function(scrollZoneTop, scrollZoneBottom, hideTop, hideBottom) {
+    $.fn.peekaboo = function(scrollZoneTop, scrollZoneBottom, hideBtmPos, hideTopPos) {
     	
     	var hiderElem = $(this).detach();
     	
     	$("body").append(hiderElem);
     	
-    	// Places hideElem's top at the hideBottom point.
+    	// Places hideElem's top at the hideTopPos point.
     	// To fully expose the hideElem its top must be at
-    	// hideBottom + hideElem.outerHeight()
-    	hiderElem.css("top", hideBottom);
+    	// hideTopPos + hideElem.outerHeight()
+    	hiderElem.css("top", hideBtmPos);
 
     	
     	var wallHeight = scrollZoneBottom - scrollZoneTop;
-    	var hideHeight = hideBottom - hideTop;
+    	var hideHeight = hideTopPos - hideBtmPos;
     	
     	$(window).scroll(function() {
     		var jWindow = $(this);
@@ -35,33 +35,30 @@
     		
     		if (scrollBottom < scrollZoneTop) {
     			console.log("above");
-    			newTop = hideTop;
+    			newTop = hideBtmPos;
     		} else if (scrollBottom > scrollZoneBottom) {
     			console.log("below");
-    			newTop = hideBottom;
+    			newTop = hideTopPos;
     		} else {
     			console.log("in");
     			var percentThroughWall = 1 - ((scrollZoneBottom - scrollBottom) / (scrollZoneBottom - scrollZoneTop));	    
 	    		
     			console.log(percentThroughWall);
     			
-	    		var hideElemOffset = percentThroughWall * (hideBottom - hideTop);
+	    		var hideElemOffset = percentThroughWall * (hideTopPos - hideBtmPos);
 	    		
 	    		console.log(percentThroughWall + " offset: " + hideElemOffset);
 	    		
-	    		newTop = hideTop + hideElemOffset;
+	    		newTop = hideBtmPos + hideElemOffset;
     		}
     		
-    		
     		hiderElem.css("top", newTop + "px");
-
-    		
     	});
         return this;
     };
 }( jQuery ));
 
 $(document).ready(function() {
-	var scrollStart = $(".landing-courses-section").offset().top;
-	$(".peekaboo-robot").peekaboo(scrollStart, scrollStart + 400, scrollStart, scrollStart - 300);
+	var scrollStart = $(".landing-courses-section").offset().top + 80;
+	$(".peekaboo-robot").peekaboo(scrollStart, scrollStart + 300, scrollStart,scrollStart - 300);
 });

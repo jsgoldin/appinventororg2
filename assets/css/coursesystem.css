@@ -2155,7 +2155,9 @@ a {
 	text-decoration: none !important;
 }
 
+/* Offsets page to make room for header */
 .body-wrapper {
+  padding-top: 85px; /* Must match height of header */
 }
 
 .header {
