@@ -38,12 +38,5 @@ nosetests.xml
 
 
 
-# weird folders that contained tracked pyc files, I don't even think we use them, but
-# just in case I havent deleted them yet. If your reading this, you should probally delete 
-# the folders entirely, tldr; ur problem not mine m8
-atom/
-gdata/
-geopy/ 
-
 
 *.DS_Store
