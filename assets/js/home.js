@@ -7,7 +7,11 @@
 	 * As the windows scrolls through the scroll zone an element will travel another zone
 	 * in the opposite direction.
 	 * 
-	 *The peekabooer will move from hideTopPos to hideBtmPos.
+	 * The peekabooer will move from hideTopPos to hideBtmPos.
+	 *
+	 * TODO: ability to update positions, this is useful if the window changes size and the 
+	 * scroll zone or hide path needs to change with it.
+	 *
 	*/
     $.fn.peekaboo = function(scrollZoneTop, scrollZoneBottom, hideBtmPos, hideTopPos) {
     	
