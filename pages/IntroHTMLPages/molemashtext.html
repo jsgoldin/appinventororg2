@@ -30,7 +30,6 @@
 	right: 0;
 	z-index: 101;
 }
-
 </style>
 <div style="width: 30%; height: auto;">
 	<a href="#top" id="topbutton"> <img class="totop"
@@ -55,39 +54,49 @@
 	<div class="card">
 		<h2>Tasks</h2>
 		<p>Create a game where:</p>
-		
-			<ol>
-				<li><a href="#appearMole">A Mole to Appears</a></li>
-				<li><a href="#randomMole">A Mole to Moves Randomly</a></li>
-				<li><a href="#score">A Score is Recorded</a></li>
-				<li><a href="#timer">There is A Countdown Timer</a></li>
-				<li><a href="#start">There is a Button to Start the Game</a></li>
-			</ol>
+
+		<ol>
+			<li><a href="#appearMole">A mole to appears</a></li>
+			<li><a href="#randomMole">A mole to moves randomly</a></li>
+			<li><a href="#score">A Score is Recorded</a></li>
+			<li><a href="#timer">There is A Countdown Timer at the
+					beginning of the game and the game when the timer reaches 0.</a></li>
+			<li><a href="#start">There is a Button to Start the Game</a></li>
+		</ol>
 
 
 	</div>
 
 	<div class="card">
-		<p>Making a mole mash style game may seem challenging, but it’s
-			fairly simple, and as long as you think logically then you should be
-			fine in creating this game.</p>
+		<p>Making a Mole Mash style game may seem challenging, but it’s
+			fairly simple, and as long as you think logically, you should be fine
+			in creating this game.</p>
 		<img alt="" src="/images/CourseInABoxImages/MMT_1.png"
-			class="img-responsive center-img">
+			class="img-responsive center-img"><br>
 		<p>To begin, just by looking at this app, what components do you
 			think you will need to create this app? What will each component do
-			for the app</p>
-		<p>Labels for score and time remaining, Button to reset, Canvas,
-			image sprites, Clock to move mole, Clock for timer.</p>
+			for the app?</p>
+
+
+		<div class="quiz-panel-inner">
+			<div id="q50a" class="collapse img-responsive">
+				<p>Labels for score and time remaining, Button to reset, Canvas,
+					image sprites, Clock to move mole, Clock for timer.</p>
+			</div>
+			<a type="button" href="#q50a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q50b" name="q50b">Show Answer</a>
+		</div>
 
 	</div>
 
 
 	<div class="card" id="appearMole">
 		<h2>Getting a Mole to Appear</h2>
-		<p>To begin, Create a new project and drag in a canvas (under
-			Drawing and Animation). The Canvas component always comes in way too
-			small, so lets change its width property to fill parent and its
-			height property to 300 pixels.</p>
+		<p>To begin, create a new project and drag in a Canvas (under
+			Drawing and Animation Drawer). The Canvas component always comes in
+			way too small, so let's change its width property to "Fill Parent"
+			and its height property to 300 pixels or another fixed amount that
+			would allow the Canvas to take up most of the screen's space.</p>
 
 
 		<div class="row">
@@ -103,22 +112,22 @@
 
 		</div>
 
-		<p>Now that we have the place where our Mole is supposed to
-			appear and disappear, let's get a mole on the Canvas. The component
-			you should use for this is the Image Sprite component (also found
-			under Drawing and Animation).</p>
+		<p>Now that we have the place where our Mole is supposed to appear
+			and disappear, let's get a mole on the Canvas. The component you
+			should use for the mole is the Image Sprite component (also found in the
+			Drawing and Animation Drawer).</p>
 
 
 		<img alt="" src="/images/CourseInABoxImages/MMT_imagepsrite.png"
 			class="img-responsive center-img">
 
-		<p>If you test your app after dragging in the image sprite, you
-			will not see an image sprite because there is no image for your mole.
-			Upload a (small) image into your app and set your imagesprite1
+		<p>If you test your app after dragging in the Image Sprite, you
+			will not see an Image Sprite because there is no image for your mole.
+			Upload a (small) image into your app and set your ImageSprite1
 			picture to the image in the properties in the designer. If the
 			picture is too big, either resize it using your computer software, or
-			change the imagesprite size properties (width and height) to be a
-			small square (ex 30 x30).</p>
+			change the ImageSprite size properties (width and height) to be a
+			small square (ex width-30; height-30).</p>
 		<img alt="" src="/images/CourseInABoxImages/MMT_molecanvas.png"
 			class="img-responsive center-img">
 	</div>
@@ -129,9 +138,7 @@
 		<p>
 			Now we need <b>an event</b> that will cause our mole to move. The
 			mole should move to a random point on the screen each time an event
-			goes off (or over and over again). <br> Which component do you
-			think will cause our mole to move to a random spot every time it goes
-			off?<br> <br>
+			goes off (or over and over again).<br>
 		</p>
 		<p>Which component do you think will cause our mole to move to a
 			random spot every time it goes off?</p>
@@ -254,23 +261,23 @@
 			left corner.</p>
 		<img alt="" src="/images/CourseInABoxImages/MM_ISS.png"
 			class="img-responsive center-img">
-		<p>So instead of having the mole’s X go to a random number
-			within the entire canvas width, how far should the mole’s X go? Use
-			the picture below to help. Hint - What is the farthest X point that
-			we want the mole to be able to go.</p>
+		<p>So instead of having the mole’s X go to a random number within
+			the entire canvas width, how far should the mole’s X go? Use the
+			picture below to help. Hint - What is the farthest X point that we
+			want the mole to be able to go.</p>
 		<img alt="" src="/images/CourseInABoxImages/MM_ISW.png"
 			class="img-responsive center-img">
-		<p>Canvas width - mole width = the farthest position that we
-			want the mole to go.</p>
+		<p>Canvas width - mole width = the farthest position that we want
+			the mole to go.</p>
 		<hr>
 		<p>What about height?</p>
 
 		<img alt="" src="/images/CourseInABoxImages/MM_ISH.png"
 			class="img-responsive center-img">
 
-		<p>So in the end you want the mole X to move from 1 to the
-			canvas width - mole width and the mole Y to move from 1 to the the
-			Canvas Height - The Mole height every time the clock timer goes off.</p>
+		<p>So in the end you want the mole X to move from 1 to the canvas
+			width - mole width and the mole Y to move from 1 to the the Canvas
+			Height - The Mole height every time the clock timer goes off.</p>
 		<img alt="" src="/images/CourseInABoxImages/MM_MB.png"
 			class="img-responsive center-img">
 
@@ -278,8 +285,8 @@
 
 	<div class="card" id="score">
 		<h2>Showing Score and the ScoreLabel</h2>
-		<p>For this part of the task we need to get a place on our
-			screen that shows the user their score.</p>
+		<p>For this part of the task we need to get a place on our screen
+			that shows the user their score.</p>
 
 		<div class="row">
 			<div class="col-md-6">
@@ -293,11 +300,11 @@
 
 		</div>
 
-		<p>In the above example, there are 2 labels inside of a
-			horizontal arrangement. One label that displays the text “Score:” and
-			the other “0” that displays the actual score. The label showing “0”
-			was renamed to score label so that when one codes they know which
-			label should be added to.</p>
+		<p>In the above example, there are 2 labels inside of a horizontal
+			arrangement. One label that displays the text “Score:” and the other
+			“0” that displays the actual score. The label showing “0” was renamed
+			to score label so that when one codes they know which label should be
+			added to.</p>
 
 
 	</div>
@@ -307,12 +314,12 @@
 			the phone vibrates.</h2>
 		<p>Now that we have the label that will show the score, we can
 			start to code what happens when the mole is touched.</p>
-		<p>Mole.Touched is the event that happens when the mole is
-			touched on the canvas.</p>
+		<p>Mole.Touched is the event that happens when the mole is touched
+			on the canvas.</p>
 		<img alt="" src="/images/CourseInABoxImages/MM_Touched.png"
 			class="img-responsive center-img">
-		<p>Now that we know the event handler, what do we want to do
-			when the mole is touched.</p>
+		<p>Now that we know the event handler, what do we want to do when
+			the mole is touched.</p>
 		<ul>
 			<li><p>Gain a point</p></li>
 			<li><p>Make the phone vibrate</p></li>
@@ -350,10 +357,10 @@
 
 	<div class="card" id="timer">
 		<h2>Countdown timer</h2>
-		<p>A countdown timer is simply a label that decreases by one
-			every second and it ends a game when it reaches 0. Similar to how you
-			gain a point except it will use an event that repeats in a loop and
-			it will subtract.</p>
+		<p>A countdown timer is simply a label that decreases by one every
+			second and it ends a game when it reaches 0. Similar to how you gain
+			a point except it will use an event that repeats in a loop and it
+			will subtract.</p>
 		<p>First we need the label that will show time so that the user
 			can see how much time is left.</p>
 
@@ -368,9 +375,8 @@
 			left, and that the components are renamed so that when we are coding
 			we can know which label we are talking about.</p>
 		<br>
-		<p>Next we need a component that will make our TimerLabel
-			decrease by one every interval of time, Which component should be
-			used?</p>
+		<p>Next we need a component that will make our TimerLabel decrease
+			by one every interval of time, Which component should be used?</p>
 		<div class="quiz-panel-inner">
 
 			<div id="q9a" class="collapse">
@@ -381,8 +387,8 @@
 			<a type="button" href="#q9a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q9b" name="q9b">Show Answer</a>
 		</div>
-		<p>Drag in a new clock and rename it so that you know which
-			clock does what when coding.</p>
+		<p>Drag in a new clock and rename it so that you know which clock
+			does what when coding.</p>
 		<img alt="" src="/images/CourseInABoxImages/MM_CTC.png"
 			class="img-responsive center-img">
 		<p>Now that we have our clock we just need it to decrease the
@@ -416,14 +422,14 @@
 		<div class="quiz-panel-inner">
 			<div id="q11a" class="collapse">
 				<ul>
-					<li><p>Make our Mole stop moving (what is making the
-							mole move?)</p></li>
+					<li><p>Make our Mole stop moving (what is making the mole
+							move?)</p></li>
 					<li><p>Make our timer stop.</p></li>
-					<li><p>Make our canvas invisible so that the user does
-							not gain any more points.</p></li>
+					<li><p>Make our canvas invisible so that the user does not
+							gain any more points.</p></li>
 				</ul>
-				<p>What you may get may look like the below, but there are
-					other ways to answer this problem:</p>
+				<p>What you may get may look like the below, but there are other
+					ways to answer this problem:</p>
 				<img alt="" src="/images/CourseInABoxImages/MM_TCT2.png"
 					class="img-responsive center-img">
 
@@ -444,8 +450,8 @@
 			class="img-responsive center-img">
 
 
-		<p>What things need to happen when the user clicks the Start
-			Game Button?</p>
+		<p>What things need to happen when the user clicks the Start Game
+			Button?</p>
 		<div class="quiz-panel-inner">
 			<div id="q12a" class="collapse">
 				<ul>
@@ -454,10 +460,10 @@
 					<li><p>Canvas1. visible to true</p></li>
 					<li><p>Clock1.TimerEnabled to true</p></li>
 					<li><p>ScoreLabel.Text to 0</p></li>
-				
+
 				</ul>
 				<img alt="" src="/images/CourseInABoxImages/MM_SGS.png"
-			class="img-responsive center-img">
+					class="img-responsive center-img">
 
 			</div>
 			<a type="button" href="#q12a" data-toggle="collapse"
