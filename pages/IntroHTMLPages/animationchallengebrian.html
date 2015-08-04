@@ -19,7 +19,7 @@
 </div>
 <div class="dark-blue-title" id="top">
 	<div class="course-page-container">
-		<h1>Animation Challenge</h1>
+		<h1>Animation Challenge-Animating with the Clock Component</h1>
 
 	</div>
 </div>
@@ -28,64 +28,76 @@
 	<div class="card">
 		<h1>Tasks</h1>
 		<p>When the GoButton is clicked do the following by using the
-			Clock Component (You should only be using the clock component to move
+			Clock Component (you should only be using the Clock Component to move
 			the balls)</p>
 
 
 		<ol>
-			<li><a href="#moveright">Have one ball move right and when
-					it hits the edge - move left then hits the edge - move right
-					continuously</a></li>
-			<li><a href="#updown">Have another ball move up and when it
-					hits the edge - move down then hits the edge - move down
+			<li><a href="#moveright">Have one ball move right. When it
+					hits right the edge, the ball should move left. When it hits the
+					left edge, the ball should move right. This should happen
 					continuously.</a></li>
-			<li><a href="#diagonal">Have another ball move diagonally
-					and when it hits the edge move diagonally in the opposite direction
+			<li><a href="#updown">Have another ball move up. When it
+					hits the top edge the ball should move down. When it hits the
+					bottom edge, the ball should move up. This should happen
 					continuously.</a></li>
+			<li><a href="#diagonal">Have another ball move down-right
+					diagonally. When it hits the edge, the ball should move diagonally
+					up-left. When it hits the edge, the ball should move diagonally
+					down-left. This should happen continuously.</a></li>
 
 		</ol>
 	</div>
-	<div class="quiz-panel-inner">
-		<div id="q6a" class="collapse">
-			<p>Let’s do 1 task at a time, but first let’s throw in a button
-				and rename the component GoButton , and change its text property to
-				“Go”, so that the button says “Go” on it.</p>
+	<div class="card">
+		<h2>Getting Started</h2>
+		<p>Let’s do 1 task at a time, but first let’s throw in a button
+			and rename the component GoButton , and change its text property to
+			“Go”, so that the button says “Go” on it.</p>
 
-		</div>
-		<a type="button" href="#q6a" data-toggle="collapse"
-			onclick="showHideToggle(id)" id="q6b" name="q6b">Need Help?</a>
 	</div>
+
+
 
 
 
 
 
 	<div class="card" id="moveright">
-		<h2>Making the ball move right when it hits the edge</h2>
+		<h2>Making the ball move right: When it hits the edge</h2>
 		<ol>
 			<li>Drag and Drop the following components</li>
 			<ul>
 				<li>Canvas, Ball, Clock.</li>
 			</ul>
-			<li>Change the Clock’s TimerInterval Property from 1000 to 10</li>
+			<li>In the Clock's properties:</li>
 			<ul>
-				<li>This will determine how often your clock component’s
-					.TimerInterval event will add 1 to ball1.x position.</li>
+				<li>Change the Clock’s TimerInterval Property from 1000 to 10</li>
+				<li>Change the Clock’s TimerEnabled property to False.</li>
+				<img alt="" src="/images/CourseInABoxImages/CT_IB.png"
+					class="img-responsive center-img">
+				<li>This block above will determine how often your clock
+					component will add 1 to ball1.x position.</li>
 				<li><a href="/timerEvent">Click here to learn more about
 						the clock component.</a></li>
 			</ul>
-			<li>Change the Clock’s TimerEnabled property to False.</li>
+
+
 			<ul>
+
 				<li>This will stop the ball from moving when the app opens.</li>
 			</ul>
-			<li>Code the GoButton to turn on the Clock Component.</li>
+			<li>In the blocks, code the GoButton to turn on the Clock
+				Component.</li>
 			<img alt="" src="/images/CourseInABoxImages/GB_CTE.png"
 				class="img-responsive center-img">
-			<li>Code the following under the clock. TimerInterval event
-				handler and then test the app. Remember to click the Go button to
-				turn on the clock which will allow your timer event to occur.</li>
-			<img alt="" src="/images/CourseInABoxImages/CT_IB.png"
-				class="img-responsive center-img">
+			<li>Now we need to code ball1 to move right when Clock1 is
+				enabled. Code the following under the Clock.Timer event handler and
+				then test the app.<br> <b>Remember</b>: clicking the GoButton
+				will turn the clock on which should make the ball start move right.
+			</li>
+
+
+
 
 
 		</ol>
@@ -93,16 +105,18 @@
 		<div class="quiz-panel-inner">
 
 			<div id="q7a" class="collapse">
-				<p>The ball got to the edge and then stops.</p>
+				<p>The ball got to the right edge and then stopped.</p>
 
 			</div>
 			<a type="button" href="#q7a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q7b" name="q7b">What happened?</a>
+				onclick="showHideToggle(id)" id="q7b" name="q7b">What happened
+				after testing?</a>
 		</div>
 		<div class="quiz-panel-inner">
 
 			<div id="q5a" class="collapse">
-				<p>An event for when the ball hits the edge.</p>
+				<p>An event for when the ball hits the edge so that the ball
+					moves in the opposite direction.</p>
 
 			</div>
 			<a type="button" href="#q5a" data-toggle="collapse"
@@ -113,7 +127,7 @@
 	</div>
 
 	<div class="card">
-		<h2>Making the ball move left when it hits the edge</h2>
+		<h2>Making the ball move left when it hits the right edge</h2>
 		<img alt="" src="/images/CourseInABoxImages/B_ER.png"
 			class="img-responsive center-img">
 
@@ -125,16 +139,17 @@
 		<img alt="" src="/images/CourseInABoxImages/CT_IB.png"
 			class="img-responsive center-img">
 
+		<p>
+			<b>If right is the opposite of left</b> and <b>adding one to X</b>
+			makes the ball go right… <br>How do we make the ball go left?
+		</p>
 		<div class="quiz-panel-inner">
-			<p>
-				<b>If right is the opposite of left</b> and <b>adding one to X</b>
-				makes the ball go right… How do we make the ball go left?
-			</p>
-			<div id="q3a" class="collapse">
 
+			<div id="q3a" class="collapse">
+				<p>What is the opposite of adding?</p>
 
 				<div class="quiz-panel-inner">
-					<p>What is the opposite of adding?</p>
+
 					<div id="q2a" class="collapse">
 
 
@@ -148,7 +163,7 @@
 
 			</div>
 			<a type="button" href="#q3a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q3b" name="q3b">Help</a>
+				onclick="showHideToggle(id)" id="q3b" name="q3b">Hint</a>
 		</div>
 		<div class="quiz-panel-inner">
 
@@ -159,8 +174,8 @@
 			<a type="button" href="#q4a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q4b" name="q4b">Show Answer</a>
 		</div>
-
-		<p>So we need to change this part of our clock1.timer event:</p>
+		<br>
+		<p>So we need to change this part of our Clock1.Timer event:</p>
 		<img alt="" src="/images/CourseInABoxImages/CL_TB1.png"
 			class="img-responsive center-img">
 
@@ -171,9 +186,10 @@
 
 			<div id="q9a" class="collapse">
 				<p>
-					A Variable is a named number that is remembered throughout your
-					entire app. <a href="/VariablesCircles" style="color: #A4CA39;">Click
-						here to learn about variables</a>
+					A Variable labels (or names) a piece of text, a list, or a number
+					and can be changed in different places at different times. <a
+						href="/VariablesCircles" style="color: #A4CA39;">Click here to
+						learn about variables</a>
 				</p>
 
 			</div>
@@ -184,21 +200,25 @@
 
 	<div class="card">
 
-		<p>Create a variable called Distance and put it instead of the 1
-			in the Clock1.Timer Event Handler.</p>
+		<p>Create a variable called "Distance" and put it's get block
+			instead of the 1 in the Clock1.Timer Event Handler.</p>
 		<img alt="" src="/images/CourseInABoxImages/D_CT1.png"
 			class="img-responsive center-img">
 
-		<p>Now we need to change Global Distance each time Ball1 Reaches
-			the edge:</p>
+		<p>
+			Now we need to change Global Distance <br>each time Ball1
+			Reaches the edge:
+		</p>
 		<img alt="" src="/images/CourseInABoxImages/B1_ER.png"
 			class="img-responsive center-img">
+
 		<p>Think</p>
 
 		<ol>
-			<li>When the ball hits the right edge, Global distance should
-				change to -1,</li>
-			<li>When it hits the left edge change global distance to 1.</li>
+			<li>When the ball hits the right edge, global distance should
+				change to -1.</li>
+			<li>When the ball hits the left edge, change global distance to
+				1.</li>
 		</ol>
 		<div class="quiz-panel-inner">
 
@@ -234,7 +254,7 @@
 			<div id="q13a" class="collapse">
 				<img alt="" src="/images/CourseInABoxImages/B1_ERGD.png"
 					class="img-responsive center-img">
-				<p>Test This and Move on.</p>
+				<p>Test this and move on.</p>
 
 			</div>
 			<a type="button" href="#q13a" data-toggle="collapse"
@@ -252,9 +272,11 @@
 		<div class="quiz-panel-inner">
 
 			<div id="q14a" class="collapse">
-				<p>------------</p>
 				<p>1 x -1 = -1</p>
 				<p>-1 x -1 = +1</p>
+				<p>As you can see, multiplying a number by -1 will change
+					negative number to a positive and will change a positive number to
+					a negative.</p>
 
 			</div>
 			<a type="button" href="#q14a" data-toggle="collapse"
@@ -265,10 +287,12 @@
 
 			<div id="q15a" class="collapse">
 				<img alt="" src="/images/CourseInABoxImages/B1_ERx1.png"
-					class="img-responsive center-img">
-				<p>So each time Ball1 hits an edge, global Distance will be
-					multiplied by -1</p>
-				<p>Test this first and then move on.</p>
+					class="img-responsive center-img"> <br>
+
+				<p>Each time Ball1 hits an edge, global Distance will be
+					multiplied by -1 so global Distance changes between being a
+					positive and negative number.</p>
+				<p>Test this, and then move on.</p>
 			</div>
 			<a type="button" href="#q15a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q15b" name="q15b">Show me the
@@ -281,22 +305,23 @@
 
 
 	<div class="card" id="updown">
-		<h2>Have another ball move up when it hits an edge, down when it
-			hits an edge, and move down continuously</h2>
-		<p>Add in another Ball and rename this ball UpDownBall.</p>
-		<p>Which of the UpDownBall’s Properties needs to be changed to
+		<h2>Have another ball move up. When it hits the top edge, the
+			ball should move down. When it hits the bottom edge, the ball should
+			move up. This should happen continuously.</h2>
+		<p>Add in another Ball component and rename it.</p>
+		<p>Which of the UpDownBall’s properties needs to be changed to
 			make the ball move Up and Down?</p>
 
 		<div class="quiz-panel-inner">
 			<div id="q16a" class="collapse">
-				<p>Y property</p>
+				<p>The UpDownBall's Y property</p>
 			</div>
 			<a type="button" href="#q16a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q16b" name="q16b">Answer</a>
 		</div>
 		<br>
-		<p>Try to make the ball go up using the clock timer event.
-			(Remember to go up you subtract from Y)</p>
+		<p>Try to make the ball go up using the Clock.Timer event handler.
+			(Remember: the ball goes up as Y becomes smaller)</p>
 		<div class="quiz-panel-inner">
 			<div id="q17a" class="collapse">
 				<img alt="" src="/images/CourseInABoxImages/C1_TBX.png"
@@ -328,8 +353,9 @@
 				onclick="showHideToggle(id)" id="q19b" name="q19b">Answer</a>
 		</div>
 		<br>
-		<p>What would need to change in the following blocks to make the
-			UpDownBall go in the opposite direction?</p>
+		<p>What should change in the following blocks to make the
+			UpDownBall go in the opposite direction? (down after going up and up
+			after going down)</p>
 		<img alt="" src="/images/CourseInABoxImages/C1_TBX.png"
 			class="img-responsive center-img">
 
@@ -337,7 +363,7 @@
 		<div class="quiz-panel-inner">
 			<div id="q20a" class="collapse">
 				<p>Instead of Y+1; it should be Y + variable (“global
-					DistanceUpDown”)</p>
+					DistanceUpDown”).</p>
 				<img alt="" src="/images/CourseInABoxImages/CT_BUDB.png"
 					class="img-responsive center-img">
 			</div>
@@ -368,7 +394,6 @@
 		<h2>Logic Answer</h2>
 		<img alt="" src="/images/CourseInABoxImages/UDB_If1.png"
 			class="img-responsive center-img"> <br>
-		<p>Explain</p>
 		<p>This problem could be solved with an If statement…</p>
 
 		<p>If global distance is = 1</p>
@@ -382,13 +407,17 @@
 		<h2>Math Answer</h2>
 		<img alt="" src="/images/CourseInABoxImages/UDB_ERx1.png"
 			class="img-responsive center-img"> <br>
-		<p>Explain</p>
+		<p>Math Challenge</p>
 		<p>1 ? __ = -1</p>
 		<div class="quiz-panel-inner">
 			<div id="q24a" class="collapse">
 				<p>
 					1 x -1 = -1<br> -1 ? __ = +1
 				</p>
+
+				<p>Each time UpDownBall hits an edge, global DistanceUpDown will
+					be multiplied by -1 so global DistanceUpDown changes between being
+					a positive and negative number.</p>
 
 			</div>
 			<a type="button" href="#q24a" data-toggle="collapse"
@@ -399,11 +428,13 @@
 	</div>
 
 	<div class="card" id="diagonal">
-		<h2>Have another ball move diagonally and when it hits the edge
-			move diagonally in the opposite direction continuously</h2>
-		<p>Add in another Ball and rename this ball DiagonalBall</p>
+		<h2>Have another ball move down-right diagonally. When it hits
+			the edge, the ball should move diagonally up-left. When it hits the
+			edge, the ball should move diagonally down-left. This should happen
+			continuously.</h2>
+		<p>Add in another Ball and rename this ball DiagonalBall.</p>
 		<br>
-		<p>Which of the UpDownBall’s Properties needs to be changed to
+		<p>Which of DiagonalBall’s properties needs to be changed to
 			make the ball move Diagonally?</p>
 		<div class="quiz-panel-inner">
 			<div id="q25a" class="collapse">
@@ -423,18 +454,18 @@
 				</div>
 			</div>
 			<a type="button" href="#q25a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q25b" name="q25b">Answer</a>
+				onclick="showHideToggle(id)" id="q25b" name="q25b">DiagonalBall's Y property</a>
 		</div>
 		<br>
 
-		<p>What should go in X and Y to make the ball move Diagonally each
-			time the timer goes off?</p>
+		<p>In the purple MoveTo block below, what should go in X and Y to make the ball move Diagonally.</p>
 		<img alt="" src="/images/CourseInABoxImages/C1T_BUDBDB.png"
 			class="img-responsive center-img">
 		<div class="quiz-panel-inner">
 			<div id="q27a" class="collapse">
 				<img alt="" src="/images/CourseInABoxImages/C1T_BUBDDBC.png"
 					class="img-responsive center-img">
+					<p>X and Y both need to be changed in order to get the ball to move diagonally</p>
 			</div>
 			<a type="button" href="#q27a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q27b" name="q27b">Answer</a>
@@ -446,7 +477,7 @@
 			stopped at the corner.</p>
 		<div class="quiz-panel-inner">
 			<div id="q28a" class="collapse">
-				<p>An event for when the ball hits the edge</p>
+				<p>An event for when the ball hits the edge.</p>
 				<img alt="" src="/images/CourseInABoxImages/Diagball.EREMPTY.png"
 					class="img-responsive center-img">
 			</div>
@@ -501,7 +532,7 @@
 		<p>How did you get the ball to “bounce” when it hit the edge?</p>
 		<div class="quiz-panel-inner">
 			<div id="q33a" class="collapse">Change the distance variable to
-				be its opposite.</div>
+				be its opposite or to use an if statement.</div>
 			<a type="button" href="#q33a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q33b" name="q33b">Answer</a>
 		</div>
@@ -513,6 +544,7 @@
 
 
 </div>
+
 <script>
 	//function that adds slide animation when clicking to ids on a page
 	$(document).ready(function() {
