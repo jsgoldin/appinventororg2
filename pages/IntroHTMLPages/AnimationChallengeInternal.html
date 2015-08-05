@@ -19,15 +19,16 @@
 
 <div class="course-page-container">
 	<div class="card">
-		<h4>As you probably noticed, animation with the clock component
+		<h4>As you probably noticed, animation with the Clock Component
 			can become challenging, frustrating, and limiting.</h4>
 		<p>
 			For Example, it would be pretty difficult to get the ball to move in
-			a circle using the clock component. <br> The people at MIT
-			noticed this so they created <b>Internal properties</b> that can
-			animate balls and sprites on a canvas without the clock component.
-			Let take a look at the properties to see the difference between the
-			two.
+			a circle using the Clock Component. <br> The people at MIT
+			noticed this so they created <b>internal properties</b> that can
+			animate balls and sprites on a Canvas without the Clock Component.
+			Let take a look at the properties to see the difference between using
+			the clock component to animate and the internal properties to
+			animate.
 		</p>
 	</div>
 
@@ -39,18 +40,25 @@
 	</div>
 	<div class="card">
 		<h1>Tasks</h1>
+		<p>When the go button is clicked, do the following by using a
+			ball's internal properties. (You should not be using the Clock to
+			move the balls)</p>
 		<ol>
-			<li>Have one ball move right and when it hits the edge - move
-				left</li>
-			<li>Have another ball move up and when it hits the edge - move
-				down</li>
-			<li>Have another ball move diagonally and when it hits the edge
-			</li>
+			<li>Have one ball move right. When it hits right the edge, the
+				ball should move left. When it hits the left edge, the ball should
+				move right. This should happen continuously.</li>
+			<li>Have another ball move up. When it hits the top edge the
+				ball should move down. When it hits the bottom edge, the ball should
+				move up. This should happen continuously.</li>
+			<li>Have another ball move down-right diagonally. When it hits
+				the edge, the ball should move diagonally up-left. When it hits the
+				edge, the ball should move diagonally down-left. This should happen
+				continuously.</li>
 
 		</ol>
 		<br>
 		<p>Start by doing a SaveAs of your Coding Challenge 1 Project and
-			call the new project "Coding Challenge 1 Sprites". Then when your new
+			call the new project "Coding Challenge 1 Sprites." Then when your new
 			project opens delete the Clock component-- you won’t use it. Your
 			goal is, once again, to have the three balls move smoothly across the
 			canvas (one down, one left, and one diagonally). Try this challenge
@@ -58,8 +66,9 @@
 	</div>
 
 	<div class="card">
-		<h4>1. Have one ball move right and when it hits the edge - move.
-			left</h4>
+		<h4>1. Have a ball move right. When it hits the right edge, the
+			ball should move left. When it hits the left edge, the ball should
+			move right. This should happen continuously.</h4>
 		<p>
 			Ball1 will be doing this. In the previous app we had the Clock
 			component's timer event move the balls and the the GoButton turn on
@@ -73,19 +82,19 @@
 
 		<div class="quiz-panel-inner">
 			<div id="q6a" class="collapse">
-				<p>Ball1's properties</p>
+				<p>Ball1's properties.</p>
 
 			</div>
 			<a type="button" href="#q6a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q6b" name="q6b">Show Answer</a>
 		</div>
 		<br>
-		<p>Which of Ball1’s Internal properties needs to change to get the
-			ball to move?</p>
+		<p>Which of Ball1’s internal properties do you think controls the
+			direction?</p>
 		<div class="quiz-panel-inner">
 
 			<div id="q1a" class="collapse">
-				<p>Speed</p>
+				<p>Speed needs to be changed to get the ball to move.</p>
 
 			</div>
 			<a type="button" href="#q1a" data-toggle="collapse"
@@ -159,13 +168,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
-
-		<div class="col-md-6">
 			<div class="card">
-				<img class="img-responsive center-img" alt=""
-					src="/images/CourseInABoxImages/SP_BLP.png">
 				<p>Test this and what happens?</p>
 				<div class="quiz-panel-inner">
 					<div id="q8a" class="collapse">
@@ -175,6 +178,15 @@
 					<a type="button" href="#q8a" data-toggle="collapse"
 						onclick="showHideToggle(id)" id="q8b" name="q8b">Show Answer</a>
 				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-6">
+			<div class="card">
+				<img class="img-responsive center-img" alt=""
+					src="/images/CourseInABoxImages/SP_BLP.png">
+
 			</div>
 		</div>
 	</div>
@@ -196,7 +208,7 @@
 		<div class="quiz-panel-inner">
 
 			<div id="q9a" class="collapse">
-				<p>Ball1.edge reached</p>
+				<p>Ball1.edge reached is triggered when Ball1 hits an edge.</p>
 				<img class="img-responsive center-img" alt=""
 					src="/images/CourseInABoxImages/B1_Edge.png">
 			</div>
@@ -205,7 +217,7 @@
 		</div>
 
 		<br>
-		<p>What do we need to change to make the ball to go Left instead
+		<p>What do we need to change to make the ball to go left instead
 			of right?</p>
 
 		<div class="quiz-panel-inner" style="padding: 0px 0px 0px 0px;"
@@ -224,7 +236,8 @@
 							<div id="q12a" class="collapse img-responsive">
 								<p>Heading determines direction when using the sprite’s
 									internal properties for animation. We are no longer using a
-									clock, so we do not need to change the speed property.</p>
+									clock, so we do not need to add in a variable and change the
+									variable.</p>
 							</div>
 							<a type="button" href="#q12a" data-toggle="collapse"
 								onclick="showHideToggle(id)" id="q12b" name="q12b">Why?</a>
@@ -308,9 +321,9 @@
 							style="border: 0px; padding: 0px 0px 0px 0px;">
 							<div id="q17a" class="collapse img-responsive">
 								<p>
-									There are two headings that we want this left right ball to go
-									in.<br> A heading of 180 when it hits the right edge and a
-									heading of 0 when it hits the left edge.
+									There are two headings that we want this left/right ball to
+									use.<br> A heading of 180 when it hits the right edge and
+									a heading of 0 when it hits the left edge.
 								</p>
 								<ul>
 									<li>When should the ball have a heading of 0?</li>
@@ -335,7 +348,7 @@
 										<img class="img-responsive center-img" alt=""
 											src="/images/CourseInABoxImages/B1_ERH180.png">
 										<br>
-										<p>Test this and move on</p>
+										<p>Test this and move on.</p>
 							</div>
 							<a type="button" href="#q17a" data-toggle="collapse"
 								onclick="showHideToggle(id)" id="q17b" name="q17b">Help?</a>
@@ -350,16 +363,17 @@
 	</div>
 
 	<div class=card>
-		<h4>2. Have another ball move up and when it hits the edge - move
-			down</h4>
-		<h5>For this one, we will be coding UpDownBall</h5>
+		<h4>2. Have another ball move up. When it hits the top edge, the
+			ball should move down. When it hits the bottom edge, the ball should
+			move up. This should happen continuously.</h4>
+		<p>For this one, we will be coding UpDownBall.</p>
 		<p>What is the heading that would make the ball move up?</p>
 		<div class="quiz-panel-inner">
 			<div id="q20a" class="collapse">
 				<p>A heading of 90.</p>
 				<img class="img-responsive center-img" alt=""
 					src="/images/CourseInABoxImages/COMP_UP.png">
-				<p>Change the heading property in the Viewer to 90.</p>
+				<p>Change the heading property in the viewer to 90.</p>
 				<img class="img-responsive center-img" alt=""
 					src="/images/CourseInABoxImages/UDBP_HEAD.png">
 			</div>
@@ -367,8 +381,8 @@
 				onclick="showHideToggle(id)" id="q20b" name="q20b">Show Answer</a>
 		</div>
 		<br>
-		<p>What should happen when you hit the Go Button to make
-			UpDownBall move?
+		<p>What should happen when the GoButton is clicked to make the
+			UpDownBall move??
 		<div class="quiz-panel-inner" style="padding: 0px 0px 0px 0px;"
 			style="border: 0px;">
 
@@ -400,8 +414,9 @@
 			</div>
 		</div>
 		<br>
-		<h4>Now we need the ball to go down</h4>
-		<p>Which event is triggered when the ball hits the edge</p>
+		<h4>Now we need the ball to go down once it gets to the top.</h4>
+		<p>Which event is triggered for UpDownBall when the it hits the
+			edge?</p>
 		<div class="quiz-panel-inner">
 			<div id="q23a" class="collapse">
 				<p>UpDownBall.edge reached.</p>
@@ -430,7 +445,8 @@
 							<div id="q25a" class="collapse img-responsive">
 								<p>Heading determines direction when using the sprite’s
 									internal properties for animation. We are no longer using a
-									clock, so we do not need to change the speed property.</p>
+									clock, so we do not need to add in a variable and change it
+									when it hits an edge.</p>
 							</div>
 							<a type="button" href="#q25a" data-toggle="collapse"
 								onclick="showHideToggle(id)" id="q25b" name="q25b">Why?</a>
@@ -476,11 +492,11 @@
 							<ul>
 								<li>When should the UpDownBall have a heading of 90?</li>
 								<ul>
-									<li>When the UpDownBall has a heading is 270</li>
+									<li>When the UpDownBall has a heading is 270.</li>
 								</ul>
 								<li>When should the UpDownBall have a heading of 270?</li>
 								<ul>
-									<li>When the UpDownBall has a heading of 90</li>
+									<li>When the UpDownBall has a heading of 90.</li>
 								</ul>
 								<p>Accordingly</p>
 								<ul>
@@ -495,7 +511,7 @@
 
 									<img class="img-responsive center-img"
 										src="/images/CourseInABoxImages/UDBER_UDBH90.png">
-									<p>Test this and move on</p>
+									<p>Test this and move on.</p>
 						</div>
 						<a type="button" href="#q27a" data-toggle="collapse"
 							onclick="showHideToggle(id)" id="q27b" name="q27b">Explanation</a>
@@ -507,22 +523,25 @@
 		</div>
 	</div>
 	<div class="card">
-		<h4>3. Have another ball move diagonally and when it hits the
-			edge</h4>
+		<h4>3. Have another ball move down-right diagonally. When it hits
+			the edge, the ball should move diagonally up-left. When it hits the
+			edge, the ball should move diagonally down-left. This should happen
+			continuously.</h4>
 		<h5>For this one, we will be coding DiagonalBall</h5>
-		<p>What is the heading that would make the ball diagonally down
-			right?</p>
+		<p>What value for heading would set the direction of DiagonalBall
+			to move diagonally down right?</p>
 
 
 		<div class="quiz-panel-inner">
 			<div id="q30a" class="collapse">
-				<p>A heading of 315.</p>
+				<p>A heading of 315 will set the movement in a down right
+					direction.</p>
 				<p>Heading determines direction when using the sprite’s internal
 					properties for animation. Using the image below, one can see that a
 					heading of 180 will set the direction of movement to left.</p>
 				<p>If 90 is up and 0 is right then 45 would be diagonally top
-					right, then 270 + 45 = 315 Change the heading property in the
-					Viewer to 315</p>
+					right, then 270 + 45 = 315. Change the heading property in the
+					Viewer to 315.</p>
 				<img class="img-responsive center-img" alt=""
 					src="/images/CourseInABoxImages/COMP_DIAG.png">
 				<div class="quiz-panel-inner">
@@ -543,15 +562,15 @@
 
 		</div>
 		<br>
-		<p>What should happen when you hit the Go Button to make
+		<p>What should happen when you hit the GoButton to make
 			DiagonalBall move?</p>
 
 
 		<div class="quiz-panel-inner">
 			<div id="q51a" class="collapse">
-				<p>Set UpDownBall.Speed to 1 in Go Button Event.</p>
+				<p>Set DiagonalBall.Speed to 1 in GoButton's click Event.</p>
 				<img class="img-responsive center-img" alt=""
-					src="/images/CourseInABoxImages/GB_B1UDB.png">
+					src="/images/CourseInABoxImages/GB_DIAG.png">
 
 				<div class="quiz-panel-inner img-responsive" style="border: 0px;">
 
@@ -573,12 +592,12 @@
 				onclick="showHideToggle(id)" id="q51b" name="q51b">Show Answer</a>
 		</div>
 		<br>
-		<h5>Now we need the ball to move in the opposite direction.</h5>
+		<p>Now we need the ball to move in the opposite direction.</p>
 		<br>
-		<p>Which event is triggered when the ball hits the edge?</p>
+		<p>Which event is triggered when the DiagonalBall hits the edge?</p>
 		<div class="quiz-panel-inner">
 			<div id="q55a" class="collapse">
-				<p>DiagonalBall.edgereached</p>
+				<p>DiagonalBall.EdgeReached</p>
 
 				<img class="img-responsive center-img" alt=""
 					src="/images/CourseInABoxImages/DiagB_ER.png">
@@ -588,13 +607,12 @@
 				onclick="showHideToggle(id)" id="q55b" name="q55b">Show Answer</a>
 		</div>
 		<br>
-		<p>What do we need to change to make the ball go diagonally top
-			left instead of diagonally bottom right?</p>
+		<p>What property do we need to change to make the ball go
+			diagonally top-left instead of diagonally bottom-right?</p>
 		<div class="quiz-panel-inner">
 			<div id="q52a" class="collapse">
 				<p>Heading</p>
-				<img class="img-responsive center-img" alt=""
-					src="/images/CourseInABoxImages/DiagB_ER.png">
+		
 
 				<div class="quiz-panel-inner img-responsive" style="border: 0px;">
 
@@ -617,7 +635,7 @@
 				onclick="showHideToggle(id)" id="q52b" name="q52b">Show Answer</a>
 		</div>
 		<br>
-		<p>What heading would make the ball go diagonally top left so that
+		<p>What heading would make the ball go diagonally top-left so that
 			the ball moves in the opposite direction?</p>
 		<div class="quiz-panel-inner">
 			<div id="q54a" class="collapse">
@@ -662,8 +680,7 @@
 		</div>
 
 		<br>
-		<p>How could you make the ball continuously go diagonally down
-			left and diagonally top right?</p>
+		<p>How could you make the ball continuously go diagonally down-left and diagonally top-right?</p>
 		<div style="border: 0px solid #87ABB2;" class="quiz-panel-inner">
 			<div id="q62a" class="collapse">
 				<p>This is how it was done (the logical way) when using the
@@ -682,11 +699,11 @@
 							<ul>
 								<li>When should the DiagonalBall have a heading of 315?</li>
 								<ul>
-									<li>When the DiagonalBall has a heading is 135</li>
+									<li>When the DiagonalBall has a heading is 135.</li>
 								</ul>
 								<li>When should the DiagonalBall have a heading of 135?</li>
 								<ul>
-									<li>When the DiagonalBall has a heading of 315</li>
+									<li>When the DiagonalBall has a heading of 315.</li>
 								</ul>
 								<p>Accordingly</p>
 								<ul>
@@ -701,7 +718,7 @@
 
 									<img class="img-responsive center-img"
 										src="/images/CourseInABoxImages/DIAG_IF315H.png">
-									<p>Test this and move on</p>
+									<p>Test this and move on.</p>
 						</div>
 						<a type="button" href="#q63a" data-toggle="collapse"
 							onclick="showHideToggle(id)" id="q63b" name="q63b">Explanation</a>
@@ -711,7 +728,7 @@
 			<a type="button" href="#q62a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q62b" name="q62b">Help</a>
 		</div>
-		<h5>Test this and if it works you’re done!</h5>
+		<p>Test this and if it works you’re done!</p>
 		<p>Issues?</p>
 		<ul>
 			<li>Make sure you have the right components and properties in
