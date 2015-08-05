@@ -10,10 +10,11 @@
 	border: 0px;
 	border-radius: 0px;
 }
-.dropdown-menu > li > a:hover{
-	color:#379F9A;
-	
+
+.dropdown-menu>li>a:hover {
+	color: #379F9A;
 }
+
 .navbar-nav>li>a {
 	color: white !important;
 	font-size: 16px;
@@ -1905,13 +1906,14 @@ footer a {
 	color: white;
 	padding-bottom: 10px;
 }
-.dark-blue-title a{
-	color:white;
-}
-.dark-blue-title a:hover{
-	color:#369D99;
+
+.dark-blue-title a {
+	color: white;
 }
 
+.dark-blue-title a:hover {
+	color: #369D99;
+}
 
 /* General purpose container for content */
 .card {
@@ -1922,8 +1924,24 @@ footer a {
 	margin: 10px 0px;
 }
 
+.card--teacher {
+	background-color: white;
+	color: #333;
+	border: 1px solid #e2e2e2;
+	text-align: center;
+	height: 500px;
+	padding-top: 60px;
+	width: 333px;
+	margin: 10px auto;
+}
+
+.card--teacher img {
+	margin: auto;
+	border-radius: 100px;
+}
+
 .landing-teachers-section {
-	padding: 70px;
+	
 }
 
 1
@@ -2028,24 +2046,27 @@ footer a {
 
 .center-img {
 	display: block;
-	margin: auto;}
+	margin: auto;
+}
+
 hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 0;
-  border-top: 1px solid #329796;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid #329796;
 }
 /* centered columns styles */
 .row-centered {
-    text-align:center;
+	text-align: center;
 }
+
 .col-centered {
-    display:inline-block;
-    float:none;
-    /* reset the text-align */
-    text-align:left;
-    /* inline-block space fix */
-    margin-right:-4px;
+	display: inline-block;
+	float: none;
+	/* reset the text-align */
+	text-align: left;
+	/* inline-block space fix */
+	margin-right: -4px;
 }
 
 /* Another big call to action button for the landing page */
@@ -2154,7 +2175,7 @@ a {
 
 /* Offsets page to make room for header */
 .body-wrapper {
-  padding-top: 85px; /* Must match height of header */
+	padding-top: 85px; /* Must match height of header */
 }
 
 .header {
@@ -2583,5 +2604,54 @@ a.menu-item {
 	width: 385px;
 	position: absolute;
 	left: -17px;
+}
 
+.about-header {
+	height: 300px;
+	background-color: green;
+	position: relative;
+	margin-bottom: 28px;
+}
+
+.about-header.who-we-are {
+	background-image: url("/assets/img/propoganda/chinatown.jpg");
+	background-size: 100% auto;
+	background-position: 50%;
+}
+
+.who-we-are p {
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+.about-header.who-we-are h1 {
+	margin: 0;
+	color: white;
+	font-size: 55px;
+	text-align: center;
+	padding-top: 123px;
+}
+
+.about-header.who-we-are .overlay {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.as-seen-in-section {
+	text-align: center;
+	padding-top: 20px;
+	background-color: rgba(128, 128, 128, 0.15);
+}
+
+.as-seen-in-section h3 {
+	margin: 0px 0px 20px 0px;
+}
+
+.as-seen-in-section img {
+	width: 140px;
+	padding: 10px 20px;
 }

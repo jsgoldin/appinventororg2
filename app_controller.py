@@ -4264,7 +4264,7 @@ class AboutHandler(webapp.RequestHandler):
                            'courseToModules' : getCoursesAndModules(),
                            }
         
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/about.html')
+        path = os.path.join(os.path.dirname(__file__), 'pages/who_we_are.html')
         self.response.out.write(template.render(path, template_values))
 
 class DCLHandler(webapp.RequestHandler):
