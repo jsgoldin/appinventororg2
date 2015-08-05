@@ -6,8 +6,8 @@
 # This file should not be pushed to github with a release version specified.
 
 
-application: appinventororgtesting
-version: 1
+application: appinventororg
+version: dave
 runtime: python27
 api_version: 1
 threadsafe: no

@@ -3205,7 +3205,44 @@ class CanvasComponentHandler(webapp.RequestHandler):
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/canvasComponent.html')
-        self.response.out.write(template.render(path, template_values))  
+        self.response.out.write(template.render(path, template_values))
+        
+        
+class CanvasComponentMasterNuggetHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/drawing-canvas.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class CanvasComponentMasterHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/drawing-canvas.html')
+        self.response.out.write(template.render(path, template_values))
+        
+        
 class CanvasPropertiesHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -3230,6 +3267,25 @@ class VariablesCirclesNuggetHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables-circles.html')
         self.response.out.write(template.render(path, {})) 
+
+class VariableCircleMasterHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variablesHowDoYou.html')
+        self.response.out.write(template.render(path, template_values))
+
+
 class RememberThingsHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -6693,8 +6749,10 @@ application = webapp.WSGIApplication(
         ('/canvasComponent', CanvasComponentHandler),
         ('/canvasProperties', CanvasPropertiesHandler),
         ('/canvasComponentNugget', CanvasComponentNuggetHandler),
+        ('/canvasComponentMaster', CanvasComponentMasterHandler),
+        ('/canvasComponentNuggetMaster', CanvasComponentMasterNuggetHandler),
         ('/VariablesCirclesNugget', VariablesCirclesNuggetHandler ),
-        ('/rememberThings', RememberThingsHandler),
+        ('/variableCircleMaster', VariableCircleMasterHandler),
         ('/paintPotText', PaintPotTextHandler),
         ('/howGamesWork', HowGamesWorkHandler),
         ('/incrementingws', IncrementingWSHandler),
