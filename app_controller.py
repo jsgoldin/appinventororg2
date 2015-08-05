@@ -3235,7 +3235,65 @@ class LessonPlan23Handler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan23.html')
         self.response.out.write(template.render(path, {}))
+        
+# Java Bridge
 
+class JBridgeIntroHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeIntro.html')
+        self.response.out.write(template.render(path, template_values))
+class JBridgeRedClickEclipseHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeRedClickEclipse.html')
+        self.response.out.write(template.render(path, template_values))
+class JBridgeRedClickAndroidHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeRedClickAndroid.html')
+        self.response.out.write(template.render(path, template_values))
+class JBridgeBasicsHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeBasics.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class JBridgeMoleMashHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeMoleMash.html')
+        self.response.out.write(template.render(path, template_values))
+
+class JBridgePaintPotHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgePaintPot.html')
+        self.response.out.write(template.render(path, template_values))
 # LESSON PLANS
 
 class LPIntroHandler(webapp.RequestHandler):
@@ -6568,7 +6626,15 @@ application = webapp.WSGIApplication(
         ('/advancedanimationWS', AdvancedAnimationWSHandler),
         ('/lessonplan21', LessonPlan21Handler),
         ('/lessonplan22', LessonPlan22Handler),
-        ('/lessonplan23', LessonPlan23Handler)
+        ('/lessonplan23', LessonPlan23Handler),
+        
+        #Handlers for Java Bridge
+        ('/jBridgeIntro', JBridgeIntroHandler),
+        ('/jBridgeRedClickEclipse', JBridgeRedClickEclipseHandler),
+        ('/jBridgeRedClickAndroid', JBridgeRedClickAndroidHandler),
+        ('/jBridgeBasics', JBridgeBasicsHandler),
+        ('/jBridgeMoleMash', JBridgeMoleMashHandler),
+        ('/jBridgePaintPot', JBridgePaintPotHandler),
         
     ],
     debug=True)
