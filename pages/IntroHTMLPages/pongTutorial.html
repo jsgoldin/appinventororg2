@@ -501,10 +501,12 @@
 							place let's create a procedure to update the score. This
 							procedure will have a parameter (New Score) that will be used in
 							our app.</p>
-							
-							<img class="img-responsive center-img" alt="img0"
-							src="/images/CourseInABoxImages/PRO_EXPARA.png">
 
+						<img class="img-responsive center-img" alt="img0"
+							src="/images/CourseInABoxImages/PRO_EXPARA.png"> <br>
+						<p>Creating a procedure parameter adds an empty space when you
+							call the procedure, and adds a procedure parameter that can be
+							used within the parameter.</p>
 					</div>
 					<a type="button" href="#q22a" data-toggle="collapse"
 						onclick="showHideToggle(id)" id="q22b" name="q22b">Answer</a>
@@ -515,9 +517,92 @@
 		</div>
 
 
+		<p>What we want to do when we Score a point?</p>
+		<div class="quiz-panel-inner">
+			<div id="q23a" class="collapse">
+				<p>
+					Call the procedure with the <b>updated</b> score
+				</p>
+			</div>
+			<a type="button" href="#q23a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q23b" name="q23b">Answer</a>
+		</div>
+		<br>
+		<p>In the procedure</p>
+		<ol>
+			<li>Save the updated score.</li>
+			<div class="collapse q24a">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/USPRO_FO1.jpg">
+			</div>
+			<li>Show the updated score in the label.</li>
+			<div class="collapse q24a">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/USPRO_FO.jpg">
+			</div>
+		</ol>
+		<div class="collapse q24a">
+			<div class="quiz-panel-inner">
+				<p class="collapse q25a">
+					UpdateScore is called when the the ball Collides with a paddle and
+					when it is called, the procedure parameter’s value is set to the
+					current score +1<br> Then when the procedure starts, Global
+					score is set to the procedure parameter “New_Score” (Current
+					score+1) and the Score label is set to Join the text “Score: “ and
+					the global score.<br> Test this and let’s move on to the Reset
+					Button
+
+				</p>
+				<a type="button" href=".q25a" data-toggle="collapse"
+					onclick="showHideToggle(id)" id="q25b" name="q25b">Explain</a>
+			</div>
+		</div>
+
+		<div class="quiz-panel-inner">
+
+			<a type="button" href=".q24a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q24b" name="q24b">Show me the
+				blocks</a>
+		</div>
 	</div>
 
+	<div class="card">
+		<h2>Reset Button</h2>
+		<p>Clicking the reset button should do two things:</p>
+		<ol>
+			<li>Set the ball’s position to be back at the top middle of the
+				screen</li>
+			<li>Set the score back to 0</li>
+		</ol>
+		<p>Try to do this using the Ball’s MoveTo block and the
+			UpdateScore Procedure block. Then test it.</p>
+		<div class="quiz-panel-inner">
+			<div id="q26a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/USPRO_FO1.jpg">
+			</div>
+			<a type="button" href="#q26a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q26b" name="q26b">Show me the
+				blocks</a>
+		</div>
 
+	</div>
+
+	<div class="card">
+		<h2>Start Button</h2>
+		<p>Code the app so that the score starts at 0 when the user clicks
+			Button Start.</p>
+		<div class="quiz-panel-inner">
+			<div id="q27a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/BS_BMTUSBEBHBSBI.jpg">
+			</div>
+			<a type="button" href="#q27a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q27b" name="q27b">Show me the
+				blocks</a>
+		</div>
+
+	</div>
 
 </div>
 
