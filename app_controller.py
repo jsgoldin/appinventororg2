@@ -3488,6 +3488,70 @@ class MoleMashTextHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/molemashtext.html')
         self.response.out.write(template.render(path, template_values))
+
+
+###END OF QUIZ 9###
+
+
+# Java Bridge
+
+class JBridgeIntroHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeIntro.html')
+        self.response.out.write(template.render(path, template_values))
+class JBridgeRedClickEclipseHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeRedClickEclipse.html')
+        self.response.out.write(template.render(path, template_values))
+class JBridgeRedClickAndroidHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeRedClickAndroid.html')
+        self.response.out.write(template.render(path, template_values))
+class JBridgeBasicsHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeBasics.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class JBridgeMoleMashHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeMoleMash.html')
+        self.response.out.write(template.render(path, template_values))
+
+class JBridgePaintPotHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgePaintPot.html')
+        self.response.out.write(template.render(path, template_values))
+
 # LESSON PLANS
 
 class LPIntroHandler(webapp.RequestHandler):
@@ -6868,10 +6932,14 @@ application = webapp.WSGIApplication(
         ('/introProcedures',IntroProceduresHandler),
         ('/introUserGen',IntroUserGeneratedHandler),
         ('/introWeb',IntroWebEnabledAppsHandler),
-        ('/introIntro', IntroIntroductionHandler)
-        
-        
-        
+        ('/introIntro', IntroIntroductionHandler),
+        #Handlers for Java Bridge
+        ('/jBridgeIntro', JBridgeIntroHandler),
+        ('/jBridgeRedClickEclipse', JBridgeRedClickEclipseHandler),
+        ('/jBridgeRedClickAndroid', JBridgeRedClickAndroidHandler),
+        ('/jBridgeBasics', JBridgeBasicsHandler),
+        ('/jBridgeMoleMash', JBridgeMoleMashHandler),
+        ('/jBridgePaintPot', JBridgePaintPotHandler),
         
     ],
     debug=True)
