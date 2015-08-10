@@ -6424,6 +6424,11 @@ class ObjectivesModule1(webapp.RequestHandler):
         self.response.out.write(template.render(path, {}))
 
 
+     
+class NewsHandler(webapp.RequestHandler):
+    def get(self):
+        path = os.path.join(os.path.dirname(__file__), 'pages/news.html')
+        self.response.out.write(template.render(path, {})) 
         
 
 # create this global variable that represents the application and specifies which class
@@ -6452,7 +6457,7 @@ application = webapp.WSGIApplication(
         ('/procedures', LPCodeReuseHandler), ('/deploying-an-app-and-posting-qr-code-on-web', LPQRHandler),
         ('/module1', Module1Handler), ('/module2', Module2Handler), ('/module3', Module3Handler),
         ('/module4', Module4Handler), ('/module5', Module5Handler), ('/module6', Module6Handler),
-        ('/moduleX', ModuleXHandler), ('/contact', ContactHandler), ('/about', AboutHandler), ('/dcl',DCLHandler),('/book', BookHandler), ('/quizquestions', QuizQuestionsHandler), ('/Quiz1', Quiz1Handler), ('/Quiz2', Quiz2Handler), ('/Quiz3', Quiz3Handler), ('/Quiz4', Quiz4Handler), ('/Quiz5', Quiz5Handler), ('/Quiz6', Quiz6Handler), ('/Quiz7', Quiz7Handler), ('/Quiz8', Quiz8Handler), ('/Quiz9', Quiz9Handler), ('/app-architecture', Handler14), ('/engineering-and-debugging', Handler15), ('/variables-1', Handler16),
+        ('/moduleX', ModuleXHandler), ('/contact', ContactHandler), ('/dcl',DCLHandler),('/book', BookHandler), ('/quizquestions', QuizQuestionsHandler), ('/Quiz1', Quiz1Handler), ('/Quiz2', Quiz2Handler), ('/Quiz3', Quiz3Handler), ('/Quiz4', Quiz4Handler), ('/Quiz5', Quiz5Handler), ('/Quiz6', Quiz6Handler), ('/Quiz7', Quiz7Handler), ('/Quiz8', Quiz8Handler), ('/Quiz9', Quiz9Handler), ('/app-architecture', Handler14), ('/engineering-and-debugging', Handler15), ('/variables-1', Handler16),
         ('/animation-3', Handler17), ('/conditionals', Handler18), ('/lists-2', Handler19),
         ('/iteration-2', Handler20), ('/procedures-1', Handler21), ("/databases", Handler22), ("/sensors-1", Handler23),
         ("/apis", Handler24), ('/course-in-a-box_teaching', CourseInABoxHandlerTeaching), ('/media_teaching', MediaHandlerTeaching),
@@ -6733,7 +6738,10 @@ application = webapp.WSGIApplication(
         ('/howGamesWork', HowGamesWorkHandler),
         ('/incrementingws', IncrementingWSHandler),
         ('/timerEvent', TimerEventHandler),
-        ('/molemashtext', MoleMashTextHandler)
+        ('/molemashtext', MoleMashTextHandler),
+        
+         ('/about', AboutHandler),
+         ('/news', NewsHandler)
     ],
     debug=True)
 
