@@ -1,54 +1,93 @@
+(function($) {
 
-
-(function ( $ ) {
-	
-	/* Peekaboo
+	/*
+	 * Peekaboo
 	 * 
-	 * As the windows scrolls through the scroll zone an element will travel another zone
-	 * in the opposite direction.
-	 * 
-	 * The peekabooer will move from hideTopPos to hideBtmPos.
-	 *
-	 * TODO: ability to update positions, this is useful if the window changes size and the 
-	 * scroll zone or hide path needs to change with it.
-	 *
-	*/
-    $.fn.peekaboo = function(scrollZoneTop, scrollZoneBottom, hideBtmPos, hideTopPos) {
-    	
-    	var hiderElem = $(this).detach();
-    	
-    	$("body").append(hiderElem);
-    	
-    	// Places hideElem's top at the hideBtmPos point.
-    	// To fully expose the hideElem its top must be at
-    	// hideBtmPos + hideElem.outerHeight()
-    	hiderElem.css("top", hideBtmPos);
+	 * As the windows scrolls through the scroll zone an element will travel
+	 * another zone in the opposite direction. The scrollzone is determined by
+	 * the position of 2 jquery objects. The hideZone is determined by another 2
+	 * jquery objects. The peekabooer will move from hideTopPosObj to
+	 * hideBtmPosObj.
+	 */
 
-    	var wallHeight = scrollZoneBottom - scrollZoneTop;
-    	var hideHeight = hideTopPos - hideBtmPos;
-    	
-    	$(window).scroll(function() {
-    		var jWindow = $(this);
-    		var scrollBottom = jWindow.scrollTop() + jWindow.height()
-    		var newTop;
-    		
-    		if (scrollBottom < scrollZoneTop) {
-    			newTop = hideBtmPos;
-    		} else if (scrollBottom > scrollZoneBottom) {
-    			newTop = hideTopPos;
-    		} else {
-    			var percentThroughWall = 1 - ((scrollZoneBottom - scrollBottom) / (scrollZoneBottom - scrollZoneTop));	    
-	    		var hideElemOffset = percentThroughWall * (hideTopPos - hideBtmPos);	    		
-	    		newTop = hideBtmPos + hideElemOffset;
-    		}
-    		
-    		hiderElem.css("top", newTop + "px");
-    	});
-        return this;
-    };
-}( jQuery ));
+	$.fn.peekaboo = function(scrollZoneTopObj, scrollZoneBottomObj,
+			hideBtmPosObj, hideTopPosObj) {
 
-$(document).ready(function() {
-	var scrollStart = $(".landing-courses-section").offset().top + 80;
-	$(".peekaboo-robot").peekaboo(scrollStart, scrollStart + 300, scrollStart,scrollStart - 300);
-});
+		var scrollZoneTop;
+		var scrollZoneBottom;
+		var hideBtmPos;
+		var hideTopPos;
+
+		var wallHeight;
+		var hideHeight;
+
+		var scrollBottom;
+
+		var m_window = $(window);
+
+		function updateScrollZones(m_window, scrollZoneTopObj, hideBtmPosObj,
+				hideTopPosObj) {
+			scrollBottom = m_window.scrollTop() + m_window.height();
+			scrollZoneTop = scrollZoneTopObj.offset().top;
+			scrollZoneBottom = scrollZoneBottomObj.offset().top;
+			hideBtmPos = hideBtmPosObj.offset().top;
+			hideTopPos = hideTopPosObj.offset().top;
+
+			wallHeight = scrollZoneBottom - scrollZoneTop;
+			hideHeight = hideTopPos - hideBtmPos;
+		}
+
+		function updatePeekABooPos(scrollBottom, scrollZoneTop,
+				scrollZoneBottom, hideTopPos, hideBtmPos) {
+			var newTop;
+
+			if (scrollBottom < scrollZoneTop) {
+				newTop = hideBtmPos;
+			} else if (scrollBottom > scrollZoneBottom) {
+				newTop = hideTopPos;
+			} else {
+				var percentThroughWall = 1 - ((scrollZoneBottom - scrollBottom) / (scrollZoneBottom - scrollZoneTop));
+				var hideElemOffset = percentThroughWall
+						* (hideTopPos - hideBtmPos);
+				newTop = hideBtmPos + hideElemOffset;
+			}
+			hiderElem.css("top", newTop + "px");
+		}
+
+		// initialize peekaboo elements initial position
+		var hiderElem = $(this).detach();
+		$("body").append(hiderElem);
+		hideBtmPos = hideBtmPosObj.offset().top;
+
+		// Places hideElem's top at the hideBtmPos point.
+		// To fully expose the hideElem its top must be at
+		// hideBtmPos + hideElem.outerHeight()
+		hiderElem.css("position", "absolute");
+		hiderElem.css("top", hideBtmPos);
+
+		m_window.scroll(function() {
+			updateScrollZones(m_window, scrollZoneTopObj, hideBtmPosObj,
+					hideTopPosObj);
+			updatePeekABooPos(scrollBottom, scrollZoneTop, scrollZoneBottom,
+					hideTopPos, hideBtmPos);
+		});
+
+		m_window.resize(function() {
+			updateScrollZones(m_window, scrollZoneTopObj, hideBtmPosObj,
+					hideTopPosObj);
+			updatePeekABooPos(scrollBottom, scrollZoneTop, scrollZoneBottom,
+					hideTopPos, hideBtmPos);
+		});
+
+		return this;
+	};
+
+}(jQuery));
+
+$(document).ready(
+		function() {
+			var scrollStart = $(".landing-courses-section").offset().top + 80;
+			$(".peekaboo-robot").peekaboo($("#scrollZoneTopObj"),
+					$("#scrollZoneBottomObj"), $("#hideBtmPosObj"),
+					$("#hideTopPosObj"));
+		});
