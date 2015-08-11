@@ -3288,7 +3288,24 @@ class IntroIntroductionHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introIntroduction.html')
         self.response.out.write(template.render(path, template_values))  
-    
+        
+class IntroToProceduresHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/IntroductiontoProcedures.html')
+        self.response.out.write(template.render(path, template_values))   
+         
 class CarouselTestHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/carousel2.html')
@@ -6940,6 +6957,11 @@ application = webapp.WSGIApplication(
         ('/jBridgeBasics', JBridgeBasicsHandler),
         ('/jBridgeMoleMash', JBridgeMoleMashHandler),
         ('/jBridgePaintPot', JBridgePaintPotHandler),
+        
+        #handlers for procedures gdoc
+        ('/introToProcedures', IntroToProceduresHandler)
+        
+        
         
     ],
     debug=True)

@@ -1,5 +1,5 @@
 *.py[cod]
-
+Thumbs.db
 # C extensions
 *.so
 
