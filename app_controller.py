@@ -1394,7 +1394,7 @@ class VariablesCirclesHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables-circles.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variablesHowDoYou.html')
         self.response.out.write(template.render(path, template_values))
 class VariablesBackForthHandler(webapp.RequestHandler):
     def get(self):
