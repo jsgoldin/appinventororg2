@@ -1559,7 +1559,12 @@ footer a {
 	font-size: 50px;
 	margin: 0px auto 40px auto;
 	color: rgb(47, 44, 44);
-	font-weight: 900;
+}
+
+.headline--white {
+	font-size: 50px;
+	margin: 0px auto 40px auto;
+	color: #ffffff;
 }
 
 .subhead {
@@ -1567,6 +1572,13 @@ footer a {
 	max-width: 650px;
 	margin: 0px auto 40px auto;
 	color: #747474;
+}
+
+.subhead--white {
+	font-size: 26px;
+	max-width: 650px;
+	margin: 0px auto 40px auto;
+	color: #ffffff;
 }
 
 .bookchaptersbox {
@@ -2743,4 +2755,19 @@ a.menu-item {
 
 .team-photo img {
 	width: 100%;
+}
+
+.overlay {
+	width: 100%;
+	height: 100%;
+}
+
+.landing-video-section {
+	overflow: hidden;
+	height: 63%;
+	position: relative;
+}
+
+.landing-video-section .overlay {
+	background-color: rgba(0, 0, 0, 0.62);
 }
