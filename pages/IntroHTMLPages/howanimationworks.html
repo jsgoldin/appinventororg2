@@ -8,61 +8,87 @@
 
 <div class="course-page-container">
 	<div class="card">
-		<p>In App Inventor, one can animate objects on a Canvas Component,
-			but to understand how to do that, one must understand animation.</p>
 
 		<img class="img-responsive center-img" alt="img0"
 			src="/images/CourseInABoxImages/A_slide.gif"> <br>
 		<p>
-			Animation is an optical illusion. This flipbook is displaying of a
-			series of images quickly that makes it look like the images are
-			moving.<br> To measure any movement you need two things -
-			Velocity (how far is moved) and Time (the time it takes for the
-			movement). So there are two things needed: A series of images and the
-			time it takes to switch between images.
+			Animation is an optical illusion. The flipbook above is displaying a
+			series of pages quickly so that, to the naked eye, the images are
+			moving. 
 		</p>
+
+	
+
+		<p>When we drive, we think of speed in terms of miles per hour (MPH). In animation and film, 
+		frames per second (FPS) is used instead, where a "frame" is each page in the flipbook. </p>
 	</div>
-
-	<div class="card">
-		<p>Think of cars. In the U.S., a car's speed is measured in MPH or
-			miles per hour. 10 miles per hour means it will take 1 hour to travel
-			10 miles, 100 miles per hour means it will take 1 hour to travel 100
-			miles.</p>
-		<img width="50%" class="img-responsive center-img" alt="img0"
-			src="/images/CourseInABoxImages/AA_MPH.gif">
-		<p>In animation and film, instead of using MPH they use FPS:
-			frames per second or frames/seconds. In the flipbook gif above, what
-			are the frames?</p>
-		<div class="quiz-panel-inner" >
-			<div id="q4a" class="collapse img-responsive">
-				<p>In the flipbook animation, the frames are every page in the flipbook.</p>
-
-			</div>
-			<a type="button" href="#q4a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q4b" name="q4b">Answer</a>
-		</div>
-	</div>
-
-
 	<div class="card">
 		<h2>Smooth vs Laggy Animation</h2>
 		<p>
-			Currently, Youtube allows people to change the speed of videos on their website.
-			Check out the stop motion video below and play it at all 6 speeds by clicking the gear icon on the bottom right of the video.
-			Stop motion videos are created by putting a series of pictures
-			together to make a video.<br> <img class="img-responsive center-img"
-				alt="img0" src="/images/CourseInABoxImages/changeSpeed.png">
-		<p>What do you notice about animation smoothness between slow and
-			fast speeds?</p>
-
-
+			To get a feel for how frames per second can be used to control an animation, play the stop 
+			motion video below at different speeds by clicking the gear icon 
+			on the bottom right of the video, choosing "Speed", and selecting various settings.
 
 		<iframe class="center-img" width="560" height="315"
 			src="https://www.youtube.com/embed/hayIPU3wRuo" frameborder="0"
 			allowfullscreen></iframe>
 		<br>
-		<p>As you can probably tell, the faster the speed, the smoother
-			the animation.</p>
-
+		
 	</div>
+	
+	<div class="card">
+
+		<h2>Animation in App Inventor using the Clock Component</h2>
+		<p>In App Inventor, you can use the Clock component and its Clock.Timer event
+		to facilitate animation. For instance, the following blocks cause a ball to move
+		to the right every second:
+		</p>
+		<img class="img-responsive" alt="img0"
+						src="/images/CourseInABoxImages/CL_B1M.png
+
+"> 
+
+
+
+
+					<img class="img-responsive" alt="img0"
+						src="/images/CourseInABoxImages/A_SB.gif">
+
+
+		<p>Notice that the ball is slow and lags. This is because the Clock.Timer
+		event triggers every 1000 milliseconds by default. You can change the Clock.TimerInterval
+		to make an animation faster or slower-- this is how you control the frames per second.</p>		
+
+	
+
+		<p>For instance, if we changed the TimerInterval in the Clock’s properties to 10
+			ms instead of 1000 ms, we'd get a faster ball movement:</p>
+		<img class="img-responsive" alt="img0"
+			src="/images/CourseInABoxImages/C_PTI.png ">
+
+
+					<img class="img-responsive" alt="img0"
+						src="/images/CourseInABoxImages/CL_B1M.png
+
+"> <br>
+					<p>Now the ball moves smoothly across the screen because it is moving 1 pixel every 10 ms.</p>
+					<img class="img-responsive" alt="img0"
+						src="/images/CourseInABoxImages/A_BMB.gif
+
+">
+    <div class="quiz-panel-outer">
+	<p>What is the frames per second (FPS) of the animation if the Clock.TimerInterval is set to 10 ms.</p>
+   	<div class="quiz-panel-inner">
+			<div id="q6a" class="collapse">
+
+			<p> The Clock.Timer event will trigger every 10 ms. 10 ms is 1/100 of a second, so this means the Clock.Timer
+				event will trigger 100 times a second. Thus the FPS is 100.
+				</div>
+			<a type="button" href="#q6a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q6b" name="q6b">Show Answer</a>	
+				
+	</div>
+				
+	</div>
+	
 </div>
