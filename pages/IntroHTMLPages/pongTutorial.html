@@ -8,6 +8,12 @@
 	<div class="course-page-container">
 		<div style="float: left;">
 			<h1>Pong Tutorial</h1>
+			<h4>
+			Having a ball bounce off a paddle and making sure it doesn’t hit the
+			bottom of the screen is one of the oldest and addicting games in the
+			book.<br>Follow the tutorial below to learn how to make your own
+			version of Pong.
+		</h4>
 		</div>
 
 		<div style="float: right;"></div>
@@ -16,21 +22,10 @@
 </div>
 
 <div class="course-page-container">
-	<div class="card">
-		<h2>
-			Having a ball bounce off a paddle and making sure it doesn’t hit the
-			bottom of the screen is one of the oldest and addicting games in the
-			book.<br>Follow the tutorial below to learn how to make your own
-			version of Pong.
-
-
-		</h2>
-	</div>
 
 	<div class="card">
-		<p>
-			Get the Starter app
-			ai2.appinventor.mit.edu/?galleryId=6343831516086272 Start out by
+		<h2>Get the Starter app</h2>
+		<p>ai2.appinventor.mit.edu/?galleryId=6343831516086272 Start out by
 			heading to this <a
 				href="http://ai2.appinventor.mit.edu/?galleryId=6343831516086272">link
 			</a> to download the starter app of this tutorial into App Inventor.
@@ -533,12 +528,12 @@
 			<li>Save the updated score.</li>
 			<div class="collapse q24a">
 				<img class="img-responsive center-img" alt="img0"
-					src="/images/CourseInABoxImages/USPRO_FO1.jpg">
+					src="/images/CourseInABoxImages/USPRO_FO1.png">
 			</div>
 			<li>Show the updated score in the label.</li>
 			<div class="collapse q24a">
 				<img class="img-responsive center-img" alt="img0"
-					src="/images/CourseInABoxImages/USPRO_FO.jpg">
+					src="/images/CourseInABoxImages/USPRO_FO.png">
 			</div>
 		</ol>
 		<div class="collapse q24a">
@@ -579,7 +574,7 @@
 		<div class="quiz-panel-inner">
 			<div id="q26a" class="collapse">
 				<img class="img-responsive center-img" alt="img0"
-					src="/images/CourseInABoxImages/USPRO_FO1.jpg">
+					src="/images/CourseInABoxImages/USPRO_FO1.png">
 			</div>
 			<a type="button" href="#q26a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q26b" name="q26b">Show me the
@@ -595,13 +590,161 @@
 		<div class="quiz-panel-inner">
 			<div id="q27a" class="collapse">
 				<img class="img-responsive center-img" alt="img0"
-					src="/images/CourseInABoxImages/BS_BMTUSBEBHBSBI.jpg">
+					src="/images/CourseInABoxImages/BS_BMTUSBEBHBSBI.png">
 			</div>
 			<a type="button" href="#q27a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q27b" name="q27b">Show me the
 				blocks</a>
 		</div>
 
+	</div>
+
+	<div class="card">
+		<h2>Losing When you hit the bottom edge.</h2>
+		<p>Remember this block?</p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/B1_ERPTE.png">
+		<p>By looking at the following image, what could we change in this block to make:</p>
+		<ol>
+			<li>The bacll stop</li>
+			<li>The ScoreLabel display “Game Over”</li>
+		</ol>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/COM_P1.png">
+		<br>
+		<p>The following gif demonstrates the value of the event parameter “edge” in the edge reached event handler by using the following blocks</p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/PMOVE_WBLOCK.gif">
+		<br>
+		<p>In the above blocks, Score label is set to the event parameter “edge” to show you the event parameter’s value each time the ball hits the edge.</p>
+		<p>What value for edge would result in the user reaching game over? Why?</p>
+		<div class="quiz-panel-inner">
+			<div id="q28a" class="collapse">
+				<p>-1 because that is the value for the bottom of the screen</p>
+				<p>Essentially:</p>
+				<p>If edge = -1 then game over, else, bounce</p>
+				<p>What does the above “Game Over” do?</p>
+				<div class="quiz-panel-inner">
+					<div id="q29a" class="collapse">
+						<p>Makes the ball stop, makes the score label say Score: X Game Over</p>
+						<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/B1_ERIFEBE.png">
+
+				</div>
+				<a type="button" href="#q29a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q29b" name="q29b">Answer</a>
+				</div>
+
+			</div>
+			<a type="button" href="#q28a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q28b" name="q28b">Answer</a>
+
+		</div>
+
+
+
+		
+
+	</div>
+
+	<div class="card">
+		<h2>Adding Sound Effects and Making the Game Look Better</h2>
+
+		<p>Playing sound in your app is pretty easy in App Inventor if you use the Sound Component</p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/V_MESOUND.png">
+
+		<p>To play a sound there are two main blocks that you will be dealing with.</p>
+		<p>This block will tell your app which sound it should play.</p>
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/SP_SOUNDSOURCE.png">
+		<p>This block will play the sound.</p>
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/FC_SOUNDPLAY.png">
+
+		<p>Your uploaded sounds will be showed in the media section. You want to type in the name of sound file that you want to be played in a text block and connect it to the Sound1.Source block above.</p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/media.png">
+
+		<p>For example, if you want to play Noink.mp3 You would need these series of blocks </p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/SS_SPFC.png">
+		<p>Notice that Noink.mp3 includes the capital “N”</p>
+
+		<p>Now do the following:</p>
+		<ol>
+			<li>Play Buzzer.mp3 when the user loses.</li>
+			<li>Play note.wav when the ball hits the left, top, or right edge.</li>
+			<li>Play Noink.mp3 when the ball collides with the paddle.</li>
+		</ol>
+
+		<div class="quiz-panel-inner">
+			<div id="q30a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/B1_CWHUSSFCS.png">
+
+						<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/B_ERE1EBSP.png">
+			</div>
+			<a type="button" href="#q30a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q30b" name="q30b">Show me the
+				blocks</a>
+		</div>
+
+
+	</div>
+
+	<div class="card">
+		<h2>Sound as a Procedure and as an Option (Checkbox)</h2>
+		<p>Let’s start out making sound as a procedure, then we’ll get the sound to play only if the checkbox is clicked.</p>
+		<p>Create a procedure for playing sound with the procedure parameter being the source file.</p>
+		<div class="quiz-panel-inner">
+			<div id="q31a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/PS_NOPROS.png">
+
+			</div>
+			<a type="button" href="#q31a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q31b" name="q31b">Show me the
+				blocks</a>
+		</div>
+
+		<p>Now, make it so the procedure plays only if a checkbox is clicked.</p>
+		<p>First let’s add in a checkbox.</p>
+		<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/PNGT_CHSS.png">
+		<p>The checkbox is pretty simple. It has a property called Checkbox1.Checked. If this property is set to true then it is checked, if it is set to false it is not checked.</p>
+		<p>So Before we play the sound, we want to test if checkbox is checked.</p>
+		<p>Try to code it.</p>
+		<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/CW_HPROUSPROPS.png">
+
+		<div class="quiz-panel-inner">
+			<div id="q32a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/BCW_BHUSP.png">
+
+			</div>
+			<a type="button" href="#q32a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q32b" name="q32b">Show me the
+				blocks</a>
+		</div>
+	</div>
+
+	<div class="card">
+		<h2>Customize your App</h2>
+		<ol>
+			<li>Change the color of your canvas background.</li>
+			<li>Change the font style of the text.</li>
+			<li>Customize the game (each point makes the ball speed increase, or the paddle to get smaller, Save a high score, have bricks to break)</li>
+
+		</ol>
 	</div>
 
 </div>
