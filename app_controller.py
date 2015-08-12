@@ -3305,7 +3305,8 @@ class IntroToProceduresHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/IntroductiontoProcedures.html')
         self.response.out.write(template.render(path, template_values))   
-         
+
+
 class CarouselTestHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/carousel2.html')
@@ -3385,7 +3386,7 @@ class CanvasComponentNuggetHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, {})) 
 class VariablesCirclesNuggetHandler(webapp.RequestHandler):
     def get(self, *args):
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables-circles.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variablesCircleNugget.html')
         self.response.out.write(template.render(path, {})) 
 
 class VariableCircleMasterHandler(webapp.RequestHandler):
@@ -3507,13 +3508,14 @@ class MoleMashTextHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
 
+
 ###END OF QUIZ 9###
 
 
 # Java Bridge
 
 class JBridgeIntroHandler(webapp.RequestHandler):
-    def get(self, *args):
+     def get(self, *args):
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
@@ -3521,15 +3523,53 @@ class JBridgeIntroHandler(webapp.RequestHandler):
         template_values = { 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeIntro.html')
         self.response.out.write(template.render(path, template_values))
+
+class AIAnimationHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/aianimation.html')
+        self.response.out.write(template.render(path, template_values))
+     
+
+       
 class JBridgeRedClickEclipseHandler(webapp.RequestHandler):
     def get(self, *args):
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
-        
         template_values = { 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeRedClickEclipse.html')
         self.response.out.write(template.render(path, template_values))
+
+        
+class HowAnimationworksHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/howanimationworks.html')
+        self.response.out.write(template.render(path, template_values))
+       
 class JBridgeRedClickAndroidHandler(webapp.RequestHandler):
     def get(self, *args):
         # user status
@@ -3538,6 +3578,23 @@ class JBridgeRedClickAndroidHandler(webapp.RequestHandler):
         
         template_values = { 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeRedClickAndroid.html')
+        self.response.out.write(template.render(path, template_values))
+
+class AnimationChallengeBrianHandler(webapp.RequestHandler):
+     def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/animationchallengebrian.html')
         self.response.out.write(template.render(path, template_values))
 class JBridgeBasicsHandler(webapp.RequestHandler):
     def get(self, *args):
@@ -3548,9 +3605,26 @@ class JBridgeBasicsHandler(webapp.RequestHandler):
         template_values = { 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeBasics.html')
         self.response.out.write(template.render(path, template_values))
+
+class AnimationChallengeInternalHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationChallengeInternal.html')
+        self.response.out.write(template.render(path, template_values))
         
 class JBridgeMoleMashHandler(webapp.RequestHandler):
-    def get(self, *args):
+     def get(self, *args):
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
@@ -3559,14 +3633,48 @@ class JBridgeMoleMashHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeMoleMash.html')
         self.response.out.write(template.render(path, template_values))
 
+class AnimationIntComponentHandler(webapp.RequestHandler):
+     def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationInternalComponents.html')
+        self.response.out.write(template.render(path, template_values))
+
 class JBridgePaintPotHandler(webapp.RequestHandler):
-    def get(self, *args):
+     def get(self, *args):
         # user status
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgePaintPot.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class PongTutorialHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/pongTutorial.html')
         self.response.out.write(template.render(path, template_values))
 
 # LESSON PLANS
@@ -6942,13 +7050,25 @@ application = webapp.WSGIApplication(
         ('/incrementingws', IncrementingWSHandler),
         ('/timerEvent', TimerEventHandler),
         ('/molemashtext', MoleMashTextHandler),
+
         
         #handlers for intro module pages
+
+        ('/aianimation', AIAnimationHandler),
+        ('/howanimationworks', HowAnimationworksHandler),
+        ('/animationchallengebrian', AnimationChallengeBrianHandler),
+        ('/animationChallengeinternal', AnimationChallengeInternalHandler),
+        ('/animationinternalcomp', AnimationIntComponentHandler),
+        ('/pongtutorial', PongTutorialHandler),
+        
+         #handlers for intro module pages
+
         ('/introTextingLocation',IntroTextingLocationHandler),
         ('/introQuizzesInfo',IntroQuizzesInformationHandler),
         ('/introProcedures',IntroProceduresHandler),
         ('/introUserGen',IntroUserGeneratedHandler),
         ('/introWeb',IntroWebEnabledAppsHandler),
+
         ('/introIntro', IntroIntroductionHandler),
         #Handlers for Java Bridge
         ('/jBridgeIntro', JBridgeIntroHandler),

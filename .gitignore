@@ -1,5 +1,5 @@
 *.py[cod]
-Thumbs.db
+*.pyc
 # C extensions
 *.so
 
@@ -35,8 +35,5 @@ nosetests.xml
 .pydevproject
 .DS_Store
 /test.html
+Thumbs.db
 
-
-
-
-*.DS_Store

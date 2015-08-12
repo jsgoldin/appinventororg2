@@ -5,46 +5,43 @@
 	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
 <div class="dark-blue-title">
 	<div class="course-page-container">
-		<h1>The Clock Component Timer Event: How does it work?</h1>
+		<h1>The Clock.Timer Event: How does it work?</h1>
 	</div>
 </div>
 
 <div class="course-page-container">
 	<div class="card">
-		<h4>The Clock.Timer event is like an alarm clock, it will do the event at the end of a timer.
-		 Just like how a timer will ring when it gets to 0, instead of ring, we can tell the clock component to do anything within our
-		  app and it can be set to loop (repeat) or go off once.<br>The Clock.TimerInterval property, determines how long it will take for 
-		  the sound to play. By default it is set to 1000 milliseconds (1 second), so if you don’t change the timer interval the sound above
-		   will play every second. <br>You can set this property in the designer or with blocks and you can decide whether you want the timer to
-		    repeat or stop after it goes off.</h4>
-		    <img alt="" src="/images/CourseInABoxImages/TE_prop.png"
+		<p>
+			The Clock component has a key event, Clock.Timer, which acts as an alarm clock,
+			and one that can go off repeatedly (unless you turn it off).
+			The Clock.TimerInterval property determines how often the Clock.Timer event
+			will be triggered. By default the TimerInterval is set to 1000 milliseconds
+			(1 second). In the example shown below, a sound will play every second.
+			 If you set it to 2000, the sound would
+			play every two seconds. You can set the TimerInterval
+			property in the designer or with blocks.
+		</p>
+		<img alt="" src="/images/CourseInABoxImages/TE_prop.png"
 			class="img-responsive center-img">
+		<p> The Clock.TimerEnabled property determines if the Clock.Timer event will
+		trigger at all. In some apps, you'll initially set this property to false, then set it to true
+		when you want action to begin (e.g., when the user clicks a button to start an animation).
 	</div>
-	
-	
+
+
 	<div class="card">
-	<h2>Review</h2>
-	
-	<h4>How would to play a sound every 5 seconds?</h4>
-	<div class="quiz-panel-inner">
+
+		<h4>How would you play a sound every 5 seconds?</h4>
+		<div class="quiz-panel-inner">
 			<div id="q9a" class="collapse">
-			<H4>Change the timer interval property to 5,000 ms</H4>
+				<H4>Change the Clock.TimerInterval property to 5,000.</H4>
 
 
 			</div>
 			<a type="button" href="#q9a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q9b" name="q9b">Show Answer</a>
 		</div>
+
 		
-		<h4>How would you make label1 increase every second?</h4>
-		<div class="quiz-panel-inner">
-			<div id="q8a" class="collapse">
-				<h4>*************Brian will fix this later</h4>
-
-
-			</div>
-			<a type="button" href="#q8a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q8b" name="q8b">Show Answer</a>
-		</div>
 	</div>
 </div>
