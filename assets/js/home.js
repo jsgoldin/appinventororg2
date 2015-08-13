@@ -81,13 +81,54 @@
 
 		return this;
 	};
+	
+	
+	/*
+	 * Force an absolute position object with dynamic width
+	 * to stay centered.
+	*/
+	
+	$.fn.centerAbsolute = function() {
+		
+		var objToCenter = this;
+		
+		var m_window = $(window);
+		
+	
+		function center(m_window, objToCenter) {
+			// calculate negative left offset
+			var halfObjWidth = objToCenter.width() / 2;
+			var halfWindowWidth = m_window.width() / 2;
+				
+			var newLeft = -1 * (halfObjWidth - halfWindowWidth);
+			
+			objToCenter.css("left", newLeft);
+			
+		}
+		
+		center(m_window, objToCenter);
+		
+		m_window.resize(function() {
+			center(m_window, objToCenter);
+		});
+		
+		objToCenter.resize(function() {
+			center(m_window, objToCenter);
+		})
+		
+		
+		return this;
+	}
 
 }(jQuery));
 
 $(document).ready(
 		function() {
+			
 			var scrollStart = $(".landing-courses-section").offset().top + 80;
 			$(".peekaboo-robot").peekaboo($("#scrollZoneTopObj"),
 					$("#scrollZoneBottomObj"), $("#hideBtmPosObj"),
 					$("#hideTopPosObj"));
+			
+			$(".landing-video-section video").centerAbsolute()
 		});

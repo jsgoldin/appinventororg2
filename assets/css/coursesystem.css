@@ -2041,8 +2041,6 @@ footer a {
 }
 
 .landing-video-text {
-	margin-top: 252px;
-	margin-bottom: 33px;
 	text-align: center;
 }
 
@@ -2463,12 +2461,15 @@ a.menu-item {
 }
 
 /* Smaller than ipad portrait width */
-@media ( min-width : 0px) and (max-width: 768px) {
+@media ( min-width : 0px) and (max-width: 767px) {
 	.banner-logo {
 		width: 300px;
 		padding-top: 18px;
 	}
 	.what-it-is-section .col-xs-4 {
+		width: 100%;
+	}
+	.landing-courses-section .col-xs-4 {
 		width: 100%;
 	}
 }
@@ -2483,6 +2484,7 @@ a.menu-item {
 		display: block;
 	}
 }
+
 
 @media ( min-width : 0px) and (max-width: 465px) {
 	.banner-logo {
@@ -2511,8 +2513,8 @@ a.menu-item {
 		margin: 0px auto 30px;
 		background-image: none !important;
 		transition: none;
-		height: 252px;
-		padding: 44px 20px;
+		height: 306px;
+		padding: 44px 14px;
 	}
 	.course-card:hover {
 		margin-top: initial;
@@ -2727,14 +2729,17 @@ a.menu-item {
 	text-align: center;
 	padding-bottom: 48px;
 	padding-top: 84px;
+	background-color: rgb(12, 140, 170);
 }
 
 .team-photo {
 	position: relative;
 	width: 250px;
 	display: inline-block;
-	margin: -3px -2px;
+	margin: 15px;
 	overflow: hidden;
+	border: 4px solid white;
+	border-radius: 100%;
 }
 
 .team-photo:hover>.team-photo-description {
@@ -2764,10 +2769,11 @@ a.menu-item {
 
 .landing-video-section {
 	overflow: hidden;
-	height: 63%;
 	position: relative;
+	height: 600px;
 }
 
 .landing-video-section .overlay {
-	background-color: rgba(0, 0, 0, 0.62);
+	background-color: rgba(0, 0, 0, 0.26);
+	padding-top: 206px;
 }
