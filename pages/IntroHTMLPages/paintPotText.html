@@ -38,6 +38,7 @@
 <div id="top" class="dark-blue-title">
 	<div class="course-page-container">
 		<h1>PaintPot Preliminaries</h1>
+		<p id="showhide">text</p>
 	</div>
 </div>
 
@@ -78,7 +79,7 @@
 		<img class="img-responsive center-img" alt=""
 			src="/images/CourseInABoxImages/img00_PPT.png">
 		<div class="quiz-panel-inner">
-			<div id="q2a" class="collapse">
+			<div id="q3a" class="collapse">
 
 				<p>
 					You'll need a Canvas, some Buttons and Labels, a couple of
@@ -86,15 +87,12 @@
 				</p>
 
 			</div>
-			<a type="button" href="#q2a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
+			<a type="button" href="#q3a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q3b" name="q3b">Show Answer</a>
 		</div>
 	</div>
 
-	<a type="button" href="#q3a" data-toggle="collapse"
-		onclick="showHideToggle(id)" id="q3b" name="q3b"></a> <br>
-
-
+	
 
 
 
@@ -376,14 +374,6 @@
 		
 	</div>
 
-	
-
-
-
-
-
-
-
 
 <script>
 	//function that adds slide animation when clicking to ids on a page
@@ -394,5 +384,22 @@
 			}, 'slow');
 		});
 
+
+	$('a').click(function(){
+		var id = $(this).attr('id');
+		if (id.indexOf('q')==0) {
+			var element = document.getElementById(id);
+
+			if (element.innerHTML != "Hide") {
+				element.innerHTML="Hide";
+			}else{
+				element.innerHTML="Show Answer"
+			}
+			
+
+		};
 	});
+		
+	});
+
 </script>
