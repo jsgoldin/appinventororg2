@@ -38,15 +38,14 @@
 <div id="top" class="dark-blue-title">
 	<div class="course-page-container">
 		<h1>PaintPot Preliminaries</h1>
-		<p id="showhide">text</p>
 	</div>
 </div>
 
 <div class="course-page-container">
 	<div class="card">
-		In PaintPot, you'll create an app in which the user can draw circles and lines,
+		<p>In PaintPot, you'll create an app in which the user can draw circles and lines,
 		change the color of drawings, and use the camera to change the background of
-		the drawing. To get you ready, check out the following:
+		the drawing. To get you ready, check out the following:</p>
 		
 		<ul>
 			<li>Basic App</li>
@@ -376,6 +375,9 @@
 
 
 <script>
+
+	var ids = [];
+	var messages = [];
 	//function that adds slide animation when clicking to ids on a page
 	$(document).ready(function() {
 		$('a').click(function() {
@@ -385,7 +387,7 @@
 		});
 
 
-	$('a').click(function(){
+	/*$('a').click(function(){
 		var id = $(this).attr('id');
 		if (id.indexOf('q')==0) {
 			var element = document.getElementById(id);
@@ -393,12 +395,13 @@
 			if (element.innerHTML != "Hide") {
 				element.innerHTML="Hide";
 			}else{
-				element.innerHTML="Show Answer"
+				element.innerHTML="Show Answer";
 			}
+
 			
 
 		};
-	});
+	});*/
 		
 	});
 
