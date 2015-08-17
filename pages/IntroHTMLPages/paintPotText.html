@@ -376,8 +376,8 @@
 
 <script>
 
-	var ids = [];
-	var messages = [];
+	
+
 	//function that adds slide animation when clicking to ids on a page
 	$(document).ready(function() {
 		$('a').click(function() {
@@ -385,23 +385,6 @@
 				scrollTop : $($(this).attr('href')).offset().top
 			}, 'slow');
 		});
-
-
-	/*$('a').click(function(){
-		var id = $(this).attr('id');
-		if (id.indexOf('q')==0) {
-			var element = document.getElementById(id);
-
-			if (element.innerHTML != "Hide") {
-				element.innerHTML="Hide";
-			}else{
-				element.innerHTML="Show Answer";
-			}
-
-			
-
-		};
-	});*/
 		
 	});
 

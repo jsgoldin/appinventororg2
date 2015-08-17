@@ -152,7 +152,37 @@
 <script>
 $(document).ready(function() {
     $('#contentarea').load('{{content.c_url}}');
+
+
+
+ 
+        //show hide answer for quiz panel messages
+        //Thomas 8/17/15
+
+
+
+        
+      
+             
+       
 });
+
+var idMessages = {};
+ function showHideToggle(id) {
+            if (id.indexOf('q')==0) {
+                var element = document.getElementById(id);
+
+            if (element.innerHTML!="Hide") {
+                idMessages[id] = element.innerHTML;
+                element.innerHTML = "Hide";
+            }else{
+                element.innerHTML = idMessages[id];
+            }
+
+        
+
+            };
+        }
 </script>
 
 {% endblock %}

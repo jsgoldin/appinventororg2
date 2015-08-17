@@ -126,8 +126,14 @@ $('.vertical-side-bar-top-bottom-next').click(
 /**
  * Scroll to top and stop behavior for the content page.
  */
+
+			
 $(document).ready(
 		function() {
+
+			
+
+
 			// scroll top top then fixed
 			$(window).bind(
 					'scroll',
@@ -195,4 +201,5 @@ $(document).ready(
 			});
 
 		});
+
 
