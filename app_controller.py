@@ -45,8 +45,7 @@ def getCourses():
     """
     Returns an ordered list of all courses on the site.
     """
-    return getCourses()                    
-
+    return Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
 
 def getCoursesAndModules():
     """
