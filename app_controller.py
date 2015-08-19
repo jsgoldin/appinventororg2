@@ -41,12 +41,19 @@ APPSDIR = '/apps'
 APPS2DIR = '/apps2'
 
 
+def getCourses():
+    """
+    Returns an ordered list of all courses on the site.
+    """
+    return getCourses()                    
+
+
 def getCoursesAndModules():
     """
     Returns an ordered list of all courses and the modules inside them.
     [(course_a, [(module_a, module_a_url), (module_b, module_b_url), ... ]), ...]
     """
-    courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+    courses = getCourses()
 
     courseModList = []
     for course in courses: 
@@ -177,7 +184,7 @@ class PublicProfileHandler(webapp.RequestHandler):
 
 
         # look up all the courses for the global navbar
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
@@ -212,7 +219,7 @@ class ProfileHandler(webapp.RequestHandler):
             return None
         
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                          
+        courses = getCourses()                          
         
         educationLevelCheck0 = ''
         educationLevelCheck1 = ''
@@ -353,7 +360,7 @@ class ChangeProfileHandler(webapp.RequestHandler):
         allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
 
     
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
 
 
@@ -665,7 +672,7 @@ class SmoothAnimationHandler(webapp.RequestHandler):
 
 class MediaHandler(webapp.RequestHandler):
     def get(self):
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
@@ -695,7 +702,7 @@ class MediaFilesHandler(webapp.RequestHandler):
 
 class StructureHandler(webapp.RequestHandler):
     def get(self):
-    	courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+    	courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
@@ -1705,7 +1712,7 @@ class SpritesBounceHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))        
 class ResourcesHandler(webapp.RequestHandler):
     def get(self):
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
@@ -2017,7 +2024,7 @@ class StarterAppsHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
 
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
@@ -2283,7 +2290,7 @@ class TeacherListHandler(webapp.RequestHandler):
 class TeachingAIHandler(webapp.RequestHandler):
     def get(self):
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
@@ -2544,7 +2551,7 @@ class EventHandlersHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
 
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
@@ -2563,7 +2570,7 @@ class ConditionalsInfoHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
 
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
@@ -2581,7 +2588,7 @@ class PropertiesHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
 
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
@@ -2690,7 +2697,7 @@ class JavaBridgeHandler(webapp.RequestHandler):
 class AppInventor2Handler(webapp.RequestHandler):
     def get(self):
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
@@ -3017,7 +3024,7 @@ class BookFilesHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
 
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
@@ -3516,7 +3523,7 @@ class BookHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
 
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
@@ -3533,7 +3540,7 @@ class Book2Handler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
 
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
@@ -4252,7 +4259,7 @@ class DeleteCommentHandler (webapp.RequestHandler):
        
 class AboutHandler(webapp.RequestHandler):
     def get(self):
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
@@ -4269,7 +4276,7 @@ class AboutHandler(webapp.RequestHandler):
 
 class DCLHandler(webapp.RequestHandler):
     def get(self):
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
@@ -4535,7 +4542,7 @@ class TeacherMapHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
                                                                       
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)        
 
@@ -4558,7 +4565,7 @@ class SearchHandler (webapp.RequestHandler):
         
         query = self.request.get("q")
         logging.info(query)
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                    
+        courses = getCourses()                    
                     
         userStatus = UserStatus().getStatus(self.request.uri)
         
@@ -4694,7 +4701,7 @@ class loginValidationHandler(webapp.RequestHandler):
 
 class CreateAccountHandler(webapp.RequestHandler):
     def get(self):
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()                                
+        courses = getCourses()                                
         userStatus = UserStatus().getStatus(self.request.uri)
         
         template_values = {'courses' : courses,
@@ -5640,7 +5647,7 @@ class Homehandler(webapp.RequestHandler):
 class TutorialsHandler(webapp.RequestHandler):
     def get(self):
         # retreive all of the courses
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+        courses = getCourses()
         
 
         userStatus = UserStatus().getStatus(self.request.uri)
@@ -5706,7 +5713,7 @@ class ContentsHandler(webapp.RequestHandler):
                 contents = Content.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course_entity.key.id()), Module, long(module_entity.key.id()))).order(Content.c_index).fetch()
                 
                 # retrieve all of the courses for the navbar
-                courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+                courses = getCourses()
                 
                 # construct dictionary of courses to modules mapping
 
@@ -5775,7 +5782,7 @@ class ContentHandler(webapp.RequestHandler):
                     
                     
                     # look up all the courses for the global navbar
-                    courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+                    courses = getCourses()
                     
                     # look up all the modules in the current course for display in the left nav bar
                     modules = Module.query(ancestor=ndb.Key('Courses', 'ADMINSET', Course, long(course_entity.key.id()))).order(Module.m_index).fetch()
@@ -5834,7 +5841,7 @@ class AdminCourseDisplayHandler(webapp.RequestHandler):
         userStatus = UserStatus().getStatus(self.request.uri)
         
         # look up all the courses for the global navbar and the display
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+        courses = getCourses()
         
         template_values = {"courses" : courses,
                            'stylesheets' : ['/assets/admin/css/editor.css', '/assets/admin/css/admin.css', '/assets/css/coursesystem.css'],
@@ -5868,7 +5875,7 @@ class AdminModuleDisplayHandler(webapp.RequestHandler):
             userStatus = UserStatus().getStatus(self.request.uri)
         
             # look up all the courses for the global navbar and the display
-            courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+            courses = getCourses()
         
             
             # construct dictionary of courses to modules mapping
@@ -5926,7 +5933,7 @@ class AdminContentsDisplayHandler(webapp.RequestHandler):
                 userStatus = UserStatus().getStatus(self.request.uri)
         
                 # look up all the courses for the global navbar and the display
-                courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()            
+                courses = getCourses()            
 
           
                 template_values = {"contents" : contents,
@@ -5989,7 +5996,7 @@ class AdminContentDisplayHandler(webapp.RequestHandler):
                     userStatus = UserStatus().getStatus(self.request.uri)
         
                     # look up all the courses for the global navbar and the display
-                    courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()            
+                    courses = getCourses()            
 
 
                     # look up the next_module_entity
@@ -6167,7 +6174,7 @@ class AdminDashboardHandler(webapp.RequestHandler):
         userStatus = UserStatus().getStatus(self.request.uri)
         
         # look up all the courses for the global navbar
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+        courses = getCourses()
                     
         template_values = {
                            'stylesheets' : ['/assets/admin/css/admin.css', '/assets/css/coursesystem.css'],
@@ -6186,7 +6193,7 @@ class AdminExportCoursesHandler(webapp.RequestHandler):
         userStatus = UserStatus().getStatus(self.request.uri)
         
         # look up all the courses for the global navbar
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+        courses = getCourses()
                 
         
         template_values = {
@@ -6204,7 +6211,7 @@ class AdminImportCoursesHandler(webapp.RequestHandler):
         userStatus = UserStatus().getStatus(self.request.uri)
         
         # look up all the courses for the global navbar
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+        courses = getCourses()
             
         
 
@@ -6229,7 +6236,7 @@ class AdminImportCoursesHandler(webapp.RequestHandler):
         
         keysToDelete = []
         
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+        courses = getCourses()
         # for every course
         for course in courses:
             # for every module
@@ -6315,7 +6322,7 @@ class AdminSerialViewHandler(webapp.RequestHandler):
         downloaded by the user via the course export page. """
     def get(self):
         output = ""
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+        courses = getCourses()
         # for every course
         for course in courses:
             output += course.c_title + "\n" + course.c_description + "\n" + course.c_icon + "\n" + str(course.c_index) + "\n" + course.c_identifier + "\n"
@@ -6349,7 +6356,7 @@ class gDocHandler(webapp.RequestHandler):
         #docId="1f4lPDnfaxxKhzkWvoEuCrHNHpJBRWixIsxr8u0zJR9U"
         docId = self.request.get("docId")
         # look up all the courses for the global navbar
-        courses = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).order(Course.c_index).fetch()
+        courses = getCourses()
             
         
         template_values = {
