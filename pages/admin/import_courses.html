@@ -1,11 +1,17 @@
 {% extends "templates/site_base.html" %} {% block body %}
-<div class="jumbotron jumbotron-wherami ">
-    <div class='jumbotron-wherami-text'>Import Courses</div>
+<div class="breadcrumbs-bar">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-12">
+				<a href="/admin/dashboard">Admin Dashboard</a> 
+				<span>&gt</span>
+				<a href="/admin/importcourses">Import Courses</a> 
+			</div>
+		</div>
+	</div>
 </div>
-<a href='/admin/dashboard' class='back-to-courses-link'><span class="glyphicon glyphicon-chevron-left"></span> Dashboard</a>
 
-
-<div class='container-fluid'>
+<div class='gen-container footer-fix'>
     <div class='row'>
         <div class='col-md-12 export-container'>
             <h2>Import courses and content</h2>

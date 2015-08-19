@@ -2777,3 +2777,20 @@ a.menu-item {
 	background-color: rgba(0, 0, 0, 0.26);
 	padding-top: 206px;
 }
+
+.breadcrumbs-bar {
+	background-color: #65665F;
+}
+
+.breadcrumbs-bar .col-md-12>* {
+	color: #C6F2E8;
+	font-size: 17px;
+	padding: 10px;
+	display: inline-block;
+	transition: color 0.3s;
+	border-radius: 5px;
+}
+
+.breadcrumbs-bar .col-md-12>a:hover {
+	color: #A4CA39;
+}
