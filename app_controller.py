@@ -2274,6 +2274,42 @@ class TeachingAIHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/teachingAI.html')
         self.response.out.write(template.render(path, template_values))
 
+class TeacherIntroHandler(webapp.RequestHandler):
+    def get(self):
+        
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/teacherIntro.html')
+        self.response.out.write(template.render(path, template_values))
+
+class TeacherIntroIntroHandler(webapp.RequestHandler):
+    def get(self):
+        
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/teacherIntroIntro.html')
+        self.response.out.write(template.render(path, template_values))
+
 class PresidentsQuiz2Handler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -3311,6 +3347,7 @@ class CarouselTestHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/carousel2.html')
         self.response.out.write(template.render(path, {}))
+        
 class CanvasComponentHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -6773,7 +6810,7 @@ application = webapp.WSGIApplication(
         ('/DeleteApp', DeleteApp), ('/AddStepPage', AddStepRenderer), ('/DeleteStep', DeleteStep), ('/AddCustomPage', AddCustomRenderer),
         ('/projects', BookHandler), ('/appinventortutorials', BookHandler), ('/get_app_data', GetAppDataHandler),
         ('/get_step_data', GetStepDataHandler), ('/get_custom_data', GetCustomDataHandler), ('/setup', SetupHandler), ('/setupAI2', SetupAI2Handler),
-        ('/profile', ProfileHandler), ('/changeProfile', ChangeProfileHandler), ('/saveProfile', SaveProfile), ('/uploadPicture', UploadPictureHandler), ('/imageHandler', ImageHandler), ('/teacherMap', TeacherMapHandler),
+        ('/profile', ProfileHandler), ('/changeProfile', ChangeProfileHandler), ('/saveProfile', SaveProfile), ('/uploadPicture', UploadPictureHandler), ('/imageHandler', ImageHandler), ('/teacherMap', TeacherMapHandler), 
         ('/siteSearch', SearchHandler), ('/moleMashManymo', MoleMashManymoHandler),
 
 
@@ -6975,6 +7012,10 @@ application = webapp.WSGIApplication(
         # used on the teacher map page
         ('/getEducatorsInfo', getEducatorsInfo),
         ('/getEducatorsTiles', getEducatorsTiles),
+        
+        # teacher module
+         ('/teacherIntro', TeacherIntroHandler),
+         ('/teacherIntroIntro', TeacherIntroIntroHandler),
         
         # handles logging in and sign up
         ('/loginValidator', loginValidationHandler),
