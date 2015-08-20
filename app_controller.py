@@ -5597,18 +5597,11 @@ class Homehandler(webapp.RequestHandler):
     def get(self):
         # look up all the courses for the global navbar
         userStatus = UserStatus().getStatus(self.request.uri)
-        
-        # render the rss feed box
-        path = os.path.join(os.path.dirname(__file__), 'pages/templates/rssFeedBox.html')
-        rssItems = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).order(-RSSItem.dateUnFormatted).fetch(4)        
-        rssFeedBox = template.render(path, {'rssItems' : rssItems})
-        
-        
+
         template_values = {'userStatus': userStatus,
                            'title' : 'App Inventor',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
-                           'rssFeedBox' : rssFeedBox,
                            'courseToModules' : getCoursesAndModules(),
                            }
         
@@ -6417,17 +6410,21 @@ class AboutHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'pages/about.html')
         self.response.out.write(template.render(path, template_values)) 
      
-class NewsHandler(webapp.RequestHandler):
+class BlogHandler(webapp.RequestHandler):
     def get(self):
         userStatus = UserStatus().getStatus(self.request.uri)
-                
+        rssItems = RSSItem.query(ancestor=ndb.Key('RSSFeeds', 'AppInventorBlog')).order(-RSSItem.dateUnFormatted).fetch(4)        
+        
+        logging.info(rssItems)
+        
         template_values = {
                            'userStatus' : userStatus,
                            'courseToModules' : getCoursesAndModules(),
-                           'title' : 'About'
+                           'title' : 'About',
+                           'rssItems' : rssItems
                            }
                 
-        path = os.path.join(os.path.dirname(__file__), 'pages/news.html')
+        path = os.path.join(os.path.dirname(__file__), 'pages/blog.html')
         self.response.out.write(template.render(path, template_values)) 
         
 class TeamHandler(webapp.RequestHandler):
@@ -6767,7 +6764,7 @@ application = webapp.WSGIApplication(
         ('/molemashtext', MoleMashTextHandler),
                 
         ('/about', AboutHandler),
-        ('/about/news', NewsHandler),
+        ('/about/blog', BlogHandler),
         ('/about/team', TeamHandler),
         ('/about/contact-us', ContactUsHandler)
     ],

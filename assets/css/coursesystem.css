@@ -2629,6 +2629,11 @@ a.menu-item {
 	width: 100%;
 	overflow: hidden;
 	margin-bottom: 25px;
+	border-top: 3px solid rgb(183, 183, 183);
+}
+
+.rssItem p {
+	font-size: 16px;
 }
 
 .what-it-is-tile-wrapper {
@@ -2709,7 +2714,13 @@ a.menu-item {
 }
 
 .about-header.who-we-are {
-	background-image: url("/assets/img/propoganda/who-we-are.jpg");
+	background-image: url("/assets/img/propoganda/girlswhocode1.jpg");
+	background-size: 100% auto;
+	background-position: 50%;
+}
+
+.about-header.news {
+	background-image: url("/assets/img/news/china.jpg");
 	background-size: 100% auto;
 	background-position: 50%;
 }
@@ -2719,11 +2730,6 @@ a.menu-item {
 		url("https://upload.wikimedia.org/wikipedia/commons/b/bc/Lone_Mountain_Campus,_University_of_San_Francisco.jpg");
 	background-size: 100% auto;
 	width: 100%;
-}
-
-.who-we-are p {
-	font-size: 18px;
-	line-height: 1.5;
 }
 
 .about-header.who-we-are h1 {
@@ -2838,20 +2844,25 @@ footer a {
 	width: 150px;
 	position: absolute;
 	left: 0px;
-	top: 22px;
+	top: 0px;
 }
 
 .team-member-box {
-	width: 500px;
-	display: inline-block;
-	margin: 30px;
+	width: 100%;
+	margin: 42px 0px;
 	text-align: left;
 	position: relative;
 	padding-left: 172px;
+	min-height: 150px;
 }
 
 .team-old-divider {
 	border-bottom: 1px solid;
 	text-align: center;
 	padding: 40px;
+}
+
+p {
+	font-size: 18px;
+	line-height: 1.5;
 }

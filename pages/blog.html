@@ -1,0 +1,40 @@
+{% extends "templates/site_base.html" %} {% block body %}
+
+<div class="about-header news"></div>
+
+<div class="about-nav-bar">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<a href="/about">About</a>
+				<a href="/about/team">Team</a> 
+				<a class="selected" href="/about/blog">Blog</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gen-container footer-fix">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="center-children">
+				<h1 class="headline">Blog</h1>
+				<p class="subhead">Stay up to date with the latest App Inventor News</p>
+			</div>			
+			{% for item in rssItems %}
+			<div class="rssItem">
+				<h1>{{item.title}}</h1>
+				<h3>
+					<small>{{item.date}}</small>
+				</h3>
+				{% autoescape off %}
+				{{item.content}}
+				{% endautoescape %}		
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
