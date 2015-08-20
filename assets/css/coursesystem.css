@@ -2629,7 +2629,7 @@ a.menu-item {
 	width: 100%;
 	overflow: hidden;
 	margin-bottom: 25px;
-	border-top: 3px solid rgb(183, 183, 183);
+	border-bottom: 3px solid rgb(183, 183, 183);
 }
 
 .rssItem p {
@@ -2714,14 +2714,12 @@ a.menu-item {
 }
 
 .about-header.who-we-are {
-	background-color: rgb(68, 158, 179);
-	color: white;
+	background-color: rgb(231, 231, 231);
 }
 
 .about-header.news {
-	background-image: url("/assets/img/news/china.jpg");
-	background-size: 100% auto;
-	background-position: 50%;
+	background-color: rgb(231, 231, 231);
+	padding-top: 67px;
 }
 
 .usf-plug {
@@ -2733,7 +2731,6 @@ a.menu-item {
 
 .about-header.who-we-are h1 {
 	margin: 0;
-	color: white;
 	font-size: 55px;
 	text-align: center;
 	padding-top: 123px;

@@ -1,6 +1,12 @@
 {% extends "templates/site_base.html" %} {% block body %}
 
-<div class="about-header news"></div>
+<div class="about-header news">
+	<div class="center-children">
+		<h1 class="headline">Professor Wolber's App Inventor Blog</h1>
+		<p class="subhead">Stay up to date with the latest App Inventor
+			News</p>
+	</div>
+</div>
 
 <div class="about-nav-bar">
 	<div class="gen-container">
@@ -16,11 +22,6 @@
 <div class="gen-container footer-fix">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="center-children">
-				<h1 class="headline">Profess Wolber's App Inventor Blog</h1>
-				<p class="subhead">Stay up to date with the latest App Inventor
-					News</p>
-			</div>
 			{% for item in rssItems %}
 			<div class="rssItem">
 				<h1>{{item.title}}</h1>
