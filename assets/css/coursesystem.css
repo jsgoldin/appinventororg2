@@ -2714,9 +2714,8 @@ a.menu-item {
 }
 
 .about-header.who-we-are {
-	background-image: url("/assets/img/propoganda/girlswhocode1.jpg");
-	background-size: 100% auto;
-	background-position: 50%;
+	background-color: rgb(68, 158, 179);
+	color: white;
 }
 
 .about-header.news {
@@ -2856,6 +2855,16 @@ footer a {
 	min-height: 150px;
 }
 
+.team-member-box h2 {
+	margin-bottom: 0px;
+}
+
+.team-member-box h4 {
+	margin-bottom: 14px;
+	margin-top: 0px;
+	font-size: 24px;
+}
+
 .team-old-divider {
 	border-bottom: 1px solid;
 	text-align: center;
@@ -2865,4 +2874,12 @@ footer a {
 p {
 	font-size: 18px;
 	line-height: 1.5;
+}
+
+.usf-about-section {
+	background-image: url("/assets/img/about/usf-lonemountain.jpg");
+	height: 100vh;
+	width: 100%;
+	background-size: 100% auto;
+	background-position-y: 50%;
 }
