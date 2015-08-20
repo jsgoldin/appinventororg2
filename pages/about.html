@@ -1,17 +1,24 @@
 {% extends "templates/site_base.html" %} {% block body %}
 
-<div class="about-header who-we-are">
+<div class="about-header who-we-are"></div>
 
-	<div class="overlay">
-		<h1>Who we are</h1>
+<div class="about-nav-bar">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<a class="selected" href="/about">About</a>
+				<a href="/about/team">Team</a> 
+				<a href="/about/news">News</a>
+				<a href="/about/contact-us">Contact Us</a>
+			</div>
+		</div>
 	</div>
-
 </div>
 
 
 <div class="gen-container who-we-are">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-8 col-md-offset-2">
 			<p>AppInventor.org is a site for learning and teaching how to
 				program mobile apps with MIT's App Inventor. These tutorials are
 				refined versions of the tutorials that have been on the Google and

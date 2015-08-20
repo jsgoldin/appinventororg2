@@ -3505,17 +3505,6 @@ class LPQRHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/lesson_plans/qr_code.html')
         self.response.out.write(template.render(path, template_values))
 
-class ContactHandler(webapp.RequestHandler):
-    def get(self):
-        
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        template_values = { 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/contact.html')
-        self.response.out.write(template.render(path, template_values))
-
 class BookHandler(webapp.RequestHandler):
     def get(self):
         # user status
@@ -4255,23 +4244,7 @@ class DeleteCommentHandler (webapp.RequestHandler):
             print 'Content-Type: text/plain'
             print 'You are NOT administrator'
         
-       
-class AboutHandler(webapp.RequestHandler):
-    def get(self):
-        courses = getCourses()                    
-                    
-        userStatus = UserStatus().getStatus(self.request.uri)
-        
-        template_values = {'courses' : courses,
-                           'userStatus': userStatus,
-                           'title' : 'About Us',
-                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
-                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
-                           'courseToModules' : getCoursesAndModules(),
-                           }
-        
-        path = os.path.join(os.path.dirname(__file__), 'pages/who_we_are.html')
-        self.response.out.write(template.render(path, template_values))
+ 
 
 class DCLHandler(webapp.RequestHandler):
     def get(self):
@@ -6430,12 +6403,59 @@ class ObjectivesModule1(webapp.RequestHandler):
         self.response.out.write(template.render(path, {}))
 
 
+      
+class AboutHandler(webapp.RequestHandler):
+    def get(self):
+        userStatus = UserStatus().getStatus(self.request.uri)
+                
+        template_values = {
+                           'userStatus' : userStatus,
+                           'courseToModules' : getCoursesAndModules(),
+                           'title' : 'About'
+                           }
+        
+        path = os.path.join(os.path.dirname(__file__), 'pages/about.html')
+        self.response.out.write(template.render(path, template_values)) 
      
 class NewsHandler(webapp.RequestHandler):
     def get(self):
+        userStatus = UserStatus().getStatus(self.request.uri)
+                
+        template_values = {
+                           'userStatus' : userStatus,
+                           'courseToModules' : getCoursesAndModules(),
+                           'title' : 'About'
+                           }
+                
         path = os.path.join(os.path.dirname(__file__), 'pages/news.html')
-        self.response.out.write(template.render(path, {})) 
+        self.response.out.write(template.render(path, template_values)) 
         
+class TeamHandler(webapp.RequestHandler):
+    def get(self):
+        userStatus = UserStatus().getStatus(self.request.uri)
+                
+        template_values = {
+                           'userStatus' : userStatus,
+                           'courseToModules' : getCoursesAndModules(),
+                           'title' : 'Team'
+                           }
+        
+        path = os.path.join(os.path.dirname(__file__), 'pages/team.html')
+        self.response.out.write(template.render(path, template_values)) 
+
+class ContactUsHandler(webapp.RequestHandler):
+    def get(self):
+        userStatus = UserStatus().getStatus(self.request.uri)
+                
+        template_values = {
+                           'userStatus' : userStatus,
+                           'courseToModules' : getCoursesAndModules(),
+                           'title' : 'Team'
+                           }
+        
+        path = os.path.join(os.path.dirname(__file__), 'pages/contact_us.html')
+        self.response.out.write(template.render(path, template_values)) 
+
 
 # create this global variable that represents the application and specifies which class
 # should handle each page in the site
@@ -6463,7 +6483,7 @@ application = webapp.WSGIApplication(
         ('/procedures', LPCodeReuseHandler), ('/deploying-an-app-and-posting-qr-code-on-web', LPQRHandler),
         ('/module1', Module1Handler), ('/module2', Module2Handler), ('/module3', Module3Handler),
         ('/module4', Module4Handler), ('/module5', Module5Handler), ('/module6', Module6Handler),
-        ('/moduleX', ModuleXHandler), ('/contact', ContactHandler), ('/dcl',DCLHandler),('/book', BookHandler), ('/quizquestions', QuizQuestionsHandler), ('/Quiz1', Quiz1Handler), ('/Quiz2', Quiz2Handler), ('/Quiz3', Quiz3Handler), ('/Quiz4', Quiz4Handler), ('/Quiz5', Quiz5Handler), ('/Quiz6', Quiz6Handler), ('/Quiz7', Quiz7Handler), ('/Quiz8', Quiz8Handler), ('/Quiz9', Quiz9Handler), ('/app-architecture', Handler14), ('/engineering-and-debugging', Handler15), ('/variables-1', Handler16),
+        ('/moduleX', ModuleXHandler), ('/dcl',DCLHandler),('/book', BookHandler), ('/quizquestions', QuizQuestionsHandler), ('/Quiz1', Quiz1Handler), ('/Quiz2', Quiz2Handler), ('/Quiz3', Quiz3Handler), ('/Quiz4', Quiz4Handler), ('/Quiz5', Quiz5Handler), ('/Quiz6', Quiz6Handler), ('/Quiz7', Quiz7Handler), ('/Quiz8', Quiz8Handler), ('/Quiz9', Quiz9Handler), ('/app-architecture', Handler14), ('/engineering-and-debugging', Handler15), ('/variables-1', Handler16),
         ('/animation-3', Handler17), ('/conditionals', Handler18), ('/lists-2', Handler19),
         ('/iteration-2', Handler20), ('/procedures-1', Handler21), ("/databases", Handler22), ("/sensors-1", Handler23),
         ("/apis", Handler24), ('/course-in-a-box_teaching', CourseInABoxHandlerTeaching), ('/media_teaching', MediaHandlerTeaching),
@@ -6745,9 +6765,11 @@ application = webapp.WSGIApplication(
         ('/incrementingws', IncrementingWSHandler),
         ('/timerEvent', TimerEventHandler),
         ('/molemashtext', MoleMashTextHandler),
-        
-         ('/about', AboutHandler),
-         ('/news', NewsHandler)
+                
+        ('/about', AboutHandler),
+        ('/about/news', NewsHandler),
+        ('/about/team', TeamHandler),
+        ('/about/contact-us', ContactUsHandler)
     ],
     debug=True)
 
