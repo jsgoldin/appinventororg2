@@ -1,8 +1,8 @@
 *.py[cod]
-
+*.pyc
 # C extensions
 *.so
-
+Thumbs.db
 # Packages
 *.egg
 *.egg-info
@@ -37,6 +37,3 @@ nosetests.xml
 /test.html
 
 
-
-
-*.DS_Store

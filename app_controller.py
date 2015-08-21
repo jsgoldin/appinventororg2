@@ -1424,7 +1424,7 @@ class VariablesCirclesHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables-circles.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variablesHowDoYou.html')
         self.response.out.write(template.render(path, template_values))
 class VariablesBackForthHandler(webapp.RequestHandler):
     def get(self):
@@ -2302,6 +2302,42 @@ class TeachingAIHandler(webapp.RequestHandler):
         
         
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/teachingAI.html')
+        self.response.out.write(template.render(path, template_values))
+
+class TeacherIntroHandler(webapp.RequestHandler):
+    def get(self):
+        
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/teacherIntro.html')
+        self.response.out.write(template.render(path, template_values))
+
+class TeacherIntroIntroHandler(webapp.RequestHandler):
+    def get(self):
+        
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/teacherIntroIntro.html')
         self.response.out.write(template.render(path, template_values))
 
 class PresidentsQuiz2Handler(webapp.RequestHandler):
@@ -3216,10 +3252,132 @@ class IntroDrawingHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introDrawingAnimation.html')
         self.response.out.write(template.render(path, template_values))  
+        
+class IntroTextingLocationHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introTextingLocation.html')
+        self.response.out.write(template.render(path, template_values)) 
+
+class IntroQuizzesInformationHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introQuizzesInformation.html')
+        self.response.out.write(template.render(path, template_values)) 
+
+class IntroProceduresHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introProcedures.html')
+        self.response.out.write(template.render(path, template_values)) 
+
+class IntroUserGeneratedHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introUserGenerated.html')
+        self.response.out.write(template.render(path, template_values)) 
+        
+class IntroWebEnabledAppsHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introWebEnabledApps.html')
+        self.response.out.write(template.render(path, template_values)) 
+
+class IntroIntroductionHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/introIntroduction.html')
+        self.response.out.write(template.render(path, template_values))  
+        
+class IntroToProceduresHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/IntroductiontoProcedures.html')
+        self.response.out.write(template.render(path, template_values))   
+
+
 class CarouselTestHandler(webapp.RequestHandler):
     def get(self, *args):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/carousel2.html')
         self.response.out.write(template.render(path, {}))
+        
 class CanvasComponentHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -3235,7 +3393,44 @@ class CanvasComponentHandler(webapp.RequestHandler):
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/canvasComponent.html')
-        self.response.out.write(template.render(path, template_values))  
+        self.response.out.write(template.render(path, template_values))
+        
+        
+class CanvasComponentMasterNuggetHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/drawing-canvas.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class CanvasComponentMasterHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/drawing-canvas.html')
+        self.response.out.write(template.render(path, template_values))
+        
+        
 class CanvasPropertiesHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -3258,8 +3453,27 @@ class CanvasComponentNuggetHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, {})) 
 class VariablesCirclesNuggetHandler(webapp.RequestHandler):
     def get(self, *args):
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variables-circles.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variablesCircleNugget.html')
         self.response.out.write(template.render(path, {})) 
+
+class VariableCircleMasterHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/variablesHowDoYou.html')
+        self.response.out.write(template.render(path, template_values))
+
+
 class RememberThingsHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -3359,6 +3573,177 @@ class MoleMashTextHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/molemashtext.html')
         self.response.out.write(template.render(path, template_values))
+
+
+
+###END OF QUIZ 9###
+
+
+# Java Bridge
+
+class JBridgeIntroHandler(webapp.RequestHandler):
+     def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeIntro.html')
+        self.response.out.write(template.render(path, template_values))
+
+class AIAnimationHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/aianimation.html')
+        self.response.out.write(template.render(path, template_values))
+     
+
+       
+class JBridgeRedClickEclipseHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeRedClickEclipse.html')
+        self.response.out.write(template.render(path, template_values))
+
+        
+class HowAnimationworksHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/howanimationworks.html')
+        self.response.out.write(template.render(path, template_values))
+       
+class JBridgeRedClickAndroidHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeRedClickAndroid.html')
+        self.response.out.write(template.render(path, template_values))
+
+class AnimationChallengeBrianHandler(webapp.RequestHandler):
+     def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/animationchallengebrian.html')
+        self.response.out.write(template.render(path, template_values))
+class JBridgeBasicsHandler(webapp.RequestHandler):
+    def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeBasics.html')
+        self.response.out.write(template.render(path, template_values))
+
+class AnimationChallengeInternalHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationChallengeInternal.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class JBridgeMoleMashHandler(webapp.RequestHandler):
+     def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgeMoleMash.html')
+        self.response.out.write(template.render(path, template_values))
+
+class AnimationIntComponentHandler(webapp.RequestHandler):
+     def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationInternalComponents.html')
+        self.response.out.write(template.render(path, template_values))
+
+class JBridgePaintPotHandler(webapp.RequestHandler):
+     def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgePaintPot.html')
+        self.response.out.write(template.render(path, template_values))
+        
+class PongTutorialHandler(webapp.RequestHandler):
+    def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/pongTutorial.html')
+        self.response.out.write(template.render(path, template_values))
+
 # LESSON PLANS
 
 class LPIntroHandler(webapp.RequestHandler):
@@ -6487,7 +6872,7 @@ application = webapp.WSGIApplication(
         ('/DeleteApp', DeleteApp), ('/AddStepPage', AddStepRenderer), ('/DeleteStep', DeleteStep), ('/AddCustomPage', AddCustomRenderer),
         ('/projects', BookHandler), ('/appinventortutorials', BookHandler), ('/get_app_data', GetAppDataHandler),
         ('/get_step_data', GetStepDataHandler), ('/get_custom_data', GetCustomDataHandler), ('/setup', SetupHandler), ('/setupAI2', SetupAI2Handler),
-        ('/profile', ProfileHandler), ('/changeProfile', ChangeProfileHandler), ('/saveProfile', SaveProfile), ('/uploadPicture', UploadPictureHandler), ('/imageHandler', ImageHandler), ('/teacherMap', TeacherMapHandler),
+        ('/profile', ProfileHandler), ('/changeProfile', ChangeProfileHandler), ('/saveProfile', SaveProfile), ('/uploadPicture', UploadPictureHandler), ('/imageHandler', ImageHandler), ('/teacherMap', TeacherMapHandler), 
         ('/siteSearch', SearchHandler), ('/moleMashManymo', MoleMashManymoHandler),
 
 
@@ -6690,6 +7075,10 @@ application = webapp.WSGIApplication(
         ('/getEducatorsInfo', getEducatorsInfo),
         ('/getEducatorsTiles', getEducatorsTiles),
         
+        # teacher module
+         ('/teacherIntro', TeacherIntroHandler),
+         ('/teacherIntroIntro', TeacherIntroIntroHandler),
+        
         # handles logging in and sign up
         ('/loginValidator', loginValidationHandler),
         ('/createAccount', CreateAccountHandler),
@@ -6755,8 +7144,10 @@ application = webapp.WSGIApplication(
         ('/canvasComponent', CanvasComponentHandler),
         ('/canvasProperties', CanvasPropertiesHandler),
         ('/canvasComponentNugget', CanvasComponentNuggetHandler),
+        ('/canvasComponentMaster', CanvasComponentMasterHandler),
+        ('/canvasComponentNuggetMaster', CanvasComponentMasterNuggetHandler),
         ('/VariablesCirclesNugget', VariablesCirclesNuggetHandler ),
-        ('/rememberThings', RememberThingsHandler),
+        ('/variableCircleMaster', VariableCircleMasterHandler),
         ('/paintPotText', PaintPotTextHandler),
         ('/howGamesWork', HowGamesWorkHandler),
         ('/incrementingws', IncrementingWSHandler),
@@ -6766,7 +7157,38 @@ application = webapp.WSGIApplication(
         ('/about', AboutHandler),
         ('/about/blog', BlogHandler),
         ('/about/team', TeamHandler),
-        ('/about/contact-us', ContactUsHandler)
+        ('/about/contact-us', ContactUsHandler),
+
+        
+        #handlers for intro module pages
+
+        ('/aianimation', AIAnimationHandler),
+        ('/howanimationworks', HowAnimationworksHandler),
+        ('/animationchallengebrian', AnimationChallengeBrianHandler),
+        ('/animationChallengeinternal', AnimationChallengeInternalHandler),
+        ('/animationinternalcomp', AnimationIntComponentHandler),
+        ('/pongtutorial', PongTutorialHandler),
+        
+         #handlers for intro module pages
+
+        ('/introTextingLocation',IntroTextingLocationHandler),
+        ('/introQuizzesInfo',IntroQuizzesInformationHandler),
+        ('/introProcedures',IntroProceduresHandler),
+        ('/introUserGen',IntroUserGeneratedHandler),
+        ('/introWeb',IntroWebEnabledAppsHandler),
+
+        ('/introIntro', IntroIntroductionHandler),
+        #Handlers for Java Bridge
+        ('/jBridgeIntro', JBridgeIntroHandler),
+        ('/jBridgeRedClickEclipse', JBridgeRedClickEclipseHandler),
+        ('/jBridgeRedClickAndroid', JBridgeRedClickAndroidHandler),
+        ('/jBridgeBasics', JBridgeBasicsHandler),
+        ('/jBridgeMoleMash', JBridgeMoleMashHandler),
+        ('/jBridgePaintPot', JBridgePaintPotHandler),
+        
+        #handlers for procedures gdoc
+        ('/introToProcedures', IntroToProceduresHandler)
+
     ],
     debug=True)
 

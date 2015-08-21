@@ -44,6 +44,8 @@ handlers:
   static_dir: bookChapters 
 - url: /bookFiles/
   static_dir: bookFiles 
+- url: /javaBridge/
+  static_dir: javaBridge 
 - url: /older
   static_dir: older
 - url: /tutorial_files

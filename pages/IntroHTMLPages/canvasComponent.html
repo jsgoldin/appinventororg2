@@ -1,3 +1,6 @@
+<head>
+<meta charset="UTF-8">
+</head>
 <link rel="stylesheet" type="text/css"
 	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
 <div class="dark-blue-title">
@@ -9,112 +12,129 @@
 </div>
 <div class="course-page-container">
 	<div class="card">
-		<h2>To draw shapes and images in an App Inventor app, one must
-			use the Canvas Component.</h2>
-		<img class="img-responsive center-img" alt=""
-			src="/images/CourseInABoxImages/img00_canvasComp.png"> <br>
+		
 
-		<h3>
+		<p>
 			The Canvas component is a two-dimensional, touch-sensitive
-			rectangular panel that can be drawn on and can animate images
-			(sprites). <br> <br> Think of the Canvas as a piece of
-			paper taking space in our app. <br> It can be drawn on and
-			allows things to move on their own (animation).
-		</h3>
-		<br>
-		<h3>
-			To be able to code things to happen on the Canvas, we need to be able
-			to <b>identify spots on the Canvas </b> because we need to be able to
-			tell the app <b>where </b> things should move. <br> To do this,
-			App Inventor uses the 4th quadrant of a coordinate plane (X,Y) to
-			identify individual spots within the canvas. X is the Horizontal
-			location of an object, 0 being the left-border and X getting bigger
-			as an object is moved to the right. Y is the vertical location of an
-			object, with 0 the top border and Y getting Bigger as an object is
-			moved down.<br>
-			App Inventor's coordinate system is different (but similar) to the 4th quadrant of the <i>traditional</i> coordinate system.
-		</h3>
+			rectangular grid. It's like a piece of
+			paper in the app that can be drawn on. You can also place images on it and
+			animate those images.
+		</p>
+
+		<p>
+			You draw and place objects in a Canvas using an X-Y grid that is similar
+			to the one used in Math. The Canvas is made up of pixels--the tiniest dots of color that can 
+			appear on a screen. Each pixel’s location is defined by an X-Y coordinate. X defines a location 
+			on the horizontal plane (starting at 0 on the far left and increasing as you move to the 
+			right across the screen), and Y defines a location on the vertical plane (starting at 0 at the top and 
+			increasing as you move down the screen).
+		</p>
+		<p>
+The top-left cell in a Canvas starts with 0 for both coordinates(X=0,Y=0). As you move right, 
+the X coordinate increases; as you move down, the Y coordinate increases. The upper-right corner has an X coordinate 
+equal to the width of the Canvas minus 1. The App Inventor canvas coordinate system is different than the traditional 
+cooridinate system, as you can see
+the figure below. </p>
 		<img class="img-responsive center-img" align="middle" alt=""
 			src="/images/CourseInABoxImages/img01_canvasComp1.png">
 	</div>
 	<div class="card">
-		<h4>Click on the photo below to play around with the different
-			spots on a traditional coordinate plane.</h4>
+		<p>Click on the photo below to play around with the different
+			spots on a traditional coordinate plane.</p>
 
-		<a target="_blank" href="http://www.mathopenref.com/coordplane.html">
+		
 			<img class="img-responsive center-img" alt=""
-			src="/images/CourseInABoxImages/img02_canvasComp.png">
-		</a>
+			src="/images/CourseInABoxImages/BrianscanvasComp.png">
+		
+		<p>source:<a target="_blank" href="http://www.mathopenref.com/coordplane.html">http://www.mathopenref.com/coordplane.html</a></p>
 	</div>
-	
 	<div class="card">
-		<h1>Review</h1>
+	<h2>Adding a Canvas to your App</h2>
+	<div class="row">
+			<div class="col-md-6">
+			<p>
+			You'll find the Canvas component in the "Drawing and Animation" drawer
+			of the designer. When you drag a Canvas component onto the screen, it starts
+			out really small because its current Width and Height properties are set
+			to automatic.</p>	
+			<p>
+			Automatic means that the size of the Canvas will change in regards to
+			what is inside the canvas component. Since nothing is in it to start, it appears small.
+			Typically you'll change the width of the Canvas to "Fill parent", which will make it span
+			the entire width of the screen.) You'll change its
+			Height to around 300 or another static value that determines how much of
+			the screen real estate will be allocated to the Canvas.
+			</p>
+			</div>
+			<div class="col-md-6">
+			<img class="img-responsive center-img" alt=""
+			src="/images/CourseInABoxImages/img00_canvasComp.png"> <br>
+			</div>
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt=""
+					src="/images/CourseInABoxImages/img00_canvasProps.png">
+			</div>
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt=""
+					src="/images/CourseInABoxImages/img01_canvasProps.png">
+			</div>
+		</div>
+	
+			
 	</div>
+		
+
+		<h1>Review</h1>
+
 	<div class="quiz-panel-outer">
 
-		<h3>1. Why do you think the canvas uses its own coordiate system?</h3>
+		<p>1. In a traditional coordinate system, how does Y change when you move down?
+		In App Inventor's Canvas, how does Y change when you move down?</p>
 
 
 
 		<div class="quiz-panel-inner">
 			<div id="q6a" class="collapse">
 
-				<p> In the 4th quadrant the Y is never ending, and the top of the
-					screen, marks the beginning. They made Y increase to limit the amount of negative numbers used.</p>
+				<p> In a traditional coordinate system, Y gets smaller (higher negative
+				numbers) as you move down. With App Inventor's Canvas, Y gets larger
+				as you move down.</p>
 
-				<img class="img-responsive center-img" align="middle" alt=""
-					src="/images/CourseInABoxImages/img01_canvasComp.png">
+				
 			</div>
 			<a type="button" href="#q6a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q6b" name="q6b">Show Answer</a>
 		</div>
 	</div>
 	<div class="quiz-panel-outer">
-		<h3>2. Which component allows you to draw and animate things?</h3>
+		<p>What location does X=0,Y=0 represent in an App Inventor Canvas?</p>
 
 
 		<div class="quiz-panel-inner">
 			<div id="q2a" class="collapse">
-			<p>The Canvas Component</p>
-			<img class="img-responsive center-img" alt=""
-			src="/images/CourseInABoxImages/img00_canvasComp.png">
+			<p>The top-left corner of the Canvas</p>
+
 			</div>
 			<a type="button" href="#q2a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
 		</div>
 	</div>
 	<div class="quiz-panel-outer">
-		<h3>3. What system is used to identify spots on a canvas?</h3>
+		<p>3. What does "Fill parent" mean in terms of setting the Width of the Canvas?</p>
 
 
 		<div class="quiz-panel-inner">
 			<div id="q3a" class="collapse">
-			<p>Coordinate plane system</p>
-			<p>Click on the photo below to play around with the different
-			spots on the coordinate plane.</p>
-		<a target="_blank" href="http://www.mathopenref.com/coordplane.html">
-			<img class="img-responsive center-img" alt=""
-			src="/images/CourseInABoxImages/img02_canvasComp.PNG">
-		</a>
+			<p>"Fill parent" means that Canvas will span the entire width of its parent
+			(the Screen).</p>
+			
 			</div>
 			<a type="button" href="#q3a" data-toggle="collapse"
 				onclick="showHideToggle(id)" id="q3b" name="q3b">Show Answer</a>
 		</div>
 	</div>
 	
-	<div class="row">
-		<div class="col-sm-6">
-		<a href="/introdrawing">
-			<img width="100%" alt="" src="/images/icons/prevButton.png">
-			</a>
-		</div>
-		<div class="col-sm-6">
-		<a href="/canvasProperties">
-			<img width="100%" alt="" src="/images/icons/nextButton.png">
-			</a>
-		</div>
-	</div>
-	<br>
+
 	
 
 </div>
