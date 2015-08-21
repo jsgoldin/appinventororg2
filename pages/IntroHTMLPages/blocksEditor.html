@@ -1,0 +1,392 @@
+<head>
+	<meta charset="UTF-8">
+</head>
+<link rel="stylesheet" type="text/css"
+	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+
+<div class="dark-blue-title">
+	<div class="course-page-container">
+		<h1>The Blocks Editor</h1>
+		<p>The <font face="monospace">Blocks Editor</font> is where you code the functional behavior of your app, where you specify how the app should respond to events. This section provides an overview of the <font face="monospace">Blocks Editor</font>.</p>
+	</div>
+</div>
+
+<div class="course-page-container">
+	<div class="card">
+		<h1>An App’s Behavior consists of Event-Handlers</h1>
+		<p>For the most part, you’ll code the app’s behavior by defining event-handler blocks: blocks that specify how the app will respond to a particular event. For example, if you want the app to do something when the user clicks a button named “Button1,” you’ll first drag in a “when Button1.Click” block, then drag in response blocks within it. Here are some event blocks including the “when Button1.Click” block:</p>
+
+		<img alt="" src="/images/CourseInABoxImages/BEI_1.png"
+		class="img-responsive center-img">
+	</div>
+
+	<div class="card">
+		<h2>You can only code blocks for the components you’ve added.</h2>
+		<p>The gif below demonstrates that when a component gets added in the <font face="monospace">Designer</font>, it appears in the <font face="monospace">Blocks Editor</font>.</p><br>
+		<img alt="" src="/images/CourseInABoxImages/BEI_2.gif"
+		class="img-responsive center-img"><br>
+
+		<p>When you click a component in the <font face="monospace">Blocks Panel</font> (as “Button1” is in the gif below), you can see all the available blocks for that component. The component’s event handler blocks are mustard yellow and appear at the top. The event blocks are followed by purple function blocks that perform operations, and then with green blocks to set or get the value of a component property.</p><br>
+		<img alt="" src="/images/CourseInABoxImages/BEI_3.gif"
+		class="img-responsive center-img"><br>
+		<p>Each block is labeled with both the component name and the ev ent, function, or property, with the component name coming first:</p><br>
+		<img alt="" src="/images/CourseInABoxImages/BEI_4.png"
+		class="img-responsive center-img">
+
+		<p>If you have more than one instance of the same component, you can click on the upside-down triangle next to the component name to open a dropdown menu to change the component. In this example, the app has three buttons to choose from:</p><br>
+		<img alt="" src="/images/CourseInABoxImages/BEI_5.png"
+		class="img-responsive center-img">
+
+		<p>You can refer to the <a target="_blank" href="http://appinventor.mit.edu/explore/library">MIT App Inventor Documentation</a> to learn about what each block does.</p>
+
+	</div>
+
+	<div class="card">
+		<h1>Changing Component Properties with Blocks</h1>
+		<p>If you want to change the initial value of a component property, you do that in the <font face="monospace">Designer</font>. You can also change property values dynamically-- as the app runs-- using blocks. Property set blocks are dark green with open slots to the right.</p>
+		<img alt="" src="/images/CourseInABoxImages/BEI_6.png"
+		class="img-responsive center-img">
+		<p>Set blocks allow you to change the value of a property.<br><br>
+
+			You can also check the value of a property with a light green block. Though “get” doesn’t appear on the block, these are called <font face="monospace">get blocks</font> because they get, or retrieve, the value of a property.</p>
+			<img alt="" src="/images/CourseInABoxImages/BEI_7.png"
+			class="img-responsive center-img">
+
+			<img alt="" src="/images/CourseInABoxImages/BEI_8.png"
+			class="img-responsive center-img">
+
+			<p>In the <font face="monospace">Designer</font> view shown below, Button1’s <font face="monospace">BackgroundColor</font> is “Light Gray.” You, the programmer, could view this in the <font face="monospace">Designer</font> and know that when the app begins, “Button1” will appear “Light Gray.” As the app is running, it might need to query this value. For this, the app would use the “get” block shown to the left:</p>
+			<img alt="" src="/images/CourseInABoxImages/BEI_9.png"
+			class="img-responsive center-img">
+			<p>Of course you’d use the dark green “set” button to change the <font face="monospace">BackgroundColor</font>.</p>
+
+			<img alt="" src="/images/CourseInABoxImages/BEI_10.png"
+			class="img-responsive center-img">
+
+			<p>After “Button1” is clicked, the background color of “Button1” is changed to red.<br>
+
+				Note that after dragging out a block, you can change the property being modified by clicking the upside-down triangle next to it: </p>
+				<img alt="" src="/images/CourseInABoxImages/BEI_11.png"
+				class="img-responsive center-img">
+
+				<img alt="" src="/images/CourseInABoxImages/BEI_12.png"
+				class="img-responsive center-img">
+		</div>
+
+
+		<div class="card">
+			<h1>Function Calls</h1>
+			<p><font face="monospace">Function Calls</font> are purple blocks that cause the app to do something, e.g., play a sound. Some function blocks, but not all, have opens lots at the end.</p>
+			<p>Here are the <font face="monospace">Function Calls</font> for the <font face="monospace">Sound Component</font>:</p>
+
+			<img alt="" src="/images/CourseInABoxImages/BEI_13.png"
+				class="img-responsive center-img">
+
+			<p>With these blocks, an app can play, pause, resume, or stop a sound clip, or it can cause the device to vibrate.</p>
+
+			<p>The Vibrate function block has a slot with <font face="monospace">millisecs</font> next to it. This slot is called a parameter. A parameter provides information a function needs to do its job. In this case, you (the programmer) needs to tell the function call how long it should vibrate.</p>
+
+		</div>
+
+	<div class="card">
+
+		<h1>Review</h1>
+
+		<p>What color are event handlers?</p>
+		<div class="quiz-panel-inner">
+			<div id="q1a" class="collapse img-responsive">
+				<p>Yellow</p>
+			</div>
+			<a type="button" href="#q1a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q1b" name="q1b">Show Answer</a>
+		</div>
+		<br>
+		<p>What is the difference between the Dark Green and Light Green Blocks?</p>
+		<div class="quiz-panel-inner">
+			<div id="q2a" class="collapse img-responsive">
+				<p>The dark green blocks are for setting or changing a property and the light green blocks are for accessing the current setting.</p>
+			</div>
+			<a type="button" href="#q2a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
+		</div>
+		<br>
+		<p>What are the purple blocks called, and what do they do?</p>
+		<div class="quiz-panel-inner">
+			<div id="q3a" class="collapse img-responsive">
+				<p>They are called function call blocks and they perform a function.</p>
+			</div>
+			<a type="button" href="#q3a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q3b" name="q3b">Show Answer</a>
+		</div>
+		<br>
+		<p>What is a parameter?</p>
+		<div class="quiz-panel-inner">
+			<div id="q4a" class="collapse img-responsive">
+				<p>A parameter is information a function needs to do it’s job.</p>
+			</div>
+			<a type="button" href="#q4a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q4b" name="q4b">Show Answer</a>
+		</div>
+
+	</div>
+
+	<div class="card">
+		<h1>Built-in Blocks</h1>
+		<p>In the <font face="monospace">Blocks Editor</font>, there are drawers for “Built-in” function blocks that are not specific to a particular component. These blocks do all sorts of things including adding numbers and opening screens.</p>
+		<img alt="" src="/images/CourseInABoxImages/BEI_14.png"
+				class="img-responsive center-img">
+	</div>
+
+	<div class="card">
+		<h1>Built-in Blocks: Math</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<p>In the <font face="monospace">Math</font> folder, you’ll see blocks for representing a number, for adding, subtracting, multiplying, and dividing, for getting the square root, sin, cos, tan, and other operations. There are even blocks for generating random numbers like you need in a game.</p>
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_15.png"
+				class="img-responsive center-img">
+			</div>
+
+		</div>
+	</div>
+
+	<div class="card">
+		<h1>Built-in Blocks: Text</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<p>The <font face="monospace">Text</font> folder provides blocks for manipulating text values, e.g., “cat.” There is a block to represent a text value (the empty quotes can be filled in), to combine texts, to get the length of text, and to compare texts. There are also advanced blocks to help with parsing text and splitting text into segments.</p>
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_16.png"
+				class="img-responsive center-img">
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<div class="card">
+		<h1>Built-in Blocks: Control</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<p>The <font face="monospace">Coltrol</font> folder provides blocks for controlling the flow of how your blocks are executed.  For instance, if you only want to execute some blocks under certain conditions, you’ll use an <font face="monospace">if block</font>. If you want to continuously repeat blocks, you’ll use a <font face="monospace">for each</font> or a <font face="monospace">while block</font>. There are also blocks for controlling which screen appears in your app.</p>
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_17.png"
+				class="img-responsive center-img">
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<div class="card">
+		<h1>Built-in Blocks: Colors</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<p>The <font face="monospace"> Colors folder</font> is filled with a set of colors you can use as values for  <font face="monospace">BackgroundColor</font> and other properties. You can also use the <font face="monospace">make color</font>-color generator to create a specific color using RGB (red, green,blue) values.</p>
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_18.png"
+				class="img-responsive center-img">
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<div class="card">
+		<h1>Built-in Blocks: Lists</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<p>The <font face="monospace">Lists folder</font> provides blocks for creating lists, adding items to lists, accessing list items, and finding the length of a list.</p>
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_19.png"
+				class="img-responsive center-img">
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<div class="card">
+		<h1>Built-in Blocks: Variables</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<p><font face="monospace">Variables</font> are named memory cells-- spreadsheet cells that you name and place numbers, texts, or lists into. For example, if you are calculating the amount of tips earned you might initialize a variable named “tips” and start it out at zero. Once initialized, you can “set” a variable’s value or “get” its current value.<br><br>
+
+Global <font face="monospace">Variables</font> can be used in all of your event handlers.
+Local <font face="monospace">Variables</font> are event-specific so they only work within a single event handler.</p>
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_20.png"
+				class="img-responsive center-img">
+			</div>
+
+		</div>
+
+		<img alt="" src="/images/CourseInABoxImages/BEI_21.gif"
+				class="img-responsive center-img">
+
+
+	</div>
+
+	<div class="card">
+		<h1>Built-in Blocks: Procedures</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<p>With <font face="monospace">procedures</font>, you can name a set of blocks or instructions. In the example below, there is a procedure “Reset” which is called when the user chooses to start a new game. In this procedure, the score is set back to 0 and the characters are placed back into their starting positions. Once this procedure is defined, you can call it from different places in your app (e.g, when a game ends or when the player explicitly starts a new game).</p>
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_22.png"
+				class="img-responsive center-img">
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_23.png"
+				class="img-responsive center-img">
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_33.png"
+				class="img-responsive center-img">
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+
+
+	<div class="card">
+		<h1>Built-in Blocks: Logic</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<p>The <font face="monospace">Logic blocks</font> are used in conjunction with if and <font face="monospace">while block</font>s to help your app ask complex boolean (true/false) questions. The <font face="monospace">true</font> and <font face="monospace">false</font> blocks represent the possible boolean values. the <font face="monospace">and</font>, <font face="monospace">or</font>, and <font face="monospace">not</font> blocks allow you to define a complex condition, and the <b>=</b> block allows you to compare things. Once you drag <b>=</b> in you can use the upside-down triangle to choose a different comparator (<, >, etc.)</p>
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/BEI_24.png"
+				class="img-responsive center-img">
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<div class="card">
+
+		<h1>Review</h1>
+
+		<p>What are the Built-in Blocks?</p>
+		<div class="quiz-panel-inner">
+			<div id="q5a" class="collapse img-responsive">
+				<p>They are blocks not specific to any particular component.</p>
+			</div>
+			<a type="button" href="#q5a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q5b" name="q5b">Show Answer</a>
+		</div>
+		<br>
+		<p>What are some things that you can do with <font face="monospace">Math</font> Blocks?</p>
+		<div class="quiz-panel-inner">
+			<div id="q6a" class="collapse img-responsive">
+				<p>You can add, subtract, multiply, divide, get a random number and so much more!</p>
+			</div>
+			<a type="button" href="#q6a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q6b" name="q6b">Show Answer</a>
+		</div>
+		<br>
+		<p>What are some things you can do with <font face="monospace">Text</font> Blocks?</p>
+		<div class="quiz-panel-inner">
+			<div id="q7a" class="collapse img-responsive">
+				<p>Put in text, manipulate text, join text, parse text and more.</p>
+			</div>
+			<a type="button" href="#q7a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q7b" name="q7b">Show Answer</a>
+		</div>
+		<br>
+		<p>What is a variable?</p>
+		<div class="quiz-panel-inner">
+			<div id="q8a" class="collapse img-responsive">
+				<p>A named memory cell for storing a number, list, or text. “Variable” means the value within the memory cell can change.</p>
+			</div>
+			<a type="button" href="#q8a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q8b" name="q8b">Show Answer</a>
+		</div>
+		<br>
+		<p>What is a procedure?</p>
+		<div class="quiz-panel-inner">
+			<div id="q9a" class="collapse img-responsive">
+				<p>A named set of blocks that can be called through the use of procedure call block.</p>
+			</div>
+			<a type="button" href="#q9a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q9b" name="q9b">Show Answer</a>
+		</div>
+		<br>
+		<p>When would you want to use a procedure?</p>
+		<div class="quiz-panel-inner">
+			<div id="q10a" class="collapse img-responsive">
+				<p>When you have to perform a complicated task in multiple parts of the app</p>
+			</div>
+			<a type="button" href="#q10a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q10b" name="q10b">Show Answer</a>
+		</div>
+
+	</div>
+
+	<div class="card">
+		<h1>Event Parameters</h1>
+		<img alt="" src="/images/CourseInABoxImages/BEI_25.png"
+				class="img-responsive center-img">
+		<p>Event parameters are information that is provided by Android along with any event that occurs. In the example above, the orangish rectangle, Image, is an event parameter of the event <font face="monospace">Camera1.AfterPicture</font>. The Image parameter provides the name of the file storing the picture that was just taken with the camera.<br><br>
+
+In the example, we might want to use the Image parameter to change the Screen’s Background. If you mouse over the orange parameter, a <font face="monospace">set</font> and <font face="monospace">get</font> block for the parameter will appear. You can drag out the “get” block to use it in the code, as shown in the example below:</p>
+<img alt="" src="/images/CourseInABoxImages/BEI_26.png"
+				class="img-responsive center-img">
+
+	</div>
+
+	<div class="card">
+		<h1>Changing Boolean and Height/Width Properties</h1>
+
+		<p>Boolean properties have 2 options, “true” and “false,” which can be found in the <font face="monospace">Logic</font> folder of the Built-in Blocks. For example, if you want a <font face="monospace">Checkbox</font> to be checked set <font face="monospace">Checkbox.Checked</font> to <font face="monospace">true</font>.</p>
+
+		<img alt="" src="/images/CourseInABoxImages/BEI_27.png"
+				class="img-responsive center-img">
+
+		<p><font face="monospace">Height</font> and <font face="monospace">Width</font> properties are typically set to automatic by default. Automatic means that the height or width of the component will change based on the size of the components inside of it. For example, a <font face="monospace">HorizontalArrangement</font> component will expand as needed to fit the buttons placed in it.</p>
+
+		<img alt="" src="/images/CourseInABoxImages/BEI_28.png"
+				class="img-responsive center-img">
+				<br>
+
+			<img alt="" src="/images/CourseInABoxImages/BEI_29.png"
+				class="img-responsive center-img"><br>
+
+		<p>If you want the width or the height to be the entire length of the screen, then set the property to “fill parent”. Once set to “fill parent”, one can change the <font face="monospace">AlignHorizontal</font> property, kind of like word, to “Center,” “Left” or “Right” and the <font face="monospace">AlignVertical</font> property to “Top,” “Center,” or “Bottom.”</p>
+	</div>
+
+	<div class="card">
+		<h1>Mutators:Adding Slots to Blocks</h1>
+		<p>There are a few blocks that provide mutators which allow you to modify the number of slots in the block. One such block is the <font face="monospace">+ block</font>. When you drag it in, it only has two slots. You can add more slots by clicking on the blue gear icon:</p>
+		<img alt="" src="/images/CourseInABoxImages/BEI_30.png"
+				class="img-responsive center-img">
+		<p>Just click on the gear icon and drag over the “number” blocks into the right side to add more slots.</p>
+		<img alt="" src="/images/CourseInABoxImages/BEI_31.png"
+				class="img-responsive center-img">
+		<img alt="" src="/images/CourseInABoxImages/BEI_32.png"
+				class="img-responsive center-img">
+
+		<p>Mutators can be found in a number of blocks, including <font face="monospace">make a list</font> which allows you to make a list of any number of items, and in procedure blocks, for specifying how many parameters the procedure should have.</p>
+	</div>
+
+	</div>
