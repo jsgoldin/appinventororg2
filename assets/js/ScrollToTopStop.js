@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 	var m_window = $(window);
 
-	var sideBar = $('.vertical-side-bar-container');
+	var sideBar = $('#vertical-side-bar');
 
 	m_window.bind("scroll", function() {
 

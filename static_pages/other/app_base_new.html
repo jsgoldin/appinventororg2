@@ -13,13 +13,8 @@
 				View in book form
 			</a>
 		{% endif %}	
-
-
 	</div>
 </div>
-
-
-
 
 
 <div class='app-big-video'>
@@ -56,47 +51,35 @@
 			
 		</div>
 		
-		{% endfor %}
-	
+		{% endfor %}	
 	</div>
-	
-	</div>
-	
-<div class='course-page-container'>
-	<div class="row">
-		<div class="col-md-4">
-		<div class='app-btn'>
-		<a href="#" data-toggle="modal" data-target="#qrCodeModal">
-			<h4>QR Code</h4>
-			<p>Scan to install this app.</p>
-		
-		
-	</div>
+	<div class="below-video-box">
+		<div class="video-steps-box">
+			{% for step in steps %}
+			<div><strong>Step {{step.number }}:</strong> {{step.header}}</div>
+			{% endfor %}
 		</div>
-			<div class="col-md-4">
+		<div class="video-downloads-box">
 			<div class='app-btn'>
-		<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk">
-			<h4>APK</h4>
-			<p>Download as Android application</p>
-		</a> 
-	</div>
+				<a href="#" data-toggle="modal" data-target="#qrCodeModal"></a>
+					
+					<span><i class="fa fa-qrcode"></i>Get QR code for this tutorial</span>
+			</div>
+			<div class='app-btn'>
+				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk">
+				
+					<span><i class="fa fa-tablet"></i>Download app to Android device</span>
+				</a> 
+			</div>
+			<div class='app-btn'>
+				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia">
+					<span><i class="fa fa-puzzle-piece"></i>Download App Inventor source</span>
+				</a>
+			</div>
 		</div>
-				<div class="col-md-4">
-					<div class='app-btn'>
-		<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia">
-			<h4>AIA</h4>
-			<p>Download the App Inventor source</p>
-		</a>
+		<div style="clear: both;"></div>
 	</div>
-		</div>
-	</div>
-	</div>
-	
-	
-
-
-
-
+</div>
 
 
 <!-- Modal -->

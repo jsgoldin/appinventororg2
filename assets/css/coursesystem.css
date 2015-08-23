@@ -1094,15 +1094,22 @@ ol{
  * The styling assumes, their are 4 buttons!
  */
 .app-btn {
-	font-size: 14px;
-	background-color: #6AB344;
-	border: 1px #2d2d2d solid;
-	border-color: rgba(1, 1, 1, 0.1);
-	width: 100%;
-	height: 78px;
-	display: inline-block;
-	transition: background-color 0.05s;
-	margin-bottom: 16px;
+  background-color: #6AB344;
+  border-bottom: 1px #528935 solid;
+  width: 100%;
+  transition: background-color 0.05s;
+  padding: 18px 10px;
+  color: white;
+  font-size: 19px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.app-btn i {
+  font-size: 47px;
+  vertical-align: middle;
+  padding-right: 16px;
 }
 
 .app-btn:hover {
@@ -1361,6 +1368,7 @@ footer a {
 @media ( max-width : 767px) {
 	#contentarea {
 		margin-left: 0px;
+		min-height: 0px;
 	}
 	.vertical-side-bar-middle-box {
 		height: auto !important;
@@ -1428,6 +1436,13 @@ footer a {
 
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width: 1024px) {
+	.video-steps-box, .video-downloads-box {
+		width: 100% !important;
+	}
+	.video-steps-box {
+		border-bottom: 1px #C7C7C7 solid;
+	}
+
 	.teacherTileOuter {
 		width: 100% !important;
 	}
@@ -2921,8 +2936,24 @@ p {
   margin-top:5px;
 }
 .btnNav:hover {
-background:#A4CA3A;	
-  text-decoration: none;
+	background:#A4CA3A;	
+  	text-decoration: none;
 }
 
+.below-video-box {
+	background-color: white;
+	border: 1px #C7C7C7 solid;		
+}
 
+.video-steps-box {
+	width: 50%;
+	float: left;
+	padding: 12px;
+}
+
+.video-downloads-box {
+	width: 50%;
+	float: left;
+	padding: 12px;
+	border-left: 1px #C7C7C7 solid;
+}
