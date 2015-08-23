@@ -6191,7 +6191,7 @@ class AdminCourseDisplayHandler(webapp.RequestHandler):
         
         template_values = {"courses" : courses,
                            'stylesheets' : ['/assets/admin/css/editor.css', '/assets/admin/css/admin.css', '/assets/css/coursesystem.css'],
-                           'scripts' : ['/assets/admin/js/courses_editor.js', '/assets/js/coursesystem.js'],
+                           'scripts' : ['/assets/admin/js/courses_editor.js'],
                            'title' : 'Courses Admin',
                            'userStatus' : userStatus,
                            'courseToModules' : getCoursesAndModules(),
