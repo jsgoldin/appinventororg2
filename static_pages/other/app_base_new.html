@@ -1,15 +1,20 @@
 <link rel="stylesheet" href="/assets/css/owl.carousel.css">
 <link rel="stylesheet" href="/assets/css/owl.theme.css">
 
+
+
 <div class='dark-blue-title'>
 	<div class='course-page-container'>
 		<h2>{{app.heroHeader}}</h2>
-		<p>{{app.heroCopy}}
+		<p>{{app.heroCopy}}</p>
 		{% if app.pdfChapter %}
-			This tutorial can be viewed in book form 
-			<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf">here</a>
-		{% endif %}
- 		</p>	
+			<a class="view-book-form-btn" href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf">
+				<i class="fa fa-book"></i>
+				View in book form
+			</a>
+		{% endif %}	
+
+
 	</div>
 </div>
 
@@ -63,7 +68,7 @@
 		<div class='app-btn'>
 		<a href="#" data-toggle="modal" data-target="#qrCodeModal">
 			<h4>QR Code</h4>
-			<p>Scan to install this app.</p>>
+			<p>Scan to install this app.</p>
 		
 		
 	</div>

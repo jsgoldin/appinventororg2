@@ -806,6 +806,7 @@ ol{
 	height: auto;
 	overflow: hidden;
 	clear: both;
+	padding: 10px;
 }
 
 .padded-ud-30 {
@@ -1117,7 +1118,6 @@ ol{
 	max-width: 950px;
 	margin: auto;
 	margin-bottom: 16px;
-	margin-top: 16px;
 }
 
 .app-btn p, .app-btn h4 {
@@ -1944,6 +1944,17 @@ footer a {
 .card-title{
 	background-color: #455A64;
 	color: white;
+}
+
+.view-book-form-btn {
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid;
+  float: left;
+}
+
+.view-book-form-btn:hover {
+	color: #91E764 !important;
 }
 
 /* General purpose container for content */
@@ -2913,3 +2924,5 @@ p {
 background:#A4CA3A;	
   text-decoration: none;
 }
+
+

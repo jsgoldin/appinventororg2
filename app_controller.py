@@ -33,10 +33,6 @@ except ImportError: import json
 
 
 
-
-
-
-
 APPSDIR = '/apps'
 APPS2DIR = '/apps2'
 
