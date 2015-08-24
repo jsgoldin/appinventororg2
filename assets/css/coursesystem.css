@@ -2913,3 +2913,7 @@ p {
 background:#A4CA3A;	
   text-decoration: none;
 }
+p>font{
+	font-size: 17px;
+    font-weight: bold;
+}

@@ -170,9 +170,29 @@
 
 
 <script>
-    $(document).ready(function () {
-        $('#contentarea').load('{{content.c_url}}');
-    });
+$(document).ready(function() {
+    $('#contentarea').load('{{content.c_url}}');  
+       
+});
+
+//showhide toggle function for quiz panels
+//saves the original text inside of a javascript object as a key/value pair. Then switches the text to "hide", The original text is then switched back.
+var idMessages = {};
+ function showHideToggle(id) {
+            if (id.indexOf('q')==0) {
+                var element = document.getElementById(id);
+
+            if (element.innerHTML!="Hide") {
+                idMessages[id] = element.innerHTML;
+                element.innerHTML = "Hide";
+            }else{
+                element.innerHTML = idMessages[id];
+            }
+
+        
+
+            };
+        }
 </script>
 
 {% endblock %}

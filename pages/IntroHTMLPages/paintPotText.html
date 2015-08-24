@@ -37,7 +37,7 @@
 </div>
 <div id="top" class="dark-blue-title">
 	<div class="course-page-container">
-		<h1>PaintPot Preliminaries</h1>
+		<h1>PaintPot Preview</h1>
 	</div>
 </div>
 
@@ -204,7 +204,7 @@
 		</div>
 		<div class="quiz-panel-inner center-img">
 			<a type="button" href=".q2a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answers</a>
+				onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
 
 		</div>
 
@@ -236,7 +236,7 @@
 
 		<div class="quiz-panel-inner center-img">
 			<a type="button" href=".q1a" data-toggle="collapse"
-				onclick="showHideToggle(id)" id="q1b" name="q1b">Show Answers</a>
+				onclick="showHideToggle(id)" id="q1b" name="q1b">Show Answer</a>
 
 		</div>
 	</div>
@@ -313,7 +313,7 @@
 			buttons, or some other user interface components..</p>
 		<p>Internally, you change the size of lines being drawn using the Canvas.LineWidth
 		property:</p>
-		<img src="/images/CourseInABoxImages/PPT_CanvasLineWith.png"
+		<img src="/images/CourseInABoxImages/PPT_canvasLineWith.png"
 			width="80%" class="img-responsive center-img">
 		<p>The following is an example of how a TextBox and Button could be used to change the LineWidth:
 		
@@ -376,8 +376,8 @@
 
 <script>
 
-	var ids = [];
-	var messages = [];
+	
+
 	//function that adds slide animation when clicking to ids on a page
 	$(document).ready(function() {
 		$('a').click(function() {
@@ -385,23 +385,6 @@
 				scrollTop : $($(this).attr('href')).offset().top
 			}, 'slow');
 		});
-
-
-	/*$('a').click(function(){
-		var id = $(this).attr('id');
-		if (id.indexOf('q')==0) {
-			var element = document.getElementById(id);
-
-			if (element.innerHTML != "Hide") {
-				element.innerHTML="Hide";
-			}else{
-				element.innerHTML="Show Answer";
-			}
-
-			
-
-		};
-	});*/
 		
 	});
 
