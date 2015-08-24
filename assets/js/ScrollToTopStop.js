@@ -9,16 +9,30 @@
 
 $(document).ready(function() {
 
-	var headerHeight = $('#header').outerHeight();
-	var footerHeight = $("footer").outerHeight();
-
-	var topOfFooter = $(document).height() - footerHeight;
-
 	var m_window = $(window);
-
 	var sideBar = $('#vertical-side-bar');
 
-	m_window.bind("scroll", function() {
+	var headerHeight;
+	var footerHeight;
+	var topOfFooter;
+
+	updateDimensions();
+
+
+	$(window).resize(function() {
+		updateDimensions();
+		updateScrollBarPos();
+	})
+
+	function updateDimensions() {
+		 headerHeight = $('#header').outerHeight();
+		 footerHeight = $("footer").outerHeight();
+		 topOfFooter = $(document).height() - footerHeight;
+	}
+
+
+
+	function updateScrollBarPos() {
 
 		var scrollTop = m_window.scrollTop();
 		var scrollBottom = scrollTop + m_window.height();
@@ -55,6 +69,9 @@ $(document).ready(function() {
 				sideBar.css("bottom", "auto");
 			}
 		}
+	}
 
+	m_window.bind("scroll", function() {
+		updateScrollBarPos();
 	});
 });

@@ -3,21 +3,24 @@
 
 
 
-<div class='dark-blue-title'>
-	<div class='course-page-container'>
-		<h2>{{app.heroHeader}}</h2>
-		<p>{{app.heroCopy}}</p>
-		{% if app.pdfChapter %}
-			<a class="view-book-form-btn" href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf">
-				<i class="fa fa-book"></i>
-				View in book form
-			</a>
-		{% endif %}	
-	</div>
-</div>
+
 
 
 <div class='app-big-video'>
+	<div class='dark-blue-title'>
+		<div class='course-page-container'>
+			<h2>{{app.heroHeader}}</h2>
+			<p style="font-size: 14px;">{{app.heroCopy}}</p>
+			{% if app.pdfChapter %}
+				<a class="view-book-form-btn" href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf">
+					<i class="fa fa-book"></i>
+					View in book form
+				</a>
+			{% endif %}	
+		</div>
+	</div>
+
+
 	<div id="carousel-wrapper">
 		
 		{% for step in steps %}
@@ -51,12 +54,14 @@
 			
 		</div>
 		
-		{% endfor %}	
+		{% endfor %}
+
 	</div>
 	<div class="below-video-box">
 		<div class="video-steps-box">
 			{% for step in steps %}
-			<div><strong>Step {{step.number }}:</strong> {{step.header}}</div>
+
+			<div {% if forloop.first %}  class="selected" {% endif %}><strong>Step {{step.number }}:</strong> {{step.header}}</div>
 			{% endfor %}
 		</div>
 		<div class="video-downloads-box">
@@ -66,15 +71,15 @@
 					<span><i class="fa fa-qrcode"></i>Get QR code for this tutorial</span>
 			</div>
 			<div class='app-btn'>
-				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk">
+				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk"></a> 
 				
 					<span><i class="fa fa-tablet"></i>Download app to Android device</span>
-				</a> 
+
 			</div>
 			<div class='app-btn'>
-				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia">
+				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia"></a>
 					<span><i class="fa fa-puzzle-piece"></i>Download App Inventor source</span>
-				</a>
+			
 			</div>
 		</div>
 		<div style="clear: both;"></div>

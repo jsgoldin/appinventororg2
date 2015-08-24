@@ -1,3 +1,6 @@
+/* This file contains functionality for the app tutorial videos, mainly the carousel. */
+
+
 // load the IFrame Player API code
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -5,6 +8,11 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var currentSlide = 0;
+
+
+// data object for manipulating owl carousel
+var owl_carousel_data;
+
 
 /**
  * Parses and returns the video id from a youtube video url.
@@ -57,7 +65,7 @@ function onYouTubeIframeAPIReady() {
 			});
 
 	// generate the Owl Carousel
-	$("#carousel-wrapper").owlCarousel({
+	var m_owl_carousel = $("#carousel-wrapper").owlCarousel({
 		slideSpeed : 300,
 		paginationSpeed : 400,
 		singleItem : true,
@@ -65,8 +73,12 @@ function onYouTubeIframeAPIReady() {
 		lazyLoad : true,
 		navigation : false,
 		afterAction : updatecurrentSlide,
-		afterMove: stopAllVideos,
+		afterMove: moveHandler,
 	});
+
+	owl_carousel_data = m_owl_carousel.data('owlCarousel');
+
+
 
 	var leftButtonHTML = "<div id=\"leftNav\" class=\"owl-custom-nav-btn\"><span class=\"glyphicon glyphicon-chevron-left\""
 			+ "aria-hidden=\"true\"></span></div>";
@@ -77,18 +89,18 @@ function onYouTubeIframeAPIReady() {
 	$(".owl-pagination").prepend(leftButtonHTML);
 	$(".owl-pagination").append(rightButtonHTML);
 
-	// attach them to owl nav
+	// attach them to owl navF
 	$("#leftNav").click(function() {
-		$(".owl-carousel").data('owlCarousel').prev();
+		owl_carousel_data.prev();
 	});
 
 	$("#rightNav").click(function() {
-		$(".owl-carousel").data('owlCarousel').next();
+		owl_carousel_data.next();
 	});
 
 	// attach end overlay buttons
 	$(".app-btn-next").click(function() {
-		$(".owl-carousel").data('owlCarousel').next();
+		owl_carousel_data.next();
 	});
 
 	$(".app-btn-rewatch").click(
@@ -125,6 +137,25 @@ function onYouTubeIframeAPIReady() {
 		for (var i = 0; i < videoArray.length; i++) {
 			videoArray[i].pauseVideo();
 		}
+	}
+
+	function updateTableOfContents() {
+		$(".video-steps-box > div").removeClass("selected");
+		$(".video-steps-box > div:nth-child(" + (owl_carousel_data.currentItem + 1 ) + ")").addClass("selected");
+	}
+
+	$(".video-steps-box > div").click(function() {
+		var newIndex = $(this).index();
+		owl_carousel_data.goTo(newIndex);
+undefined
+	});
+
+
+
+	function moveHandler() {
+		stopAllVideos();
+		updateTableOfContents();
+
 	}
 
 }
