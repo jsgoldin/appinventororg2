@@ -6165,7 +6165,7 @@ class ContentHandler(webapp.RequestHandler):
                            "courses" : courses,
                            "content" : content,
                            "moduleContentMapping" : moduleContentMapping,
-                           'stylesheets' : ['/assets/css/coursesystem.css'],
+                           'stylesheets' : [],
                            'scripts' : ['/assets/js/coursesystem.js'],
                            'userStatus': userStatus,
                            'courseToModules' : getCoursesAndModules(),

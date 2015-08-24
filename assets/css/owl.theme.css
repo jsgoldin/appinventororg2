@@ -56,23 +56,27 @@
     border-radius: 20px;
 }
 
-.owl-theme .owl-controls .owl-page.active span,.owl-theme .owl-controls.clickable .owl-page:hover span
-    {
-    filter: Alpha(Opacity =       100); /*IE7 fix*/
-    opacity: 1;
+.owl-theme .owl-controls .owl-page.active span
+{
+    background-color: rgb(135, 135, 209) !important;
+    color: white !important;
+}
+
+.owl-theme .owl-controls.clickable .owl-page:hover span {
+    background-color: rgb(215, 215, 246);
 }
 
 /* If PaginationNumbers is true */
 .owl-theme .owl-controls .owl-page span.owl-numbers {
     height: 36px;
     width: 36px;
-    color: #3B3B3B;
-    padding: 1px;
+    color: #6F6F6F;
     font-size: 20px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
-    border: 2px solid #3B3B3B;
+    padding: 4px 0px;
+    opacity: 1;
 }
 
 /* Jordan added this! */
