@@ -3105,7 +3105,7 @@ class LessonPlan11Handler(webapp.RequestHandler):
         self.response.out.write(template.render(path, {}))
 class LessonPlan12Handler(webapp.RequestHandler):
     def get(self, *args):
-        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/Lessonplan12.html')
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/lessonplan12.html')
         self.response.out.write(template.render(path, {}))
 class CCPaintPotHandler(webapp.RequestHandler):
     def get(self):
