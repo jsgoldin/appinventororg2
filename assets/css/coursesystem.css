@@ -1974,6 +1974,7 @@ footer a {
 .landing-teachers-section {
 	height: 500px;
 	background-image: url("/assets/img/propoganda/brian_teaching2.jpg");
+	background-repeat: no-repeat;
 	background-size: 100% auto;
 	background-position-y: 50%;
 	box-shadow: 0px 0px 23px black;
