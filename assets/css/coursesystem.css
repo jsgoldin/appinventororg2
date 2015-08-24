@@ -153,6 +153,7 @@ ol{
 	border-color: rgba(1, 1, 1, 0.1);
 	min-height: 60px;
 	display: table;
+	padding: 4px 0px;	
 }
 
 .vertical-content-nav-bar-item {
@@ -806,6 +807,7 @@ ol{
 	height: auto;
 	overflow: hidden;
 	clear: both;
+	padding: 10px 20px;
 }
 
 .padded-ud-30 {
@@ -1093,15 +1095,23 @@ ol{
  * The styling assumes, their are 4 buttons!
  */
 .app-btn {
-	font-size: 14px;
-	background-color: #6AB344;
-	border: 1px #2d2d2d solid;
-	border-color: rgba(1, 1, 1, 0.1);
-	width: 100%;
-	height: 78px;
-	display: inline-block;
-	transition: background-color 0.05s;
-	margin-bottom: 16px;
+  background-color: #6AB344;
+  border-bottom: 1px #528935 solid;
+  width: 100%;
+  transition: background-color 0.05s;
+  padding: 18px 10px;
+  color: white;
+  font-size: 19px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  position: relative;
+}
+
+.app-btn i {
+  font-size: 47px;
+  vertical-align: middle;
+  padding-right: 16px;
 }
 
 .app-btn:hover {
@@ -1109,15 +1119,17 @@ ol{
 }
 
 .app-btn a {
-	color: white;
-	text-decoration: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 .app-big-video {
 	max-width: 950px;
 	margin: auto;
 	margin-bottom: 16px;
-	margin-top: 16px;
 }
 
 .app-btn p, .app-btn h4 {
@@ -1361,6 +1373,7 @@ footer a {
 @media ( max-width : 767px) {
 	#contentarea {
 		margin-left: 0px;
+		min-height: 0px;
 	}
 	.vertical-side-bar-middle-box {
 		height: auto !important;
@@ -1428,6 +1441,13 @@ footer a {
 
 /*  iPads and smaller (portrait and landscape) ----------- */
 @media ( min-width : 0px) and (max-width: 1024px) {
+	.video-steps-box, .video-downloads-box {
+		width: 100% !important;
+	}
+	.video-steps-box {
+		border-bottom: 1px #C7C7C7 solid;
+	}
+
 	.teacherTileOuter {
 		width: 100% !important;
 	}
@@ -1902,9 +1922,7 @@ footer a {
 	background-color: white;
 }
 
-.app-big-video .owl-theme .owl-controls .owl-page span.owl-numbers {
-	background-color: white;
-}
+
 
 .carousel-step-end-overlay button {
 	background-color: #A4C639;
@@ -1934,6 +1952,10 @@ footer a {
 	padding-bottom: 10px;
 }
 
+.dark-blue-title p {
+	font-size: 14px;
+}
+
 .dark-blue-title a {
 	color: white;
 }
@@ -1944,6 +1966,17 @@ footer a {
 .card-title{
 	background-color: #455A64;
 	color: white;
+}
+
+.view-book-form-btn {
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid;
+  float: left;
+}
+
+.view-book-form-btn:hover {
+	color: #91E764 !important;
 }
 
 /* General purpose container for content */
@@ -2728,7 +2761,11 @@ a.menu-item {
 }
 
 .about-header.who-we-are {
-	background-color: rgb(231, 231, 231);
+  background-image: url("/assets/img/about/ai_supplies.jpg");
+  color: white;
+  font-size: 36px;
+  background-size: 100% auto;
+  background-position-y: 21%;
 }
 
 .about-header.news {
@@ -2751,12 +2788,12 @@ a.menu-item {
 }
 
 .about-header.who-we-are .overlay {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .as-seen-in-section {
@@ -2911,10 +2948,41 @@ p {
   margin-top:5px;
 }
 .btnNav:hover {
-background:#A4CA3A;	
-  text-decoration: none;
+	background:#A4CA3A;	
+  	text-decoration: none;
 }
+
+.below-video-box {
+	background-color: white;
+	border: 1px #C7C7C7 solid;		
+}
+
+.video-steps-box {
+	width: 50%;
+	float: left;
+	padding: 12px;
+}
+
+.video-steps-box div {
+	padding: 3px;
+	cursor: pointer;
+}
+
+
+.video-steps-box div.selected {
+  background-color: #8787d1;
+  color: white;
+}
+
 p>font{
 	font-size: 17px;
     font-weight: bold;
 }
+
+.video-downloads-box {
+	width: 50%;
+	float: left;
+	padding: 12px;
+	border-left: 1px #C7C7C7 solid;
+}
+

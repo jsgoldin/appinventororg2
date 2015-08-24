@@ -1,23 +1,26 @@
 <link rel="stylesheet" href="/assets/css/owl.carousel.css">
 <link rel="stylesheet" href="/assets/css/owl.theme.css">
 
-<div class='dark-blue-title'>
-	<div class='course-page-container'>
-		<h2>{{app.heroHeader}}</h2>
-		<p>{{app.heroCopy}}
-		{% if app.pdfChapter %}
-			This tutorial can be viewed in book form 
-			<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf">here</a>
-		{% endif %}
- 		</p>	
-	</div>
-</div>
 
 
 
 
 
 <div class='app-big-video'>
+	<div class='dark-blue-title'>
+		<div class='course-page-container'>
+			<h2>{{app.heroHeader}}</h2>
+			<p style="font-size: 14px;">{{app.heroCopy}}</p>
+			{% if app.pdfChapter %}
+				<a class="view-book-form-btn" href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf">
+					<i class="fa fa-book"></i>
+					View in book form
+				</a>
+			{% endif %}	
+		</div>
+	</div>
+
+
 	<div id="carousel-wrapper">
 		
 		{% for step in steps %}
@@ -52,46 +55,36 @@
 		</div>
 		
 		{% endfor %}
-	
+
 	</div>
-	
-	</div>
-	
-<div class='course-page-container'>
-	<div class="row">
-		<div class="col-md-4">
-		<div class='app-btn'>
-		<a href="#" data-toggle="modal" data-target="#qrCodeModal">
-			<h4>QR Code</h4>
-			<p>Scan to install this app.</p>>
-		
-		
-	</div>
+	<div class="below-video-box">
+		<div class="video-steps-box">
+			{% for step in steps %}
+
+			<div {% if forloop.first %}  class="selected" {% endif %}><strong>Step {{step.number }}:</strong> {{step.header}}</div>
+			{% endfor %}
 		</div>
-			<div class="col-md-4">
+		<div class="video-downloads-box">
 			<div class='app-btn'>
-		<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk">
-			<h4>APK</h4>
-			<p>Download as Android application</p>
-		</a> 
-	</div>
+				<a href="#" data-toggle="modal" data-target="#qrCodeModal"></a>
+					
+					<span><i class="fa fa-qrcode"></i>Get QR code for this tutorial</span>
+			</div>
+			<div class='app-btn'>
+				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk"></a> 
+				
+					<span><i class="fa fa-tablet"></i>Download app to Android device</span>
+
+			</div>
+			<div class='app-btn'>
+				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia"></a>
+					<span><i class="fa fa-puzzle-piece"></i>Download App Inventor source</span>
+			
+			</div>
 		</div>
-				<div class="col-md-4">
-					<div class='app-btn'>
-		<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia">
-			<h4>AIA</h4>
-			<p>Download the App Inventor source</p>
-		</a>
+		<div style="clear: both;"></div>
 	</div>
-		</div>
-	</div>
-	</div>
-	
-	
-
-
-
-
+</div>
 
 
 <!-- Modal -->

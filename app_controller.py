@@ -33,10 +33,6 @@ except ImportError: import json
 
 
 
-
-
-
-
 APPSDIR = '/apps'
 APPS2DIR = '/apps2'
 
@@ -6219,7 +6215,7 @@ class ContentHandler(webapp.RequestHandler):
                            "courses" : courses,
                            "content" : content,
                            "moduleContentMapping" : moduleContentMapping,
-                           'stylesheets' : ['/assets/css/coursesystem.css'],
+                           'stylesheets' : [],
                            'scripts' : ['/assets/js/coursesystem.js'],
                            'userStatus': userStatus,
                            'courseToModules' : getCoursesAndModules(),
@@ -6245,7 +6241,7 @@ class AdminCourseDisplayHandler(webapp.RequestHandler):
         
         template_values = {"courses" : courses,
                            'stylesheets' : ['/assets/admin/css/editor.css', '/assets/admin/css/admin.css', '/assets/css/coursesystem.css'],
-                           'scripts' : ['/assets/admin/js/courses_editor.js', '/assets/js/coursesystem.js'],
+                           'scripts' : ['/assets/admin/js/courses_editor.js'],
                            'title' : 'Courses Admin',
                            'userStatus' : userStatus,
                            'courseToModules' : getCoursesAndModules(),

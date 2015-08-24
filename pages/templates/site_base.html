@@ -57,7 +57,7 @@
                         <ul>
                             {% for key, values in courseToModules %}
 
-                            {% if key != "How do you...?" %}
+                            {% if key != "How do you...?" and key != "Teaching App Inventor" %}
 
 
                             <li {% if forloop.first %} class="selected-item" {% endif %}>
@@ -80,6 +80,7 @@
                                 </div>
                             </li>
                             {% endif %}
+
                             {% endfor %}
                             <li>
                                 <a href="/content/howDoYou" class="menu-item">
@@ -98,7 +99,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="/teacherMap" class="header-item">
+                    <a href="/content/teaching-app-inventor" class="header-item">
                         Teach
                     </a>
                 </li>
@@ -108,33 +109,33 @@
                     </a>
                 </li>
                 {% if userStatus.isAccount %}
-				<li class="mega-menu-profile-menu">
+                <li class="mega-menu-profile-menu">
                     <div class="header-item">
                         My Account
                         <i class="fa fa-angle-down"></i>
                     </div>
                     <div class="slideout-menu">
-                    	<ul>
-                    		 <li>
-                    		  	<div class="menu-item">     
-                    		  		Profile                       
-                                	<a href="/profile"></a>
-                             	</div>
-                    		 </li>
-                    		 <li>
-                    		  	<div class="menu-item">     
-                    		  		Logout                       
-                                	<a href="{{userStatus.logouturl}}"></a>
-                             	</div>
-                    		 </li>                    	
-                    	</ul>
+                        <ul>
+                             <li>
+                                <div class="menu-item">     
+                                    Profile                       
+                                    <a href="/profile"></a>
+                                </div>
+                             </li>
+                             <li>
+                                <div class="menu-item">     
+                                    Logout                       
+                                    <a href="{{userStatus.logouturl}}"></a>
+                                </div>
+                             </li>                      
+                        </ul>
                     </div>   
                 </li>
                 {% else %}
                 <li class="mega-menu-profile-menu">
-	           	    <a href="/loginValidator" class="header-item">
-	           	  		Login
-	           	  	</a>
+                    <a href="/loginValidator" class="header-item">
+                        Login
+                    </a>
                 </li>
                 {% endif %}           
                 
@@ -180,7 +181,7 @@
                 </li>
             </ul>
             
-           	{% if userStatus.isAccount %}
+            {% if userStatus.isAccount %}
             <div class="profile-menu">
                 <div class="header-item">
                     <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
