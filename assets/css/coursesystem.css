@@ -153,6 +153,7 @@ ol{
 	border-color: rgba(1, 1, 1, 0.1);
 	min-height: 60px;
 	display: table;
+	padding: 4px 0px;	
 }
 
 .vertical-content-nav-bar-item {
@@ -2759,7 +2760,11 @@ a.menu-item {
 }
 
 .about-header.who-we-are {
-	background-color: rgb(231, 231, 231);
+  background-image: url("/assets/img/about/ai_supplies.jpg");
+  color: white;
+  font-size: 36px;
+  background-size: 100% auto;
+  background-position-y: 21%;
 }
 
 .about-header.news {
@@ -2782,12 +2787,12 @@ a.menu-item {
 }
 
 .about-header.who-we-are .overlay {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .as-seen-in-section {
@@ -2975,3 +2980,4 @@ p {
 	padding: 12px;
 	border-left: 1px #C7C7C7 solid;
 }
+
