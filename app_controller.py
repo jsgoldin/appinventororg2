@@ -3709,6 +3709,24 @@ class AnimationChallengeBrianHandler(webapp.RequestHandler):
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/animationchallengebrian.html')
         self.response.out.write(template.render(path, template_values))
+
+class AnimationChallengeHelpHandler(webapp.RequestHandler):
+     def get(self):
+        if redirector(self) == True:
+            return None
+        
+        cacheHandler = CacheHandler()
+        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
+        allAppsList2 = cacheHandler.GettingCache("App", True, "version", "2", True, "number", "ASC", True)
+        
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
+        
+        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationChallengeHelp.html')
+        self.response.out.write(template.render(path, template_values))
+
 class JBridgeBasicsHandler(webapp.RequestHandler):
     def get(self, *args):
         # user status
@@ -7211,6 +7229,7 @@ application = webapp.WSGIApplication(
         ('/aianimation', AIAnimationHandler),
         ('/howanimationworks', HowAnimationworksHandler),
         ('/animationchallengebrian', AnimationChallengeBrianHandler),
+        ('/animationChallengeHelp', AnimationChallengeHelpHandler),
         ('/animationChallengeinternal', AnimationChallengeInternalHandler),
         ('/animationinternalcomp', AnimationIntComponentHandler),
         ('/pongtutorial', PongTutorialHandler),
