@@ -17,10 +17,13 @@ $(document).ready(function() {
 		reader = new FileReader();
 
 		reader.onload = function(e) {
+
+			$(".loading-icon").addClass("visible");
+
 			$.post("/admin/importcourses", {
 				s_File_Contents : reader.result,
 			}, function(data, status) {
-				alert(status);
+				$(".loading-icon").removeClass("visible");
 				location.reload(true);
 			});
 		}

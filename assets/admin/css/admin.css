@@ -60,3 +60,14 @@
     height: 0px;
     width: 0px;
 }
+
+.loading-icon {
+  display: none;
+  margin: auto;
+  font-size: 60px;
+  margin-top: 20px;
+}
+
+.loading-icon.visible {
+    display: block;
+}

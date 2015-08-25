@@ -2750,8 +2750,9 @@ a.menu-item {
 }
 
 .about-header {
-	height: 300px;
+	height: 350px;
 	position: relative;
+	background-repeat: no-repeat;
 }
 
 .about-header.team {
