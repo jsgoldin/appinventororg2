@@ -2026,6 +2026,7 @@ class StarterAppsHandler(webapp.RequestHandler):
                            'title' : 'App Inventor 2: Starter Apps',
                            'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
                            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           'courseToModules' : getCoursesAndModules()
                            }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/starterApps.html')
         self.response.out.write(template.render(path, template_values))
@@ -2120,7 +2121,13 @@ class WebDatabaseHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus, 'apps2Dir':APPS2DIR}
+        template_values = { 
+            'allAppsList': allAppsList,
+            'allAppsList2': allAppsList2,
+            'userStatus': userStatus,
+            'apps2Dir':APPS2DIR,
+            'courseToModules' : getCoursesAndModules()
+        }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/webDatabase.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -3982,8 +3989,9 @@ class Book2Handler(webapp.RequestHandler):
         template_values = {'courses' : courses,
                            'userStatus': userStatus,
                            'title' : 'App Inventor 2 Book: Create Your Own Android Apps',
-                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'stylesheets' : [],
                            'scripts' : ['/assets/js/coursesystem.js'],
+                           'courseToModules' : getCoursesAndModules()
                            }
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/book2.html')
         self.response.out.write(template.render(path, template_values))
@@ -4790,7 +4798,13 @@ class SetupHandler(webapp.RequestHandler):
         userStatus = UserStatus()
         userStatus = userStatus.getStatus(self.request.uri)
         
-        template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
+        template_values = { 
+            'allAppsList': allAppsList,
+            'allAppsList2': allAppsList2,
+            'userStatus': userStatus,
+            'courseToModules' : getCoursesAndModules()
+        }
+
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/setup2.html')
         self.response.out.write(template.render(path, template_values))
 
