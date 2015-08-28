@@ -26,11 +26,23 @@
       ga('send', 'pageview');
 
     </script>
+    
+
 
 </head>
 <body>
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MT8QWT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MT8QWT');</script>
+<!-- End Google Tag Manager -->
+
 
 <div id="header" class="header">
     <div class="header-container">
@@ -51,7 +63,6 @@
                             {% for key, values in courseToModules %}
 
                             {% if key != "How do you...?" and key != "Teaching App Inventor" %}
-
 
                             <li {% if forloop.first %} class="selected-item" {% endif %}>
 
@@ -99,6 +110,11 @@
                 <li>
                     <a href="/about" class="header-item">
                         About
+                    </a>
+                </li>
+                <li>
+                    <a href="/about" class="header-item">
+                        Build
                     </a>
                 </li>
                 {% if userStatus.isAccount %}
