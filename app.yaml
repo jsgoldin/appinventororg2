@@ -8,8 +8,7 @@
 
 
 application: appinventortesting2
-version: thomas
-
+version: dave
 runtime: python27
 api_version: 1
 threadsafe: no
