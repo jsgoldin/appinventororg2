@@ -47,7 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div id="header" class="header">
     <div class="header-container">
 
-        <a href="/">
+        <a data-TID="global-header-logo" href="/">
             <img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
         </a>
 
@@ -71,13 +71,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     <i class="fa fa-angle-right"></i>
                                     
                                     
-                                    <a href="{{values.0.1}}"></a>
+                                    <a data-TID="global-nav-menuitem-{{values.0.1}}" href="{{values.0.1}}"></a>
                                 </div>
 
 
                                 <div class="sub-item-menu">
                                     {% for v in values %}
-                                    <a href="{{v.1}}" class="menu-item">
+                                    <a data-TID="global-nav-submenuitem-{{v.1}}" href="{{v.1}}" class="menu-item">
                                         {{v.0}}
                                     </a>
                                     {% endfor %}
@@ -87,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                             {% endfor %}
                             <li>
-                                <a href="/content/howDoYou" class="menu-item">
+                                <a data-TID="global-nav-menuitem-How do you...?" href="/content/howDoYou" class="menu-item">
                                     How do you...?
                                 </a>
 
@@ -103,12 +103,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </li>
                 <li>
-                    <a href="/teacherIntro" class="header-item">
+                    <a data-TID="global-nav-headeritem-teach" href="/teacherIntro" class="header-item">
                         Teach
                     </a>
                 </li>
                 <li>
-                    <a href="/about" class="header-item">
+                    <a data-TID="global-nav-headeritem-about" href="/about" class="header-item">
                         About
                     </a>
                 </li>
@@ -123,13 +123,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                              <li>
                                 <div class="menu-item">     
                                     Profile                       
-                                    <a href="/profile"></a>
+                                    <a data-TID="global-nav-menuitem-profile" href="/profile"></a>
                                 </div>
                              </li>
                              <li>
                                 <div class="menu-item">     
                                     Logout                       
-                                    <a href="{{userStatus.logouturl}}"></a>
+                                    <a data-TID="global-nav-menuitem-logout" href="{{userStatus.logouturl}}"></a>
                                 </div>
                              </li>                      
                         </ul>
@@ -137,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </li>
                 {% else %}
                 <li class="mega-menu-profile-menu">
-                    <a href="/loginValidator" class="header-item">
+                    <a data-TID="global-nav-menuitem-login" href="/loginValidator" class="header-item">
                         Login
                     </a>
                 </li>
@@ -195,10 +195,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="slideout-menu">
                     <ul>
                         <li>
-                            <a class="menu-item" href="/profile">Profile</a>
+                            <a data-TID="global-nav-menuitem-profile" class="menu-item" href="/profile">Profile</a>
                         </li>
                         <li>
-                            <a class="menu-item" href="{{userStatus.logouturl}}">Logout</a>
+                            <a data-TID="global-nav-menuitem-logout" class="menu-item" href="{{userStatus.logouturl}}">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -206,7 +206,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             {% else %}
 
-            <a href="/loginValidator" class="login-btn">
+            <a data-TID="global-nav-menuitem-login" href="/loginValidator" class="login-btn">
                 Login
             </a>
 
