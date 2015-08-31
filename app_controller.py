@@ -105,63 +105,6 @@ def intWithCommas(x):
         result = ",%03d%s" % (r, result)
     return "%d%s" % (x, result)
 
-class Home(webapp.RequestHandler):
-    def get(self):
-        #
-        # login_url=users.create_login_url(self.request.uri)
-        #       logout_url=users.create_logout_url(self.request.uri)
-
-        # allAppsQuery = db.GqlQuery("SELECT * FROM App ORDER BY number ASC")
-
-        # appCount = allAppsQuery.count()
-        # allAppsList = allAppsQuery.fetch(appCount)
-        cacheHandler = CacheHandler()
-        allAppsList = cacheHandler.GettingCache("App", True, "version", "1", True, "number", "ASC", True)
-
-        # user status
-        userStatus = UserStatus()
-        userStatus = userStatus.getStatus(self.request.uri)
-        
-        # visitor
-        try:            
-            pquery = db.GqlQuery("SELECT * FROM AdminAccount where name= :1 ", "System Account")
-            adminAccount = pquery.get()
-            email = adminAccount.gmail
-            password = adminAccount.password
-            table_ids = (
-                        'ga:34666339',  # TABLE_ID for first website
-                                                # This is the table ID, or can be seen as
-                                                # ga: PROFILE_ID
-                                                # THe profile_id of Appinventor.org is 34666339
-                                                # (...)
-                        )
-
-            SOURCE_APP_NAME = 'Genomika-Google-Analytics-Quick-Client-v1'
-            client = gdata.analytics.client.AnalyticsClient(source=SOURCE_APP_NAME)
-            client.client_login(email, password, source=SOURCE_APP_NAME, service=client.auth_service)
-
-            today = datetime.date.today()
-            yesterday = today - datetime.timedelta(days=2000)
-            counter = 0
-            for table_id in table_ids:
-                for table_id in table_ids:
-                    data_query = gdata.analytics.client.DataFeedQuery({
-                    'ids': table_id,
-                    'start-date':yesterday.isoformat(),
-                    'end-date': today.isoformat(),
-                    'metrics': 'ga:visits, ga:pageviews'})      
-            feed = client.GetDataFeed(data_query)                                           
-             
-            numVisitors = feed.entry[0].metric[0].value
-            
-        except:
-            numVisitors = "970979"
-        numVisitors = int(numVisitors)
-        formattedCounter = intWithCommas(numVisitors)
-        template_values = {'allAppsList': allAppsList, 'userStatus': userStatus, 'counter': formattedCounter}
-        
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/index.html')
-        self.response.out.write(template.render(path, template_values))
 
 
 class PublicProfileHandler(webapp.RequestHandler):
@@ -6055,16 +5998,15 @@ class PizzaPartyHandler(webapp.RequestHandler):
 #                                  # 
 ####################################
 
-# Displays the home page of app inventor
 class Homehandler(webapp.RequestHandler):
     def get(self):
         # look up all the courses for the global navbar
         userStatus = UserStatus().getStatus(self.request.uri)
 
         template_values = {'userStatus': userStatus,
-                           'title' : 'App Inventor',
-                           'stylesheets' : ['/assets/css/coursesystem.css', '/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
-                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
+                           'title' : 'Learn to build Android apps | Appinventor',
+                           'stylesheets' : [],
+                           'scripts' : ['/assets/js/home.js'],
                            'courseToModules' : getCoursesAndModules(),
                            }
         
@@ -6922,7 +6864,6 @@ class ContactUsHandler(webapp.RequestHandler):
 application = webapp.WSGIApplication(
     # MainPage handles the home page load
     [
-    # ('/', Home), uncomment to show old home page
         ('/hellopurr', AppRenderer), ('/paintpot', AppRenderer), ('/molemash', AppRenderer),
         ('/shootergame', AppRenderer), ('/no-text-while-driving', AppRenderer), ('/ladybug-chase', AppRenderer),
         ('/map-tour', AppRenderer), ('/android-where-s-my-car', AppRenderer), ('/quiz', AppRenderer),
