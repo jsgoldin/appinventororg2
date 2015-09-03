@@ -6033,7 +6033,15 @@ class TutorialsHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'pages/tutorials.html')
         self.response.out.write(template.render(path, template_values))
 
-class ModulesHandler(webapp.RequestHandler):
+class CourseOverviewHandler(webapp.RequestHandler):
+    """
+    TODO: This page will display the course overview page associated with
+    a module.
+
+    We need to add a new entry in the course datastore entity called overview url.
+
+    And it will be rendered here!
+    """
     def get(self, course_ID=''):    
         # retrieve the course entity with the course_ID
         x = Course.query(ancestor=ndb.Key('Courses', 'ADMINSET')).filter(Course.c_identifier == course_ID).fetch()
@@ -7063,7 +7071,7 @@ application = webapp.WSGIApplication(
         ('/content', TutorialsHandler),
         
         # modules page
-        webapp.Route(r'/content/<course_ID>', ModulesHandler),
+        webapp.Route(r'/content/<course_ID>', CourseOverviewHandler),
         
         # contents page
         webapp.Route(r'/content/<course_ID>/<module_ID>', ContentsHandler),
@@ -7198,6 +7206,9 @@ application = webapp.WSGIApplication(
         ('/introWeb',IntroWebEnabledAppsHandler),
 
         ('/introIntro', IntroIntroductionHandler),
+
+
+        
         #Handlers for Java Bridge
         ('/jBridgeIntro', JBridgeIntroHandler),
         ('/jBridgeRedClickEclipse', JBridgeRedClickEclipseHandler),
