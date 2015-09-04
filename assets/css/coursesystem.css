@@ -3032,7 +3032,7 @@ p>font{
 }
 
 .jbridge-setup-section .help-links a:hover {
-	color: #35D9FF;
+	color: #3053FF;
 	display: block;
 }
 
@@ -3041,7 +3041,7 @@ p>font{
 	font-size: 20px;
 	padding: 21px;
 	text-shadow: #384317 0px 1px 0px;
-	box-shadow: 1px 3px 4px rgba(0,0,0,0.2);
+	box-shadow: 1px 4px 4px rgba(0,0,0,0.2);
 	text-decoration: none !important;
 	display: inline-block;
 	margin: 69px 0px;
@@ -3058,4 +3058,90 @@ p>font{
 
 .jbridge-download-btn:active {
  	box-shadow: 0px 0px 0px 0px, inset -0px 1px 7px #313D0A;
+}
+
+.jbridge-samples-section {
+	background-color: rgb(79, 202, 57);
+  color: white;
+}
+
+.jbridge-sample-app {
+  background-color: white;
+  width: 90%;
+  height: 223px;
+  color: #333;
+  padding: 20px;
+  box-shadow: 1px 4px 1px rgb(168, 168, 168);
+  border-radius: 14px;
+  position: relative;
+}
+.jbridge-sample-app p {
+  font-size: 20px;
+  color: #515050;
+  height: 87px;
+}
+
+.jbridge-sample-app a {
+
+}
+
+.jbridge-sample-app .sample-app-title {
+  font-size: 25px;
+  color: rgb(253, 159, 59);
+  font-weight: 900;
+  height: 64px;
+  display: block;
+}
+
+.jbridge-sample-app span {
+  font-size: 20px;
+  color: #6E6E6E;
+  position: relative;
+  top: 22px;
+  left: 20px;
+  transition: color 0.3s;
+}
+
+.jbridge-sample-app-link-wrapper {
+	position: absolute;
+  width: 100%;
+  height: 69px;
+  left: 0px;
+  bottom: 0px;
+  cursor: pointer;
+}
+
+.jbridge-sample-app span i {
+  font-size: 20px;
+  margin-left: 10px;		
+}
+
+.jbridge-sample-app-link-wrapper:hover span {
+  color: rgb(32, 144, 170);
+}
+
+.jbridge-samples-section .owl-theme .owl-controls .owl-page span {
+	background: white !important;
+}
+
+.jbridge-sample-app-link-wrapper a {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+
+.link-icon-slide--right i {
+	transition: margin-left 0.3s;
+}
+
+.link-icon-slide--right:hover i {
+	margin-left: 10px;
+}
+
+.section-cta-link {
+	font-size: 20px;
+	transition: color 0.3s;
 }
