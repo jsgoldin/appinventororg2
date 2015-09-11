@@ -3585,7 +3585,7 @@ class JBridgeIntroHandler(webapp.RequestHandler):
         template_values = {
             'userStatus': userStatus,
             'stylesheets' : ['/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
-            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/jbridgeintro.js'],
+            'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/jbridgeintro.js', '/assets/js/ytexpo.js'],
         }
         
 
@@ -6871,6 +6871,19 @@ class ContactUsHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'pages/contact_us.html')
         self.response.out.write(template.render(path, template_values)) 
 
+class aiTestHandler(webapp.RequestHandler):
+    def get(self):
+        userStatus = UserStatus().getStatus(self.request.uri)
+                
+        template_values = {
+                           'userStatus' : userStatus,
+                           'courseToModules' : getCoursesAndModules(),
+                           'title' : 'Team',
+                           }
+        
+        path = os.path.join(os.path.dirname(__file__), 'pages/appinventortest.html')
+        self.response.out.write(template.render(path, template_values))      
+
 
 # create this global variable that represents the application and specifies which class
 # should handle each page in the site
@@ -7228,7 +7241,12 @@ application = webapp.WSGIApplication(
         #handlers for essential training
         ('/arrangingComponents', ArrangingComponentsHandler),
         ('/aidesigner', AIDesignerHandler),
-        ('/blocksEditor', BlocksEditorHandler)
+        ('/blocksEditor', BlocksEditorHandler),
+
+
+
+        # TODO: DELETE WHEN DONE!
+        ('/aitesting', aiTestHandler)
 
     ],
     debug=True)

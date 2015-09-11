@@ -1,5 +1,3 @@
 $(document).ready(function() {
-	$("#sample-app-carousel").owlCarousel({
-
-	});
+	$("#sample-app-carousel").owlCarousel({});
 });
