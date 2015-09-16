@@ -122,13 +122,14 @@
 
 }(jQuery));
 
-$(document).ready(
-		function() {
-			
-			var scrollStart = $(".landing-courses-section").offset().top + 80;
-			$(".peekaboo-robot").peekaboo($("#scrollZoneTopObj"),
-					$("#scrollZoneBottomObj"), $("#hideBtmPosObj"),
-					$("#hideTopPosObj"));
-			
-			$(".landing-video-section video").centerAbsolute()
-		});
+$(document).ready(function() {
+		
+		var scrollStart = $(".landing-courses-section").offset().top + 80;
+		$(".peekaboo-robot").peekaboo($("#scrollZoneTopObj"),
+				$("#scrollZoneBottomObj"), $("#hideBtmPosObj"),
+				$("#hideTopPosObj"));
+		
+		$(".landing-video-section video").centerAbsolute();
+
+		$("#landing-slideshow").owlCarousel({});
+});

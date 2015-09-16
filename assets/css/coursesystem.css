@@ -3006,9 +3006,38 @@ p>font{
 	padding: 84px 0 94px;
 }
 
+
+.course-page-section {
+ 	padding: 0px 0 20px 0px;
+}
+
+.course-page-section ol, ul {
+	font-size: 24px;
+}
+
+.course-page-section li {
+	margin: 20px 0px;
+}
+
 .section h1, .section h2 {
 	margin-bottom: 30px;
 }
+
+ .course-page-section h1, .course-page-section h2  {
+	margin-bottom: 15px;
+}	
+
+code {
+  margin: 12px 0px;
+  display: block;
+  font-size: 18px;
+}
+
+pre {
+  word-wrap: normal;
+}
+
+
 .youtube-embed-wrapper {
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 */
@@ -3266,4 +3295,11 @@ p>font{
 .jbridge-vid-story.shai .jbridge-vid-story-animation {
 	background-image: url("/assets/img/testimonialGIFS/shai.gif");
     background-position-x: -57px;
+}
+
+
+.dev-comment {
+	color: white; 
+	background-color: blue;
+	padding: 20px;
 }

@@ -3745,7 +3745,18 @@ class JBridgePaintPotHandler(webapp.RequestHandler):
         template_values = { 'userStatus': userStatus}
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/jBridgePaintPot.html')
         self.response.out.write(template.render(path, template_values))
+  
+class JBridgeIntermediateAppsHandler(webapp.RequestHandler):      
+     def get(self, *args):
+        # user status
+        userStatus = UserStatus()
+        userStatus = userStatus.getStatus(self.request.uri)
         
+        template_values = { 'userStatus': userStatus}
+        path = os.path.join(os.path.dirname(__file__), 'pages/java_bridge/intermediate-apps.html')
+        self.response.out.write(template.render(path, template_values))
+  
+
 class PongTutorialHandler(webapp.RequestHandler):
     def get(self):
         if redirector(self) == True:
@@ -6010,8 +6021,8 @@ class Homehandler(webapp.RequestHandler):
 
         template_values = {'userStatus': userStatus,
                            'title' : 'Learn to build Android apps | Appinventor',
-                           'stylesheets' : [],
-                           'scripts' : ['/assets/js/home.js'],
+                           'stylesheets' : ['/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
+                           'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/home.js'],
                            'courseToModules' : getCoursesAndModules(),
                            }
         
@@ -7234,6 +7245,7 @@ application = webapp.WSGIApplication(
         ('/jBridgeBasics', JBridgeBasicsHandler),
         ('/jBridgeMoleMash', JBridgeMoleMashHandler),
         ('/jBridgePaintPot', JBridgePaintPotHandler),
+        ('/JBridgeIntermediateApps', JBridgeIntermediateAppsHandler),
         
         #handlers for procedures gdoc
         ('/introToProcedures', IntroToProceduresHandler),
