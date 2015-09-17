@@ -100,11 +100,11 @@
 					You'll put these commands in a special function of the template code named "$define".
 				</p>
 				<code>
-					<pre>	protected void $define()
-	{
-		// create the button component
-		redButton = new Button(this);
-		// ...</pre>
+					<pre>protected void $define()
+{
+	// create the button component
+	redButton = new Button(this);
+	// ...</pre>
 				</code>
 				<p>
 					Just as you'll need to declare each instance you need, you'll also need to create each instance as in the above code.
@@ -119,12 +119,12 @@
 					You set properties by calling methods corresponding to each property name. For the redclick app, you can set the redButton's Text and BackgroundColor like this:
 				</p>
 				<code>
-					<pre>	protected void $define()
-	{
-		// create the button component
-		redButton = new Button(this);
-                redButton.Text( "Turn RED" );
-		redButton.BackgroundColor(COLOR_GREEN );</pre>
+					<pre>protected void $define()
+{
+	// create the button component
+	redButton = new Button(this);
+            redButton.Text( "Turn RED" );
+	redButton.BackgroundColor(COLOR_GREEN );</pre>
 				</code>
 
 
@@ -161,17 +161,16 @@
 					responds to each event you care about. The following is the dispatchEvent function for the RedClick app: 
 				</p>
 				<code>
-					<pre>	public boolean dispatchEvent(Component component, String componentName,
-			String eventName, Object[] params)
+					<pre>public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params)
+{
+	if (component.equals(redButton) && eventName.equals("Click"))
 	{
-		if (component.equals(redButton) && eventName.equals("Click"))
-		{
-			RedButtonClick();
-			return true;
-		}
-		// here is where you'd check for other events of your app...
-		return false;
-	}</pre>
+		RedButtonClick();
+		return true;
+	}
+	// here is where you'd check for other events of your app...
+	return false;
+}</pre>
 				</code>
 				<p>
 					RedClick just has one event handler. Most apps will have more and you can just add additional if (or else if) branches to handle those events.
@@ -184,10 +183,10 @@
 					RedButtonClick is coded to actually perform the response (it appears below the dispatchEvent function:
 				</p>
 				<code>
-					<pre>	public void RedButtonClick()
-	{
-		redButton.BackgroundColor(COLOR_RED);
-	}</pre>
+					<pre>public void RedButtonClick()
+{
+	redButton.BackgroundColor(COLOR_RED);
+}</pre>
 				</code>
 				
 				<p>

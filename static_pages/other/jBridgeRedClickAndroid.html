@@ -1,68 +1,97 @@
 <div class='dark-blue-title'>
 	<div class='course-page-container'>
-
-			<h1>Get Started with Java Bridge: The Red Click App (Android Studio)</h1>
-	
+			<h1>Get Started with Java Bridge (Android Studio)</h1>
 	</div>
 </div>
 
 <div class='course-page-container'>
 
-<p>To introduce you to programming with the Java Bridge library, you&rsquo;ll create a very simple app: when the user clicks on 
-a button, it changes color to red (Wahoooooo!). The sample demonstrates the structure you&rsquo;ll need in your code to build 
-Android apps with the Java Bridge library.</p>
-<p>These instructions are for building an app using Android Studio. If you are using Eclipse, see <a href="/jBridgeRedClickEclipse">these instructions</a>.
-<ol>
-<li><strong>Create a new Android Application Project</strong>. Choose File | New Project and name your application "RedClick". 
-Click Next, then  leave the default minimum API version of 8 (Anroid version 2.2 Froyo). Ignore the other items and click Next.
-On the next screen, choose a Blank Activity for the app and on the final screen just click Finish.</li>
-<li><strong>Run the App you have so far.</strong> If there are no errors, you should now have the app that Eclipse sets you up 
-with, one that displays &ldquo;hello world&rdquo;. You can run the app by selecting the project and clicking the green icon with 
-a white arrow in the top menu. If your Android device is plugged in to your computer with USB,you can run it on that. If not, 
-you can run it in the emulator. To test on the emulator, you may need to setup an Android Virtual Device (AVD). 
-</li>
-<li><strong><strong>Import the Java Bridge Library. </strong></strong>Download this 
-<a href="http://3nportal.com/AIBridge/AIBridge.jar" >jar file</a>&nbsp;to your computer.
-You need to copy it into the libs directory of your Android Studio project. To do this, 
-first choose the Project view for your project. You can do this by clicking on the "Android" 
-above the left panel that shows your project items, and choosing "Project" Then click on the 
-"app" folder and you'll see a folder named libs. Open a file manager, find the .jar file you 
-just downloaded, and drag it into the libs folder. Then right-click (or control-click) on the 
-.jar file and choose "Add as Library". Your app can now use the Java Bridge library and all 
-the App Inventor components.</li>
+	<section class="course-page-section">
+		<p>
+			To introduce you to programming with the Java Bridge library, you&rsquo;ll create a very simple app: when the user clicks on a button, it changes color to red (Wahoooooo!). The sample demonstrates the structure you&rsquo;ll need in your code to build Android apps with the Java Bridge library.
+		</p>
 
-<li><strong>Import Java sample code: ClickRed</strong>. Download 
-<a  href="/javaBridge/clickRed/Screen1.java">this file</a> to your computer, 
-(you may have to copy the code in the file and paste it into a new edit file). Then open 
-the folder src/main/java/com.example.yourname.redclick in your project, and drag Screen1.java into it. 
-This Screen1.java code will serve as a replacement for MainActivity.java. It should be fine, but just 
-you may need to change is the “package” specification at the top of the file. Copy the package specification 
-from MainActivity.Java, e.g., “package com.example.clickred;” and paste it to replace the package 
-specification in the sample file.
-</li>
-<li><strong>Modify the Android Manifest File. </strong>Your Eclipse Android project has a 
-manifest file which specifies various things about your app. Go back to the Android View in your left-panel, 
-then choose the manifests directory and click on the AndroidManifest file to open it. You want to 
-change it so that the Screen1 class you just imported is used as the initial Activity (screen) 
-instead of MainActivity. In the file, you’ll see the following:
+		<p>
+			These instructions are for building an app using Android Studio. If you are using Eclipse, see <a href="/content/java-bridge/introduction/red-click-eclipse">these instructions</a>.
+		</p>
+	</section>
 
-     <activity android:name=".MainActivity"
-     
-      Replace “.MainActivity” with “.Screen1” (leave the initial dot),  so it appears as:
-      
-     <activity android:name=".Screen1"
-</li>
-<li><strong>Rerun the app.</strong> If all is well, the app should now appear with a single button that when clicked, 
-turns red. You've completed your first Android app</li>
-</ol>
-<p><strong>EXERCISES</strong></p>
-<p>1. Modify the app so that:</p>
-<ul>
-<li>the button starts out showing a '1'.</li>
-<li>each time the button is clicked, the number on it is incremented (1 to 2, 2 to 3, etc.).</li>
-</ul>
-<p>You'll need to convert String values to numbers and then back to String.&nbsp;Here are example calls to 
-Java conversion methods:</p>
-<p>&nbsp; &nbsp; &nbsp;&nbsp;<span class="s1">int</span> <span class="s2">score</span> = Integer.parseInt("323");<br />&nbsp; &nbsp; &nbsp; String s = String.valueOf(73);</p>
-<p>&nbsp;</p>
+	<section class="course-page-section">
+		<ol>
+			<li>
+				<p>
+					<strong>Create a new Android Application Project</strong>. Choose File | New Project and name your application "RedClick". 
+					Click Next, then  leave the default minimum API version of 8 (Anroid version 2.2 Froyo). Ignore the other items and click Next.
+					On the next screen, choose a Blank Activity for the app and on the final screen just click Finish.
+				</p>
+			</li>
+			<li>
+				<p>
+					<strong>Run the App you have so far.</strong> If there are no errors, you should now have the app that Eclipse sets you up 
+					with, one that displays &ldquo;hello world&rdquo;. You can run the app by selecting the project and clicking the green icon with 
+					a white arrow in the top menu. If your Android device is plugged in to your computer with USB,you can run it on that. If not, 
+					you can run it in the emulator. To test on the emulator, you may need to setup an Android Virtual Device (AVD).
+				</p>
+			</li>
+			<li>
+				<p>
+					<strong>Import the Java Bridge Library.</strong> Download this 
+					<a href="http://3nportal.com/AIBridge/AIBridge.jar" >jar file</a>&nbsp;to your computer. You need to copy it into the libs directory of your Android Studio project. To do this, first choose the Project view for your project. You can do this by clicking on the "Android" above the left panel that shows your project items, and choosing "Project" Then click on the "app" folder and you'll see a folder named libs. Open a file manager, find the .jar file you	just downloaded, and drag it into the libs folder. Then right-click (or control-click) on the .jar file and choose "Add as Library". Your app can now use the Java Bridge library and all the App Inventor components.
+				</p>
+			</li>
+			<li>
+				<p>
+					<strong>Import Java sample code: ClickRed</strong>. Download 
+					<a href="/javaBridge/clickRed/Screen1.java">this file</a> to your computer, (you may have to copy the code in the file and paste it into a new edit file). Then open the folder src/main/java/com.example.yourname.redclick in your project, and drag Screen1.java into it. This Screen1.java code will serve as a replacement for MainActivity.java. It should be fine, but just you may need to change is the “package” specification at the top of the file. Copy the package specification from MainActivity.Java, e.g., “package com.example.clickred;” and paste it to replace the package	specification in the sample file.
+				</p>
+			</li>
+			<li>
+				<p>
+					<strong>Modify the Android Manifest File.</strong> Your Eclipse Android project has a manifest file which specifies various things about your app. Go back to the Android View in your left-panel, 
+					then choose the manifests directory and click on the AndroidManifest file to open it. You want to 
+					change it so that the Screen1 class you just imported is used as the initial Activity (screen) instead of MainActivity. In the file, you’ll see the following:
+				</p>
+				<code>
+			     	&lt;activity android:name=".MainActivity"
+			    </code> 
+			    <p>
+			      	Replace “.MainActivity” with “.Screen1” (leave the initial dot),  so it appears as:
+			    </p>
+			    <code>
+			     	&lt;activity android:name=".Screen1"
+			    </code>
+			</li>
+			<li>
+				<p>
+					<strong>Rerun the app.</strong> If all is well, the app should now appear with a single button that when clicked, turns red. You've completed your first Android app!
+				</p>
+			</li>
+		</ol>
+	</section>
+
+	<section class="course-page-section">
+		<h2>
+			<strong>Exercise</strong>
+		</h2>
+		<p>
+			Modify the app so that:
+		</p>
+		<ul>
+			<li>
+				<p>the button starts out showing a '1'.</p>
+			</li>
+			<li>
+				<p>
+					Each time the button is clicked, the number on it is incremented (1 to 2, 2 to 3, etc.).
+				</p>
+			</li>
+		</ul>
+		<p>
+			You'll need to convert String values to numbers and then back to String. Here are example calls to Java conversion methods:
+		</p>
+		<code>
+			<pre>int score = Integer.parseInt("323");
+String s = String.valueOf(73);</pre>
+		</code>
+	</section>
 </div>

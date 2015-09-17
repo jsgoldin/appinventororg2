@@ -3586,6 +3586,7 @@ class JBridgeIntroHandler(webapp.RequestHandler):
             'userStatus': userStatus,
             'stylesheets' : ['/assets/css/owl.carousel.css', '/assets/css/owl.theme_original.css'],
             'scripts' : ['/assets/js/owl.carousel.js', '/assets/js/jbridgeintro.js', '/assets/js/ytexpo.js'],
+            'courseToModules' : getCoursesAndModules()
         }
         
 

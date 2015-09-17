@@ -3104,16 +3104,17 @@ pre {
   box-shadow: 1px 4px 1px rgb(168, 168, 168);
   border-radius: 14px;
   position: relative;
+  margin-bottom: 20px;
 }
+
+
+
 .jbridge-sample-app p {
   font-size: 20px;
   color: #515050;
   height: 87px;
 }
 
-.jbridge-sample-app a {
-
-}
 
 .jbridge-sample-app .sample-app-title {
   font-size: 25px;
@@ -3297,6 +3298,49 @@ pre {
     background-position-x: -57px;
 }
 
+.download-btn {
+  padding: 20px;
+  background-color: rgb(244, 182, 26);
+  color: white !important;
+  font-size: 16px;
+  box-shadow: 1px 3px 1px rgb(168, 168, 168);
+  border-radius: 6px;
+  margin: 21px 0px;
+  display: inline-block;
+  font-weight: 900;
+}
+
+
+figure {
+	margin-bottom: 40px;
+}
+
+figure img {
+	display: block;
+	margin: 10px auto;
+	max-width: 100%;
+}
+
+figure.no-center img {
+	margin: initial;
+}
+
+figure.no-center figcaption {
+	text-align: left;
+}
+
+
+figure pre, figure code {
+	margin-bottom: 0px;
+} 
+
+figcaption {
+	text-align: center;
+	margin: 10px auto;
+	line-height: 1.5;
+	font-style: italic;
+	font-size: 15px;
+}
 
 .dev-comment {
 	color: white; 
