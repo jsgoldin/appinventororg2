@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/jbase.css">
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/v2/default.css" type="text/css">
+
+
+{% for stylesheet in stylesheets %}
+<link rel='stylesheet' type='text/css' href='{{stylesheet}}'>
+{% endfor %}
+
+<title>{{title}}</title>
+
+
+</head>
+<body>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+	<div id='header-wrapper'>
+        <div class='top-banner'>
+         	<div class='gen-container'>
+         		<div class='col-50'>
+         			<a href='/'><img class='banner-logo responsive-fullwidth-img' src='/assets/img/testbanner.png'></a>
+         		</div>
+         		<div class='col-50'>
+            		<div class='search-box-wrapper'>
+						<form action="/siteSearch">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						
+            				{% if query %}
+            					<input class="form-control search-form" name="q" type="text" value={{query}} type="search">
+            				{% else %}
+            					<input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org" type="search">            				
+            				{% endif %}
+						</form>
+
+                		<div class="login-stuff-wrapper small-screen-hide">
+                    		{% if userStatus.ifUser%} 
+                    		<a id='profilenavbarbutton' href="/profile"> <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+                    	    {{userStatus.account.displayName}}</a>
+                    	    <a href="{{userStatus.logouturl}}">Logout</a> 
+                    	    {% else %} <a href="{{userStatus.loginurl}}">Login</a> 
+                    	    <a href="#">Sign Up</a>
+                    	    {% endif %}
+                		</div>
+          			</div>         		
+         		</div>
+   			</div>
+   			<div style="clear: both"></div>
+        </div>
+
+
+		<div class="navbar-default global-navbar" role="navigation">
+            <div class="gen-container navbar-color">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse no-margin collapse in" style="height: auto;">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                {% for course in courses %}
+                               		<li><a href="/content/{{course.c_identifier}}">{{course.c_title}}</a></li> 
+                                {% endfor %}
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Teach <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/TeachingAI">Teaching Ideas</a></li>
+                                <li><a href="/teacherMap">Who's Teaching AI?</a></li>
+                                <li><a href="https://groups.google.com/forum/#!forum/app-inventor-instructors" target="_blank">Teacher Forum</a></li>
+                                <li><a href="/resources">Teaching Resources</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Book <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/book2">App Inventor 2 Book</a></li>
+                                <li><a href="/book">App Inventor Classic Book</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Build<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="http://ai2.appinventor.mit.edu" target="_blank">MIT App Inventor (AI2)</a></li>
+                                <li><a href="http://beta.appinventor.mit.edu" target="_blank">App Inventor Classic</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Share<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="http://gallery.appinventor.mit.edu" target="_blank">App Inventor Gallery</a></li>
+                                <li><a href="/appPage">Publishing Your App</a></li>
+                                <li><a href="https://groups.google.com/forum/#!forum/mitappinventortest">App Inventor Forum</a></li>
+                            </ul></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/about">About</a></li>
+                                <li><a href="http://appinventorblog.com">App Inventor Blog</a></li>
+                                <li><a href="/media">Media</a></li>
+                                <li><a href="http://democratizecomputing.org">Democratize Computing Lab</a></li>
+                            </ul></li> 
+                            
+                            
+                             {% if userStatus.ifUser%}
+                        <li class='hidden-on-big-screen'><a href="/profile">Profile</a></li> {% if usserStatus.admin %}
+                        {% endif %}
+
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.logouturl}}">Logout</a></li> {% else %}
+                        <li class='hidden-on-big-screen'><a href="{{userStatus.loginurl}}">Login</a></li>
+                        <li class='hidden-on-big-screen'><a href="#">Sign Up</a></li> {% endif %} {% if userStatus.admin %}
+                        <li><a href="/admin/dashboard">Administration</a></li> {% endif %}                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+	</div>
+
+
+    {% block body %} {% endblock %} 
+    
+    {% for script in scripts %}
+    <script type="text/javascript" src="{{script}}"></script>
+    {% endfor %}
+
+    <footer>
+    	<div class='gen-container'>		
+    		<div class='col-50'>
+ 				<img class='responsive-fullwidth-img footer-icon' src='/assets/img/testbanner.png'>
+     			<a>Contact Us | </a>
+     			<a>About | </a>
+     			<a>News</a>
+    		</div>
+    		
+    		<div class='col-50'>
+    		
+    		<ul class='nested-list'>
+    			<li class='list-parent'>
+    				<div class='list-section-title'>About</div>
+    				<ul>
+    					<li>
+    						<a>Our Mission</a>
+    					</li>
+    					<li>
+    						<a>Our Team</a>
+    					</li>    					
+    					<li>
+    						<a>News</a>
+    					</li>
+    					<li>
+    						<a>Blog</a>
+    					</li>    					    					
+    				</ul>
+    			</li>	
+     			<li class='list-parent'>
+    				<div class='list-section-title'>Resources</div>
+    				<ul>
+    					<li>
+    						<a>Book</a>
+    					</li>
+    					<li>
+    						<a>MIT</a>
+    					</li> 					    					
+    				</ul>
+    			</li> 
+     			<li class='list-parent'>
+    				<div class='list-section-title'>Learn</div>
+    				<ul>
+						{% for course in courses %}
+                    	<li>
+                    		<a href="/content/{{course.c_identifier}}">{{course.c_title}}</a>
+                    	</li> 
+                    	{% endfor %}			   					
+    				</ul>
+    			</li>          			
+    		</ul> 		
+ 			</div>
+ 			
+    		<p class='footer-copyright'>AppInventor.org by David Wolber is licensed under an Attribution-NonCommercial-ShareAlike 3.0 Unported License. </p>
+    	
+    	</div>
+    </footer>
+    
+
+    <script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
+    
+        <!-- Google custom search  -->
+    <script>
+	  	(function() {
+	    var cx = '008494446149806911917:sgk1dgv7xgw';
+	    var gcse = document.createElement('script');
+	    gcse.type = 'text/javascript';
+	    gcse.async = true;
+	    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	        '//www.google.com/cse/cse.js?cx=' + cx;
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(gcse, s);
+	  	})();
+	</script>
+    
+</body>
+</html>

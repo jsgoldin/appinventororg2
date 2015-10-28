@@ -1,0 +1,359 @@
+
+{% extends "site_base.html" %}
+{% block blockstart %}
+
+    <!-- HERO -->
+    <div class="hero-unit">
+        <div class="row-fluid">
+            <div class="span6">
+                <h1 style="font-size: 36px">{{ app.heroHeader }}</h1>
+                <br/>
+                <p style="font-size: 16px">{{ app.heroCopy }}</p>
+
+            </div>
+
+            <div class="span1">
+                &nbsp;
+            </div>
+
+            <div class="span4">
+                <img class="" src="{{currentAppsDir}}/{{ app.appId }}/hero.png" alt="screenshot">
+            </div>
+            <!-- end span -->
+        </div>
+        <!-- end row -->
+
+        <div class="row-fluid">
+            <figure>
+                <img class="qr" src="{{currentAppsDir}}/{{ app.appId }}/qr.png" alt="" style="width:180px;height:180px">
+                <figcaption>
+                    Scan this QR code to download the app
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    <!-- /HERO -->
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <div class="row-fluid">
+            <ul style="text-align:left">
+                {#        <span class="span5">#}
+                {#            {% if customs %}#}
+                {#                <li>#}
+                {#                    <a class="lead" style="font-size:16px;">Build&nbsp;&nbsp;</a> <span#}
+                {#                        class="divider">{% if customs %}|{% endif %}</span>#}
+                {#                </li>#}
+                {#            {% endif %}#}
+                {##}
+                {#            {% if customs %}#}
+                {#                <li>#}
+                {#                    <a class="lead" style="font-size:16px;" href="#customize">&nbsp;&nbsp; Customize&nbsp;&nbsp;</a> <span#}
+                {#                        class="divider">{% if concepts %}|{% endif %}</span>#}
+                {#                </li>#}
+                {#            {% endif %}#}
+                {##}
+                {#            {% if concepts %}#}
+                {#                <li>#}
+                {#                    <a class="lead" style="font-size:16px;" href="#conceptualize">&nbsp;&nbsp; Conceptualize&nbsp;&nbsp;</a> <span#}
+                {#                        class="divider"></span>#}
+                {#                </li>#}
+                {#            {% endif %}#}
+                {##}
+                {#        </span>#}
+
+        <span class="span10">
+	   {% if app.pdfChapter %}
+		 <li style="font-size: 10px; margin-right: 20px;">
+		 
+                <a class="btn btn-success btn-mini" style="background:#FFAE00;"
+                   href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf">
+                    Download the chapter&nbsp;
+                    <i class="icon-download-alt icon-white"></i></a>
+            </li>
+	   {% else %}
+		 
+		 <!--Hide PDF, nothing here-->
+
+        {% endif %}
+            
+
+            <li style="font-size: 10px; margin-right: 20px;">
+                <a class="btn btn-success btn-mini"
+                   href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.zip">
+                    Download the source&nbsp;
+                    <i class="icon-download-alt icon-white"></i>
+                </a>
+            </li>
+            <li style="font-size: 10px; margin-right: 20px;">
+                <a class="btn btn-success btn-mini"  
+                   href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk">
+                    Download the APK&nbsp;
+                    <i class="icon-download-alt icon-white"></i>
+                </a>
+            </li>
+
+		 <li>
+			<a href="{{ app.appId }}-steps">New Version of This Page</a>
+		 </li>
+        </span>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+
+    <!-- BUILD IT section header -->
+    {% if steps %}
+        <div class="row-fluid">
+            <div class="page-header">
+                <h1 class="span8" id="build">Build It <br/>
+                    <small>Follow the video steps below to build the app yourself.</small>
+                </h1>
+
+                <div class="span4" style="margin-top: 10px; text-align: center;">
+
+                </div>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+            <!-- /page-header -->
+        </div>
+    {% endif %}
+    <!-- end row -->
+    <!-- /BUILD IT section header -->
+
+
+    <!-- STEP ITERATION -->
+    {% for step in steps|slice:":1" %}
+        <div class="step">
+            <div class="row-fluid">
+                <p class="lead">
+                    <a data-toggle="collapse" data-target="#step{{ step.number }}">
+                        <strong>step {{ step.number }}:</strong> {{ step.header }} <small>(click for details)</small>
+                    </a>
+                </p>
+            </div>
+
+            <div id="step{{ step.number }}" class="collapse in">
+
+                <div class="row-fluid">
+                    <p class="lead span8">
+                        <small>{{ step.copy }}</small>
+                    </p>
+                </div>
+
+                <div class="block-image span6">
+                    <img class="thumbnail" src="{{currentAppsDir}}/{{ app.appId }}/blocks{{ step.number }}.png" alt=""/>
+                </div>
+
+                <div class="step-video span4" style="margin-left:40px;">
+		    {% if app.version == "1" %}
+			<iframe class="thumbnail" width="374" height="210" src="{{ step.videoPath }}" frameborder="0" allowfullscreen></iframe>
+		    {% else %}
+			<iframe class="thumbnail" width="374" height="210" src="http://www.youtube.com/embed/{{ step.videoPath }}" frameborder="0" allowfullscreen></iframe>
+		    {% endif %}
+                    
+                    <p>Looks best in <a href="{{ step.fullscreenPath }}">full screen</a>.</p>
+                </div>
+
+            </div>
+        </div>
+    {%  endfor %}
+
+
+    {% for step in steps|slice:"1:" %}
+        <div class="step">
+            <div class="row-fluid">
+                <p class="lead">
+                    <a data-toggle="collapse" data-target="#step{{ step.number }}">
+                        <strong>step {{ step.number }}:</strong> {{ step.header }} <small>(click for details)</small>
+                    </a>
+                </p>
+            </div>
+
+            <div id="step{{ step.number }}" class="collapse">
+
+                <div class="row-fluid">
+                    <p class="lead span8">
+                        <small>{{ step.copy }}</small>
+                    </p>
+                </div>
+
+                <div class="block-image span6">
+                    <img class="thumbnail" src="{{currentAppsDir}}/{{ app.appId }}/blocks{{ step.number }}.png" alt=""/>
+                </div>
+
+                <div class="step-video span4" style="margin-left:40px;">
+		    {% if app.version == "1" %}
+			<iframe class="thumbnail" width="374" height="210" src="{{ step.videoPath }}" frameborder="0" allowfullscreen></iframe>
+		    {% else %}
+			<iframe class="thumbnail" width="374" height="210" src="http://www.youtube.com/embed/{{ step.videoPath }}" frameborder="0" allowfullscreen></iframe>
+		    {% endif %}
+                    <p>Looks best in <a href="{{ step.fullscreenPath }}">full screen</a>.</p>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+    <!-- /STEP ITERATION -->
+
+    {% if concepts %}
+
+
+        <!-- CONCEPTUALIZE IT section header -->
+        <div class="row-fluid">
+            <div class="page-header">
+                <h1 id="customualize">Conceptualize It <br/>
+                    <small>Can you picture it?</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /CONCEPTUALIZE IT section header -->
+
+        <!-- CONCEPTUALIZE ITERATION -->
+        {% for concept in concepts %}
+            <div class="concept">
+                <div class="row-fluid"> <!-- start row -->
+                    <p class="lead span12">
+                        <a data-toggle="collapse" data-target="#concept{{ concept.number }}">
+                            <strong> concept {{ concept.number }}:</strong> {{ concept.header }}
+                        </a>
+                    </p>
+
+                    <p class="lead span8">
+                        <small>{{ concept.copy }}</small>
+                    </p>
+                </div>
+
+                <div id="concept{{ concept.number }}" class="collapse.in"> <!-- start collapse -->
+                    <div class="row-fluid"> <!-- start row -->
+
+                        <img class="span4 thumbnail" src="{{currentAppsDir}}/notetaker/blocks{{ concept.number }}.png" alt=""
+                             class="thumbnail">
+
+                        <div class="span4" style="margin-left:40px;">
+                            <iframe width="374" height="210" src="{{ concept.videoPath }}" frameborder="0"
+                                    allowfullscreen></iframe>
+                            <p>Looks best in <a href="{{ concept.fullscreenPath }}">full screen</a>.</p>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end collapse -->
+            </div>
+        {% endfor %}
+        <!-- /CONCEPTUALIZE ITERATION -->
+
+    {% endif %}  <!-- end if list is not empty -->
+
+
+    {% if customs %}
+
+
+        <!-- CUSTOMIZE IT section header -->
+        <div class="row-fluid">
+
+            <div class="page-header" style="padding-bottom: 36px;">
+                <h1 class="span8" id="customize">Customize It <br/>
+                    <small>Follow the suggestions below to tweak the app.</small>
+                </h1>
+
+                <div class="span2">
+                    &nbsp;
+                </div>
+
+                <div class="span2">
+                    <a class="btn btn-success btn-mini"
+                       href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}_custom.zip">
+                        Download the source&nbsp;
+                        <i class="icon-download-alt icon-white"></i>
+                    </a>
+
+                </div>
+
+
+                <br/>
+                <br/>
+                <br/>
+            </div>
+        </div> <!-- end row -->
+        <!-- /CUSTOMIZE IT section header -->
+
+        <!-- CUSTOMIZE ITERATION -->
+        {% for custom in customs|slice:":1" %}
+            <div class="custom">
+                <div class="row-fluid"> <!-- start row -->
+                    <p class="lead span12">
+                        <a data-toggle="collapse" data-target="#custom{{ custom.number }}">
+                            <strong> custom {{ custom.number }}:</strong> {{ custom.header }}
+                        </a>
+                    </p>
+
+
+                </div>
+
+                <div id="custom{{ custom.number }}" class="collapse in"> <!-- start collapse -->
+                    <div class="row-fluid"> <!-- start row -->
+
+                        <p class="lead span8">
+                            <small>{{ custom.copy }}</small>
+                        </p>
+
+                        {#                    <img class="span4 thumbnail" src="{{currentAppsDir}}/notetaker/blocks{{ custom.number }}.png" alt=""#}
+                        {#                         class="thumbnail">#}
+                        {##}
+                        {#                    <div class="span4" style="margin-left:40px;">#}
+                        {#                        <iframe width="374" height="210" src="{{ custom.videoPath }}" frameborder="0"#}
+                        {#                                allowfullscreen></iframe>#}
+                        {#                        <p>Looks best in <a href="{{ custom.fullscreenPath }}">full screen</a>.</p>#}
+                        {#                    </div>#}
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end collapse -->
+            </div>
+        {% endfor %}
+
+        {% for custom in customs|slice:"1:" %}
+            <div class="custom">
+                <div class="row-fluid"> <!-- start row -->
+                    <p class="lead span12">
+                        <a data-toggle="collapse" data-target="#custom{{ custom.number }}">
+                            <strong> custom {{ custom.number }}:</strong> {{ custom.header }}
+                        </a>
+                    </p>
+
+
+                </div>
+
+                <div id="custom{{ custom.number }}" class="collapse"> <!-- start collapse -->
+                    <div class="row-fluid"> <!-- start row -->
+
+                        <p class="lead span8">
+                            <small>{{ custom.copy }}</small>
+                        </p>
+
+                        {#                    <img class="span4 thumbnail" src="{{currentAppsDir}}/notetaker/blocks{{ custom.number }}.png" alt=""#}
+                        {#                         class="thumbnail">#}
+                        {##}
+                        {#                    <div class="span4" style="margin-left:40px;">#}
+                        {#                        <iframe width="374" height="210" src="{{ custom.videoPath }}" frameborder="0"#}
+                        {#                                allowfullscreen></iframe>#}
+                        {#                        <p>Looks best in <a href="{{ custom.fullscreenPath }}">full screen</a>.</p>#}
+                        {#                    </div>#}
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end collapse -->
+            </div>
+        {% endfor %}
+        <!-- /CUSTOMIZE ITERATION -->
+
+    {% endif %}  <!-- end if list is not empty -->
+
+{% endblock %}
+{#end of body block#}
+
+

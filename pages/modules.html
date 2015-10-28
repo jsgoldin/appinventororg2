@@ -1,0 +1,84 @@
+{% extends "templates/site_base.html" %} {% block body %}
+
+
+<div  style="background-color: #455A64; color: white; padding-bottom: 10px;">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-12">
+   				<h1>{{title}}</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gen-container footer-fix">
+	<div class="row">
+		<div class="col-md-4" style="margin-top: 60px;">
+     		{% for m in modules %}
+			{% if m.m_title == module.m_title %}
+			<div class='module-navbox  selected-tab'>
+				<a href='{{m.m_identifier}}'><span></span></a>
+				<p>{{m.m_title}}</p>
+			</div>
+			{% else %}
+			<div class='module-navbox'>
+				<a href='{{m.m_identifier}}'><span></span></a>
+				<p>{{m.m_title}}</p>
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-12">
+					<h3>{{module.m_title}}</h3>
+					<p>{{module.m_description}}</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					{% for content in contents %}
+					<div class='content-item-box-wrapper'>
+						<div class='content-item-box'>
+							<a href='{{module.m_identifier}}/{{content.c_identifier}}'><span></span></a>
+										
+							{% if content.c_type == "App" %}
+							<img src='/assets/img/ModuleIcons/flat-color/play.png' height='30px'>
+							{% endif %} 
+							{% if content.c_type == "Quiz" %} 
+							<img src='/assets/img/ModuleIcons/flat-color/check-list.png'
+								height='30px'> 
+							{% endif %}
+							{% if content.c_type == "Nugget" %}
+							<img src='/assets/img/ModuleIcons/flat-color/light-bulb.png'
+								height='30px'> 
+							{% endif %}
+							{% if content.c_type == "Book Chapter" %}
+							<img src='/assets/img/ModuleIcons/flat-color/ai2cover2.jpeg' height='30px'>
+							{% endif %} 
+							{% if content.c_type == "Lesson Plan" %}
+							<img src='/assets/img/ModuleIcons/flat-color/book.png' height='30px'>
+							{% endif %} 
+							{% if content.c_type == "Project" %}
+							<img src='/assets/img/ModuleIcons/flat-color/pencil.png' height='30px'>
+							{% endif %}
+							{% if content.c_type == "Worksheet" %}
+							<img src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'>
+							{% endif %}
+							{% if content.c_type == "Text Tutorial" %}
+							<img src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'>
+							{% endif %}
+							{% if content.c_type == "Miscellaneous" %}
+								<img src='/assets/img/ModuleIcons/flat-color/document.png' height='30px'>
+							{% endif %} 	
+							
+							<p>{{content.c_title}}</p>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

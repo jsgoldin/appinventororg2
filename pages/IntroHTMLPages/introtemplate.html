@@ -1,0 +1,22 @@
+<article>
+
+	<div class='dark-blue-title'>
+		<div class='course-page-container'>
+
+			<h2>{% block title %}{% endblock %}</h2>
+			<p>{% block description %}{% endblock %}</p>
+
+		</div>
+	</div>
+
+	<div class='course-page-container'>
+	
+
+		<div class="card">
+				{% block card %}{% endblock %}
+			
+		</div>
+		{% block link %}{% endblock %}
+
+	</div>
+</article>

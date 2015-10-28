@@ -1,0 +1,209 @@
+<div class='dark-blue-title'>
+	<div class='course-page-container'>
+
+		<h1>Java Bridge Programming: Basics</h1>
+
+	</div>
+</div>
+
+<div class='course-page-container'>
+	<section class="course-page-section">
+		<h2>App Framework</h2>
+
+		<p>
+			You'll build your Java Bridge apps using a framework. A framework is a skeleton of an app,
+			a software template that provides generic functionality and hooks for where you can add
+			your app-specific code.
+		</p>
+
+
+		<p>The RedClick app will serve as your
+			template and will provide the framing you need. You'll fill in the parts 
+			specific to the app you're building-- the components you want to appear and the event-handlers that define your app's behavior.
+		</p>
+
+		<p>
+			If you're a beginner to Java, the template code will seem quite complicated. The good news
+			is you can ignore some of it for now and focus on what you need to build your particular
+			app. Later, you'll learn the details of all the code in the template.
+		</p>
+	</section>
+	<section class="course-page-section">
+		<h2>Java Class</h2>
+		<p>
+			All code in Java resides within a <em>class</em>. In our Java Bridge
+			samples, your code will appear within a class "Screen1" which corresponds to the main
+			screen of your app.
+		</p>
+
+		<p>
+			A <em>class</em> is Java code equivalent of an App Inventor <em>component.</em> The Java
+			Bridge library has classes for all the components you are familiar with: Button, TextBox, Texting, etc.
+			You'll use these classes to create your app.
+		</p>
+	</section>
+
+	<section class="course-page-section">
+		<h2>Importing, Declaring, and Creating the Components in your App</h2>
+		<p>
+			In App Inventor, you specify the components in your app by simply dragging one in from the left-side drawer into
+			the Designer view. In Java, its a three-step process.
+		</p>
+
+		<ol>
+			<li>
+				<h3>Import the Component code.</h3> 
+				<p>
+					To build your app, you will code the Screen1 class, but 
+					you want to make use of Java code (a class) for each component that will appear in the app. To use the 
+					code of another class in Java, you must import it above the class definition. The RedClick app has only one
+					component, Button, so the necessary import line is:
+				</p>
+				<code>
+					<pre>import com.google.appinventor.components.runtime.Button;</pre>
+				</code>
+				<p>
+					There are some other import statements in the RedClick code, but those are for generic classes used in all apps (e.g. Component).
+				</p>
+				<p>
+					You'll add an import statement like the one above for each component type in your app. You only need to import "Button" once, even if your app will have multiple Button instances (e.g., Button1, Button2, etc.).
+				</p> 
+			</li>
+			<li>
+				<h3>Declare each Component Instance</h3>
+				<p>
+					In App Inventor, when you drag a Button or other component into the designer, a new <em>component instance</em> is created for you. By default its given a name like "Button1". "Button1" is the component instance, "Button" is the component (type).
+				</p>
+				<p>
+					In Java, you must declare the type (class) of each object in your app. An object is an instance of a class. In RedClick, within the Screen1 class definition, you declare the object "redButton" to be of type Button:
+				</p>
+				<code>
+					<pre>public class Screen1 extends Form implements HandlesEventDispatching
+{
+	// declare all your components as instance variables
+	private Button redButton;
+	// ...
+
+</pre>
+				</code>
+				<p>
+					Ignore the keyword "private" for now and just note that you specify the type (Button) and then the name you want to give your particular instance(redButton).
+				</p>
+				<p>
+					RedClick only has a single object instance. For other apps, You'll add many declarations like this, one for each instance.
+				</p>
+			</li>
+			<li>
+				<h3>Create each Instance</h3>
+				<p>
+					Believe it or not, you still need one more line of code just to get an object instance to appear in your app. Thus far, you've just told Java that you want to have an instance	variable, you haven't actually created it. In Java, you create instances with the "new" command.
+					You'll put these commands in a special function of the template code named "$define".
+				</p>
+				<code>
+					<pre>protected void $define()
+{
+	// create the button component
+	redButton = new Button(this);
+	// ...</pre>
+				</code>
+				<p>
+					Just as you'll need to declare each instance you need, you'll also need to create each instance as in the above code.
+				</p>
+				<p>
+					The "this" in the code refers to the enclosing class (Screen1). We'll talk more about the new call and what's called a constructor in Java, but for now just realize that you are creating a Button named "redButton" and it will appear within Screen1.
+				</p>
+			</li>
+			<li>
+				<h3>Specify the properties for each instance</h3>
+				<p>
+					You set properties by calling methods corresponding to each property name. For the redclick app, you can set the redButton's Text and BackgroundColor like this:
+				</p>
+				<code>
+					<pre>protected void $define()
+{
+	// create the button component
+	redButton = new Button(this);
+            redButton.Text( "Turn RED" );
+	redButton.BackgroundColor(COLOR_GREEN );</pre>
+				</code>
+
+
+
+
+			</li>
+		</ol>
+	</section>
+	<section class="course-page-section">
+		<p>
+			You now have the knowledge you need to create the user interface for your app so that all the components you want appear. Try adding a few new component instances to the RedClick app, then re-run the app to see the changes.
+		</p>
+		<h2>Defining the Event-Response Behavior of the App</h2>
+		<p>
+			In App Inventor, you define the behavior of your app in the Blocks editor by dragging in event blocks like "when Button.Click", and then inserting response blocks within it. In Java, you'll need to do some bookkeeping to define such behaviors.
+		</p>
+		<ol>	
+			<li>
+				<h3>Register the Events you Care About</h3>
+				<p>
+					The Java Bridge framework requires you to register each event to which your app will respond. You can register the events with a call like the following in your $define function:
+				</p>
+				<code>
+					<pre>EventDispatcher.registerEventForDelegation( this, "RedButtonClick", "Click" );</pre>
+				</code>
+				<p>
+					The first parameter should aways be "this" meaning the Screen1 class will deal with the event. The second parameter is just a name you give your registration-- it really can be anything. The third parameter specifies the event you care about ("Click" in the example). Note that you only need to register "Click" once even if you'll have multiple buttons that all respond to a click.
+				</p>
+			</li>
+			<li>
+				<h3>Coding the Event Responses</h3>
+				<p>
+					When the system framework detects an event (e.g., a Click), it will call a function dispatchEvent to "handle" the event. To code your event handlers, you'll add code to the dispatch event function that
+					responds to each event you care about. The following is the dispatchEvent function for the RedClick app: 
+				</p>
+				<code>
+					<pre>public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params)
+{
+	if (component.equals(redButton) && eventName.equals("Click"))
+	{
+		RedButtonClick();
+		return true;
+	}
+	// here is where you'd check for other events of your app...
+	return false;
+}</pre>
+				</code>
+				<p>
+					RedClick just has one event handler. Most apps will have more and you can just add additional if (or else if) branches to handle those events.
+				</p>
+				<p>
+					The dispatchEvent parameters "component" and "eventName" help you identify the incoming event. In the code above, the "if" statement asks if the component is the redButton, and if the eventName is "Click". If both are true, the function RedButtonClick() is called.
+				</p> 
+				<p>
+					You could just put code to respond to the click directly in the if clause's curly brackets. But in this example, the new function
+					RedButtonClick is coded to actually perform the response (it appears below the dispatchEvent function:
+				</p>
+				<code>
+					<pre>public void RedButtonClick()
+{
+	redButton.BackgroundColor(COLOR_RED);
+}</pre>
+				</code>
+				
+				<p>
+					In this case, the background color property of the button is changed in response to the Click. 
+				</p>
+
+				<p>
+					COLOR_RED is a constant provided by the framework. All of the colors have constants in that form, e.g., COLOR_BLUE. The <a href="http://3nportal.com/AIBridge/API/">Java Bridge API</a> provides information on all the constants you can use to set properties. From the API, click on the Component class in the left-side panel to view these constants.
+				</p>
+
+				<p>
+					In this example, the dispatchEvent parameter "params" was ignored, because the "Click" event doesn't have any event parameters. In general, you'll use the "params" parameter to get a reference to an event's parameters, e.g.,  a Canvas.Touched event has parameters such as x and y that you'll need to grab.
+				</p>
+				<p>
+					For an introduction to conditional "if" statements in Java, see <a href="http://www.greenteapress.com/thinkapjava/html/thinkjava006.html#toc34">these notes.</a>
+				</p>
+			</li>
+		</ol>
+	</section>
+</div>

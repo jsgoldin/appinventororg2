@@ -1,0 +1,106 @@
+{% extends "site_base.html" %}
+{% block body %}
+<title>Persistence</title>
+  
+<h2>How do you record data persistently?</h2>
+          <p>
+			When you enter information into your Facebook page or another app, and that
+			 information is saved so it is there next time you visit, it is persistent 
+			 data. The opposite--data that “dies” when you close the app-- is called 
+			 transient data. Persistent data is stored in a database or file system, 
+			 and not just in the application’s short-term memory. App Inventor provides
+			  the <span class="empfont">TinyDB</span> component for storing data in the phone or tablet’s persistent 
+			  storage. Check out these examples of using <span class="empfont">TinyDB</span> to store data persistently:
+
+		  </p>
+		  <div class="row-fluid">	 
+        <div class="span6">
+          
+			 <a name="outMessage"></a> 
+		  <h3>Example 1. How do you persistently record an out-going message for an SMS text auto-responder?</h3>
+		    <img class="thumbnail" src="../../assets/img/persistence/persistentMessage.png" border="0"/>
+		   <p>
+			This sample is from a “text answering machine” app that lets you record a 
+			message to be sent in auto-reply to texts sent to your phone. When the user 
+			enters a message, it should be remembered persistently so the user doesn't 
+			have to type it in again when the app is closed and re-launched (unless the
+			 user wants to change the outgoing message).
+			 </p>
+			 <p>
+
+			When the user enters a new message and clicks “Submit”, the entered message
+			 is copied from <span class="empfont">OutgoingMessageTextBox</span> into the <span class="empfont">OutgoingMessageLabel</span>, 
+			 which displays the current message. Then TinyDB.StoreValue is called to
+			  remember the entry persistently-- to record the newly entered message in 
+			  the database. The tag “message” names the entry in the database, and the 
+			  value stored is what the user entered. The final row of blocks within 
+			  <span class="empfont">SubmitButton.Click</span> just blank out the OutgoingMessageTextBox so it is 
+			  ready for a new entry.
+			</p>
+			 <p>
+
+			Storing the data is just part of the equation-- you also need to retrieve 
+			the data, to bring it from the database into the app. In this app, the data 
+			is retrieved in the <span class="empfont">Screen.Initialize</span> event, which is triggered when the app 
+			is opened. The <span class="empfont">TinyDB.GetValue</span> call asks the database to return the data 
+			tagged “message”. If the user has submitted something previously, the entry 
+			will be returned. If there is nothing yet in the database, <span class="empfont">TinyDB.GetValue</span>
+			 returns the text in <span class="empfont">valueIfNotThere</span> (a default message).
+			</p>
+			
+		</div>
+		<div class="span4">
+			<br/><br/><br/>
+            <iframe width="560" height="315" src="//www.youtube.com/embed/_IomeoW9tAc" 
+             frameborder="0" allowfullscreen></iframe>
+        </div>
+       </div>
+         <div class="row-fluid">   
+            <div class="span6">
+            <a name="notes"></a>
+			<h3>Example 2. How do you persistently record notes entered by the user?</h3>
+			<img class="thumbnail" src="../../assets/img/persistence/recordInListDB.png" border="0"/>
+			<p>
+			The user enters a note and clicks "Submit". In <span class="empfont">SubmitButton.Click</span>, the item is added
+			 to the variable noteList, and then the list, as a whole, is stored to the 
+			 database with the tag “notes”. The new list is displayed in <span class="empfont">ListLabel</span> and 
+			 the textbox is blanked out.
+			 </p>
+			 <p>
+			 When the app is closed and re-opened, <span class="empfont">Screen.Initialize</span> is triggered. 
+			 <span class="empfont">TinyDB.GetValue</span> is called to retrieve the list previously stored in the 
+			 database. The result is placed it in the <span class="empfont">noteList</span> variable. If there are 
+			 no notes in the database, e.g., the first time the app is used, then 
+			 <span class="empfont">TinyDB.GetValue</span> returns the <span class="empfont">valueIfTagNotThere</span> value, which is specified
+			  as an empty list.
+
+			</p>
+		</div>
+		<div class="span4">
+			<br/><br/><br/>
+            <iframe width="560" height="315" src="//www.youtube.com/embed/aiFrwX7M4vc" 
+             frameborder="0" allowfullscreen></iframe>
+        </div>
+</div>
+
+
+
+		<h3>Related Information</h3>
+			<p>For these samples, the data is stored right on the device so it is 
+			“local” to the device and really for a single user (e.g., the note taking 
+			app is for private notes). When data is meant to be shared amongst multiple
+			 devices and users, a web database is required.
+			</p><p>
+			The samples provide only rudimentary list display-- the lists are dumped 
+			into a label and by default listed in the form: (item1 item2). 
+			</p>
+			 <hr/>
+			 </div>
+			 <div class="span4">
+             
+            </div>
+		</div>
+		
+
+
+{% endblock %}

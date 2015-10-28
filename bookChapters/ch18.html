@@ -1,0 +1,441 @@
+<article>
+	<div class='full-width-background-blue-1-container'>
+		<div class='course-page-container'>
+			<div class='course-page-title-section '>
+				<h2>Programming Your App to Make Decisions: Conditional Blocks</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class='course-page-container'>
+		<div class='standard-section'>
+			<div class='left-side'>
+				<img class='responsive-fullwidth-img notouch-r'
+					alt="Programming Your App to Make Decisions"
+					src="/assets/img/bookChapters/c18.png" />
+			</div>
+			<div class='right-side'>
+				<p>Computers, even small ones like the phone in your pocket, are
+					good at performing thousands of operations in just a few seconds.
+					Even more impressively, they can also make decisions based on the
+					data in their memory banks and logic specified by the programmer.
+					This decision-making capability is probably the key ingredient of
+					what people think of as artificial intelligence, and it’s
+					definitely a very important part of creating smart, interesting
+					apps! In this chapter, we’ll explore how to build decision-making
+					logic into your apps.</p>
+			</div>
+		</div>
+
+		<div class='standard-section'>
+
+			<div class='left-side'>
+				<img class='nudge-right-60  responsive-fullwidth-img'
+					alt="An event handler that tests for a condition and branches accordingly"
+					src="/assets/img/bookChapters/c18-1.png" />
+			</div>
+
+
+			<div class='right-side'>
+				<p>As we discussed in Chapter 14, an app’s behavior is defined
+					by a set of event handlers. Each event handler executes specific
+					functions in response to a particular event. The response need not
+					be a linear sequence of functions, however; you can specify that
+					some functions be performed only under certain conditions. A game
+					app might check if the score has reached 100. A location-aware app
+					might ask if the phone is within the boundaries of some building.
+					Your app can ask such questions and, depending on the answer,
+					proceed accordingly.</p>
+
+				<p>Consider the diagram in Figure 18-1. When the event occurs,
+					function (block) A is performed. Then a decision test is performed.
+					If the test is true, B1 is performed. If it is false, B2 is
+					performed. In either case, the rest of the event handler (C) is
+					completed.</p>
+
+
+				<p>Because app decision diagrams like this one look something
+					like trees, we say that the app “branches” one way or the other
+					depending on the test result. So, in this instance, you’d say, “If
+					the test is true, the branch containing B1 is performed.”</p>
+
+			</div>
+		</div>
+
+
+
+
+
+		<div class='standard-section'>
+
+			<h1 class='center-children'>Testing Conditions with if and
+				ifelse Blocks</h1>
+
+			<p>
+				App Inventor provides an <strong>if-then</strong> conditional
+				block ()  found in the Control drawer. You can extend the block with
+				as many <strong>else</strong> and <strong>else if </strong>branches as
+				you’d like by clicking on the blue icon, see <a data-type="xref"
+					href="#if_and_ifelse_conditional_blocks">Figure 18-2</a>.
+			</p>
+
+			<div class='center-img-wrapper'>
+				<img class='responsive-fullwidth-img'
+					alt="The if and ifelse conditional blocks"
+					src="/assets/img/bookChapters/c18-2.png" /> <em>The if and
+					ifelse conditional blocks</em>
+			</div>
+
+
+
+			<p>
+				You can plug any <em>Boolean expression</em> into the <em>test</em> slots
+				of the <strong>if</strong> and <strong>else if</strong> blocks. A
+				Boolean expression is a mathematical equation that returns a result
+				of either true or false. The expression tests the value of
+				properties and variables using relational and logical operators such
+				as the ones shown in <a data-type="xref"
+					href="#relational_and_logical_operator_blocks_u">Figure 18-3</a>.
+			</p>
+
+			<div class='center-img-wrapper'>
+				<img class='responsive-fullwidth-img'
+					alt="Relational and logical operator blocks used in conditional tests"
+					src="/assets/img/bookChapters/c18-3.png" /> <em>Relational
+					and logical operator blocks used in conditional tests</em>
+			</div>
+
+			<p>
+				The blocks you put within the “then” slot of an <strong>if</strong>
+				will only be executed if the test is true. If the test is false, the
+				app moves on to the blocks below it. 
+			</p>
+
+			<p>
+				For a game, you might plug in a Boolean expression concerning the
+				score, as shown in <a data-type="xref"
+					href="#boolean_expression_used_to_test_the_scor">Figure 18-4</a>.
+			</p>
+
+			<div class='center-img-wrapper'>
+
+				<img class='responsive-fullwidth-img'
+					alt="A Boolean expression used to test the score value"
+					src="/assets/img/bookChapters/c18-4new.png" /> <em>A Boolean
+					expression used to test the value of the variable score</em>
+			</div>
+
+			<p>
+				In this example, a sound file is played if the score is over 100. In
+				this example, if the test is false, the sound isn’t played and the
+				app jumps below the entire <strong>if-then</strong> block. If you
+				want a false test to trigger an action, you can use an <strong>else</strong> or
+				<strong>else if</strong> block.
+			</p>
+
+		</div>
+
+
+
+
+
+
+
+
+		<div class='standard-section'>
+			<h1 class='center-children'>Programming an Either/Or Decision</h1>
+
+			<p>
+				Consider an app you could use when you’re bored: you press a button
+				on your phone, and it calls a random friend. In <a data-type="xref"
+					href="#this_ifelse_block_calls_one_of_two_numbe">Figure 18-5</a>, a
+				<strong>random integer</strong> block is used to generate a random
+				number and then an <strong>if else</strong> block to call a
+				particular phone number based on that random number.
+			</p>
+
+			<figure id="this_ifelse_block_calls_one_of_two_numbe">
+				<img
+					alt="This ifelse block calls one of two numbers based on the randomly generated integer"
+					src="/assets/img/bookChapters/c18-5.png" />
+				<figcaption>This ifelse block calls one of two numbers
+					based on the randomly generated integer</figcaption>
+			</figure>
+
+			<p>
+				In this example, <strong>random integer</strong> is called with
+				arguments 1 and 2, meaning that the returned random number will be 1
+				or 2 with equal likelihood. The variable <strong>RandomNum</strong>
+				stores the random number returned.
+			</p>
+
+			<p>
+				After setting <strong>RandomNum</strong>, the blocks compare it to
+				the number 1 in the <strong>ifelse</strong> test. If the value of <strong>RandomNum</strong>
+				is 1, the app takes the first branch (then-do), and the phone number
+				is set to 111–1111. If the value is not 1, the test is false, so the
+				app takes the second branch (else-do), and the phone number is set
+				to 222–2222. The app makes the phone call either way because the
+				call to <strong>MakePhoneCall</strong> is below the entire <strong>if
+					else</strong> block.
+			</p>
+
+		</div>
+
+	</div>
+
+	<section data-type="sect1"
+		data-pdf-bookmark="Programming Conditions Within Conditions"
+		id="programming_conditions_within_conditions">
+		<h1>Programming Conditions Within Conditions</h1>
+
+		<p>
+			Many decision situations are not <em>binomial</em>--that is, they
+			don’t have just two outcomes to choose from. For example, you might
+			want to choose between more than two friends in your Random Call
+			program. To do this, you could place an <strong>if else</strong>
+			within the original <strong>else</strong> branch, as shown in <a
+				data-type="xref" href="#ifelse_condition_is_placed_within_the_el">Figure 18-6</a>.
+		</p>
+
+		<figure id="ifelse_condition_is_placed_within_the_el">
+			<img
+				alt="An ifelse condition is placed within the else-do of an outer condition"
+				src="/assets/img/bookChapters/c18-6new.png" />
+			<figcaption>
+				<strong>if, else if</strong> and <strong>else</strong> are used to
+				provide three possible branches.
+			</figcaption>
+		</figure>
+
+		<p>
+			With these blocks, if the first test is true, the app executes the
+			first then-do branch and calls the number 111–1111. If the first test
+			is false, the <strong>else if</strong> branch is executed, which
+			immediately runs another test. So, if the first test (<strong>RandomNum</strong>=1)
+			is false, and the second (<strong>RandomNum</strong>=2) is true, the
+			second then branch is executed, and 222–2222 is called. If both tests
+			are false, <strong>else</strong> branch at the bottom is executed,
+			and the third number (333–3333) is called.
+		</p>
+
+		<p>
+			Note that this modification only works because the<strong>
+				to</strong> parameter of the <strong>random integer</strong> call was changed
+			to 3 so that 1, 2, or 3 is called with equal likelihood.
+		</p>
+
+		<p>
+			When conditional tests are placed within branches of another
+			conditional test, we say they are <em>nested</em>. You can nest
+			conditionals and other <em>control constructs </em>such as<em> </em><strong>for-each</strong><em>
+			</em>loops to arbitrary levels in order to add complexity to your app.
+		</p>
+	</section>
+
+	<section data-type="sect1"
+		data-pdf-bookmark="Programming Complex Conditions"
+		id="programming_complex_conditions">
+		<h1>Programming Complex Conditions</h1>
+
+		<p>Besides nesting conditionals, you can also specify single
+			conditional tests that are more complex than a simple equality test.
+			For example, consider an app that vibrates when you (and your phone)
+			leave a building or some boundary. Such an app might be used by a
+			person on probation to warn him when he strays too far from his legal
+			boundaries, or by parents to monitor their children’s whereabouts. A
+			teacher might use it to automatically take roll (if all her students
+			have an Android phone!).</p>
+
+		<p>For this example, let’s ask this question: is the phone within
+			the boundary of Harney Science Center at the University of San
+			Francisco? Such an app would require a complex test consisting of
+			four different questions:</p>
+
+		<ul>
+			<li>Is the phone’s latitude less than the maximum latitude
+				(37.78034) of the boundary?</li>
+			<li>Is the phone’s longitude less than the maximum longitude
+				(–122.45027) of the boundary?</li>
+			<li>Is the phone’s latitude more than the minimum latitude
+				(37.78016) of the boundary?</li>
+			<li>Is the phone’s longitude more than the minimum longitude
+				(–122.45059) of the boundary?</li>
+		</ul>
+
+		<p>
+			You need the <strong>LocationSensor</strong> component for this
+			example. You should be able to follow along here even if you haven’t
+			been exposed to <strong>LocationSensor</strong>, but you can learn
+			more about it in <a data-type="xref"
+				href="ch23.html#reading_and_responding_to_sensors">Chapter 23</a>.
+		</p>
+
+		<p>
+			You can build complex tests using the logical operators <strong>and</strong>,
+			<strong>or</strong>, and <strong>not</strong>, which are found in the
+			Logic drawer. In this case, you drag out an <strong>if</strong> block
+			and some <strong>and</strong> blocks, place one of the <strong>and</strong>
+			blocks within the “test” slot of the <strong>if</strong>, and the
+			others within the first <strong>and </strong>block, as illustrated in
+			<a data-type="xref" href="#quotation_markandquotation_mark_blocks_a">Figure 18-7</a>.
+		</p>
+
+		<figure id="quotation_markandquotation_mark_blocks_a">
+			<img
+				alt="“and” blocks are placed within the “test” slot of the if block (and “external inputs” is chosen so not too wide"
+				src="/assets/img/bookChapters/c18-7new.png" />
+			<figcaption>
+				An <strong>if</strong> test can test many conditions using <strong>and</strong> ,
+				<strong>or</strong>, and other relational blocks.  
+			</figcaption>
+		</figure>
+
+		<p>
+			You’d then drag out blocks for the first question and place them into
+			the first <strong>and</strong> block’s “test” slot, as shown in <a
+				data-type="xref" href="#blocks_for_the_first_test_are_placed_int">Figure 18-8</a>.
+		</p>
+
+		<figure id="blocks_for_the_first_test_are_placed_int">
+			<img alt="Blocks for the first test are placed into the and block."
+				src="/assets/img/bookChapters/c18-8.png" />
+			<figcaption>
+				Blocks for the first test are placed into the <strong>and</strong>
+				block.
+			</figcaption>
+		</figure>
+
+		<p>
+			You can then fill the other slots with the other tests and place the
+			entire <strong>if </strong> within a <strong>LocationSensor.LocationChanged</strong>
+			event, and you’ll have an event handler that checks the boundary, as
+			shown in <a data-type="xref"
+				href="#this_event_handler_checks_the_boundary_e">Figure 18-9</a>.
+		</p>
+
+		<figure id="this_event_handler_checks_the_boundary_e">
+			<img
+				alt="This event handler checks the boundary each time the location changes"
+				src="/assets/img/bookChapters/c18-9new.png" />
+			<figcaption>This event handler checks the boundary each
+				time the location changes</figcaption>
+		</figure>
+
+		<p>
+			With these blocks, each time the <strong>LocationSensor</strong> gets
+			a new reading and its location is within the boundary, the phone
+			vibrates.
+		</p>
+
+		<p>OK, so far this is pretty cool, but now let’s try something
+			even more complicated to give you an idea of the full extent of the
+			app’s decision-making powers. What if you wanted the phone to vibrate
+			only when the boundary was crossed from inside to outside? Before
+			moving ahead, think about how you might program such a condition.</p>
+
+		<p>
+			Our solution is to define a variable <strong>withinBoundary</strong>
+			that remembers whether the <em>previous</em> sensor reading was
+			within the boundary or not, and then compares that to each successive
+			sensor reading. <em>withinBoundary</em> is an example of a <em>Boolean
+				variable</em>--instead of storing a number or text, it stores true or
+			false. For this example, you’d initialize it as false, as shown in <a
+				data-type="xref" href="#withinboundary_is_initialized_as_false">Figure 18-10</a>,
+			meaning that the device is not within USF’s Harney Science Center.
+		</p>
+
+		<figure id="withinboundary_is_initialized_as_false">
+			<img alt="withinBoundary is initialized as false"
+				src="/assets/img/bookChapters/c18-10.png" />
+			<figcaption>withinBoundary is initialized as false</figcaption>
+		</figure>
+
+		<p>
+			The blocks can now be modified so that the <strong>withinBoundary</strong>
+			variable is set on each location change, and so that the phone
+			vibrates only when it moves from inside to outside the boundary. To
+			put that in terms we can use for blocks, the phone should vibrate
+			when (1) the variable <strong>withinBoundary</strong> is true,
+			meaning the previous reading was inside the boundary, and (2) the new
+			location sensor reading is outside the boundary. <a data-type="xref"
+				href="#these_blocks_cause_the_phone_to_vibrate">Figure 18-11</a>
+			shows the updated blocks.
+		</p>
+
+		<figure id="these_blocks_cause_the_phone_to_vibrate">
+			<img
+				alt="These blocks cause the phone to vibrate only when it moves from within the boundary to outside the boundary"
+				src="/assets/img/bookChapters/c18-11new.png" />
+			<figcaption>These blocks cause the phone to vibrate only
+				when it moves from within the boundary to outside the boundary</figcaption>
+		</figure>
+
+		<p>
+			Let’s examine these blocks more closely. When the <strong>LocationSensor</strong>
+			gets a reading, it first checks if the new reading is within the
+			boundary. If it is, <strong>LocationSensor</strong> sets the <strong>withinBoundary</strong>
+			variable to true. Since we want the phone to vibrate only when we are
+			outside the boundary, no vibration takes place in this first branch.
+		</p>
+
+		<p>
+			If we get to the <strong>else</strong>, we know that the new reading
+			is outside the boundary. At that point, we have to check the previous
+			reading: if we’re outside the boundary, we want the phone to vibrate
+			only if the previous reading was <em>inside</em> the boundary. <strong>withinBoundary</strong>
+			tells us the previous reading, so we can check that. If it is true,
+			we vibrate the phone.
+		</p>
+
+		<p>
+			There’s one more thing we need to do once we’ve confirmed that the
+			phone has moved from inside to outside the boundary-can you think of
+			what it is? We also need to reset <strong>withinBoundary</strong> to
+			false so the phone won’t vibrate again on the next sensor reading.
+		</p>
+
+		<p>
+			One last note on Boolean variables: check out the two <strong>if</strong>
+			tests in <a data-type="xref"
+				href="#can_you_tell_whether_these_two_if_tests">Figure 18-12</a>.
+			Are they equivalent?
+		</p>
+
+		<figure id="can_you_tell_whether_these_two_if_tests">
+			<img alt="Can you tell whether these two if tests are equivalent?"
+				src="/assets/img/bookChapters/c18-12.png" />
+			<figcaption>Can you tell whether these two if tests are
+				equivalent?</figcaption>
+		</figure>
+
+		<p>
+			The answer is “yes!” The only difference is that the test on the
+			right is actually the more sophisticated way of asking the question.
+			The test on the left compares the value of a Boolean variable with
+			true. If <strong>withinBoundary</strong> contains <strong>true</strong>,
+			you compare <strong>true</strong> to <strong>true</strong>, which is
+			true. If the variable contains <strong>false</strong>, you compare <strong>false</strong>
+			to <strong>true</strong>, which is false. However, just testing the
+			value of <strong>withinBoundary</strong>, as in the test on the
+			right, gives the same result and is easier to code.
+		</p>
+	</section>
+
+	<section data-type="sect1" data-pdf-bookmark="Summary"
+		id="summary-id00135">
+		<h1>Summary</h1>
+
+		<p>
+			Is your head spinning? That last behavior was quite complex! But it’s
+			the type of decision making that sophisticated apps need to perform.
+			If you build such behaviors part by part (or branch by branch) and
+			test as you go, you’ll find that specifying complex logic--even, dare
+			we say, <em>artificial intelligence</em>--is doable. It will make
+			your head hurt and exercise the logical side of your brain quite a
+			bit, but it can also be lots of fun.
+		</p>
+	</section>
+	</section>
+
+</article>

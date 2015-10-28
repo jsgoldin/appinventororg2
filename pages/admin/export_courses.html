@@ -1,0 +1,24 @@
+{% extends "templates/site_base.html" %} {% block body %}
+<div class="breadcrumbs-bar">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-12">
+				<a href="/admin/dashboard">Admin Dashboard</a> <span>&gt</span> <a
+					href="/admin/exportcourses">Export Courses</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='gen-container footer-fix'>
+    <div class='row'>
+        <div class='col-md-12 export-container'>
+            <h2>Export the current courses and content</h2>
+
+            <a href='/admin/serialview' class="btn btn-default" download="appinventor_export.dat">Export</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

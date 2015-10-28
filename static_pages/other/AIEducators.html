@@ -1,0 +1,52 @@
+{% extends "site_base.html" %} {% block body %}
+
+<script type="text/javascript"
+	src="http://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="/assets/js/teacherMap.js"></script>
+
+<article>
+
+	<div class="googleMap" id="map_canvas">
+		<div id="googleMap"></div>
+	</div>
+
+
+	<div class='gen-container'>
+		<div class="headline center-children">
+			<h1>Who is teaching App Inventor</h1>
+			<p>Educators from all over the world are choosing App Inventor to
+				teach app creation in a fun and approachable way.</p>
+
+			{% if userStatus.ifUser%} {% else %}
+			<p>
+				Are you an educator? <a href="{{userStatus.loginurl}}">Login</a> and
+				tell us about yourself.
+			</p>
+			{% endif %} <a class="btn btn-success btn-mini"
+				style="background: #FFAE00; margin-bottom: 20px;"
+				href="https://groups.google.com/forum/#!forum/app-inventor-instructors"
+				target="_blank"> App Inventor Educators Google Forum </a>
+
+		</div>
+	</div>
+
+	<div class="banner-green">
+		<div class='gen-container'>
+			<h1>Meet the teachers</h1>
+			<p>The divese team of educators helping to shape the future of
+				computer science.</p>
+		</div>
+	</div>
+
+
+
+
+
+	
+
+</article>
+
+{% endblock %}
+
+
+

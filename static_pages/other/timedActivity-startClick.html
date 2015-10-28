@@ -1,0 +1,24 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} Timed Activity: How do you start and stop an animation?{% endblock %}
+			{% block description %}Just as you can turn an alarm clock on and off, you can turn the 
+			Clock component’s timer on and off. Check out the following examples:{% endblock %}
+{% block question %} Example 1. How do you start and stop playing a sequence of sounds when the user clicks? {% endblock %}
+
+{% block answer %}
+  <p>
+            The clock has a <span class="empfont">Clock.TimerEnabled</span> property. When it is true, the alarm clock is on so the timer will trigger. When <span class="empfont">Clock.TimerEnabled</span>
+            is set to false the timer is dormant.
+        </p>
+
+        <p>
+            When the user clicks the start button, TimerEnabled is set to true to get things moving. A second later, and each second thereafter, the when <span class="empfont">Clock.Timer</span> event
+            will trigger and the sound will play. When the user clicks “Stop”, the timer is disabled and the sound stops playing.
+        </p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/TimedActivity/startStopButton.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/qj3w2QZYlF8" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/startStop/startSpeak">example 2</a> {% endblock %}
+
+

@@ -1,0 +1,56 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Broadcast Hub: Build, Conceptualize, Customize</H1>
+<br/>
+
+<h2> Build It</h2>
+<ol>
+<li>
+Open a browser and navigate to <a href="http://beta.appinventor.mit.edu">http://beta.appinventor.mit.edu</a>. Login with your Google account.
+</li>
+<li>
+Now build the Broadcast Hub app. Follow the instructions in App Inventor chapter 8 using either the paperback version or the <a href="apps/broadcaster-hub-1/broadcaster-hub-1.pdf">pdf version</a>.</ol>
+<h2>Conceptualize It</h2>
+ <div class="row-fluid">
+<div class="span6">
+<p>After completing the Broadcast Hub tutorial, discuss these questions with a partner or small group, jotting down notes while you discuss. Later, create a portfolio page with answers to the questions in your own words.
+
+<ol>
+<li>
+The NoteTaker app adds data to a list when a submit button is clicked. When is data added to the list with the Broadcast Hub app?
+</li>
+<li>
+Sketch out, in English, the logic used to determine what to do with each incoming text (it is a nested if-else in the blocks). 
+</li>
+
+
+</ol>
+
+
+<h2>Customize It</h2>	
+<ol>
+<li>
+The app broadcasts each message to everyone, including the phone that sent the message. Modify this so that the message is broadcast to everyone but the sender.</li>
+<li>
+Allow client phones to remove themselves from the list by texting quitabc to the app. You will need a remove from list block.
+</li>
+<li>
+Let the hub administrator add and remove numbers from the broadcast list through the user interface.
+</li>
+<li>
+Let the hub administrator specify numbers that should not be allowed into the list.
+</li>
+<li>
+Customize the app so that anyone can join to receive messages, but only the administrator can broadcast messages.
+</li>
+<li>
+Customize the app so that anyone can join to receive messages, but only a fixed list of phone numbers can broadcast messages to the group (this is how the Helsinki event app worked; see http://appinventorblog.com/2010/08/25/ success-story-from-helsinki/).
+</li>
+<li>
+The app stores the broadcast list persistently, but not the log. Each time you close the app and reopen it, the log starts over. Change this so that the log is persistent.
+</li>
+</ol>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How do you draw shapes and images in an app?{% endblock %}
+			{% block description %} Learn how to use the Canvas component to draw shapes 
+			and place images, and to allow the end-user to draw as well.{% endblock %}
+{% block question %} Example 1. How do you create a drawing canvas? {% endblock %}
+{% block answer %}
+<p>
+			
+    The <span class="empfont">Canvas</span> component is a sub-panel within your app. Canvases are used for drawing and animation-- your app can draw objects, and you can give the user the capability
+    to draw objects.
+</p>
+<p>Typically, you want your canvas to fill the entire width of the app screen, so you'll set the Width to Fill Parent" as in the blocks above. Generally you want to have other components above or
+    below, so you'll set the Height to some fixed number.</p>
+<p>
+    A location of an object on the canvas is defined with an X,Y value relative to the canvas's left-top corner. <span class="empfont">X</span> is the horizontal location of the object, 0 being the
+    left-border and <span class="empfont">X</span> getting bigger as an object is moved to the right. <span class="empfont">Y</span> is the vertical location with 0 the top border and <span
+        class="empfont">Y</span> getting bigger as an object is moved down. 
+<hr /></p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/Drawing/canvasGrid.jpg" {% endblock %}
+{% block answerVideo %} "" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/drawing/circle">example 2</a> {% endblock %}
+"
+

@@ -1,0 +1,21 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} Timed Activity: How do you repeat an action, pausing between each iteration?{% endblock %}
+			{% block description %}How do you program time? How do you program animation? With many programming languages, concepts like animation are pushed back in the curriculum-- you might not get there until a year or two
+    of coursework. With App Inventor’s event-based approach, you can explore timed activity and animation as a beginner. The high-level Clock component serves as an alarm clock, and you use its Timer
+    event to trigger timed activity. Check out the following examples:{% endblock %}
+{% block question %} Example 2. How do you play a sound every 5 seconds? {% endblock %}
+
+{% block answer %}
+  <p>
+            <span class="empfont">The Clock.TimerInterval</span> property determines how often the <span class="empfont">Clock.Timer</span> event triggers. By default, the timer interval is set to
+            1000 ms, or 1 second. If you set it to 5000, the <span class="empfont">Clock.Timer</span> event will trigger every 5 seconds. It is a bit confusing and indirect, because you typically set the <span class="empfont">TimerInterval</span> in
+            the Designer, and the <span class="empfont">when Clock.Timer event</span> is in the blocks editor. But just realize that the timer will be triggered every “TimerInterval” milliseconds.
+        </p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/TimedActivity/setInterval5000.png" {% endblock %}
+{% block answerVideo %} "" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/timedActivity/space">example 3</a> {% endblock %}
+
+

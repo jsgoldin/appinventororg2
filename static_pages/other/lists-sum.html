@@ -1,0 +1,41 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %} How do you do something to every item in a list?{% endblock %}
+{% block description %}
+		Data lists are found in many apps. When you use Facebook, for instance, there
+			is a list of your friends, a list of your status updates, etc. In your own app,
+			 you might keep track of your friends phone numbers, a list of your past scores
+			  in a game, or the number of miles you ran each day last week. With just about
+			   any software, there is probably data lists involved.
+		 App Inventor, like most languages, provides a way to process the items of a 
+         list, to perform the same operation on each item. With App Inventor, you typically 
+         use a <span class="empfont">for each in list</span> block. Check out the following examples: 
+		 
+{% endblock %}
+{% block question %}Example 2. How do you add up a list of numbers? {% endblock %}
+
+{% block answer %}
+<p>
+			The list of numbers in this example is fixed, but generally the list would be 
+			dynamic, user-generated data, e.g., in a workout app the user would enter the 
+			miles they ran each day and the data would be stored in a list.
+			</p>
+			<p>
+			The for each in list block is used to iterate through the numbers. item is the 
+			placeholder variable-- it holds the current number each time the row of blocks
+			 within the for each is executed. The first time item is 7, then 3, then 11, 
+			 then 5. The variable total is defined to store the running sum. On the first 
+			 iteration, total is set to its previous value (0) plus item, which is 7, so 
+			 it becomes 0+7=7. On the second iteration, total is set to its previous value 
+			 (7) plus item, which is 3, so it becomes 7+3=10. After the third iteration 
+			 total is 21 and after the fourth iteration total is 26 and the foreach 
+			 completes. After the <span class="empfont">for each</span> loop, the total is displayed in a label 
+			 (so someone will see the fruits of the apps labor!).
+			</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/Lists/addNumbers.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/tiGano83ycc" {% endblock %}
+		{% block otherExampleLink %} <a href="/content/howDoYou/Lists/text">example 1</a> {% endblock %}
+
+

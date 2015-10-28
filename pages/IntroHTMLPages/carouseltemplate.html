@@ -1,0 +1,55 @@
+<style>
+.slick-prev:before, .slick-next:before { 
+    color:black;
+}
+</style>
+<head>
+
+
+
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+ <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/assets/css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/slick-theme.css"/>
+
+
+</head>
+
+
+<article>
+	<!-- Title description -->
+	<div class="dark-blue-title">
+		<div class="course-page-container">
+
+			<h2>{% block title %} {% endblock %}</h2>
+			<p>{% block decsription %} {% endblock %}</p>
+		</div>
+	</div>
+
+
+	<div class="carouselSlick" style="background-color:#d30000;">
+		<div>
+			<h1>{% block slide1 %} {% endblock %}</h1>
+		</div>
+	
+	<div>
+			<h1>{% block slide2 %} {% endblock %}</h1>
+		</div>
+	
+	</div>
+	
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+  $('.carouselSlick').slick({
+  arrows: true
+  });
+  });
+</script>
+
+</article>
+

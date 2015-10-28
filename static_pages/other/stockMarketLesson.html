@@ -1,0 +1,88 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Web APIs</H1>
+<p>
+Generally, beginners start by creating stand-alone apps (e.g., games, quizzes), or communicating through SMS. Now we'll consider apps that communicate over the web, either with web databases or with web information sources.  First, let's discuss some semi-common terminology</p>
+
+<h3> Web API Discussion Questions</h3>
+<ul>
+<li>
+What is a web server?
+</li>
+<li>
+What does a browser do, beneath the hood?
+</li>
+<li>
+What is the difference between a web site and a web service? What does each send across the net? Who talks to each?
+</li>
+<li>
+What is an API?
+</li>
+<li>
+What is a mashup?
+</li>
+</ul>
+
+<h3>Samples</h3>
+<ul>
+<li><a href="https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline">Twitter API Sample</a></li>
+<li><a href="http://www.housingmaps.com/">Housing Maps Mashup Sample"</a></li>
+</ul>
+
+<H3>Exploring the Yahoo Finance API</H3>
+<p>Yahoo Finance is an example of a very simple-to-use data API (web service).</p>
+
+<ol>
+<li>
+Enter the following link in a web browser:
+<a ref="http://download.finance.yahoo.com/d/quotes.csv?f=sl1d1t1c1ohgv&e=.csv&s=IBM">http://download.finance.yahoo.com/d/quotes.csv?f=sl1d1t1c1ohgv&e=.csv&s=IBM</a>.
+In what format is the data returned? (HTML, XML, other?). What is IBM's stock price? </li>
+<li>
+Determine Google's current stock price by changing the URL.
+</li>
+<li>Here's some <a href="http://www.gummy-stuff.org/Yahoo-data.htm">documentation for the API</a>.For the data returned for the URL in question 1, list what each data item is.</li>
+<li>
+Show a URL that returns only the current price and no other data.
+</li>
+</ol>
+<h3>Connecting an App Inventor App to the Web</h3>
+
+<p> There are three methods: </p>
+<ul>
+<li>Web component-- talk to an api</li>
+<li>TinyWebDB -- set up your own database like with TinyDB, but its shared on the web.</li>
+<li>Fusion Control-- Explore data and make use of Google's on-line Fusion database tables.</li>
+</ul>
+<p>In this lesson, you will explore the Web component</p>
+
+<h3>Web Component</h3>
+<ul>
+<li>important property: Url -- specify the data API you want to access</li>
+<li>important function call: Get  -- this requests the data</li>
+<li>important event-handler: GotText -- this is triggered when the data arrives.</li>
+</ul>
+
+<h3>Sample</h3>
+<img src="../../assets/img/stockpic.png" border="0" />
+<ul>
+<li>responseContent -- this is the data returned from the API in a text object.</li>
+<li>list from csv row -- function that splits the data into items using the commas as delimiters.</li>
+</ul>
+
+<h3>Your Turn</h3>
+<p>Using the above blocks as a model, build an app that lets the user enter a stock symbol and then shows the price.</p>
+<ol>
+<li>First just recreate the app using the blocks above. The UI should have a single button, GetQuoteButton, a label named ValueLabel, and a Web component. Make the ValueLabel large so that the stock score is easy to see. Test the app.</li>
+<li>Modify the blocks, changing IBM to some other stock, e.g., GOOG. Test to make sure it works.</li>
+<li>Let the user enter a stock symbol in a textbox and click submit to see its value.</li>
+<li>Modify the app so that it saves the entered stock persistently and shows its value on app startup.</li>
+<li>Make it so the app shows both the current value and the percentage change for the day. Check out <a href="http://www.gummy-stuff.org/Yahoo-data.htm">these specs</a> to understand the API and how to get %change. You'll need to do some math.</li>
+
+<li>Create an app that upon starting shows the value of your five favorite stocks (fixed data on this one)</li>
+<li>Create an app like the one above but that also has an options page that lets the user enter his favorite stocks (any number of them). Those stocks should then be shown on the main page.</li>
+</ol>
+<h3> Additional Resources </h3>
+<a href="http://www.appinventor.org/stockmarket-steps">Video lesson of Stock Market app being built.</a>
+
+{% endblock %}

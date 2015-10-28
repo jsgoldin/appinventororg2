@@ -1,0 +1,196 @@
+{% extends "templates/site_base.html" %} {% block body %}
+
+<div class="jumbotron jumbotron-wherami ">
+    <div class='jumbotron-wherami-text'>{{course.c_title}} > {{module.m_title}}</div>
+</div>
+
+<a href='/admin/courses/{{course.c_identifier}}' class='back-to-courses-link'><span class="glyphicon glyphicon-chevron-left"></span> All Modules</a>
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-md-1 editor-sidebar'>
+            <button type="button" data-toggle="modal" data-target="#newContentModal" class="btn btn-primary new-course-button">
+                <span class="glyphicon glyphicon-plus"></span> Create
+            </button>
+        </div>
+        <div class='col-md-11 editor-item-area'>
+            <div class='course-edit-box'>
+                <ul id="sortable">
+                    {% for content in contents %}
+                    <li href="{{content.c_url}}" identifier='{{content.c_identifier}}' id='noDrag' keyid='{{content.key.id}}' content_type='{{content.c_type}}' content_url='{{content.c_url}}'
+                        old_urls='{{content.c_oldurls}}' class='module-edit-box'>
+                        <div class='item-box-icon'>
+                            {% if content.c_type == "App" %} <img class='vertical-content-nav-bar-item-icon' src='/assets/img/appinventor-Jigsaw.jpg' height='100px' width='100px'>
+                            {% endif %}
+                            {% if content.c_type == "Quiz" %} 
+                            <img class='vertical-content-nav-bar-item-icon' src='/assets/img/bird.png' height='100px' width='`100px'>
+                            {% endif %}
+                            {% if content.c_type == "Nugget" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='/assets/img/kitty.png' height='100px' width='100px'>
+                            {% endif %}       
+                            {% if v.c_type == "Book Chapter" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}    
+                            {% if v.c_type == "Lesson Plan" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}                               
+                            {% if v.c_type == "Project" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}     
+                            {% if v.c_type == "Worksheet" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}
+                            {% if v.c_type == "Text Tutorial" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}                                                  
+                            {% if v.c_type == "Miscellaneous" %}
+                            <img  class='vertical-content-nav-bar-item-icon' src='' height='100px' width='100px'>
+                            {% endif %}                                           
+                        </div>
+                        
+                        
+                        <div class='content-title'>
+                            <h1>{{content.c_title}}</h1>
+                        </div>
+                        <div class='content-description'>
+                            <p>{{content.c_description}}</p>
+                        </div>
+                        <div class='item-box-btns hidden noclick'>
+                            <button id="editmodulebtn" data-toggle="modal" data-target="#editModal" type="button" class="btn btn-default item-box-button">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button id="movemodulebtn" type="button" class="btn btn-default item-box-button">
+                                <span class="glyphicon glyphicon-resize-vertical"></span>
+                            </button>
+                            <button id="deletemodulebtn" type="button" class="btn btn-default item-box-button">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                    </li> {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Edit Content Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Content</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="edit_content_title">Title</label> <input type="text" class="form-control" id="edit_content_title" value="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_content_description">Description</label> <input type="text" class="form-control" id="edit_content_description" value="Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_content_url">Content URL</label> <input type="text" class="form-control" id="edit_content_url" value="CourseSystem/Content_Pages/test.html">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_content_identifier">URL Identifier
+                            <div class="help-block warning">Caution! Changing the identifier may cause broken external URLS</div>
+                        </label> <input type="text" class="form-control" id="edit_content_identifier" placeholder="Identifier">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_content_old_urls">Old URLs
+                        <div class="help-block warning">List URL's that will redirect to this content item separated by spaces.</div>
+                        </label>
+                        <input type="text" class="form-control" id="edit_content_old_urls">
+                    </div>                    
+
+                    <label>Type</label>
+                    
+                    <select id='edit_content_type' class="form-control">
+                        <option>Choose a type: </option>
+                        <option>App</option>
+                        <option>Quiz</option>
+                        <option>Nugget</option>
+                        <option>Book Chapter</option>
+                        <option>Lesson Plan</option>
+                        <option>Project</option>
+                        <option>Worksheet</option>
+						<option>Text Tutorial</option>
+                        <option>Miscellaneous</option>
+                    </select>                    
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id='updateContent' type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- New content modal -->
+    <div class="modal fade" id="newContentModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Create New Content</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="NewContentForm">
+                        <div class="form-group">
+                            <label for="new_content_title">Title</label> <input type="text" class="form-control" id="new_content_title" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                            <label for="new_content_description">Description</label> <input type="text" class="form-control" id="new_content_description" placeholder="Description">
+                        </div>
+                        <div class="form-group">
+                            <label for="new_content_file_path">Content URL</label> <input type="text" class="form-control" id="new_content_file_path" placeholder="CourseSystem/Content_Pages/test.html">
+                        </div>
+                        <div class="form-group">
+                            <label for="new_content_identifier">URL Identifier</label> <input type="text" class="form-control" id="new_content_identifier" placeholder="New Identifier">
+                        </div>
+                    <div class="form-group">
+                        <label for="new_content_old_urls">Old URLs
+                        <div class="help-block warning">List URL's that will redirect to this content item separated by spaces.</div>
+                        </label>
+                        <input type="text" class="form-control" id="new_content_old_urls">
+                    </div>                                       
+                        
+                        <label>Type</label>
+                        <select id='new_content_type' class="form-control">
+                            <option>Choose a type: </option>
+                            <option>App</option>
+                            <option>Quiz</option>
+                            <option>Nugget</option>
+                            <option>Book Chapter</option>
+                            <option>Lesson Plan</option>
+                            <option>Project</option>
+                            <option>Worksheet</option>
+							<option>Text Tutorial</option>
+                            <option>Miscellaneous</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id='createContentbtn' type="button" class="btn btn-primary">Create It!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Hacky solution, fix later -->
+    <div class='subject-box-top-half-inner' style='display: none;' module_id='{{module.key.id}}' course_id='{{course.key.id}}'></div>
+
+</div>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+{% endblock %}

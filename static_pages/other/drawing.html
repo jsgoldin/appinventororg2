@@ -1,0 +1,85 @@
+
+<title>Drawing</title>
+
+<h2>How do you draw shapes and images on a canvas</h2>
+<p></p>
+
+
+<a name="canvas"></a>
+<h3>Example 1. How do you create a drawing canvas?</h3>
+<img class="thumbnail" src="/assets/img/Drawing/canvas.png" border="0" />
+<p>
+    The <span class="empfont">Canvas</span> component is a sub-panel within your app. Canvases are used for drawing and animation-- your app can draw objects, and you can give the user the capability
+    to draw objects.
+</p>
+<p>Typically, you want your canvas to fill the entire width of the app screen, so you'll set the Width to Fill Parent" as in the blocks above. Generally you want to have other components above or
+    below, so you'll set the Height to some fixed number.</p>
+<p>
+    A location of an object on the canvas is defined with an X,Y value relative to the canvas's left-top corner. <span class="empfont">X</span> is the horizontal location of the object, 0 being the
+    left-border and <span class="empfont">X</span> getting bigger as an object is moved to the right. <span class="empfont">Y</span> is the vertical location with 0 the top border and <span
+        class="empfont">Y</span> getting bigger as an object is moved down. <img class="thumbnail" src="/assets/img/Drawing/canvasGrid.jpg" border="0" />
+<hr />
+<div class="row-fluid">
+    <div class="span6">
+        <a name="circle1010"></a>
+        <h3>Example 2. How do you draw a circle at 10,10?</h3>
+        <img class="thumbnail" src="/assets/img/Drawing/circle1010.png" border="0" />
+        <p>
+            Canvas has function blocks for drawing a circle or line. The DrawCircle has three parameters, <span class="empfont">x</span>, <span class="empfont">y</span>, and <span class="empfont">radius</span>.
+            <span class="empfont">x</span> is the horizontal location, <span class="empfont">y</span> is the vertical location, and <span class="empfont">r</span> is the radius of the circle to be
+            drawn. An x-value of 10 means the circle will be located 10 pixels to the right of the left border of the canvas. A y-value of 10 means the circle is located 10 pixels down from the top of
+            the canvas.
+        </p>
+        <hr />
+
+    </div>
+    <div class="span4">
+        <iframe width="560" height="315" src="//www.youtube.com/embed/iErm4clnXOg" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span6">
+        <a name="circleXY"></a>
+
+        <h3>Example 3. How do you draw a circle where the user touches</h3>
+
+        <img class="thumbnail" src="/assets/img/Drawing/circleXY.png" border="0" />
+
+        <p>The Canvas.Touched event is triggered when the user touches (clicks) the canvas. It has parameters x and y which specify the location of the touch. The parameter touchedSprite specifies
+            whether or not the touch occurred on an ImageSprite-- it is not important to this behavior.</p>
+        <p>You want to draw the circle at the location of the touch, so mouse over the x and y parameters, grab get blocks for them, and plug them into the slots for x an y in the DrawCircle
+            block. It is somewhat confusing because the Touched event parameters are named the same as the parameters (slots) for the DrawCircle function.</p>
+
+        <hr />
+
+    </div>
+    <div class="span4">
+        <iframe width="560" height="315" src="//www.youtube.com/embed/hijJ8OffhdM" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span6">
+        <a name="canvasMiddle"></a>
+
+        <h3>Example 4. How do you move an image to the middle of the canvas in App Inventor 2?</h3>
+
+        <img class="thumbnail" src="/assets/img/Drawing/canvasMiddle.png" border="0" />
+
+        <p>
+            The blocks in the sample locate <span class="empfont"></span>ImageSprite1</span> in the middle of the canvas using the <span class="empfont"></span>Width</span> and <span class="empfont"></span>Height</span>
+            properties. Such abstract references mean the code will work even if the Canvas is resized. Alternatively, you could place fixed numbers in for the X and Y of the MoveTo (similarly to how
+            10,10 was used in the above example. Do you know why 1/2 the width and height of the sprite is subtracted?
+        <p>
+        <p>
+            Note that there is no "DrawImage" block like <span class="empfont"></span>DrawCircle</span>. Instead, with the designer you drag <span class="empfont"></span>ImageSprite</span> components into a <span
+                class="empfont"></span>Canvas</span> and specify the image file (picture) that defines their appearance. There is no way to dynamically create sprites with blocks, you can only make them
+            (in-)visible and locate them as in this example.
+        </p>
+        <hr />
+
+    </div>
+    <div class="span4">
+        <iframe width="560" height="315" src="//www.youtube.com/embed/s36rXAysucg" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+

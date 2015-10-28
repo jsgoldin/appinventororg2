@@ -1,0 +1,265 @@
+﻿
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>Android, Where's My Car?</h1>
+<p>
+	<em>You parked as close to the stadium as you possibly could, but when the concert ends, you don't have a clue where your car is. Your friends are equally clueless. Fortunately, you haven't lost your Android phone, which never forgets anything, and you remember you have the hot new app, "Android, Where's My Car?" With this app, you click a button when you park your car, and the Android uses its location sensor to record the car's GPS coordinates and address. Later, when you reopen the app, it gives you directions from where you currently are to the remembered location-problem solved!</em>
+</p>
+<img src="{{apps2Dir}}/AndroidCar/ac.png" alt="" align = "middle" >
+
+
+
+<h2>What You'll Learn</h2>
+<p>
+	This app covers the following concepts:
+	<ul>
+		<li>Determining the location of the Android device using the <b>LocationSensor</b> component.</li>
+		<li>Recording data in a database directly on the device using <b>TinyDB</b>.</li>
+		<li>Using the <b>ActivityStarter</b> component to open Google Maps from your app and show directions from one location to another.</li>
+	</ul>
+</p>
+
+<h2>Getting Started</h2>
+<p>
+	Connect to the App Inventor website and start a new project. Name it "AndroidWhere" (project names can't have spaces) and also set the screen's title to "Android, Where's My Car?" Open the Blocks Editor and connect to the phone.
+</p>
+
+<h2>Designing the Components</h2>
+<p>
+	The user interface for "Android, Where's My Car?" consists of labels to show your current and remembered locations, and buttons to record a location and show directions to it. You'll need some labels that just show static text; for example, <b>GPSLabel</b> will provide the text "GPS:" that appears in the user interface. Other labels, such as <b>CurrentLatLabel</b>, will display data from the location sensor. For these labels, you'll provide a default value,(0,0), which will change as the GPS acquires location information.
+</p>
+<p>
+	You'll also need three non-visible components: a <b>LocationSensor</b> for obtaining the current location, a <b>TinyDB</b> for storing locations persistently, and an <b>ActivityStarter</b> for launching Google Maps to get directions between the current and stored locations.
+</p>
+<p>
+	You can build the components from the snapshot of the Component Designer in Figure 7-1.
+</p>
+<p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-1.png" alt="" align = "middle" >
+<p><em>Figure 7-1. The "Android, Where's My Car?" app in the Component Designer</em></p>
+</p>
+<p>
+	You can build the user interface shown in Figure 7-1 by dragging out the components in Table 7-1.
+</p>
+<p><em>Table 7-1. All of the components for the app</em></p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-1T.png">
+<p>
+	Set the properties of the components in the following way:
+	<ul>
+		<li>Set the <b>Text</b> property for the labels with fixed text as specified in Table 7-1.</li>
+		<li>Set the <b>Text</b> property of the labels for dynamic GPS data to "0.0".</li>
+		<li>Set the Text property of the labels for dynamic addresses to "unknown".</li>
+		<li>Uncheck the <b>Enabled</b> property of the <b>RememberButton</b> and </b>DirectionsButton</b>.</li>
+		<li>Set the <b>ActivityStarter</b> properties so that ActivityStarter. StartActivity will open Google Maps. (The <b>ActivityStarter</b>'s properties are only partially visible in the user interface shown in Figure 7-1.) Table 7-2 describes how they should be specified; you can leave blank any properties not listed in the table.</li>
+	</ul>
+</p>
+<p><em>Table 7-2. ActivityStarter properties for launching Google Maps</em></p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-2T.png">
+<div class="span2">
+<img src="{{apps2Dir}}/block.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Note.</strong> <em>The <b>ActivityStarter</b> component lets your app open any Android app installed on the device. The properties indicated in Table 7-2 can be used verbatim to open Maps; to open other apps, see the App Inventor documentation at http://appinventor.googlelabs.com/learn/reference/other/activitystarter.html.</em>
+</div>
+</div>
+<h2>Adding Behaviors to the Components</h2>
+<p>
+	You'll need the following behaviors for this app:
+	<ul>
+		<li>When the <b>LocationSensor</b> gets a reading, place the current location data into the appropriate labels of the user interface. This will let the user know the sensor has read a location and is ready to remember it.</li>
+		<li>When the user clicks the <b>RememberButton</b>, copy the current location data into the labels for the remembered location. You'll also need to store the remembered location data so it will be there if the user closes and relaunches the app.</li>
+		<li>When the user clicks the <b>DirectionsButton</b>, launch Google Maps so it shows directions to the remembered location.</li>
+		<li>When the app is relaunched, load the remembered location from the database into the app.</li>
+	</ul>
+</p>
+<h2>Displaying the Current Location</h2>
+<p>
+	The <strong>LocationSensor.LocationChanged</strong> event occurs not just when the device's location changes, but also when the sensor first gets a reading. Sometimes that first reading will take a few seconds, and sometimes you won't get a reading at all if the sight lines to GPS satellites are blocked (and depending on the device settings). For more information about GPS and <b>LocationSensor</b>, see Chapter 23.
+</p>
+<p>
+	When you do get a location reading, the app should place the data into the appropriate labels. Table 7-3 lists all the blocks you'll need to do this.
+</p>
+<p><em>Table 7-3. Blocks for getting a location reading and displaying it in the app's UI</em></p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-3T.png">
+
+<h2>How the blocks work</h2>
+<p>
+	As you can see in Figure 7-2, <b>latitude</b> and <b>longitude</b> are arguments of the <strong>LocationChanged</strong> event, so you grab references to those in the My Definitions drawer. <b>CurrentAddress</b> is not an argument, but rather a property of the <b>LocationSensor</b>, so you grab it from <b>LocationSensor</b>'s drawer. The <b>LocationSensor</b> does some additional work for you by calling Google Maps to get a street address corresponding to the GPS location.
+</p>
+<p>
+	This event handler also enables the <b>RememberButton</b>. We initialized it as disabled (unchecked) in the Component Designer because there is nothing for the user to remember until the sensor gets a reading, so now we'll program that behavior.
+</p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-2.png">
+<p><em>Figure 7-2. Using the LocationSensor to read the current location</em></p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong> <em>Live testing-testing your app on a phone connected to your computer-doesn't work for location-sensing apps. You need to package and download the app to your phone by selecting "Package for Phone"->"Download to Connected Phone" in the Component Designer. Some GPS data should appear and the <b>RememberButton</b> should be enabled.</em>
+	</p>
+	<p>
+	If you don't get a reading, check your Android settings for Location &amp; Security and try going outside. For more information, see Chapter 23.
+	</p>
+</div>
+</div>
+<h2>Recording the Current Location</h2>
+<p>
+	When the user clicks the <b>RememberButton</b>, the most current location data should be placed into the labels for displaying the remembered data. Table 7-4 shows you which blocks you'll need for this functionality.
+</p>
+<p><em>Table 7-4. Blocks for recording and displaying the current location</em></p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-4Ta.png">
+<img src="{{apps2Dir}}/AndroidCar/ac7-4Tb.png">
+<h2>How the blocks work</h2>
+<p>
+	When the user clicks the <b>RememberButton</b>, the location sensor's current readings are put into the "remembered" labels, as shown in Figure 7-3.
+</p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-3.png">
+<p><em>Figure 7-3. Placing the current location information in the "remembered" labels</em></p>
+<p>
+	You'll notice also that the <b>DirectionsButton</b> is enabled. This could get tricky, because if the user clicks the <b>DirectionsButton</b> immediately, the remembered location will be the same as the current location, so the map that appears won't provide much in terms of directions. But that's not something anyone is likely to do; after the user moves (e.g., walks to the concert), the current location and remembered location will diverge.
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong> <em>Download the new version of the app to your phone and test again. When you click the <b>RememberButton</b>, is the data from the current settings copied into the remembered settings?</em>
+	</p>
+</div>
+</div>
+<h2>Displaying Directions to the Remembered Location</h2>
+<p>
+	When the user clicks the <b>DirectionsButton</b>, you want the app to open Google Maps with the directions from the user's current location to the remembered location (in this case, where the car is parked).
+</p>
+<p>
+	The <b>ActivityStarter</b> component can open any Android app, including Google Maps. You have to set some configuration data to use it, but to open something like a browser or map, the data you need to specify is fairly straightforward.
+</p>
+<p>
+	To open a map, the key property to configure is the <b>ActivityStarter.DataUri</b> property. You can set the property to any URL that you might enter directly in a browser. If you want to explore this, open <em>http://maps.google.com</em> in your browser and ask for directions between, say, San Francisco and Oakland. When they appear, click the Link button at the top right of the map and check the URL that appears. This is the kind of URL you need to build in your app.
+</p>
+<p>
+	The difference for your app is that the directions map you'll create will be from one specific set of GPS coordinates to another (not city to city). The URL must be in the following form:
+</p>
+<p align= "center">http://maps.google.com/maps?saddr=37.82557,-122.47898&daddr=37.81079,-122.47710</p>
+<p>
+	Type that URL into a browser-can you tell which famous landmark it directs you across?
+</p>
+<p>
+	For this app, you need to build the URL and set its source address (<b>saddr</b>) and destination address (<b>daddr</b>) parameters dynamically. You've put text together before in earlier chapters using <strong>join</strong>; we'll do that here as well, plugging in the GPS data for the remembered and current locations. You'll put the URL you build in as the <b>ActivityStarter.DataUri</b> property, and then call <strong>ActivityStarter.StartActivity</strong>. Table 7-5 lists all the blocks you'll need for this.
+</p>
+<h2>How the blocks work</h2>
+<p>
+	When the user clicks the <b>DirectionsButton</b>, the event handler builds a URL for a map and calls <b>ActivityStarter</b> to launch the Maps application and load the map, as shown in Figure 7-4. <strong>join</strong> is used to build the URL to send to the Maps application.
+</p>
+<p>
+	The resulting URL consists of the Maps domain (<em>http://maps.google.com/maps</em>) along with two URL parameters, <b>saddr</b> and <b>daddr</b>, which specify the source and destination locations for the directions. For this app, the <b>saddr</b> is set to the latitude and longitude of the current location, and the <b>daddr</b> is set to the latitude and longitude of the location stored for the car.
+</p>
+<p><em>Table 7-5. Blocks for recording and displaying the current location</em></p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-5T.png">
+<img src="{{apps2Dir}}/AndroidCar/ac7-4.png">
+<p><em>Figure 7-4. Building the URL to use for launching the Maps application</em></p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong> <em>Download the new version of the app to your phone and test again. When a reading comes in, click the <b>RememberButton</b> and then take a walk. When you click the <b>DirectionsButton</b>, does the map show you how to retrace your steps? After looking at the map, click the back button a few times. Do you get back to your app?</em>
+</p>
+</div>
+</div>
+<h2>Storing the Remembered Location Persistently</h2>
+<p>
+	So now you've got a fully functioning app that remembers a start location and draws a map back to that location from wherever the user is. But if the user "remembers" a location and then closes the app, the remembered data will not be available when he reopens it. Really, you want the user to be able to record the location of his car, close the app and go to some event, and then relaunch the app to get directions to the recorded location.
+</p>
+<p>
+	If you're already thinking back to the No Texting While Driving app (Chapter 4), you're on the right track here-we need to store the data <em>persistently</em> in a database using <b>TinyDB</b>. You'll use a scheme similar to the one we used in that app:
+	<ol>
+		<li>When the user clicks the RememberButton, store the location data to the database.</li>
+		<li>When the app launches, load the location data from the database into a variable or property.</li>
+	</ol>
+</p>
+<p>
+	You'll start by modifying the <strong>RememberButton.Click</strong> event handler so that it stores the remembered data. To store the latitude, longitude, and address, you'll need three calls to <strong>TinyDB.StoreValue</strong>. Table 7-6 lists the additional blocks you'll need.
+</p>
+<p><em>Table 7-6. Blocks for recording and displaying the current location</em></p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-6T.png">
+<h2>How the blocks work</h2>
+<p>
+	As shown in Figure 7-5, <strong>TinyDB1.StoreValue</strong> copies the location data from the <b>LocationSensor</b> properties into the database. As you may recall from No Texting While Driving, the <b>StoreValue</b> function has two arguments, the tag and the value.The <em>tag</em> identifies which data you want to store, and the value is the actual data you want saved-in this case, the <b>LocationSensor</b> data.
+</p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-5.png">
+<em>Figure 7-5. Storing the remembered location data in a database</em>
+<h2>Retrieving the Remembered Location When the App Launches</h2>
+<p>
+	You store data in a database so you can recall it later. In this app, if a user stores a location and then closes the app, you want to recall that information from the database and show it to her when she relaunches the app.
+</p>
+<p>
+	As discussed in previous chapters, the <strong>Screen.Initialize</strong> event is triggered when your app launches. Retrieving data from a database is a very common thing to do on startup, and it's exactly what we want to do for this app.
+</p>
+<p>
+	You'll use the <strong>TinyDB.GetValue</strong> function to retrieve the stored GPS data. Because you need to retrieve the stored address, latitude, and longitude, you'll need three calls to <b>GetValue</b>. As with No Texting While Driving, you'll need to check if there is indeed data there (if it's the first time your app is being launched, <strong>TinyDB.GetValue</strong> will return an empty text).
+</p>
+<p>
+	As a challenge, see if you can create these blocks and then compare your creation to the blocks shown in Figure 7-6.
+</p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-6.png">
+<em>Figure 7-6. Adding the remembered location to a database so it's available when the app is closed and reopened</em>
+<h2>How the blocks work</h2>
+<p>
+	To understand these blocks, you can envision a user opening the app the first time, and opening it later after previously recording location data. The first time the user opens the app, there won't be any location data in the database to load, so you don't want to set the "remembered" labels or enable the <b>DirectionsButton</b>. On successive launches, if there is data stored, you do want to load the previously stored location data from the database.
+</p>
+<p>
+	The blocks first call the <strong>TinyDB1.GetValue</strong> with a tag of "address," which is one of the tags used when you stored the location data earlier. The retrieved value is placed in the variable <b>tempAddress</b>, where it is checked to see whether it's empty or contains data.
+</p>
+<p>
+	The <strong>if</strong> block is necessary because <b>TinyDB</b> returns an empty text if there is no data for a particular tag; there isn't any data the first time the app is launched and there won't be until the user clicks the <b>RememberButton</b>. Since the variable <b>tempAddress</b> now holds the returned value, the blocks check to see if the length of <b>tempAddress</b> is greater than 0. If the length is greater than 0, the app knows that <b>TinyDB</b> did return something, and the retrieved value is placed into <b>RememberedAddressDataLabel</b>. The app also knows that if an address has been stored, it has a latitude and longitude. Thus, those values are also retrieved using <strong>TinyDB.GetValue</strong>. Finally, if data has indeed been retrieved, the <b>DirectionsButton</b> is enabled.
+</p>
+<div class="span2">
+<img src="{{apps2Dir}}/phone.png" alt="">
+</div>
+<div class="row-fluid">
+	<div class="span9">
+	<p>
+	<strong>Test your app.</strong> <em>Download the new version of the app to your phone and test again. Click the <b>RememberButton</b> and make sure the readings are recorded. Then close the app and reopen it. Does the remembered data appear?</em>
+	</p>
+	</div>
+</div>
+<h2>The Complete App: Android, Where's My Car?</h2>
+<p>
+	Figure 7-7 shows the final blocks for the complete “Android, Where's My Car?” app.
+</p>
+<img src="{{apps2Dir}}/AndroidCar/ac7-6.png">
+<em>Figure 7-7. The blocks for "Android, Where's My Car?"</em>
+<h2>Variations</h2>
+<p>
+	Here are some variations you can experiment with:
+	<ul>
+		<li>Create "Android, Where Is Everyone?", an app that lets a group of people track one another's whereabouts. Whether you're hiking or at the park, this app could help save time and possibly even lives. The data for this app is shared, so you'll need to use a web database and the <b>TinyWebDB</b> component instead of <b>TinyDB</b>. See Chapter 22 for more information.</li>
+		<li>Create a Breadcrumb app that tracks your whereabouts by recording each location change in a list. You should only record a new breadcrumb if the location has changed by a certain amount, or a certain amount of time has elapsed, because even slight movement can generate a new location reading. You'll need to store the recorded locations in a list-see Chapter 19 for help.</li>
+	</ul>
+</p>
+<h2>Summary</h2>
+<p>
+	Here are some of the ideas we've covered in this tutorial:
+	<ul>
+		<li>The <b>LocationSensor</b> component can report the user's latitude, longitude, and current street address. Its <b>LocationChanged</b> event is triggered when the sensor gets its first reading and when the reading changes (the device has moved). For more information on the <b>LocationSensor</b>, see Chapter 23.</li>
+		<li>The <b>ActivityStarter</b> component can launch any app, including Google Maps. For Maps, you set the <b>DataUri</b> property to the URL of the map you want to display. If you want to show directions between GPS coordinates, the URL will be in the following format, but you'd replace the sample data shown here with actual GPS coordinates:</li>
+	</ul>
+</p>
+<p align = "center">http://maps.google.com/maps/?saddr=0.1,0.1&daddr=0.2,0.2</p>
+<p>
+	<ul>
+		<li><strong>join</strong> is used to piece together (concatenate) separate text items into a single text object. It allows you to concatenate dynamic data with static text. With the Maps URL, the GPS coordinates are the dynamic data.</li>
+		<li><b>TinyDB</b> allows you to store data persistently in the phone's database. Whereas the data in a variable or property is lost when an app closes, data stored in the database can be loaded each time the app is opened. For more information on <b>TinyDB</b> and databases, see Chapter 22.</li>
+	</ul>
+</p>
+
+
+	{% endblock %}

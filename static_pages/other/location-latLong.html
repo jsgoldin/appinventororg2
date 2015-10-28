@@ -1,0 +1,32 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %} How do you know where you are?{% endblock %}
+{% block description %}
+			The LocationSensor communicates with GPS satellites and other mechanisms to 
+			determine the location of your phone/tablet. 
+		 
+{% endblock %}
+{% block question %} Example 1. How do you display your current latitude, longitude, and address? {% endblock %}
+
+{% block answer %}
+<p>
+<img class="thumbnail" src="/assets/img/location/whereAmI.png" border="0"/>
+			The <span class="empfont">LocationSensor.LocationChanged</span> event is triggered 1) when the app first 
+			gets a reading from the GPS satellites or other mechanisms, and 2) when the phone 
+			or tablet’s location changes. If you are walking around, it could trigger many times. 
+			You can control how often LocationChanged is triggered with the <span class="empfont">LocationSensor.TimeInterval</span> 
+			and <span class="empfont">LocationSensor.DistanceInterval</span> properties. The TimeInterval is set to 60,000 ms, or 
+			1 minute, by default. This means that <span class="empfont">LocationChanged</span> will only be triggered again after one minute. 
+			</p><p>
+			In this sample, the location readings are displayed in labels. Latitude and longitude 
+			are numbers, while the <span class="empfont">currentAddress</span> property provides a street address for your current 
+			location. As you walk around, you’ll see the numbers and address change.
+
+			</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/location/whereAmIBlocks.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/M9XmmJzwmO4" {% endblock %}
+		{% block otherExampleLink %} <a href="/content/howDoYou/location/distance">example 2</a> {% endblock %}
+
+

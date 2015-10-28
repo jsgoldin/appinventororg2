@@ -1,0 +1,32 @@
+{% extends "howdoyouTemplate.html" %}
+
+<h2>{% block title %}Incrementing: How do you increment a variable or component property?{% endblock %}</h2>
+{% block description %}
+Component properties and variables are <em>named memory cells</em>, something like the cells in a spreadsheet. 
+You’ll use such memory cells to do things like keep the score of a game or record the location of an ImageSprite. 
+Often, you need to change the value stored in a memory cell. Its simple to think of setting the score of a game to 
+5, or some other <em>fixed number</em>, but how do you set the score relative to its current value, e.g., <em>how do you program it so that the 
+score becomes one more?</em>The following examples will demonstrate this fundamental activity of <em>incrementing</em> a variable.
+{% endblock %}
+{% block question %} Example 2.How do you count-down from 10 and play a sound at 0.
+<img class="thumbnail" src="/assets/img/incrementingvariables/countDown.png" border="0"/> {% endblock %}
+{% block answer %}
+<p>
+With the Countdown app, a label shows a 10 to start and then begins counting down, 9,8,7...down to 0. 
+When 0 is reached, a sound is played. The blocks are shown below.
+</p>
+<p>The “when Clock.Timer” is triggered periodically. The top row of blocks
+ <em>decrements</em> <span class="empfront">CountLabel.Text</span>-- the text is set 
+ to itself minus 1. So the first time the timer triggers, the text is set to 10-1=9, 
+ the second time to 9-1=8, and so on.On each iteration, the app uses an if block to check 
+ if the count has reached 0. If it has, the sound is played and the clock timer is disabled 
+ to stop the activity.
+</p>
+
+{% endblock %}
+
+{% block answerImage %} "/assets/img/incrementingvariables/countDownBlocks.png"{% endblock %}
+
+
+{% block answerVideo %} "//www.youtube.com/embed/3k7d_RebNYM"{% endblock %}
+{% block otherExampleLink %}<a href="/content/howDoYou/incrementing/count">example 1</a>{% endblock %}

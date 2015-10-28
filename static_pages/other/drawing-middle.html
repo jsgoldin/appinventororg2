@@ -1,0 +1,25 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How do you draw shapes and images in an app?{% endblock %}
+			{% block description %} Learn how to use the Canvas component to draw shapes 
+			and place images, and to allow the end-user to draw as well.{% endblock %}
+{% block question %} Example 4. How do you move an image to the middle of the canvas?{% endblock %}
+{% block answer %}
+ <p>
+            The blocks in the sample locate <span class="empfont"></span>ImageSprite1</span> in the middle of the canvas using the <span class="empfont"></span>Width</span> and <span class="empfont"></span>Height</span>
+            properties. Such abstract references mean the code will work even if the Canvas is resized. Alternatively, you could place fixed numbers in for the X and Y of the MoveTo (similarly to how
+            10,10 was used in the above example. Do you know why 1/2 the width and height of the sprite is subtracted?
+        <p>
+        <p>
+            Note that there is no "DrawImage" block like <span class="empfont"></span>DrawCircle</span>. Instead, with the designer you drag <span class="empfont"></span>ImageSprite</span> components into a <span
+                class="empfont"></span>Canvas</span> and specify the image file (picture) that defines their appearance. There is no way to dynamically create sprites with blocks, you can only make them
+            (in-)visible and locate them as in this example.
+        </p>
+<hr /></p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/Drawing/canvasMiddle.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/s36rXAysucg" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/drawing/canvas">example 1</a> {% endblock %}
+
+

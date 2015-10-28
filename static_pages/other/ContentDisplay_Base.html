@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../assets/JordansStuff/css/bootstrap.css" type=”text/css”>
+<link rel="stylesheet" href="../../assets/JordansStuff/css/TutorialSystem/main.css" type=”text/css”>
+</head>
+<body>
+    <p id='modid' keyid='{{current_module.key.id}}' class='hidden'></p>
+    <p id='contentid' keyid='{{current_content.key.id}}' class='hidden'></p>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">App Inventor</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#Tutorials">Tutorials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../navbar/">Default</a></li>
+                    <li><a href="../navbar-static-top/">Static top</a></li>
+                    <li class="active"><a href="./">Fixed top</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-md-3'>
+                <div class='row progress-menu-container'>
+
+                    <div class='progress-menu-text-box menu-spacer'>
+                        <a href='/modules/content?moduleid={{current_module.key.id}}' class='progress-menu-module-link'><span
+                            class="glyphicon glyphicon-chevron-left progress-menu-module-link-icon"></span>{{current_module.m_title}} </a>
+                        <h3 class='progress-menu-module-title'>{{ current_module.m_title}}</h3>
+                    </div>
+
+                    {% for content in contents %}
+                    <div keyid='{{content.key.id}}' class='progress-menu-item'>
+                        <div class='progress-menu-module-box-inner'>
+                            <div class='progress-menu-icon'>
+                                <img src='' height='25' width='25'>
+                            </div>
+                            {{ content.c_title}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class='col-md-9'>
+                {% block body %}
+                
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../../assets/JordansStuff/js/TutorialSystem/main.js"></script>
+    <script type="text/javascript" src="../../assets/JordansStuff/js/bootstrap.js"></script>
+</body>
+</html>
+
+

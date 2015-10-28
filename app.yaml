@@ -1,0 +1,57 @@
+# BE CAREFUL!!!, make sure you are deploying to the correct version.
+#
+# If you need to deploy to the release version change it here, then change it
+# back to the test version when you finish deploying.
+#
+# This file should not be pushed to github with a release version specified.
+
+
+
+application: appinventororgtesting
+version: jordan
+runtime: python27
+api_version: 1
+threadsafe: no
+
+handlers:
+- url: /admin/.*
+  script: app_controller.py
+  login: admin
+- url: /CourseSystem/Editor/assets
+  static_dir: CourseSystem/Editor/assets
+  login: admin
+- url: /assets/admin
+  static_dir: assets/admin
+  login: admin
+- url: /apps
+  static_dir: apps
+- url: /apps2
+  static_dir: apps2
+- url: /quizly
+  static_dir: quizly
+- url: /starterApps
+  static_dir: starterApps
+- url: /screensteps
+  static_dir: screensteps
+- url: /apps/amazon
+  static_dir: amazon
+- url: /assets
+  static_dir: assets
+- url: /images
+  static_dir: images
+- url: /assets/css
+  static_dir: assets/css
+- url: /bookChapters/
+  static_dir: bookChapters 
+- url: /bookFiles/
+  static_dir: bookFiles 
+- url: /javaBridge/
+  static_dir: javaBridge 
+- url: /older
+  static_dir: older
+- url: /tutorial_files
+  static_dir: tutorial_files    
+- url: /
+  script: app_controller.py
+- url: /.*
+  script: app_controller.py

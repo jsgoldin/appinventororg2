@@ -1,0 +1,100 @@
+
+<title>Timed Lists</title>
+    <h2>Timed Lists: How do you process each item of a list, pausing in between?</h2>
+          <p>
+			You can't use a for each or while loop to process a list if timing is 
+			involved because those iterative blocks don’t pause between processing each
+			 item-- they go too fast! To deal with timing and lists, you define an index 
+			 to keep track of the position in the list as processing proceeds, and you 
+			 process each item in some event handler. Check out the following examples:
+		  </p>
+    <div class="row-fluid">
+
+        <div class="span6">
+          
+			 
+			 <a name="playNotes"></a> 
+		  <h3>Example 1. How do you play a list of musical notes?</h3>
+		    <img class="thumbnail" src="/assets/img/TimedLists/playNotes.png" border="0"/>
+		   <p>
+			For this example, assume three short sound clips, “do.mp3”, “re.mp3”, 
+			and “mi.mp3”, have been uploaded as media for the app. The goal is to play 
+			the three notes one after the other.
+			</p>
+			<p> A musical note takes time to play. 
+			If you tried to use a for each block to play a list of notes, they would 
+			play on top of each other, as the app doesn’t pause between iterations.</p>
+			<p> The solution is event-based. When the user initiates the note playing by clicking 
+			a button, you play the first note. You then program the 
+			<span class="empfont">Player.Completed</span> event, 
+			which is triggered when the <span class="empfont">Player</span> component finishes playing an entire sound
+			 clip. In <span class="empfont">Player.Completed</span>, you check where you are in the list, and if you 
+			 are not done, you get the next note and play it. The scheme is supported 
+			 through the definition of a variable, index, which keeps track of the 
+			 current position in the list. It starts out as 1, and is incremented each 
+			 time a note completes. The select list item block is used to grab the 
+			 “indexth” item to play. 
+			 </p>
+			<p> The blocks shown would play any list of notes, 
+			 but let’s walk through what happens with this particular list. When 
+			 the user clicks the <span class="empfont">PlayButton</span>, <span class="empfont">index</span> is set to 1 so that the select list 
+			 item block selects the first item, “do.mp3”, which is played.
+			 </p>
+			<p> 
+
+			When “do.mp3” finishes playing, the <span class="empfont">Player.Completed</span> event handler is triggered. 
+			It increments index from 1 to 2, checks if the <span class="empfont">index</span> is past the end of the notes 
+			list (it is not), and then selects and plays the second note (“re.mp3”).
+			</p>
+			<p> 
+			When “re.mp3” finishes playing, the <span class="empfont">Player.Completed</span> event handler is triggered a second 
+			time. It increments index from 2 to 3, checks if <span class="empfont">index</span> is past the end of the notes 
+			(is still is not), and plays the third note, “mi.mp3”.
+			</p>
+			<p>
+			When “mi.mp3” completes, the <span class="empfont">Player.Completed</span> event handler is triggered a third time. 
+			index is incremented again, now to 4, and it is now larger than the length of the list. 
+			So the “if test” is false and no more notes are played.
+			</p>
+			
+			<hr/>
+			<a name="sign"></a>
+			</div>
+			<div class="span4">
+			<br/><br/><br/>
+            <iframe width="560" height="315" src="//www.youtube.com/embed/b60hdPIf4iU" 
+             frameborder="0" allowfullscreen></iframe>
+            </div>
+         </div>
+         <div class="row-fluid">   
+            <div class="span6">
+            <a name="spaceship"></a> 
+			<h3>Example 2. How do you sign the word “code” using American Sign Langage (ASL)?</h3>
+			<img class="thumbnail" src="/assets/img/TimedLists/allSigns.png" border="0"/>
+			<p>
+			In this example, you have four images that you want to display one after 
+			the other with a short pause in between. The techniques is called key 
+			frame animation and you’re able to show motion by rapidly sequencing 
+			through images (the canonical example is to show a person running by 
+			rapidly sequencing through the various parts of his stride).
+
+			</p>
+			<img class="thumbnail" src="/assets/img/TimedLists/aslSigns.png" border="0"/>
+			<p>
+			The solution is based on a <span class="empfont">Clock.Timer</span> event. When the user clicks the 
+			<span class="empfont">PlayButton</span> to initiate the activity, the app shows the first picture, 
+			then enables the clock (<span class="empfont">Clock.TimerEnabled</span> should be false to begin). 
+			The <span class="empfont">Clock.Timer</span> event is then triggered periodically. It increments an 
+			index to get to the next image, then checks to see if the last image has 
+			been reached. If not, it displays the next image. If the end has been 
+			reached, its sets the index back to 0. The next time the timer triggers, 
+			it will set <span class="empfont">index</span> to 1 and show the signs again (the ASL for “CODE” is 
+			signed over and over).
+			</p>
+			 </div>
+			 <div class="span4">
+              <iframe  width="560" height="315" src="//www.youtube.com/embed/LTnGTZhT8YQ" 
+               frameborder="0" allowfullscreen></iframe>
+            </div>
+		</div>
+		

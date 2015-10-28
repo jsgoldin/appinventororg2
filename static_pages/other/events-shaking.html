@@ -1,0 +1,23 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %} How do you program an app’s event-response behavior?{% endblock %}
+{% block description %}Think of an app like an event-response machine. The user
+				clicks a button, the app responds. A text comes in, the app sends an
+				auto-reply. A flying saucer hits an asteroid, it blows up. Your job
+				as a programmer is to program such event-responses. In App Inventor,
+				you do this directly-- your code is essentially a set of
+				event-responses, of when-do blocks. Check out the following samples:{% endblock %}
+{% block question %} Example 2. How do you say "I’m shaking” when the user
+					shakes the phone? {% endblock %}
+{% block answer %}<p>
+					This app has two components, an <b>AccelerometerSensor</b> and a <b>TextToSpeech</b>.
+					When the user shakes the phone or tablet, the <b>AccelerometerSensor</b>
+					senses the event and the <b>when AccelerometerSensor1.Shaking</b>
+					event handler is triggered. The <b>TextToSpeech</b> component is
+					called to carry out the response of speaking the words “I’m
+					shaking”.</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/Events/shakeSpeak.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/BQYNFuQBNwM" {% endblock %}
+{% block otherExampleLink %}<a href="/content/howDoYou/eventHandling/redbutton">example 1</a>{% endblock %}

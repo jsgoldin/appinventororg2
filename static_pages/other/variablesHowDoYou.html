@@ -1,0 +1,69 @@
+<head>
+	<meta charset="UTF-8">
+</head>
+<div class="dark-blue-title">
+	<div class="course-page-container">
+		<h2>Variables: How does an app remember things?</h2>
+	</div>
+</div>
+<div class="course-page-container">
+	<div class="card">
+		<p>
+			An app remembers things, it has “hidden” memory. Think of it like a
+			spreadsheet of data in the app’s private “brain”. You, the
+			programmer, control the memory. When you drag a component (e.g.,
+			button, text box) into your app, each of the components has a set of
+			<em>properties</em>. These properties are “spreadsheet” cells that
+			you can change. You can also define new “spreadsheet” cells called <em>variables</em>
+			when you need to remember something. You define a variable when there
+			isn’t a component property for storing the information you need.
+			Check out these examples of using variables to remember things:
+		</p>
+	</div>
+
+			<div class="card">
+				<h3>Example 1. How do you make it so that each time the user
+				clicks a larger circle is drawn?</h3>
+				<small> <a href="/VariablesBackForth">example
+				2</a>
+				</small>
+		
+				<p>
+					When <span class="empfont">Canvas1</span> is touched, <span
+				class="empfont">DrawCircle</span> is called to draw a circle at
+				the touch location (<span class="empfont">x</span> and <span
+				class="empfont">y</span>). The radius <span class="empfont">r</span>
+				cannot be a fixed number as we want a different-sized circle each
+				time. The variable <span class="empfont">circleSize</span> is used
+				to keep track of-- to remember-- the size of the circles each time
+				we draw one. <span class="empfont">circleSize</span> is initialized
+				to 1 so the first circle drawn is a small dot. At the bottom of
+				each <span class="empfont">Canvas1.Touched</span> event handler, <span
+			class="empfont">circleSize</span> is doubled. So the second time
+			the circle will be of radius 2, then 4, then 8, etc. The variable <span
+			class="empfont">circleSize</span> is needed because there is no
+			component property that can be used. The component <span
+				class="empfont">Canvas</span> has a <span class="empfont">lineWidth</span>
+				property, so if you were drawing lines you wouldn’t need to define
+				a variable. But <span class="empfont">Canvas</span> doesn’t have a
+				<span class="empfont">circleSize </span> property, so you must
+				define it as a variable. Want to get a better understanding of what a variable is? Check out this <a target="_blank" href="https://www.youtube.com/watch?v=tHYis-DP0oU">Khan Academy video</a>.
+			</p>
+		</div>
+
+
+<div class="row">
+	<div class="col-md-12">
+		<img class="responsive-fullwidth-img center-element"
+		src="/assets/img/variables/circleSize.png">
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="videoWrapper center-element">
+			<iframe src="//www.youtube.com/embed/So55ML_y_S8" frameborder="0"
+			allowfullscreen=""></iframe>
+		</div>
+	</div>
+</div>
+</div>

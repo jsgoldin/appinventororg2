@@ -1,0 +1,28 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How and why should I define a procedure?{% endblock %}
+			{% block description %}  When is it appropriate to code and call a procedure? How can you
+			make such a procedure as general as possible so it can be reused as much as possible?{% endblock %}
+{% block question %} Example 2. How do I define a procedure that can display any list?{% endblock %}
+{% block answer %}
+<p>
+			A parameter is information a procedure needs to do its job. You define parameters 
+			for a procedure so that it can be reused more generally. This version of <span class="empfont">displayList </span>
+			has been given a parameter list so that it can be used to display any list sent to it. 
+			In this case, the variable <span class="empfont">noteList</span> is sent as the parameter, but you could call it from 
+			somewhere else in your app with a different list. Note that the original <span class="empfont">displayList</span> procedure
+			 was specific to the variable <span class="empfont">noteList</span>-- you couldn’t use it to display other lists.
+		</p>
+		<p>
+		There is one more issue with this procedure which makes it less than optimal for reuse. 
+		This procedure displays the list you sent it in a specific label, <span class="empfont">ListLabel</span>. If your app 
+		had multiple lists and labels, you’d want your <span class="empfont">displayList</span> procedure to work more generally. 
+		The next example will illustrate how to fix this.
+		</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/procedures/displayListparam.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/WB4o7feHNsw" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/procedures/anyLabel">example 3</a> {% endblock %}
+
+

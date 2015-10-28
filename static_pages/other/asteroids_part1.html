@@ -1,0 +1,123 @@
+<div class='course-page-container'>
+	<h1 class="center-children">Asteroids</h1>
+	<img class="art-img" style="margin-bottom: 20px;" src="/assets/img/asteroids/hero.png">
+	<p>
+		Asteroids is a classic arcade game where you captain a spaceship and shoot down asteroids. In this tutorial you will learn how to build the game and the basics of computer animation.
+	</p>
+
+	<h2>Moving objects with ImageSprites</h2>
+
+	<p>
+		Most games (good games!) require some form of animation. App Inventor provides a special component called an ImageSprite just for that purpose. An ImageSprite is simply an image that is able to move.
+	</p>
+
+	<p>
+		ImageSprite's have two properties which determine how they move:
+	</p>
+	<ul>
+		<li>Speed - is the amount of pixels the ImageSprite will move every 100 milliseconds</li>
+		<li>Heading - is the direction the ImageSprite will move in degrees</li>
+	</ul>
+
+	<p>ImageSprite's must be placed within a Canvas component. To start building Asteroids place a Canvas component from the Drawing and Animation folder into the designer.</p>
+
+	<p>Set the following properties for the Canvas</p>
+	<ul>
+		<li>Width - "fill parent"</li>
+		<li>Height - 300</li>
+		<li>Background - blue</li>
+	</ul>
+
+
+	<p>Now that we have a place for the ImageSprite to live we are ready to make the spaceship. First we will upload a spaceship texture. We provide a sample spaceship below but you can use whatever image you want.</p>
+
+	<p>
+		<img src="/assets/img/asteroids/shooter.png">
+		<a download href="/assets/img/asteroids/shooter.png">Download the spaceship image</a>
+	</p>
+
+	<p>Once you upload your image go ahead and drag out a ImageSprite and place it in the Canvas.</p>
+
+	<p>Go ahead and name your ImageSprite component "Spaceship". Giving your components meaningful names will make your life much easier as your app gets more complex.</p>
+
+	<p>
+		Set the following properties for the ImageSprite
+	</p>
+	<ul>
+		<li>picture - whatever image you uploaded</li>
+		<li>Speed - 5</li>
+	</ul>
+
+	<p>Go ahead and test out your app so far and be amazed as the spaceship flys across the screen! However it is limited to one direction, which doesn't exactly make for a compelling game. In the next section we will fix that.</p>
+
+	<h2>Turn the Sprite Around when it hits an Edge</h2>
+	<p>
+		App Inventor provides special blocks that run when certain things happen to a given component. We will use the EdgeReached block to turn the spaceship around. As the name implies, it runs when an ImageSprite reaches the edge of its parent Canvas. 
+	</p>
+	<p>
+		Go into the blocks editor window in App Inventor and click on your ImageSprite in the blocks sidebar on the left. This will bring up a list of all the blocks that are associated with the ImageSprite. Select the when EdgeReached block. Notice that the name of the ImageSprite appears on the block. This means that this block is fired when that particular ImageSprite reaches the edge.
+	</p>
+
+	<p>
+		Now we need to tell App Inventor what happens when the event is triggered. We do this by placing blocks in the do section of the EdgeReached block. To flip the ImageSprite we must reverse its heading. The easiest way to do this is simply adding 180 to whatever its heading is. Below is an image of what this looks like in block form. (Note: the name of the ImageSprite will vary depending on what you named it)
+	</p>
+
+	<img class="art-img" src="/assets/img/asteroids/bounce-manual.png">
+
+
+
+	<h2>Shooting Bullets</h2>
+	<p>
+		Now that you know how to get an ImageSprite moving and deal with edges, its time to program the spaceships cannon so it can protect itself against nasty asteroids. You’ll need a Button to serve as the trigger, and another ImageSprite for the bullet.
+	</p>
+
+	<p>
+		when the user clicks the Button, we want a bullet to appear near the nose of the Spaceship and get it moving in the same direction as the spaceship. We also want the bullets to dissapear once they reach the edge of the screen.
+	</p>
+
+	<p>
+		A crucial skill in programming is being able to break apart a task into smaller tasks. In other words, keeping the whole behavior in mind, choose one part of it and get that working. Then add additional complexity in small iterations.
+	</p>
+
+	<p>
+		Keeping this in mind, we will first focus on getting a bullet to move when the user hits the fire button. For now we will ignore the logic regarding hiding the bullet and its direction.
+	</p>
+
+	<p>
+		In the Designer, create a Ball component named “Bullet”, and place it right at the nose of the spaceship as seen in the following image:
+	</p>
+
+	<img class="art-img" src="/assets/img/asteroids/bullet-ball.png">
+
+
+	<p>
+		Then drag in a Button, name it ShooterButton, and place it below the Canvas. Then add the following blocks:
+	</p>
+
+
+	<img class="art-img" src="/assets/img/asteroids/bullet-set-speed.png">
+
+	<p>
+		Because in the Designer you’ve left the bullet’s speed at 0, it won’t be moving when the app begins. But now, when the ShooterButton is clicked, the ball will start moving in a left-to-right direction (because of the default Heading of 0).
+	</p>
+
+	<p>
+		Now that we have the basic logic in place for the fire button we can move onto the next step, getting the bullet to disapear when it hits the edge. This is accomplished using the when EdgeReached event block we used earlier for the spaceship. Here is what the blocks look like:
+	</p>
+
+	<img class="art-img" src="/assets/img/asteroids/bullet-turn-around.png">
+
+
+	<p>
+		The last step in implementing the bullet is getting new bullets to appear every time you hit the fire button. We will need to change the ball component's display property to invisible so it will initially be hidden. Now we add blocks to the when button clicked event that will make the ball appear when the user clicks. This is what the when button clicked blocks will look like when your done:
+	</p>
+
+	<img class="art-img" src="/assets/img/asteroids/bullet-set-visible.png">
+	
+	<p>
+		What you have so far will work as long as the Spaceship doesn’t move or change direction. The bullet always starts at a fixed location, where you placed it in the Designer, and it has a Heading of 0. We want the bullet's location and heading to be relative to the Spaceship. To do this we will need to add some new blocks to the ShooterButton click event.
+	</p>
+
+	<img class="art-img" src="/assets/img/asteroids/complete-fire-btn.png">
+
+</div>

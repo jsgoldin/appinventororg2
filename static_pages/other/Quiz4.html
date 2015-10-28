@@ -1,0 +1,136 @@
+
+        <link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+
+        <script src="/assets/JordansStuff/js/JordansAwesomeJS.js" type="text/javascript">
+</script>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <div class="page-header">
+                            <h1>
+                                Quiz 4. Animated Movement using the Clock Timer
+                            </h1>
+                            <p>There are two ways to move objects over time with App Inventor: using a Clock component and the Clock.Timer
+                            event to trigger movement, or using the Ball and ImageSprite components' internal properties. The following
+                            questions ask you to use the first method based on the Clock component.
+                            </p>
+                            <p>
+                            Here are some blocks you can use to answer the questions in the quiz (you are welcome to use others
+                            including any number blocks, variable blocks, or mathematical operators).
+                            </p>
+                            <img class='pad-med' src="/assets/img/Quiz4/Quiz4-1-1.png" height="187" width="636">
+                    </div>
+                    <div class="quiz-panel-outer">
+                        <h1>
+                            1.
+                        </h1>
+
+                        <p>
+                           Sketch the blocks for making a ball move diagonally from the bottom-right corner to the top-left 
+                           corner. You can assume the ball starts in the bottom-right corner. The ball should move gradually, but for this question you need not be concerned with speed or the size of the timer interval.
+                        </p>
+
+                        
+                  
+                        <div class="quiz-panel-inner">
+                    
+                            <div id="q1a" class="collapse">
+                                <center>
+                                    <img src="/assets/img/Quiz4/Quiz4-1-2.png" height="245" width="415">
+                                </center>
+                            </div>
+                           
+                            <a type="button" href="#q1a" data-toggle="collapse" onclick="showHideToggle(id)" id="q1b" name="q1b">Show Answer</a>
+                        </div>
+                    </div>
+                    <div class="quiz-panel-outer">
+                        <h1>
+                            2.
+                        </h1>
+                
+                        <p>
+                            Sketch the blocks for making a ball move down at a speed of 30 pixels a second. The ball should move smoothly so specify an appropriate timer interval (you do not need to show the blocks, just note what you will set the timer interval to in the designer). Show your math.
+                        </p>
+                   
+                        <div class="quiz-panel-inner">
+                          
+                            <div id="q2a" class="collapse">
+                                
+                                <img src="/assets/img/Quiz4/Quiz4-2-1.png" height="293" width="477">
+                                <p>
+                                    Either in the Designer or in the blocks (as shown), set the Clock2.TimerInterval to 50. If you didn't care 
+                                    that the ball moved smoothly, you could set the TimerInterval to 1000 (a second) and you'd
+                                     move by 30 pixels each time. But you don't want choppy movement, so you need a smaller 
+                                     Clock.TimerInterval like 50 ms. You know the Clock.Timer event will then be triggered
+                                      every 50 ms. The question then is how far to move the ball each 50 ms in order to get 
+                                      a speed of 30 pixels/second. The equation to setup is this: x/50=30/1000, where x is the 
+                                      amount to move. If you cross-multiply, you get x*1000=30*50, or x=1.5.
+                                </p>
+                            </div>
+                           
+                            <a type="button" href="#q2a" data-toggle="collapse" onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
+                 
+                        </div>
+                    </div>
+                    <div class="quiz-panel-outer">
+                        <h1>
+                            3.
+                        </h1>
+                   
+                        <p>
+                            Sketch the blocks for making a ball move horizontally, back and forth, continuously. When the ball hits the right edge it should start going left, when it hits the left edge it should start going right.
+                        </p>
+                       
+                        <div class="quiz-panel-inner">
+                          
+                            <div id="q3a" class="collapse">
+                                <p>
+                                    Following are two solutions for this question. The key is that you need to define a variable, named "distance" in the solutions below, that "remembers" whether the ball is moving left or right. So if distance is 5, the ball is moving right, if distance is -5, it is moving left. The solutions below differ in how the variable is changed when an edge is reached.
+                                </p>
+                                <p>
+                                    Solution 1
+                                </p>
+                                <img src="/assets/img/Quiz4/Quiz4-3-1.png" height="317" width="581">
+                                
+                                <p>
+                                    Solution 2
+                                </p>
+                                
+                                <img src="/assets/img/Quiz4/Quiz4-3-2.png" height="237" width="581">
+                                
+                            </div>
+                            
+                            <a type="button" href="#q3a" data-toggle="collapse" onclick="showHideToggle(id)" id="q3b" name="q3b">Show Answer</a>
+                       
+                          
+                        </div>
+                    </div>
+                    <div class="quiz-panel-outer">
+                        <h1>
+                            4.
+                        </h1>
+                        <p>
+                            Modify the app in question 3 so the ball goes back and forth between the
+                             left edge of the Canvas and <em>the middle of the canvas</em>. Assume the
+                             ball starts near the left edge (but not on it).
+                        </p>
+                    
+                        <div class="quiz-panel-inner">
+                        
+                            <div id="q4a" class="collapse">
+                                <p>
+                                    This answer can be used with either of the two above answers the only change is the if test within the Clock.Timer.
+                                </p>
+                            
+                                <img src="/assets/img/Quiz4/Quiz4-4-1.png" height="336" width="585">
+                        
+                            </div>
+                      
+                            <a type="button" href="#q4a" data-toggle="collapse" onclick="showHideToggle(id)" id="q4b" name="q4b">Show Answer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+

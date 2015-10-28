@@ -1,0 +1,62 @@
+
+<title>Drawing</title>
+  
+<h2>How do you animate sprites?</h2>
+          <p>
+			
+		  </p>
+		  <div class="row-fluid">	 
+        <div class="span6">
+          
+			 <a name="canvas"></a> 
+		  <h3>Example 1. How do you move a sprite down, smoothly, at 100 pixels a second</h3>
+		    <img class="thumbnail" src="/assets/img/sprites/moveDown.png" border="0"/>
+		   <p>An ImageSprite's speed, pixels/second, is actually determined by two properties.
+		   The Interval property specifies how often the sprite will be moved-- it is similar
+		   to the TimerInterval property of the Clock component. The Speed property specifies
+		   how many pixels the sprite will move each interval (the property is misnamed). In this
+		   example, the sprite moves 5 pixels per 50 ms, or 1 pixel per 10 ms, which is 100 pixels/second.
+		   </p>
+		   <p>
+		   A Sprite's Heading property specifies the direction it moves. As shown below,
+		   a Heading of 270 degrees will move the sprite down.
+		   
+			<img class="thumbnail" src="/assets/img/sprites/headingEdge.png" border="0"/>
+			</p>
+			
+			
+		</div>
+		<div class="span4">
+              <iframe  width="560" height="315" src="//www.youtube.com/embed/yddwRnVWdwU" 
+               frameborder="0" allowfullscreen></iframe>
+            </div>
+       </div>
+        <a name="bounce"></a> 
+         <div class="row-fluid">   
+            <div class="span6">
+           
+			<h3>Example 2. How do you make a ball bounce?</h3>
+			<img class="thumbnail" src="/assets/img/sprites/bounce.png" border="0"/>
+			<p>
+			App Inventor provides a Bounce block that causes a ball to bounce off the edge
+			of a canvas. You typically use Bounce within the EdgeReached event handler, as
+			that event handler tells you which edge was hit, as a parameter, and you can
+			plug that parameter into the Bounce function (which need to know which edge
+			of the canvas to bounce off).
+			</p>
+			<p>You can also bounce off other objects (sprites or balls). The CollidedWith
+			event handler is triggered when you hit another object. The Bounce function
+			only works off a Canvas edge, so you cannot use it. But you can make the ball
+			bounce in the other direction by setting its Heading property to 360 minus its
+			current setting, as in the blocks above. 
+			<hr/>
+			
+			 </div>
+			 <div class="span4">
+              <iframe  width="560" height="315" src="//www.youtube.com/embed/x9_B0eXCLrs" 
+               frameborder="0" allowfullscreen></iframe>
+            </div>
+		</div>
+		
+       
+

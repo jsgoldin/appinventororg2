@@ -1,0 +1,251 @@
+{% extends "templates/site_base.html" %} {% block body %}
+
+
+
+<div class="landing-video-section">
+	<div class="overlay">
+		<div class="gen-container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="landing-video-text">
+						<h1 style="font-size: 60px;" class="headline--white">Learn to build Android apps in
+							hours.</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-bottom: 218px; text-align: center;">
+				<div class="col-md-12" style="margin-bottom: 20px;">
+					<a data-TID="home-video-cta" href="/content/CourseInABox/Intro/IHaveADream"
+						class="big-btn--green t-video-cta">Start learning now</a>
+				</div>
+			</div>
+		</div>
+
+		<video
+			style="min-width: 100%; height: auto; position: absolute; top: 0px; z-index: -1;"
+			autoplay muted loop poster="/images/back-img.png" id="bgvid">
+			<source src="/assets/ailandingvideo.webm" type="video/webm">
+			<source src="/assets/ailandingvideo.mp4" type="video/mp4">
+		</video>
+	</div>
+</div>
+
+
+<div class="what-it-is-section">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h2 class="headline">App building made easy</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<p class="subhead">App Inventor is a visual, blocks language for building Android Apps.</p>
+			</div>	
+		</div>
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-xs-4">
+
+				<div class="what-it-is-tile-wrapper">
+					<div class="what-it-is-tile background-blue">
+						<i class="fa fa-globe"></i>
+					</div>
+					<h4>Educational</h4>
+					<p>App Inventor is being used in classrooms all over the world to broaden participation in computer science.</p>
+					<div id="hideTopPosObj"></div>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div class="what-it-is-tile-wrapper">
+					<div style="background-color: orange;" class="what-it-is-tile">
+						<i class="fa fa-thumbs-o-up"></i>
+					</div>
+					<h4>Easy</h4>
+					<p>Coding is like plugging puzzle pieces together-- you can learn within hours.</p>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div class="what-it-is-tile-wrapper">
+					<div style="background-color: rgb(252, 27, 81);"
+						class="what-it-is-tile">
+						<i class="fa fa-gamepad"></i>
+					</div>
+					<h4>Fun</h4>
+					<p>Build games, social apps, quizzes, and other apps for you
+						and your friends.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<a data-TID="home-about-cta--toabout" class="big-btn--gray" href="/about">Learn More</a> <span
+					class="or">or</span> <a data-TID="home-about-cta--tocourse" class="big-btn--green"
+					href="/content/CourseInABox/Intro">Get Started</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<img class="peekaboo-robot" src="/assets/img/android_peekaboo.png">
+
+<div class="landing-courses-section">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div id="hideBtmPosObj"></div>
+				<div id="scrollZoneTopObj"></div>
+				<h2 class="headline--white">Learn how to build apps</h2>
+				<p class="subhead--white">Choose a course to start mastering App
+					Inventor</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="course-card-wrapper">
+					<div class="course-card"
+						style="background-image: url(/assets/img/puzzle1.png);">
+						<i class="fa fa-cube"></i>
+						<h3>Course In A Box</h3>
+						<a data-TID="home-courses-courseinabox" href="/course-in-a-box-intro"></a>
+						<div id="scrollZoneBottomObj"></div>
+						<div class="course-card-description">Videos, Quizzes, and
+							more.</div>
+					</div>
+				</div>
+
+				<div class="course-card-wrapper">	
+					<div class="course-card"
+						style="background-image: url(/assets/img/puzzle2.png);">
+						<i class="fa fa-cogs"></i>
+						<h3>How do you?</h3>
+						<a data-TID="home-courses-howdoyou" href="/content/howDoYou"></a>
+						<div class="course-card-description">Glossary of essential
+							app building techniques.</div>
+					</div>
+				</div>
+
+				<div class="course-card-wrapper">
+					<div class="course-card"
+						style="background-image: url(/assets/img/puzzle3.png);">
+						<img class="java-bridge-logo" src="/assets/img/javabridge/java-logo.png">
+						<h3>Java Bridge</h3>
+						<a data-TID="home-courses-jbridge" href="/jBridgeIntro"></a>
+						<div class="course-card-description">Learn how to code apps with Java.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<section class="section">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-sm-6 col-sm-push-6" style="margin-bottom: 24px;">
+				<h1>What student's are saying</h1>
+
+				<p>Checkout how Appinventor.org helped students learn to build mobile apps.</p>
+			</div>
+			<div class="col-sm-6 col-sm-pull-6">
+				<div class="youtube-embed-wrapper">
+					<iframe id="player" frameborder="0" allowfullscreen="1" title="YouTube video player" width="640" height="360" src="https://www.youtube.com/embed/lsSSYiG_8F4?enablejsapi=1"></iframe>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 jbridge-vids-container">
+				<h2>More student stories</h2>
+
+				<div data-ytexpo-id="lsSSYiG_8F4" class="ytexpo-vid jbridge-vid-story-wrapper selected">
+					<div class="jbridge-vid-story thomas">
+						<div class="jbridge-vid-story-animation">
+
+						</div>
+					</div>	
+				</div>
+
+				
+				<div data-ytexpo-id="HbntNGGXamw" class="ytexpo-vid jbridge-vid-story-wrapper">
+					<div class="jbridge-vid-story wayne">
+						<div class="jbridge-vid-story-animation">
+
+						</div>
+					</div>	
+				</div>
+
+				<div data-ytexpo-id="qOE0avT5v68" class="ytexpo-vid jbridge-vid-story-wrapper">
+					<div class="jbridge-vid-story colin">
+						<div class="jbridge-vid-story-animation">
+
+						</div>
+					</div>
+				</div>
+
+				<div data-ytexpo-id="8wsGnG_yNrQ" class="ytexpo-vid jbridge-vid-story-wrapper">
+					<div class="jbridge-vid-story cayla">
+						<div class="jbridge-vid-story-animation">
+
+						</div>
+					</div>
+				</div>		
+
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="landing-teachers-section background-blue">
+	<div class="brian"></div>
+	
+	<div class="landing-teachers-section-info">
+		<h2>Teach an App Inventor course</h2>
+		<p>Jump start your class with course-in-a-box materials, including lesson plans, tips, and more.</p>
+
+		<a data-TID="home-teachers-cta" class="big-btn--green" href="/teacherIntro">Get started</a>
+	</div>
+	
+
+</section>
+
+<section class="section partners-section">
+	<div class="gen-container">
+
+		<div class="row">
+			<div class="col-md-12 center-children">
+				<h2>AppInventor.org Partners</h2>
+
+
+				<a target="_blank" rel=”nofollow” href="//appinventor.mit.edu/">
+					<img class="mit-ai-logo" src="/assets/img/mit-ai-logo.png">
+				</a>
+
+				<a target="_blank" rel=”nofollow” href="//appinventorblog.com/2012/08/27/national-science-foundation-grant-for-teaching-app-inventor/">
+					<img src="/assets/img/logos/nsf.jpg">
+				</a>
+
+				<a target="_blank" rel=”nofollow” href="//www.wmkeck.org/images/stories/pdfs/pdfs/2013_Annual_Report_Impact.pdf">
+					<img src="/assets/img/logos/keck.jpg">
+				</a>
+
+				<a target="_blank" rel=”nofollow” href="//www.usfca.edu/">
+					<img src="/assets/img/logos/usf.png">
+				</a>
+
+				<p>
+					Appinventor.org is a product of the University of San Francisco's Democratize Computing Lab and is funded by the NSF and WM Keck foundation.
+				</p>
+
+				<p>
+					AppInventor.org partners with but is a separate entity from MIT App Inventor. Our focus is providing materials for learning and teaching App Inventor, work made possible only through the efforts of the MIT team in developing and maintaining the App Inventor site.
+				</p>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends "howdoyouTemplate.html" %}
+
+{% block title %} How do you record information in a list?{% endblock %}
+{% block description %}
+			When a user enters information in an app, or other data arrives to the app, 
+			you'll often store it in a list. 
+		 
+{% endblock %}
+{% block question %}Example 1. How do you record notes input by the user? {% endblock %}
+
+{% block answer %}
+<p>
+			This behavior illustrates the basics of a note taking or twitter-like app. 
+			You first define a variable <span class="empfont">noteList</span> and initialize it to the create empty 
+			list block. This marks the variable <span class="empfont">noteList</span> as a list so you can put items 
+			into it.
+		  </p> 
+		<p>When the user enters a note in the <span class="empfont">NoteTextBox</span> and clicks 
+		“Submit”, add items to list is called to append the user’s entry to the end of 
+		the list. noteList is then set into <span class="empfont">ListLabel.Text</span> to display it to the user, and 
+		the user’s entry in <span class="empfont">NoteTextBox</span> is blanked out to ready it for the next entry.</p>
+	<p>Note: this data in this sample is not persistent, meaning the notes entered by the 
+	user will only be recorded for the current run of the app. If you stopped the app and 
+	re-opened it, the notes list would be empty. To learn how to record data persistently, 
+	see <a href="/Persistence">these notes</a></p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/recordingitems/notesToList.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/aiFrwX7M4vc" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/RecordingInfo/phone">example 2</a> {% endblock %}
+
+

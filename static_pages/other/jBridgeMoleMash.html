@@ -1,0 +1,155 @@
+<div class='dark-blue-title'>
+	<div class='course-page-container'>
+		<h1>The MoleMash App in Java</h1>
+	</div>
+</div>
+
+<div class='course-page-container'>
+
+	<section class="course-page-section">
+		<p>
+			In the MoleMash game, a character jumps around randomly on the screen and you try to touch it to win points. The app introduces the Canvas component as well as clock timers and randomness. 
+		</p> 
+		<p>
+			This lesson describes the App Inventor Java Bridge version of this app, comparing it to its App Inventor blocks equivalent to illustrate.
+		</p>
+
+		<a  class="download-btn" download="molemash.java" href="/javaBridge/moleMash/Screen1.java">Download the code <i class="fa fa-arrow-circle-down"></i></a>
+
+	</section>
+
+
+
+	<section class="course-page-section">
+		<h2>Create the User Interface</h2>
+		<p>
+			In App Inventor, you build the user interface shown above by dragging component instances into the Designer view. In Java, you first import the component classes you need, then declare each component instance within the Screen1 class, then create the instances in the $define function (If you're not sure how to do this, see <a href="/content/java-bridge/introduction/basics"> these instructions</a>). Here are some of the instance creations for MoleMash:
+		</p>
+
+		<code>
+	<pre>protected void $define()
+{
+	// create your components and set their initial properties
+	//...
+	canvas1 = new Canvas(this);
+	canvas1.BackgroundColor(COLOR_GRAY);
+	canvas1.Width(LENGTH_FILL_PARENT); 
+	canvas1.Height(300);
+	moleSprite = new ImageSprite(canvas1);
+	// be sure and place a file mole.png in the assets folder of your project!
+	moleSprite.Picture("mole.png");
+	// ...
+	horizArrangement = new HorizontalArrangement(this);
+	timeLeftLabel= new Label(horizArrangement);
+	timeLeftLabel.Text("Time Left:");
+	timeLeftValueLabel= new Label(horizArrangement);
+	timeLeftValueLabel.Text("60");
+	spaceLabel = new Label(horizArrangement);
+	spaceLabel.Text("   ");
+	scoreLabel= new Label(horizArrangement);
+	scoreLabel.Text("Score:");
+	scoreValueLabel= new Label(horizArrangement);
+	scoreValueLabel.Text("0");</pre>	
+		</code>	
+		<p>
+			The MoleMash instance creations are more complex than in the RedClick app, as they refer to an image file ("mole.png") and not all objects are created directly within "Screen1". When the ImageSprite "moleSprite" is created, "canvas1" is the parameter to the constructor
+			instead of "this", meaning that the moleSprite is contained within the Canvas and not the outer "Screen1".
+		</p>
+
+		<p>
+			The moleSprite.Picture property is set to "mole.png", a file containing a picture of a mole. This file must be placed into the "assets" folder within the project.
+		</p>
+
+		<p>
+			This app also uses a HorizontalArrangement so that the labels showing the clock timer and the score will all appear on one horizontal line instead of multiple lines. In the "new" creation statements for timeLeftLabel, timeLeftValueLabel, spaceLabel, scoreLabel, and scoreValueLabel, the parameter is set to "horizArrangement" to denote their container.
+		</p> 
+	</section>
+
+	<section class="course-page-section">
+		<h2>Define MoleMash's Event-Response Behavior</h2>
+		<p>The MoleMash app needs three event handlers:</p>
+	</section>
+
+
+	<section class="course-page-section">	
+		<h3>1. When the Mole is Touched</h3>
+
+		<figure class="no-center">
+			<img src="/javaBridge/moleMash/moleTouched.png"/>
+			<figcaption>The App Inventor blocks for handling the touch event</figcaption>
+		</figure>
+		
+		<p>
+			Within your Screen1 class definition, you'll provide the following code...
+		</p>
+<code><pre>public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params )
+{
+	// when mole is touched, add a point. Need to covert text to int and back
+	if( component.equals(moleSprite) &amp;&amp; eventName.equals("Touched") )
+	{
+		int score = Integer.parseInt(scoreValueLabel.Text());
+		score = score+1;
+		scoreValueLabel.Text(String.valueOf(score));
+		return true;
+	}</pre>
+		</code>
+
+		<p>
+			App Inventor does a lot of work for you, including converting the types of storage values. For instance, App Inventor allows you to add 1 to scoreValueLabel.Text, even though the Text property of a label is a string, not an integer.
+		</p>
+		<p>
+			Java doesn't do such type conversions automatically-- you have to code them explicitly. So in the code above, the pre-existing value in the scoreValueLabel.Text is converted into an integer using Java's Integer.parseInt function. The result is places in the int variable score. One is then added to score, and then that integer is converted back into a string using String.valueOf, so that it can be placed back in the Text property.
+		</p>
+	</section>
+
+
+	<section class="course-page-section">	
+		<h3>When the MoleClock.Timer Triggers</h3>
+		<figure>
+			<img src="/javaBridge/moleMash/moleClock.png">
+			<figcaption>The App Inventor blocks for the timer controlled sprites</figcaption>
+		</figure>
+
+		<code><pre>// on mole timer, move the mole randomly
+if( component.equals(moleClock) &amp;&amp; eventName.equals("Timer") )
+{
+	Random random = new Random();
+	int x= random.nextInt(canvas1.Width()-moleSprite.Width());
+	int y= random.nextInt(canvas1.Height()-moleSprite.Height());
+	moleSprite.MoveTo(x, y);
+	
+	return true;
+}</pre></code>
+
+		<p>
+			Java provides a class, Random, for generating random numbers. Checkout the import statement in the MoleMash code to see how you tell Java that you want to use it. In this example, Random's nextInt function is called to generate the random numbers for x and y.
+		</p>
+	</section>
+
+
+	<section class="course-page-section">	
+		<h3>When the GameClock.Timer Triggers</h3>
+		<figure>
+			<img src="/javaBridge/moleMash/gameClock.png"/>
+			<figcaption>The App Inventor blocks for game clock timer</figcaption>
+		</figure>
+		<code><pre>// count down the clock on the clock timer
+if( component.equals(gameClock) &amp;&amp; eventName.equals("Timer") )
+{
+	int count = Integer.parseInt(timeLeftValueLabel.Text());
+	count = count - 1;
+	timeLeftValueLabel.Text(String.valueOf(count));
+	if (count==0) {
+		//game is over
+		gameClock.TimerEnabled(false);
+		moleClock.TimerEnabled(false);
+		timeLeftValueLabel.Text("Game Over");
+		
+	}					
+	return true;
+}</pre></code>
+		<p>
+			The gameClock Timer event handler does some type conversion, as was done in moleSprite.Touched, so that the count can be decremented and then placed back into the timeLeftValueLabel as text. An if statement is then used to see if the count is down to 0.
+		</p>
+	</section>
+</div>

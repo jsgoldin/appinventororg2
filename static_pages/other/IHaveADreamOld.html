@@ -1,0 +1,366 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>I Have a Dream!</H1>
+<div class="row-fluid">
+  <div class="span6">
+	<p>Most people have never even dreamed of building an app; software is this mysterious world of 0s, 1s and computer nerds. The goal of this site is to show people that they can create in this medium, that they can program software and contribute in today's highly digitized society.
+	</p>
+<p>
+This tutorial will get you building an app in minutes! You don't need to install anything on your computer-- App Inventor runs in the cloud! You will build the app on your computer and test it on your Android device. If you don't have a device, you can even test on <a href="/emulator">an emulator</a> 
+</p>
+<p>
+For your first app, you will build the <i>I Have a Dream app</i>. It has a picture of Martin Luther King and a play button that, when touched, plays the famous speech given to 250,000 on the steps of the Lincoln Memorial in 1963.
+</p>
+<p>
+After completing the first version, you will add an image of Malcolm X and one of his speeches, turning the app into a soundboard with these great leader's perspectives on the civil rights movement. After going through this tutorial, you can use this app as a template to build soundboard apps on any topic.</p>
+  </div>
+  <div class="span4">
+      <img src="{{apps2Dir}}/IHaveADream/dreamScreen.png" alt="">
+    
+  </div>
+</div>
+<h2>What You'll Learn</h2>
+<ol>
+<li>The basics of building apps</li>
+<li>An app is an event-response machine consisting of a set of event handlers</li>
+<li>An app can make decisions with conditional "if" blocks.</li>
+</ol>
+<h2>Setup App Inventor</h2>
+<p>With the new release of App Inventor (App Inventor 2) you can start building apps within minutes. The best way to build apps is to have a computer, an Android device, and a Wi-Fi connection. If you have these things, these setup instructions are for you. If you want to build apps using an emulator, or if you don't have a Wi-Fi connection, check out the<a href="http://appinventor.mit.edu/explore/ai2/setup.html" target="_blank">setup page</a> for App Inventor. Once you're setup, come back to this tutorial.
+<p>
+So let's get started. App Inventor is a browser tool, so you don't need to install anything on your computer. You do need to install an app on your device, the MIT App Inventor Companion, so you can test the apps you build. You also need to connect to the same Wi-Fi connection on both your computer and your device.
+To setup, perform the following:
+</p>
+<ol>
+<li>Connect to your Wi-Fi connection on both your computer and your Android device.</li>
+<li>In a browser, go to <a href="http://ai2.appinventor.mit.edu" target="_blank">http://ai2.appinventor.mit.edu</a>. If you haven't been there before, you'll be prompted to download the MIT App Inventor Companion app onto your phone or tablet. You can either scan the provided QR code, or go to Google Play and install the MIT App Inventor companion from there. The images below show the steps for finding the companion on Google Play, then installing and opening the app.
+</i>.
+
+ <ul class="thumbnails">
+  <li class="span3">
+    <div class="thumbnail">
+      <img src="{{apps2Dir}}/IHaveADream/searchCompanionScreen.png" alt="">
+      <h5>Search</h5>
+      <p>find the <strong>MIT App Companion</strong> on <strong>Google Play</strong></p>
+    </div>
+  </li>
+  <li class="span3">
+    <div class="thumbnail">
+      <img src="{{apps2Dir}}/IHaveADream/companionInstallScreen.png" alt="">
+      <h5>Install</h5>
+      <p>Install the app on your phone</p>
+    </div>
+  </li>
+    <li class="span3">
+    <div class="thumbnail">
+      <img src="{{apps2Dir}}/IHaveADream/companionScreen.png" alt="">
+      <h5>Launch It</h5>
+      <p>Launch the Companion app.</p>
+    </div>
+  </li>
+ </ul>
+</li>
+<li>Once you've successfully installed the Companion app on your device, you're ready to go. In App Inventor, create a new project and name it "MLKDream" (note: spaces are not allowed in project names).</li>
+<div class="row-fluid">
+  <div class="span6">
+<li>Open the Blocks Editor by choosing <i>Blocks</i> from the top menu. Then Choose <strong>Connect to Companion</strong>. This will bring up the dialog to the right.
+  </div>
+  <div class="span3">
+   <img src="{{apps2Dir}}/IHaveADream/QRCode.png" alt="">
+  </div>
+</div>
+
+</li>
+<li>
+Back on your device, make sure the Companion app is running and click <strong>Scan QR Code</strong>. Scan the code showing on the computer screen. After some time, from five to thirty seconds, your app should appear on your device. If all is well, your skeleton app will appear on your device with "Screen1" in the area at the top. If your app does not appear, go to the <a href="http://appinventor.mit.edu/explore/ai2/setup.html" target="_blank">setup page</a> for App Inventor.
+</li>
+<li>To get an idea for how things work, change the screen title. In the App Inventor Designer, change the <strong>Screen1.Title</strong> property to "I Have a Dream". You should see this change both in the designer view of the app and, because of live testing, on your device.
+</li>
+<li>Change the screen background. In the App Inventor Designer, change the <strong>Screen1.BackgroundColor</strong> property to black. You should see this change both in the designer view of the app and on your device.
+</li>
+</ol>
+<p>After changing the title and background, the app should appear like this in the designer:<br/>
+<img src="{{apps2Dir}}/IHaveADream/DesignerTitleBack.png" alt=""><br/>
+and similarly on the device.
+
+
+<h2>Upload Media</h2>
+<p>You have the skeleton of an app setup, so the next step is to load the media you will need into the app, both a picture of MLK and a sound file of his speech.</p>
+<ol>
+<li>Download these two files onto your computer: <a href="{{apps2Dir}}/IHaveADream/media/mlk.jpg">mlk.jpg</a>, <a href="{{apps2Dir}}/IHaveADream/media/king.mp3">king.mp3</a>. Generally, clicking on these links will not result in the files being downloaded-- use control-click or right-click instead.
+</li>
+<li>
+Go to the Media section near the bottom-left of the Designer and choose <strong>Upload New</strong>. Choose the image and sound files you just downloaded. You won't see the picture or hear the sound file yet, but they're loaded into your app.</li>
+<li>
+Add an <strong>Image</strong> component.The left side of the designer has numerous component palettes (folders), including the one that is open by default named <strong>Basic</strong>. Within that folder, click on the <strong>Image</strong> component, and drag an instance into the designer (click and drag in one motion!). When you add the Image, App Inventor will give it a name, "Image1". This is fine for now. 
+</li>
+<li>
+Set the picture of the image component so that MLK appears on it. Go to the <strong>Image1</strong> property editor, click on the <strong>Picture</strong> property and choose the image file you previously uploaded (MLK.jpg)
+</li>
+<li>Center the image. Click on <strong>Screen1</strong> and change the <strong>AlignHorizontal</strong> property to "Center".
+</li>
+<li>
+Change the name of the Image Component from "Image1" to "MLKImage" (use the <strong>Rename</strong> button near the bottom of the <strong>Components</strong> area. </li>
+</ol>
+<p>The picture of MLK should now appear both in the App Inventor viewer and on your device. </p>
+
+<h2>Add the Start Button and Player Component </h2>
+
+<p>Next, add a button that when clicked will play the "I Have a Dream" Speech:</p>
+<ol>
+<li>From the <strong>Basic</strong> palette, drag in a <strong>Button</strong> component.
+</li>
+<li>
+    Change the <strong>Button1.Text</strong> property to "Play" so that "Play" appears on the button.
+</li>
+<li>
+    Change Button1's name to "MLKButton".
+</li>
+<li>
+Add the <strong>Player</strong> Component. Drag in a <strong>Player</strong> component for playing the speech. You will find the <strong>Player</strong> component in the <strong>Media</strong> folder (not the <strong>Basic</strong> folder). Drag it out and drop it on the Viewer. Note that it will appear below the rectangle representing the phone. This is because the <strong>Player</strong> is a non-visible component. It is part of your app but not visible to the user. You can leave the name as "Player1".
+</li>
+<li>
+
+    Set the <strong>Player1.Source</strong> property to <i>king.mp3</i>. Just as you associated the image file with the Image component, associate the mp3 sound file with the <strong>Player1</strong> component. Click on the <strong>Source</strong> property of the <strong>Player1</strong> and choose the "king.mp3" file you uploaded earlier.
+</li>
+</ol>
+
+<h2>Program the App Behavior</h2>
+
+<p>
+So far you have designed the user interface and also added a non-visible component to play the speech. At this point, if you test the app and click the Play button, nothing will happen. Now its time to program how the app responds to user input, in this case playing a speech when the user clicks a button.
+</p>
+<p>
+You program behavior in the Blocks Editor, so click on the <i>Blocks</i> button in the top area of App Inventor. When the Blocks editor appears it lists all your components by name on the left side. You should see the <strong>MLKButton</strong> and the <strong>Player1</strong> components listed under <i>Screen1</i>
+</p>
+When you click on a component, you will see all the blocks related to that component. 
+<ol> 
+<li>Drag out the <strong>when MLKButton.Click</strong> event handler. It is the first block under <strong>MLKButton</strong> and is the probably the most common event handler. Drag this block into the viewer.
+</li>
+<li>
+When the user clicks the <strong>MLKButton</strong>, you want to play his speech. So click on the <strong>Player1</strong> component. drag out a <strong>Player1.Start</strong> block, and place it within the <strong>when MLKButton.Click</strong> block:
+<br/><img src="{{apps2Dir}}/IHaveADream/SimpleButtonClick.png"/><br/>
+Recall that, in the Designer, you set <strong>Player1.Source</strong> property to the file "king.mp3". Thus,  <strong>Player1.Start</strong> should play the "I Have a Dream" Speech.
+</li>
+</ol>
+
+<h2>Test the Behavior</h2>
+<p>
+As soon as you specify a behavior, you can test it on the device. If you have your device connected using the MIT App Companion (see above) you should now see the MLK picture and the "Play" button below it. Touch the button. Does the speech start playing?
+</p>
+
+<div class="well">
+    <img src="/assets/img/androidThink.png"/>
+    <i>Event handlers</i> like the one you just built are fundamental to programming. <a href="/eventHandlers">Learn more</a>.
+</div>
+<h2>Add Behavior to Pause the Speech</h2>
+<p>
+Suppose you wanted to modify the app so that the user could start and stop the speech by clicking the same button. The behavior might be described as:
+</p>
+<verbatim>
+<pre>
+  when the button is clicked,
+     if the button has the text Play on it, then
+         play the speech and set the button text to Pause.
+     Otherwise (if the button already has the text Pause on it),
+             pause the speech and set the Button.Text property to Play.
+</pre>
+<p>
+This behavior does not fit as a simple <strong>when-do</strong> block. You will keep the when <strong>Button.Click</strong> event, but you will insert a conditional  <strong>if-else</strong> block within it.
+</p>
+<ol>
+<li>
+    In the Blocks editor, open the <strong>Control</strong> folder within the <strong>Built-in</strong> blocks.
+</li>
+<li>
+    Drag out an <strong>if</strong> block and place it just within the <strong>when MLKButton.Click</strong> block.
+</li>
+<li>
+    Click the <strong>+</strong> on the <strong>if</strong> block and drag in an <strong>else</strong> block within the <strong>if</strong> in the sub-screen.
+</li>
+<li>
+    Drag out a <strong>compare texts block</strong> from the <strong>Text</strong> folder and set the comparison to "=". Place this block next to the <strong>if</strong> as its test.
+</li>
+<li>
+    Drag out a <strong>MLKButton.get</strong> block and choose <strong>Text</strong> as its property. Place this block in the left-side of the <strong>compare texts block</strong>.
+</li>
+<li>
+    Drag out a text block from the <strong>Text</strong> folder of the <strong>Built-in</strong> blocks. Enter the text "Play" and plug the block into the right side of the equals.
+</li>
+<li>
+    Within the <strong>if-do</strong> block, place the <strong>Player1.Start</strong> block.
+</li>
+<li>
+    Drag out a <strong>MLKButton.set</strong> block and change the property to <strong>Text</strong>.
+</li>
+<li>
+    Drag out a text block from the <strong>Text</strong> folder and enter "Pause" in it. Place this text block in the right side of the <strong>MLKButton.set</strong> block.
+</li>
+<li>
+    Place the entire <strong>MLKButton.set</strong> block in the <strong>if-do</strong> block, just below the <strong>Player1.Start</strong>.
+</li>
+<li>
+    Drag out a <strong>Player1.Pause</strong> block and place it within the <strong>else</strong> block
+</li>
+<li>
+    Copy the <strong>MLKButton.set</strong> block and paste it within the <strong>else-do</strong> block. Change the text to "Pause" instead of "Play".
+</li>
+</ol>
+
+<p>
+The blocks should now appear as:
+<br/><img src="{{apps2Dir}}/IHaveADream/SimpleIfElse.png"/><br/>
+</p>
+<h2>Test the App</h2>
+<p>Always test your app as you add new features. Test this one by clicking on the button. The text of the Button should toggle between "Play" and "Pause", and the speech should start and stop accordingly.</p>
+<div class="well">
+    <img src="/assets/img/androidThink.png"/>
+    Components and their properties are fundamental to programming. <a href="/properties">Learn more</a>.
+</div>
+<h2>Package the App</h2>
+<p>
+Congratulations! You have just built your first app with App Inventor. However, you really do not have the app on your device yet. Right now you are <i>live testing</i> it through the MIT App Companion app, and there is really no "I Have a Dream" app installed on your device. If you broke the (Wi-Fi) connection between your computer (App Inventor) and the Companion app, you would not be able to launch your app and it would not appear as one of your apps.
+</p>
+<p>
+To actually get the app to your device, do the following:
+</p>
+<ol>
+<li>
+   Choose <strong>Package for Phone | Download to computer</strong> from the App Inventor top menu (right-side). This will take a minute.
+</li>
+<li>
+    When the process completes, a dialog will appear on the computer telling you so. Dismiss the dialog. You should now have a file with a .apk extension in your downloads directory. This is the app!
+</li>
+<li>
+    Email the .apk file to yourself, then go to your Android device, open your email, and open the attached .apk file. This will start the install process. Want to show off? Email the .apk to your family and friends!
+</li>
+</ol>
+<h2>Version 2: Adding Malcolm X and another Speech</h2>
+<div class="row-fluid">
+  <div class="span6">
+<p>
+In this section, you will add a second picture and speech from one of MLK's contemporaries in the civil right's movement, Malcolm X. You'll learn how to arrange components on the screen  and enough programming to create just about any "sound board app" that lets the user click on images to hear speeches or other sounds.
+<p>
+First, in the Designer, SaveAs your app and add a smaller image of MLK, an image of Malcolm X, a sound file with Malcolm X's speech, and new image and button components:</p>
+<ol>
+<li>SaveAs the App and give it a new name (e.g., "IHaveADreamButNoName").
+</li>
+<li>
+    In the Designer, download the <a href="{{apps2Dir}}/IHaveADream/media/malcolm152x129.jpg">picture of Malcolm X</a> the <a href="{{apps2Dir}}/IHaveADream/media/malcolmx.mp3">sound clip from his speech</a>, and a <a href="{{apps2Dir}}/IHaveADream/media/mlk152x129.jpg">smaller picture of MLK</a>. Upload them into the app as you did with the MLK media. 
+</li>
+<li>
+    Drag a new <strong>Image</strong> component into the Viewer and place it below the "Play" button. Set the <strong>Image.Picture</strong> property to "malcolm152x129.jpg". Name the Image component "MalcolmImage"
+</li>
+<li>
+    Drag a new button into the Viewer and place it below the Malcolm X image. Set its <strong>Text</strong> property to "Play" and change its name to "MalcolmButton"
+</li>
+<li>
+Change the <strong>MLKImage.Picture</strong> property so that it shows the new, smaller picture (mlk152x129.jpg)
+</li>
+</ol>
+</div>
+  <div class="span4">
+      <img src="{{apps2Dir}}/IHaveADream/Dream2Screen.png" alt="">
+    
+  </div>
+</div>
+<p>
+Now Arrange the leaders side-by-side:
+</p>
+<ol>
+<li>
+    From the <strong>Screen Arrangement</strong> folder, drag out a <strong>TableArrangement</strong> component.
+</li>
+<li>
+    Drag the <strong>MLKImage</strong> component and place it in the top-left slot of the <strong>TableArrangement</strong>.
+</li>
+<li>
+    Drag the <strong>MLKButton</strong> component and place it in the bottom-left slot of the <strong>TableArrangement</strong>.
+</li>
+<li>
+    Drag the <strong>MalcolmImage</strong> component and place it in the top-right slot of the <strong>Table Arrangement</strong>.
+</li>
+<li>
+    Drag the <strong>MalcolmButton</strong> component and place it in the bottom-right slot of the <strong>Table Arrangement</strong>.
+</li>
+<li>
+Finally, add another Player component. Name this one MalcolmPlayer and set its <strong>source</strong> property to the malcolmx.mp3 file. Rename the original Player1 component to MLKPlayer.
+</ol>
+
+<p>
+If you aren't connected for live testing, connect now by choosing <strong>Connect to Companion</strong>, running the MIT App Companion app on your device, and scanning the resulting QR code. When the app appears, do MLK and Malcolm X appear side-by-side?
+</p>
+<h2>
+Update the Behavior so that Both Speeches Play
+</h2>
+<p>
+Next, go to the Blocks editor and update the app's behavior so that clicking on the <strong>MalcolmButton</strong> causes his speech to play or stop.
+</p>
+<ol>
+<li>
+    In the Blocks Editor, drag out a <strong>when MalcolmButton.Click</strong> block.
+</li>
+<li>
+    Copy the entire <strong>if-else</strong> clause that is in the <strong>MLKButton.click</strong> event-handler. Paste it, then place it within the when <strong>MalcolmButton.Click</strong> event-handler.
+</li>
+<li>
+
+    Modify the code so that the Malcolm speech is played instead. Drag out a <strong>set Player1.property</strong> block out and set the property it refers to to <strong>Source</strong>.
+</li>
+<li>
+    Drag a text block out from the built-in blocks and enter "malcolmx.mp3". Be sure you type the name of the file exactly the same as the file name you uploaded.
+</li>
+<li>
+    Plug the text block into the set <strong>Player1.Source</strong> block, and the set <strong>Player1.Source</strong> block into the  <strong>when MalcolmButton.Click</strong> block.
+</li>
+<li>
+    Change all the <strong>set MLKButton blocks</strong> within the <strong>when MalcolmButton.Click</strong> block so that they reference the <strong>MalcolmButton</strong> instead.
+</li>
+
+
+<p>The blocks should appear as:
+
+</p>
+<br/><img src="{{apps2Dir}}/IHaveADream/Dream2IntermediateBlocks.png"/><br/>
+
+<h2>Challenge: Debugging the App</h2>
+<p>The app, coded as in the blocks above, has some behavior errors. Before moving on, try to identify and fix the errors. When you are ready, click on "View Answer"</p>
+
+<div id="myCollapsibleExample"><a href="#demo3" data-toggle="collapse">View Answer</a></div>  
+<div id="demo3" class="collapse"> 
+<p>Here are the problems with the previous solution:</p>
+<ul>
+<li>
+If you play MLK first, you can then play the Malcolm speech. But once you play Malcolm, you will never hear the MLK speech again. The reason is this: in the designer, the <strong>Player1.Source</strong> property is set to "king.mp3". Thus, if <strong>Player1.Start</strong> is called, it will play "king.mp3", until the <strong>Player1.Source</strong> property is changed. The code changes the <strong>Player1.Source</strong> property when <strong>MalcolmButton</strong> is clicked. But it isn't ever changed back. You need to set <strong>Player1.Source</strong> back to "king.mp3" when the <strong>MLKButton</strong> is clicked.
+</li>
+<li>
+The "Play/Stop" text on the buttons becomes out-of-sync when the buttons are clicked. The key is that, when Malcolm's Play button is clicked, the app should set the <strong>MLKButton</strong> to "Play", as MLK's speech is no longer playing. Similarly, if MLK's Play Button is clicked, the Malcolm speech will be stopped, if playing, and the <strong>MalcolmButton.Text</strong> should thus read "Play", not "Stop".
+</li>
+</ul>
+Here are the blocks for the final version of the app:
+<br/><img src="{{apps2Dir}}/IHaveADream/Dream2Blocks.png"/><br/> 
+</div>
+
+<h2>Customize</h2>
+After stepping through a tutorial it is important to 1) explore adding components, blocks, and features on your own, without the use of detailed instructions, and 2) think creatively and build an app of similar functionality but perhaps entirely different content. So try the following:
+<ol>
+<li>
+<strong>Build a "soundboard" app of your own design.</strong> Build an educational app with soundclips like "I Have a Dream", an informational app about your school or workplace, or something completely inane about your favorite television characters. Remix "I Have a Dream" to build something for your own life!
+</li>
+<li>
+<strong>Add Text-to-Speech. </strong> You can have your images "speak" any words you want using the Text-to-Speech component. You'll find it in the "Other stuff" folder.
+</li>
+</ol>
+
+<h2>Conceptualize</h2>
+<p>Learning programming is similar to learning a foreign language and there is a potentially overwhelming amount of terminology and difficult concepts. After you step through a tutorial, it is important to take a step back and ensure that you are understanding the programming terms and concepts in a general way. </p>
+<p>There are three main programming concepts touched upon in this tutorial. Click on each of the following to explore your general understanding of each:
+</p> 
+<div class="btn-group">
+  <a href="/properties"><button class="btn-primary" >Component Properties</button></a>
+  <a href="/eventHandlers"><button class="btn-primary" >Event Handlers</button></a> 
+    <a href="/conditionalsInfo"><button class="btn-primary" >Conditionals</button></a>
+</div>
+
+{% endblock %}

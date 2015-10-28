@@ -1,0 +1,66 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+
+<div class="row-fluid">
+
+<div class = "span12">
+<p>Below are just some of the tutorial apps you can build here at appinventor.org. Click on the apps below to see them run in the emulator (a pseudo-Android-device running on this page),or click on the Build it buttons to learn how to code it. The emulators take a few seconds to load, so be patient.</p>
+<p class="tiny-text pull-left">Thanks to <a href="https://www.manymo.com/" target="_blank">Manymo.com</a> for providing these embedded emulators.</p>
+</div>
+
+
+
+</div>
+
+    
+<div class="row-fluid">
+
+
+
+{% for app in manyMoldAppsList%}
+<div class="offset1 span2">
+
+<table>
+<tr>
+	<td>
+		<h3 style="text-align:center;overflow: hidden;text-overflow: ellipsis;width:185px;white-space:nowrap;">	{{app.title}}</h3>
+	</td>
+	
+</tr>
+<tr>
+	<td>
+		<iframe src="https://www.manymo.com/embed/{{app.manyMold}}" width="205" height="344" frameborder="0">
+   </iframe>	
+	</td>
+	
+</tr>
+<tr>
+	<td>
+		<a href="/{{app.appId}}-steps" class="btn btn-success" style="width:185px;">Build it</a>
+	</td>
+	
+</tr>
+
+</table>
+
+
+   
+   
+   
+</div>
+<!-- if the the forloop counter is divisible by 4, close the
+<div class="row-fluid"> tag and open a new one -->
+   {% if forloop.counter|divisibleby:4 %}
+</div>
+<p></p>
+<p></p>
+<p></p>
+<div class="row-fluid">
+   {% endif %}
+   {% endfor %}
+</div>
+
+   
+
+{% endblock %}

@@ -1,0 +1,138 @@
+<head>
+	<meta charset="UTF-8">
+</head>
+<link rel="stylesheet" type="text/css"
+	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+
+<div class="dark-blue-title">
+
+	<div class="course-page-container">
+
+		<h1>Arranging Components</h1>
+		<h4>One of the challenges with App Inventor is designing the screen to look the way you want. Here, we’ll describe how to use special arrangement components to organize your screens.</h4>
+	</div>
+</div>
+
+<div class="course-page-container">
+
+	<div class="card">
+		<h1>Aligning the Components in a Screen</h1>
+		<p>By default, a screens <font face="monospace">AlignHorizontal</font> property is set to “Left” and <font face="monospace">AlignVertical</font> is set to “Top.” So when you drag in a component, like a <font face="monospace">button</font>, it goes into the top-left corner. When you add a second component, it appears right below the first..</p>
+		<br>
+		<p>Often, you’ll want your components to appear centered on the screen. This can be quickly fixed by setting the <font face="monospace">AlignHorizontal</font> property to "Center" for the 
+			<font face="monospace">Screen1</font> component.</p>
+		
+	</div>
+
+	
+
+
+	<div class="card">
+		<h1>Arranging Components Side-by-Side</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<br>
+				<p>You may also want to layout components side-by-side. To do this, open the Layout drawer in the Palette and drag in a <font face="monospace">HorizontalArrangement</font> component. The component will appear as a large, empty square within the viewer. </p>
+				
+				<img alt="" src="/images/CourseInABoxImages/ACI_1.png"
+				class="img-responsive center-img">
+				<br>
+
+
+			</div>
+			<div class="col-md-6">
+				<br>
+				<img alt="" src="/images/CourseInABoxImages/ACI_4.png"
+				class="img-responsive center-img">
+			</div>
+
+			
+		</div>
+		<p>You can drag components (e.g., <font face="monospace">button</font>, <font face="monospace">label</font>) into this square so that they appear side-by-side in a horizontal row.</p>
+		<img alt="" src="/images/CourseInABoxImages/ACI_5.png"
+		class="img-responsive center-img">
+		<p>In the figure above, a single <font face="monospace">button</font> has been dragged into a <font face="monospace">HorizontalArrangement</font> (the dark outlined box around "Text for <font face="monospace">button</font>1"). Although it looks like the <font face="monospace">HorizontalArrangement</font> is full, you can drag other components inside the box and it will expand.</p>
+		<p>When you add additional components into the arrangement, the trick is to put the Cursor at the right- (or left-) edge. When you release, the component will appear side-by-side next to the other components.</p>
+		<div class="row">
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/ACI_6.png"
+				class="img-responsive center-img">
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/ACI_7.png"
+				class="img-responsive center-img">
+			</div>
+		</div>
+
+
+
+	</div>
+
+	<div class="card">
+		<h1>Centering a Horizontal Arrangement</h1>
+		<p>Suppose you want the contents of an arrangement to appear centered in the screen. You first change the <font face="monospace">HorizontalArrangement</font>’s properties, changing its <font face="monospace">Width</font> from “Automatic,” meaning it will change its size based on its components, to “Fill parent,” which means it will span the entire length of the phone’s screen.</p>
+
+		<div class="row">
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/ACI_9.png"
+				class="img-responsive center-img"><br>
+
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/ACI_8.png"
+				class="img-responsive center-img">
+			</div>
+		</div>
+		<p>The <font face="monospace">button</font>s will stay on the left side, but if you then change <font face="monospace">HorizontalArrangement</font>’s <font face="monospace">AlignHorizontal</font> property to “Center”, the <font face="monospace">button</font>s move to the center.</p>
+		<img alt="" src="/images/CourseInABoxImages/ACI_10.png"
+		class="img-responsive center-img">
+	</div>
+
+	<div class="card">
+		<h1>Buttons On Opposite Ends</h1>
+		<p>If you wanted the two components on opposite ends you can set their <font face="monospace">Width</font> to “Fill parent” and then set the first one’s <font face="monospace">AlignHorizontal</font> to “Left” and the other’s <font face="monospace">AlignHorizontal</font> to “Right.</p>
+		<img alt="" src="/images/CourseInABoxImages/ACI_11.png"
+		class="img-responsive center-img">
+		<br>
+		<div class="row">
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/ACI_13.png"
+				class="img-responsive center-img">
+			</div>
+			<div class="col-md-6">
+				<img alt="" src="/images/CourseInABoxImages/ACI_12.png"
+				class="img-responsive center-img">
+			</div>
+		</div>
+		<img alt="" src="/images/CourseInABoxImages/ACI_14.png"
+				class="img-responsive center-img">
+
+
+	</div>
+	<div class="card">
+		<h1>Vertical Arrangements</h1>
+		<p><font face="monospace">VerticalArrangements</font> are used less commonly than <font face="monospace">HorizontalArrangement</font>s as objects are placed below each other vertically by default. One reason they are used is to organize areas of the screen that will appear and disappear at certain times. If you know you need to hide a set of components, it’s easier to hide a single arrangement as opposed to hiding each component separately.</p>
+		<img alt="" src="/images/CourseInABoxImages/ACI_15.png"
+				class="img-responsive center-img">
+
+	</div>
+
+	<div class="card">
+		<h1>Table Arrangements</h1>
+		<p>The <font face="monospace">TableArrangement</font> is very useful for displaying tabular information. One can put <font face="monospace">label</font> components into each table cell and name each <font face="monospace">label</font> appropriately in order to place information in an organized table-like fashion.</p>
+	</div>
+
+	<div class="card">
+		<h1>Review</h1>
+		<p>Which component do you use to place components next to each other?</p>
+		<div class="quiz-panel-inner">
+			<div id="q50a" class="collapse img-responsive">
+				<p><font face="monospace">label</font>s for score and time remaining, <font face="monospace">button</font> to reset, Canvas,
+					image sprites, Clock to move mole, Clock for timer.</p>
+			</div>
+			<a type="button" href="#q50a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q50b" name="q50b">Show Answer</a>
+		</div>
+	</div>
+
+</div>

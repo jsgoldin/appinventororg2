@@ -1,0 +1,198 @@
+{% extends "templates/site_base.html" %} {% block body %}
+<!-- Vertical Side Bar  -->
+
+
+<script type="text/javascript" src="/assets/js/ScrollToTopStop.js"></script>
+
+<div id="content-wrapper">
+    <div id="vertical-side-bar" class='vertical-side-bar-container hidden-xs'>
+        <div class='vertical-side-bar-top-box'>
+            <div class='vertical-side-bar-top-box-back'>
+                <a href='../{{module.m_identifier}}'><span></span></a>
+                <span class="glyphicon glyphicon-chevron-left relative"></span>
+                Modules
+            </div>
+            <div class='vertical-side-bar-top-box-title'>{{module.m_title}}</div>
+        </div>
+
+        <div class='vertical-side-bar-middle-box'>
+            {% for c in contents %}
+
+            {% if title == c.c_title %}
+            <div content_ID='{{c.c_identifier}}' class='vertical-side-bar-item selected'
+            ">
+            {% else %}
+            <div content_ID='{{c.c_identifier}}' class='vertical-side-bar-item'>
+                {% endif %}
+
+                <div class='vertical-side-bar-item-center-wrapper'>
+                    {% if c.c_type == "App" %}
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/play.png'
+                         height='30px'>
+                    {% endif %}
+                    {% if c.c_type == "Quiz" %}
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/check-list.png'
+                         height='30px'>
+                    {% endif %}
+                    {% if c.c_type == "Nugget" %}
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/light-bulb.png'
+                         height='30px'>
+                    {% endif %}
+                    {% if c.c_type == "Book Chapter" %}
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/ai2cover2.jpeg'
+                         height='30px'>
+                    {% endif %}
+                    {% if c.c_type == "Lesson Plan" %}
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/book.png'
+                         height='30px'>
+                    {% endif %}
+                    {% if c.c_type == "Project" %}
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/pencil.png'
+                         height='30px'>
+                    {% endif %}
+                    {% if c.c_type == "Worksheet" %}
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png'
+                         height='30px'>
+                    {% endif %}
+                    {% if c.c_type == "Text Tutorial" %}
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png'
+                         height='30px'>
+                    {% endif %}
+                    {% if c.c_type == "Miscellaneous" %}
+                    <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png'
+                         height='30px'>
+                    {% endif %}
+                    <div class='vertical-side-bar-item-icon-text'>
+                        {{c.c_title}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class='vertical-side-bar-bottom-box'>
+            <div class='vertical-side-bar-bottom-box-next-module-text'>
+                Next Module:
+            </div>
+
+            <div class='vertical-side-bar-top-bottom-next' module_id='{{next_module.m_identifier}}'>
+                <div class='vertical-side-bar-bottom-box-next-module-title'>
+                    {{next_module.m_title}}
+                </div>
+                <span class="glyphicon glyphicon-chevron-right relative"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div id='contentarea'>
+        <!-- Actual content rendered here -->
+    </div>
+</div>
+
+<div class='vertical-side-bar-container hidden-sm hidden-md hidden-lg'>
+    <div class='vertical-side-bar-top-box'>
+        <div class='vertical-side-bar-top-box-back'>
+            <a href='../{{module.m_identifier}}'><span></span></a>
+            <span class="glyphicon glyphicon-chevron-left relative"></span>
+            Modules
+        </div>
+        <div class='vertical-side-bar-top-box-title'>{{module.m_title}}</div>
+    </div>
+
+    <div class='vertical-side-bar-middle-box'>
+        {% for c in contents %}
+
+        {% if title == c.c_title %}
+        <div content_ID='{{c.c_identifier}}' class='vertical-side-bar-item selected'
+        ">
+        {% else %}
+        <div content_ID='{{c.c_identifier}}' class='vertical-side-bar-item'>
+            {% endif %}
+
+            <div class='vertical-side-bar-item-center-wrapper'>
+                {% if c.c_type == "App" %}
+                <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/play.png'
+                     height='30px'>
+                {% endif %}
+                {% if c.c_type == "Quiz" %}
+                <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/check-list.png'
+                     height='30px'>
+                {% endif %}
+                {% if c.c_type == "Nugget" %}
+                <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/light-bulb.png'
+                     height='30px'>
+                {% endif %}
+                {% if c.c_type == "Book Chapter" %}
+                <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/ai2cover2.jpeg'
+                     height='30px'>
+                {% endif %}
+                {% if c.c_type == "Lesson Plan" %}
+                <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/book.png'
+                     height='30px'>
+                {% endif %}
+                {% if c.c_type == "Project" %}
+                <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/pencil.png'
+                     height='30px'>
+                {% endif %}
+                {% if c.c_type == "Worksheet" %}
+                <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png'
+                     height='30px'>
+                {% endif %}
+                {% if c.c_type == "Text Tutorial" %}
+                <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png'
+                     height='30px'>
+                {% endif %}
+                {% if c.c_type == "Miscellaneous" %}
+                <img class='vertical-side-bar-item-icon' src='/assets/img/ModuleIcons/flat-color/document.png'
+                     height='30px'>
+                {% endif %}
+                <div class='vertical-side-bar-item-icon-text'>
+                    {{c.c_title}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class='vertical-side-bar-bottom-box'>
+        <div class='vertical-side-bar-bottom-box-next-module-text'>
+            Next Module:
+        </div>
+
+        <div class='vertical-side-bar-top-bottom-next' module_id='{{next_module.m_identifier}}'>
+            <div class='vertical-side-bar-bottom-box-next-module-title'>
+                {{next_module.m_title}}
+            </div>
+            <span class="glyphicon glyphicon-chevron-right relative"></span>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+    $('#contentarea').load('{{content.c_url}}');  
+       
+});
+
+//showhide toggle function for quiz panels
+//saves the original text inside of a javascript object as a key/value pair. Then switches the text to "hide", The original text is then switched back.
+var idMessages = {};
+ function showHideToggle(id) {
+            if (id.indexOf('q')==0) {
+                var element = document.getElementById(id);
+
+            if (element.innerHTML!="Hide") {
+                idMessages[id] = element.innerHTML;
+                element.innerHTML = "Hide";
+            }else{
+                element.innerHTML = idMessages[id];
+            }
+
+        
+
+            };
+        }
+</script>
+
+{% endblock %}

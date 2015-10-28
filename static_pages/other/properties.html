@@ -1,0 +1,82 @@
+<div class="dark-blue-title">
+	<div class='course-page-container'>
+		<h1>Component Properties</h1>
+	</div>
+</div>
+
+
+
+
+<div class='course-page-container'>
+	<div class="row">
+<div class='col-md-9'>
+	<div class="card">
+<p>
+An app consists of a set of components: the screen, buttons, text labels, text boxes for user input, images, etc. Most of us are used to interacting with components from the perspective of an app user, but to become a programmer, you must conceive of an internal representation of an app, completely invisible from the user. This representation-- the app's internal memory-- is something like a spreadsheet or the private recesses of your brain. There is a named memory cell corresponding to each component property. Instead of memory cells named A1,A2, etc., as with a spreadsheet, you have memory cells with names like <strong>Screen.Title</strong> and <strong>Button1.Width</strong> The way a component looks and feels to the user is completely determined by the values in the component property memory cells.
+</p>
+<blockquote><p class=.lead>Component properties are named memory cells</p></blockquote>
+</div>
+<div class="card">
+<h2>Changing the Initial Values of Properties</h2>
+<p>Consider the button properties displayed to the right (this is the panel you see on the right of the designer). As you develop an app, you can modify these properties to change the way the button will appear <i>initially</i> when the app launches. For instance, if you change the <strong>Width</strong> property of a button to 50, the button will appear 50 pixels wide at start-up. But this 50 value is not constant; <strong>Button.Width</strong> is a named memory cell with 50 in it, but that value can be changed as the app runs.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+	<div class="card">
+	 <img class="center-img img-responsive" src="{{apps2Dir}}/Properties/propertyPanel.png" alt=""/>
+	 </div>
+</div>
+
+</div>
+
+
+<div class="card">
+<h2>Changing Properties Dynamically</h2>
+<p>
+With the Blocks Editor, you can program blocks to change property values as the app runs (dynamically).  For instance, the following blocks change the width of a button to 70 when the user clicks the button.
+<br><img src="{{apps2Dir}}/Properties/setWidth.png" /><br/>
+
+Note that the button's width changes to 70 the first time it is clicked. After that, the Button.Click will have no effect (it will continually overwrite 70 with 70).
+</p>
+</div>
+
+
+
+<div class="card">
+<h2>The Hidden Nature of Property Values</h2>
+<p>
+Note that the property values shown in the App Inventor designer do not change when these blocks are executed. When you test the app and click the button to change the button's width to 70, the button will indeed change in the app, but the value shown on the Designer screen will still be 50. This is confusing until you realize the following:</p>
+<blockquote>
+	<p>The property values in the Designer show only the initial value of a property when the app is launched. </p></blockquote> <p>
+The Designer view does not display the dynamic value of an app's properties as it runs.
+</p>
+<p>
+The hidden nature of property values as an app runs is indeed one of the difficulties in learning programming. 
+
+<blockquote><p class=.lead>You must imagine that there is this invisible "spreadsheet" of property values constantly changing as the user interacts with the app. </p></blockquote>
+</p>
+<p>
+Fortunately, App Inventor and many other programming environments provide "debugging" help which allows you to view, at least partially, the dynamic "spreadsheet" of properties. In App Inventor, you can view the dynamic values of selected properties by using the <strong>Watch</strong> feature. Just right click (control-click on Mac) on a property <strong>set</strong> or <strong>get</strong> block and the system will show the value as the app runs. 
+</p>
+</div>
+
+<div class="card">
+<h2>"Getting" Property Values and Incrementing a Value</h2>
+<p>Consider the following blocks:
+<br>
+<img src="{{apps2Dir}}/Properties/incrementWidth.png" alt="">
+<br/>
+</p>
+<p>
+The green <strong>set</strong> block to the left and the blue <strong>get</strong> block on the right are fundamental blocks in programming. Think of a <strong>set</strong> block as changing the value in a memory cell (setting its value), just as a person might type a number in a spreadsheet cell. Think of a <strong>get</strong> block as <i>referencing</i> the value in a memory cell, just as a person might reference a spreadsheet cell (e.g. A1) to use it in a formula.</p>
+<p>
+The blocks above increment the width of the button by 10 pixels each click. So if the button starts with a width of 50, it will be 60 after one click, 70 after two clicks, and so on. Note that the order of operation is right-to-left (or really inside-out). The app first gets the current value of the Button1.Width property. It then adds 10 to it, then finally places (sets) the result back into the Button1.Width memory cell.
+</p>
+</div>
+</div>
+
+

@@ -1,0 +1,94 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>Web Databases</h1>
+<p>
+Many apps have data that is stored in a web server and shared amongst users and devices. Facebook and Twitter are that way, of course. If you've built the Note Taker app, or the song recording app, they are not-- each user only stores the data on their device, privately. But both of those apps could be modified for sharing-- think of a note taking app in which notes are shared with a group of the public (Twitter!) or a song recording app that lets you share your songs with others. In this lesson, you'll learn how to build such apps with App Inventor.   
+</p>
+TinyWebDB is the key component you'll need. It is an App Inventor component that let's your app store persistent data on the web and share data amongst phones and people. It has similar blocks as TinyDB, but the data is stored on the web instead of privately on the device. Key points about TinyWebDB:
+</p>
+<ul>
+<li>
+TinyWebDB is for talking to special App Inventor web services that store data in the same format as TinyDB.
+</li>
+<li>
+It is different than the Web component, which is for communicating with any kind of API and doesn't have the StoreValue/GetValue commands.
+</li>
+</ul>
+<h2>Where is the data stored?</h2>
+<p>
+TinyWebDB has a property <em>SourceURL</em>. You can set it to any <em>App Inventor compliant web service</em>, that is, any site that has been setup especially for use with App Inventor and TinyWebDB. By default, TinyWebDB stores data at <a href="http://appinvtinywebdb.appspot.com/">appinvtinywebdb.appspot.com</a>. Be careful, though, as this web database is shared amongst all App Inventor programmers. It also has a limit of 100 total entries and thus is for testing purposes only. 
+</p>
+<p>
+For your creative apps, you should create your own TinyWebDB service. No coding is required. See <a href="http://appinventorapi.com/program-an-api-python/">appinventorapi.com/program-an-api-python</a> for instructions.
+</p>
+<h2>How the the TinyWebDB blocks different than TinyDB's blocks</h2>
+<p>
+TinyWebDB provides similar functions to TinyDB: StoreValue and GetValue. StoreValue works exactly the same, but GetValue works a bit differently-- it is asynchronous. When you call GetValue, you're really just <em>requesting</em> the data and the data isn't immediately returned. Instead, you must code the <em>GotValue</em> event-handler, which is triggered when data actually arrives from the web.
+</p>
+<p>Consider the following sample, which is taken from two version of a note taking app, one for private note taking, the other for sharing notes:
+<div class="row-fluid">
+	<div class="span5">
+	TinyDB Solution:
+	<img src="/assets/img/tinyDBSolution.png"/>
+	</div>
+	<div class="span5">
+	TinyWebDB Solution:
+	<img src="/assets/img/tinywebDBSolution.png"/>
+	</div>
+</div>
+<p>
+In the TinyDB solution, the app calls GetValue and checks if the data is a list (it won't be the first time the app is run, before any notes are added). If the data is a list, it is placed in the variable NoteList and the list is displayed (DisplayList is a procedure, not shown, that shows the notes in a label).
+</p>
+<p>
+In the TinyWebDB solution, GetValue is again called from within Screen.Initialize, but note that it returns no data. The TinyWebDB.GetValue block doesn't have anything coming out the left that can be plugged in to a slot. Instead, the GetValue just sends a request to the web. Eventually, the data will arrive, and then the GotValue event-handler is triggered. When it is, the TagFromWebDB gives you the tag of the request and the valueFromWebDB is the data that was requested (the list of notes). As you can see, the data is processed in a similar manner to the TinyDB solution.
+</p>
+
+<h2>Your Turn: Play around with TinyWebDB</h2>
+<ol>
+<li>
+In a browser, go to <a href="http://appinvtinywebdb.appspot.com/">appinvtinywebdb.appspot.com</a>. Click on /storeValue and add an entry with a tag of your first name and a value of your last name.
+</li>
+<li>
+Go back to the main page and click on /getValue. Enter your first name as the tag and see if your entry is displayed-- it should. Of course you'll be storing and getting values from the app you build, but this gives you an idea of how the TinyWebDB service works.
+<li>
+First play around with writing to a database with TinyWebDB. Create a new app and add a TinyWebDB component and  a "store" button.  In the blocks editor, in StoreButton.Click, call TinyWebDB.StoreValue with some tag and value. Then go to <a href="http://appinvtinywebdb.appspot.com/">appinvtinywebdb.appspot.com</a></li>
+<li>
+Now play around with reading from the web database. Add a "get" button and a Textbox. Change the StoreValue so it stores what the user has entered in the Textbox. Then in the GetButton.Click, call TinyWebDB.GetValue. Code the TinyWebDB.GotValue to put the data from the database into the textbox. Try storing various items with different tags and seeing if you can retrieve them.
+</li>
+</ol>
+<h2>Convert one of your apps to use TinyWebDB</h2>
+<div class="row-fluid">
+	<div class="span6">
+<p>Now use TinyWebDB for real. Take one of your apps you've built and convert it. To test it, you'll want to have your app installed on multiple devices, and see if the devices can share data. Check out the videos to the right as a guide. </p>
+<ol>
+<li>
+Start with some app that stores data with TinyDB. If you don't have one, download the <a href="/notetaker-steps">NoteTaker app</a> (click on the "download the source" button to get the source (.zip), then in App Inventor choose "More Actions | Upload Source").
+</li>
+<li>
+Add a TinyWebDB to your app.
+</li>
+<li>Add a call to TinyWebDB.StoreValue everywhere in your code that you call TinyDB.StoreValue. You'll eliminate the TinyDB.StoreValue calls soon, but leave them for now. </li>
+<li>
+Run your app, enter some data, then go to <a href="http://appinvtinywebdb.appspot.com/">appinvtinywebdb.appspot.com</a>. Is your data there?
+</li>
+<li> 
+Now work on the GetValue part. Replace your call(s) to TinyDB.GetValue with a call(s) to TinyWebDB.GetValue, then add the TinyWebDB.GotValue event handler, as in the sample above.
+</li>
+<li>
+Test: Get a partner and each of you download your apps. First have one open the app and enter some data. Then have the other open it on the other device. Do you see the data that was entered on the first device?
+</li>
+<li>
+Test 2: Now have both devices running the app at the same time, and both of you enter some data. Does the data stay consistent-- do both users see the same data? Probably not! Can you figure out the issue?
+</ol>
+</div>
+<div class="span6">
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/7kaB8widWqI" frameborder="0" allowfullscreen></iframe>
+<small>best viewed in full screen HD</small>
+<iframe width="420" height="315" src="//www.youtube.com/embed/JHOc1RyFzzo" frameborder="0" allowfullscreen></iframe>
+<small>best viewed in full screen HD</small>
+</div>
+</div>
+
+{% endblock %}

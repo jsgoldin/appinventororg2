@@ -1,0 +1,90 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+
+    <style>
+        .lead {
+            font-size: 14px;
+        }
+
+    </style>
+
+    <div class="span9">
+        <div class="hero-unit" >
+            <h1>Course-In-A-Box</h1>
+
+            <p>eaching a course on App Inventor?
+                The App Inventor Course-in-a-Box provides teaching materials based on Professor David Wolber's CS0 course, "Computing, Mobile Apps, and the Web" at the University of San Francisco.  You can use the materials to teach an entire course, or pick and choose specific modules to suits your needs. </p>
+    </div>
+
+<div class="row-fluid">
+<div id="modules" class="span6">
+
+            <h3>Modules</h3>
+            <ol class="lead" style="font-size: 14px;">
+                <li><a href="/module1">Introduction</a></li>
+                <li><a href="/module2">Games</a></li>
+                <li><a href="/module3">Texting/Location</a></li>
+                <li><a href="/module4">Data</a></li>
+                <li><a href="/module5">Shared Data</a></li>
+                <li><a href="/module6">SE/Procedures</a></li>
+                <li><a href="/module7">Web APIs</a></li>
+            </ol>
+
+<span class="lead"><strong>Each module includes:</strong></span>
+        <ul class="lead">
+            
+            <li>Lesson plans and lecture notes</li>
+            <li>Tutorials and Video Screencasts</li>
+           
+            <li>Conceptual worksheets</li>
+            <li>Creative projects</li>
+            <li>Test Questions</li>
+	     <li>Assigned readings from the App Inventor book</li>
+        </ul>
+<br/>
+<h3>Module Pathways</h3>
+<img src="/assets/img/modules.png"/>
+<p>
+Module 1, "Intro to Event-Handling" provides an introduction for an absolute beginner. Module 2, "Games" and 3, "Texting, Location, and other Technology", are at similar levels in terms of programming complexity. I have found that, developmentally, it is helpful for most students to go through both modules 2 and 3 before moving on to the data-oriented apps in Modules 4-6.  
+</p>
+<p>
+Modules 4-6 each present a significant conceptual leap. Module 4 introduces lists, indexes, and iteration on fixed (concrete) data such as is found in a quiz app that shows the same questions every time. Module 5 introduces dynamic, user-generated data, so the apps become much more abstract in nature. Module 6 introduces web APIs and complex issues such as asynchronous requests and parsing.
+</p>
+</p>
+Module X, "Software Engineering and Procedure Abstraction" is so named because different instructors will want to present it at different places in the curriculum. Event-handlers are top-level objects in App Inventor, and the event-handlers serve as first-level procedures for the app. Because of this, you can get away without teaching procedures early on, the advantage being that students can focus on building interesting apps right away. One might also teach procedures earlier, as in a traditional CS course, and thereby emphasize the importance of decomposing a problem into reusable parts. In any case, the lessons in Module X discuss both procedures and debugging techniques available in App Inventor.
+</div>
+
+
+<div class="span6">
+<H3>Teaching Methodology</H3>
+<img src="/assets/img/buildGraphic.png"/>
+<p>Each module follows a do-first structure that has worked well in motivating students to learn. We call the methodology, "Build-Conceptualize-Customize-Create".</p>
+<h4>Build It</h4>
+<p>
+Introduce a topic but keep it brief. Within minutes, get the students building an interesting app, using a step-by-step tutorial.</p>
+<h4>Conceptualize It</h4>
+<p>
+After the students complete the tutorial, break them into small groups to discuss conceptual questions about the app, then discuss as a class.
+</p>
+<h4>Customize It</h4>
+<p>
+After the discussion session, assign customization tasks in which students add interesting features to the app they just built. </p>
+<h4>Create</h4>
+<p>
+After two or three iterations of the Build-Conceptualize-Customize process,  give the students the freedom to choose an app of personal interest to them.
+</p>
+<a class="btn btn-success btn-large" href="/structure">Learn More&nbsp; <i
+                            class="icon-arrow-right icon-white"></i></a>
+</div>
+
+
+
+
+
+
+    </div>
+</div>
+        
+
+{% endblock %}

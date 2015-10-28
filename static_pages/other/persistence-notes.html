@@ -1,0 +1,35 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How do you record data persistently?{% endblock %}
+			{% block description %} When you enter information into your Facebook page or another app, and that
+			 information is saved so it is there next time you visit, it is persistent 
+			 data. The opposite--data that “dies” when you close the app-- is called 
+			 transient data. Persistent data is stored in a database or file system, 
+			 and not just in the application’s short-term memory. App Inventor provides
+			  the <span class="empfont">TinyDB</span> component for storing data in the phone or tablet’s persistent 
+			  storage. Check out these examples of using <span class="empfont">TinyDB</span> to store data persistently:
+{% endblock %}
+{% block question %} Example 2. How do you persistently record notes entered by the user?{% endblock %}
+{% block answer %}
+ <p>
+			The user enters a note and clicks "Submit". In <span class="empfont">SubmitButton.Click</span>, the item is added
+			 to the variable noteList, and then the list, as a whole, is stored to the 
+			 database with the tag “notes”. The new list is displayed in <span class="empfont">ListLabel</span> and 
+			 the textbox is blanked out.
+			 </p>
+			 <p>
+			 When the app is closed and re-opened, <span class="empfont">Screen.Initialize</span> is triggered. 
+			 <span class="empfont">TinyDB.GetValue</span> is called to retrieve the list previously stored in the 
+			 database. The result is placed it in the <span class="empfont">noteList</span> variable. If there are 
+			 no notes in the database, e.g., the first time the app is used, then 
+			 <span class="empfont">TinyDB.GetValue</span> returns the <span class="empfont">valueIfTagNotThere</span> value, which is specified
+			  as an empty list.
+
+			</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/persistence/recordInListDB.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/aiFrwX7M4vc" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/persistence/message">example 1</a> {% endblock %}
+
+

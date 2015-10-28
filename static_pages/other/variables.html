@@ -1,0 +1,62 @@
+<head>
+<meta charset="UTF-8">
+</head>
+<title>Variables</title>
+
+<h2>When do you define a variable?</h2>
+<p>
+
+    An app remembers things, it has “hidden” memory. Think of it like a spreadsheet of data in the app’s private “brain”. 
+    You, the programmer, control the memory. When you drag a component (e.g.,
+    button, text box) into your app, each of the components has a set of <em>properties</em>. 
+    These properties are “spreadsheet” cells that you can change. You can also define new “spreadsheet” cells
+    called <em>variables</em> when you need to remember something. 
+    You define a variable when there isn’t a component property for storing the information you need. 
+    Check out these examples of using variables to remember things:
+</p>
+<div class="row-fluid">
+    <div class="span6">
+        <a name="circle"></a>
+        <h3>Example 1. How do you make it so that each time the user clicks on a canvas, a larger circle is drawn?</h3>
+        <img class="thumbnail" src="/assets/img/variables/circleSize.png" border="0" />
+        <p>
+            When <span class="empfont">Canvas1</span> is touched, <span class="empfont">DrawCircle</span> is called to draw a circle at the touch location (<span class="empfont">x</span> and <span
+                class="empfont">y</span>). The radius <span class="empfont">r</span> cannot be a fixed number as we want a different-sized circle each time. The variable <span class="empfont">circleSize</span>
+            is used to keep track of-- to remember-- the size of the circles each time we draw one. <span class="empfont">circleSize</span> is initialized to 1 so the first circle drawn is a small
+            dot. At the bottom of each <span class="empfont">Canvas1.Touched</span> event handler, <span class="empfont">circleSize</span> is doubled. So the second time the circle will be of radius
+            2, then 4, then 8, etc. The variable <span class="empfont">circleSize</span> is needed because there is no component property that can be used. The component <span class="empfont">Canvas</span>
+            has a <span class="empfont">lineWidth</span> property, so if you were drawing lines you wouldnâ€™t need to define a variable. But <span class="empfont">Canvas</span> doesnâ€™t have a <span
+                class="empfont">circleSize </span> property, so you must define it as a variable.
+        </p>
+        <hr />
+    </div>
+    <div class="span4">
+        <iframe width="560" height="315" src="//www.youtube.com/embed/So55ML_y_S8" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span6">
+        <a name="backForth"></a>
+        <h3>Example 2. How do you make a ball go back and forth across the screen?</h3>
+        <img class="thumbnail" src="/assets/img/variables/backAndForth.png" border="0" />
+        <p>
+            In this example, a variable <span class="empfont">distance</span> is defined so the app can remember (keep track of) the current direction the ball is moving. You want the ball to move on
+            each clock timer event, so the ballâ€™s horizontal location (<span class="empfont">Ball1.X</span>) is changed (set) within the <span class="empfont">Clock1.Timer</span> event handler. The
+            complicated part is you donâ€™t always want to move the ball the same amount. When the ball is moving to the right, you want to add a positive number (e.g., 5) to Ball1.X. When the ball is
+            moving to the left you want to add a negative number (e.g., -5). The amount you add to Ball1.X is dependent on the direction the ball is moving.
+        </p>
+        <p>
+            To remember which way the ball is going, you define the variable distance. distance is initialized to 5, so when the app starts each timer event moves the ball to the right. When the ball
+            hits the (right) edge, <span class="empfont">Ball1.EdgeReached</span> is triggered, and distance is set to itself times -1, or -5. In other words, its sign is flipped. Because distance is
+            -5, the next timer events cause the ball to move left. When the ball hits the left edge, <span class="empfont">Ball1.EdgeReached</span> is triggered again, the sign of distance is flipped
+            again, back to 5, and the ball begins moving right. This behavior continues so that the ball moves back and forth forever.
+        </p>
+        <p>Note: there are many ways to code this back-and-forth behavior and some that donâ€™t include using a variable.</p>
+        <hr />
+    </div>
+    <div class="span4">
+        <iframe width="560" height="315" src="//www.youtube.com/embed/G2uL-P-qrFs" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+</div>
+

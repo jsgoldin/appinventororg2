@@ -1,0 +1,845 @@
+<head>
+<meta charset="UTF-8">
+</head>
+<style type="text/css">
+	
+
+	.totop {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 101;
+}
+</style>
+
+<link rel="stylesheet" type="text/css"
+	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+
+
+	<div style="width: 30%; height: auto;">
+	<a href="#top" id="topbutton"> <img class="totop"
+		src="/images/icons/back-to-top-icon.png"></a>
+</div>
+<div class="dark-blue-title" id="top">
+	<div class="course-page-container">
+		<div style="float: left;">
+			<h1>Pong Tutorial</h1>
+			<h4>
+			Having a ball bounce off a paddle and making sure it doesn’t hit the
+			bottom of the screen is one of the oldest and addicting games in the
+			book.<br>Follow the tutorial below to learn how to make your own
+			version of Pong.
+		</h4>
+		</div>
+
+		<div style="float: right;"></div>
+
+	</div>
+</div>
+<div class="course-page-container">
+<div class="card">
+	<ol>
+		<li><a href="#task1">Get the Ball to Move Down</a></li>
+		<li><a href="#task2">Make the Ball Move in a Random Downward Direction</a></li>
+		<li><a href="#task3">Make the Ball Bounce off Edges</a></li>
+		<li><a href="#task4">Make the Ball Bounce on the Paddle</a></li>
+		<li><a href="#task5">Move the Paddle with the Dragged Event</a></li>
+		<li><a href="#task6">Get a Point Every Time the Ball Hits the Paddle</a></li>
+		<li><a href="#task7">Reset and Start Buttons</a></li>
+		<li><a href="#task8">Losing when you Hit the Bottom Edge</a></li>
+		<li><a href="#task9">Adding Sound Effects and Improving Design</a></li>
+		<li><a href="#task10">Sound as an Option</a></li>
+		<li><a href="#task11">Customize your App</a></li>
+	</ol>
+
+</div>
+</div>
+<div class="course-page-container">
+
+	<div class="card">
+		<h2>Get the Starter app</h2>
+		<p>Start out by
+			heading to this <a
+				href="http://ai2.appinventor.mit.edu/?galleryId=6343831516086272">link
+			</a> to open the starter app of this tutorial in App Inventor.
+			After the starter app opens, click "Open The App" on the left hand
+			side and then name the project and click "Ok." In this starter app,
+			you will find that the designer is all set up, Ball1 is not enabled
+			and that there are some sounds and an image loaded into the media
+			section.
+		</p>
+		<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/P_FI.png"><br>
+		<p>
+			Remember that there are two ways to do animation.<br>
+			For this app we
+			will be using the <b>internal properties</b> of the ball to animate
+			it.
+		</p>
+
+	</div>
+
+
+
+	<div class="card" id="task1">
+		<h2>Task 1 - Get the ball to move down</h2>
+
+
+		<div class="row">
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/B1_PP.png">
+
+			</div>
+
+			<div class="col-md-6">
+				<p>By looking at Ball1’s properties, what do you think needs to
+					be changed when the Start button is clicked to make the ball go
+					down?</p>
+				<div class="quiz-panel-inner">
+					<div id="q1a" class="collapse">
+						<img alt="" src="/images/CourseInABoxImages/COM_P.png"
+							class="img-responsive center-img">
+						<p>
+							<a style="color:#A4CA3A;" href="/animationChallengeinternal">Click to look at the previous lesson.</a>
+						</p>
+
+					</div>
+					<a type="button" href="#q1a" data-toggle="collapse"
+						onclick="showHideToggle(id)" id="q1b" name="q1b">Need Help?</a>
+				</div>
+
+				<div class="quiz-panel-inner">
+					<div id="q2a" class="collapse">
+						<p>Speed, Interval, and Heading</p>
+						<p>Explain:</p>
+						<p>
+							Interval determines how often a distance will be traveled.<br>
+							Speed determines the distance traveled.<br> Heading
+							determines the direction of the distance.
+						</p>
+
+					</div>
+					<a type="button" href="#q2a" data-toggle="collapse"
+						onclick="showHideToggle(id)" id="q2b" name="q2b">Answer</a>
+				</div>
+
+			</div>
+
+			
+
+		</div>
+
+	</div>
+
+
+	<div class="card">
+		<p>
+			Since we just want the ball to go down, let’s set the heading to 270.<br>
+			<br>When the ButtonStart is clicked:
+		</p>
+		<p style="text-indent: 50px;">Set Ball1.Enabled to True</p>
+		<p style="text-indent: 50px;">Set Ball1.Heading to 270</p>
+		<p style="text-indent: 50px;">Set Ball1.Speed to 5</p>
+		<p style="text-indent: 50px;">Set Ball1.Interval to 10</p>
+
+		<div class="quiz-panel-inner">
+			<div id="q3a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/B1S_PT.png">
+
+			</div>
+			<a type="button" href="#q3a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q3b" name="q3b">Show me the
+				Blocks</a>
+		</div>
+
+	</div>
+	<div class="card">
+		<h2>Test this and Notice:</h2>
+		<p>
+			The ball gets to the bottom of the screen and there is nothing else
+			that can be done.<br> Let’s make it so that when buttonstart is
+			clicked, the ball goes to the top of the screen and then starts to
+			move down.<br> Which property for Ball1 controls the position of
+			ball 1?
+		</p>
+
+		<div class="quiz-panel-inner">
+			<div id="q4a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/B1xEMT.png">
+
+			</div>
+			<a type="button" href="#q4a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q4b" name="q4b">Show me the
+				Blocks</a>
+		</div>
+		<br>
+		<p>Where do we want to move the ball?</p>
+
+		<div class="quiz-panel-inner">
+			<div id="q5a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/BS_ClPT.png"> <br>
+				<p>
+					We are trying to get the ball to move to the top middle of the
+					screen<br> X controls the ball’s horizontal position and we
+					want to get it in the middle of the screen. So X was set to half of
+					the Canvas Width aka the middle of the screen.<br> Since Y
+					controls the vertical position of the ball, we want to send it to
+					the top, and the top would be 0.<br>
+				</p>
+			</div>
+			<a type="button" href="#q5a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q5b" name="q5b">Show me the
+				Blocks</a>
+		</div>
+	</div>
+
+	<div class="card" id="task2">
+		<h2>Task 2 - Make the ball move in a random downward direction at the
+			start of the game.</h2>
+		<p>Currently, when "Start" is pressed this happens:</p>
+		<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/LP_PT.gif"> <br>
+		<p>Now, when "Start" is pressed, this should happen:</p>
+		<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/RP_PT.gif">
+		<div class="quiz-panel-inner">
+			<div id="q6a" class="collapse">
+				<p>
+					Instead of the ball moving straight down every time it’s clicked,
+					the ball moves in a random <b>downward</b> direction.
+				</p>
+			</div>
+			<a type="button" href="#q6a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q6b" name="q6b">What's the
+				difference?</a>
+		</div>
+	</div>
+
+	<div class="card">
+		<h2>Getting Random Numbers</h2>
+		<p>App Inventor comes with a “random integer from…” block that
+			will get you a random integer from a range of numbers.</p>
+		<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/BIM_RI100.png">
+
+
+		<div class="quiz-panel-inner">
+			<div id="q7a" class="collapse">
+				<p>An integer is a finite number or a number that ends. Numbers
+					that do not end are known as irrational numbers like pi
+					(3.1415...).</p>
+			</div>
+			<a type="button" href="#q7a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q7b" name="q7b">What is an
+				integer?</a>
+		</div>
+
+		<h2>What is a downwards heading?</h2>
+		<p>Let’s take a look at this chart to figure out which headings
+			are downwards</p>
+
+		<div class="row">
+
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/COM_P.png">
+			</div>
+
+			<div class="col-md-6">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/COM_DIAGDOWN.png">
+			</div>
+		</div>
+
+		<p>By looking at the image above, it seems that a heading of 225
+			to 315 will give a downward heading, or direction, of the ball.</p>
+		<p>Now code it so that when ButtonStart is clicked the heading of
+			Ball1 is set to a random number between 225-315 instead of just being
+			270.</p>
+
+		<div class="quiz-panel-inner">
+			<div id="q8a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/BS_B1MOVE.png">
+			</div>
+			<a type="button" href="#q8a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q8b" name="q8b">Show me the
+				Blocks</a>
+		</div>
+
+
+		<!--end of card  -->
+	</div>
+
+	<div class="card" id="task3">
+		<h2>Task 3 - Code it so the ball bounces off edges</h2>
+		<p>Getting a ball to bounce off edges is really easy because of
+			this block:</p>
+		<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/B1_Bounce.png">
+
+
+		<p>What parameter do you think goes into the empty spot?</p>
+		<div class="quiz-panel-inner">
+			<div id="q9a" class="collapse">
+				<p>The edge that it should bounce off of.</p>
+			</div>
+			<a type="button" href="#q9a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q9b" name="q9b">Show me the
+				Blocks</a>
+		</div>
+		<br>
+		<p>When do we want the ball to bounce?</p>
+		<div class="quiz-panel-inner">
+			<div id="q10a" class="collapse">
+				<p>When the ball hits an edge.</p>
+
+			</div>
+			<a type="button" href="#q10a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q10b" name="q10b">Show me the
+				Blocks</a>
+		</div>
+		<br>
+		<p>Which event happens when the ball1 hits the edge?</p>
+		<div class="quiz-panel-inner">
+			<div id="q11a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/B1_Events.png">
+			</div>
+			<a type="button" href="#q11a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q11b" name="q11b">Show me
+				Ball1’s events</a>
+		</div>
+
+		<div class="quiz-panel-inner">
+			<div id="q13a" class="collapse">
+				<p>
+					EdgeReached is correct.<br> In the EdgeReached block, what do
+					you think the event parameter stands for?
+				</p>
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/B1_ERPT.png">
+				
+
+
+
+				<div class="quiz-panel-inner">
+					<div id="q14a" class="collapse">
+					<p>The event parameter "edge" stands for the edge that the ball hit.</p>
+					<p>Explain:</p>
+						<p>Each time Ball1 hits an edge, The .EdgeReached event can
+							tell your app which edge was hit (top, bottom, left, or right
+							edge)</p>
+						<p>So in the Bounce block, edge would go in there. Now code
+							the Ball1.EdgeReached event to bounce off of any edge.</p>
+
+						<img class="img-responsive center-img" alt="img0"
+							src="/images/CourseInABoxImages/B1_ERPTT.png"> <img
+							class="img-responsive center-img" alt="img0"
+							src="/images/CourseInABoxImages/B1_ERPTE.png">
+
+						<p>Test the ball bouncing and move on</p>
+
+
+
+
+					</div>
+					<a type="button" href="#q14a" data-toggle="collapse"
+						onclick="showHideToggle(id)" id="q14b" name="q14b">Answer</a>
+				</div>
+			</div>
+			<a type="button" href="#q13a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q13b" name="q13b">Answer</a>
+		</div>
+
+
+	</div>
+
+	<div class="card" id="task4">
+		<h2>Task4 - Make the ball bounce on the paddle</h2>
+		<p>Now that we have the ball bouncing on the walls, we want to
+			have the ball bounce when it hits the paddle.</p>
+		<p>Luckily there is an easy event for this known as the
+			CollidedWith event which is triggered when a sprites collides with (or touches)
+			any other sprite.</p>
+		<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/B1_CWPT.png">
+
+
+		<p>What do you think the event parameter “other” stands for?</p>
+		<div class="quiz-panel-inner">
+			<div id="q15a" class="collapse">
+				<p>Other tells the app which sprite it collided with.</p>
+
+			</div>
+			<a type="button" href="#q15a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q15b" name="q15b">Answer</a>
+		</div>
+		<br>
+		<p>What does this mean?</p>
+		<div class="quiz-panel-inner">
+			<div id="q16a" class="collapse">
+				<p>It means that we can say, for example, If other is a "coin" then
+					gain a point, if other is a "monster" then lose a point. In this app
+					there is only one sprite that we can hit, so we do not need to check
+					which sprite is hit because there is only one.</p>
+
+			</div>
+			<a type="button" href="#q16a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q16b" name="q16b">Answer</a>
+		</div>
+
+		<br>
+		<p>Instead of using the Bounce block how could we get the ball to
+			bounce up?</p>
+		<div class="quiz-panel-inner">
+			<div id="q17a" class="collapse">
+				<p>
+					Heading controls the direction of the ball.<br> So we can
+					change the heading each time the ball collides with the paddle.<br>
+					But what should the heading be set to?
+				</p>
+				<h4>Math</h4>
+				<p>
+					If the ball goes straight down (current heading = 270) it should
+					bounce straight back up (bounce heading = 90).<br> If the ball
+					hits the paddle at a perfect 45 degree angle downward to the right
+					(current heading = 315) it should bounce back up in another 45
+					degree angle (bounce heading = 45)
+				</p>
+
+				<h4>Algebra</h4>
+				<p>
+					Solve for x<br> x-270=90<br> x-315=45
+				</p>
+				<div class="quiz-panel-inner">
+					<div id="q18a" class="collapse">
+						<p>
+							270+90 = 360; x = 360<br> 135+45 = 360; x =360<br> We
+							are trying to find the formula for bouncing, or a pattern that
+							occurs when bouncing. We can use our current heading to calculate the new heading after the ball bounces.<br>The formula is 360 -
+							current heading = final heading<br> When Ball1 Collides
+							(with the paddle) set its heading to 360 -current heading.<br>
+						</p>
+
+						<img class="img-responsive center-img" alt="img0"
+							src="/images/CourseInABoxImages/B1_CWH360.png">
+
+					</div>
+					<a type="button" href="#q18a" data-toggle="collapse"
+						onclick="showHideToggle(id)" id="q18b" name="q18b">Help</a>
+				</div>
+			</div>
+			<a type="button" href="#q17a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q17b" name="q17b">Hint</a>
+		</div>
+
+	</div>
+
+	<div class="card" id="task5">
+		<h2>Task 5 - Move the paddle with the dragged event. - each time the user
+			move their finger.</h2>
+		<p>We want to move the paddle each time the user drags their
+			finger on the canvas. Luckily, there is a Canvas.Dragged event that
+			is triggered each time the user drags their finger across the screen.</p>
+		<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/C1_DG.jpg">
+		<p>What do we want to happen each time the user drags across the
+			screen?</p>
+		<div class="quiz-panel-inner">
+			<div id="q70a" class="collapse">
+				<p>Move the paddle's x position to the x position of their
+					finger.</p>
+
+			</div>
+			<a type="button" href="#q70a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q70b" name="q70b">Answer</a>
+		</div>
+		<br>
+		<p>Why only the x position?</p>
+		<div class="quiz-panel-inner">
+			<div id="q71a" class="collapse">
+				<p>In this game, we only want the the paddle to move
+					left and right, not up and down, and X controls left and right on a coordinate plane.</p>
+
+			</div>
+			<a type="button" href="#q71a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q71b" name="q71b">Answer</a>
+		</div>
+		<br>
+		<p>We want to set the paddle's X to be the Current X position of the user's finger.</p>
+		<div class="quiz-panel-inner">
+			<div id="q19a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/C1_DGIS.png">
+
+			</div>
+			<a type="button" href="#q19a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q19b" name="q19b">Show me the
+				Blocks</a>
+		</div>
+
+
+	</div>
+
+	<div class="card" id="task6">
+		<h2>Task 6 - Code it so that you get a point every time the paddle hits
+			the ball.</h2>
+		<p>If we want to be able to get a point when the ball hits the
+			paddle, we need to identify this moment.</p>
+
+		<p>Which event is triggered when the ball hits the paddle?</p>
+		<div class="quiz-panel-inner">
+			<div id="q20a" class="collapse">
+				<p>Ball1.Collide event</p>
+				<p>So after the ball bounces we want our Score Label to say
+					"Score: 1" instead of "Score: 0."</p>
+
+			</div>
+			<a type="button" href="#q20a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q20b" name="q20b">Answer</a>
+		</div>
+		<br>
+		<p>Would the following blocks work? Why or why not?</p>
+		<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/B1_CWB1HSL.jpg"> <img
+			class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/PSC_SL.jpg"> <br>
+		<p>The following blocks would not work because you cannot add a
+			letter to a number. You cannot add up "Score:" + 1 = Error.</p>
+
+		<br>
+		<p>How do you add to the score without an error and not use two
+			labels?</p>
+
+		<div class="quiz-panel-inner">
+			<div id="q21a" class="collapse">
+				<p>First we need to have our app remember the score. What kind
+					of block is used to remember numbers?(It also names numbers)</p>
+				<div class="quiz-panel-inner">
+					<div id="q22a" class="collapse">
+						<p>Variable</p>
+						<p>Let's create a variable for score.</p>
+						<img class="img-responsive center-img" alt="img0"
+							src="/images/CourseInABoxImages/GV_S0.jpg"><br>
+						<p>Since we are going to update the score in more than one
+							place let's create a procedure to update the score. This
+							procedure will have a parameter (New_Score) that will be used in
+							our app.</p>
+
+						<img class="img-responsive center-img" alt="img0"
+							src="/images/CourseInABoxImages/PRO_EXPARA.png"> <br>
+						<p>Creating a procedure parameter adds an empty space when you
+							call the procedure. It also adds a parameter that can be
+							used when calling a procedure.</p>
+					</div>
+					<a type="button" href="#q22a" data-toggle="collapse"
+						onclick="showHideToggle(id)" id="q22b" name="q22b">Answer</a>
+				</div>
+			</div>
+			<a type="button" href="#q21a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q21b" name="q21b">Answer</a>
+		</div>
+
+
+		<p>What do we want to do when we score a point?</p>
+		<div class="quiz-panel-inner">
+			<div id="q23a" class="collapse">
+				<p>
+					Call the procedure "<b>UpdateScore.</b>"
+				</p>
+			</div>
+			<a type="button" href="#q23a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q23b" name="q23b">Answer</a>
+		</div>
+		<br>
+		<p>In the procedure, we want to:</p>
+		<ol>
+			<li>Save the updated score.</li>
+			<div class="collapse q24a">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/USPRO_FO1.png">
+			</div>
+			<li>Show the updated score in the label.</li>
+			<div class="collapse q24a">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/USPRO_FO.png">
+			</div>
+		</ol>
+		<div class="collapse q24a">
+			<div class="quiz-panel-inner">
+				<p class="collapse q25a">
+					UpdateScore is called when the the ball collides with a paddle and
+					when it is called, the procedure parameter’s value is set to the
+					current score +1.<br>Then when the procedure starts, "global Score" is set to the procedure parameter “New_Score” (Current
+					score+1) and the ScoreLabel is set to join the text "Score:" and
+					the "global Score."<br> Test this and move on to the Reset
+					Button.
+
+				</p>
+				<a type="button" href=".q25a" data-toggle="collapse"
+					onclick="showHideToggle(id)" id="q25b" name="q25b">Explain</a>
+			</div>
+		</div>
+
+		<div class="quiz-panel-inner">
+
+			<a type="button" href=".q24a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q24b" name="q24b">Show me the
+				blocks</a>
+		</div>
+	</div>
+
+	<div class="card" id="task7">
+		<h2>Task 7 - Reset and Start Buttons</h2>
+		<p>Clicking the <b>reset</b> button should do two things:</p>
+		<ol>
+			<li>Set the ball’s position to be back at the top middle of the
+				screen.</li>
+			<li>Set the score back to 0.</li>
+		</ol>
+		<p>Try to do this using the Ball’s MoveTo block and the
+			UpdateScore procedure block. Then test it.</p>
+		<div class="quiz-panel-inner">
+			<div id="q26a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/BR_BMTUS.png">
+			</div>
+			<a type="button" href="#q26a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q26b" name="q26b">Show me the
+				blocks</a>
+		</div>
+
+		<h2>Start Button</h2>
+		<p>Code the app so that the score starts at 0 when the user clicks
+			"ButtonStart."</p>
+		<div class="quiz-panel-inner">
+			<div id="q27a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/BS_BMTUSBEBHBSBI.png">
+			</div>
+			<a type="button" href="#q27a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q27b" name="q27b">Show me the
+				blocks</a>
+		</div>
+
+	</div>
+
+	<div class="card" id="task8">
+		<h2>Task 8 - Losing when you hit the bottom edge</h2>
+		<p>Remember this block?</p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/B1_ERPTE.png">
+		<p>By looking at the following image, what could we change in this block to make:</p>
+		<ol>
+			<li>Ball1 stop.</li>
+			<li>The ScoreLabel display “Game Over.”</li>
+		</ol>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/COM_P1.png">
+		<br>
+		<p>The following gif demonstrates the value of the event parameter “edge” in the edge reached event by using the following blocks:</p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/PMOVE_WBLOCK.gif">
+		<br>
+		<p>In the above blocks, ScoreLabel is set to the event parameter “edge” to show you the event parameter’s value each time the ball hits an edge.</p>
+		<p>What value for edge would result in "game over"? Why?</p>
+		<div class="quiz-panel-inner">
+			<div id="q28a" class="collapse">
+				<p>-1 because that is the value for the bottom of the screen.</p>
+				<p>Essentially:</p>
+				<p>If edge = -1 then game over, else, bounce</p>
+				<p>What should happen when the game is over?</p>
+				<div class="quiz-panel-inner">
+					<div id="q29a" class="collapse">
+						<p>The ball should stop and the score label should say the current score followed by "Game Over."</p>
+						<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/B1_ERIFEBE.png">
+
+				</div>
+				<a type="button" href="#q29a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q29b" name="q29b">Answer</a>
+				</div>
+
+			</div>
+			<a type="button" href="#q28a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q28b" name="q28b">Answer</a>
+
+		</div>
+
+
+
+		
+
+	</div>
+
+	<div class="card" id="task9">
+		<h2>Task 9 - Adding Sound Effects and Making the Game Look Better</h2>
+
+		<p>Playing sounds in your app is pretty easy to do in App Inventor if you use the Sound Component.</p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/V_MESOUND.png">
+
+		<p>To play a sound, there are two main blocks that you will be using.</p>
+		<p>This block will tell your app which sound it should play.</p>
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/SP_SOUNDSOURCE.png">
+		<p>This block will play the sound.</p>
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/FC_SOUNDPLAY.png">
+
+		<p>Your uploaded sounds will be shown in the media section. You want to type in the name of sound file that you want to be played in a text block and connect it to the Sound1.Source block above.</p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/media.png">
+
+		<p>For example, if you want to play Noink.mp3, you would need these series of blocks </p>
+
+		<img class="img-responsive center-img" alt="img0"
+		src="/images/CourseInABoxImages/SS_SPFC.png">
+		<p>Notice that "Noink.mp3" includes the capital “N.”</p>
+
+		<p>Now do the following:</p>
+		<ol>
+			<li>Play Buzzer.mp3 when the user loses.</li>
+			<li>Play note.wav when the ball hits the left, top, or right edge.</li>
+			<li>Play Noink.mp3 when the ball collides with the paddle.</li>
+		</ol>
+
+		<div class="quiz-panel-inner">
+			<div id="q30a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/B1_CWHUSSFCS.png">
+
+						<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/B_ERE1EBSP.png">
+			</div>
+			<a type="button" href="#q30a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q30b" name="q30b">Show me the
+				blocks</a>
+		</div>
+
+
+	</div>
+
+	<div class="card" id="task10">
+		<h2>Task 10 - Sound as a Procedure and as an Option (Checkbox)</h2>
+		<p>Let’s start out making sound as a procedure, then we’ll get the sound to play only if the CheckBox is clicked.</p>
+		<p>Create a procedure for playing sound with the procedure parameter being the source file.</p>
+		<div class="quiz-panel-inner">
+			<div id="q31a" class="collapse">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/PS_NOPROS.png">
+
+			</div>
+			<a type="button" href="#q31a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q31b" name="q31b">Show me the
+				blocks</a>
+		</div>
+
+		<p>Now, make it so the procedure plays only if a CheckBox is clicked.</p>
+		<p>First let’s add in a checkbox.</p>
+		<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/PNGT_CHSS.png">
+		<p>The CheckBox is pretty simple. It has a property called CheckBox1.Checked. If this property is set to true then it is checked, if it is set to false it is not checked.</p>
+		<p>So before we play the sound, we want to test if CheckBox is checked.</p>
+		<p>Try to code it.</p>
+		
+
+		<div class="quiz-panel-inner">
+			<div id="q32a" class="collapse">
+			<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/CW_HPROUSPROPS.png">
+				<img class="img-responsive center-img" alt="img0"
+					src="/images/CourseInABoxImages/BCW_BHUSP.png">
+
+			</div>
+			<a type="button" href="#q32a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q32b" name="q32b">Show me the blocks</a>
+		</div>
+	</div>
+
+	<div class="card" id="task11">
+		<h2>Task 11 - Customize your App</h2>
+		<ol>
+			<li>Change the color of your canvas background.</li>
+			<li>Change the font style of the text.</li>
+			<li>Customize the game (each point makes the ball speed increase, or the paddle gets smaller, save a high score, have bricks to break.)</li>
+
+		</ol>
+	</div>
+
+</div>
+
+<script>
+	//function that adds slide animation when clicking to ids on a page
+	$(document).ready(function() {
+		$('a').click(function() {
+			$('html, body').animate({
+				scrollTop : $($(this).attr('href')).offset().top
+			}, 'slow');
+		});
+
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,130 @@
+<div class="dark-blue-title">
+	<div class="course-page-container">
+		<div style="float: left">
+			<h1>ListPicker and Choosing from a List of Lists</h1>
+			<h3>Lists, indexes, iterating through a list</h3>
+		</div>
+
+
+		<div style="float: right;">
+			<a target="_blank"
+				href="https://docs.google.com/document/d/1bqcixkiiUIVxktyjFF8hikezOLNhdPCeU0wELZs79sA/edit?usp=sharing">
+				<img style="margin-top: 2%; float: right;"
+				src="/images/icons/download_white.png">
+				<h3 style="float: right;">Printable Version</h3>
+			</a>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="course-page-container">
+	<div class="card">
+		<h1 class="c1 c4">
+			<a name="h.iavghipis60u"></a><span>The ListPicker component</span>
+		</h1>
+		<p class="c1">
+			<span>The ListPicker lets the user choose from a list of
+				items. It has an associated button-- when the button is clicked, the
+				chooser appears.</span>
+		</p>
+		</div>
+		<div class="card">
+		<p class="c0">
+			<span class="c8"></span>
+		</p>
+		<h2>Key Properties</h2>
+		<p class="c1">
+			<span>ListPicker.Elements &nbsp;-- set this to the list you
+				want to appear</span>
+		</p>
+		<p class="c1">
+			<span>ListPicker.Selection &nbsp;-- when the user chooses,
+				this is their choice</span>
+		</p>
+		<p class="c1">
+			<span>ListPicker.SelectedIndex &nbsp;-- when the user chooses,
+				this is the index of their choice</span>
+		</p>
+		</div>
+		<p class="c0">
+			<span></span>
+		</p>
+		<div class="card">
+		<h2>Key Events</h2>
+		<p class="c1">
+			<span>ListPicker.BeforePicking -- this is triggered when the
+				user clicks the ListPicker button. </span>
+		</p>
+		<p class="c1">
+			<span>&nbsp; &nbsp; &nbsp; &nbsp;Typically you&rsquo;ll set
+				the ListPicker.Elements property here.</span>
+		</p>
+		<p class="c1">
+			<span>ListPicker.AfterPicking -- this is triggered when the
+				user makes a choice.</span>
+		</p>
+		</div>
+		<p class="c0">
+			<span></span>
+		</p>
+		<div class="card">
+		<h2>Challenge</h2>
+		<p class="c1">
+			 add a list
+				variable with some items, and a ListPicker and Label. Code the
+				BeforePicking to set the Elements, and in the AfterPicking just put
+				the answer in the label.
+		</p>
+		</div>
+
+
+	<div class="card">
+		<h1 class="c1 c4">
+			<a name="h.p2ghie4pwxx6"></a><span>List of Lists</span>
+		</h1>
+		<p class="c1">
+			<span>Consider a quiz app and suppose you want to have
+				multiple choice. Then for every question you need both an answer and
+			</span><span class="c6">a list of answer choices. </span><span>The
+				list of answer choices is actually a list of lists:</span>
+		</p>
+		<img alt="img00" src="/images/CourseInABoxImages/image01_LLCL.png">
+		<p class="c1">
+			<span>1.Suppose you wanted to place the second answer choice
+				of the first question of a quiz into a label. Sketch the blocks.
+				You&rsquo;ll need the selectListItem block:</span>
+		</p>
+		<img alt="img01" src="/images/CourseInABoxImages/image00_LLCL.png">
+		<p class="c0">
+			<span></span>
+		</p>
+		<p class="c1">
+			<span>2. Suppose you were creating a multiple-choice quiz and
+				you had an index variable which kept track of the current question
+				(and answer). Sketch the blocks for displaying the answer choices
+				for the current question in a ListPicker.</span>
+		</p>
+		<p class="c0">
+			<span></span>
+		</p>
+	</div>
+	<p class="c1">
+		<span>Reading: </span><span class="c5"><a class="c3"
+			href="http://www.google.com/url?q=http%3A%2F%2Fwww.appinventor.org%2FChapter19&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF8ii8QTb3ZbS73DTc3OWOuFuCi8w">http://www.appinventor.org/Chapter19</a></span><span>,
+			near end</span>
+	</p>
+	<div>
+		<p class="c1 c10">
+			<span>appinventor.org
+				course-in-a-box&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+		<p class="c1 c2">
+			<span class="c7">This document is licensed under an </span><span
+				class="c5 c7"><a class="c3"
+				href="http://www.google.com/url?q=http%3A%2F%2Fcreativecommons.org%2Flicenses%2Fby-nc-sa%2F3.0%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGKyqN5Tqh7KIvGy2XJV2hc_b4JpA">Attribution-NonCommercial-ShareAlike
+					3.0 Unported License</a></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		</p>
+	</div>
+</div>

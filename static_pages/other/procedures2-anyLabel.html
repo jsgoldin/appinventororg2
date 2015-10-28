@@ -1,0 +1,21 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %}How and why should I define a procedure?{% endblock %}
+			{% block description %}  When is it appropriate to code and call a procedure? How can you
+			make such a procedure as general as possible so it can be reused as much as possible?{% endblock %}
+{% block question %} Example 2. How do I define a procedure that can display any list in any label?{% endblock %}
+{% block answer %}
+<p>
+		Instead of actually displaying a list, the procedure does the work of converting a 
+		list variable into text which can be put into any label. The procedure is generic-- 
+		it takes any list and returns text, and it doesn’t refer to any specific components. 
+		Any code that calls this procedure, e.g., <span class="empfont">Screen1.Initialize</span>, will provide the specific 
+		list as a parameter to <span class="empfont">listToText</span>, and will place the resulting text in a specific label.
+		</p>  
+{% endblock %}
+
+{% block answerImage %} "/assets/img/procedures/listToText.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/nglHTHsTSkI" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/procedures/list">example 1</a> {% endblock %}
+
+

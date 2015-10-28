@@ -1,0 +1,78 @@
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+</head>
+
+
+<div class="dark-blue-title">
+	<div class="course-page-container">
+		<h1>Incrementing</h1>
+
+	</div>
+
+</div>
+
+<div class="course-page-container">
+	<div class="card">
+
+		<h2>
+			How do you increment a variable or component property? <br>(Gaining
+			a point and creating a timer)
+		</h2>
+	</div>
+
+	<div class="card">
+		<p>Being able to get a number to increment (or decrement) is an
+			important skill in creating any sort of app. Whether it is for adding
+			up numbers to show a gamer his or her score, or to show a gamer how
+			much time is left.</p>
+		<p>If we want to increment the label that displays “0” (meaning
+			the label's text would change to 1, 2, 3, 4…) each time it is clicked… Could we use
+			the following blocks? Why or Why not?</p>
+			<img width="50%" alt="" src="/images/CourseInABoxImages/IWS_ans1.png"
+					class="img-responsive center-img">
+		<div class="quiz-panel-inner">
+			<div id="q10a" class="collapse">
+				
+				<p>You would not be able to use these because the label would
+					change to 1, but never continue on to 2.</p>
+
+
+			</div>
+			<a type="button" href="#q10a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q10b" name="q10b">Show Answer</a>
+		</div>
+
+	</div>
+	<div class="card">
+		<p>What about these blocks, would they increment the label that
+			displays “0” each time the button is clicked?</p>
+		<img width="50%" alt="" src="/images/CourseInABoxImages/IWS_ans1.png"
+			class="img-responsive center-img">
+			
+			
+		<div class="quiz-panel-inner">
+			<div id="q9a" class="collapse">
+				<p>Yes. In this really silly game, the user scores a point by clicking a button. 
+				When the button labeled “Score a Point” is clicked, the ScoreLabel (showing 0 above) changes to 1. 
+				If it is clicked again, it changes to 2, and so on.</p>
+
+
+			</div>
+			<a type="button" href="#q9a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q9b" name="q9b">Show Answer</a>
+		</div>
+	</div>
+	<div class="card">
+		<h2>Explained</h2>
+
+		<p>The lighter green block labeled “ScoreLabel.Text” is a “Get” block. “get” means to go look in a 
+		memory cell and see what is there. The first time the button is clicked, the “get” returns the initial value of 0, 
+		and runs the program of <b>0</b>+1=1. 1 is then set into ScoreLabel.Text (and 1 appears in the user interface). The second time the button 
+		is clicked, the current value of ScoreLabel.Text is 1, so <b>1</b>+1=2 is placed into ScoreLabel.Text.<br>
+If you want the number to <b>decrement</b>, just change + to -.</p>
+	
+	</div>
+
+</div>

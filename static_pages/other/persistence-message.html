@@ -1,0 +1,48 @@
+{% extends "howdoyouTemplate.html" %}
+
+			{% block title %} How do you record data persistently?{% endblock %}
+			{% block description %} When you enter information into your Facebook page or another app, and that
+			 information is saved so it is there next time you visit, it is persistent 
+			 data. The opposite--data that “dies” when you close the app-- is called 
+			 transient data. Persistent data is stored in a database or file system, 
+			 and not just in the application’s short-term memory. App Inventor provides
+			  the <span class="empfont">TinyDB</span> component for storing data in the phone or tablet’s persistent 
+			  storage. Check out these examples of using <span class="empfont">TinyDB</span> to store data persistently:
+{% endblock %}
+{% block question %} Example 1. How do you persistently record an out-going message for an SMS text auto-responder?{% endblock %}
+{% block answer %}
+ <p>
+			This sample is from a “text answering machine” app that lets you record a 
+			message to be sent in auto-reply to texts sent to your phone. When the user 
+			enters a message, it should be remembered persistently so the user doesn't 
+			have to type it in again when the app is closed and re-launched (unless the
+			 user wants to change the outgoing message).
+			 </p>
+			 <p>
+
+			When the user enters a new message and clicks “Submit”, the entered message
+			 is copied from <span class="empfont">OutgoingMessageTextBox</span> into the <span class="empfont">OutgoingMessageLabel</span>, 
+			 which displays the current message. Then TinyDB.StoreValue is called to
+			  remember the entry persistently-- to record the newly entered message in 
+			  the database. The tag “message” names the entry in the database, and the 
+			  value stored is what the user entered. The final row of blocks within 
+			  <span class="empfont">SubmitButton.Click</span> just blank out the OutgoingMessageTextBox so it is 
+			  ready for a new entry.
+			</p>
+			 <p>
+
+			Storing the data is just part of the equation-- you also need to retrieve 
+			the data, to bring it from the database into the app. In this app, the data 
+			is retrieved in the <span class="empfont">Screen.Initialize</span> event, which is triggered when the app 
+			is opened. The <span class="empfont">TinyDB.GetValue</span> call asks the database to return the data 
+			tagged “message”. If the user has submitted something previously, the entry 
+			will be returned. If there is nothing yet in the database, <span class="empfont">TinyDB.GetValue</span>
+			 returns the text in <span class="empfont">valueIfNotThere</span> (a default message).
+			</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/persistence/persistentMessage.png" {% endblock %}
+{% block answerVideo %} "//www.youtube.com/embed/_IomeoW9tAc" {% endblock %}
+{% block otherExampleLink %} <a href="/content/howDoYou/persistence/notes">example 2</a> {% endblock %}
+
+

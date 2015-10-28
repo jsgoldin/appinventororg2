@@ -1,0 +1,94 @@
+
+<title>User List Navigation</title>
+    <h2>User List Navigation: How do you step through a list of information?</h2>
+          <p>
+			App Inventor provides a <span class="empfont">for each</span> block for processing a list of information 
+			all at once. But what if you have an app, such as a slideshow, in which the 
+			user controls the movement through the list?  To program this behavior, you’ll 
+			use an index variable to keep track of your position in the list. Check out 
+			the following examples:
+		  </p>
+    <div class="row-fluid">
+
+        <div class="span6">
+          
+			 
+			 <a name="nextButton"></a> 
+		  <h3>Example 1. How do you create a slideshow so the user clicks to get to 
+		  the next picture?
+		</h3>
+		    <img class="thumbnail" src="/assets/img/userListNav/nextButton.png" border="0"/>
+		   <p>
+			In this example, the user clicks a button to sequence through a slideshow of 
+			pictures. The pictures are in the media files pic1.jpg, pic2.jpg, and 
+			pic2.jpg, all of which have been loaded into the app. The variable 
+			<span class="empfont">index</span> is 
+			defined to keep track of the current picture the user is viewing. When the 
+			user clicks “Next”, the index is checked to see if the user has gone too far. 
+			If index is less than the length of the list (3 in this case), then the index 
+			is incremented and the next picture file is placed into <span class="empfont">Image1.Picture</span>.
+			</p><p>
+			Let’s walk through this example. Assume that pic1.jpg is showing to start. 
+			When the user clicks “Next”, index is checked and is less than the length of 
+			the list (1<3). So <span class="empfont">index</span> is incremented from its initial value, 1, to 2, and 
+			pic2.jpg is selected and displayed.
+			</p><p> 
+			The next time the user clicks “Next”, 
+			<span class="empfont">index</span> is 2 so it is still less than 3, so <span class="empfont">index</span> is incremented to 3 and 
+			the third picture, “pic3.jpg”, is displayed. 
+			</p><p>
+			When “Next” is clicked again, 
+			index is 3 so the if-test fails. The blocks within the <span class="empfont">if</span> are not executed, 
+			so nothing happens. In fact, the user can continue to click “Next” forever 
+			with no effect. 
+			</p>
+			<p> A musical note takes time to play. 
+			
+			
+			<hr/>
+			
+			</div>
+			<div class="span4">
+			<br/><br/><br/>
+            <iframe width="560" height="315" src="//www.youtube.com/embed/7jD2aSlTcj0" 
+             frameborder="0" allowfullscreen></iframe>
+            </div>
+         </div>
+         <div class="row-fluid">   
+            <div class="span6">
+            <a name="prevButton"></a>
+			<h3>Example 2. How do you add a previous button to make the slideshow go backwards?</h3>
+			<img class="thumbnail" src="/assets/img/userListNav/prevButton.png" border="0"/>
+			<p>
+			This sample is similar to the “Next” button code above but now the index 
+			variable decrements and the slideshow goes backward. The if-test checks if 
+			the index is greater than 1, because if it is already 1, the first picture 
+			is being displayed and we can’t go further back.
+			</p>
+			
+			 </div>
+			 <div class="span4">
+              <iframe  width="560" height="315" src="//www.youtube.com/embed/HNQyCdJqPFc" 
+               frameborder="0" allowfullscreen></iframe>
+            </div>
+		</div>
+		<div class="row-fluid">   
+            <div class="span6">
+            <a name="loopBack"></a>
+
+			<h3>Example 3. How do you make it so the slideshow loops back to the front?</h3>
+			<img class="thumbnail" src="/assets/img/userListNav/nextButtonLoop.png" border="0"/>
+			<p>
+			In this sample, when the user clicks “Next” and the last item is already 
+			showing, the index is set back to 1 and the first item, “pic1.jpg”, is
+			 displayed again. The <span class="empfont">set Image1.Picture</span> blocks are outside of the 
+			 <span class="empfont">if-else</span> block, so a different picture is always displayed when “Next” is clicked.
+
+			</p>
+			
+			 </div>
+			 <div class="span4">
+              <iframe  width="560" height="315" src="//www.youtube.com/embed/PlXwvu18Je4" 
+               frameborder="0" allowfullscreen></iframe>
+            </div>
+		</div>

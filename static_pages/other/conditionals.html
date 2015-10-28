@@ -1,0 +1,70 @@
+{% extends "site_base.html" %} {% block body %}
+<article>
+
+	<div class='full-width-background-blue-1-container'>
+		<div class='course-page-container'>
+			<div class='course-page-title-section '>
+
+				<h2>Conditionals</h2>
+			</div>
+		</div>
+	</div>
+
+
+
+<div class='gen-container'>
+<div class='standard-section'>
+<div class='col-50'>
+
+		<p>You've learned that an app's behavior is defined by a set of
+			event handlers. Event handlers define the sequence of blocks that
+			should be performed when some event, such as a button click, occurs.
+			But the response to an event need not be a linear sequence of blocks
+			that are always performed; instead, the response can contain blocks
+			that are only performed under certain conditions.</p>
+		<p>Another way to say this is that an app can make decisions. You
+			program them to do so with conditional blocks in the form of if-else"
+			questions. Typically the question involves information in the app's
+			memory cells, its component properties and variables. In the "I Have
+			a Dream" app, clicking on the pictures of each civil rights leader
+			should either start or pause the speech. The first time each button
+			is clicked, the response should be to play the speech. The second
+			time it is clicked, the speech should be paused. Thus when the button
+			is clicked, the response is not always the same and the app must make
+			a decision based on whether or not the speech is already playing.</p>
+		<p>
+			Almost all "if" questions (tests) involve checking the values of
+			component properties or variables. In the case of "I Have a Dream",
+			the Player component's IsPlaying property is checked. <br /> <img
+				src="{{apps2Dir}}/IHaveADream/simpleIfElse2.png" alt="" /> <br />
+		</p>
+</div>
+<div class='col-50'>
+		<img src="{{apps2Dir}}/conditionals/ifDiagram.png" alt="" />
+
+</div>
+</div>
+<h2>Boolean expressions and relational and logical operators</h2>
+<p>
+	The if "test" is called a <i>boolean</i> expression, that is, it must
+	resolve to true or false. The boolean expression can be arbitrarily
+	complex and involve any number of relational operators (e.g., <,>,=)
+	and logical operators (and, or, not). If-else blocks can also be nested
+	within each other. Thus, the simple if-else construct provides the
+	basis for arbitrarily complex logic and what is commonly known as
+	artificial intelligence.
+</p>
+<!--
+<h2>Programming Chalenges</h2>
+<ol>
+	<li><a href="/quizly?quizname=quiz_simpleifelse">toggle
+			between two values</a><br /></li>
+
+</ol>
+-->
+<a href="/conditionalsStart">Conditionals Learning Nugget (includes
+	video)</a>
+</div>
+</article>
+
+{% endblock %}

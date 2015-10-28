@@ -1,0 +1,140 @@
+{% extends "templates/site_base.html" %} {% block body %}
+
+
+<div class="breadcrumbs-bar">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-12">
+				<a href="/admin/dashboard">Admin Dashboard</a> <span>&gt</span> <a
+					href="/admin/importcourses">Course Management</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='gen-container footerFix'>
+    <div class='row'>
+        <div class='col-md-3'>
+        
+
+        
+        <h1>Courses</h1>
+        
+        
+            <button type="button" data-toggle="modal" data-target="#newCourseModal" class="btn btn-primary new-course-button">
+                <span class="glyphicon glyphicon-plus"></span> Create
+            </button>
+        </div>
+        <div class='col-md-9'>
+            <div class='course-edit-box'>
+                <ul id="sortable">
+                    {% for course in courses %}
+                    <li id='noDrag' keyid='{{ course.key.id }}' identifier='{{course.c_identifier}}' class='course-box' index='{{course.c_index}}'>
+                        <img src='{{course.c_icon}}' height='100px' width='100px'>
+         
+                        <div class='course-view-box-info'>
+                            <h2>{{course.c_title}}</h2>
+                            <p>{{course.c_description}}</p>
+                        </div>
+
+
+                        <div class='item-box-btns hidden noclick'>
+                            <button id="editcoursebtn" data-toggle="modal" data-target="#editModal" type="button" class="btn btn-default item-box-button">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button id="movecoursebtn" type="button" class="btn btn-default item-box-button">
+                                <span class="glyphicon glyphicon glyphicon-resize-vertical"></span>
+                            </button>
+                            <button id="deletecoursebtn" type="button" class="btn btn-default item-box-button">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+
+                    </li> {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Edit Module</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="edit_course_title">Title</label> <input type="text" class="form-control" id="edit_course_title" value="Title">
+                </div>
+                <div class="form-group">
+                    <label for="edit_course_description">Description</label> <input type="text" class="form-control" id="edit_course_description" value="Description">
+                </div>
+                <div class="form-group">
+                    <label for="edit_course_identifier">URL Identifier
+                        <div class="help-block warning">Caution! Changing the identifier may cause broken external URLS</div>
+                    </label> <input type="text" class="form-control" id="edit_course_identifier" placeholder="Identifier">
+                </div>
+                <div class="form-group">
+                    <label for="edit_icon_btn">Icon</label>
+                    <button id='edit_icon_btn' type="button" class='btn btn-primary'>
+                        <div hidden id='edit_icon_btn_text'>
+                            <p>Change Icon</p>
+                        </div>
+                        <img id='edit_icon_img' src='' height='100' width='100'>
+                    </button>
+                </div>
+                <input type="file" id="edit_icon">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id='updateCourse' type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newCourseModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Create New Course</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="NewCourseForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="CourseTitle">Title</label> <input type="text" class="form-control" id="CourseTitle" placeholder="New Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="CourseDescription">Description</label> <input type="text" class="form-control" id="CourseDescription" placeholder="New Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="CourseIdentifier">URL Identifier</label> <input type="text" class="form-control" id="CourseIdentifier" placeholder="New Identifier">
+                    </div>
+                    <div class="form-group">
+                        <label for="CourseIcon">Icon</label> <input type="file" id="CourseIcon">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id='createCoursebtn' type="button" class="btn btn-primary">Create It!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+{% endblock %}

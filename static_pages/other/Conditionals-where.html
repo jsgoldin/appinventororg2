@@ -1,0 +1,27 @@
+{% extends "howdoyouTemplate.html" %}
+
+<h2>{% block title %}Conditionals: How do you program an app to make decisions?{% endblock %}</h2>
+{% block description %}
+				With App Inventor, you program event handlers-- how an app should
+				respond to something like the user clicking a button. But sometimes
+				an app shouldn't respond to an event the same every time. This is
+				where <span class="empfont">if</span> blocks, known as
+				"conditionals", come in. They allow the app to make decisions and
+				form the basis of artificial intelligence.
+{% endblock %}
+{% block question %} Example 2. How do you auto-respond to a “WHERE” text from a
+			particular person? {% endblock %}
+{% block answer %}
+<p>If your child or friend leaves this app running, you can
+				always find out where they are by sending a “WHERE” text to them.
+				This code illustrates a complex if-test, one with an “and” clause,
+				as you must test that both the sender is a particular phone number
+				and the text sent was “WHERE”. If both are true, a text auto-reply
+				is sent back to the phone number.</p>
+{% endblock %}
+
+{% block answerImage %} "/assets/img/conditionals/textParticular.png"{% endblock %}
+
+
+{% block answerVideo %} "//www.youtube.com/embed/YUjaMYJagn8" {% endblock %}
+{% block otherExampleLink %}<a href="/content/howDoYou/Conditionals/startStop">example 1</a>{% endblock %}

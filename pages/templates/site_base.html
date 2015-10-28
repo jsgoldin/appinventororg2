@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/JordansStuff/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/jbase.css">
+    <link rel="stylesheet" href="http://www.google.com/cse/style/look/v2/default.css" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/coursesystem.css">
+
+    {% for stylesheet in stylesheets %}
+    <link rel='stylesheet' type='text/css' href='{{stylesheet}}'>
+    {% endfor %}
+
+    <title>{{title}}</title>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-66794212-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    
+
+
+</head>
+<body>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MT8QWT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MT8QWT');</script>
+<!-- End Google Tag Manager -->
+
+
+<div id="header" class="header">
+    <div class="header-container">
+
+        <a data-TID="global-header-logo" href="/">
+            <img class="banner-logo responsive-fullwidth-img" src="/assets/img/newlogo.png">
+        </a>
+
+        <nav class="mega-menu" id="mega-menu-drop-down">
+            <ul>
+                <li>
+                    <div class="header-item">
+                        Learn
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="slideout-menu two-part-menu ">
+                        <ul>
+                            {% for key, values in courseToModules %}
+
+                            {% if key != "How do you...?" and key != "Teaching App Inventor" and key != "Java Bridge" %}
+
+                            <li {% if forloop.first %} class="selected-item" {% endif %}>
+
+                               
+                                     {% if key == "Course In A Box"%}   
+                                        <a data-TID="global-nav-menuitem-Course In A Box" href="/course-in-a-box-intro" class="menu-item">
+                                        {{key}}
+                                        <i class="fa fa-angle-right"></i>
+                                        </a>
+                                        
+                                     {% else %}
+
+                                         <div class="menu-item">
+                                            {{key}}
+
+                                            <i class="fa fa-angle-right"></i>
+                                    
+                                            <a data-TID="global-nav-menuitem-{{values.0.1}}" href="{{values.0.1}}"></a>
+                                        </div>
+                                     {% endif %}   
+                                    
+                              
+
+
+                                <div class="sub-item-menu">
+                                    {% for v in values %}
+                                    <a data-TID="global-nav-submenuitem-{{v.1}}" href="{{v.1}}" class="menu-item">
+                                        {{v.0}}
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% endfor %}
+
+                            <li>
+                                <a data-TID="global-nav-menuitem-Java Bridge" href="/jBridgeIntro" class="menu-item">
+                                    Java Bridge
+                                </a>
+                                <div class="sub-item-menu">
+                                    <div class="menu-item" style="text-align: center;">
+                                        <img style="width: 85%; display: block; margin: auto; padding: 30px 0px;" src="/assets/img/bridge.png">
+                                        Make the jump to writing real Java code.
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a data-TID="global-nav-menuitem-Java Bridge" href="/book2" class="menu-item">
+                                    AI2 Book
+                                </a>
+                                <div class="sub-item-menu">
+                                    <div class="menu-item" style="text-align: center;">
+                                        <img style="margin: 20px;
+  box-shadow: 6px 6px 8px rgb(170, 170, 170);" width="160px" src="/assets/img/ai2cover2.jpeg">
+                                        <div>The official App Inventor tutorial book.</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a data-TID="global-nav-menuitem-How do you...?" href="/content/howDoYou" class="menu-item">
+                                    How do you...?
+                                </a>
+
+                                <div class="sub-item-menu">
+                                    <div class="menu-item" style="text-align: center;">
+                                        <i class="fa fa-cogs"
+                                           style="font-size: 126px; margin: auto; display: block; margin-top: 20px; margin-bottom: 20px;"></i>
+                                        Glossary of essential app building techniques.
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a data-TID="global-nav-headeritem-teach" href="/teacherIntro" class="header-item">
+                        Teach
+                    </a>
+                </li>
+                <li>
+                    <a data-TID="global-nav-headeritem-about" href="/about" class="header-item">
+                        About
+                    </a>
+                </li>
+                {% if userStatus.isAccount %}
+                <li class="mega-menu-profile-menu">
+                    <div class="header-item">
+                        My Account
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="slideout-menu">
+                        <ul>
+                             <li>
+                                <div class="menu-item">     
+                                    Profile                       
+                                    <a data-TID="global-nav-menuitem-profile" href="/profile"></a>
+                                </div>
+                             </li>
+                             <li>
+                                <div class="menu-item">     
+                                    Logout                       
+                                    <a data-TID="global-nav-menuitem-logout" href="{{userStatus.logouturl}}"></a>
+                                </div>
+                             </li>                      
+                        </ul>
+                    </div>   
+                </li>
+                {% else %}
+                <li class="mega-menu-profile-menu">
+                    <a data-TID="global-nav-menuitem-login" href="/loginValidator" class="header-item">
+                        Login
+                    </a>
+                </li>
+                {% endif %}           
+                
+                {% if userStatus.admin %}
+                <li>
+                    <a href="/admin/dashboard" class="header-item">
+                        Admin
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <div id="drop-down-search" class="drop-down-search">
+            <form action="/siteSearch">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                <input class="form-control search-form" name="q" type="text" placeholder="Search Appinventor.org">
+            </form>
+        </div>
+
+
+        <div class="header-menu-right-side">
+
+
+
+            <ul>
+                <li>
+                    <form action="/siteSearch" class="nav-bar-search {% if userStatus.admin %} isAdmin {% endif%}">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        <input class="form-control search-form" name="q" type="text"
+                               placeholder="Search Appinventor.org">
+                    </form>
+                </li>
+                <li class="mega-menu-search-toggle">
+                    <div class="header-item" data-target="drop-down-search">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </li>
+                <li class="mega-menu-collapse-toggle">
+                    <div class="header-item" data-target="mega-menu-drop-down">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </li>
+            </ul>
+            
+            {% if userStatus.isAccount %}
+            <div class="profile-menu">
+                <div class="header-item">
+                    <img src='/imageHandler?key={{userStatus.account.key}}' width='30px' height='30px'>
+                    <span>{{userStatus.account.displayName}}</span>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="slideout-menu">
+                    <ul>
+                        <li>
+                            <a data-TID="global-nav-menuitem-profile" class="menu-item" href="/profile">Profile</a>
+                        </li>
+                        <li>
+                            <a data-TID="global-nav-menuitem-logout" class="menu-item" href="{{userStatus.logouturl}}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {% else %}
+
+            <a data-TID="global-nav-menuitem-login" href="/loginValidator" class="login-btn">
+                Login
+            </a>
+
+            {% endif %}
+            
+   
+        </div>
+    </div>
+</div>
+
+
+<div class="body-wrapper">
+    {% block body %}
+
+    {% endblock %}
+</div>
+
+
+<footer>
+    <div class='gen-container'>
+        <p class='footer-copyright'>AppInventor.org is licensed under an
+            Attribution-NonCommercial-ShareAlike 3.0 Unported License. </p>
+    </div>
+</footer>
+
+
+{% for script in scripts %}
+<script type="text/javascript" src="{{script}}"></script>
+{% endfor %}
+
+<script type="text/javascript" src="/assets/JordansStuff/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="/assets/js/navmenus.js"></script>
+
+
+<!-- Google custom search  -->
+<script>
+    (function () {
+        var cx = '008494446149806911917:dtcoh6mydd8';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+    })();
+</script>
+
+
+</body>
+</html>

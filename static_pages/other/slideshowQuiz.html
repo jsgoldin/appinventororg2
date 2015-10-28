@@ -1,0 +1,192 @@
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Slideshow Quiz</H1>
+<div class="row-fluid">
+  <div class="span8">
+
+<p>
+Many apps have a slideshow component-- the user is able to iterate through screens of information. In this tutorial, you'll build a slideshow of the greatest living NBA players (2013). Then you'll turn it into a quiz in which the user must identify the names of the players.
+</p>
+<h2>What You'll Learn</h2>
+Iterating through information is a commonly implemented with a list variable and an index variable. You'll learn to define a list variable, hidden from the user, to store the players pictures (file names). Then you'll learn about indexes-- numerical variables that keep track of where the user is in the slide show. You'll use this index to select and display the currently viewable slide.
+</p>
+<h2>Build the User Interface</h2>
+<ol>
+<li>
+Download the following image files to your computer: 
+They are pictures of Lebron James, Brittany Griner, and Steph Curry, the greatest living basketball players.
+</li>
+<li><strong>Start a New App.</strong> Go to newblocks.appinventor.edu and create a new project named "BasketballGreats"
+</li>
+<li>
+<strong>Upload the Pictures</strong>. In the Media section of the Designer, browse to and upload the pictures you just downloaded.
+</li>
+<li>
+<strong>Add an Image component and a "Next" Button.</strong>Drag out an Image component and a Button component. Name the Button component "NextButton" and set its Text to "Next".
+</li>
+</ol>
+
+</div>
+  <div class="span3">
+      <img src="{{apps2Dir}}/SlideShowQuiz/screen.png" alt="">
+    
+  </div>
+</div>
+<p>
+This app is different from SoundBoard apps like "I Have A Dream" in that the data (the pictures) isn't visible at all times. In App Inventor, <strong>variables</strong> are used to store information that is not visible to the user. So you'll define  a list variable to store the pictures (file names), then display one of them at a time in the Image component as the slideshow progresses. 
+</p>
+<ol>
+<li>
+In the Blocks Editor, open the Variables folder, drag out an <strong>initialize global block</strong>, and name it "Pictures".
+</li>
+<li>
+From the Lists folder, drag out a <strong>make a list</strong> block and plug it into the variable.
+</li>
+<li>
+From the Text folder, drag out a text block and enter "Lebron.jpg" as the text. Plug it into <strong>make a list</strong> block. 
+</li>
+<li>
+Copy the text block and paste it twice. Enter the files names for two other pictures in these blocks (griner.jpg" and "curry.jpg"). Plug them into the <strong>make a list</strong> block (you'll need to click on the + to add a third item).
+</li>
+</ol>
+<p>The blocks should appear as:</p>
+
+<h2>Show the First Picture on Startup</h2>
+<p>
+As is, the app knows about three pictures but none of them are displayed. The next step is to display the first list item ("lebron.jpg") when the app starts:
+<ol>
+<li>
+Drag out a <strong>Screen1.Initialize</strong> event handler. This event is triggered when an app begins.
+</li>
+<li>
+Drag out a <strong>set Image1.Picture</strong> block and plug it into the event handler.
+</li>
+<li>
+From the Lists folder, Drag out a <strong>select list item</strong> block. Plug it into the <set Image1.Picture> block.
+</li>
+<li>
+From the Variables folder, drag out a <strong>get</strong> block. Plug this in as the "list" parameter of the <strong>select list item</strong> block.
+</li>
+<li>
+From the Math block, drag out a <strong>number</strong> block. Change the number to 1 and plug it in as the "index" parameter of <strong>select list item</strong>.
+</li>
+</ol>
+<p>
+Your blocks should appear as:
+<br/><img src="{{apps2Dir}}/SlideShowQuiz/ScreenInit.png"/><br/>
+Note that you could have just placed the text "lebron.png" directly in as the <strong>Image1.Picture</strong>. However, it is better to refer more abstractly to "the first item in the list". This way, if you change the list and the first item, your app will still behave correctly.
+</p>
+<h2>Test the app</h2>
+<p>Connect the app to your phone or emulator. You should see Lebron James smiling at you!
+</p>
+<h2>The Index Variable</h2>
+<p>
+Thus far, you've learned how to select the first item from a list and display it. When the user clicks the NextButton, you'll also need to select an item, but a different item each time. The first time its clicked you'll choose the 2nd item, the second time its clicked the 3rd item, and so on.
+</p>
+<p>
+In order to program such a behavior, you define an <i>index</i> variable. Variables allow the app to remember things and in this case the variable will remember where the user is in the slideshow. "index" is the common name for such a variable, it means "position in list". The variable should start out as one, then be incremented each time the user clicks "Next". Do the following:
+<ol>
+<li>
+Drag out an initialize global block from the Variables folder. Name the variable "index".
+</li>
+<li>
+Drag out a number block from the Math folder. Set the number to 1 and plug it in as the initial value.
+</li>
+</ol>
+<br/><img src="{{apps2Dir}}/SlideShowQuiz/indexVar.png"/><br/>
+<h2>Challenge: Program the NextButton.Click Event Handler</h2>
+<p>
+Now its time to program the <strong>NextButton.Click</strong> event handler. You need to do two things: increment the index (e.g., change it from 1 to 2) and set the <strong>Image1.Picture</strong> to the "indexth" item of the list.
+</p>
+<div id="myCollapsibleExample"><a href="#demo4" data-toggle="collapse">View Solution</a></div>  
+<div id="demo4" class="collapse"> 
+<p>The following blocks provide an imperfect solution:
+<br/><img src="{{apps2Dir}}/slideShowQuiz/nextButton1.png"/><br/>
+</p>
+</div>
+
+<h2>Debug Challenge: Fix the App</h2>
+<p>Test the app. Does Brittney Griner show up the first time you click "Next", then Stephen Curry? What happens when you click Stephen Curry? Before moving on, try to identify and fix the errors. Hint: you'll need an <strong>if</strong> block. </p>
+<div id="myCollapsibleExample"><a href="#demo5" data-toggle="collapse">View Solution</a></div>  
+<div id="demo5" class="collapse">
+<div class="row-fluid">
+  <div class="span8">
+ 
+<p>The app dies when the NextButton is clicked a third time (with Curry showing). You probably saw an error message like the one on the right.
+The error message is a bit cryptic, but it does make sense: the app tried to select the 4th item of a 3-item list. Clearly, you need additional code to deal with reaching the end of the list. Here are the fixed blocks:
+<br/><img src="{{apps2Dir}}/slideShowQuiz/nextButton2.png"/><br/>
+</p>
+<p>
+As suggested, an <strong>if</strong> is used to check if the index is too large. If it is, the index is set back to 1 before selecting an item. This results in the app "looping back" to the first picture after reaching the end.
+</p>
+
+</div>
+  <div class="span3">
+      <img src="{{apps2Dir}}/SlideShowQuiz/error.png" alt="">
+    
+  </div>
+</div>
+<p>The solution above works for the particular list, but the code is too specific: if you added items to the list, you'd have to also change the "3" which refers to the specific size of the list. Such code dependencies often lead to software bugs.
+</p>
+A better solution uses the <strong>length of list</strong> block instead of the "3". Here are the modified blocks:
+<br/><img src="{{apps2Dir}}/slideShowQuiz/nextButton2.png"/><br/>
+</p>
+<div class="well>
+While this app has a fixed list of pictures (players), many app have <i>dynamic, user-generated data</i>. For instance, in the "Meet My ClassMates" app, the pictures list is filled with photos taken by the user. For such apps, you <i>must</i> develop apps that use generic references like <strong>length of list</strong>.
+</div>
+</div>
+<h2>Convert the Slideshow into a Quiz</h2>
+<div class="row-fluid">
+  <div class="span8">
+<p>You have a slideshow, so now its time to turn it into a quiz to test the user's basketball knowledge. Start by modifying the user interface:
+<ol>
+<li>
+Drag out a HorizontalArrangement and place it below the Image.
+</li>
+<li>
+Drag out a TextBox, name it AnswerText, and place it in the HorizontalArrangement.
+</li>
+<li>
+Drag out a Button, name it AnswerButton, and place it to the right of AnswerText within the HorizontalArrangement
+</li>
+<li>
+Place the NextButton to the right of the AnswerButton within the HorizontalArrangement
+</li>
+<li>
+Drag out a label, set its text to "Who is this basketball player?", and place it above the HorizontalArrangement
+</li> 
+</ol> 
+
+
+</div>
+  <div class="span3">
+      <img src="{{apps2Dir}}/SlideShowQuiz/screenMarked.png" alt="">
+    
+  </div>
+</div>
+<h2>Challenge: Add Blocks to Check the User's Answer</h2>
+<p>
+The next step is to check the user's answers. You'll need another list to store the player names, and an AnswerButton.Click event handler that compares the user's answer with the current name (the indexth name).
+</p>
+<div id="myCollapsibleExample"><a href="#demo7" data-toggle="collapse">View Solution</a></div>  
+<div id="demo7" class="collapse">
+<p>
+The "playerName" list should be ordered to correspond with the file names in the <strong>pictures</strong> list: "Lebron James", then "Brittney Griner", then "Stephen Curry":
+<br/><img src="{{apps2Dir}}/slideShowQuiz/playerNames.png"/><br/>
+
+<p>You need to compare the user's answer with the correct answer. The user enters the answer in AnswerText, so AnswerText.Text is the user's answer. The correct answer is the name of the currently showing player, but how do you refer to that? Fortunately, you already have the index variable setup: if it is 1, Lebron is showing, if it is 2, Brittney is showing, and if it is 3, Curry is showing. So the correct answer can be obtained with <strong>select list item</strong> on the playerNames list using the index variable. Here's the complete AnswerButton.Click event handler:
+<br/><img src="{{apps2Dir}}/slideShowQuiz/answerButton.png"/><br/>
+<p>This is a decent solution, but it has some problems. Specifically, the user's answer has to match the "correct" answer exactly. If the user types in "Lebron James" it will be correct, but "lebron james" or "Lebron" would be incorrect. As a challenge, think about how you might make the app a more lenient grader.
+</p>
+
+<p>
+It's also important to clear out the answer response and the user's answer when the user clicks "Next". Check out the bottom two rows of this updated NextButton.Click event handler:
+<br/><img src="{{apps2Dir}}/slideShowQuiz/nextButton4.png"/><br/>
+</div>
+
+
+
+
+
+
+{% endblock %}

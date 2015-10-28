@@ -1,0 +1,36 @@
+{% extends "templates/site_base.html" %} {% block body %}
+
+<div class="breadcrumbs-bar">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-12">
+				<a href="/admin/dashboard">Admin Dashboard</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class='gen-container footerFix'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='dashboard-box '>
+            	<h3>Admin Dashboard</h3>
+                <a href="/admin/courses" class="btn btn-default dashboard-item"> <img src="/assets/JordansStuff/icons/tutorialmanagement.png">
+                    <p>Course Management</p>
+                </a>
+                <a href="/admin/exportcourses" class="btn btn-default dashboard-item"> <img src="/assets/img/export.png" height='128' width='128'>
+                    <p>Export Courses</p>
+                </a>
+                <a href="/admin/importcourses" class="btn btn-default dashboard-item"> <img src="/assets/img/import.png" height='128' width='128'>
+                    <p>Import Courses</p>
+                </a> 
+                <a href="/admin/apps" class="btn btn-default dashboard-item"> <img src="/assets/img/import.png" height='128' width='128'>
+                    <p>App Management</p>
+                </a>                                               
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

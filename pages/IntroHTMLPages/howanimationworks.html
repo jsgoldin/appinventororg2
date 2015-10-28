@@ -1,0 +1,152 @@
+<link rel="stylesheet" type="text/css"
+	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+	<div class="dark-blue-title">
+		<div class="course-page-container">
+			<h1>Animation</h1>
+		</div>
+	</div>
+	<div class="course-page-container">
+		<div class="card">
+			<p>
+				Animation is an optical illusion. The flipbook below is displaying a
+				series of pages quickly so that, to the naked eye, the images are
+				moving.
+			</p>
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/A_slide.gif"> <br>
+			
+			
+			<p>When we drive, we think of speed in terms of miles per hour (MPH). In animation and film,
+			frames per second (FPS) is used instead, where a "frame" is each page in the flipbook. </p>
+		</div>
+		<div class="card">
+			<h2>Smooth vs Laggy Animation</h2>
+			<p>
+				To get a feel for how frames per second can be used to control an animation, play the stop
+				motion video below at different speeds by clicking the gear icon
+			on the bottom right of the video, choosing "Speed", and selecting various settings.</p>
+			<iframe class="center-img" width="560" height="315"
+			src="https://www.youtube.com/embed/hayIPU3wRuo" frameborder="0"
+			allowfullscreen></iframe>
+			<br>
+			
+		</div>
+		
+		<div class="card">
+			<h2>Animation in App Inventor using the Clock Component</h2>
+			<p>In App Inventor, you can use the Clock component and its Clock.Timer event
+				to facilitate animation. For instance, the following blocks cause a ball to move
+				to the right every second:
+			</p>
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/CL_B1M.png
+			">
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/A_SB.gif">
+			<p>Notice that the ball is slow and lags. This is because the Clock.Timer
+				event triggers every 1000 milliseconds by default. You can change the Clock.TimerInterval
+			to make an animation faster or slower-- this is how you control the frames per second.</p>
+			
+			<p>For instance, if we changed the TimerInterval in the Clock’s properties to 10
+			ms instead of 1000 ms, we'd get a faster ball movement:</p>
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/C_PTI.png ">
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/CL_B1M.png
+			"> <br>
+			<p>Now the ball moves smoothly across the screen because it is moving 1 pixel every 10 ms.</p>
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/A_BMB.gif
+			">
+			<br>
+			<p>What is the frames per second (FPS) of the animation if the Clock.TimerInterval is set to 10 ms.</p>
+			<div class="quiz-panel-inner">
+				<div id="q6a" class="collapse">
+					<p> The Clock.Timer event will trigger every 10 ms. 10 ms is 1/100 of a second, so this means the Clock.Timer
+					event will trigger 100 times a second. Thus the FPS is 100.</p>
+				</div>
+				<a type="button" href="#q6a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q6b" name="q6b">Show Answer</a>
+				
+			</div>
+			
+			
+		</div>
+		<div class="card">
+			<h2>Doing Animation in App Inventor</h2>
+			<p>
+				Animation is a series of images that are played at fast speeds to
+				create an optical illusion of animation. To envision this, think
+				about a ball on a canvas that increases its x position quickly enough
+				to look like it is moving slowly across the screen (This can be done
+				similarly to to how score was incremented in Mole Mash).<br>
+				Mole Mash Incrementing.
+			</p>
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/MM_Incrementing.png"> <br>
+			<p>Check out the Gif below of the ball moving to the right each
+				time the button is clicked. The button is being clicked quickly so
+			that it looks like the ball is being animated.</p>
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/RB_CL.png
+			"> <img
+			class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/A_BMB1.gif">
+			<br>
+			<p>
+				<b>If</b> we want our app to make the ball move <b>without</b>
+				clicking… <br> Which component should we use?<br> (Hint: It
+				has to a component that continuously goes off based on a timer
+				interval.)
+			</p>
+			<div class="quiz-panel-inner">
+				<div id="q12a" class="collapse">
+					<p>Clock Component</p>
+				</div>
+				<a type="button" href="#q12a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q12b" name="q12b">Show Answer</a>
+			</div>
+		</div>
+		<div class="card">
+			<h2>Animation With The Clock Component</h2>
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/RB_CL.png">
+			<p>
+				<b>If </b> you put the set block above (set ball1.x to x+1) into the Clock.Timer event
+				handler. What would happen?
+			</p>
+			<div style="border: 0px solid rgba(0, 0, 0, 0.1);"
+				class="quiz-panel-outer">
+				<div class="quiz-panel-inner">
+					<div id="q2a" class="collapse">
+						<p>Notice that the ball is slow and lags.</p>
+						<img class="img-responsive center-img" alt="img0"
+						src="/images/CourseInABoxImages/A_SB.gif">
+					</div>
+					<a type="button" href="#q2a" data-toggle="collapse"
+					onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
+				</div>
+			</div>
+			
+			<p>Let’s change our TimerInterval in the Clock’s properties to 10
+			ms instead of 1000 ms.</p>
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/C_PTI.png ">
+			<div style="border: 0px solid rgba(0, 0, 0, 0.1);"
+				class="quiz-panel-outer">
+				<div class="quiz-panel-inner">
+					<div id="q3a" class="collapse">
+						<img class="img-responsive center-img" alt="img0"
+						src="/images/CourseInABoxImages/CL_B1M.png
+						"> <br>
+						<p>Now the ball moves smoothly across the screen because it is moving 1 pixel every 10 ms.</p>
+						<img class="img-responsive center-img" alt="img0"
+						src="/images/CourseInABoxImages/A_BMB.gif
+						">
+					</div>
+					<a type="button" href="#q3a" data-toggle="collapse"
+					onclick="showHideToggle(id)" id="q3b" name="q3b">Show Answer</a>
+				</div>
+			</div>
+		</div>
+		<!-- End of container -->

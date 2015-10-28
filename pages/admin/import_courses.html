@@ -1,0 +1,29 @@
+{% extends "templates/site_base.html" %} {% block body %}
+<div class="breadcrumbs-bar">
+	<div class="gen-container">
+		<div class="row">
+			<div class="col-md-12">
+				<a href="/admin/dashboard">Admin Dashboard</a> 
+				<span>&gt</span>
+				<a href="/admin/importcourses">Import Courses</a> 
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='gen-container footer-fix'>
+    <div class='row'>
+        <div class='col-md-12 export-container'>
+            <h2>Import courses and content</h2>
+            <p>This will completly replace the current courses with the contents of this file!</p>
+            <p>Make sure to only use valid export .dat files for the import.</p>
+            <button id='import_upload_button' type="button" class="btn btn-default">Import</button>
+            <input type="file" class='hidden_input' id="import_file_input">
+
+            <i class="fa fa-spinner fa-spin loading-icon"></i>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

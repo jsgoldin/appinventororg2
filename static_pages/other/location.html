@@ -1,0 +1,64 @@
+{% extends "site_base.html" %}
+{% block body %}
+<title>Location</title>
+  
+<h2>How do you know where you are?</h2>
+          <p>
+			The LocationSensor communicates with GPS satellites and other mechanisms to 
+			determine the location of your phone/tablet. 
+		  </p> 
+       <div class="row-fluid">
+       	<div class="span6">
+       	<a name="circle"></a> 
+		  <h3>Example 1. How do you display your current latitude, longitude, and address?</h3>
+		    <img class="thumbnail" src="../../assets/img/location/whereAmI.png" border="0"/>
+		    <img class="thumbnail" src="../../assets/img/location/whereAmIBlocks.png" border="0"/>
+		   <p>
+			The <span class="empfont">LocationSensor.LocationChanged</span> event is triggered 1) when the app first 
+			gets a reading from the GPS satellites or other mechanisms, and 2) when the phone 
+			or tablet’s location changes. If you are walking around, it could trigger many times. 
+			You can control how often LocationChanged is triggered with the <span class="empfont">LocationSensor.TimeInterval</span> 
+			and <span class="empfont">LocationSensor.DistanceInterval</span> properties. The TimeInterval is set to 60,000 ms, or 
+			1 minute, by default. This means that <span class="empfont">LocationChanged</span> will only be triggered again after one minute. 
+			</p><p>
+			In this sample, the location readings are displayed in labels. Latitude and longitude 
+			are numbers, while the <span class="empfont">currentAddress</span> property provides a street address for your current 
+			location. As you walk around, you’ll see the numbers and address change.
+
+			</p>
+			
+		</div>
+          <div class="span4">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/M9XmmJzwmO4" 
+             frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+        <hr>
+        <div class="row-fluid">   
+        <div class="span6">
+        <a name="backForth"></a> 
+		<h3>Example 2. How do you know how far you are from a given point?</h3>
+		<img class="thumbnail" src="../../assets/img/location/distanceUI.png" border="0"/>
+		<img class="thumbnail" src="../../assets/img/location/distance.png" border="0"/>
+		<p>
+			App Inventor doesn’t provide a “distance” block for computing the distance between 
+			two GPS coordinates. But there are known mathematical formulas for approximating 
+			such a distance between two points. The solution is to create your own block-- a procedure-- 
+			and plug in one of the known formulas. The procedure “distance”  above uses a formula 
+			from <a href="http://geokoder.com/distances">http://geokoder.com/distances</a>. 
+
+		Once you have a distance procedure, you can call it as in the bottom row of the <span class="empfont">LocationChanged</span> 
+		event handler. This sample computes the distance from your current location and the University 
+		of San Francisco campus.
+
+		</p>
+		
+		</div>
+		<div class="span4">
+        
+        </div>
+
+    </div>     
+
+
+{% endblock %}

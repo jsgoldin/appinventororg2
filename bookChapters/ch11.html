@@ -1,0 +1,1042 @@
+
+    <section data-type="chapter" data-pdf-bookmark="Chapter 11. Broadcast Hub" id="broadcast_hub">
+<h1>Broadcast Hub</h1>
+
+<p><em>FrontlineSMS (<a href="http://www.frontlinesms.com">http://www.frontlinesms.com</a>) is a software tool used in developing countries to monitor elections, broadcast weather changes, and connect people who don’t have access to the Web but do have phones and mobile connectivity. It is the brainchild of Ken Banks, a pioneer in using mobile technology to help people in need.</em></p>
+
+<p><em>FrontlineSMS software serves as a hub for SMS text communication within a group. People who don’t have Internet access but do have mobile connectivity can send in a special code to join the group, after which they receive broadcast messages from the hub. For places with no Internet access, the broadcast hub can serve as a vital connection to the outside world.</em></p>
+
+<div class="floatRight"><em><img alt="Broadcast Hub" src="/assets/img/bookChapters/bh.png"/></em></div>
+
+<p><em>In this chapter, you’ll create a broadcast hub app that works similarly to FrontlineSMS but runs on an Android phone. Having the hub itself on a mobile device means the administrator can be on the move, something that is especially important in controversial situations like election monitoring and healthcare negotiations.</em></p>
+
+<p>In this chapter, you’ll build a broadcast hub app for the fictitious FlashMob Dance Team (FMDT), a group that uses the hub to organize flash mob dances anywhere, anytime. People will register with the group by texting “joinFMDT” to the hub, and anyone who is registered can broadcast messages to everyone else in the group.</p>
+
+<p>Your app will process received text messages in the following manner:</p>
+
+<ol>
+	<li>If the text message is sent from someone not yet in the broadcast list, the app responds with a text that invites the person to join the broadcast list.</li>
+	<li>If the text message with the special code “joinFMDT” is received, the app adds the sender to the broadcast list.</li>
+	<li>If the text message is sent from a number already in the broadcast list, the message is broadcast to all numbers in the list.</li>
+</ol>
+
+<p>The app is more complicated than the No Text While Driving app in <a data-type="xref" href="ch04.html#no_texting_while_driving">Chapter 4</a>, but you’ll build it one piece of functionality at a time, starting with the first auto-response message that invites people to join. By the time you complete this app, you’ll have a pretty good idea of how to write apps utilizing SMS text as the user interface. Want to write a vote-by-text app like those used on television talent shows, or the next great group texting app? You’ll learn how here!</p>
+
+<section data-type="sect1" data-pdf-bookmark="What You’ll Learn" id="what_youapostrophell_learn-id00097">
+<h1>What You’ll Learn</h1>
+
+<p>The tutorial covers the following App Inventor concepts, some of which you’re likely familiar with by now:</p>
+
+<ul>
+	<li>The <strong>Texting</strong> component for sending texts and processing received texts.</li>
+	<li>List variables and dynamic data--in this case, to keep track of the list of phone numbers.</li>
+	<li>The <strong>foreach</strong> block to allow an app to repeat operations on a list of data. In this case, you’ll use <strong>foreach</strong> to broadcast messages to the list of phone numbers.</li>
+	<li>The <strong>TinyDB</strong> component to store data persistently. This means that if you close the app and then relaunch it, the list of phone numbers will still be there.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Getting Started" id="getting_started-id00098">
+<h1>Getting Started</h1>
+
+<p>You’ll need a phone with SMS service to test or run this app. You’ll also need to recruit some friends to send you texts in order to fully test the app.</p>
+
+<p>Connect to the App Inventor website and start a new project. Name it “BroadcastHub” and also set the screen’s title to “Broadcast Hub”. Then connect your device or emulator for live testing.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Designing the Components" id="designing_the_components-id00099">
+<h1>Designing the Components</h1>
+
+<p>Broadcast Hub facilitates communication between mobile phones. Those phones do not need to have the app installed, or even be smartphones-- they’ll communicate by text with your app. So, in this case, you’re not building an interface for your app’s users, but instead for the group administrator.</p>
+
+<p>The user interface for the administrator is simple: it displays the current <em>broadcast list, </em>that is, the list of phone numbers that have registered for the service, and all of the texts it receives and broadcasts.</p>
+
+<p>To build the interface, add the components listed in <a data-type="xref" href="#user_interface_components_for_broadcast">Table 11-1</a>.</p>
+
+<table id="user_interface_components_for_broadcast">
+	<caption>User interface components for Broadcast Hub</caption>
+	<thead>
+		<tr>
+			<th>Component type</th>
+			<th>Palette group</th>
+			<th>What you’ll name it</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Label1</code></p>
+			</td>
+			<td>
+			<p>This is the header above the list of phone numbers.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>BroadcastListLabel</code></p>
+			</td>
+			<td>
+			<p>Display the phone numbers that are registered.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Label2</code></p>
+			</td>
+			<td>
+			<p>This is the header above the log information.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Label</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>LogLabel</code></p>
+			</td>
+			<td>
+			<p>Display a log of the texts received and broadcast.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Texting</code></p>
+			</td>
+			<td>
+			<p>Social</p>
+			</td>
+			<td>
+			<p><code>Texting1</code></p>
+			</td>
+			<td>
+			<p>Process the texts.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>TinyDB</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>TinyDB1</code></p>
+			</td>
+			<td>
+			<p>Store the list of registered phone numbers.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>As you add the components, set the following properties:</p>
+
+<ol>
+	<li>Set the <strong>Width</strong> of each label to “Fill parent” so that it spans the phone horizontally.</li>
+	<li>Set the <strong>FontSize</strong> of the header labels (<strong>Label1</strong> and <strong>Label2</strong>) to 18 and check their FontBold boxes.</li>
+	<li>Set the <strong>Height</strong> of <strong>BroadcastListLabel</strong> and <strong>LogLabel</strong> to 200 pixels. They’ll show multiple lines.</li>
+	<li>Set the <strong>Text</strong> property of <strong>BroadcastListLabel</strong> to “Broadcast List...”.</li>
+	<li>Set the <strong>Text</strong> property of <strong>LogLabel</strong> to blank.</li>
+</ol>
+
+<p><a data-type="xref" href="#broadcast_hub_in_the_components_designer">Figure 11-1</a> shows the app layout in the Component Designer.</p>
+
+<figure id="broadcast_hub_in_the_components_designer"><img alt="Broadcast Hub in the Components Designer" src="/assets/img/bookChapters/bh11-1.png"/>
+<figcaption>Broadcast Hub in the Components Designer</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Adding Behaviors to the Components" id="adding_behaviors_to_the_componen-id00100">
+<h1>Adding Behaviors to the Components</h1>
+
+<p>The activity for Broadcast Hub is not triggered by the user entering information or clicking a button, but rather by texts coming in from other phones. To process these texts and store the phone numbers that sent them in a list, you’ll need the following behaviors:</p>
+
+<ul>
+	<li>When the text message is sent from someone not already in the broadcast list, the app responds with a text that invites the sender to join.</li>
+	<li>When the text message “joinFMDT” is received, register the sender as part of the broadcast list.</li>
+	<li>When the text message is sent from a number already in the broadcast list, the message is broadcast to all numbers in the list.</li>
+</ul>
+
+<section data-type="sect2" data-pdf-bookmark="Responding to Incoming Texts" id="response_text">
+<h2>Responding to Incoming Texts</h2>
+
+<p>You’ll start by creating the first behavior: when you receive a text, send a message back to the sender inviting her to register by texting “joinFMDT” back to you. You’ll need the blocks listed in <a data-type="xref" href="#blocks_for_adding_the_functionality_to_i">Table 11-2</a>.</p>
+
+<table id="blocks_for_adding_the_functionality_to_i">
+	<caption>Blocks for adding the functionality to invite people to the group via text</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>Texting1.MessageReceived</em> </strong></p>
+			</td>
+			<td>
+			<p>Texting1</p>
+			</td>
+			<td>
+			<p>Triggered when the phone receives a text.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set Texting1.PhoneNumber to</em> </strong></p>
+			</td>
+			<td>
+			<p>Texting1</p>
+			</td>
+			<td>
+			<p>Set the number for the return text.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get number</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag from MessageReceived event handler</p>
+			</td>
+			<td>
+			<p>The argument of <code>MessageReceived</code>. This is the phone number of the sender.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set Texting1.Message</em> </strong></p>
+			</td>
+			<td>
+			<p>Texting1</p>
+			</td>
+			<td>
+			<p>Set the invite message to send.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“To join this broadcast list, text ‘joinFMDT’ to this number”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The invite message.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>Texting1.SendMessage</em> </strong></p>
+			</td>
+			<td>
+			<p>Texting1</p>
+			</td>
+			<td>
+			<p>Send it!</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the Blocks Work</h3>
+
+<p>If you completed the No Texting While Driving app in <a data-type="xref" href="ch04.html#no_texting_while_driving">Chapter 4</a>, these blocks should look familiar. <strong>Texting1.MessageReceived</strong> is triggered when the phone receives any text message. As shown in <a data-type="xref" href="#sending_the_invite_message_back_after_re">Figure 11-2</a>, the blocks within the event handler set the <strong>PhoneNumber</strong> and <strong>Message</strong> of the <strong>Texting1</strong> component and then send the message.</p>
+
+<figure id="sending_the_invite_message_back_after_re"><img alt="Sending the invite message back after receiving a text" src="/assets/img/bookChapters/bh11-2.png"/>
+<figcaption>Sending the invite message back after receiving a text</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>You’ll need a second phone to test this behavior; you don’t want to text yourself, as it could loop forever! If you don’t have another phone, you can register with Google Voice or a similar service and send SMS texts from that service to your phone. From the second phone, send the text “hello” to the phone running the app. The second phone should then receive a text that invites it to join the group.</em></p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Adding Numbers to the Broadcast List" id="adding_someone_to_the_broadcast_list">
+<h2>Adding Numbers to the Broadcast List</h2>
+
+<p>Now let’s create the blocks for the second behavior: when the text message “joinFMDT” is received, add the sender to the broadcast list. First, you’ll need to define a list variable, <strong>BroadcastList</strong>, to store the phone numbers that register. From the Variables drawer, drag out a <strong>initialize global</strong> block and name it “BroadcastList”. Initialize it to an empty list with a <strong>create</strong><strong> a list</strong> block from the Lists drawer, as shown in <a data-type="xref" href="#broadcastlist_variable_for_storing_the_l">Figure 11-3</a> (we’ll add the functionality to build this list shortly).</p>
+
+<figure id="broadcastlist_variable_for_storing_the_l"><img alt="The BroadcastList variable for storing the list of registered numbers" src="/assets/img/bookChapters/bh11-3.png"/>
+<figcaption>The BroadcastList variable for storing the list of registered numbers</figcaption>
+</figure>
+
+<p>Next, modify the <strong>Texting1.MessageReceived</strong> event handler so that it adds the sender’s phone number to the <strong>BroadcastList</strong> if the message received is “joinFMDT.” You’ll need an <strong>if else</strong> block to check the message, and an <strong>add item to list</strong> block to add the new number to the list. The full set of blocks you’ll need is listed in <a data-type="xref" href="#blocks_for_checking_a_text_message_and_a">Table 11-3</a>. After you add the number to the list, display the new list in the <strong>BroadcastListLabel</strong>.</p>
+
+<table id="blocks_for_checking_a_text_message_and_a">
+	<caption>Blocks for checking a text message and adding the sender to the broadcast list</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>ifelse</em> </strong></p>
+			</td>
+			<td>
+			<p>Control</p>
+			</td>
+			<td>
+			<p>Depending on the message received, do different things.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>=</em> </strong></p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>Determine whether <strong>messageText</strong> is equal to “joinFMDT.”</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get messageText</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from MessageReceived event handler</p>
+			</td>
+			<td>
+			<p>Plug this into the <strong><em>=</em></strong> block.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“joinFMDT”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Plug this into the <strong><em>=</em></strong> block.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>add items to list</em> </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Add the sender’s number to <strong>BroadcastList</strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get global BroadcastList</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from variable initialization block.</p>
+			</td>
+			<td>
+			<p>The list.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get number</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from MessageReceived event handler</p>
+			</td>
+			<td>
+			<p>Plug this in as an item of <strong><em>add items to list</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set BroadcastListLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>BroadcastListLabel</p>
+			</td>
+			<td>
+			<p>Display the new list.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>global BroadcastList</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from variable initialization block</p>
+			</td>
+			<td>
+			<p>Plug this in to set the <strong><em>BroadcastListLabel.Text to</em></strong> block.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set Texting1.Message to</em> </strong></p>
+			</td>
+			<td>
+			<p>Texting1</p>
+			</td>
+			<td>
+			<p>Prepare <strong>Texting</strong> to send a message back to the sender.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“Congrats, you...”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Congratulate the sender for joining the group.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>The first row of blocks shown in <a data-type="xref" href="#if_the_incoming_message_is_quotation_mar">Figure 11-4</a> sets <strong>Texting1.PhoneNumber</strong> to the phone number of the message that was just received; we know we’re going to respond to the sender, so this sets that up. The app then asks if the <strong>messageText</strong> was the special code, “joinFMDT.” If so, the sender’s phone number is added to the <strong>BroadcastList</strong>, and a congratulations message is sent. If the <strong>messageText</strong> is something other than “joinFMDT,”” the reply message repeats the invitation message. After the <strong>ifelse</strong> block, the reply message is sent (bottom row of the blocks).</p>
+
+<figure id="if_the_incoming_message_is_quotation_mar"><img alt="If the incoming message is “joinFMDT”, add the sender to BroadcastList" src="/assets/img/bookChapters/bh11-4.png"/>
+<figcaption>If the incoming message is “joinFMDT”, add the sender to BroadcastList</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>From a phone not running the app, send the text message “joinFMDT” to the phone running the app. You should see the phone number listed in the user interface under “Registered Phone Numbers.” The “sending" phone should also receive the Congrats message as a text in reply. Try sending a message other than “joinFMDT” as well to check if the invite message is still sent correctly.</em></p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Broadcasting the Messages" id="broadcasting_messages">
+<h2>Broadcasting the Messages</h2>
+
+<p>Next, you’ll add the behavior so that the app broadcasts received messages to the numbers in <strong>BroadcastList</strong>, but only if the message arrives from a number already stored in that list. This additional complexity will require more control blocks, including another <strong>if else</strong> and a <strong>foreach</strong>. You’ll need an additional <strong>if else</strong> block to check if the number is in the list, and a <strong>for each</strong> block to broadcast the message to each number in the list. You’ll also need to move the <strong>if else</strong> blocks from the previous behavior and slot them into the “else” part of the new <strong>if else</strong>. All the additional blocks you’ll need are listed in <a data-type="xref" href="#blocks_for_checking_if_the_sender_is_in">Table 11-4</a>.</p>
+
+<table id="blocks_for_checking_if_the_sender_is_in">
+	<caption>Blocks for checking if the sender is in the group already</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>if else</em> </strong></p>
+			</td>
+			<td>
+			<p>Control</p>
+			</td>
+			<td>
+			<p>Depending on whether the sender is already in the list, do different things.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>is in list?</em> </strong></p>
+			</td>
+			<td>
+			<p>Lists</p>
+			</td>
+			<td>
+			<p>Check to see if something is in a list.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get global BroadcastList</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from variable initialization block</p>
+			</td>
+			<td>
+			<p>Plug this into the “list” slot of <strong><em>is in list?</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get number</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from MessageReceived event handler</p>
+			</td>
+			<td>
+			<p>Plug this into the “thing” slot of <strong><em>is in list?</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>for each</em> </strong></p>
+			</td>
+			<td>
+			<p>Control</p>
+			</td>
+			<td>
+			<p>Repeatedly send out a message to all members in the list.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get global BroadcastList</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from variable initialization block</p>
+			</td>
+			<td>
+			<p>Plug this into the “list” slot of <strong><em>foreach</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set Texting1.Message to</em> </strong></p>
+			</td>
+			<td>
+			<p>Texting1</p>
+			</td>
+			<td>
+			<p>Set the message.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get messageText</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from the MessageReceived event</p>
+			</td>
+			<td>
+			<p>The message that was received and will be broadcast.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set Texting1.PhoneNumber to</em> </strong></p>
+			</td>
+			<td>
+			<p>Texting1</p>
+			</td>
+			<td>
+			<p>Set the phone number.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get item</em></strong></p>
+			</td>
+			<td>
+			<p>Drag out from foreach block.</p>
+			</td>
+			<td>
+			<p>Hold the current item of the BroadcastList; it’s a (phone) number.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>The app has become complex enough that it requires a <em>nested</em> <strong>if else</strong> block, as shown in <a data-type="xref" href="#now_we_check_if_the_sender_is_already_in">Figure 11-5</a>. A nested <strong>if else</strong> block is one slotted within the “if” or “else” part of another, outer <strong>if else</strong>. In this case, the outer <strong>ifelse</strong> branch checks whether the phone number of the received message is already in the list. If it is, the message is relayed to everyone in the list. If the number is not in the list, then the <em>nested</em> test is performed: the blocks check if the <strong>messageText</strong> is equal to “joinFMDT” and branches one of two ways based on the answer.</p>
+
+<p>In general, <strong>if</strong> and <strong>if else</strong> blocks can be nested to arbitrary levels, giving you the power to program increasingly complex behaviors (see <a data-type="xref" href="ch18.html#programming_your_app_to_make_decisions_c">Chapter 18</a> for more information on conditional blocks).</p>
+
+<p>The message is broadcast using a <strong>for each</strong> (within the outer <strong>then</strong> clause). The <strong>for each</strong> loops through and sends the message to each item in the <strong>BroadcastList</strong>. As the <strong>for each</strong> repeats, each succeeding phone number from the <strong>BroadcastList</strong> is stored in <strong>item</strong> (<strong>item</strong> is a variable placeholder for the current item being processed in the <strong>for each</strong>). The blocks within the <strong>foreach</strong> set <strong>Texting.PhoneNumber</strong> to the current item and then send the message. For more information on how <strong>foreach</strong> works, see <a data-type="xref" href="ch20.html#iteration_blocks_iteration">Chapter 20</a>.</p>
+
+<figure id="now_we_check_if_the_sender_is_already_in"><img alt="Now we check if the sender is already in the group and broadcast the message if so" src="/assets/img/bookChapters/bh11-5.png"/>
+<figcaption>The blocks check if the sender is already in the group and broadcasts the message if so</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>First, have two different phones register by texting “joinFMDT” to the phone running the app. Then, text another message from one of the phones. Both phones should receive the text (including the one that sent it).</em></p>
+</div>
+</section>
+
+<section data-type="sect2" id="cleaning_up_your_list_display">
+<h1>Beautifying the List Display</h1>
+
+<p>The app can now broadcast messages, but the user interface for the app administrator needs some work. First, the list of phone numbers is displayed in an inelegant way. Specifically, when you place a list variable into a label, it displays the list with spaces between the items, fitting as much as possible on each line. So the <strong>BroadcastListLabel</strong> might show the <strong>BroadcastList</strong> like this:</p>
+
+<p>(+1415111-1111 +1415222-2222 +1415333-3333 +1415444-4444)</p>
+
+<p>To improve this formatting, create a procedure <strong>displayBroadcastList</strong> using the blocks listed in <a data-type="xref" href="#blocks_to_clean_up_the_display_of_phone">Table 11-5</a>. This procedure displays the list with each phone number on a separate line. Be sure to call the procedure from below the <strong>add items to list</strong> block so that the updated list is displayed.</p>
+
+<table id="blocks_to_clean_up_the_display_of_phone">
+	<caption>Blocks to clean up the display of phone numbers in your list</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>to procedure</em></strong> (“displayBroadcastList”)</p>
+			</td>
+			<td>
+			<p>Procedures</p>
+			</td>
+			<td>
+			<p>Create the procedure (do not choose <strong><em>to procedure r</em></strong><strong><em>esult</em></strong>).</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set BroadcastListLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>BroadcastListLabel</p>
+			</td>
+			<td>
+			<p>Display the list here.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Click <strong><em>text</em></strong> and then click Delete to create an empty text object.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>for each</em> </strong></p>
+			</td>
+			<td>
+			<p>Control</p>
+			</td>
+			<td>
+			<p>Iterate through the numbers.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get global BroadcastList</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from variable initialization block</p>
+			</td>
+			<td>
+			<p>Plug this into the “in list” slot of <strong><em>foreach</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set BroadcastListLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>BroadcastListLabel</p>
+			</td>
+			<td>
+			<p>Modify this with each of the numbers.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>join text</em> </strong></p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Build a text object from multiple parts.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>BroadcastListLabel.Text</em> </strong></p>
+			</td>
+			<td>
+			<p>BroadcastListLabel</p>
+			</td>
+			<td>
+			<p>Add this to the label on each iteration of <strong><em>foreach</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“\n”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Add a newline character so that the next number is on the next line.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get item</em></strong></p>
+			</td>
+			<td>
+			<p>Drag out from <strong>for each</strong> block.</p>
+			</td>
+			<td>
+			<p>The current number from the list.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>The <strong>foreach</strong> in <strong>displayBroadcastList</strong> successively adds a phone number to the end of the label, as shown in <a data-type="xref" href="#displaying_the_phone_numbers_with_a_newl">Figure 11-6</a>, placing a newline character (\n) between each item to place each number on a new line.</p>
+
+<figure id="displaying_the_phone_numbers_with_a_newl"><img alt="Displaying the phone numbers with a newline between each" src="/assets/img/bookChapters/bh11-6.png"/>
+<figcaption>Displaying the phone numbers with a newline between each</figcaption>
+</figure>
+
+<p>Of course, this <strong>displayBroadcastList</strong> procedure will not do anything unless you call it. Place a call to it in the <strong>Texting1.MessageReceived</strong> event handler, right below the call to <strong>add item to list</strong>. The call should replace the blocks that simply set the <strong>BroadcastListLabel.Text</strong> to <strong>BroadcastList</strong>. The <strong>call displayBroadcastList</strong> block can be found in the Procedures drawer.</p>
+
+<p><a data-type="xref" href="#calling_the_displaybroadcastlist_procedu">Figure 11-7</a> shows how the relevant blocks within the Texting1.MessageReceived event handler should look.</p>
+
+<figure id="calling_the_displaybroadcastlist_procedu"><img alt="Calling the displayBroadcastList procedure" src="/assets/img/bookChapters/bh11-7.png"/>
+<figcaption>Calling the displayBroadcastList procedure</figcaption>
+</figure>
+
+<p>For more information on using <strong>for each</strong> to display a list, see <a data-type="xref" href="ch20.html#iteration_blocks_iteration">Chapter 20</a>. For more information about creating and calling procedures, see <a data-type="xref" href="ch21.html#defining_procedures_reusing_blocks">Chapter 21</a>.</p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>Restart the app to clear the list and then have at least two different phones register (again). Do the phone numbers appear on separate lines?</em></p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Logging the Broadcasted Texts" id="logging_the_broadcasted_texts">
+<h2>Logging the Broadcasted Texts</h2>
+
+<p>When a text is received and broadcast to the other phones, the app should log that occurrence so the administrator can monitor the activity. In the Component Designer, you added the label <strong>LogLabel</strong> to the user interface for this purpose. Now, you’ll code some blocks that change <strong>LogLabel</strong> each time a new text arrives.</p>
+
+<p>You need to build a text that says something like “message from +1415111-2222 was broadcast.” The number +1415111-2222 is not fixed data--instead, it is the value of the argument <strong>number</strong> that comes with the <strong>MessageReceived</strong> event. So, to build the text, you’ll concatenate the first part, “message from”, with a <strong>get number</strong> block and finally with the last part of the message, the text “broadcast.”</p>
+
+<p>As you’ve done in previous chapters, use <strong>join</strong> to concatenate the parts using the blocks listed in <a data-type="xref" href="#blocks_to_build_your_log_of_broadcasted">Table 11-6</a>.</p>
+
+<table id="blocks_to_build_your_log_of_broadcasted">
+	<caption>Blocks to build your log of broadcasted messages</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>set LogLabel.Text to</em> </strong></p>
+			</td>
+			<td>
+			<p>LogLabel</p>
+			</td>
+			<td>
+			<p>Display the log here.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>join text</em> </strong></p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Build a text object out of multiple parts.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“message from”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>This is the report message.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get number</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from MessageReceived event handler</p>
+			</td>
+			<td>
+			<p>The sender’s phone number.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“broadcast\n”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Add the last part of “message from 111–2222 broadcast” and include newline.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>LogLabel.Text</em> </strong></p>
+			</td>
+			<td>
+			<p>LogLabel</p>
+			</td>
+			<td>
+			<p>Add a new log to the previous ones.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>After broadcasting the received message to all of the numbers in <strong>BroadcastList</strong>, the app now modifies the <strong>LogLabel</strong> to add a report of the just-broadcasted text, as shown in <a data-type="xref" href="#adding_a_new_broadcast_message_to_the_lo">Figure 11-8</a>. Note that the message is added to the beginning of the list instead of the end, so the more recent message sent to the group shows up at the top.</p>
+
+<figure id="adding_a_new_broadcast_message_to_the_lo"><img alt="Adding a new broadcast message to the log" src="/assets/img/bookChapters/bh11-8.png"/>
+<figcaption>Adding a new broadcast message to the log</figcaption>
+</figure>
+
+<p>The <strong>join</strong> block creates new entries of the form:</p>
+
+<blockquote>message from: 111-2222 broadcast</blockquote>
+
+<p>Each time a text is broadcast, the log entry is <em>prepended</em> to (added to the front of) the <strong>LogLabel.Text</strong> so that the most recent entries will appear on top. The way you organize the <strong>join</strong> block determines the ordering of the entries. In this case, the new message is added with the top three slots of <strong>join</strong>, and <strong>LogLabel.Text</strong>—which holds the existing entries—is plugged into the last slot.</p>
+
+<p>The “\n” in the text “broadcast\n” is the newline character that displays each log entry on a separate line:</p>
+
+<blockquote>message from: 1112222 broadcast<br/>
+message from: 555-6666 broadcast</blockquote>
+
+<p>For more information about using <strong>foreach</strong> to display a list, see <a data-type="xref" href="ch20.html#iteration_blocks_iteration">Chapter 20</a>.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Storing the BroadcastList in a Database" id="storing_the_broadcastlist_in_a_database">
+<h1>Storing the BroadcastList in a Database</h1>
+
+<p>Your app sort of works, but if you’ve completed some of the earlier tutorials, you’ve probably guessed that there’s a problem: if the administrator closes the app and relaunches it, the broadcast list will be lost and everyone will have to re-register. To fix this, you’ll use the <strong>TinyDB</strong> component to store and retrieve the <strong>BroadcastList</strong> to and from a database.</p>
+
+<p>You’ll use a similar scheme to the one you used in the MakeQuiz app (<a data-type="xref" href="ch10.html#makequiz_and_takequiz">Chapter 10</a>):</p>
+
+<ul>
+	<li>Store the list to the database each time a new item is added.</li>
+	<li>When the app launches, load the list from the database into a variable.</li>
+</ul>
+
+<p>Start by coding the blocks listed in <a data-type="xref" href="#blocks_to_store_the_list_with_tinydb">Table 11-7</a> to store the list in the database. With the <strong>TinyDB</strong> component, a tag is used to identify the data and distinguish it from other data stored in the database. In this case, you can tag the data as “broadcastList.” You’ll add the blocks in the <strong>Texting1.MessageReceived</strong> event, under the <strong>add items to list</strong> block.</p>
+
+<table id="blocks_to_store_the_list_with_tinydb">
+	<caption>Blocks to store the list with TinyDB</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>TinyDB1.StoreValue</em> </strong></p>
+			</td>
+			<td>
+			<p>TinyDB1</p>
+			</td>
+			<td>
+			<p>Store the data in the database.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“broadcastList”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Plug this into the “tag” slot of <strong><em>StoreValue</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>get global BroadcastList</em> </strong></p>
+			</td>
+			<td>
+			<p>Drag out from variable initialization block</p>
+			</td>
+			<td>
+			<p>Plug this into the “value” slot of <strong><em>StoreValue</em></strong>.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>How the blocks work</h3>
+
+<p>When a “joinFMDT” text comes in and the new member’s phone number is added to the list, <strong>TinyDB1.StoreValue</strong> is called to store the <strong>BroadcastList</strong> to the database. The tag (a text object named “broadcastList”) is used so that you can later retrieve the data. As shown in <a data-type="xref" href="#calling_tinydb_to_store_the_broadcastlis">Figure 11-9</a>, the value that gets called by <strong>StoreValue</strong> is the variable <strong>BroadcastList</strong>.</p>
+
+<figure id="calling_tinydb_to_store_the_broadcastlis"><img alt="Calling TinyDB to store the BroadcastList" src="/assets/img/bookChapters/bh11-9.png"/>
+<figcaption>Calling TinyDB to store the BroadcastList</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Loading the BroadcastList from a Database" id="loading_the_broadcastlist_from_a_databas">
+<h2>Loading the BroadcastList from a Database</h2>
+
+<p>Now add the blocks listed in <a data-type="xref" href="#blocks_to_load_the_broadcast_list_back_i">Table 11-8</a> for loading the list back in each time the app launches.</p>
+
+<table id="blocks_to_load_the_broadcast_list_back_i">
+	<caption>Blocks to load the broadcast list back into the app when it launches</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>Screen1.Initialize</em> </strong></p>
+			</td>
+			<td>
+			<p>Screen1</p>
+			</td>
+			<td>
+			<p>Triggered when the app launches.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>TinyDB1.GetValue</em> </strong></p>
+			</td>
+			<td>
+			<p>TinyDB1</p>
+			</td>
+			<td>
+			<p>Request the data from the database.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>text</em></strong> (“broadcastList”)</p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>Plug this into the “tag” slot of <strong><em>GetValue</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>call displayBroadcastList</em> </strong></p>
+			</td>
+			<td>
+			<p>Procedures</p>
+			</td>
+			<td>
+			<p>After loading data, display it.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+When the app begins, the <strong>Screen1.Initialize</strong> event is triggered, so your blocks will go in that event handler.
+
+<h3>How the blocks work</h3>
+
+<p>When the app begins, the <strong>Screen1.Initialize</strong> event is triggered. The blocks shown in <a data-type="xref" href="#loading_the_broadcastlist_from_the_datab">Figure 11-10</a>  request the data from the database with <strong>TinyDB1.GetValue</strong>.  </p>
+
+<figure id="loading_the_broadcastlist_from_the_datab"><img alt="Loading the BroadcastList from the database" src="/assets/img/bookChapters/bh11-10.png"/>
+<figcaption>Loading the BroadcastList from the database</figcaption>
+</figure>
+You call <strong>TinyDB.GetValue</strong>, using the same tag you used to store the list (“broadcastList”). In the general case, the previously stored list of phone numbers will be returned and placed in the variable <strong>BroadcastList</strong>. But <strong>TinyDB.GetValue </strong>provides a slot, <strong>valueIfTagNotThere</strong>, for specifying what the block should return if there is not yet data in the database for that tag, as will happen the first time this app is run. In this case, an empty list is returned.
+
+<p> </p>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>You can use live testing for ap</em><em>ps that modify the database, but do it carefully. In this case, text the app with another phone to add numbers to the BroadcastList, then “restart” the app. You can “restart” in live testing mode by switching to the designer and modifying some property, even something such as changing the font of a label. Note that to fully test database apps you</em><em> need to package and truly download the app to a phone (choose “Build &gt; App (save apk to my computer”)  Once you’ve downloaded your app, use your other phones to send a text to join the group and then close the app.. If the numbers are still listed when you relaunch the app, then the database part is working.</em></p>
+</div>
+</section>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="The Complete App: Broadcast Hub" id="complete_app_broadcast_hub">
+<h1>The Complete App: Broadcast Hub</h1>
+
+<p><a data-type="xref" href="#complete_app">Figure 11-11</a> illustrates the blocks in the completed Broadcast Hub app.</p>
+
+<figure id="complete_app"><img alt="The complete app" src="/assets/img/bookChapters/bh11-11a.png"/> <img alt="The complete app" src="/assets/img/bookChapters/bh11-11b.png"/>
+<figcaption>The complete app</figcaption>
+</figure>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Variations" id="variations-id00108">
+<h1>Variations</h1>
+
+<p>After you’ve celebrated building such a complex app, you might want to explore some variations. For example:</p>
+
+<ul>
+	<li>The app broadcasts each message to everyone, including the phone that sent the message. Modify this so that the message is broadcast to everyone but the sender.</li>
+	<li>Allow client phones to remove themselves from the list by texting “quitabc” to the app. You’ll need a <strong>remove from list</strong> block.</li>
+	<li>Let the hub administrator add and remove numbers from the broadcast list through the user interface.</li>
+	<li>Let the hub administrator specify numbers that should not be allowed into the list.</li>
+	<li>Customize the app so that anyone can join to receive messages, but only the administrator can broadcast messages.</li>
+	<li>Customize the app so that anyone can join to receive messages, but only a fixed list of phone numbers can broadcast messages to the group.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00109">
+<h1>Summary</h1>
+
+<p>Here are some of the concepts we’ve covered in this tutorial:</p>
+
+<ul>
+	<li>Apps can react to events that are not initiated by the app user, like a text being received. That means you can build apps in which your users are on a different phone.</li>
+	<li>Nested <strong>if else</strong> and <strong>foreach</strong> blocks can be used to code complex behaviors. For more information on conditionals and <strong>foreach</strong> iteration, see <a data-type="xref" href="ch18.html#programming_your_app_to_make_decisions_c">Chapter 18</a> and <a data-type="xref" href="ch20.html#iteration_blocks_iteration">Chapter 20</a>, respectively.</li>
+	<li>The <strong>join</strong> block can be used to build a text object out of multiple parts.</li>
+	<li><strong>TinyDB</strong> can be used to store and retrieve data from a database. A general scheme is to call <strong>StoreValue</strong> to update the database whenever the data changes and call <strong>GetValue</strong> to retrieve the database data when the app begins.</li>
+</ul>
+</section>
+</section>

@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="/assets/css/owl.carousel.css">
+<link rel="stylesheet" href="/assets/css/owl.theme.css">
+
+
+
+
+
+
+<div class='app-big-video'>
+	<div class='dark-blue-title'>
+		<div class='course-page-container'>
+			<h2>{{app.heroHeader}}</h2>
+			<p style="font-size: 14px;">{{app.heroCopy}}</p>
+			{% if app.pdfChapter %}
+				<a class="view-book-form-btn" href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.pdf">
+					<i class="fa fa-book"></i>
+					View in book form
+				</a>
+			{% endif %}	
+		</div>
+	</div>
+
+
+	<div id="carousel-wrapper">
+		
+		{% for step in steps %}
+		
+		<div class='carousel-step'>
+		
+			<div class='carousel-step-video'
+				data-utubeurl='{{step.fullscreenPath}}&showinfo=0'>
+			</div>
+			
+ 			
+			<div class='carousel-step-info'>
+				<h3>
+					<strong>Step {{step.number }}:</strong> {{step.header}}
+				</h3>
+				<p>{{step.copy}}</p>
+			</div>
+			
+			<div class='carousel-step-end-overlay'>
+				<h3>Nice Job!</h3>
+				
+				{% if not forloop.last %}
+				<button type="button" class="app-btn-next btn slide-right">Go to the next step
+				
+					<span class="glyphicon glyphicon-chevron-right" style="right: 0px;"></span>
+				</button>
+				{% endif %}
+				
+				<button type="button" class="app-btn-rewatch btn">Rewatch the video</button>
+			</div>				
+			
+		</div>
+		
+		{% endfor %}
+
+	</div>
+	<div class="below-video-box">
+		<div class="video-steps-box">
+			{% for step in steps %}
+
+			<div {% if forloop.first %}  class="selected" {% endif %}><strong>Step {{step.number }}:</strong> {{step.header}}</div>
+			{% endfor %}
+		</div>
+		<div class="video-downloads-box">
+			<div class='app-btn'>
+				<a href="#" data-toggle="modal" data-target="#qrCodeModal"></a>
+					
+					<span><i class="fa fa-qrcode"></i>Get QR code for this tutorial</span>
+			</div>
+			<div class='app-btn'>
+				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.apk"></a> 
+				
+					<span><i class="fa fa-tablet"></i>Download app to Android device</span>
+
+			</div>
+			<div class='app-btn'>
+				<a href="{{currentAppsDir}}/{{ app.appId }}/{{ app.appId }}.aia"></a>
+					<span><i class="fa fa-puzzle-piece"></i>Download App Inventor source</span>
+			
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="qrCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      <h4>Scan the QR code with your Android device to download the application.</h4>
+     	<img style="margin: auto; display: block;" src="{{currentAppsDir}}/{{ app.appId }}/qr.png">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script src="/assets/js/owl.carousel.js"></script>
+<script src="/assets/js/app_base.js"></script>
+<script src="/assets/js/coursesystem.js"></script>

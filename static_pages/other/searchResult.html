@@ -1,0 +1,30 @@
+{% extends "site_base.html" %} {% block body %}
+      
+      
+            
+<script>
+  (function() {
+    var cx = '008494446149806911917:dtcoh6mydd8';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div class='gen-container' style="min-height: 50vh;">
+	<h2>Search Results for {{query}}</h2>
+	<hr>
+	<gcse:searchresults-only linktarget="_parent"></gcse:searchresults-only>
+</div>
+                    
+                   
+
+
+
+{% endblock %}
+
+

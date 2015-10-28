@@ -1,0 +1,297 @@
+<head>
+<meta charset="UTF-8">
+</head>
+<link rel="stylesheet" type="text/css"
+	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+
+
+<div class="dark-blue-title" id="top">
+	<div class="course-page-container">
+		<h1>Animation Challenge: Help with the "Back and Forth" Problem</h1>
+
+	</div>
+</div>
+
+<div class="course-page-container">
+	<div class="card">
+		
+		<p>This lesson provides help for the animation challenge and in particular, an app
+		in which a ball moves back and forth horizontally. In this lesson, you'll use
+		a Clock component to facilitate the animation. Here is the desired behavior in
+		detail:
+		<ul>
+		<li>
+		When the app begins, a ball appears on a canvas but it doesn't move.
+		</li>
+		<li>
+		When a "GoButton" is clicked, the ball begins moving smoothly to the right.
+		</li>
+		<li>
+		When the ball hits the right edge, it changes direction and begins moving left.
+		</li>
+		<li>
+		When the ball hits the left edge, it changes direction and begins moving right.
+		</li>
+		<li>
+		The ball moves back and forth, continuously, in this manner.
+		</li>
+		</ul>
+		
+		</p>
+
+	</div>
+	<div class="card">
+		<h2>Getting Started</h2>
+		<p>Create a new app with a Canvas named "Canvas1", a Ball named "Ball1", a Clock named
+		"Clock1" and a button 
+		named "GoButton". Set the Canvas.Width to "fill Parent" and Canvas.Height to "300". 
+		Place the ball somewhere near the middle of the Canvas. 
+		Set the Text property of the Button to
+			“Go”.</p>
+		<p>You want smooth animation, so you need to set the Clock1.TimerInterval to a
+		fraction of a second (by default its an entire second). Set it to 50. The TimerInterval is 
+		in milliseconds so 50 means
+		that the Clock.Timer event will occur every 50/1000 of a second. 
+		</p>
+		<p>You don't want the ball to move when the app begins, so you need to set the
+				 Clock1.TimerEnabled property to false. This will cause
+				the ball to start out stationary.</p>
+
+	</div>
+
+	<div class="card" id="moveright">
+		<h2>Code it so the ball moves right when the "GoButton" is clicked</h2>
+		<p>Add the following blocks in the Blocks Editor:
+				<img alt="" src="/images/CourseInABoxImages/CT_IB.png"
+					class="img-responsive center-img">
+		These blocks will cause Ball1.X to get bigger every time the
+		Clock.Timer event triggers. As Ball1.X determines Ball1's horizontal location,
+		it will cause the ball to move right.
+		</p>
+		<p>		
+				However, the Clock1.Timer event triggers dependent on Clock1's properties. Since you 
+				set the Clock.TimerEnabled property to false, it won't trigger at all when
+				the app begins, so the ball won't
+				move. When it does start moving, it will move 1 pixel
+				every 50 ms. (every Clock1.TimerInterval). <a href="/timerEvent">Click here</a> to 
+				learn more about the Clock component.
+		</p>	
+		<p>To get the ball moving, you need to set the Clock1.TimerInterval to true when
+		the GoButton is clicked. Add the following blocks:
+			<img alt="" src="/images/CourseInABoxImages/GB_CTE.png"
+				class="img-responsive center-img">
+			
+		Now, when the GoButton is clicked, the ball will start moving right.
+
+		<div class="quiz-panel-inner">
+			<p>What happened
+				after testing?</p>
+			<div id="q7a" class="collapse">
+				<p>If you coded it as described, the ball will move to the right edge and then stop.</p>
+
+			</div>
+			<a type="button" href="#q7a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q7b" name="q7b">Show Answer</a></div>
+
+		<p>What do we
+				need?</p>
+		<div class="quiz-panel-inner">
+
+			<div id="q5a" class="collapse">
+				<p>You need an event handler for when the ball hits the edge so that the ball
+					moves in the opposite direction.</p>
+
+			</div>
+			<a type="button" href="#q5a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q5b" name="q5b">Show Answer</a>
+		</div>
+
+	</div>
+
+	<div class="card">
+		<h2>Code it so the ball turns around (moves left) when it hits the right edge</h2>
+		<p>App Inventor provides the following event block that is triggered when a Ball
+		(or ImageSprite) hits an edge:
+		<img alt="" src="/images/CourseInABoxImages/B_ER.png"
+			class="img-responsive center-img">
+
+		<p>In thinking about how to make the ball move left, some coders will add blocks
+		like the following into the Ball1.EdgeReached event:
+		<img alt="" src=""
+			class="img-responsive center-img">
+		Try this code. What happens when you run the app?
+		
+		Answer: As coded, the ball will move right, then when it hits the right edge it moves left a little
+		bit, then goes back to the right edge, and continues that movement near the right edge forever.
+		The problem is that the ball only moves left once on the EdgeReached event. Really, what you
+		want, is to make it so the ball <em>starts</em> moving left when the right edge is reached, but continues
+		to move left. To do this, you need to change the Clock1.Timer event because that's what controls
+		the "continuous" movement of the ball.
+		</p> 
+		
+		
+		<p>
+		
+		
+		<p>Consider the blocks for the Clock1.Timer event:</p>
+
+		<img alt="" src="/images/CourseInABoxImages/CT_IB.png"
+			class="img-responsive center-img">
+
+		<p>
+			As coded, we add 1 to Ball1.X each time so the the ball will always move right.
+			For this app, you really want the Ball1.X to change by either 1 (go right) or -1. The amount
+			you change Ball1.X should vary. 
+		</p>
+		<div class="quiz-panel-inner">
+
+			<div id="q3a" class="collapse">
+				<p>When you read the word "vary" a bell should ring in your head. What do you 
+				define in App Inventor when you need to remember a value that varies over time?</p>
+
+				<div class="quiz-panel-inner">
+
+					<div id="q2a" class="collapse">
+
+<p>
+					To remember a value that changes, you use a variable. In this case, you can name
+					 name the variable "distance" and initialize it to 1. It will store either 1 or -1 depending on which direction
+					the call is currently moving. <a
+						href="/VariablesCircles" style="color: #A4CA39;">Click here to
+						learn move about variables</a>
+				</p>
+
+
+					</div>
+					<a type="button" href="#q2a" data-toggle="collapse"
+						onclick="showHideToggle(id)" id="q2b" name="q2b">Show Answer</a>
+				</div>
+
+			</div>
+			<a type="button" href="#q3a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q3b" name="q3b">Hint</a>
+		</div>
+		
+	</div>
+
+	<div class="card">
+
+		<p>Create a variable named "Distance" and put it's get block
+			instead of the 1 in the Clock1.Timer Event Handler.
+		<img alt="" src="/images/CourseInABoxImages/D_CT1.png"
+			class="img-responsive center-img">
+		Now each time the Clock1.Timer event triggers, Ball1.X will change not by 1 every time,
+		but by the value that is stored in the variable Distance.
+		</p>
+		<p>
+		If Distance is initialized to 1, the ball will start moving right on the "GoButton" as
+		before. When the right edge is reached, you need to change the variable Distance to make it go
+		left. How should you change it?
+		</p>
+		<p>
+		<img alt="" src="/images/CourseInABoxImages/B1_ER.png"
+			class="img-responsive center-img">
+		On first thought, you might think of setting Distance to -1 in the EdgeReached event.
+		show this image.
+		Question: if you did set it to -1, what would happen.
+		Answer: the ball would move right, hit the right edge, them move left, hit the left
+		edge, then stop.
+		</p>
+		<p>
+		What you need is a more complex behavior:
+		<ol>
+			<li>When the ball hits the right edge, Distance should
+				change to -1.</li>
+			<li>When the ball hits the left edge, Distance should change to
+				1.</li>
+		</ol>
+		<p>Try to code Ball1.EdgeReached to get this behavior. Then check out the following two 
+		solutions:
+
+		<h2>Solution 1: using an if-else block</h2>
+		<p>You can use an if-block to get the needed behavior:</p>
+		<p>If global distance is = 1</p>
+		<p style="text-indent: 50px;">Set global Distance to -1</p>
+		<p>Else</p>
+		<p style="text-indent: 50px;">Set Global Distance to 1</p>
+
+		
+				<img alt="" src="/images/CourseInABoxImages/B1_ERGD.png"
+					class="img-responsive center-img">
+				
+	
+		<h2>Solution 2: Changing the Sign</h2>
+		<p>Math Challenge</p>
+
+		<p>1 x ? = -1</p>
+		<p>-1 * ? = +1</p>
+		<div class="quiz-panel-inner">
+
+			<div id="q14a" class="collapse">
+				<p>1 x -1 = -1</p>
+				<p>-1 x -1 = +1</p>
+				<p>Multiplying a number by -1 will change
+					a negative number to a positive and will change a positive number to
+					a negative.</p>
+
+			</div>
+			<a type="button" href="#q14a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q14b" name="q14b">Answer</a>
+		</div>
+
+		<div class="quiz-panel-inner">
+
+			<div id="q15a" class="collapse">
+				<img alt="" src="/images/CourseInABoxImages/B1_ERx1.png"
+					class="img-responsive center-img"> <br>
+
+				<p>Each time Ball1 hits an edge, global Distance will be
+					multiplied by -1 so global Distance changes between 1 and -1</p>
+				
+			</div>
+			
+		</div>
+
+
+
+	</div>
+
+   
+	<div class="card">
+
+		<p>What component and event triggers the movement in this animation challenge?</p>
+		<div class="quiz-panel-inner">
+			<div id="q32a" class="collapse">
+				<p>The Clock Component and its Timer event</p>
+			</div>
+			<a type="button" href="#q32a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q32b" name="q32b">Answer</a>
+		</div>
+		<br>
+		<p>How did you get the ball to “bounce” when it hit the edge?</p>
+		<div class="quiz-panel-inner">
+			<div id="q33a" class="collapse">By defining a variable Distance that is
+			used to move the ball in the Clock.Timer event, and then having the Ball.EdgeReached
+			event change Distance from 1 to -1.</div>
+			<a type="button" href="#q33a" data-toggle="collapse"
+				onclick="showHideToggle(id)" id="q33b" name="q33b">Answer</a>
+		</div>
+		
+	</div>
+
+
+
+
+</div>
+
+<script>
+	//function that adds slide animation when clicking to ids on a page
+	$(document).ready(function() {
+		$('a').click(function() {
+			$('html, body').animate({
+				scrollTop : $($(this).attr('href')).offset().top
+			}, 'slow');
+		});
+
+	});
+</script>

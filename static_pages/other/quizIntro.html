@@ -1,0 +1,76 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+<H1>Introduction to Lists and Iteration</H1>
+
+<h3>Discussion Question: How would you build a slide-show of images/text?</h3>
+
+
+<h4>Instructor Demo: if-else solution to this problem</h4>
+<ul>
+<li>
+    Add a button and upload three images
+</li>
+<li>
+    set Button.BackgroundImage to first image in designer
+</li>
+<li>
+    In blocks editor, use if-else-else to sequence through images on each button click. Go back to first image after last.
+</li>
+<li>
+
+Note how file name of loaded image is used and must be set exactly. 
+</li>
+</ul>
+<h4>Discuss if-else solution</h4>
+<ul>
+<li>
+
+         Would it be easy to add another item?
+</li>
+<li>
+         Could the images shown be user generated?
+</li>
+</ul>
+<h4>List Solution</h4>
+<p>
+Store images in a list variable. Use an index variable to walk through the list</p>
+
+<ul>
+<li>
+List-- a single variable (name) representing multiple memory cells
+</li>
+<li>
+Index -- a number representing the current position in the list. 1 is the first position.
+</li>
+<li>
+Important List functions: select list item, add items to list
+</li>
+</ul>
+<h4>
+Instructor demo: sketch or code blocks for letting user walk through list</h4>
+<ul>
+<li>
+    start index at 1
+</li>
+<li>
+    on screen.initialize: 
+</li>
+<li>
+    on nextButton.Click
+</li>
+<li>
+    reaching the end of list
+</li>
+</ul>
+<h4>
+Discussion: Compare If-Else and List solution</h4>
+<ul>
+<li>What if number of items changes, which is easier to change?
+</li>
+<li>What if user enters images, will if-else solution work?</li>
+</li>
+</ul>
+
+
+{% endblock %}

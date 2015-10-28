@@ -1,0 +1,39 @@
+{% extends "howdoyouTemplate.html" %}
+
+<h2>{% block title %}Incrementing: How do you increment a variable or component property?{% endblock %}</h2>
+{% block description %}
+Component properties and variables are <em>named memory cells</em>, something like the cells in a spreadsheet. 
+You’ll use such memory cells to do things like keep the score of a game or record the location of an ImageSprite. 
+Often, you need to change the value stored in a memory cell. Its simple to think of setting the score of a game to 
+5, or some other <em>fixed number</em>, but how do you set the score relative to its current value, e.g., <em>how do you program it so that the 
+score becomes one more?</em>The following examples will demonstrate this fundamental activity of <em>incrementing</em> a variable.
+{% endblock %}
+{% block question %} Example 1. How do you count the number of times a button has been clicked? 
+<img class="thumbnail" src="/assets/img/incrementingvariables/clickAddOneUI.png" border="0"/>{% endblock %}
+{% block answer %}
+
+<p>
+In this really silly game, the user scores a point by clicking a button. When the button labeled “Score a Point” 
+is clicked, the ScoreLabel (showing 0 above) changes to 1. If it is clicked again, it changes to 2, and so on. 
+The blocks for coding this behavior are shown below.
+</p>
+<p>The blocks can be confusing, at first, but understanding them is a key to understanding how computing works.  Simply put, the blocks 
+		can be read as, “when the button is clicked, </p>
+		<p><b>change <span class="empfront">ScoreLabel.Text</span> to its previous value + 1 </b></p>
+		<p>But let’s examine the blocks more closely so that you really understand what is happening. “set” means “change”, so the 
+		left, dark green block means, “change the ScoreLabel’s text”. </p>
+		<p>The lighter green block labeled “ScoreLabel.Text” is a “get” block. “get” means to go look in a memory cell and see what
+		 is there. The first time the button is clicked, the “get” returns the inital value of 0, so 0+1=1 is set into ScoreLabel.Text
+		  (and 1 appears in the user interface). The second time the button is clicked, the current value of ScoreLabel.Text is 1, so 1+1=2
+		   is placed into <span class="empfront">ScoreLabel.Text</span>.</p>
+		<p>It can help to realize that <em>the blocks are really executed right-to-left</em>. The app first evaluates the right-side “+” 
+		by “getting” the current value in the label and adding 1 to it. The left-side is then performed and the result of the “+” is “set” into the label.
+</p>
+
+{% endblock %}
+
+{% block answerImage %} "/assets/img/incrementingvariables/incrementScore.png"{% endblock %}
+
+
+{% block answerVideo %} "//www.youtube.com/embed/mB44rzsdknA"{% endblock %}
+{% block otherExampleLink %}<a href="/content/howDoYou/incrementing/countDown">example 2</a>{% endblock %}

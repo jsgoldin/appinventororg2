@@ -1,0 +1,47 @@
+<article>
+
+	<div class='dark-blue-title'>
+		<div class='course-page-container'>
+			
+				<h2>{% block title %}{% endblock %}</h2>
+				<p>{% block description %}{% endblock %}</p>
+		
+		</div>
+	</div>
+
+	<div class='course-page-container'>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+				<h3>{% block question %}{% endblock %}</h3>
+				<small>{% block otherExampleLink %}{% endblock %}</small>
+				</div>
+			</div>
+		</div>
+		<div class="row">		
+			<div class='col-md-12'>
+			<div class="card">
+				{% block answer %}
+				{% endblock %}
+			</div>
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class='col-md-12'>
+			
+				<img class='responsive-fullwidth-img center-element'
+					src= {% block answerImage %}{% endblock %} />
+					
+			</div>
+		</div>
+		<div class='row'>
+			<div class="col-md-12">
+				<div class="videoWrapper center-element">
+					<iframe src= {% block answerVideo %}{% endblock %} frameborder="0"
+						allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>

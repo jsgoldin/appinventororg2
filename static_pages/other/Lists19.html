@@ -1,0 +1,403 @@
+
+{% extends "site_base.html" %}
+{% block body %}
+
+<h1>Programming Lists of Data</h1>
+	<div class="row-fluid">
+		<div class="span6">
+<p>
+	<em>As you've already seen, apps handle events and make decisions; such processing is fundamental to computing. But the other fundamental part of an app is its data-the information it processes. An app's data is rarely restricted to single memory slots such as the score of a game. More often, it consists of complex, inter-related items that must be organized just as carefully as the app's functionality.
+</p>
+<p>
+	In this chapter, we'll examine the way App Inventor handles data. You'll learn the fundamentals of programming both static Data (in which the data doesn't change) and dynamic Data (in which the data is user-generated). Then you'll learn how to deal with even more complex data involving Data whose items are also Data.</em>
+</p>
+</div>
+<div class="span6">
+<img src="{{apps2Dir}}/Data19/l19.png" alt="">
+</div>
+</div>
+
+<p>
+	Many apps process Data of data. For example, Facebook processes your list of friends. A quiz app works with a list of questions and answers. A game might have a list of characters or all-time high scores. 
+</p>
+<p>
+	List variables work like text and number variables you've worked with, but instead of the variable representing a single named memory cell, it represents a related set of memory cells. Consider, for example, the list of phone numbers in Table 19-1.
+</p>
+
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-1T.png" alt=""><br/>
+	<em>Table 19-1. A list variable represents a set of memory cells 111–2222 333–4444 555–6666</em>
+</p>
+<p>
+	The elements of a list are accessed using an <em>index</em>. An index is a position in a list, so index 1 of the list in Table 19-1 refers to 111–2222, index 2 refers to 333–4444, and index 3 refers to 555–6666. 
+</p>
+<p>
+	App Inventor provides blocks for creating Data, adding elements to Data, selecting a particular item from a list, and applying operations to an entire list. Let's start with how we create a list.
+</p>
+<h2>Creating a List Variable</h2>
+<p>
+	You create a list variable in the Blocks Editor using a <strong>global variable</strong> block and a make a list block. 
+	For example, suppose you were writing an app to text a list of phone numbers with one click. You create the phone numbers list in the following manner:
+	<ol>
+	<li>From the Variables Palette, drag a <strong>global variable</strong> block (Figure 19-1) into the program area.</li> 
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-1.png" alt="">
+</p>
+<p>
+	<em>Figure 19-1. An initialize global block</em>
+</p>
+	<li>Click the text "name" and change the name to "phoneNumbers", as shown in Figure 19-2.</li>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-2.png" alt="">
+</p>
+<p>
+	<em>Figure 19-2. Renaming the variable to phoneNumbers</em>
+</p>
+	<li>From the Data palette, drag out a <strong>make a list</strong> block and plug it into the definition block, 
+	as shown in Figure 19-3. This tells App Inventor that the variable will store a list of data as 
+	opposed to a single value. You can then specify the number of slots by clicking on the blue mutator icon and
+	adding items as shown in Figure 19-3.</li>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-3.png" alt="">
+</p>
+<p>
+	<em>Figure 19-3. Defining phoneNumbers as a list using the make a list block</em>
+</p>
+	<li>Finally, drag in some <strong>text</strong> blocks, enter the desired phone numbers, and plug them into the "item" slots 
+	in the <strong>make a list</strong> block. 
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-4.png" alt="">
+</p>
+</li>
+<p>
+	<em>Figure 19-4. As each item is added to the list, a new slot opens up</em>
+</p>
+<p>
+	You can plug any type of data into an "item" slot, but in this case, the items should be text objects, not numbers, because phone numbers have dashes and other formatting symbols that you can't put in a number object, and you won't be performing any calculations on the numbers (in which case, you would want number objects instead). 
+</p>
+<p>
+	The blocks in Figure 19-4 define a variable named <b>phoneNumbers</b>. Any variables you define are created when the app launches, so memory slots like the ones in Table 19-1 will be created and filled when the app starts. Once you have a variable list, it's time to start working with the data in that list.
+</p>
+<h2>Selecting an Item in a List </h2>
+<p>
+	Your app can access particular items of a list with the <strong>select list item</strong> block and by specifying an <em>index</em> in the list. The index indicates the position of an item within a list. So, if a list has three items, you can access the items with indices 1, 2, and 3. Figure 19-5 shows the blocks that select the second item of a list.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-5.png" alt="">
+</p>
+<p>
+	<em>Figure 19-5. Selecting the second item of a list</em>
+</p>
+<p>
+	With <strong>select list item</strong>, you plug in the list you want in the first slot, and the index you want in the second slot. The blocks in Figure 19-5 tell the app to select the second element of the list <b>phoneNumbers</b>. If you were selecting from the <b>phoneNumbers</b> list defined in Table 19-1, the result would be "333–4444."
+</p>
+<p>
+	Selecting an item in a list is just the first step-once you've selected the item, you can do a variety of things with it. We'll look at some examples next. 
+</p>
+<h2>Using an Index to Traverse a List </h2>
+<p>
+	In many apps, you'll define a list of data and then allow the user to step through (or <em>traverse</em>) it. The Presidents Quiz in Chapter 8 provides a good example of this: in that app, when the user clicks a Next button, the next item is selected from a list of questions and displayed.
+</p>
+<p>
+	But how do you select the next item in a list? Our example in Figure 19-5 selected item 2 from <b>phoneNumbers</b>. When you traverse a list, the item number you're selecting changes each time; it's relative to your current position in the list. Therefore, you need to define a variable to represent that current position. <b>index</b> is the common name for such a variable, and it is usually initialized to 1 (the first position in the list), as shown in Figure 19-6.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-6.png" alt="">
+</p>
+<p>
+	<em>Figure 19-6. Initializing the variable index to 1</em>
+</p>
+<p>
+	When the user does something to move to the next item, you <em>increment</em> the index variable by adding a value of 1 to it, and then select from the list using that incremented value. Figure 19-7 shows the blocks for doing this.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-7.png" alt="">
+</p>
+<p>
+	<em>Figure 19-7. Incrementing the index value and using the incremented value to select the next list item</em>
+</p>
+<h2>Example: Traversing a List of Paint Colors </h2>
+<p>
+	Let's look at an example app that lets the user peruse each potential paint color for his house by clicking a button. Each time he clicks, the button's color changes. When the user makes it through all of the possible colors, the app takes him back to the first one. 
+</p>
+<p>
+	For this example, we'll use some basic colors. However, you could customize the code blocks to iterate through any set of colors. For more information on colors, see the App Inventor documentation at ***http://appinventor.googlelabs.com/learn/reference/ blocks/colors.html. 
+</p>
+<p>
+	Our first step is to define a list variable for the <b>colors</b> list and initialize it with some paint colors as items, as depicted in Figure 19-8.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-8.png" alt="">
+</p>
+<p>
+	<em>Figure 19-8. Initializing the list colors with a list of paint colors</em>
+</p>
+<p>
+	Next, define an index variable that tracks the current position in the list. It should start at 1. You could give the variable a descriptive name like <b>currentColorIndex</b>, but if you aren't dealing with multiple indexes in your app, you can just name it index, as shown in Figure 19-9.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-9.png" alt="">
+</p>
+<p>
+	<em>Figure 19-9. Using the index variable, which is initialized to 1, to track the current position in a list</em>
+</p>
+<p>
+	The user traverses to the next item (color) in the list by clicking the <b>ColorButton</b>. When he clicks, 
+	the index should be incremented and the <b>BackgroundColor</b> of the button should change to the currently 
+	selected item, as shown in Figure 19-10.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-10.png" alt="">
+</p>
+<p>
+	<em>Figure 19-10. Letting the user traverse the color list by clicking a button-changing the button color with each click</em>
+</p>
+<p>
+	Let's assume the button's background is initially set to Red in the Component Designer. The first time the button is clicked, <b>index</b> will change from its initial value of 1 to 2, and the button's background color will change to the second item in the list, Green. The second time the user clicks, the <b>index</b> will change from 2 to 3, and the background color will switch to Blue. 
+</p>
+<p>
+	But what do you think will happen on the next click? 
+</p>
+<p>
+	If you said there would be an error, you're right! <b>index</b> will become 4 and the app will try to select the fourth item in the list, but the list only has three items. The app will <em>force close</em>, or quit, and the user will see an error message like the one in Figure 19-11.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-11.png" alt="">
+</p>
+<p>
+	<em>Figure 19-11. The error message displayed when the app tries to select the fourth item from a three-item list</em>
+</p>
+<p>
+	Obviously, that message is not something you want your app's users to see. To avoid that problem, add an <strong>if</strong> block to check whether the last color in the list has been reached. If it has, the <b>index</b> can be changed back to 1 so that the first color is again displayed, as shown in Figure 19-12.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-12.png" alt="">
+</p>
+<p>
+	<em>Figure 19-12. Using the if test to check for whether the index value is larger than the length of the list, and reset it to 1 if the test returns true</em>
+</p>
+<p>
+	When the user clicks the button, the <b>index</b> is incremented and then checked to see if its value is too large. The <b>index</b> is compared to <strong>length of list</strong>, not 3, so your app will work even if you add items to the list. By checking if the index is greater than your list length (versus checking if it is greater than the specific number 3), you've eliminated a code dependency in your app. A <em>code dependency</em> is a programming term for instances when you program aspects of your app <em>too</em> specifically, such that if you change something in one place (e.g., the items in your list), you'll have to hunt down all the places in your app where you use that list and change those blocks as well.
+</p>
+<p>
+	As you can imagine, these kinds of dependencies could get messy very quickly, and they generally lead to many more bugs for you to chase down as well. In fact, the design for our House Paint Color app contains another code dependency as we currently have it programmed-can you figure out what it is? 
+</p>
+<p>
+	If you changed the first color in your list from Red to some other color, the app won't work correctly unless you also remembered to change the initial <b>Button.BackgroundColor</b> you set in the Component Designer. The way to eliminate this code dependency is to set the initial <strong>ColorButton.BackgroundColor</strong> to the first color in the list rather than to a specific color. Since this change involves behavior that happens when your app first opens, you do this in the <strong>Screen.Initialize</strong> event handler that is invoked when an app is launched, as illustrated in Figure 19-13.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-13.png" alt="">
+</p>
+<p>
+	<em>Figure 19-13. Setting the BackgroundColor of the button to the first color in the list when the app is launched</em>
+</p>
+<h2>Creating Input Forms and Dynamic Data </h2>
+<p>
+	The previous House Paint Color app involved a <em>static</em> list: one whose elements are defined by the programmer (you) and whose items don't change unless you change the blocks themselves. More often, however, apps deal with <em>dynamic</em> Data: Data that change based on the end user entering new items, or new items being loaded in from a database or web information source. In this section, we'll discuss an example Note Taker app, one in which the user enters notes in a form and can view all of her previous notes.
+</p>
+<h2>Defining a Dynamic List </h2>
+<p>
+	When you want a list that begins empty, you define it with the <strong>create empty list</strong> block. For instance,
+	in a notetaker app, which allows the user to enter notes, 
+	you don't add any predefined items in the list definition. You would define 
+	the dynamic list of notes with the definition in Figure 19-14.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-14.png" alt="">
+</p>
+<p>
+	<em>Figure 19-14. The blocks to define a dynamic list don't contain any predefined items</em>
+</p>
+<h2>Adding an Item </h2>
+<p>
+	The first time someone launches the app, the <b>notes</b> list is empty. But when the user enters some data in a form and clicks Submit, new notes will be added to the list. The form might be as simple as the one shown in Figure 19-15.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-15.png" alt="">
+</p>
+<p>
+	<em>Figure 19-15. Using a form to add new items to the notes list</em>
+</p>
+<p>
+	When the user enters a note and clicks the Submit button, the app calls the <strong>add items to list</strong> function to add the newly entered item to the list, as shown in Figure 19-16.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-16.png" alt="">
+</p>
+<p>
+	<em>Figure 19-16. Calling add items to list to add the new note when the user clicks the SubmitButton</em>
+</p>
+<p>
+	The <strong>add item to list</strong> block appends the item to the end of the list. Each time the user clicks the <b>SubmitButton</b>, a new note is added.
+</p>
+<p>
+	You'll find the <strong>add item to list</strong> block in the List drawer. Be careful: there is also an <strong>append to list</strong> block, but that one is a fairly rare block for appending one list to another.
+</p>
+<h2>Displaying a List </h2>
+<p>
+	The contents of list variables like <b>notes</b> are not visible to the user; you'll recall that a variable is a way for the app to remember information that is not necessarily shown to the user. The blocks in Figure 19-16 will add items to the list on each <b>button click</b> submit, but the user will not see any feedback that it is happening until you program more blocks to actually display the contents of the list. 
+</p>
+<p>
+	The simplest way to display a list in your app's user interface is to use the same method you use for displaying numbers and text: put the list in the <b>Text</b> property of a <b>Label</b> component, as illustrated in Figure 19-17.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-17.png" alt="">
+</p>
+<p>
+	<em>Figure 19-17. Displaying the list to the user within the Text property of the NotesListLabel</em>
+</p>
+	<div class="row-fluid">
+		<div class="span6">
+<p>
+	Unfortunately, this simple method of displaying a list isn't very elegant; it puts the list within parentheses, with each item separated by a space and not necessarily on the same line. For instance, if the user entered, "Will I ever finish this book?" as the first note, and "I forget what my son looks like!" as the second, the app would display the notes list as shown in Figure 19-18. 
+</p>
+<p>
+	If you've already completed the "Amazon at the Bookstore" app (Chapter 13), this problem will be familiar. In Chapter 20, you'll learn how to display a list in a more sophisticated fashion.
+</p>
+</div>
+<div class="span6">
+<img src="{{apps2Dir}}/Data19/l19-18.png" alt="">
+</div>
+</div>
+<h2>Removing an Item from a List </h2>
+<p>
+	You can remove an item from a list with the <strong>remove list item</strong> block, shown in Figure 19-19.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-19.png" alt="">
+</p>
+<p>
+	<em>Figure 19-19. Removing an item from a list</em>
+</p>
+<p>
+	The blocks in Figure 19-19 remove the second item from the list named <b>notes</b>. Generally, however, you won't want to remove a fixed item (e.g., 2), but instead will allow the user to choose the item to remove. 
+</p>
+<p>
+	<b>ListPicker</b> is a user interface component that can be used for removing items. <b>List Picker</b> comes with an associated button. When the button is clicked, the <b>ListPicker</b> displays the items of a list and allows the user to choose one. When the user chooses an item, the app can remove it. 
+</p>
+<p>
+	<b>ListPicker</b> is easy to program if you understand its two key events, <strong>BeforePicking</strong> and <strong>AfterPicking</strong>, and its two key properties, Elements and Selection, as listed in Table 19-2.
+</p>
+<p>
+	<em>Table 19-2. Two key events of the ListPicker component and their properties</em>
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-2T.png" alt="">
+</p>
+<p>
+	The <strong>ListPicker.BeforePicking</strong> event is triggered when the user clicks the <b>ListPicker</b>'s associated button but before the choices are listed. In the <strong>ListPicker.BeforePicking</strong> event handler, you'll set the <strong>ListPicker.Elements</strong> property to a list variable. For the Note Taker app, you'd set <b>Elements</b> to the <b>notes</b> variable that contains your list of notes, as shown in Figure 19-20. 
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-20.png" alt="">
+</p>
+<p>
+	<em>Figure 19-20. The Elements property of ListPicker1 is set to the list contained in notes</em>
+</p>
+<p>
+	With these blocks, the items of the list notes will appear in the <b>ListPicker</b>. If there were two notes, it would appear as shown in Figure 19-21.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-21.png" alt="">
+</p>
+<p>
+	<em>Figure 19-21. The list of notes appears in the ListPicker</em>
+</p>
+<p>
+	When the user chooses an item in the list, the <strong>ListPicker.AfterSelection</strong> event is triggered. In this event handler, you can access the user's selection in the <b>ListPicker.Selection</b> property. 
+</p>
+<p>
+	Recall, however, that the <strong>remove item from list</strong> block expects an index (list position), not an item. Unfortunately, the <b>Selection</b> property of the <b>ListPicker</b> is the actual data (the note item), not the index, and the <b>ListPicker</b> component doesn't provide direct access to the index of the list (this will certainly be added in later versions of App Inventor). 
+</p>
+<p>
+	The workaround is to take advantage of another block in the list drawer, <strong>position in list</strong>. Given some text, this function will return the position of the first match to that text in a list. Using <strong>position in list</strong>, the <strong>ListPicker1.AfterPicking</strong> event handler can remove the selected item, as the blocks in Figure 19-22 show.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-22.png" alt="">
+</p>
+<p>
+	<em>Figure 19-22. Using the position in list block to find the index of the item to remove</em>
+</p>
+<p>
+	When <strong>AfterPicking</strong> is triggered, <strong>ListPicker1.Selection</strong> contains the text of the user's choice (e.g., "Will I ever finish this book?"). The goal is to find the index of that selection in the list <b>notes</b> in order to remove it, so <strong>position in list</strong> is called. If the user's selection was "Will I ever finish this book?", <strong>position in list</strong> will return 1 because it's the first item. This number is put into the variable <b>removeIndex</b>, which is then used as the index in the call to <strong>remove list item</strong>. 
+</p>
+<p>
+	Here's a question to chew on before reading further: do you think this scheme will work in all cases? 
+</p>
+<p>
+	The answer is that the scheme works fine <em>unless</em> there is duplicate data in the list. Say the user has entered, "I'm having a great day" as both his second and tenth notes. If he clicks the remove (<b>ListPicker</b>) button and chooses the tenth item, the second will be removed instead of the tenth. <strong>position in list</strong> only returns the index for the selected item and stops there, so you never find out that the tenth item is the same and should be removed from the list as well. You'd have to include some conditional checks (see Chapter 18) to loop through the list to see if there were any other entries that also matched the selected item, and then remove those as well. 
+</p>
+<h2>Lists of Lists </h2>
+<p>
+	The items of a list can be numbers, text, colors, or Boolean values (true/false). But the items of a list can also be Data. You'll commonly see such complex data structures. For example, a list of Data could be used to convert the Presidents Quiz from Chapter 8 into a multiplechoice quiz. Let's look again at the Presidents Quiz's basic structure, which is a list of questions and a list of answers, as shown in Figure 19-23.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-23.png" alt="">
+</p>
+<p>
+	<em>Figure 19-23. A list of questions and a list of answers</em>
+</p>
+<p>
+	Each time the user answers a question, the app checks to see if it is correct by comparing the answer to the current item in the <b>AnswerList</b>. 
+</p>
+<p>
+	To make the quiz multiple choice, you'd need to keep a list of choices for each answer to each question. The multiplechoice list is represented as a variable list of Data, defined by placing three <strong>make a list</strong> blocks within an outer <strong>make a list</strong> block, as demonstrated in Figure 19-24.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-24.png" alt="">
+</p>
+<p>
+	<em>Figure 19-24. A list of Data is formed by inserting make a list blocks as items within an outer make a   list block</em>
+</p>
+<p>
+	Each item in the variable <b>answerChoices</b> is itself a list containing three items. If you select an item from <b>answerChoices</b>, the result is a list. Now that you've populated your multiplechoice answers as Data, how would you display that to the user? 
+</p>
+<p>
+	As with the Note Taker app, you could use a <b>ListPicker</b> to present the choices to the user. If the index were named <b>currentQuestionIndex</b>, the <strong>ListPicker.BeforePicking</strong> event would appear as shown in Figure 19-25.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-25.png" alt="">
+</p>
+<p>
+	<em>Figure 19-25. Using the List Picker to present the list of choices to the user</em>
+</p>
+<p>
+	These blocks would take the current sublist of <b>answerChoices</b> and let the user choose from it. So, if <b>currentQuestionIndex</b> were 1, the <b>ListPicker</b> would show a list like the one in Figure 19-26.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-26.png" alt="">
+</p>
+<p>
+	<em>Figure 19-26. The answer choices presented to the user for the second question</em>
+</p>
+<p>
+	When the user chooses, you check the answer with the blocks shown in Figure 19-27.
+</p>
+<p>
+	<img src="{{apps2Dir}}/Data19/l19-27.png" alt="">
+</p>
+<p>
+	<em>Figure 19-27. Checking whether the user chose the correct answer</em>
+</p>
+<p>
+	In these blocks, the user's selection from the <b>ListPicker</b> is compared to the correct answer, which is stored in a different list, <b>AnswerList</b> (since <b>answerChoices</b> provides only the choices and does not denote the correct answer).
+</p>
+<h2>Summary</h2>
+<p>
+	Data are used in almost every app you can think of. Understanding how they work is fundamental to programming. In this chapter, we explored one of the most common programming patterns: using an index variable that begins at the front of the list and is incremented until each list item is processed. If you can understand and customize this pattern, you are indeed a programmer! 
+</p>
+<p>
+	We then covered some of the other mechanisms for list manipulation, including typical forms for letting the user add and remove items. Such programming requires yet another level of abstraction, as you have to envision the data-after all, your Data are empty until the user puts something in them. If you can understand this, you might even think of quitting your day job! 
+</p>
+<p>
+	We concluded the chapter by introducing a complex data structure, a list of Data. This is definitely a difficult concept, but we explored it using fixed data: the answer choices for a multiplechoice quiz. If you mastered that and the rest of the chapter, your final test is this: create an app that uses of a list of Data, but with dynamic data! One example would be an app that allows people to create their own multiplechoice quizzes, extending even further the MakeQuiz app in Chapter 10. Good luck! 
+</p>
+<p>
+	While you think about how you'll tackle that, understand that our exploration of Data isn't done. In the next chapter, we'll continue the discussion and focus on list iteration with a twist: applying functions to each item in a list.
+</p>
+
+
+
+
+
+
+	{% endblock %}

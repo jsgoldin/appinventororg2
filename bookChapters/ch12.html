@@ -1,0 +1,987 @@
+{% extends "site_base.html" %}
+{% block body %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>atlas book skeleton</title>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+    <link rel="stylesheet" type="text/css" href="theme/html/html.css"/>
+  </head>
+  <body data-type="book">
+    <section data-type="chapter" data-pdf-bookmark="Chapter 12. Robot Remote" id="robot_remote">
+<h1>Robot Remote</h1>
+
+<p><em>In this chapter, you’ll create an app that turns your Android phone into a remote control for a LEGO MINDSTORMS NXT robot. The app will have buttons for driving the robot forward and backward, turning left and right, and stopping. You’ll program it so the robot automatically stops if it detects an obstacle. The app will use the Bluetooth capabilities of the phone to communicate with the robot.</em></p>
+
+<p><em>LEGO MINDSTORMS robots are fun to play with, but they are also educational. After-school programs use robots to teach elementary- and middle-school children problem-solving skills and introduce them to engineering and computer programming. NXT robots are also used by kids aged 9–14 in FIRST Lego League robotics competitions.</em></p>
+
+<p><em>The NXT programmable robotics kit includes a main unit called the NXT Intelligent Brick. It can control three motors and four input sensors. You can assemble a robot from LEGO building elements, gears, wheels, motors, and sensors. The kit comes with its own software to program the robot, but now you can use App Inventor to create Android applications to control an NXT using Bluetooth connectivity.</em></p>
+
+<p><em>The application in this chapter is designed to work with a robot that has wheels and an ultrasonic sensor, such as the Shooterbot robot pictured here. The Shooterbot is often the first robot that people build with the LEGO MINDSTORMS NXT 2.0 set. It has left wheels connected to output port C, right wheels connected to output port B, a color sensor connected to input port 3, and an ultrasonic sensor connected to input port 4.</em></p>
+
+<div class="informalfigure"><img alt="Robot Remote" src="images/rr.png"/></div>
+
+<section data-type="sect1" data-pdf-bookmark="What You’ll Learn" id="what_youapostrophell_learn-id00110">
+<h1>What You’ll Learn</h1>
+
+<p>This chapter uses the following components and concepts:</p>
+
+<ul>
+	<li>The BluetoothClient component for connecting to the NXT.</li>
+	<li>The ListPicker component to provide a user interface for connecting to the NXT.</li>
+	<li>The NxtDrive component for driving the robot’s wheels.</li>
+	<li>The NxtUltrasonicSensor component for using the robot’s ultrasonic sensor to detect obstacles.</li>
+	<li>The Notifier component for displaying error messages.</li>
+</ul>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Getting Started" id="getting_started-id00111">
+<h1>Getting Started</h1>
+
+<p>You’ll need Android version 2.0 or higher to use the application in this chapter. Also, for security reasons, Bluetooth devices must be paired before they can connect to each other. Before you get started building the app, you’ll need to pair your Android with your NXT by following these steps:</p>
+
+<ol>
+	<li>On the NXT, click the right arrow until it says Bluetooth and then press the orange square.</li>
+	<li>Click the right arrow until it says Visibility and then press the orange square.</li>
+	<li>If the Visibility value is already Visible, continue to step 4. If not, click the left or right arrow to set the value to Visible.</li>
+	<li>On the Android, go to Settings.<br/>
+	Steps 5-7 may vary slightly depending on your Android device.</li>
+	<li>Make sure Bluetooth is ON.</li>
+	<li>Click “Bluetooth” and then “Search for devices.”</li>
+	<li>Under “Available devices,” look for a device named “NXT.” If you’ve ever changed your robot’s name, look for a device name that matches your robot’s name instead of “NXT.”</li>
+	<li><span style="line-height: 1.5em;">Click on “NXT” or your robot’s name.</span></li>
+	<li>On the NXT, it should ask for a passkey. Press the orange square to accept 1234.</li>
+	<li>On the Android, it should ask for the PIN. Enter 1234 and press OK.</li>
+	<li>Your robot and your Android are now paired.</li>
+</ol>
+
+<p>Connect to the App Inventor website at ai2.appinventor.mit.edu. Start a new project and name it “NXTRemoteControl”. Click “Connect” and set up your device (or emulator) for live testing (see http://appinventor.mit.edu/explore/ai2/setup for help setting this up).  Set the screen’s title to “NXT Remote Control”.</p>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Designing the Components" id="designing_the_components-id00112">
+<h1>Designing the Components</h1>
+
+<p>For this app, we’ll need to create and define behaviors for both non-visible and visible components.</p>
+
+<section data-type="sect2" data-pdf-bookmark="Non-Visible Components" id="non-visible_components">
+<h2>Non-Visible Components</h2>
+
+<p>Before creating the user interface components, you’ll create some non-visible components, listed in <a class="xref" data-type="xref" href="#non-visible_components_for_the_robot_nxt">Table 12-1</a> and illustrated in <a class="xref " data-type="xref" href="#non-visible_components_displayed_at_the">???</a>, to control the NXT.</p>
+
+<table id="non-visible_components_for_the_robot_nxt">
+	<caption>Non-visible components for the Robot NXT controller app</caption>
+	<thead>
+		<tr>
+			<th>Component type</th>
+			<th>Palette group</th>
+			<th>What you’ll name it</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><code>BluetoothClient</code></p>
+			</td>
+			<td>
+			<p>Connectivity</p>
+			</td>
+			<td>
+			<p><code>BluetoothClient1</code></p>
+			</td>
+			<td>
+			<p>Connect to the NXT.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>NxtDrive</code></p>
+			</td>
+			<td>
+			<p>LEGO® MINDSTORMS®</p>
+			</td>
+			<td>
+			<p><code>NxtDrive1</code></p>
+			</td>
+			<td>
+			<p>Drive the robot’s wheels.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>NxtUltrasonicSensor</code></p>
+			</td>
+			<td>
+			<p>LEGO® MINDSTORMS®</p>
+			</td>
+			<td>
+			<p><code>NxtUltrasonicSensor1</code></p>
+			</td>
+			<td>
+			<p>Detect obstacles.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Notifier</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>Notifier1</code></p>
+			</td>
+			<td>
+			<p>Display error messages.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<figure><img alt="Alt Text" class="iimagesfigure12-1png" src="images/Figure12-1.png"/>
+<figcaption>The non-visible components displayed at the bottom of the Component Designer</figcaption>
+</figure>
+
+<p> </p>
+
+<p>Set the properties of the components in the following way:</p>
+
+<ol>
+	<li>Set the BluetoothClient property of NxtDrive1 and NxtUltrasonicSensor1 to BluetoothClient1.</li>
+	<li>Check BelowRangeEventEnabled on NxtUltrasonicSensor1.</li>
+	<li>
+	<p>Set the DriveMotors property of NxtDrive1:</p>
+
+	<ul type="dash">
+		<li>If your robot has the left wheel’s motor connected to output port C and the right wheel’s motor connected to output port B, then the default setting of “CB” doesn’t need to be changed.</li>
+		<li>If your robot is configured differently, set the DriveMotors property to a two-letter text value where the first letter is the output port connected to the left wheel’s motor and the second letter is the output port connected to the right wheel’s motor.</li>
+	</ul>
+	</li>
+	<li>
+	<p>Set the SensorPort property of NxtUltrasonicSensor1.</p>
+
+	<ul type="dash">
+		<li>If your robot’s ultrasonic sensor is connected to input port 4, then the default setting of “4” doesn’t need to be changed.</li>
+		<li>If your robot is configured differently, set the SensorPort property to the input port connected to the ultrasonic sensor.</li>
+	</ul>
+	</li>
+</ol>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Visible Components" id="visible_components">
+<h2>Visible Components</h2>
+
+<p>Now let’s create the user interface components shown in <a class="xref " data-type="xref" href="#app_in_the_component_designer">Figure 12-2</a>.</p>
+
+<figure id="app_in_the_component_designer"><img alt="The app in the Component Designer" src="images/rr-2.png"/>
+<figcaption>The app in the Component Designer</figcaption>
+</figure>
+
+<p>To make the Bluetooth connection, you’ll need the unique Bluetooth address of the NXT. Unfortunately, Bluetooth addresses consist of eight 2-digit hexadecimal numbers (a way of representing binary values) separated by colons, making them very cumbersome to type. You won’t want to type in the address on your phone every time you run the app. So, to avoid that, you’ll use a ListPicker that displays a list of the robots that have been paired with your phone and lets you choose one. You’ll use buttons for driving forward and backward, turning left and right, stopping, and disconnecting. You can use a VerticalArrangement to lay out everything except for the ListPicker, and a HorizontalArrangement to contain the buttons for turning left, stopping, and turning right.</p>
+
+<p>You can build the interface shown in <a class="xref " data-type="xref" href="#app_in_the_component_designer">Figure 12-2</a> by dragging out the components listed in <a data-type="xref" href="#visible_components_for_the_robot_nxt_con">Table 12-2</a>.</p>
+
+<table id="visible_components_for_the_robot_nxt_con">
+	<caption>Visible components for the Robot NXT controller app</caption>
+	<thead>
+		<tr>
+			<th>Component type</th>
+			<th>Palette group</th>
+			<th>What you’ll name it</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><code>ListPicker</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>ConnectListPicker</code></p>
+			</td>
+			<td>
+			<p>Choose the robot to connect to.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>VerticalArrangement</code></p>
+			</td>
+			<td>
+			<p>Layout</p>
+			</td>
+			<td>
+			<p><code>VerticalArrangement1</code></p>
+			</td>
+			<td>
+			<p>A visual container.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>ForwardButton</code></p>
+			</td>
+			<td>
+			<p>Drive forward.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>HorizonalArrangement</code></p>
+			</td>
+			<td>
+			<p>Layout</p>
+			</td>
+			<td>
+			<p><code>HorizonalArrangement1</code></p>
+			</td>
+			<td>
+			<p>A visual container.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>LeftButton</code></p>
+			</td>
+			<td>
+			<p>Turn left.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>StopButton</code></p>
+			</td>
+			<td>
+			<p>Stop.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>RightButton</code></p>
+			</td>
+			<td>
+			<p>Turn right.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>BackwardButton</code></p>
+			</td>
+			<td>
+			<p>Drive backward.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><code>Button</code></p>
+			</td>
+			<td>
+			<p>User Interface</p>
+			</td>
+			<td>
+			<p><code>DisconnectButton</code></p>
+			</td>
+			<td>
+			<p>Disconnect from the NXT.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>To arrange the visual layout as shown in <a data-type="xref" href="#app_in_the_component_designer">Figure 12-2</a>, place LeftButton, StopButton, and RightButton inside HorizontalArrangement1, and place ForwardButton, HorizontalArrangement1, BackwardButton, and DisconnectButton inside VerticalArrangement1.</p>
+
+<p>Set the properties of the components in the following way:</p>
+
+<ol>
+	<li>Uncheck Scrollable on Screen1.</li>
+	<li>Set the Width of ConnectListPicker and DisconnectButton to “Fill parent.”</li>
+	<li>Set the Width and Height of VerticalArrangement1, ForwardButton, HorizontalArrangement1, LeftButton, StopButton, RightButton, and BackwardButton to “Fill parent.”</li>
+	<li>Set the Text of ConnectListPicker to “Connect...”.</li>
+	<li>Set the Text of ForwardButton to “^”.</li>
+	<li>Set the Text of LeftButton to “&lt;”.</li>
+	<li>Set the Text of StopButton to “-”.</li>
+	<li>Set the Text of RightButton to “&gt;”.</li>
+	<li>Set the Text of BackwardButton to “v”.</li>
+	<li>Set the Text of DisconnectButton to “Disconnect”.</li>
+	<li>Set the FontSize of ConnectListPicker and DisconnectButton to 30.</li>
+	<li>Set the FontSize of ForwardButton, LeftButton, StopButton, RightButton, and BackwardButton to 40.</li>
+</ol>
+
+<p>In this application, it makes sense to hide most of the user interface until the Bluetooth is connected to the NXT. To accomplish this, set the Visible property of VerticalArrangement1 to “hidden”. Don’t worry—in a moment, we’ll make the application reveal the user interface after it connects to the NXT.</p>
+</section>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Adding Behaviors to the Components" id="adding_behaviors_to_the_componen-id00113">
+<h1>Adding Behaviors to the Components</h1>
+
+<p>In this section, you’ll program the behavior of the app, including:</p>
+
+<ul>
+	<li>Letting the user connect the app to a robot by choosing it from a list.</li>
+	<li>Letting the user disconnect the app from a robot.</li>
+	<li>Letting the user drive the robot using the control buttons.</li>
+	<li>Forcing the robot to stop when it senses an obstacle.</li>
+</ul>
+
+<section data-type="sect2" data-pdf-bookmark="Connecting to the NXT" id="connecting_to_the_nxt">
+<h2>Connecting to the NXT</h2>
+
+<p>The first behavior you’ll add is connecting to the NXT. When you click ConnectListPicker, it will show a list of the paired robots. When you choose a robot, the app will make a Bluetooth connection to that robot.</p>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Displaying the List of Robots" id="displaying_the_list_of_robots">
+<h2>Displaying the List of Robots</h2>
+
+<p>To display the list of robots, you’ll use ConnectListPicker. A ListPicker looks like a button, but when it’s clicked, it displays a list of items and lets you choose one. You’ll use the BluetoothClient1.AddressesAndNames block to provide a list of the addresses and names of Bluetooth devices that have been paired with the Android. Because BluetoothClient1 is used with NXT components, it automatically limits the devices included in the AddressesAndNames property to those that are robots, so you won’t see other kinds of Bluetooth devices (like headsets) in the list. <a class="xref " data-type="xref" href="#blocks_to_add_a_listpicker_to_the_app">Table 12-3</a> lists the blocks you’ll need for this step.</p>
+
+<table id="blocks_to_add_a_listpicker_to_the_app">
+	<caption>Blocks to add a ListPicker to the app</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>ConnectListPicker.BeforePicking</em> </strong></p>
+			</td>
+			<td>
+			<p>ConnectListPicker</p>
+			</td>
+			<td>
+			<p>Triggered when <code>ConnectListPicker</code> is clicked.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set ConnectListPicker.Elements to</em> </strong></p>
+			</td>
+			<td>
+			<p>ConnectListPicker</p>
+			</td>
+			<td>
+			<p>Set the choices that will appear.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>BluetoothClient1.AddressesAndNames</em> </strong></p>
+			</td>
+			<td>
+			<p>BluetoothClient1</p>
+			</td>
+			<td>
+			<p>The addresses and names of robots that have been paired with the Android.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="How the blocks work" id="how_the_blocks_work-id00114">
+<h2>How the blocks work</h2>
+
+<p>When ConnectListPicker is clicked, the ConnectListPicker.BeforePicking event is triggered before the list of choices is displayed, as shown in <a data-type="xref" href="#displaying_the_list_of_robots-id00115">Figure 12-3</a>. To specify the items that will be listed, set the ConnectListPicker. Elements property to the BluetoothClient1.AddressesAndNames block. ConnectListPicker will list the robots that have been paired with the Android.</p>
+
+<figure id="displaying_the_list_of_robots-id00115"><img alt="Displaying the list of robots" src="images/rr-3.png"/>
+<figcaption>Displaying the list of robots</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>On your phone, click “Connect...” and see what happens. You should see a list of all the robots your phone has been paired with.</em></p>
+
+<p><em>If you just see a black screen, your phone hasn’t been paired with any robots. If you see addresses and names of other Bluetooth devices, such as a Bluetooth headset, the BluetoothClient property of NxtDrive1 and NxtUltrasonicSensor1 has not been set properly.</em></p>
+</div>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Making the Bluetooth Connection" id="making_the_bluetooth_connection">
+<h2>Making the Bluetooth Connection</h2>
+
+<p>After you choose a robot from the list, the app will connect to that robot via Bluetooth. If the connection is successful, the user interface will change. ConnectListPicker will be hidden, and the rest of the user interface components will appear. If the robot is not turned on, the connection will fail and an error message will pop up. You’ll use the BluetoothClient1.Connect block to make the connection. The ConnectListPicker.Selection property provides the address and name of the chosen robot. You’ll use an if-then block to test whether the connection was successful or not. We’ll add the “else” are to the if-then block, so it will have three different areas where blocks are connected: “if”, “then”, and “else.” The “if” area will contain the BluetoothClient1.Connect block. The “then” area will contain the blocks to be executed if the connection is successful. The “else” area will contain the blocks to be executed if the connection fails. If the connection is successful, you will use the Visible property to hide ConnectListPicker and show VerticalArrangement1, which contains the rest of the user interface components. If the connection fails, you will use the Notifier1.ShowAlert block to display an error message. <a data-type="xref" href="#blocks_for_using_bluetooth_to_connect_wi">Table 12-4</a> lists the blocks you’ll need for this behavior.</p>
+
+<table id="blocks_for_using_bluetooth_to_connect_wi">
+	<caption>Blocks for using Bluetooth to connect with the robot</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>ConnectListPicker.AfterPicking</em> </strong></p>
+			</td>
+			<td>
+			<p>ConnectListPicker</p>
+			</td>
+			<td>
+			<p>Triggered when a robot is chosen from <code>ConnectListPicker</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>if-then</em></strong></p>
+			</td>
+			<td>
+			<p>Control</p>
+			</td>
+			<td>
+			<p>Test whether the Bluetooth connection is successful.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>BluetoothClient1.Connect</em> </strong></p>
+			</td>
+			<td>
+			<p>BluetoothClient1</p>
+			</td>
+			<td>
+			<p>Connect to the robot.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>ConnectListPicker.Selection</em> </strong></p>
+			</td>
+			<td>
+			<p>ConnectListPicker</p>
+			</td>
+			<td>
+			<p>The address and name of the chosen robot.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set ConnectListPicker.Visible to</em> </strong></p>
+			</td>
+			<td>
+			<p>ConnectListPicker</p>
+			</td>
+			<td>
+			<p>Hide <code>ConnectListPicker</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>false</em> </strong></p>
+			</td>
+			<td>
+			<p>Logic</p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>set ConnectListPicker.Visible to</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set VerticalArrangement1.Visible to</em> </strong></p>
+			</td>
+			<td>
+			<p>VerticalArrangement1</p>
+			</td>
+			<td>
+			<p>Show the rest of the user interface.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>true</em> </strong></p>
+			</td>
+			<td>
+			<p>Logic</p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>s</em></strong><strong><em>et VerticalArrangement1.Visible to</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>Notifier1.ShowAlert</em> </strong></p>
+			</td>
+			<td>
+			<p>Notifier1</p>
+			</td>
+			<td>
+			<p>Show an error message.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><em><strong>"</strong></em>Unable to make a Bluetooth connection.<em><strong>"</strong></em></p>
+			</td>
+			<td>
+			<p>Text</p>
+			</td>
+			<td>
+			<p>The error message.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="How the blocks work" id="how_the_blocks_work-id00116">
+<h2>How the blocks work</h2>
+
+<p>After a robot is picked, the ConnectListPicker.AfterPicking event is triggered, as shown in <a class="xref " data-type="xref" href="#making_the_bluetooth_connection-id00117">Figure 12-4</a>. The BluetoothClient1.Connect block makes the Bluetooth connection to the selected robot. If the connection is successful, the “then” blocks are executed: the ConnectListPicker.Visible property is set to false to hide ConnectListPicker, and the VerticalArrangement1.Visible property is set to true to show VerticalArrangement1, which contains the remote control buttons. If the connection fails, the“else” blocks are executed: the Notifier1.ShowAlert block displays an error message.</p>
+
+<figure id="making_the_bluetooth_connection-id00117"><img alt="Making the Bluetooth connection" src="images/rr-4.png"/>
+<figcaption>Making the Bluetooth connection</figcaption>
+</figure>
+</section>
+
+<section data-type="sect2" data-pdf-bookmark="Disconnecting from the NXT" id="disconnecting_from_the_nxt">
+<h2>Disconnecting from the NXT</h2>
+
+<p>You’re probably excited about connecting your Android to your NXT, but before you do that, let’s do one more thing: add the behavior for disconnecting. That way, you’ll be able to test both connecting and disconnecting. When DisconnectButton is clicked, the app will close the Bluetooth connection and the user interface will change. ConnectListPicker will reappear, and the rest of the user interface components will be hidden. Use the blocks listed in <a data-type="xref" href="#blocks_for_disconnecting_from_the_robot">Table 12-5</a> to build the BluetoothClient1.Disconnect block that closes the Bluetooth connection. You will use the Visible property to show ConnectListPicker and hide VerticalArrangement1, which contains the rest of the user interface components.</p>
+
+<table id="blocks_for_disconnecting_from_the_robot">
+	<caption>Blocks for disconnecting from the robot</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>DisconnectButton.Click</em> </strong></p>
+			</td>
+			<td>
+			<p>DisconnectButton</p>
+			</td>
+			<td>
+			<p>Triggered when <code>DisconnectButton</code> is clicked.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>BluetoothClient1.Disconnect</em> </strong></p>
+			</td>
+			<td>
+			<p>BluetoothClient1</p>
+			</td>
+			<td>
+			<p>Disconnect from the robot.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set ConnectListPicker.Visible to</em> </strong></p>
+			</td>
+			<td>
+			<p>ConnectListPicker</p>
+			</td>
+			<td>
+			<p>Show <code>ConnectListPicker</code>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>true</em> </strong></p>
+			</td>
+			<td>
+			<p>Logic</p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>set ConnectListPicker.Visible to</em></strong>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>set VerticalArrangement1.Visible to</em> </strong></p>
+			</td>
+			<td>
+			<p>VerticalArrangement1</p>
+			</td>
+			<td>
+			<p>Hide the rest of the user interface.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>false</em> </strong></p>
+			</td>
+			<td>
+			<p>Logic</p>
+			</td>
+			<td>
+			<p>Plug into <strong><em>set VerticalArrangement1.Visible to</em></strong>.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>When DisconnectButton is clicked, the DisconnectButton.Clicked event is triggered, as shown in <a data-type="xref" href="#disconnecting_from_the_robot">Figure 12-5</a>. The BluetoothClient1.Disconnect block closes the Bluetooth connection. The ConnectListPicker.Visible property is set to true to show ConnectListPicker, and the VerticalArrangement1.Visible property is set to false to hide VerticalArrangement1, which contains the remote control buttons.</p>
+
+<figure id="disconnecting_from_the_robot"><img alt="Disconnecting from the robot" src="images/rr-5.png"/>
+<figcaption>Disconnecting from the robot</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>Make sure your robot is turned on and then, on your phone, click “Connect...” and choose the robot you want to connect to. It will take a moment to make the Bluetooth connection. Once the robot connects, you should see the buttons for controlling the robot, as well as the Disconnect button. Click the Disconnect button. The buttons for controlling the robot should disappear, and the Connect button should reappear.</em></p>
+</div>
+</section>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Driving the NXT" id="driving_the_nxt">
+<h1>Driving the NXT</h1>
+
+<p>Let’s get to the really fun part: adding behavior for driving forward and backward, turning left and right, and stopping. Don’t forget about stopping—if you do, you’ll have an out-of-control robot on your hands! The NxtDrive component provides five blocks for driving the robot’s motors:</p>
+
+<ul>
+	<li>MoveForwardIndefinitely drives both motors forward.</li>
+	<li>MoveBackwardIndefinitely drives both motors backward.</li>
+	<li>TurnCounterClockwiseIndefinitely turns the robot to the left by driving the right motor forward and the left motor backward.</li>
+	<li>TurnClockwiseIndefinitely turns the robot to the right by driving the left motor forward and the right motor backward.</li>
+	<li>Stop stops both motors.</li>
+</ul>
+
+<p>The Move... and Turn... blocks each have a parameter called Power. You’ll use a number block, along with all the other items listed in <a data-type="xref" href="#blocks_for_controlling_the_robot">Table 12-6</a>, to specify the amount of power the robot should use to turn the motors. The value can range from 0 to 100. However, if you specify too little power, the motors will make a whining sound but not turn. In this application, you’ll use 90 (percent).</p>
+
+<table id="blocks_for_controlling_the_robot">
+	<caption>Blocks for controlling the robot</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>ForwardButton.Click</em> </strong></p>
+			</td>
+			<td>
+			<p>ForwardButton</p>
+			</td>
+			<td>
+			<p>Triggered when <code>ForwardButton</code> is clicked.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>NxtDrive1.MoveForwardIndefinitely</em> </strong></p>
+			</td>
+			<td>
+			<p>NxtDrive1</p>
+			</td>
+			<td>
+			<p>Drive the robot forward.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>number</em></strong> (90)</p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>The amount of power.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>BackwardButton.Click</em> </strong></p>
+			</td>
+			<td>
+			<p>BackwardButton</p>
+			</td>
+			<td>
+			<p>Triggered when <code>BackwardButton</code> is clicked.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>NxtDrive1.MoveBackwardIndefinitely</em> </strong></p>
+			</td>
+			<td>
+			<p>NxtDrive1</p>
+			</td>
+			<td>
+			<p>Drive the robot backward.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>number</em></strong> (90)</p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>The amount of power.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>LeftButton.Click</em> </strong></p>
+			</td>
+			<td>
+			<p>LeftButton</p>
+			</td>
+			<td>
+			<p>Triggered when <code>LeftButton</code> is clicked.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>NxtDrive1.TurnCounterClockwiseIndefinitely</em> </strong></p>
+			</td>
+			<td>
+			<p>NxtDrive1</p>
+			</td>
+			<td>
+			<p>Turn the robot counterclockwise.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>number</em></strong> (90)</p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>The amount of power.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>RightButton.Click</em> </strong></p>
+			</td>
+			<td>
+			<p>RightButton</p>
+			</td>
+			<td>
+			<p>Triggered when <code>RightButton</code> is clicked.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>NxtDrive1.TurnClockwiseIndefinitely</em> </strong></p>
+			</td>
+			<td>
+			<p>NxtDrive1</p>
+			</td>
+			<td>
+			<p>Turn the robot clockwise.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>number</em></strong> (90)</p>
+			</td>
+			<td>
+			<p>Math</p>
+			</td>
+			<td>
+			<p>The amount of power.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>StopButton.Click</em> </strong></p>
+			</td>
+			<td>
+			<p>StopButton</p>
+			</td>
+			<td>
+			<p>Triggered when <code>StopButton</code> is clicked.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>NxtDrive1.Stop</em> </strong></p>
+			</td>
+			<td>
+			<p>NxtDrive1</p>
+			</td>
+			<td>
+			<p>Stop the robot.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<section data-type="sect2" data-pdf-bookmark="How the blocks work" id="how_the_blocks_work-id00118">
+<h2>How the blocks work</h2>
+
+<p>When ForwardButton is clicked, the ForwardButton.Clicked event is triggered. The NxtDrive1.MoveForwardIndefinitely block shown in <a data-type="xref" href="#driving_the_robot">Figure 12-6</a> is used to move the robot forward at 90% power. The remaining events function similarly for the other buttons, each powering the robot backward, left, and right.</p>
+
+<figure id="driving_the_robot"><img alt="Driving the robot" src="images/rr-6.png"/>
+<figcaption>Driving the robot</figcaption>
+</figure>
+
+<p>When StopButton is clicked, the StopButton.Clicked event is triggered. The NxtDrive1.Stop block is used to stop the robot. Test your app. Follow the instructions in the previous “Test your app” section to connect to the NXT. Make sure the robot is not on a table where it could fall, and then test its behavior as follows:</p>
+
+<ol>
+	<li>Click the forward button. The robot should move forward.</li>
+	<li>Click the backward button. The robot should move backward.</li>
+	<li>Click the left button. The robot should turn counterclockwise.</li>
+	<li>Click the right button. The robot should turn clockwise.</li>
+	<li>Click the stop button. The robot should stop.</li>
+</ol>
+
+<p>If your robot doesn’t move, but you can hear a whining sound, you may need to increase the power. You can use 100 for maximum power.</p>
+</section>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Using the Ultrasonic Sensor to Detect Obstacles" id="using_the_ultrasonic_sensor_to_detect_ob">
+<h1>Using the Ultrasonic Sensor to Detect Obstacles</h1>
+
+<p>Using the ultrasonic sensor, the robot will stop if it encounters an obstacle, like the culprit shown in <a data-type="xref" href="#common_household_obstacle_for_your_nxt_r">Figure 12-7</a>, within 30 centimeters.</p>
+
+<figure id="common_household_obstacle_for_your_nxt_r"><img alt="A common household obstacle for your NXT robot" src="images/rr-7.png"/>
+<figcaption>A common household obstacle for your NXT robot</figcaption>
+</figure>
+
+<p>The NxtUltrasonicSensor component can be used to detect obstacles. It has two properties named BottomOfRange and TopOfRange that define the detection range in centimeters. By default, the BottomOfRange property is set to 30 centimeters and TopOfRange is set to 90 centimeters.</p>
+
+<p>The NxtUltrasonicSensor component also has three events called BelowRange, WithinRange, and AboveRange. The BelowRange event will be triggered when an obstacle is detected at a distance below BottomOfRange. The WithinRange event will be triggered when an obstacle is detected at a distance between BottomOfRange and TopOfRange. The AboveRange event will be triggered when an obstacle is detected at a distance above TopOfRange.</p>
+
+<p>You’ll use the NxtUltrasonicSensor1.BelowRange event block, shown in <a data-type="xref" href="#blocks_for_using_the_nxtultrasonicsensor">Table 12-7</a>, to detect an obstacle within 30 centimeters. If you want to detect an obstacle within a different distance, you can adjust the BottomOfRange property. You’ll use the NxtDrive1.Stop block to stop the robot.</p>
+
+<table id="blocks_for_using_the_nxtultrasonicsensor">
+	<caption>Blocks for using the NxtUltrasonicSensor</caption>
+	<thead>
+		<tr>
+			<th>Block type</th>
+			<th>Drawer</th>
+			<th>Purpose</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>NxtUltrasonicSensor1.BelowRange</em> </strong></p>
+			</td>
+			<td>
+			<p>NxtUltrasonicSensor1</p>
+			</td>
+			<td>
+			<p>Triggered when the ultrasonic sensor detects an obstacle at a distance below 30 centimeters.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><strong><em>NxtDrive1.Stop</em> </strong></p>
+			</td>
+			<td>
+			<p>NxtDrive1</p>
+			</td>
+			<td>
+			<p>Stop the robot.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<section data-type="sect2" data-pdf-bookmark="How the blocks work" id="how_the_blocks_work-id00119">
+<h2>How the blocks work</h2>
+
+<p>When the robot’s ultrasonic sensor detects an obstacle at a distance below 30 centimeters, the NxtUltrasonicSensor1.BelowRange event is triggered, as shown in <a data-type="xref" href="#detecting_an_obstacle">Figure 12-8</a>. The NxtDrive1.Stop block stops the robot.</p>
+
+<figure id="detecting_an_obstacle"><img alt="Detecting an obstacle" src="images/rr-8.png"/>
+<figcaption>Detecting an obstacle</figcaption>
+</figure>
+
+<div data-type="note">
+<h5>Test your app</h5>
+
+<p><em>Follow the instructions in the previous “Test your app” section to connect to the NXT. Using the navigation buttons, drive your robot toward an obstacle, such as a cat. The robot should stop when it gets within 30 centimeters of the cat.</em></p>
+</div>
+
+<p>If the robot doesn’t stop, the cat may have moved away from the robot before it got within 30 centimeters. You may need to test your app with an inanimate obstacle.</p>
+
+<p>After you get this application working—and you’ve spent enough time actually playing with your NXT robot—you might want to try:</p>
+
+<ul>
+	<li>
+	<p>Varying the amount of power when driving the robot.</p>
+
+	<ul type="dash">
+		<li>You can do this by changing the numeric value that you plug into the MoveForwardIndefinitely, MoveBackwardIndefinitely, TurnCounterclockwiseIndefinitely, and TurnClockwiseIndefinitely blocks.</li>
+	</ul>
+	</li>
+	<li>
+	<p>Using the NxtColorSensor to shine a red light when an obstacle is detected.</p>
+
+	<ul type="dash">
+		<li>You can use an NxtColorSensor component and its GenerateColor property.</li>
+		<li>You’ll need to set the DetectColor property to false (or uncheck it in the Component Designer) because the color sensor cannot detect and generate color at the same time.</li>
+	</ul>
+	</li>
+	<li>Using an OrientationSensor to control the robot.</li>
+	<li>Using LEGO building elements to physically attach your phone to the robot. Create applications that make the robot autonomous.</li>
+</ul>
+</section>
+</section>
+
+<section data-type="sect1" data-pdf-bookmark="Summary" id="summary-id00120">
+<h1>Summary</h1>
+
+<p>Here are some of the concepts we’ve covered in this tutorial:</p>
+
+<ul>
+	<li>The ListPicker component allows you to choose from a list of paired robots.</li>
+	<li>The BluetoothClient component makes the connection to the robot.</li>
+	<li>The Notifier component displays an error message.</li>
+	<li>The Visible property is used to hide or show user interface components.</li>
+	<li>The NxtDrive component can drive, turn, and stop the robot.</li>
+	<li>The NxtUltrasonicSensor component is used to detect obstacles.</li>
+</ul>
+</section>
+</section>
+  </body>
+</html>
+{% endblock %}
