@@ -3533,3 +3533,18 @@ figcaption {
     display: block;
     max-width: 100%;
 }
+
+
+.course-page-container .section {
+	padding-top: 0px;
+	padding-bottom: 20px;
+}
+
+.course-page-container .section h2, .course-page-container .section h1 {
+	color: #2F2F2F;
+}
+
+
+.course-page-container .section img {
+	margin: 20px auto;
+}
