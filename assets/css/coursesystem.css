@@ -3369,6 +3369,14 @@ pre {
     background-position-x: -57px;
 }
 
+.jbridge-vid-story.dave {
+	background-image: url("/assets/img/testimonialGIFS/dave.png");
+}
+
+.jbridge-vid-story.dave .jbridge-vid-story-animation {
+	background-image: url("/assets/img/testimonialGIFS/dave.gif");
+}
+
 .download-btn {
   padding: 20px;
   background-color: rgb(244, 182, 26);

@@ -1,7 +1,6 @@
 <div class='course-page-container'>
 	<section class="section">
 		<h1 class="center-children">Asteroids</h1>
-		<img class="art-img" style="margin-bottom: 20px;" src="/assets/img/asteroids/hero.png">
 		<p>
 			Asteroids is a classic arcade game where you captain a spaceship and shoot down asteroids. In this tutorial you will learn how to build the game and the basics of computer animation.
 		</p>
@@ -85,28 +84,44 @@
 			You might notice that the new heading is not guranteed to give the asteroid a direction away from the edge. For the sake of simplicity this is okay, because the logic will keep running until the spaceship's new heading causes it to turn around. 
 		</p>
 		<p>
-			If you run the program now you will see the asteroid sporadicly bouncing around the canvas. This is exactly what we want for the game! Later we will program the asteroid to respond to being hit by bullets. Before we do that we must make the spaceship.
+			If you run the program now you will see the asteroid sporadicly bouncing around the canvas. This is exactly what we want for the game! Later we will program the asteroid to respond to being hit by bullets. Before we can do that we must make the spaceship.
 		</p>
 	</section>
 
+	<section class="section">
+		<h2>Building the Spaceship</h2>
+		<p>Drag a new ImageSprite onto the canvas and rename it "spaceship"</p>
+		
+		<p>We will set the ImageSprite's picture in it's property menu just like we did for the asteroid.</p>
 		<p>
 			<img src="/assets/img/asteroids/shooter.png">
-			<a download href="/assets/img/asteroids/shooter.png">Download the spaceship image</a>
+			<a download href="/assets/img/asteroids/shooter.png">Download the spaceship texture</a>
 		</p>
 
-		<p>Once you upload your image and drag out an ImageSprite and place it in the Canvas.</p>
+		<p>The direction or heading of the spaceship is going to be controlled by the orientation of the phone. In other words when the user tilts the phone up or down we want the spaceship to move up or down and when the phone is tilted left or right we want the spaceship to do the same. We can detect the orientation of the phone using the OrientationSensor component, located in the Sensor folder in the designer view. Drag out a new OrientationSensor onto your app. </p>
 
-		<p>Name your ImageSprite component "Spaceship". Giving your components meaningful names will make your life much easier as your app gets more complex.</p>
+
+		<p>First, let's setup the basic logic. In the block's editor drag out the OrientationSensor's "when orientation changed" block. This block's do section will run whenever the phone's orientation changes.</p>
+
+		<img class="art-img" src="/assets/img/asteroids/when-orientation-change.png">
+
+
+		<p>We want the spaceship's heading to change when the orientation of the phone changes, so drag a set heading into the do section like so:</p>
+
+		<img class="art-img" src="/assets/img/asteroids/when-orientation-change-set-heading.png">
+
 
 		<p>
-			Set the following properties for the ImageSprite
+			Drag out the OrientationSensor's "get angle" block and attach it to the set heading block like so:
 		</p>
-		<ul>
-			<li>picture - whatever image you uploaded</li>
-			<li>Speed - 5</li>
-		</ul>
 
-		<p>Test out your app and be amazed as the spaceship flys across the screen! However it is limited to one direction, which doesn't exactly make for a compelling game. In the next section we will fix that.</p>
+		<img class="art-img" src="/assets/img/asteroids/when-orientation-change-set-angle.png">
+
+
+		<p>
+			Now whenever the phone changes it's orientation the spaceship's heading will change as well in the same direction.
+		</p>
+
 	</section>
 
 

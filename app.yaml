@@ -7,8 +7,8 @@
 
 
 
-application: appinventororgtesting
-version: jordan
+application: appinventororg
+version: dave
 runtime: python27
 api_version: 1
 threadsafe: no

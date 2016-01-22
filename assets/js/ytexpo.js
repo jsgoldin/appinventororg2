@@ -16,19 +16,10 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 
 
-var ytIdPlayList = [
-	"SEEznjguqBs",
-	"AmDl1t7DCKU",
-	"GQsiQx9q3d8",
-	"YJ3C6v9D4kE",
-	"Agz3IwQKVqk",
-	"x7wvGY969ZM",
-]
-
 var player;
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
-		  videoId: ytIdPlayList[0],
+		  videoId: "RFeUNoOaQUo",
 		  events: {
 		    'onReady': onPlayerReady,
 		    'onStateChange': onPlayerStateChange
