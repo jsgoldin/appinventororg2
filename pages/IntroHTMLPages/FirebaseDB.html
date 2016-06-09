@@ -1,0 +1,70 @@
+<link rel="stylesheet" type="text/css"
+	href="/assets/JordansStuff/css/JordansAwesomeStyleSheet.css">
+	<div class="dark-blue-title">
+		<div class="course-page-container">
+			<h1>FirebaseDB</h1>
+		</div>
+	</div>
+	<div class="course-page-container">
+		<div class="card">
+			<p>
+                FirebaseDB is the new App Inventor web database. Currently, this new web database component is being beta tested and will be updated based on user feedback. You can try it out, but don’t get too attached to its current form, because features may change by the time it is fully integrated. In case you forget this fact, you will be reminded every time you try to add this component to your project. Housed under the “Experimental” Palette drawer in the Designer, dragging this non-visible component to the Viewer will result in an alert reminding you of its provisional existence.
+			</p>
+
+            <img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/fire-1.png"> <br>
+
+            <img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/fire-2.png"> <br>
+
+		</div>
+		<div class="card">
+			<h2>Databases</h2>
+            <p>
+				Databases are used for many reasons in mobile apps such as: to keep track of high scores in a game, to count the number of votes in an election, to save a variety outgoing text messages or to store the names of RSVPs to a book club event. FirebaseDB stores data in the cloud, which is helpful if you are perhaps vying to become a high scorer of a game. For such apps, both the app programmer and app user want this sort of data to be shared and persistent, meaning that once the app closes, the information is not gone forever, it will be saved and retrieved for all to see once the app reopens.
+            </p>
+
+            <img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/fire-3.png"> <br>
+		</div>
+
+		<div class="card">
+			<h2>Example</h2>
+			<p>
+                For a simple note-taking app, users enter their username and a note and the app will display the note, the username and a time/date stamp. For this app to work, it must save and display notes from different users on various devices- a perfect scenario for FirebaseDB.
+			</p>
+
+            <p>
+                When you create a new Checkpoint, App Inventor shows you a list of previous Checkpoints and the time/date they were saved.
+            </p>
+
+            <p>
+                We programed this app so that when the user clicks “Submit,” the app stores data using the StoreValue block. In this case, it adds the values (user’s name, note, and date/time stamp) to a list called “global notes”. This information gets stored in the FirebaseDB under the tag that we named, “notelist”.
+            </p>
+			<img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/fire-4.png
+			">
+			<p>
+                Each time the app opens, the GetValue block requests the most updated values stored under the “notelist” tag from the Firebase Service. When the value is received, the GotValue event fires retrieving the values saved in “notelist” and displays them in a List View.
+            </p>
+
+            <p>
+                The Firebase DataChanged event gets triggered anytime any user adds a new note. This is the amazing part because with FirebaseDB, all app instances receive this data and thus, are consistent. The previous App Inventor web database, TinyWebDB, did not have the ability to share data globally in this manner.
+            </p>
+
+            <img class="img-responsive center-img" alt="img0"
+			src="/images/CourseInABoxImages/fire-5.png">
+
+        </div>
+
+
+		<div class="card">
+			<p>
+                To become familiar with FirebaseDB, try building this note taker app and test how values from various users get saved, updated and displayed Or better yet, build a game app and see people around the world vie for the top scorer position!
+            </p>
+
+            <p>
+                *Note that the App Inventor emulator does not support the FirebaseDB component.
+			</p>
+        </div>
+    </div>

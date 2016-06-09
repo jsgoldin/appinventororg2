@@ -71,7 +71,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                         {{key}}
                                         <i class="fa fa-angle-right"></i>
                                         </a>
-                                        
                                      {% else %}
 
                                          <div class="menu-item">
@@ -147,6 +146,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         About
                     </a>
                 </li>
+                <li>
+                    <a data-TID="global-nav-headeritem-blog" href="/about/blog" class="header-item">
+                        Blog
+                    </a>
+                </li>
                 {% if userStatus.isAccount %}
                 <li class="mega-menu-profile-menu">
                     <div class="header-item">
@@ -176,6 +180,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         Login
                     </a>
                 </li>
+
                 {% endif %}           
                 
                 {% if userStatus.admin %}

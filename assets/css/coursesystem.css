@@ -2387,7 +2387,7 @@ a {
 }
 
 .mega-menu.visible {
-	max-height: 500px;
+	max-height: 660px;
 	overflow: hidden;
 }
 
@@ -2722,7 +2722,7 @@ a.menu-item {
 		background-color: rgba(214, 214, 214, 0.49);
 	}
 	.mega-menu ul li.selected-item>.slideout-menu {
-		height: 180px;
+		height: 100%;
 		/* Must be changed manually if number of items change or the height of the items change! */
 	}
 	.mega-menu ul li.selected-item.mega-menu-profile-menu>.slideout-menu {
