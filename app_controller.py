@@ -2817,7 +2817,6 @@ class ModuleXHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
 
-
 # Quiz Page
 class QuizQuestionsHandler(webapp.RequestHandler):
     def get(self):
@@ -5924,6 +5923,27 @@ class AnimationChallengeHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationChallenge.html')
         self.response.out.write(template.render(path, template_values))
 
+class WhatTheHeckIsCheckpointHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/WhatTheHeckIsCheckpoint.html')
+        self.response.out.write(template.render(path, template_values))
+
+class FirebaseDBHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/FirebaseDB.html')
+        self.response.out.write(template.render(path, template_values))
+
+class HueNewHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/HueNew.html')
+        self.response.out.write(template.render(path, template_values))
+
 class CreativeProject2GameHandler(webapp.RequestHandler):
     def get(self):
         template_values = {}
@@ -7128,7 +7148,7 @@ application = webapp.WSGIApplication(
         
     
         # new home page
-        ('/', Homehandler),
+        ('/', Homehandler, BlogHandler),
         
         # courses page 
         ('/content', TutorialsHandler),
@@ -7297,10 +7317,14 @@ application = webapp.WSGIApplication(
 
         ('/asteroids-part1', AsteroidsPart1Handler),
 
-
+        #Leonard's pages
+        ('/whatTheHeckIsCheckpoint', WhatTheHeckIsCheckpointHandler),
+        ('/firebaseDB', FirebaseDBHandler),
+        ('/hueNew', HueNewHandler),
 
         # TODO: DELETE WHEN DONE!
-        ('/aitesting', aiTestHandler)
+        ('/aitesting', aiTestHandler),
+
 
     ],
     debug=True)
