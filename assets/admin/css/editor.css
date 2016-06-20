@@ -46,7 +46,6 @@
     min-height: 150px;
 }
 
-}
 .item-box {
     background-color: white;
     min-height: 150px;
@@ -251,7 +250,7 @@
 }
 
 .editor-sidebar {
-    padding-left: 40;
+    padding-left: 40px;
     width: 10%;
 }
 
