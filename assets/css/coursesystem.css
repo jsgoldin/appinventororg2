@@ -2946,7 +2946,7 @@ a.menu-item {
 
 .about-header.team {
 	background-image: url("/assets/img/team/old-team.jpg");
-	background-size: 100% auto;
+	background-size: cover;
 	background-position-y: 30%;
 }
 
@@ -2954,13 +2954,30 @@ a.menu-item {
   background-image: url("/assets/img/about/ai_supplies.jpg");
   color: white;
   font-size: 36px;
-  background-size: 100% auto;
+  background-size: cover;
   background-position-y: 21%;
 }
 
 .about-header.news {
+    height: auto;
 	background-color: rgb(231, 231, 231);
+    background-size: cover;
+    background-image: url("/assets/img/about/blogLanding.jpg");
 	padding-top: 67px;
+    padding-bottom: 67px;
+    background-position-y: -60px;
+}
+
+@media ( min-width : 0px) and (max-width: 872px) {
+	.about-header.news {
+    height: auto;
+	background-color: rgb(231, 231, 231);
+    background-size: cover;
+    background-image: url("/assets/img/about/blogLanding.jpg");
+	padding-top: 67px;
+    padding-bottom: 67px;
+    background-position-y: inherit;
+	}
 }
 
 .usf-plug {
@@ -2989,9 +3006,8 @@ a.menu-item {
 .as-seen-in-section {
 	text-align: center;
 	padding-top: 16px;
-	background-color: rgb(231, 231, 231);
+	background-color: white;
 	border-top: 1px solid rgb(179, 179, 179);
-	margin-top: 20px;
 }
 
 .as-seen-in-section img {
@@ -3092,7 +3108,14 @@ footer a {
 	text-align: left;
 	position: relative;
 	padding-left: 172px;
-	min-height: 150px;
+	min-height: 200px;
+    background-color: white;
+    border: 1px solid #e2e2e2;
+}
+
+.team-member-box img {
+    padding-top: 17px;
+    padding-left: 17px;
 }
 
 .team-member-box h2 {

@@ -141,8 +141,6 @@ class Course(ndb.Model):
     c_identifier = ndb.StringProperty()
 
 
-
-
 class RSSItem(ndb.Model): 
     title = ndb.StringProperty()
     link = ndb.StringProperty()
