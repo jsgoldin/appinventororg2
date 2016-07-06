@@ -7323,7 +7323,7 @@ application = webapp.WSGIApplication(
         ('/hueNew', HueNewHandler),
 
         # TODO: DELETE WHEN DONE!
-        ('/aitesting', aiTestHandler),
+        ('/aitesting', aiTestHandler)
 
 
     ],

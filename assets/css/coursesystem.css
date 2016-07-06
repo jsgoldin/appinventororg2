@@ -1375,10 +1375,16 @@ footer a {
 
 /* bootstrap sm */
 @media ( max-width : 767px) {
-
-
-	.landing-teachers-section {
-		display: none !important;
+	.landing-teachers-section{
+		background-image: url("/assets/img/propoganda/fadedBrianTeaching.jpg");
+		background-repeat: no-repeat;
+		/* background-position-y: -149px; */
+		background-size: cover;
+		height: 508px;
+		width: 100%;
+		overflow: hidden;
+		border-top: 1px solid #CCCCCC;
+		border-bottom: 1px solid #CCCCCC;
 	}
 
 	.section {
@@ -2009,6 +2015,105 @@ footer a {
     line-height: 1.5;
 }
 
+.blog-card {
+	background-color: white;
+	color: #333;
+	border: 1px solid #e2e2e2;
+	padding: 10px 20px;
+	margin: 10px 0px;
+}
+
+.blog-card h1 {
+    text-align: center;
+    vertical-align: middle;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0px !important;
+    padding: 15px;
+    display: table;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.blog-card h3 {
+    text-align: center;
+    vertical-align: middle;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 0px !important;
+    padding: 15px;
+    display: table;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.blog-card p {
+    text-align: left;
+    vertical-align: middle;
+    font-size: 16px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 15px;
+    display: table;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.blog-card p img{
+    padding: 15px;
+    vertical-align: middle;
+    margin-right: auto;
+    margin-left: auto;
+    width: auto;
+    height: auto;
+    display: table-cell;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.blog-card div{
+    text-align: left;
+    vertical-align: top;
+    font-size: 16px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: table;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.blog-card div img{
+    padding: 15px;
+    vertical-align: middle;
+    margin-right: auto;
+    margin-left: auto;
+    width: auto;
+    height: auto;
+    display: table-cell;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.blog-card div p{
+    text-align: left;
+    vertical-align: middle;
+    font-size: 16px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 15px;
+    display: table;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.blog-card li {
+	font-size: 18px;
+    line-height: 1.5;
+}
+
 .card--teacher {
 	background-color: white;
 	color: #333;
@@ -2024,37 +2129,40 @@ footer a {
 	margin: auto;
 	border-radius: 100px;
 }
-
-
-
-
 .landing-teachers-section {
-    height: 500px;
+	background-image: url("/assets/img/propoganda/fadedBrianTeaching.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-height: 1600px;
+    height: 100%;
     overflow: hidden;
     border-top: 1px solid #CCCCCC;
     border-bottom: 1px solid #CCCCCC;
 }
 
+
 .landing-teachers-section  .big-btn--green {
-	margin-top: 40px;
-}
-
-
-
-.landing-teachers-section .brian {
-	width: 50%;
-    height: 100%;
-    background-image: url("/assets/img/propoganda/brian_teaching2.jpg");
-    float: left;
-    background-size: cover;
-    background-position: 50% 27%;
+	margin-top: 11px;
+    margin-bottom: 162px;
 }
 
 .landing-teachers-section-info {
-    width: 50%;
-    float: left;
-    padding: 100px 10px 10px 75px;
-	color: white;
+	width: 100%;
+    max-height: 1600px;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 136px 10px 10px 10px;
+    color: white;
+}
+
+.landing-teachers-section-info h2{
+    margin-top: 33px;
+}
+
+.landing-teachers-section-info img{
+    width: 15%;
+	length: 15%;
 }
 
 .teachers-graphic-box {
@@ -2231,6 +2339,23 @@ hr {
 }
 
 .big-btn--green:hover {
+	color: white;
+	background-color: #327D0A;
+}
+
+.blog-btn--green {
+	color: white;
+	background-color: #3F9910;
+	padding: 20px 43px;
+	font-size: 20px;
+	border-radius: 6px;
+	min-width: 224px;
+	display: inline-block;
+	transition: background-color 0.4s;
+	text-align: center;
+}
+
+.blog-btn--green:hover {
 	color: white;
 	background-color: #327D0A;
 }
@@ -2747,17 +2872,6 @@ a.menu-item {
 
 }
 
-.rssItem {
-	width: 100%;
-	overflow: hidden;
-	margin-bottom: 25px;
-	border-bottom: 3px solid rgb(183, 183, 183);
-}
-
-.rssItem p {
-	font-size: 16px;
-}
-
 .what-it-is-tile-wrapper {
 	max-width: 300px;
 	margin: auto;
@@ -2930,12 +3044,14 @@ a.menu-item {
 .landing-video-section {
 	overflow: hidden;
 	position: relative;
-	height: 600px;
+    height: 100%;
+    max-height: 1600px;
 }
 
 .landing-video-section .overlay {
-	background-color: rgba(0, 0, 0, 0.26);
-	padding-top: 206px;
+    background-color: rgba(0, 0, 0, 0.26);
+    padding-top: 206px;
+    max-height: 1600px;
 }
 
 .breadcrumbs-bar {
@@ -3012,8 +3128,8 @@ p {
 
 
 .btnNav {
-  -webkit-border-radius: 8;
-  -moz-border-radius: 8;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
   border-radius: 8px;
   font-family: Arial;
   color: #ffffff;
@@ -3157,7 +3273,7 @@ pre {
 }
 
 .jbridge-tocourse-btn:active {
- 	box-shadow: 0px 0px 0px 0px, inset -0px 1px 7px #313D0A;
+ 	box-shadow: 0px 0px 0px 0px inset, -0px 1px 7px #313D0A;
 }
 
 .jbridge-samples-section {
@@ -3381,6 +3497,53 @@ pre {
   font-weight: 900;
 }
 
+.blog-button-section {
+  padding: 20px;
+  padding-top: 110px;
+  height: 100%;
+  max-height: 1600px;
+  background-color: rgb(244, 182, 26);
+  color: white !important;
+  box-shadow: 1px 3px 1px rgb(168, 168, 168);
+  margin:21px 0px;
+  text-align: center;
+}
+
+.blog-button-section img{
+    width: 15%;
+	length: 15%;
+}
+
+.blog-button-section .big-btn--green {
+    margin-top: 11px;
+    margin-bottom: 91px;
+}
+
+.partners-section {
+  padding: 39px 0 94px;
+}
+
+.student-div {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.student-div p{
+  margin-bottom: 31px;
+  font-size: 26px;
+}
+
+/*.student-div .youtube-embed-wrapper iframe{*/
+  /*height: 400px;*/
+  /*width: 50%;*/
+  /*align-content: center;  */
+/*}*/
+
+.student-div h2{
+  margin-bottom: 17px;
+  margin-top: 0px;
+  font-size: 50px;
+}
 
 figure {
 	margin-bottom: 40px;
@@ -3495,6 +3658,10 @@ figcaption {
 
 .background-orange {
 	background-color: #E98F06;
+}
+
+.background-white {
+	background-color: #ffffff;
 }
 
 .background-light-gray {

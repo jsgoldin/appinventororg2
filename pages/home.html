@@ -21,8 +21,8 @@
 			</div>
 		</div>
 
-		<video
-			style="min-width: 100%; height: auto; position: absolute; top: 0px; z-index: -1;"
+        <video
+			style="min-width: 100%;min-height: 100%; height: auto; position: absolute; top: 0px; z-index: -1; max-height: 1600px"
 			autoplay muted loop poster="/images/back-img.png" id="bgvid">
 			<source src="/assets/ailandingvideo.webm" type="video/webm">
 			<source src="/assets/ailandingvideo.mp4" type="video/mp4">
@@ -141,17 +141,20 @@
 
 <section class="section">
 	<div class="gen-container">
-		<div class="row">
-			<div class="col-sm-6 col-sm-push-6" style="margin-bottom: 24px;">
-				<h1>What student's are saying</h1>
+		<div class="student-div">
+            <h2>What student's are saying</h2>
 
-				<p>Checkout how Appinventor.org helped students learn to build mobile apps.</p>
-			</div>
-			<div class="col-sm-6 col-sm-pull-6">
+            <p>Checkout how Appinventor.org helped students learn to build mobile apps.</p>
+			<div class="col-sm-6 col-sm-push-6" style="margin-bottom: 24px;">
 				<div class="youtube-embed-wrapper">
-					<iframe id="player" frameborder="0" allowfullscreen="1" title="YouTube video player" width="640" height="360" src="https://www.youtube.com/embed/lsSSYiG_8F4?enablejsapi=1"></iframe>
+					<iframe id="player" frameborder="0" allowfullscreen="1" title="YouTube video player" width="640" height="200" src="https://www.youtube.com/embed/lsSSYiG_8F4?enablejsapi=1"></iframe>
 				</div>
 			</div>
+            <div class="col-sm-6 col-sm-pull-6" style="margin-bottom: 24px;">
+				<div class="youtube-embed-wrapper">
+					<iframe id="player" frameborder="0" allowfullscreen="1" title="YouTube video player" width="640" height="200" src="https://www.youtube.com/embed/x7wvGY969ZM"></iframe>
+				</div>
+            </div>
 		</div>
 		<div class="row">
 			<div class="col-md-12 jbridge-vids-container">
@@ -196,20 +199,24 @@
 	</div>
 </section>
 
-<section class="landing-teachers-section background-blue">
-	<div class="brian"></div>
-	
+<div>
+<section class="landing-teachers-section">
 	<div class="landing-teachers-section-info">
 		<h2>Teach an App Inventor course</h2>
 		<p>Jump start your class with course-in-a-box materials, including lesson plans, tips, and more.</p>
+        <a data-TID="home-teachers-cta" class="big-btn--green" href="/teacherIntro">Get started</a>
+    </div>
+</section>
+</div>
 
-		<a data-TID="home-teachers-cta" class="big-btn--green" href="/teacherIntro">Get started</a>
-	</div>
-	
+<section class="blog-button-section">
+        <h2>What's new on App Inventor Blog?</h2>
+        <p>Checkout the latest App Inventor news.</p>
+        <a data-TID="blog-button" class="big-btn--green" href="/about/blog"> Blog <img class="java-bridge-logo" src="/assets/img/rss.png"></a>
 
 </section>
 
-<section class="section partners-section">
+    <section class="section partners-section">
 	<div class="gen-container">
 
 		<div class="row">
