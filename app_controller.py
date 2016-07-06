@@ -6915,18 +6915,10 @@ class ContactUsHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'pages/contact_us.html')
         self.response.out.write(template.render(path, template_values)) 
 
-class aiTestHandler(webapp.RequestHandler):
+class JBridgeHandler(webapp.RequestHandler):
     def get(self):
-        userStatus = UserStatus().getStatus(self.request.uri)
-                
-        template_values = {
-                           'userStatus' : userStatus,
-                           'courseToModules' : getCoursesAndModules(),
-                           'title' : 'Team',
-                           }
-        
-        path = os.path.join(os.path.dirname(__file__), 'pages/appinventortest.html')
-        self.response.out.write(template.render(path, template_values))      
+        path = os.path.join(os.path.dirname(__file__), 'pages/javaBridge.html')
+        self.response.out.write(template.render(path, {}))
 
 
 
@@ -7322,8 +7314,7 @@ application = webapp.WSGIApplication(
         ('/firebaseDB', FirebaseDBHandler),
         ('/hueNew', HueNewHandler),
 
-        # TODO: DELETE WHEN DONE!
-        ('/aitesting', aiTestHandler)
+        ('/jbridge', JBridgeHandler)
 
 
     ],
