@@ -2660,7 +2660,7 @@ class MeetMyClassmatesHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'static_pages/other/meetMyClassmates.html')
         self.response.out.write(template.render(path, template_values))
 
-class JavaBridgeHandler(webapp.RequestHandler):
+class JavaBridgePageHandler(webapp.RequestHandler):
     def get(self):
         
         cacheHandler = CacheHandler()
@@ -2672,7 +2672,7 @@ class JavaBridgeHandler(webapp.RequestHandler):
         userStatus = userStatus.getStatus(self.request.uri)
         
         template_values = { 'allAppsList': allAppsList, 'allAppsList2': allAppsList2, 'userStatus': userStatus}
-        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/javaBridge.html')
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/javaBridgePage.html')
         self.response.out.write(template.render(path, template_values))
 
 class AppInventor2Handler(webapp.RequestHandler):
@@ -5581,7 +5581,7 @@ class AddTutorialStepRenderer(webapp.RequestHandler):
 
 class EmailHandler(webapp.RequestHandler):
     def get(self):
-        
+
 
         mail.send_mail(sender=" App Inventor <lubin2012tj@gmail.com>",
               to="<blu2@dons.usfca.edu>",
@@ -5920,7 +5920,7 @@ class AnimationChallengeHandler(webapp.RequestHandler):
     def get(self):
         template_values = {}
 
-        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/AnimationChallenge.html')
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/UIScroll.html')
         self.response.out.write(template.render(path, template_values))
 
 class WhatTheHeckIsCheckpointHandler(webapp.RequestHandler):
@@ -5942,6 +5942,55 @@ class HueNewHandler(webapp.RequestHandler):
         template_values = {}
 
         path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/HueNew.html')
+        self.response.out.write(template.render(path, template_values))
+
+class UIMoreAboutButtonsHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/UIMoreAboutButtons.html')
+        self.response.out.write(template.render(path, template_values))
+
+class UILLTCHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/UILLTC.html')
+        self.response.out.write(template.render(path, template_values))
+
+class UIMultipleScreensHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/UIMultipleScreens.html')
+        self.response.out.write(template.render(path, template_values))
+
+class UIArrangementsHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/UIArrangements.html')
+        self.response.out.write(template.render(path, template_values))
+
+class UIScrollHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/UIScroll.html')
+        self.response.out.write(template.render(path, template_values))
+
+class javaBridgeHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'static_pages/other/javaBridge.html')
+        self.response.out.write(template.render(path, template_values))
+
+class LLTCHandler(webapp.RequestHandler):
+    def get(self):
+        template_values = {}
+
+        path = os.path.join(os.path.dirname(__file__), 'pages/IntroHTMLPages/UILLTC.html')
         self.response.out.write(template.render(path, template_values))
 
 class CreativeProject2GameHandler(webapp.RequestHandler):
@@ -6915,21 +6964,6 @@ class ContactUsHandler(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'pages/contact_us.html')
         self.response.out.write(template.render(path, template_values)) 
 
-class aiTestHandler(webapp.RequestHandler):
-    def get(self):
-        userStatus = UserStatus().getStatus(self.request.uri)
-                
-        template_values = {
-                           'userStatus' : userStatus,
-                           'courseToModules' : getCoursesAndModules(),
-                           'title' : 'Team',
-                           }
-        
-        path = os.path.join(os.path.dirname(__file__), 'pages/appinventortest.html')
-        self.response.out.write(template.render(path, template_values))      
-
-
-
 class CourseInABoxIntroHanlder(webapp.RequestHandler):
     def get(self):
         userStatus = UserStatus().getStatus(self.request.uri)
@@ -7024,7 +7058,7 @@ application = webapp.WSGIApplication(
         ('/mathBlaster', MathBlasterHandler),
         ('/appInventor2', AppInventor2Handler),
         ('/slideshowQuiz', SlideShowQuizHandler),
-        ('/javaBridge', JavaBridgeHandler),
+        ('/javaBridgePage', JavaBridgePageHandler),
         ('/meetMyClassmates', MeetMyClassmatesHandler),
         ('/webDatabase', WebDatabaseHandler),
         ('/concepts', ConceptsHandler),
@@ -7321,9 +7355,12 @@ application = webapp.WSGIApplication(
         ('/whatTheHeckIsCheckpoint', WhatTheHeckIsCheckpointHandler),
         ('/firebaseDB', FirebaseDBHandler),
         ('/hueNew', HueNewHandler),
-
-        # TODO: DELETE WHEN DONE!
-        ('/aitesting', aiTestHandler)
+        ('/UImoreAboutButtons', UIMoreAboutButtonsHandler),
+        ('/UILLTC', UILLTCHandler),
+        ('/UImultipleScreens', UIMultipleScreensHandler),
+        ('/UIarrangements', UIArrangementsHandler),
+        ('/UIscroll', UIScrollHandler),
+        ('/javaBridge', javaBridgeHandler)
 
 
     ],
